@@ -1,0 +1,120 @@
+[
+  {
+    "vessel": "frigate",
+    "k": 0.8932,
+    "fitErrPct": 0,
+    "legs": [
+      {
+        "leg": "london->kingston",
+        "target": 40,
+        "role": "fit",
+        "modeledRaw": 35.7,
+        "ratio": 0.8931788974772544,
+        "src": "Naval/packet Atlantic averages (~5-6 wk)",
+        "modeledCal": 40,
+        "errPct": 0
+      },
+      {
+        "leg": "london->nyc",
+        "target": 36,
+        "role": "check",
+        "modeledRaw": 36.6,
+        "ratio": 1.0168065951170664,
+        "src": "Fast westbound naval passage",
+        "modeledCal": 41,
+        "errPct": 13.9
+      }
+    ]
+  },
+  {
+    "vessel": "indiaman",
+    "k": 0.8405,
+    "fitErrPct": 9.4,
+    "legs": [
+      {
+        "leg": "london->batavia",
+        "target": 135,
+        "role": "fit",
+        "modeledRaw": 113.5,
+        "ratio": 0.8405155172437128,
+        "src": "England->Batavia at-sea via Cape (excl. stops)",
+        "modeledCal": 135,
+        "errPct": 0
+      },
+      {
+        "leg": "london->canton",
+        "target": 135,
+        "role": "fit",
+        "modeledRaw": 102.8,
+        "ratio": 0.7617552586200984,
+        "src": "England->Canton at-sea via Cape (excl. stops)",
+        "modeledCal": 122.3,
+        "errPct": -9.4
+      },
+      {
+        "leg": "london->capetown",
+        "target": 90,
+        "role": "fit",
+        "modeledRaw": 95.2,
+        "ratio": 1.0576146242664635,
+        "src": "England->Cape at-sea ~13 wk",
+        "modeledCal": 113.3,
+        "errPct": 25.9
+      }
+    ]
+  },
+  {
+    "vessel": "brig",
+    "k": 0.9622,
+    "fitErrPct": 0,
+    "legs": [
+      {
+        "leg": "london->kingston",
+        "target": 52,
+        "role": "fit",
+        "modeledRaw": 50,
+        "ratio": 0.9621968643534853,
+        "src": "Merchant Atlantic outbound ~7-8 wk",
+        "modeledCal": 52,
+        "errPct": 0
+      },
+      {
+        "leg": "london->nyc",
+        "target": 45,
+        "role": "check",
+        "modeledRaw": 52.1,
+        "ratio": 1.1567989163999082,
+        "src": "Merchant westbound ~6-7 wk",
+        "modeledCal": 54.1,
+        "errPct": 20.2
+      }
+    ]
+  },
+  {
+    "vessel": "slaver",
+    "k": 0.7249,
+    "fitErrPct": 0.2,
+    "legs": [
+      {
+        "leg": "whydah->kingston",
+        "target": 62,
+        "role": "fit",
+        "modeledRaw": 44.9,
+        "ratio": 0.7248776924924136,
+        "src": "SlaveVoyages: mid-18thc Middle Passage ~2 mo",
+        "modeledCal": 61.9,
+        "errPct": -0.2
+      },
+      {
+        "leg": "bahia->whydah",
+        "target": 45,
+        "role": "check",
+        "modeledRaw": 58.6,
+        "ratio": 1.3027414182514674,
+        "src": "S-Atlantic Brazil-Mina outbound (against wind/current)",
+        "modeledCal": 80.8,
+        "errPct": 79.6
+      }
+    ]
+  }
+]

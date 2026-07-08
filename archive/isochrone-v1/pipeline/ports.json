@@ -1,0 +1,21 @@
+{
+  "setA": [
+    { "id": "london",    "name": "London",              "power": "Britain",         "lon": 1.2,   "lat": 51.4,  "anchor": "record", "note": "Busiest port in the world by the late 18th c." },
+    { "id": "amsterdam", "name": "Amsterdam",           "power": "Dutch Republic",  "lon": 4.9,   "lat": 52.5,  "anchor": "record", "note": "VOC/WIC entrepot; Europe's former financial hub." },
+    { "id": "bordeaux",  "name": "Bordeaux",            "power": "France",          "lon": -1.1,  "lat": 45.6,  "anchor": "record", "note": "France's leading colonial/Atlantic port." },
+    { "id": "nantes",    "name": "Nantes",              "power": "France",          "lon": -2.2,  "lat": 47.2,  "anchor": "record", "note": "France's chief slave-trading port." },
+    { "id": "liverpool", "name": "Liverpool",           "power": "Britain",         "lon": -3.1,  "lat": 53.5,  "anchor": "record", "note": "Rising Atlantic & slave-trade port." },
+    { "id": "cadiz",     "name": "Cadiz",               "power": "Spain",           "lon": -6.4,  "lat": 36.5,  "anchor": "record", "note": "Carrera de Indias monopoly hub." },
+    { "id": "lisbon",    "name": "Lisbon",              "power": "Portugal",        "lon": -9.4,  "lat": 38.7,  "anchor": "record", "note": "Brazil & Estado da India trade." },
+    { "id": "canton",    "name": "Canton (Guangzhou)",  "power": "Qing China",      "lon": 114.2, "lat": 22.2,  "anchor": "record", "note": "Sole legal Western-trade port in China." },
+    { "id": "batavia",   "name": "Batavia (Jakarta)",   "power": "Dutch (VOC)",     "lon": 106.9, "lat": -5.9,  "anchor": "record", "note": "VOC Asian headquarters." },
+    { "id": "kingston",  "name": "Kingston",            "power": "Britain",         "lon": -76.8, "lat": 17.9,  "anchor": "record", "note": "Great Caribbean entrepot." }
+  ],
+  "setB": [
+    { "id": "dejima",    "name": "Dejima (Nagasaki)",   "power": "Dutch-Japan",     "lon": 129.6, "lat": 32.7,  "anchor": "record", "note": "~1-2 ships/yr; the low-volume exemplar. Deshima Diaries." },
+    { "id": "gothenburg","name": "Gothenburg",          "power": "Sweden",          "lon": 11.6,  "lat": 57.6,  "anchor": "record", "note": "Swedish East India Co.; 132 documented expeditions." },
+    { "id": "tranquebar","name": "Tranquebar",          "power": "Denmark",         "lon": 79.9,  "lat": 11.0,  "anchor": "record", "note": "Danish Asiatic Co., Coromandel coast." },
+    { "id": "whydah",    "name": "Whydah (Ouidah)",     "power": "African embark.", "lon": 2.1,   "lat": 6.2,   "anchor": "record", "note": "Major slave embarkation port; centers the African side." },
+    { "id": "bahia",     "name": "Salvador da Bahia",   "power": "Portugal-Brazil", "lon": -38.5, "lat": -13.0, "anchor": "record", "note": "Direct South-Atlantic Brazil-Africa trade." }
+  ]
+}

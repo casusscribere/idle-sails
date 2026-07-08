@@ -1,0 +1,13 @@
+{
+  "name": "age-of-sail-passage-pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline pipeline: builds seasonal least-time sailing passage fields for the Age of Sail isochronic chart.",
+  "scripts": {
+    "grid": "node build-grid.mjs",
+    "proof": "node build-proof.mjs",
+    "calibrate": "node calibrate.mjs",
+    "all": "node build-all.mjs"
+  }
+}

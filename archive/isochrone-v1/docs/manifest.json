@@ -1,0 +1,390 @@
+{
+  "grid": {
+    "res": 1,
+    "lon0": -180,
+    "lat0": -90,
+    "cols": 360,
+    "rows": 180
+  },
+  "units": "Uint16 little-endian hours per ocean cell; 65535 = land or unreachable",
+  "filePattern": "data/fields/{port}_{vessel}_{season}.bin",
+  "seasons": [
+    {
+      "id": "djf",
+      "label": "Dec–Feb (N. winter)"
+    },
+    {
+      "id": "mam",
+      "label": "Mar–May (N. spring)"
+    },
+    {
+      "id": "jja",
+      "label": "Jun–Aug (N. summer)"
+    },
+    {
+      "id": "son",
+      "label": "Sep–Nov (N. autumn)"
+    }
+  ],
+  "vessels": [
+    {
+      "id": "frigate",
+      "name": "Naval frigate"
+    },
+    {
+      "id": "indiaman",
+      "name": "East Indiaman"
+    },
+    {
+      "id": "brig",
+      "name": "Merchant brig/sloop"
+    },
+    {
+      "id": "slaver",
+      "name": "Slave ship"
+    }
+  ],
+  "isoDays": [
+    7,
+    14,
+    21,
+    30,
+    45,
+    60,
+    90,
+    120,
+    150,
+    180,
+    240,
+    300,
+    365
+  ],
+  "ports": {
+    "setA": [
+      {
+        "id": "london",
+        "name": "London",
+        "power": "Britain",
+        "lon": 1.2,
+        "lat": 51.4,
+        "anchor": "record",
+        "note": "Busiest port in the world by the late 18th c.",
+        "srcCol": 181,
+        "srcRow": 141,
+        "srcLon": 1.5,
+        "srcLat": 51.5
+      },
+      {
+        "id": "amsterdam",
+        "name": "Amsterdam",
+        "power": "Dutch Republic",
+        "lon": 4.9,
+        "lat": 52.5,
+        "anchor": "record",
+        "note": "VOC/WIC entrepot; Europe's former financial hub.",
+        "srcCol": 183,
+        "srcRow": 141,
+        "srcLon": 3.5,
+        "srcLat": 51.5
+      },
+      {
+        "id": "bordeaux",
+        "name": "Bordeaux",
+        "power": "France",
+        "lon": -1.1,
+        "lat": 45.6,
+        "anchor": "record",
+        "note": "France's leading colonial/Atlantic port.",
+        "srcCol": 178,
+        "srcRow": 135,
+        "srcLon": -1.5,
+        "srcLat": 45.5
+      },
+      {
+        "id": "nantes",
+        "name": "Nantes",
+        "power": "France",
+        "lon": -2.2,
+        "lat": 47.2,
+        "anchor": "record",
+        "note": "France's chief slave-trading port.",
+        "srcCol": 176,
+        "srcRow": 136,
+        "srcLon": -3.5,
+        "srcLat": 46.5
+      },
+      {
+        "id": "liverpool",
+        "name": "Liverpool",
+        "power": "Britain",
+        "lon": -3.1,
+        "lat": 53.5,
+        "anchor": "record",
+        "note": "Rising Atlantic & slave-trade port.",
+        "srcCol": 176,
+        "srcRow": 143,
+        "srcLon": -3.5,
+        "srcLat": 53.5
+      },
+      {
+        "id": "cadiz",
+        "name": "Cadiz",
+        "power": "Spain",
+        "lon": -6.4,
+        "lat": 36.5,
+        "anchor": "record",
+        "note": "Carrera de Indias monopoly hub.",
+        "srcCol": 173,
+        "srcRow": 126,
+        "srcLon": -6.5,
+        "srcLat": 36.5
+      },
+      {
+        "id": "lisbon",
+        "name": "Lisbon",
+        "power": "Portugal",
+        "lon": -9.4,
+        "lat": 38.7,
+        "anchor": "record",
+        "note": "Brazil & Estado da India trade.",
+        "srcCol": 170,
+        "srcRow": 128,
+        "srcLon": -9.5,
+        "srcLat": 38.5
+      },
+      {
+        "id": "canton",
+        "name": "Canton (Guangzhou)",
+        "power": "Qing China",
+        "lon": 114.2,
+        "lat": 22.2,
+        "anchor": "record",
+        "note": "Sole legal Western-trade port in China.",
+        "srcCol": 293,
+        "srcRow": 111,
+        "srcLon": 113.5,
+        "srcLat": 21.5
+      },
+      {
+        "id": "batavia",
+        "name": "Batavia (Jakarta)",
+        "power": "Dutch (VOC)",
+        "lon": 106.9,
+        "lat": -5.9,
+        "anchor": "record",
+        "note": "VOC Asian headquarters.",
+        "srcCol": 286,
+        "srcRow": 84,
+        "srcLon": 106.5,
+        "srcLat": -5.5
+      },
+      {
+        "id": "kingston",
+        "name": "Kingston",
+        "power": "Britain",
+        "lon": -76.8,
+        "lat": 17.9,
+        "anchor": "record",
+        "note": "Great Caribbean entrepot.",
+        "srcCol": 103,
+        "srcRow": 107,
+        "srcLon": -76.5,
+        "srcLat": 17.5
+      }
+    ],
+    "setB": [
+      {
+        "id": "dejima",
+        "name": "Dejima (Nagasaki)",
+        "power": "Dutch-Japan",
+        "lon": 129.6,
+        "lat": 32.7,
+        "anchor": "record",
+        "note": "~1-2 ships/yr; the low-volume exemplar. Deshima Diaries.",
+        "srcCol": 309,
+        "srcRow": 122,
+        "srcLon": 129.5,
+        "srcLat": 32.5
+      },
+      {
+        "id": "gothenburg",
+        "name": "Gothenburg",
+        "power": "Sweden",
+        "lon": 11.6,
+        "lat": 57.6,
+        "anchor": "record",
+        "note": "Swedish East India Co.; 132 documented expeditions.",
+        "srcCol": 191,
+        "srcRow": 147,
+        "srcLon": 11.5,
+        "srcLat": 57.5
+      },
+      {
+        "id": "tranquebar",
+        "name": "Tranquebar",
+        "power": "Denmark",
+        "lon": 79.9,
+        "lat": 11,
+        "anchor": "record",
+        "note": "Danish Asiatic Co., Coromandel coast.",
+        "srcCol": 260,
+        "srcRow": 100,
+        "srcLon": 80.5,
+        "srcLat": 10.5
+      },
+      {
+        "id": "whydah",
+        "name": "Whydah (Ouidah)",
+        "power": "African embark.",
+        "lon": 2.1,
+        "lat": 6.2,
+        "anchor": "record",
+        "note": "Major slave embarkation port; centers the African side.",
+        "srcCol": 181,
+        "srcRow": 95,
+        "srcLon": 1.5,
+        "srcLat": 5.5
+      },
+      {
+        "id": "bahia",
+        "name": "Salvador da Bahia",
+        "power": "Portugal-Brazil",
+        "lon": -38.5,
+        "lat": -13,
+        "anchor": "record",
+        "note": "Direct South-Atlantic Brazil-Africa trade.",
+        "srcCol": 141,
+        "srcRow": 76,
+        "srcLon": -38.5,
+        "srcLat": -13.5
+      }
+    ]
+  },
+  "calibration": {
+    "frigate": 0.8932,
+    "indiaman": 0.8405,
+    "brig": 0.9622,
+    "slaver": 0.7249
+  },
+  "validation": [
+    {
+      "vessel": "frigate",
+      "k": 0.8932,
+      "fitErrPct": 0,
+      "legs": [
+        {
+          "leg": "london->kingston",
+          "target": 40,
+          "role": "fit",
+          "modeledRaw": 35.7,
+          "ratio": 0.8931788974772544,
+          "src": "Naval/packet Atlantic averages (~5-6 wk)",
+          "modeledCal": 40,
+          "errPct": 0
+        },
+        {
+          "leg": "london->nyc",
+          "target": 36,
+          "role": "check",
+          "modeledRaw": 36.6,
+          "ratio": 1.0168065951170664,
+          "src": "Fast westbound naval passage",
+          "modeledCal": 41,
+          "errPct": 13.9
+        }
+      ]
+    },
+    {
+      "vessel": "indiaman",
+      "k": 0.8405,
+      "fitErrPct": 9.4,
+      "legs": [
+        {
+          "leg": "london->batavia",
+          "target": 135,
+          "role": "fit",
+          "modeledRaw": 113.5,
+          "ratio": 0.8405155172437128,
+          "src": "England->Batavia at-sea via Cape (excl. stops)",
+          "modeledCal": 135,
+          "errPct": 0
+        },
+        {
+          "leg": "london->canton",
+          "target": 135,
+          "role": "fit",
+          "modeledRaw": 102.8,
+          "ratio": 0.7617552586200984,
+          "src": "England->Canton at-sea via Cape (excl. stops)",
+          "modeledCal": 122.3,
+          "errPct": -9.4
+        },
+        {
+          "leg": "london->capetown",
+          "target": 90,
+          "role": "fit",
+          "modeledRaw": 95.2,
+          "ratio": 1.0576146242664635,
+          "src": "England->Cape at-sea ~13 wk",
+          "modeledCal": 113.3,
+          "errPct": 25.9
+        }
+      ]
+    },
+    {
+      "vessel": "brig",
+      "k": 0.9622,
+      "fitErrPct": 0,
+      "legs": [
+        {
+          "leg": "london->kingston",
+          "target": 52,
+          "role": "fit",
+          "modeledRaw": 50,
+          "ratio": 0.9621968643534853,
+          "src": "Merchant Atlantic outbound ~7-8 wk",
+          "modeledCal": 52,
+          "errPct": 0
+        },
+        {
+          "leg": "london->nyc",
+          "target": 45,
+          "role": "check",
+          "modeledRaw": 52.1,
+          "ratio": 1.1567989163999082,
+          "src": "Merchant westbound ~6-7 wk",
+          "modeledCal": 54.1,
+          "errPct": 20.2
+        }
+      ]
+    },
+    {
+      "vessel": "slaver",
+      "k": 0.7249,
+      "fitErrPct": 0.2,
+      "legs": [
+        {
+          "leg": "whydah->kingston",
+          "target": 62,
+          "role": "fit",
+          "modeledRaw": 44.9,
+          "ratio": 0.7248776924924136,
+          "src": "SlaveVoyages: mid-18thc Middle Passage ~2 mo",
+          "modeledCal": 61.9,
+          "errPct": -0.2
+        },
+        {
+          "leg": "bahia->whydah",
+          "target": 45,
+          "role": "check",
+          "modeledRaw": 58.6,
+          "ratio": 1.3027414182514674,
+          "src": "S-Atlantic Brazil-Mina outbound (against wind/current)",
+          "modeledCal": 80.8,
+          "errPct": 79.6
+        }
+      ]
+    }
+  ],
+  "method": "Hybrid parametric wind/current climatology (CLIWOC/pilot-chart regimes) + square-rigger polars, least-time routed, calibrated to recorded at-sea durations."
+}

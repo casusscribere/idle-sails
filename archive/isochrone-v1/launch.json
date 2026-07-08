@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "passage-chart",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["C:/Users/kirkl/Documents/AI_TOOL_DIRECTORIES/age_of_sail_sailing_routes_chart/serve-preview.mjs"],
+      "autoPort": true
+    }
+  ]
+}

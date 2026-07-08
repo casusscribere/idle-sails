@@ -1,0 +1,5 @@
+node_modules/
+pipeline/node_modules/
+pipeline/build/
+*.log
+.DS_Store
