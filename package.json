@@ -1,0 +1,14 @@
+{
+  "name": "idle-sails",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A zero-friction age-of-sail browser idler: a procedurally generated, historically grounded world that sails itself.",
+  "scripts": {
+    "build:data": "node pipeline/build-data.mjs",
+    "build:routes": "node pipeline/bake-routes.mjs",
+    "build": "node pipeline/build-data.mjs && node pipeline/bake-routes.mjs",
+    "test": "node --test test/*.test.mjs",
+    "serve": "node --version >/dev/null && python3 -m http.server --directory app 8000"
+  }
+}

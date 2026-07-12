@@ -18,10 +18,28 @@ routing engine powers the idler's movement.
 
 ## Current state (as of 2026-07-12)
 
-- **Phase: Milestones 1 & 2 complete and verified.** The three PLAN §0 defaults
-  and the sober slave-trade treatment are user-confirmed. Next action is
-  **Milestone 3** (headless `world.js` generator + `tick()` + Node determinism
-  tests), consuming `app/data/{datasets.json, routes.json}`.
+- **Phase: Milestones 1–3 complete + a working parchment display.** The three
+  PLAN §0 defaults and the sober slave-trade treatment are user-confirmed.
+- **Milestone 3 (headless world):** `app/world.js` — seeded, deterministic,
+  DOM-free. Procedurally generates plausible vessels (PLAN §4), rolls each
+  voyage's fate at spawn, and advances them along the baked polylines. Spawns and
+  fates are driven off sim-time so big-step fast-forward == many small steps
+  (offline accrual). `test/world.test.mjs` (run `npm test`) covers determinism,
+  granularity-independence, plausibility + the Middle-Passage invariant, bounded
+  population, and calendar cycling — **7 passing**.
+- **Display layer (spans M4/M5/M7):** `app/{render,ui,main}.js` + `index.html` +
+  `style.css` — a canvas **parchment sea chart** (blank-sea portolan style: rhumb
+  web, wind roses, engraved coastlines, allegiance-tinted ship glyphs), a speed
+  instrument, click→vessel **ledger** (the five required fields + itinerary +
+  sober Middle-Passage note), ambient counters, and a ship's-log ticker. Verified
+  rendering via headless Chromium screenshot.
+- **Deploy:** `.github/workflows/pages.yml` publishes `app/` on push to `main`
+  (needs Settings→Pages→Source→"GitHub Actions", one-time). Static; serve over
+  HTTP, not `file://`. `#seed=<n>` loads a specific world.
+- **Renderer choice (PLAN §10.4 / M4): settled on canvas** — no MapLibre.
+- Next: **Milestone 6** (persistence + offline accrual via `app/persist.js`) then
+  **M7** polish. `world.js` already fast-forwards deterministically, so persist is
+  mostly wiring localStorage + a catch-up cap.
 - **Milestone 1 (data):** `data-src/` holds the six datasets + `ports.json` +
   `_schema.md`. `pipeline/build-data.mjs` validates cross-refs, enforces the
   Middle-Passage invariant, and runs a ~2000-vessel plausibility self-check

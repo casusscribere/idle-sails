@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Idle Sails — an age-of-sail chart that sails itself</title>
+  <meta name="description" content="A zero-friction age-of-sail idler: a procedurally generated, historically grounded world sails itself across a living sea chart.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>%E2%9A%93</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="chart" aria-label="A living sea chart of the age of sail"></canvas>
+
+  <!-- title cartouche -->
+  <header class="cartouche" id="cartouche">
+    <div class="rule"></div>
+    <h1>Idle&nbsp;Sails</h1>
+    <p class="sub">An age-of-sail chart that sails itself</p>
+    <p class="clock"><span id="date">—</span> <span class="season" id="season"></span></p>
+    <div class="rule"></div>
+  </header>
+
+  <!-- ambient counters -->
+  <div class="counters" id="counters" role="status" aria-live="off">
+    <div class="stat"><span class="num" id="c-sea">0</span><span class="cap">at sea</span></div>
+    <div class="stat"><span class="num" id="c-arr">0</span><span class="cap">arrived</span></div>
+    <div class="stat"><span class="num" id="c-lost">0</span><span class="cap">lost</span></div>
+  </div>
+
+  <!-- speed instrument -->
+  <div class="helm" id="helm">
+    <label for="speed">Sim speed</label>
+    <input id="speed" type="range" min="0" max="1000" value="560" aria-describedby="speed-read">
+    <output id="speed-read">—</output>
+  </div>
+
+  <!-- ship's log ticker -->
+  <div class="logbar" id="logbar" aria-hidden="true"><div class="log-track" id="log-track"></div></div>
+
+  <!-- vessel ledger (opens on selecting a ship) -->
+  <aside class="ledger" id="ledger" hidden aria-live="polite">
+    <button class="close" id="ledger-close" aria-label="Close vessel details">×</button>
+    <div id="ledger-body"></div>
+  </aside>
+
+  <p class="hint" id="hint">Click a vessel to inspect her. Everything else runs itself.</p>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
