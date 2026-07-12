@@ -1,0 +1,36 @@
+{
+  "$schema": "./_schema.md#cargo",
+  "note": "Commodity vocabulary. `origins` are region ids (see ports.json regions). `valueTier` 0-5 is coarse relative value per ton (0 = ballast/none). `class:illicit` marks smuggling-prone goods (e.g. tea run past customs). The `enslaved-people` entry is handled specially — see its `framing` block and PLAN §10.5. It is NOT assigned a monetary value tier and NEVER appears as a 'reward'; it exists so the Middle Passage is represented factually rather than effaced.",
+  "cargo": [
+    { "id": "ballast",       "name": "in ballast (empty)", "origins": ["*"],                          "valueTier": 0, "class": "none",    "note": "No cargo; stone/sand for trim. Common on homeward or repositioning legs." },
+    { "id": "salt",          "name": "salt",               "origins": ["iberia", "france"],           "valueTier": 1, "class": "bulk",    "note": "Setúbal/Bay salt for the fisheries and Baltic." },
+    { "id": "timber",        "name": "timber & masts",     "origins": ["baltic", "north-america"],    "valueTier": 1, "class": "bulk" },
+    { "id": "naval-stores",  "name": "naval stores",       "origins": ["baltic", "north-america"],    "valueTier": 2, "class": "bulk",    "note": "Tar, pitch, hemp, cordage." },
+    { "id": "iron",          "name": "bar iron",           "origins": ["baltic"],                     "valueTier": 2, "class": "bulk",    "note": "Swedish oregrounds iron, prized for steel." },
+    { "id": "grain",         "name": "grain",              "origins": ["baltic", "north-america"],    "valueTier": 1, "class": "bulk" },
+    { "id": "wine",          "name": "wine & brandy",      "origins": ["france", "iberia"],           "valueTier": 3, "class": "goods",   "note": "Claret, port, sherry, French brandy." },
+    { "id": "sugar",         "name": "sugar",              "origins": ["caribbean", "brazil"],        "valueTier": 3, "class": "colonial", "note": "The great plantation staple of the Atlantic." },
+    { "id": "rum",           "name": "rum",                "origins": ["caribbean"],                  "valueTier": 3, "class": "colonial" },
+    { "id": "molasses",      "name": "molasses",           "origins": ["caribbean"],                  "valueTier": 2, "class": "colonial" },
+    { "id": "tobacco",       "name": "tobacco",            "origins": ["north-america", "brazil"],    "valueTier": 3, "class": "colonial" },
+    { "id": "coffee",        "name": "coffee",             "origins": ["caribbean", "east-indies"],   "valueTier": 3, "class": "colonial" },
+    { "id": "cotton",        "name": "raw cotton",         "origins": ["india", "caribbean", "north-america"], "valueTier": 3, "class": "colonial" },
+    { "id": "indigo",        "name": "indigo",             "origins": ["india", "caribbean"],         "valueTier": 4, "class": "colonial" },
+    { "id": "tea",           "name": "tea",                "origins": ["china"],                      "valueTier": 4, "class": "illicit", "note": "The bulk of the China trade; heavily smuggled before the 1784 Commutation Act." },
+    { "id": "silk",          "name": "silk",               "origins": ["china"],                      "valueTier": 5, "class": "goods" },
+    { "id": "porcelain",     "name": "porcelain",          "origins": ["china"],                      "valueTier": 4, "class": "goods",   "note": "Also 'chinaware'; often shipped as profitable ballast under tea." },
+    { "id": "spices",        "name": "spices",             "origins": ["east-indies"],                "valueTier": 5, "class": "goods",   "note": "Nutmeg, mace, cloves, pepper — the VOC monopoly staples." },
+    { "id": "textiles",      "name": "Indian textiles",    "origins": ["india"],                      "valueTier": 3, "class": "goods",   "note": "Calico, chintz, muslin — a principal Indian-Ocean export." },
+    { "id": "specie",        "name": "specie (silver & gold)", "origins": ["iberia", "europe", "brazil"], "valueTier": 5, "class": "specie", "note": "Bullion/coin; the outbound counterpart to the China & India trade, and Brazilian gold." },
+    { "id": "trade-goods",   "name": "trade goods for barter", "origins": ["europe"],                 "valueTier": 3, "class": "goods",   "note": "The outbound Guinea cargo bartered on the African coast: textiles, firearms, gunpowder, brandy, iron bars, cowrie shells, manillas. Its exchange for captive people is the transaction the Middle Passage rests on." },
+    { "id": "enslaved-people", "name": "enslaved people",  "origins": ["west-africa"],                "valueTier": null, "class": "human-trafficking", "middlePassageOnly": true,
+      "framing": {
+        "sober": true,
+        "label": "captive people held below decks — the Middle Passage",
+        "description": "Human beings trafficked against their will across the Atlantic. Carried only on the middle leg of the triangular trade, from a West African embarkation port to a plantation colony. This is recorded, not celebrated: no monetary value is assigned, mortality risk is elevated to reflect the documented lethality of the passage, and it is never framed as profit or reward.",
+        "source": "SlaveVoyages — Trans-Atlantic Slave Trade Database (voyage durations, embarkation counts, mortality).",
+        "mortalityNote": "Recorded shipboard mortality on the Middle Passage commonly ran ~10-20% and at times far higher; the sim's loss/attrition model reflects this rather than hiding it."
+      },
+      "note": "Assigned ONLY to whydah->kingston / whydah->bahia legs by routes.json. build-data.mjs asserts this cargo never appears on any other lane." }
+  ]
+}

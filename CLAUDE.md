@@ -16,15 +16,25 @@ This is a **ground-up rebuild**. The previous project was an isochronic passage
 *chart* (a static travel-time map); it is archived, not deleted, because its
 routing engine powers the idler's movement.
 
-## Current state (as of 2026-07-08)
+## Current state (as of 2026-07-12)
 
-- **Phase: planning complete, no app code written yet.** The full design lives in
-  `PLAN.md`. Next action is **Milestone 1** (author the `data-src/` datasets).
-- **Git:** initialized; branch `main`; pushed to
-  **`https://github.com/casusscribere/idle-sails` (private)**. Remote `origin` is
-  stored **token-free** (HTTPS). Local is in sync with `origin/main`.
-- No `data-src/`, `pipeline/` (new), or `app/` directories exist yet — those are
-  the *target* layout described in `PLAN.md §8`, to be created during the build.
+- **Phase: Milestones 1 & 2 complete and verified.** The three PLAN §0 defaults
+  and the sober slave-trade treatment are user-confirmed. Next action is
+  **Milestone 3** (headless `world.js` generator + `tick()` + Node determinism
+  tests), consuming `app/data/{datasets.json, routes.json}`.
+- **Milestone 1 (data):** `data-src/` holds the six datasets + `ports.json` +
+  `_schema.md`. `pipeline/build-data.mjs` validates cross-refs, enforces the
+  Middle-Passage invariant, and runs a ~2000-vessel plausibility self-check
+  (0 contradictions) → `app/data/datasets.json` (32 KB).
+- **Milestone 2 (routes):** `pipeline/bake-routes.mjs` reuses the archived engine
+  to bake **208 route polylines** → `app/data/routes.json` (78 KB). See
+  `pipeline/README.md` for the three engine corrections it applies (Arctic ice
+  cap, Panama/Suez seals, Drake-Passage cap) — **read that before touching the
+  baker.** The archived `.bin` fields are left untouched.
+- **Git:** branch `main`; remote **`https://github.com/casusscribere/idle-sails`
+  (private)**, token-free HTTPS. The M1/M2 work (`data-src/`, `pipeline/`,
+  `app/data/`) is **uncommitted** as of this writing.
+- Still no `app/*.js` (world/render/ui/persist) — those are Milestone 3+.
 
 ## Repo layout right now
 

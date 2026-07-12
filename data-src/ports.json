@@ -1,0 +1,21 @@
+{
+  "$schema": "./_schema.md#ports",
+  "note": "15 georeferenced historical ports, ported from archive/isochrone-v1/pipeline/ports.json with added region/role metadata. lon/lat MUST match the archive exactly — the baked routing fields are keyed to these coordinates.",
+  "ports": [
+    { "id": "london",     "name": "London",             "lon": 1.2,   "lat": 51.4,  "power": "britain",  "region": "britain",     "roles": ["home", "naval"],        "note": "Busiest port in the world by the late 18th c." },
+    { "id": "liverpool",  "name": "Liverpool",          "lon": -3.1,  "lat": 53.5,  "power": "britain",  "region": "britain",     "roles": ["home", "slaving"],      "note": "Rising Atlantic & dominant British slave-trade port." },
+    { "id": "amsterdam",  "name": "Amsterdam",          "lon": 4.9,   "lat": 52.5,  "power": "dutch",    "region": "lowlands",    "roles": ["home"],                 "note": "VOC/WIC entrepot; Europe's former financial hub." },
+    { "id": "bordeaux",   "name": "Bordeaux",           "lon": -1.1,  "lat": 45.6,  "power": "france",   "region": "france",      "roles": ["home"],                 "note": "France's leading colonial/Atlantic port; wine." },
+    { "id": "nantes",     "name": "Nantes",             "lon": -2.2,  "lat": 47.2,  "power": "france",   "region": "france",      "roles": ["home", "slaving"],      "note": "France's chief slave-trading port." },
+    { "id": "cadiz",      "name": "Cadiz",              "lon": -6.4,  "lat": 36.5,  "power": "spain",    "region": "iberia",      "roles": ["home"],                 "note": "Carrera de Indias monopoly hub." },
+    { "id": "lisbon",     "name": "Lisbon",             "lon": -9.4,  "lat": 38.7,  "power": "portugal", "region": "iberia",      "roles": ["home"],                 "note": "Brazil & Estado da India trade." },
+    { "id": "gothenburg", "name": "Gothenburg",         "lon": 11.6,  "lat": 57.6,  "power": "sweden",   "region": "baltic",      "roles": ["home"],                 "note": "Swedish East India Co. (SOIC); 132 documented expeditions." },
+    { "id": "kingston",   "name": "Kingston",           "lon": -76.8, "lat": 17.9,  "power": "britain",  "region": "caribbean",   "roles": ["colonial", "naval"],    "note": "Great Caribbean sugar entrepot; Jamaica station." },
+    { "id": "bahia",      "name": "Salvador da Bahia",  "lon": -38.5, "lat": -13.0, "power": "portugal", "region": "brazil",      "roles": ["colonial", "slaving"],  "note": "Direct South-Atlantic Brazil-Mina trade." },
+    { "id": "whydah",     "name": "Whydah (Ouidah)",    "lon": 2.1,   "lat": 6.2,   "power": "african",  "region": "west-africa", "roles": ["embarkation"],          "note": "Major slave-embarkation port; the African side of the Atlantic trade." },
+    { "id": "batavia",    "name": "Batavia (Jakarta)",  "lon": 106.9, "lat": -5.9,  "power": "dutch",    "region": "east-indies", "roles": ["colonial", "factory"],  "note": "VOC Asian headquarters." },
+    { "id": "canton",     "name": "Canton (Guangzhou)", "lon": 114.2, "lat": 22.2,  "power": "qing",     "region": "china",       "roles": ["factory"],              "note": "Sole legal Western-trade port in Qing China." },
+    { "id": "tranquebar", "name": "Tranquebar",         "lon": 79.9,  "lat": 11.0,  "power": "denmark",  "region": "india",       "roles": ["colonial", "factory"],  "note": "Danish Asiatic Co. factory, Coromandel coast." },
+    { "id": "dejima",     "name": "Dejima (Nagasaki)",  "lon": 129.6, "lat": 32.7,  "power": "dutch",    "region": "japan",       "roles": ["factory"],              "note": "Dutch factory in Japan; ~1-2 ships/yr — the low-volume exemplar." }
+  ]
+}

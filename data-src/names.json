@@ -1,0 +1,51 @@
+{
+  "$schema": "./_schema.md#names",
+  "note": "Weighted vocabulary for vessel names. The generator picks a theme allowed for the vessel's {power, role}, draws a stem, then applies the construction rule (navalPrefix + article) from powers.json. `themesByPower` maps power ids to the theme pools they may draw from. Naval and merchant draw from different pools. Keep stems period-plausible.",
+
+  "articles": {
+    "romance": { "usage": "French/Spanish/Portuguese", "masc": "Le", "fem": "La", "note": "Applied to French merchant names; naval ships often bare (Redoutable, Santísima Trinidad). Spanish/Portuguese frequently religious with no article." },
+    "dutch":   { "usage": "Dutch", "prefix": "De", "note": "e.g. De Zeven Provinciën; merchant 'Vrouw'/'Jonge' constructions common." }
+  },
+
+  "naval": {
+    "virtue":    ["Victory", "Vanguard", "Valiant", "Resolution", "Defiance", "Intrepid", "Formidable", "Conqueror", "Triumph", "Dreadnought", "Superb", "Audacious", "Vengeance", "Terrible", "Thunderer", "Revenge"],
+    "classical": ["Bellona", "Minerva", "Neptune", "Mars", "Ajax", "Hector", "Orion", "Bellerophon", "Agamemnon", "Theseus", "Leander", "Amphion", "Diana", "Thetis", "Aurora", "Argo"],
+    "royal":     ["Royal Sovereign", "Royal George", "Britannia", "Queen Charlotte", "Princess Royal", "Royal Oak", "Prince George", "Namur"],
+    "predator":  ["Tiger", "Lion", "Panther", "Falcon", "Wasp", "Hornet", "Serpent", "Scorpion", "Fox", "Weazle", "Terror", "Fury"]
+  },
+  "navalPlaces": {
+    "britain":  ["Bristol", "Chatham", "Gloucester", "Exeter", "Kent", "Sussex", "Bedford", "Warwick", "Norfolk", "Monmouth"],
+    "france":   ["Océan", "Ville de Paris", "Redoutable", "Téméraire", "Bretagne", "Provence", "Bucentaure", "Achille", "Suffren"],
+    "spain":    ["Santísima Trinidad", "San Josef", "Santa Ana", "Bahama", "San Nicolás", "Salvador del Mundo", "Neptuno", "Argonauta"],
+    "portugal": ["Rainha de Portugal", "Vasco da Gama", "Medusa", "Príncipe do Brasil", "Afonso de Albuquerque"],
+    "dutch":    ["Zeven Provinciën", "Gelderland", "Utrecht", "Delft", "Vrijheid", "Admiraal de Ruyter", "Batavier"],
+    "usa":      ["Constitution", "Constellation", "United States", "Chesapeake", "President", "Congress"],
+    "sweden":   ["Gustaf III", "Kronprins", "Äran", "Dygden", "Försiktigheten"],
+    "denmark":  ["Dannebrog", "Norske Løve", "Prins Frederik", "Christian den Syvende"]
+  },
+
+  "merchant": {
+    "women":    ["Betsy", "Nancy", "Mary", "Ann", "Sally", "Peggy", "Charlotte", "Elizabeth", "Jane", "Molly", "Hannah", "Eliza", "Amelia", "Rebecca"],
+    "abstract": ["Enterprise", "Endeavour", "Industry", "Fortune", "Hope", "Adventure", "Friendship", "Diligence", "Union", "Concord", "Providence", "Increase", "Speedwell", "Prosperity"],
+    "civic":    ["Liverpool Merchant", "Bristol Packet", "London Trader", "Lord Mansfield", "Duke of Argyll", "Earl of Chatham"]
+  },
+  "merchantByPower": {
+    "france":   ["L'Aimable", "La Marie", "Le Bon Espoir", "La Concorde", "L'Aventure", "La Jeune Nantaise", "Le Comte de Guiche", "La Reine des Anges", "L'Amitié"],
+    "spain":    ["Nuestra Señora del Rosario", "San Fernando", "Santa Rita", "El Buen Consejo", "La Purísima Concepción", "San Juan Bautista"],
+    "portugal": ["Nossa Senhora do Rosário", "Bom Jesus", "Espírito Santo", "Santo António", "São José e Almas", "Nossa Senhora da Conceição"],
+    "dutch":    ["Vrouw Maria", "Vrede", "Eendracht", "De Hoop", "Jonge Jan", "Zeelandia", "'t Vergulde Draeck", "Vriendschap", "De Jonge Willem"],
+    "sweden":   ["Gustaf Adolf", "Sophia Magdalena", "Drottningen", "Enigheten", "Concordia", "Finland"],
+    "denmark":  ["Kongen af Danmark", "Dronning Juliana Maria", "Grev Bernstorff", "Prinsesse Sophia", "Fortuna"]
+  },
+
+  "themesByPower": {
+    "britain":  { "naval": ["virtue", "classical", "royal", "predator", "places"], "merchant": ["women", "abstract", "civic"] },
+    "france":   { "naval": ["places", "classical", "virtue"],                       "merchant": ["byPower", "abstract"] },
+    "dutch":    { "naval": ["places", "classical"],                                 "merchant": ["byPower", "abstract"] },
+    "spain":    { "naval": ["places", "classical"],                                 "merchant": ["byPower"] },
+    "portugal": { "naval": ["places", "classical"],                                 "merchant": ["byPower"] },
+    "sweden":   { "naval": ["places", "virtue"],                                    "merchant": ["byPower", "abstract"] },
+    "denmark":  { "naval": ["places", "virtue"],                                    "merchant": ["byPower", "abstract"] },
+    "usa":      { "naval": ["places", "classical", "virtue"],                       "merchant": ["women", "abstract", "civic"] }
+  }
+}
