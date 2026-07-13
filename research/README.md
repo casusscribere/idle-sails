@@ -12,11 +12,15 @@ page carries its own sources and caveats.
 
 ## Datasets
 
-### 1. Busiest ports, 1550–1815 — three metrics
-Per-decade top-10 ports (27 decades) ranked three ways, each with a persistence
-ranking (decades-in-top-10) and a presence grid.
-- **`port-rankings-1550-1815.json`** — the canonical data: `metrics.{ships,tonnage,value}.topByDecade`, plus sources and per-metric caveats.
-- **`ports-1550-1815.html`** — reference page with a metric switcher.
+### 1. Busiest ports, 1550–1815 — three metrics, **top 20**
+Per-decade rankings (27 decades) three ways, each with a persistence ranking and
+a presence grid. The **top 10 are ranked**; ranks **11–20 are an unranked second
+tier** (membership, not order — the evidence can't support fine rank past ~10).
+This tiered top-20 is the weight source for the flowing sim (`PLAN-2` Step 1).
+- **`port-rankings-1550-1815.json`** — canonical: `metrics.{ships,tonnage,value}.topByDecade` (1–10) and `.tier2ByDecade` (11–20), plus sources/caveats.
+- **`port-top20-1550-1815.csv`** — the full top-20 (decade · metric · tier · rank · port).
+- **`ports-1550-1815.html`** — reference page with a metric switcher; the grid shows the ranked top-10 (solid) and the second tier (faint outline).
+- Port universe: **57** ports (33 ever-top-10 + 24 mid-tier).
 - Anchors: Sound Toll Registers, Dutch-Asiatic Shipping, the Carrera de Indias (Lamikiz), English customs, van Tielhof, Kaukiainen.
 
 ### 2. Combined persistence synthesis
