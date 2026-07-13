@@ -1,0 +1,2388 @@
+{
+ "basin": "atlantic",
+ "note": "PLAN-3 R3. Anchors: Chaunu & García-Baquero (Carrera); the SlaveVoyages Trans-Atlantic Database (the best-counted trade of the era); Brazilian frota records; English/French customs & port books; Pope & Cell (Newfoundland).",
+ "anchors": [
+  "P. & H. Chaunu, Séville et l'Atlantique; A. García-Baquero (Cádiz)",
+  "SlaveVoyages / Trans-Atlantic Slave Trade Database",
+  "J. H. Parry; R. Davis, The Rise of the English Shipping Industry",
+  "P. Pope (Newfoundland); K. Morgan (Bristol/Atlantic)"
+ ],
+ "crossChecks": [
+  {
+   "id": "slavevoyages-decades",
+   "source": "SlaveVoyages DB, voyages per decade ÷ 10",
+   "systems": {
+    "middle-passage": 1
+   },
+   "decades": {
+    "1600": [
+     25,
+     50
+    ],
+    "1700": [
+     100,
+     190
+    ],
+    "1760": [
+     230,
+     350
+    ],
+    "1780": [
+     240,
+     400
+    ]
+   }
+  },
+  {
+   "id": "carrera-chaunu",
+   "source": "Chaunu tonnage/ship series, both directions",
+   "systems": {
+    "carrera-de-indias": 1
+   },
+   "decades": {
+    "1590": [
+     110,
+     220
+    ],
+    "1650": [
+     35,
+     95
+    ],
+    "1780": [
+     110,
+     270
+    ]
+   }
+  }
+ ],
+ "ports": [
+  {
+   "id": "cadiz",
+   "name": "Cádiz",
+   "simProxy": "cadiz"
+  },
+  {
+   "id": "seville",
+   "name": "Seville",
+   "simProxy": "cadiz"
+  },
+  {
+   "id": "lisbon",
+   "name": "Lisbon",
+   "simProxy": "lisbon"
+  },
+  {
+   "id": "bordeaux",
+   "name": "Bordeaux",
+   "simProxy": "bordeaux"
+  },
+  {
+   "id": "nantes",
+   "name": "Nantes",
+   "simProxy": "nantes"
+  },
+  {
+   "id": "la-rochelle",
+   "name": "La Rochelle",
+   "simProxy": "nantes"
+  },
+  {
+   "id": "london",
+   "name": "London",
+   "simProxy": "london"
+  },
+  {
+   "id": "bristol",
+   "name": "Bristol",
+   "simProxy": "liverpool"
+  },
+  {
+   "id": "liverpool",
+   "name": "Liverpool",
+   "simProxy": "liverpool"
+  },
+  {
+   "id": "glasgow",
+   "name": "Glasgow",
+   "simProxy": "liverpool"
+  },
+  {
+   "id": "amsterdam",
+   "name": "Amsterdam",
+   "simProxy": "amsterdam"
+  },
+  {
+   "id": "hull",
+   "name": "Hull",
+   "simProxy": "london"
+  },
+  {
+   "id": "veracruz",
+   "name": "Veracruz",
+   "simProxy": "kingston"
+  },
+  {
+   "id": "portobelo",
+   "name": "Portobelo",
+   "simProxy": "kingston"
+  },
+  {
+   "id": "cartagena",
+   "name": "Cartagena",
+   "simProxy": "kingston"
+  },
+  {
+   "id": "havana",
+   "name": "Havana",
+   "simProxy": "kingston"
+  },
+  {
+   "id": "kingston",
+   "name": "Kingston",
+   "simProxy": "kingston"
+  },
+  {
+   "id": "bridgetown",
+   "name": "Bridgetown (Barbados)",
+   "simProxy": "kingston"
+  },
+  {
+   "id": "cap-francais",
+   "name": "Cap-Français",
+   "simProxy": "kingston"
+  },
+  {
+   "id": "st-eustatius",
+   "name": "St Eustatius",
+   "simProxy": "kingston"
+  },
+  {
+   "id": "curacao",
+   "name": "Curaçao",
+   "simProxy": "kingston"
+  },
+  {
+   "id": "bahia",
+   "name": "Salvador da Bahia",
+   "simProxy": "bahia"
+  },
+  {
+   "id": "rio",
+   "name": "Rio de Janeiro",
+   "simProxy": "bahia"
+  },
+  {
+   "id": "pernambuco",
+   "name": "Pernambuco (Recife)",
+   "simProxy": "bahia"
+  },
+  {
+   "id": "whydah",
+   "name": "Whydah (Ouidah)",
+   "simProxy": "whydah"
+  },
+  {
+   "id": "elmina",
+   "name": "Elmina",
+   "simProxy": "whydah"
+  },
+  {
+   "id": "old-calabar",
+   "name": "Old Calabar",
+   "simProxy": "whydah"
+  },
+  {
+   "id": "luanda",
+   "name": "Luanda",
+   "simProxy": "whydah"
+  },
+  {
+   "id": "boston",
+   "name": "Boston",
+   "simProxy": null
+  },
+  {
+   "id": "new-york",
+   "name": "New York",
+   "simProxy": null
+  },
+  {
+   "id": "philadelphia",
+   "name": "Philadelphia",
+   "simProxy": null
+  },
+  {
+   "id": "chesapeake",
+   "name": "The Chesapeake (Norfolk/Annapolis)",
+   "simProxy": null
+  },
+  {
+   "id": "newfoundland",
+   "name": "Newfoundland (St John's & the Banks)",
+   "simProxy": null
+  },
+  {
+   "id": "davis-strait",
+   "name": "Davis Strait (the whaling grounds)",
+   "simProxy": null
+  },
+  {
+   "id": "nantucket",
+   "name": "Nantucket",
+   "simProxy": null
+  },
+  {
+   "id": "madeira",
+   "name": "Funchal (Madeira)",
+   "simProxy": "lisbon"
+  },
+  {
+   "id": "tenerife",
+   "name": "Santa Cruz (Tenerife)",
+   "simProxy": "cadiz"
+  }
+ ],
+ "systems": [
+  {
+   "id": "carrera-de-indias",
+   "name": "The Carrera de Indias",
+   "evidence": "counted",
+   "basis": "Chaunu, Séville et l'Atlantique; García-Baquero for the Cádiz century; both directions loaded (goods out, silver home). Seville and Cádiz lanes carried at constant shares — the 1717 transfer is smeared, noted.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "wine",
+    "trade-goods",
+    "specie",
+    "indigo"
+   ],
+   "shipTypes": [
+    "galleon",
+    "merchantman",
+    "frigate"
+   ],
+   "lanes": [
+    {
+     "from": "cadiz",
+     "to": "veracruz",
+     "share": 0.14
+    },
+    {
+     "from": "cadiz",
+     "to": "portobelo",
+     "share": 0.1
+    },
+    {
+     "from": "cadiz",
+     "to": "cartagena",
+     "share": 0.08
+    },
+    {
+     "from": "seville",
+     "to": "veracruz",
+     "share": 0.08
+    },
+    {
+     "from": "veracruz",
+     "to": "cadiz",
+     "share": 0.14
+    },
+    {
+     "from": "portobelo",
+     "to": "cadiz",
+     "share": 0.1
+    },
+    {
+     "from": "cartagena",
+     "to": "cadiz",
+     "share": 0.08
+    },
+    {
+     "from": "havana",
+     "to": "cadiz",
+     "share": 0.14
+    },
+    {
+     "from": "cadiz",
+     "to": "havana",
+     "share": 0.14
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      80,
+      140
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      90,
+      155
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      100,
+      170
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      110,
+      185
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      120,
+      200
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      113,
+      190
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      107,
+      180
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      100,
+      170
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      80,
+      143
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      60,
+      117
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      40,
+      90
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      37,
+      83
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      33,
+      77
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      30,
+      70
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      28,
+      65
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      25,
+      60
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      30,
+      70
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      35,
+      80
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      40,
+      90
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      47,
+      100
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      53,
+      110
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      60,
+      120
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      90,
+      190
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      120,
+      260
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      100,
+      240
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      80,
+      220
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      40,
+      160
+     ]
+    }
+   },
+   "notes": "Convoyed flotas → register ships → comercio libre (1778 boom) → wars and independence."
+  },
+  {
+   "id": "brazil-fleets",
+   "name": "The Brazil fleets (sugar → gold → the court)",
+   "evidence": "counted",
+   "basis": "Portuguese frota records and Bahia/Rio port studies; sugar boom c.1600, gold era 1700s–60s, the court at Rio and open ports after 1808.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "sugar",
+    "tobacco",
+    "specie",
+    "wine",
+    "salt",
+    "trade-goods"
+   ],
+   "shipTypes": [
+    "carrack",
+    "merchantman",
+    "east-indiaman",
+    "caravel"
+   ],
+   "lanes": [
+    {
+     "from": "lisbon",
+     "to": "bahia",
+     "share": 0.16
+    },
+    {
+     "from": "bahia",
+     "to": "lisbon",
+     "share": 0.16
+    },
+    {
+     "from": "lisbon",
+     "to": "rio",
+     "share": 0.13
+    },
+    {
+     "from": "rio",
+     "to": "lisbon",
+     "share": 0.13
+    },
+    {
+     "from": "lisbon",
+     "to": "pernambuco",
+     "share": 0.1
+    },
+    {
+     "from": "pernambuco",
+     "to": "lisbon",
+     "share": 0.1
+    },
+    {
+     "from": "bahia",
+     "to": "rio",
+     "share": 0.11
+    },
+    {
+     "from": "rio",
+     "to": "bahia",
+     "share": 0.11
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      60,
+      110
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      68,
+      124
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      76,
+      138
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      84,
+      152
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      92,
+      166
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      100,
+      180
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      96,
+      174
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      92,
+      168
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      88,
+      162
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      84,
+      156
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      80,
+      150
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      84,
+      156
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      88,
+      162
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      92,
+      168
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      96,
+      174
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      100,
+      180
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      107,
+      187
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      113,
+      193
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      120,
+      200
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      113,
+      193
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      107,
+      187
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      100,
+      180
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      107,
+      193
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      113,
+      207
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      120,
+      220
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      135,
+      260
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      150,
+      300
+     ]
+    }
+   }
+  },
+  {
+   "id": "middle-passage",
+   "name": "The Middle Passage",
+   "evidence": "counted",
+   "basis": "SlaveVoyages — the Trans-Atlantic Slave Trade Database: ~36,000 documented voyages; the era's best-counted trade, because people were cargo in its ledgers. Counted here as embarkation legs.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "enslaved-people"
+   ],
+   "shipTypes": [
+    "slave-ship"
+   ],
+   "lanes": [
+    {
+     "from": "whydah",
+     "to": "kingston",
+     "share": 0.16
+    },
+    {
+     "from": "whydah",
+     "to": "bahia",
+     "share": 0.12
+    },
+    {
+     "from": "whydah",
+     "to": "cap-francais",
+     "share": 0.1
+    },
+    {
+     "from": "old-calabar",
+     "to": "kingston",
+     "share": 0.14
+    },
+    {
+     "from": "elmina",
+     "to": "kingston",
+     "share": 0.08
+    },
+    {
+     "from": "luanda",
+     "to": "bahia",
+     "share": 0.22
+    },
+    {
+     "from": "luanda",
+     "to": "rio",
+     "share": 0.18
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      15,
+      30
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      17,
+      34
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      19,
+      38
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      21,
+      42
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      23,
+      46
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      25,
+      50
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      28,
+      56
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      31,
+      62
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      34,
+      68
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      37,
+      74
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      40,
+      80
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      47,
+      90
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      53,
+      100
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      60,
+      110
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      85,
+      145
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      110,
+      180
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      123,
+      203
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      137,
+      227
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      150,
+      250
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      177,
+      280
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      203,
+      310
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      230,
+      340
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      240,
+      370
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      250,
+      400
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      225,
+      375
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      200,
+      350
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      150,
+      300
+     ]
+    }
+   },
+   "framing": {
+    "sober": true,
+    "label": "coerced human movement — recorded, not celebrated",
+    "description": "Human beings trafficked against their will across the Atlantic — the largest forced migration in history. The flow is recorded at full documented scale; mortality, not profit, is its measure. The sim's existing Middle-Passage invariant (sober ledger framing, no value tier, elevated attrition) applies to every lane this system feeds.",
+    "rule": "No value framing, no profit framing, never a reward. Sim-side representation waits for S2's generalization of the Middle-Passage invariant; until then these flows exist as historical record only."
+   }
+  },
+  {
+   "id": "guinea-outward",
+   "name": "The Guinea outward legs",
+   "evidence": "counted",
+   "basis": "The same database, outward-leg side: European and Brazilian barter cargoes to the African coast. The African merchant polities (Efik houses, Dahomey, the Gold Coast states) set the terms of this exchange — see powers.json.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "trade-goods",
+    "tobacco",
+    "rum"
+   ],
+   "shipTypes": [
+    "slave-ship"
+   ],
+   "lanes": [
+    {
+     "from": "liverpool",
+     "to": "whydah",
+     "share": 0.16
+    },
+    {
+     "from": "liverpool",
+     "to": "old-calabar",
+     "share": 0.14
+    },
+    {
+     "from": "london",
+     "to": "whydah",
+     "share": 0.09
+    },
+    {
+     "from": "bristol",
+     "to": "whydah",
+     "share": 0.09
+    },
+    {
+     "from": "nantes",
+     "to": "whydah",
+     "share": 0.14
+    },
+    {
+     "from": "bordeaux",
+     "to": "whydah",
+     "share": 0.05
+    },
+    {
+     "from": "amsterdam",
+     "to": "elmina",
+     "share": 0.06
+    },
+    {
+     "from": "bahia",
+     "to": "whydah",
+     "share": 0.15
+    },
+    {
+     "from": "rio",
+     "to": "luanda",
+     "share": 0.12
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      15,
+      30
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      17,
+      34
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      19,
+      38
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      21,
+      42
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      23,
+      46
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      25,
+      50
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      28,
+      56
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      31,
+      62
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      34,
+      68
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      37,
+      74
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      40,
+      80
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      47,
+      90
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      53,
+      100
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      60,
+      110
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      85,
+      145
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      110,
+      180
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      123,
+      203
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      137,
+      227
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      150,
+      250
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      177,
+      280
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      203,
+      310
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      230,
+      340
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      240,
+      370
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      250,
+      400
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      225,
+      375
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      200,
+      350
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      150,
+      300
+     ]
+    }
+   }
+  },
+  {
+   "id": "wine-salt-north",
+   "name": "Iberian & Gascon wine and salt, northbound",
+   "evidence": "proxied",
+   "basis": "English and Dutch port books; the Bordeaux wine fleets and the Lisbon/Cádiz trades to northwest Europe (the Baltic salt run is carried in the Baltic basin).",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "wine",
+    "salt",
+    "specie"
+   ],
+   "shipTypes": [
+    "brig",
+    "snow",
+    "merchantman"
+   ],
+   "lanes": [
+    {
+     "from": "bordeaux",
+     "to": "london",
+     "share": 0.2
+    },
+    {
+     "from": "bordeaux",
+     "to": "amsterdam",
+     "share": 0.15
+    },
+    {
+     "from": "lisbon",
+     "to": "london",
+     "share": 0.15
+    },
+    {
+     "from": "cadiz",
+     "to": "london",
+     "share": 0.12
+    },
+    {
+     "from": "lisbon",
+     "to": "amsterdam",
+     "share": 0.1
+    },
+    {
+     "from": "cadiz",
+     "to": "amsterdam",
+     "share": 0.1
+    },
+    {
+     "from": "la-rochelle",
+     "to": "amsterdam",
+     "share": 0.08
+    },
+    {
+     "from": "madeira",
+     "to": "london",
+     "share": 0.05
+    },
+    {
+     "from": "tenerife",
+     "to": "london",
+     "share": 0.05
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      200,
+      400
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      210,
+      415
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      220,
+      430
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      230,
+      445
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      240,
+      460
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      250,
+      475
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      260,
+      490
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      270,
+      505
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      280,
+      520
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      290,
+      535
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      300,
+      550
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      310,
+      565
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      320,
+      580
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      330,
+      595
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      340,
+      610
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      350,
+      625
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      360,
+      640
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      370,
+      655
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      380,
+      670
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      390,
+      685
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      400,
+      700
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      392,
+      700
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      383,
+      700
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      375,
+      700
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      367,
+      700
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      358,
+      700
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      350,
+      700
+     ]
+    }
+   }
+  },
+  {
+   "id": "newfoundland-cod",
+   "name": "The Newfoundland fishery and the sack trade",
+   "evidence": "proxied",
+   "basis": "Cell & Pope; English West Country, French, and Basque fleets to the Banks; the 'sack ships' carrying cod direct to Iberia and the Mediterranean.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "cod",
+    "salt",
+    "wine"
+   ],
+   "shipTypes": [
+    "brig",
+    "snow",
+    "merchantman"
+   ],
+   "lanes": [
+    {
+     "from": "bristol",
+     "to": "newfoundland",
+     "share": 0.2
+    },
+    {
+     "from": "london",
+     "to": "newfoundland",
+     "share": 0.15
+    },
+    {
+     "from": "nantes",
+     "to": "newfoundland",
+     "share": 0.15
+    },
+    {
+     "from": "newfoundland",
+     "to": "lisbon",
+     "share": 0.2
+    },
+    {
+     "from": "newfoundland",
+     "to": "cadiz",
+     "share": 0.1
+    },
+    {
+     "from": "newfoundland",
+     "to": "london",
+     "share": 0.1
+    },
+    {
+     "from": "newfoundland",
+     "to": "bordeaux",
+     "share": 0.1
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      250,
+      450
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      270,
+      480
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      290,
+      510
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      310,
+      540
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      330,
+      570
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      350,
+      600
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      340,
+      590
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      330,
+      580
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      320,
+      570
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      310,
+      560
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      300,
+      550
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      310,
+      560
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      320,
+      570
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      330,
+      580
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      340,
+      590
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      350,
+      600
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      360,
+      620
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      370,
+      640
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      380,
+      660
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      390,
+      680
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      400,
+      700
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      417,
+      733
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      433,
+      767
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      450,
+      800
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      400,
+      750
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      350,
+      700
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      300,
+      650
+     ]
+    }
+   }
+  },
+  {
+   "id": "caribbean-sugar",
+   "name": "The West India sugar trades",
+   "evidence": "counted",
+   "basis": "English and French customs: the sugar fleets from Jamaica, Barbados, and Saint-Domingue that remade Atlantic Europe.",
+   "era": {
+    "from": 1640,
+    "to": 1815
+   },
+   "cargo": [
+    "sugar",
+    "rum",
+    "coffee",
+    "cotton",
+    "trade-goods"
+   ],
+   "shipTypes": [
+    "merchantman",
+    "brig",
+    "snow"
+   ],
+   "lanes": [
+    {
+     "from": "kingston",
+     "to": "london",
+     "share": 0.15
+    },
+    {
+     "from": "bridgetown",
+     "to": "london",
+     "share": 0.15
+    },
+    {
+     "from": "kingston",
+     "to": "liverpool",
+     "share": 0.1
+    },
+    {
+     "from": "kingston",
+     "to": "bristol",
+     "share": 0.08
+    },
+    {
+     "from": "cap-francais",
+     "to": "nantes",
+     "share": 0.12
+    },
+    {
+     "from": "cap-francais",
+     "to": "bordeaux",
+     "share": 0.13
+    },
+    {
+     "from": "london",
+     "to": "kingston",
+     "share": 0.12
+    },
+    {
+     "from": "bordeaux",
+     "to": "cap-francais",
+     "share": 0.08
+    },
+    {
+     "from": "st-eustatius",
+     "to": "amsterdam",
+     "share": 0.07
+    }
+   ],
+   "byDecade": {
+    "1640": {
+     "voyagesPerYear": [
+      100,
+      200
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      100,
+      200
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      120,
+      230
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      140,
+      260
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      160,
+      290
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      180,
+      320
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      200,
+      350
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      230,
+      400
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      260,
+      450
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      290,
+      500
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      320,
+      550
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      350,
+      600
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      383,
+      667
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      417,
+      733
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      450,
+      800
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      433,
+      800
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      417,
+      800
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      400,
+      800
+     ]
+    }
+   },
+   "notes": "Cap-Français lanes effectively end 1791 — the constant shares smear this; the rankings carry the event."
+  },
+  {
+   "id": "chesapeake-tobacco",
+   "name": "The Chesapeake tobacco trade",
+   "evidence": "counted",
+   "basis": "English customs and the Glasgow tobacco lords' records.",
+   "era": {
+    "from": 1620,
+    "to": 1815
+   },
+   "cargo": [
+    "tobacco",
+    "trade-goods"
+   ],
+   "shipTypes": [
+    "merchantman",
+    "brig"
+   ],
+   "lanes": [
+    {
+     "from": "chesapeake",
+     "to": "london",
+     "share": 0.35
+    },
+    {
+     "from": "chesapeake",
+     "to": "glasgow",
+     "share": 0.25
+    },
+    {
+     "from": "london",
+     "to": "chesapeake",
+     "share": 0.25
+    },
+    {
+     "from": "glasgow",
+     "to": "chesapeake",
+     "share": 0.15
+    }
+   ],
+   "byDecade": {
+    "1620": {
+     "voyagesPerYear": [
+      20,
+      50
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      30,
+      67
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      40,
+      83
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      50,
+      100
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      60,
+      117
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      70,
+      133
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      80,
+      150
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      85,
+      158
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      90,
+      165
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      95,
+      173
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      100,
+      180
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      113,
+      198
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      125,
+      215
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      138,
+      233
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      150,
+      250
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      133,
+      233
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      117,
+      217
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      100,
+      200
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      90,
+      190
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      80,
+      180
+     ]
+    }
+   }
+  },
+  {
+   "id": "new-england-caribbean",
+   "name": "The New England–Caribbean provisioning triangle",
+   "evidence": "proxied",
+   "basis": "Colonial naval office lists: cod, lumber, and horses south; rum, sugar, and molasses north — the trade that built the North American ports.",
+   "era": {
+    "from": 1640,
+    "to": 1815
+   },
+   "cargo": [
+    "cod",
+    "timber",
+    "rum",
+    "molasses",
+    "sugar"
+   ],
+   "shipTypes": [
+    "brig",
+    "sloop",
+    "snow"
+   ],
+   "lanes": [
+    {
+     "from": "boston",
+     "to": "kingston",
+     "share": 0.2
+    },
+    {
+     "from": "boston",
+     "to": "bridgetown",
+     "share": 0.15
+    },
+    {
+     "from": "new-york",
+     "to": "kingston",
+     "share": 0.15
+    },
+    {
+     "from": "philadelphia",
+     "to": "bridgetown",
+     "share": 0.1
+    },
+    {
+     "from": "kingston",
+     "to": "boston",
+     "share": 0.2
+    },
+    {
+     "from": "bridgetown",
+     "to": "new-york",
+     "share": 0.1
+    },
+    {
+     "from": "philadelphia",
+     "to": "kingston",
+     "share": 0.1
+    }
+   ],
+   "byDecade": {
+    "1640": {
+     "voyagesPerYear": [
+      60,
+      120
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      60,
+      120
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      78,
+      152
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      96,
+      184
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      114,
+      216
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      132,
+      248
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      150,
+      280
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      170,
+      314
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      190,
+      348
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      210,
+      382
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      230,
+      416
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      250,
+      450
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      275,
+      500
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      300,
+      550
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      325,
+      600
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      350,
+      650
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      325,
+      650
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      300,
+      650
+     ]
+    }
+   }
+  },
+  {
+   "id": "caribbean-smuggling",
+   "name": "The Caribbean inter-island contraband trade",
+   "evidence": "asserted",
+   "basis": "ASSERTED (R3 decision) — silent BY EVASION: unrecorded because recording was the danger. Central guesses from the free-port scholarship (St Eustatius's 3,000+ annual ship calls at its 1770s peak, Curaçao, Monte Cristi, the asiento's shadow); bounds ±60%.",
+   "era": {
+    "from": 1650,
+    "to": 1815
+   },
+   "cargo": [
+    "sugar",
+    "trade-goods",
+    "specie",
+    "rum"
+   ],
+   "shipTypes": [
+    "sloop",
+    "brig"
+   ],
+   "lanes": [
+    {
+     "from": "st-eustatius",
+     "to": "boston",
+     "share": 0.15
+    },
+    {
+     "from": "st-eustatius",
+     "to": "new-york",
+     "share": 0.1
+    },
+    {
+     "from": "st-eustatius",
+     "to": "cap-francais",
+     "share": 0.15
+    },
+    {
+     "from": "havana",
+     "to": "kingston",
+     "share": 0.15
+    },
+    {
+     "from": "kingston",
+     "to": "cartagena",
+     "share": 0.15
+    },
+    {
+     "from": "curacao",
+     "to": "cartagena",
+     "share": 0.15
+    },
+    {
+     "from": "kingston",
+     "to": "havana",
+     "share": 0.15
+    }
+   ],
+   "byDecade": {
+    "1650": {
+     "voyagesPerYear": [
+      50,
+      190
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      56,
+      216
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      62,
+      242
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      68,
+      268
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      74,
+      294
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      80,
+      320
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      84,
+      336
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      88,
+      352
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      92,
+      368
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      96,
+      384
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      100,
+      400
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      107,
+      427
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      113,
+      453
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      120,
+      480
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      107,
+      427
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      93,
+      373
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      80,
+      320
+     ]
+    }
+   },
+   "notes": "The register's own entry: this trade is in the record chiefly as seizures and complaints."
+  },
+  {
+   "id": "davis-strait-whaling",
+   "name": "The Davis Strait & Greenland whale fishery",
+   "evidence": "proxied",
+   "basis": "British bounty records and Dutch Groenlandvaart lists — the Arctic fishery's 18th-c westward shift.",
+   "era": {
+    "from": 1720,
+    "to": 1815
+   },
+   "cargo": [
+    "whale-oil"
+   ],
+   "shipTypes": [
+    "merchantman",
+    "brig"
+   ],
+   "lanes": [
+    {
+     "from": "london",
+     "to": "davis-strait",
+     "share": 0.35
+    },
+    {
+     "from": "hull",
+     "to": "davis-strait",
+     "share": 0.3
+    },
+    {
+     "from": "amsterdam",
+     "to": "davis-strait",
+     "share": 0.2
+    },
+    {
+     "from": "nantucket",
+     "to": "davis-strait",
+     "share": 0.15
+    }
+   ],
+   "byDecade": {
+    "1720": {
+     "voyagesPerYear": [
+      20,
+      60
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      33,
+      83
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      47,
+      107
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      60,
+      130
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      80,
+      160
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      100,
+      190
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      120,
+      220
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      107,
+      207
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      93,
+      193
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      80,
+      180
+     ]
+    }
+   }
+  }
+ ]
+}

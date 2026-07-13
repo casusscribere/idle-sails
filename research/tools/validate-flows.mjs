@@ -16,6 +16,7 @@ const errs = [], notes = [];
 const basins = readdirSync(`${ROOT}/research/flows`).filter(f => f.endsWith(".json") && f !== "silences.json");
 let nSystems = 0, nDecades = 0;
 const basinData = {};
+const proxyOf = {};   // port id → simProxy, must agree across basins
 
 for (const file of basins) {
   const B = load(`research/flows/${file}`); basinData[B.basin] = B;
@@ -25,6 +26,8 @@ for (const file of basins) {
     if (portIds.has(p.id)) errs.push(`${ctx}: duplicate port ${p.id}`);
     portIds.add(p.id);
     if (p.simProxy !== null && !simIds.has(p.simProxy)) errs.push(`${ctx}: port ${p.id} simProxy '${p.simProxy}' is not a sim port`);
+    if (p.id in proxyOf && proxyOf[p.id] !== p.simProxy) errs.push(`${ctx}: port ${p.id} simProxy '${p.simProxy}' conflicts with another basin's '${proxyOf[p.id]}'`);
+    proxyOf[p.id] = p.simProxy;
   }
   const sysIds = new Set();
   for (const s of B.systems || []) {
@@ -35,6 +38,9 @@ for (const file of basins) {
     if (!s.basis || s.basis.length < 10) errs.push(`${sc}: basis is required (source or reasoning)`);
     for (const c of s.cargo || []) if (!cargoIds.has(c)) errs.push(`${sc}: unknown cargo '${c}'`);
     for (const t of s.shipTypes || []) if (!shipIds.has(t)) errs.push(`${sc}: unknown shipType '${t}'`);
+    // PLAN-3 §1 rule 6: coerced human movement carries the sober framing block, always.
+    if ((s.cargo || []).includes("enslaved-people") && !(s.framing && s.framing.sober === true))
+      errs.push(`${sc}: carries enslaved-people but lacks a framing{sober:true} block (charter rule 6)`);
     let shareSum = 0;
     for (const l of s.lanes || []) {
       if (!portIds.has(l.from)) errs.push(`${sc}: lane from '${l.from}' not in ports[]`);
@@ -52,6 +58,9 @@ for (const file of basins) {
     for (const d of have) {
       const v = s.byDecade[d].voyagesPerYear;
       if (!Array.isArray(v) || v.length !== 2 || !(v[0] > 0) || !(v[1] >= v[0])) errs.push(`${sc} ${d}: bad range ${JSON.stringify(v)}`);
+      // asserted entries default to ±60% (R3 decision) — flag suspiciously tight bounds
+      if (s.evidence === "asserted" && v[1] / v[0] < 2.33)
+        notes.push(`  ⚠ ${sc} ${d}: asserted bounds tighter than ±40% (${v[0]}–${v[1]}) — justify in basis or widen`);
     }
   }
 }
@@ -67,37 +76,38 @@ for (const e of S.silences) {
   if (e.treatment === "asserted" && !allSys.has(e.pointer)) errs.push(`silences/${e.id}: asserted but pointer '${e.pointer}' names no system`);
 }
 
-// ---- historical cross-check: Sound-crossing systems vs Sound Toll passages ----
-// Approximate STRO annual passages (both directions), as [lo,hi] per anchor decade.
-const SOUND = { 1550: [900, 1600], 1590: [1400, 2400], 1650: [1100, 1900], 1700: [900, 1700], 1750: [2400, 4200], 1790: [7000, 10500], 1810: [2500, 6500] };
-const CROSSING = { "baltic-grain-west": 1, "baltic-timber-naval-west": 1, "baltic-general-west": 1, "baltic-return-east": 1, "petersburg-west": 1, "swedish-iron-west": 0.6 /* Gothenburg share bypasses the Sound */ };
-const B = basinData["baltic-north-sea"];
-if (B) {
-  notes.push("Sound cross-check (sum of Sound-crossing systems vs STRO passages):");
-  for (const [d, [slo, shi]] of Object.entries(SOUND)) {
-    let lo = 0, hi = 0;
-    for (const s of B.systems) {
-      const f = CROSSING[s.id]; if (!f || !s.byDecade[d]) continue;
-      lo += s.byDecade[d].voyagesPerYear[0] * f; hi += s.byDecade[d].voyagesPerYear[1] * f;
+// ---- historical cross-checks: declared per basin as crossChecks[] ----
+// { id, source, systems: {sysId: factor}, decades: {d: [lo,hi]} } — the factored
+// sum of system ranges must overlap the expected band within ±35%.
+for (const B of Object.values(basinData)) {
+  for (const chk of B.crossChecks || []) {
+    notes.push(`${B.basin} cross-check — ${chk.id} (${chk.source}):`);
+    for (const [d, [slo, shi]] of Object.entries(chk.decades)) {
+      let lo = 0, hi = 0;
+      for (const s of B.systems) {
+        const f = chk.systems[s.id]; if (!f || !s.byDecade[d]) continue;
+        lo += s.byDecade[d].voyagesPerYear[0] * f; hi += s.byDecade[d].voyagesPerYear[1] * f;
+      }
+      const overlap = !(hi < slo * 0.65 || lo > shi * 1.35);   // ±35% tolerance on range overlap
+      notes.push(`  ${d}s: systems ${Math.round(lo)}–${Math.round(hi)} vs expected ${slo}–${shi} ${overlap ? "✓" : "✗ OUT OF BAND"}`);
+      if (!overlap) errs.push(`${B.basin}/${chk.id} ${d}s: system sum ${Math.round(lo)}–${Math.round(hi)} outside band ${slo}–${shi} ±35%`);
     }
-    const overlap = !(hi < slo * 0.65 || lo > shi * 1.35);   // ±35% tolerance on range overlap
-    notes.push(`  ${d}s: systems ${Math.round(lo)}–${Math.round(hi)} vs Sound ${slo}–${shi} ${overlap ? "✓" : "✗ OUT OF BAND"}`);
-    if (!overlap) errs.push(`sound-check ${d}s: system sum ${Math.round(lo)}–${Math.round(hi)} outside STRO band ${slo}–${shi} ±35%`);
   }
 }
 
-// ---- derived prominence (output, not input): top Baltic ports per century vs rankings ----
-if (B) {
+// ---- derived prominence (output, not input): top ports per sample decade, worldwide ----
+{
   const prom = {};
-  for (const s of B.systems) for (const [d, v] of Object.entries(s.byDecade)) {
-    const mid = (v.voyagesPerYear[0] + v.voyagesPerYear[1]) / 2;
-    for (const l of s.lanes) for (const pid of [l.from, l.to]) {
-      prom[pid] = prom[pid] || {}; prom[pid][d] = (prom[pid][d] || 0) + mid * l.share;
+  for (const B of Object.values(basinData))
+    for (const s of B.systems) for (const [d, v] of Object.entries(s.byDecade)) {
+      const mid = (v.voyagesPerYear[0] + v.voyagesPerYear[1]) / 2;
+      for (const l of s.lanes) for (const pid of [l.from, l.to]) {
+        prom[pid] = prom[pid] || {}; prom[pid][d] = (prom[pid][d] || 0) + mid * l.share;
+      }
     }
-  }
-  notes.push("derived port prominence (flow touches/yr, midpoints) — sanity vs the counted rankings:");
+  notes.push("derived WORLD port prominence (flow touches/yr, midpoints) — an output, not an input:");
   for (const d of [1590, 1690, 1790]) {
-    const top = Object.entries(prom).map(([p, m]) => [p, m[d] || 0]).sort((a, b) => b[1] - a[1]).slice(0, 6);
+    const top = Object.entries(prom).map(([p, m]) => [p, m[d] || 0]).sort((a, b) => b[1] - a[1]).slice(0, 10);
     notes.push(`  ${d}s: ${top.map(([p, v]) => `${p}:${Math.round(v)}`).join("  ")}`);
   }
 }

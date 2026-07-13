@@ -162,6 +162,11 @@ const out = {
     "J. U. Nef / J. Hatcher (the coal trades); Y. Kaukiainen (Baltic shipping)",
     "C. de Jong (Dutch whaling); J. W. Veluwenkamp (Arkhangelsk)"
   ],
+  crossChecks: [
+    { id: "sound-passages", source: "STRO annual passages, both directions",
+      systems: { "baltic-grain-west": 1, "baltic-timber-naval-west": 1, "baltic-general-west": 1, "baltic-return-east": 1, "petersburg-west": 1, "swedish-iron-west": 0.6 },
+      decades: { 1550: [900, 1600], 1590: [1400, 2400], 1650: [1100, 1900], 1700: [900, 1700], 1750: [2400, 4200], 1790: [7000, 10500], 1810: [2500, 6500] } }
+  ],
   ports, systems
 };
 writeFileSync("/home/kirk/REPOS_LINUX/idle_sails/research/flows/baltic-north-sea.json", JSON.stringify(out, null, 1) + "\n");

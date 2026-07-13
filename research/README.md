@@ -76,20 +76,49 @@ rankings as the sim's weight source (PLAN-3 §2; schema in
 [`flows/_schema.md`](flows/_schema.md), decisions fixed at R2 2026-07-13:
 voyage **ranges** `[lo,hi]`, **per-seed draw** realization, **systems + lane
 shares**). Port prominence becomes an *output*.
-- **`flows/baltic-north-sea.json`** — the proof-of-shape basin: 13 systems ×
-  27 decades (grain, timber, iron, the return trade, St Petersburg, Norway,
-  the coal trades incl. the collier system that answers the R1-declared
-  silence, Arkhangelsk, Spitsbergen whaling, intra-Baltic, the short-haul).
-  Counted systems cross-check against the Sound Toll series (±35% band, all
-  anchor decades ✓). Authored as anchor curves in
-  `tools/build-baltic-flows.mjs` — the anchors carry the historical claims.
-- **`flows/silences.json`** — the silences register: known flows we do not or
-  cannot quantify, each with reason + treatment (asserted / gestured /
-  excluded). Rendered as "The chart's silences" at S3.
-- **`tools/validate-flows.mjs`** — structural checks (hard errors) +
-  historical cross-checks (reported).
-- Remaining basins (Atlantic, Mediterranean, Indian Ocean, Bengal–SE Asia,
-  East Asia) are Phase R3.
+- **All six basins authored (R3 complete, 2026-07-13): 60 systems ×
+  1,403 system-decades.**
+  - `flows/baltic-north-sea.json` (13) — grain, timber, iron, the return
+    trade, St Petersburg, Norway, the coal trades (incl. the collier answer
+    to R1's declared silence), Arkhangelsk, Spitsbergen, intra-Baltic.
+  - `flows/atlantic.json` (11) — the Carrera, the Brazil fleets, the Middle
+    Passage + Guinea legs (SlaveVoyages-anchored, sober-framed), wine & salt,
+    Newfoundland, the sugar trades, tobacco, the New England triangle,
+    **Caribbean smuggling (asserted — the silence-by-evasion, answered)**,
+    Davis Strait whaling.
+  - `flows/mediterranean.json` (9) — the Levant trade, Italian grain, Venice's
+    long decline, the Ragusan argosies, Marseille, **the provisioning of
+    Istanbul**, Greek/Ottoman coasting (asserted), the Habsburg silver route,
+    the Black Sea slave trade (sober-framed).
+  - `flows/indian-ocean-west.json` (9) — the Carreira, Gujarat–Red Sea (Surat
+    and the hajj), the Gulf, the Swahili coast, **the Indian Ocean slave
+    trades (sober-framed)**, Malabar pepper, the cowrie trade, the Mascarenes,
+    the country trade.
+  - `flows/bengal-se-asia.json` (9) — the VOC arterial (DAS-anchored), the EIC
+    arterial, the minor companies, Coromandel textiles, the spice islands,
+    **the Bugis carrying network (asserted)**, the Manila galleon, Aceh–Red
+    Sea, the Bengal country trade.
+  - `flows/east-asia.json` (9) — the Canton arterial, **the Nanyang junk trade
+    (the Eurocentrism corrective — reconstructed)**, the Nagasaki junk trade
+    (counted: Chinese hulls outnumbered Dutch ten to one), the great ship of
+    Macau, VOC Japan, the Ryukyu circuit, Korea–Tsushima, the red-seal/Siam
+    trade, **the Chinese coastal grain fleet (asserted)**.
+  - **Seven cross-checks pass** against anchoring series (Sound Toll,
+    SlaveVoyages, Chaunu, DAS, the Nagasaki registers, the Canton fleet, the
+    French échelles), ±35% band.
+- **`flows/silences.json`** — the silences register (11 entries): every known
+  flow we do not or cannot quantify, with reason + treatment. Three silences
+  were *answered* at R3 (Caribbean smuggling, China coastal grain, the coerced
+  flows beyond the Atlantic); African coastwise trade and Pacific voyaging are
+  gestured — recorded so the chart's emptiness reads as the archive's silence,
+  not the ocean's. Rendered as "The chart's silences" at S3.
+- **`tools/validate-flows.mjs`** — structural checks (hard errors: shares,
+  grids, refs, sober-framing enforcement on coerced flows, cross-basin proxy
+  consistency) + historical cross-checks and a derived world-prominence
+  report. In the 1590s top-10 by flow touches: Istanbul, Shanghai, Tianjin,
+  Alexandria, Smyrna — ports the ranking universe could not represent.
+- Builders: `tools/build-baltic-flows.mjs`, `tools/build-r3-basins.mjs` — the
+  anchor curves carry the historical claims.
 
 ## Reproducing / extending
 The rankings (1 & 2) were authored from the sources above; the derived artefacts

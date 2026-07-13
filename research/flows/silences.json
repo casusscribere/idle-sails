@@ -22,8 +22,28 @@
       "treatment": "excluded",
       "note": "Boats below burden thresholds — wherries, prams, coasters under ~20 tons — were never registered anywhere. Below the simulation's vessel scale; excluded knowingly." },
 
-    { "id": "r3-placeholders", "scope": "Atlantic · Mediterranean · Indian Ocean · SE Asia · East Asia", "reason": "not-yet-reconstructed",
+    { "id": "caribbean-smuggling-silence", "scope": "Caribbean (the free ports and the asiento's shadow)", "reason": "evasion",
+      "treatment": "asserted", "pointer": "caribbean-smuggling",
+      "note": "Silent BY EVASION — unrecorded because recording was the danger. Answered at R3: the atlantic basin carries an asserted system (±60% bounds around free-port scholarship's central guesses; St Eustatius alone logged 3,000+ ship calls at its 1770s peak, most of them the traffic everyone else's customs never saw)." },
+
+    { "id": "junk-trade-under-registration", "scope": "East & Southeast Asia", "reason": "unrecorded",
+      "treatment": "asserted", "pointer": "nanyang-junk-trade",
+      "note": "The great structural silence of the European record: the Nanyang junk trade generated no western toll series, yet the Nagasaki registers — where a state DID count — show Chinese hulls outnumbering Dutch ten to one. Answered at R3 by reconstruction (Blussé, Reid, Sugihara), not assertion: the scholarship is strong enough to class it reconstructed." },
+
+    { "id": "china-coastal-silence", "scope": "the Chinese littoral", "reason": "excluded-by-basis",
+      "treatment": "asserted", "pointer": "china-coastal-grain",
+      "note": "The coastal junk metabolism of the world's largest economy — the Shanghai shachuan grain fleet alone counted in the thousands. Answered at R3 (asserted, ±60%) on the same consistency grounds as the English colliers: if Newcastle's coasting is in, Tianjin's is." },
+
+    { "id": "coerced-flows-beyond-atlantic", "scope": "Black Sea · western Indian Ocean", "reason": "not-yet-reconstructed",
+      "treatment": "asserted", "pointer": "black-sea-slave-trade",
+      "note": "Resolved at R3 (decision 4): the Black Sea trade at Kaffa and the Indian Ocean slave trades (see also indian-ocean-slave-trades) are quantified as sober-framed systems rather than left as silences — charter rule 6's framing block is validator-enforced on both. Sim-side representation waits for S2's generalization of the Middle-Passage invariant." },
+
+    { "id": "african-coastwise", "scope": "West & East African coasts", "reason": "unrecorded",
       "treatment": "gestured",
-      "note": "Known entries awaiting basin authoring (R3): Caribbean inter-island smuggling (silent BY EVASION — unrecorded because recording was the danger); the Nanyang junk trade's under-registration in European sources; African coastwise and lagoon trade; Indian Ocean country trade beyond company books; Pacific islander voyaging (real, seaborne, and outside every European series). Each becomes asserted-or-gestured, with reasoning, as its basin is authored." }
+      "note": "Canoe-house, lagoon, and coastal commerce along the Gold Coast, the Bight, and the Swahili littoral — real, substantial, organized (the Efik houses ran it on their own terms), and with no defensible voyage unit at the sim's vessel scale. GESTURED (R3 decision): acknowledged here, candidate for ambient representation, no volume claim fabricated." },
+
+    { "id": "pacific-voyaging", "scope": "Oceania", "reason": "unrecorded",
+      "treatment": "gestured",
+      "note": "Polynesian and Micronesian seafaring continued throughout this era, entirely outside every European series — no voyage-count basis exists at all. GESTURED (R3 decision): recorded so the chart's Pacific emptiness reads as the archive's silence, not the ocean's." }
   ]
 }

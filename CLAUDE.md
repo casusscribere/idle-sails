@@ -83,11 +83,17 @@ Every design decision answers to both of these:
   promotions + Kingston T2; de-truncations; universe 60; Istanbul in the queue
   as the declared-boundary exemplar; changelog in the rankings JSON; tools in
   `research/tools/`). **R2 is done** (schema fixed: voyage ranges, per-seed
-  draw, systems + lane shares; `research/flows/` holds the Baltic proof basin
-  — 13 systems × 27 decades, Sound Toll cross-check ✓ — and the silences
-  register). **Next: PLAN-3 Phase R3** (basin authoring: Atlantic,
-  Mediterranean, Indian Ocean, Bengal–SE Asia, East Asia), then S1 (sim swap),
-  S2 (bake), S3 (surfacing). Each phase pauses on its decision list (PLAN-3 §3).
+  draw, systems + lane shares). **R3 is done**: all six basins authored —
+  **60 systems × 1,403 system-decades** in `research/flows/`, seven
+  cross-checks passing (Sound Toll, SlaveVoyages, Chaunu, DAS, the Nagasaki
+  registers, Canton, the échelles), the silences register at 11 entries
+  (Caribbean smuggling + China coastal grain asserted; African coastwise +
+  Pacific voyaging gestured), coerced flows beyond the Atlantic quantified
+  with validator-enforced sober framing. Derived world prominence (an output
+  now) puts Istanbul, Shanghai, Tianjin, Alexandria, and Smyrna in the 1590s
+  top-10 — ports the rankings could not represent. **Next: PLAN-3 Phase S1**
+  (sim swap to flow-driven spawning), then S2 (bake), S3 (surfacing). Each
+  phase pauses on its decision list (PLAN-3 §3).
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —

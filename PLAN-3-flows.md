@@ -118,15 +118,19 @@ realization rule** — fixed midpoint vs *per-seed draw within [lo,hi]*
 still deterministic given seed); (3) granularity — systems with lane-share
 splits (recommended) vs individual port-pair entries.
 
-### Phase R3 — Basin authoring *(the big pass)*
-Atlantic, Mediterranean, western Indian Ocean, Bengal–SE Asia, East Asia;
-populate the silences register; per-basin anchor bibliography (Chaunu/Lamikiz;
-Chaudhuri, Prakash, Subrahmanyam; Reid, Blussé, Sugihara for the junk trade…).
-**Decisions:** (1) system list sign-off per basin (proposed → reviewed);
-(2) default bounds policy for `asserted` entries (±50–60%?); (3) silences
-register scope — which flows are `asserted` vs register-only (e.g. Caribbean
-smuggling: assert? Pacific voyaging: register-only?); (4) generalizing the
-coerced-flows rule beyond the Atlantic (Kaffa, Indian Ocean slave trades).
+### Phase R3 — Basin authoring *(the big pass)* — ✅ DONE 2026-07-13
+*(Decisions resolved: all 46 proposed systems accepted (+1 — the Black Sea
+slave trade under decision 4 — for 47 new, 60 total with the Baltic); asserted
+bounds default ±60% (validator warns under ±40%); Caribbean smuggling and
+China coastal grain ASSERTED, African coastwise and Pacific voyaging gestured;
+coerced flows quantified with the sober framing block, validator-enforced.
+Delivered: five basin files (atlantic 11, mediterranean 9, indian-ocean-west
+9, bengal-se-asia 9, east-asia 9), 1,403 system-decades, seven cross-checks
+passing (Sound Toll, SlaveVoyages, Chaunu, DAS, Nagasaki registers, Canton
+fleet, French échelles), the silences register at 11 entries with three
+silences answered, and a derived world prominence whose 1590s top-10 includes
+Istanbul, Shanghai, Tianjin, Alexandria, and Smyrna — ports the ranking
+universe could not represent.)*
 
 ### Phase S1 — Sim swap to flow-driven spawning
 `world.js` weight source ← per-decade lane weights derived from the flow
