@@ -17,7 +17,18 @@ const LAND_EDGE = '#5c4630';
 const RHUMB_RED = 'rgba(150,70,50,0.16)';
 const WAKE = 'rgba(58,44,28,0.28)';
 
-// Chart viewport in geographic degrees (frames all ports, routes and ice caps).
+// Chart viewport in geographic degrees. The latitude cutoffs frame the band the
+// age-of-sail world actually occupies, with a small margin, and crop the empty
+// poles:
+//   latMax  74°N — comfortably above the northernmost port (Gothenburg, 57.6°N)
+//                  and the northernmost baked routes (~62°N), and above the
+//                  Arctic ice cap (66°N) that bounds where any route may go.
+//   latMin -58°S — just below the southernmost sailing latitude: the Cape of
+//                  Good Hope (34.5°S) and the homeward "Roaring Forties" easting
+//                  (~45-49°S), and below the -50°S ice cap (closed Drake Passage)
+//                  that bounds the routes. Antarctica lies off-screen below.
+// Longitude spans the Atlantic-Africa-Indian-China world (Kingston -76.8°E to
+// Dejima 129.6°E) with margin; the empty mid-Pacific is cropped.
 const BOUNDS = { lonMin: -100, lonMax: 150, latMin: -58, latMax: 74 };
 
 export function createRenderer(canvas, assets) {
@@ -107,12 +118,25 @@ export function createRenderer(canvas, assets) {
 
   function drawGeom(c, geom) {
     const polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.type === 'MultiPolygon' ? geom.coordinates : [];
-    c.fillStyle = LAND; c.strokeStyle = LAND_EDGE; c.lineWidth = 0.9;
     // A ring that crosses the antimeridian (lon ±180) has its two halves projected
-    // to opposite edges; lift the pen on any segment that jumps most of the map
-    // width so we don't stroke a spurious line straight across the chart.
+    // to opposite edges of the chart. That one edge must be filled (so winding is
+    // correct and the land fills solidly) but NOT stroked (else it draws a line
+    // straight across the map). So fill with intact rings, then stroke a second
+    // pass that lifts the pen on any segment jumping most of the map width.
     const jump = (BOUNDS.lonMax - BOUNDS.lonMin) * k * 0.5;
     for (const poly of polys) {
+      c.fillStyle = LAND;
+      c.beginPath();
+      for (const ring of poly) {
+        for (let i = 0; i < ring.length; i++) {
+          const [x, y] = project(ring[i][0], ring[i][1]);
+          i ? c.lineTo(x, y) : c.moveTo(x, y);
+        }
+        c.closePath();
+      }
+      c.fill();
+
+      c.strokeStyle = LAND_EDGE; c.lineWidth = 0.9;
       c.beginPath();
       for (const ring of poly) {
         let prevX = null;
@@ -123,7 +147,7 @@ export function createRenderer(canvas, assets) {
           prevX = x;
         }
       }
-      c.fill(); c.stroke();
+      c.stroke();
     }
   }
 
