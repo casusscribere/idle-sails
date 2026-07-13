@@ -175,6 +175,7 @@ for (const pw of powers) {
 // the 15-port world simply can't sail all of it yet (S2's job).
 const FLOWS_DIR = join(ROOT, 'research', 'flows');
 const flowSystems = [];
+const laneEvidenceVotes = {};   // laneId → {evidence: volume} → dominant class per lane
 let covReport = '';
 {
   if (!existsSync(FLOWS_DIR)) err(`flows dir not found: ${FLOWS_DIR} (PLAN-3 R2/R3)`);
@@ -213,6 +214,13 @@ let covReport = '';
         const byDecade = {};
         for (const [d, v] of Object.entries(s.byDecade)) byDecade[d] = v.voyagesPerYear;
         flowSystems.push({ id: s.id, evidence: s.evidence, byDecade, lanes: folded });
+        // accumulate per-lane evidence votes (weighted by folded share x mean volume)
+        const decsAll = Object.keys(s.byDecade);
+        const meanMid = decsAll.reduce((a, d) => a + (s.byDecade[d].voyagesPerYear[0] + s.byDecade[d].voyagesPerYear[1]) / 2, 0) / decsAll.length;
+        for (const [lid, sh] of Object.entries(folded)) {
+          laneEvidenceVotes[lid] = laneEvidenceVotes[lid] || {};
+          laneEvidenceVotes[lid][s.evidence] = (laneEvidenceVotes[lid][s.evidence] || 0) + sh * meanMid;
+        }
       }
     }
     for (const [lid] of pairIdx) void lid;
@@ -278,7 +286,8 @@ const bundle = {
   routeClasses: ROUTE_CLASSES,
   seasons: SEASONS,
   ports, powers, shipTypes, cargo, routes, wars, names,
-  flows: { note: 'PLAN-3 S1: flow systems folded onto the baked lanes; [lo,hi] voyage ranges realized per-seed by world.js', systems: flowSystems }
+  flows: { note: 'PLAN-3 S1: flow systems folded onto the baked lanes; [lo,hi] voyage ranges realized per-seed by world.js. laneEvidence = each lane\'s dominant evidence class (S3: surfaced in the ledger).', systems: flowSystems,
+    laneEvidence: Object.fromEntries(Object.entries(laneEvidenceVotes).map(([lid, v]) => [lid, Object.entries(v).sort((a, b) => b[1] - a[1])[0][0]])) }
 };
 writeFileSync(join(OUT, 'datasets.json'), JSON.stringify(bundle));
 if (existsSync(LAND_SRC)) copyFileSync(LAND_SRC, join(OUT, 'land.geojson'));

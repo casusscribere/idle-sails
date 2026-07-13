@@ -120,6 +120,17 @@ shares**). Port prominence becomes an *output*.
 - Builders: `tools/build-baltic-flows.mjs`, `tools/build-r3-basins.mjs` — the
   anchor curves carry the historical claims.
 
+### 7. The historiography, surfaced (S3)
+- **`silences.html`** — *The chart's silences*: the register rendered — every
+  known-but-unquantified flow with its reason and treatment, and the three
+  silences answered with estimates that now sail.
+- **`flow-prominence.html`** — per-decade port prominence **derived** from the
+  60 flow systems (an output, not an input), unsailable ports marked °.
+- In the game itself, every vessel's ledger carries a one-line evidence note —
+  *"this voyage stands for a reconstructed trade"* — from its lane's dominant
+  evidence class (`datasets.flows.laneEvidence`).
+- Regenerate both pages with `tools/build-s3-pages.mjs`.
+
 ## Reproducing / extending
 The rankings (1 & 2) were authored from the sources above; the derived artefacts
 (3's computed fields, 4's aggregation) are produced by small Node builders. The

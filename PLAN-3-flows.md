@@ -174,13 +174,25 @@ coverage **25–34% → 76–89%**; population band retuned to spectator scale
 what the boundary statement claimed: **Istanbul is the busiest port of the
 1560s**, and the junk trade sails the 17th century.)*
 
-### Phase S3 — Surfacing the historiography
-Ledger evidence-class line (*"this voyage stands for a reconstructed trade"*);
-a **"The chart's silences"** reference page; regenerate research pages with
-flow-derived prominence; boundary statements on every page.
-**Decisions:** (1) ledger wording/tone (sober, one line); (2) whether evidence
-class also styles the vessel/route glyph (recommended: no — visual language
-stays flag/category; the ledger carries the historiography).
+### Phase S3 — Surfacing the historiography — ✅ DONE 2026-07-13
+*(Decisions: sober one-line ledger wording, drafted per recommendation; NO
+glyph styling — the visual language stays flag/category, the ledger carries
+the historiography. Delivered: every vessel's ledger shows its trade's
+evidence class ("this voyage stands for a reconstructed trade — scholarship's
+estimate, not a surviving ledger"; counted / proxied / reconstructed /
+asserted, plus 'state' for naval voyages), derived per lane from the flow
+fold (`datasets.flows.laneEvidence`); **research/silences.html** — "The
+chart's silences," the register rendered with treatments and the Trouillot
+framing; **research/flow-prominence.html** — prominence as an output,
+27 decades × top-10, unsailable ports marked °; the research index updated.
+20 tests green, including every-voyage-knows-its-evidence.)*
+
+**PLAN-3 is complete.** The simulation runs end-to-end on the evidence-classed
+flow matrix: authored ranges → per-seed realization → folded lanes → a 66-port
+world whose chart, ledger, and reference pages all tell the reader what kind
+of knowledge stands behind each sail. Remaining growth (tranche-2/3
+promotions, new basin systems, the curation loop) proceeds under the standing
+rubric without further phase machinery.
 
 ## 4. What survives (nearly everything)
 

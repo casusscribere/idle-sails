@@ -129,6 +129,8 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
 .section-h { text-transform: uppercase; font-size: 10px; letter-spacing: .16em; color: var(--ink-soft); margin: 14px 0 4px; }
 .mp-note { background: rgba(158,43,37,0.08); border-left: 3px solid var(--red); padding: 8px 10px; font-size: 12.5px; line-height: 1.5; color: #4a2b22; margin-top: 10px; }
 .mp-note strong { display: block; margin-bottom: 3px; }
+.evidence { font-family: var(--serif); font-style: italic; font-size: 12px; color: var(--ink-soft);
+  border-top: 1px solid var(--paper-edge); padding-top: 7px; margin: 10px 0 0; }
 .war { color: var(--red); font-style: italic; }
 
 /* ---- hint ---- */

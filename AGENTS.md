@@ -108,8 +108,14 @@ Every design decision answers to both of these:
   legs (no winter Arkhangelsk departures); the Pirate Round as a hazard;
   render bounds full-globe with label decluttering; flow coverage **76–89%**.
   The 1560s' busiest port is Istanbul — the declared-boundary claim, now
-  sailable. **Next: PLAN-3 Phase S3** (surfacing the historiography: ledger
-  evidence line, "The chart's silences" page). (PLAN-3 §3.)
+  sailable. **S3 is done — and with it PLAN-3 IS COMPLETE**: every vessel's
+  ledger carries a one-line evidence note (counted / proxied / reconstructed /
+  asserted / state, from `datasets.flows.laneEvidence`); `research/silences.html`
+  renders "The chart's silences"; `research/flow-prominence.html` shows
+  prominence as an output (unsailable ports marked °). 20 tests green.
+  **Ongoing work needs no phase machinery**: tranche-2/3 port promotions, new
+  basin systems, and roster growth proceed under `research/CURATION.md` and
+  the promotion queue.
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —

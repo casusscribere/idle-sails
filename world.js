@@ -392,6 +392,10 @@ export function createWorld({ seed = 1, data, restore = null }) {
       cargoId, cargoName: cargo.name, cargoClass: cargo.class,
       middlePassage: cargoId === 'enslaved-people',
       laneFraming: lane.framing || null,   // lane-specific sober framing (Kaffa ≠ the Atlantic)
+      // PLAN-3 S3: the evidence class behind this voyage's trade — counted /
+      // proxied / reconstructed / asserted (from the flow fold), 'state' for
+      // naval lanes, null for residual-only lanes.
+      evidence: (datasets.flows && datasets.flows.laneEvidence && datasets.flows.laneEvidence[lane.id]) || (lane.naval ? 'state' : null),
       laneName: lane.name, system: lane.system,
       schedule, spawnAt: spawnSimClock, voyageEnd,
       fate,

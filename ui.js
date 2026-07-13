@@ -90,6 +90,18 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
     if (v.status === 'lost') status = `<p class="war">Lost — ${escapeHtml(v.fate.cause)}${v.fate.war ? ' (' + escapeHtml(v.fate.war.name) + ')' : ''}.</p>`;
     else if (v.status === 'arrived') status = `<p>Safely arrived.</p>`;
 
+    // PLAN-3 S3 — the historiography, one sober line: what kind of evidence
+    // stands behind the trade this voyage samples.
+    const EVIDENCE_LINE = {
+      counted: 'This voyage samples a counted trade — a surviving series records it.',
+      proxied: 'This voyage samples a proxied trade — inferred from adjacent records.',
+      reconstructed: 'This voyage stands for a reconstructed trade — scholarship’s estimate, not a surviving ledger.',
+      asserted: 'This voyage stands for an asserted trade — a stated estimate where the archive is silent.',
+      state: 'A state voyage — outside the commercial record.'
+    };
+    const evidence = v.evidence && EVIDENCE_LINE[v.evidence]
+      ? `<p class="evidence">${escapeHtml(EVIDENCE_LINE[v.evidence])}</p>` : '';
+
     let mp = '';
     if (v.middlePassage) {
       const fr = cargoById.get('enslaved-people').framing;
@@ -113,6 +125,7 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
       ${status}
       <p class="section-h">Itinerary — ${escapeHtml(v.laneName)}</p>
       <ul class="leglist">${legs}</ul>
+      ${evidence}
       ${mp}`;
     els.ledger.hidden = false;
     els.hint && els.hint.classList.add('gone');

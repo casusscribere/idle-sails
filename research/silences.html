@@ -1,0 +1,116 @@
+<!doctype html><meta charset="utf-8"><title>The chart's silences — Idle Sails research</title>
+<style>
+:root{--paper:#e8dcc0;--paper-2:#f1e7d0;--card:#efe4cc;--ink:#3a2c1c;--ink-soft:#6d5837;--faint:#8a7452;--edge:#c3ab82;--rule:#a98f66;--accent:#9e2b25;--grid-line:rgba(90,70,45,.16);--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--sans:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif}
+@media (prefers-color-scheme:dark){:root{--paper:#211711;--paper-2:#2a1f15;--card:#2c2016;--ink:#ecdcbc;--ink-soft:#b39a74;--faint:#8f7a58;--edge:#463527;--rule:#5c472f;--accent:#e0937a;--grid-line:rgba(230,214,180,.12)}}
+:root[data-theme="light"]{--paper:#e8dcc0;--paper-2:#f1e7d0;--card:#efe4cc;--ink:#3a2c1c;--ink-soft:#6d5837;--faint:#8a7452;--edge:#c3ab82;--rule:#a98f66;--accent:#9e2b25;--grid-line:rgba(90,70,45,.16)}
+:root[data-theme="dark"]{--paper:#211711;--paper-2:#2a1f15;--card:#2c2016;--ink:#ecdcbc;--ink-soft:#b39a74;--faint:#8f7a58;--edge:#463527;--rule:#5c472f;--accent:#e0937a;--grid-line:rgba(230,214,180,.12)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:radial-gradient(120% 80% at 50% -10%,var(--paper-2),var(--paper) 70%)}
+.wrap{max-width:960px;margin:0 auto;padding:40px 22px 70px}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+h1{font-family:var(--serif);font-size:clamp(26px,4.6vw,40px);line-height:1.12;margin:8px 0 10px;text-wrap:balance}
+.dek{font-family:var(--serif);font-style:italic;font-size:16.5px;color:var(--ink-soft);max-width:64ch;margin:0 0 8px}
+.rule{height:2px;background:var(--rule);opacity:.5;margin:20px 0}
+.card{background:var(--card);border:1px solid var(--edge);border-radius:5px;padding:16px 18px;margin:14px 0}
+.card h2{font-family:var(--serif);font-size:19px;margin:0 0 4px}
+.badges{margin:0 0 8px}
+.badge{display:inline-block;font-size:10px;letter-spacing:.13em;text-transform:uppercase;border:1px solid var(--edge);border-radius:3px;padding:2px 8px;margin-right:6px;color:var(--ink-soft)}
+.badge.asserted{background:rgba(158,43,37,.1);color:var(--accent);border-color:var(--accent)}
+.badge.gestured{background:rgba(90,70,45,.08)}
+.card p{margin:6px 0 0;font-size:14.5px;max-width:76ch}
+.pointer{font-size:12.5px;color:var(--ink-soft);font-style:italic}
+.note{font-size:13.5px;color:var(--ink-soft);max-width:76ch}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:680px}
+.tablewrap{overflow-x:auto;border:1px solid var(--edge);border-radius:4px;background:var(--card);margin-top:12px}
+th,td{padding:6px 9px;border-bottom:1px solid var(--grid-line);white-space:nowrap;text-align:left}
+thead th{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2);position:sticky;top:0}
+td.dec{color:var(--faint);font-variant-numeric:tabular-nums}
+.port{font-family:var(--serif)}
+.unsail{opacity:.62}
+.unsail .port::after{content:" °";color:var(--accent)}
+.foot{margin-top:34px;font-size:12.5px;color:var(--faint)}
+a{color:var(--ink)}</style>
+<div class="wrap">
+<p class="eyebrow">Idle Sails · research · the flow matrix</p>
+<h1>The chart&rsquo;s silences</h1>
+<p class="dek">The archive is not the past. Every dataset behind this chart began as someone&rsquo;s decision to
+count — a toll register, a customs house, a company ledger — and the seas those institutions did not watch
+left no numbers behind. This page records the flows we know existed and cannot (or choose not to) quantify:
+each with the reason for its silence, and what the chart does about it.</p>
+<p class="note">Every trade in the simulation carries an <b>evidence class</b> — <i>counted</i> (a surviving series),
+<i>proxied</i> (inferred from adjacent records), <i>reconstructed</i> (scholarship&rsquo;s estimate), or
+<i>asserted</i> (our own stated guess, wide bounds, reasoning on record). The rule beneath them all:
+<b>a known trade is never silently zero</b> — because in a living chart, zero is not neutrality;
+it is a claim, repeated every simulated day, that the ships weren&rsquo;t there.</p>
+<div class="rule"></div>
+
+<div class="card">
+  <h2>english coastal colliers silence</h2>
+  <p class="badges"><span class="badge asserted">answered — asserted</span><span class="badge">excluded by a declared basis</span><span class="badge">Britain (Tyne &amp; Wear → London)</span></p>
+  <p>The ships rankings count foreign-going clearances (R1 decision), so Europe's single largest generator of ship movements is invisible to them. Answered: the flow matrix carries a reconstructed collier system (~150 voyages/yr in the 1550s → ~4,000–6,500/yr by 1810).</p>
+  <p class="pointer">Answered by the flow system <b>english-coastal-colliers</b> — its voyages sail the chart, and their ledgers say so.</p>
+</div>
+<div class="card">
+  <h2>coastal shipping general</h2>
+  <p class="badges"><span class="badge gestured">gestured</span><span class="badge">never recorded</span><span class="badge">every coast, all basins</span></p>
+  <p>Coasting dwarfed foreign-going traffic in vessel numbers everywhere — grain hoys, wine barks, fish carriers, timber floats. No source counts it; no honest range exists at world scale. Acknowledged as the sea's ambient metabolism; candidate for ambient rendering (S3) rather than a volume claim.</p>
+  
+</div>
+<div class="card">
+  <h2>north sea herring fishery</h2>
+  <p class="badges"><span class="badge gestured">gestured</span><span class="badge">a fishery, not a lane</span><span class="badge">Dutch Republic (the grote visserij)</span></p>
+  <p>Hundreds of herring busses at sea every season — among the largest fleets afloat, but grounds-traffic rather than port-to-port trade, so it fits no lane. Candidate ambient feature; the fishery's SIZE is well documented even though it has no origin→destination shape.</p>
+  
+</div>
+<div class="card">
+  <h2>sound toll evasion</h2>
+  <p class="badges"><span class="badge excluded">excluded, on record</span><span class="badge">silent by evasion</span><span class="badge">Baltic (the counted stratum itself)</span></p>
+  <p>The anchoring series is itself distorted: under-declaration, wartime neutral re-flagging, and the Swedish exemption (1645–1710) all bias the registers the 'counted' systems rest on. Carried as a caveat on evidence=counted rather than as a flow — the register records that even the archive's firmest ground is soft.</p>
+  
+</div>
+<div class="card">
+  <h2>small craft inshore</h2>
+  <p class="badges"><span class="badge excluded">excluded, on record</span><span class="badge">never recorded</span><span class="badge">all basins</span></p>
+  <p>Boats below burden thresholds — wherries, prams, coasters under ~20 tons — were never registered anywhere. Below the simulation's vessel scale; excluded knowingly.</p>
+  
+</div>
+<div class="card">
+  <h2>caribbean smuggling silence</h2>
+  <p class="badges"><span class="badge asserted">answered — asserted</span><span class="badge">silent by evasion</span><span class="badge">Caribbean (the free ports and the asiento's shadow)</span></p>
+  <p>Silent BY EVASION — unrecorded because recording was the danger. Answered at R3: the atlantic basin carries an asserted system (±60% bounds around free-port scholarship's central guesses; St Eustatius alone logged 3,000+ ship calls at its 1770s peak, most of them the traffic everyone else's customs never saw).</p>
+  <p class="pointer">Answered by the flow system <b>caribbean-smuggling</b> — its voyages sail the chart, and their ledgers say so.</p>
+</div>
+<div class="card">
+  <h2>junk trade under registration</h2>
+  <p class="badges"><span class="badge asserted">answered — asserted</span><span class="badge">never recorded</span><span class="badge">East &amp; Southeast Asia</span></p>
+  <p>The great structural silence of the European record: the Nanyang junk trade generated no western toll series, yet the Nagasaki registers — where a state DID count — show Chinese hulls outnumbering Dutch ten to one. Answered at R3 by reconstruction (Blussé, Reid, Sugihara), not assertion: the scholarship is strong enough to class it reconstructed.</p>
+  <p class="pointer">Answered by the flow system <b>nanyang-junk-trade</b> — its voyages sail the chart, and their ledgers say so.</p>
+</div>
+<div class="card">
+  <h2>china coastal silence</h2>
+  <p class="badges"><span class="badge asserted">answered — asserted</span><span class="badge">excluded by a declared basis</span><span class="badge">the Chinese littoral</span></p>
+  <p>The coastal junk metabolism of the world's largest economy — the Shanghai shachuan grain fleet alone counted in the thousands. Answered at R3 (asserted, ±60%) on the same consistency grounds as the English colliers: if Newcastle's coasting is in, Tianjin's is.</p>
+  <p class="pointer">Answered by the flow system <b>china-coastal-grain</b> — its voyages sail the chart, and their ledgers say so.</p>
+</div>
+<div class="card">
+  <h2>coerced flows beyond atlantic</h2>
+  <p class="badges"><span class="badge asserted">answered — asserted</span><span class="badge">not yet reconstructed</span><span class="badge">Black Sea · western Indian Ocean</span></p>
+  <p>Resolved at R3 (decision 4): the Black Sea trade at Kaffa and the Indian Ocean slave trades (see also indian-ocean-slave-trades) are quantified as sober-framed systems rather than left as silences — charter rule 6's framing block is validator-enforced on both. Sim-side representation waits for S2's generalization of the Middle-Passage invariant.</p>
+  <p class="pointer">Answered by the flow system <b>black-sea-slave-trade</b> — its voyages sail the chart, and their ledgers say so.</p>
+</div>
+<div class="card">
+  <h2>african coastwise</h2>
+  <p class="badges"><span class="badge gestured">gestured</span><span class="badge">never recorded</span><span class="badge">West &amp; East African coasts</span></p>
+  <p>Canoe-house, lagoon, and coastal commerce along the Gold Coast, the Bight, and the Swahili littoral — real, substantial, organized (the Efik houses ran it on their own terms), and with no defensible voyage unit at the sim's vessel scale. GESTURED (R3 decision): acknowledged here, candidate for ambient representation, no volume claim fabricated.</p>
+  
+</div>
+<div class="card">
+  <h2>pacific voyaging</h2>
+  <p class="badges"><span class="badge gestured">gestured</span><span class="badge">never recorded</span><span class="badge">Oceania</span></p>
+  <p>Polynesian and Micronesian seafaring continued throughout this era, entirely outside every European series — no voyage-count basis exists at all. GESTURED (R3 decision): recorded so the chart's Pacific emptiness reads as the archive's silence, not the ocean's.</p>
+  
+</div>
+<p class="foot">Idle Sails · PLAN-3 (flows, evidence, and silences) · data: research/flows/silences.json ·
+after M.-R. Trouillot, <i>Silencing the Past</i> — silences enter at the making of sources, of archives,
+of narratives, and of history. ° An unsailable port on the companion prominence page marks the same thing at sea.</p>
+</div>

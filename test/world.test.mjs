@@ -238,6 +238,17 @@ test('pre-1700 wars: early-era voyages can be taken as prizes', () => {
   assert.ok(prizes > 0, 'a 16th-century voyage was taken as a prize');
 });
 
+test('every voyage knows its evidence class (S3: the ledger line)', () => {
+  const w = mk(21);
+  const YR = 365.25 * DAY;
+  w.tick(200 * YR);                      // mid-18th c: all strata active
+  const seen = new Set();
+  for (let i = 0; i < 400; i++) { w.tick(DAY); for (const v of w.state.vessels) if (v.evidence) seen.add(v.evidence); }
+  assert.ok(seen.has('counted'), `counted trades sail (${[...seen]})`);
+  assert.ok(seen.has('reconstructed') || seen.has('asserted'), `the reconstructed/asserted strata sail (${[...seen]})`);
+  for (const e of seen) assert.ok(['counted', 'proxied', 'reconstructed', 'asserted', 'state'].includes(e), `valid class ${e}`);
+});
+
 test('spawn mix flows with history: origins shift across the cycle', () => {
   const w = mk(2024);
   const YR = 365.25 * DAY, WEEK = 7 * DAY;
