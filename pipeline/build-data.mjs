@@ -24,7 +24,11 @@ const ERA = { from: 1550, to: 1815 };   // flowing-clock scope (PLAN-2 Phase A)
 const ROUTE_CLASSES = ['frigate', 'indiaman', 'brig', 'slaver'];
 const SEASONS = ['djf', 'mam', 'jja', 'son'];
 const REGIONS = new Set(['britain', 'lowlands', 'france', 'iberia', 'baltic', 'caribbean',
-  'brazil', 'west-africa', 'east-indies', 'china', 'india', 'japan', 'north-america', 'europe']);
+  'brazil', 'west-africa', 'east-indies', 'china', 'india', 'japan', 'north-america', 'europe',
+  // diversity-layer regions (PLAN-2 §5): in the cargo/power vocabulary now,
+  // gaining ports when Phase B bakes the minor-port routes.
+  'east-asia', 'indian-ocean', 'arabia', 'persian-gulf', 'east-africa',
+  'arctic', 'mediterranean', 'black-sea', 'north-pacific']);
 const SELFCHECK_N = 2000;
 
 const errors = [];

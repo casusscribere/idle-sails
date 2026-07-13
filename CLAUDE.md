@@ -16,10 +16,35 @@ This is a **ground-up rebuild**. The previous project was an isochronic passage
 *chart* (a static travel-time map); it is archived, not deleted, because its
 routing engine powers the idler's movement.
 
-## Current state (as of 2026-07-12)
+## Current state (as of 2026-07-13)
 
-- **Phase: Milestones 1–3 complete + a working parchment display.** The three
-  PLAN §0 defaults and the sober slave-trade treatment are user-confirmed.
+- **Phase: PLAN.md M1–M6 complete (M7 mostly) + PLAN-2 Phase A, Phase C, and
+  Step 2 done.** The three PLAN §0 defaults and the sober slave-trade treatment
+  are user-confirmed. Tests: `npm test` — **18 passing**.
+- **Flowing era (PLAN-2 Phase A + C):** `world.js` clock flows **1550→1815**,
+  ramps a 5-year reset (1815→1820) and loops (270-yr period). Spawns weighted by
+  `laneWeight × prominence(origin, flowing year)` from `data-src/era-weights.json`
+  (derived from `research/port-rankings-1550-1815.json`, interpolated between
+  decade midpoints). Era-label HUD; era-aware routes overlay (lanes era-gate and
+  scale with origin prominence); spawn-rate drift 0.6→1.25× across the era;
+  16 wars incl. eight pre-1700. The 1550s sail **galleons/carracks/caravels**
+  on the Carrera & Brazil lanes (no new bake fields needed).
+- **Milestone 6 (persistence):** `persist.js` — full-state localStorage save
+  (spawn-RNG word is explicit state ⇒ a restored session continues IDENTICALLY),
+  offline accrual capped at 30 sim-days, autosave 10 s + tab-hide/close.
+  Hash params: `#seed=`, `#t=<sim-days>`, `#routes=1`, `#fresh=1` pin debug
+  worlds and never clobber the save.
+- **Diversity pass (PLAN-2 Step 2):** vocabulary is in `data-src/` — 18 new
+  cargoes, 19 polities/flags (Ryukyu, Oman, Ottoman, Gowa, Courland… + WIC/RAC)
+  with name pools, junk & dhow rigs on existing polars, 9 new regions. All 33
+  minor ports are staged **sim-ready** in `research/minor-ports-promotion.json`
+  (tranches 12/12/9 by diversity÷bake-cost); `research/CURATION.md` is the
+  growth rubric. **Nothing sails unbaked — promotion happens in Phase B.**
+- **Next: PLAN-2 Phase B** (port expansion + wind-field regen + route re-bake),
+  gated on the five §7 decisions (backbone+diversity together?, port count,
+  junk/dhow polars, diversity weight band, wind-fidelity floor).
+
+## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —
   `index.html`, `main.js`, `world.js`, `render.js`, `ui.js`, `style.css`, and
   generated `data/` (`datasets.json`, `routes.json`, `land.geojson`). (Moved out
@@ -51,11 +76,7 @@ routing engine powers the idler's movement.
   Actions", one-time). Static; serve over HTTP, not `file://`. `#seed=<n>` loads a
   specific world.
 - **Git:** branch `main`; remote **`https://github.com/casusscribere/idle-sails`
-  (private)**, token-free HTTPS. M1–M3 + the display are committed and pushed; the
-  root restructure + compass-rose removal may be uncommitted — check `git status`.
-- Next: **Milestone 6** (persistence + offline accrual via `persist.js`) then
-  **M7** polish. `world.js` already fast-forwards deterministically, so persist is
-  mostly localStorage wiring + a catch-up cap.
+  (private)**, HTTPS via the credential store (see the global CLAUDE.md).
 
 ## Repo layout right now
 

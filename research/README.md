@@ -1,10 +1,12 @@
 # `research/` — historical port & route reference data
 
-Scholarly syntheses that ground the Idle Sails world. **None of this feeds the
-live simulation** — the game's 15-port world (`data/`, `data-src/`, `world.js`)
-is unchanged. These are reference datasets and self-contained reference pages
-(deployed alongside the site; linked from the in-game menu → *Reference*, and
-from [`index.html`](index.html)).
+Scholarly syntheses that ground the Idle Sails world. These are reference
+datasets and self-contained reference pages (deployed alongside the site;
+linked from the in-game menu → *Reference*, and from [`index.html`](index.html)).
+Two of them now feed the sim indirectly: the tiered top-20 rankings (1) are the
+source of `data-src/era-weights.json` (the flowing clock's spawn weights), and
+the minor-ports work (3) has a sim-ready **promotion queue** (5) awaiting the
+Phase B route bake.
 
 All of it is **best-effort historical reconstruction, not a census** — anchored
 to hard regional series where they exist and flagged as estimate elsewhere. Each
@@ -44,6 +46,18 @@ no source records ranked top-10 routes per port per decade.
 - **`routes-by-decade.csv`** — the full 1,818-row dataset (decade · port rank · port · route rank · destination · cargo).
 - **`route-persistence.csv`** / **`route-persistence.json`** — 165 distinct lanes ranked by decades active.
 - **`route-persistence.html`** — filterable reference page.
+
+### 5. Minor-ports promotion queue + curation rubric
+The 33 minor ports authored into **sim-ready staged definitions** — coordinates,
+polity/flag mappings, numeric era windows, cargo, proposed lanes, bake risks —
+ordered in three tranches by diversity-value ÷ bake-cost. The supporting
+vocabulary (18 cargoes, 19 polities/flags, junk & dhow + 16th-c rigs, 9 regions)
+is already in `data-src/`; a port is promoted (copied into the sim + its routes
+baked) in PLAN-2 Phase B.
+- **`minor-ports-promotion.json`** — the queue (tranches 12 / 12 / 9).
+- **`CURATION.md`** — the growth rubric: four diversity axes, hard rules
+  (era honesty, sober slave-trade framing, weight band, baked-or-doesn't-sail),
+  and the open flag decisions (china-junk-trade, tsushima, golconda…).
 
 ## Reproducing / extending
 The rankings (1 & 2) were authored from the sources above; the derived artefacts

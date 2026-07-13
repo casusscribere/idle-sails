@@ -274,8 +274,10 @@ export function createWorld({ seed = 1, data, restore = null }) {
     const tonnage = Math.round(triangular(rng, type.tonnage.min, type.tonnage.mode, type.tonnage.max));
     const guns = rint(rng, type.guns.min, type.guns.max);
     const crew = rint(rng, type.crew.min, type.crew.max);
-    // 6. name
-    const isNaval = type.roles.includes('naval');
+    // 6. name — dual-role types (the galleon) take their character from the LANE:
+    //    a Carrera galleon is a merchant (religious Iberian names), an escort on a
+    //    naval lane is a warship. Pure-naval types are naval everywhere.
+    const isNaval = lane.naval === true || (type.roles.includes('naval') && !type.roles.includes('merchant'));
     const name = makeName(rng, power, isNaval);
     // 7. cargo (Middle-Passage lanes carry only enslaved-people)
     const cargoId = lane.middlePassage ? 'enslaved-people'

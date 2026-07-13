@@ -70,10 +70,25 @@ check (no discontinuity at decade boundaries or the reset seam); a loop check
 
 - **Step 1 — Tiered top-20 dataset.** Per-decade top-10 ranked + 11–20 as an
   unranked tier, across the three metrics; the weight source. *(option one)*
-- **Step 2 — Minor-ports & diversity integration.** Extend the datasets and the
-  port roster with the diversity layer; define era windows, weights, routes, and
-  a curation framework. **See §5.** *(done before Phase 1 so the datasets are
-  extended once.)*
+- **Step 2 — Minor-ports & diversity integration. ✅ DONE (2026-07-13, after
+  Phase A by user direction).** One authoring pass, in the §5.7 shape:
+  - **Vocabulary into `data-src/`** (validated & bundled now): 18 cargoes
+    (cowries, cloves, nutmeg-mace, pearls, frankincense, furs, whale-oil, cod,
+    gold-dust, copper, ginseng…), 19 polities/flags (Ryukyu, Oman, Ottoman,
+    Safavid Persia, Gowa, Siam, Ragusa, Courland, Brandenburg, Russia + WIC &
+    RAC companies + 7 shore powers) with name pools, junk & dhow rigs mapped
+    onto the existing polars, 9 new regions.
+  - **Free Phase-A fidelity win:** galleon/carrack/caravel added and wired onto
+    the already-baked Carrera & Brazil lanes — the 1550s sea now sails
+    period-correct hulls (*San Juan Bautista*, galleon, Cádiz) with lane-aware
+    naming (a Carrera galleon is a merchant, not HMS-style). Dejima now exports
+    copper.
+  - **Promotion queue:** `research/minor-ports-promotion.json` — all 33 ports
+    sim-ready (coords, eras, lanes, bake risks), tranches 12/12/9 by
+    diversity÷bake-cost. **`research/CURATION.md`** is the §5.6 rubric made
+    operational, incl. the sober-framing promotion rules for Old Calabar/Kaffa
+    and the open flag decisions (china-junk-trade, tsushima, golconda).
+  Ports themselves still wait for the Phase B bake — nothing sails unbaked.
 - **Phase A — Flowing mechanic, no re-baking. ✅ BUILT (2026-07-13).** Layers 1–3
   over the **existing 15 ports**. Delivered:
   - **Time model** (`world.js`): `calendar()` now flows 1550→1815, ramps a 5-year

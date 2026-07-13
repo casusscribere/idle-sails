@@ -35,13 +35,15 @@ const BOUNDS = { lonMin: -100, lonMax: 150, latMin: -58, latMax: 74 };
 const FIT_LON = 208;
 
 // Colour is spent on allegiance (the flag), so ship CATEGORY is carried by the
-// glyph's shape instead. The ten ship-types collapse into five map categories:
+// glyph's shape instead. The ship-types collapse into five map categories:
 const SHIP_CATEGORY = {
   'ship-of-the-line': 'line',
   'frigate': 'warship', 'sloop-of-war': 'warship',
   'east-indiaman': 'indiaman', 'fluyt': 'indiaman',
-  'slave-ship': 'slaver'
-  // everything else (merchantman, snow, brig, sloop) → 'merchant'
+  'slave-ship': 'slaver',
+  // the 16th-c great ships read as large hulls, not slender warships
+  'galleon': 'indiaman', 'carrack': 'indiaman', 'junk': 'indiaman'
+  // everything else (merchantman, snow, brig, sloop, caravel, dhow) → 'merchant'
 };
 export const categoryOf = (v) => SHIP_CATEGORY[v.typeId] || 'merchant';
 

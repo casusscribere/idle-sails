@@ -21,7 +21,17 @@
     "dutch":    ["Zeven Provinciën", "Gelderland", "Utrecht", "Delft", "Vrijheid", "Admiraal de Ruyter", "Batavier"],
     "usa":      ["Constitution", "Constellation", "United States", "Chesapeake", "President", "Congress"],
     "sweden":   ["Gustaf III", "Kronprins", "Äran", "Dygden", "Försiktigheten"],
-    "denmark":  ["Dannebrog", "Norske Løve", "Prins Frederik", "Christian den Syvende"]
+    "denmark":  ["Dannebrog", "Norske Løve", "Prins Frederik", "Christian den Syvende"],
+    "russia":   ["Poltava", "Ingermanland", "Gangut", "Slava Rossii"],
+    "ottoman":  ["Kapudan", "Fethiye", "Şehbaz-ı Bahri"],
+    "oman":     ["Al-Falak", "Liwa", "Al-Sultani"],
+    "persia":   ["Safavi", "Abbas"],
+    "ryukyu":   ["Shuri"],
+    "gowa":     ["Gowa"],
+    "siam":     ["Ayutthaya"],
+    "ragusa":   ["Ragusa"],
+    "courland": ["Herzog Jacob"],
+    "brandenburg": ["Friedrich Wilhelm zu Pferde", "Kurprinz von Brandenburg"]
   },
 
   "merchant": {
@@ -35,7 +45,17 @@
     "portugal": ["Nossa Senhora do Rosário", "Bom Jesus", "Espírito Santo", "Santo António", "São José e Almas", "Nossa Senhora da Conceição"],
     "dutch":    ["Vrouw Maria", "Vrede", "Eendracht", "De Hoop", "Jonge Jan", "Zeelandia", "'t Vergulde Draeck", "Vriendschap", "De Jonge Willem"],
     "sweden":   ["Gustaf Adolf", "Sophia Magdalena", "Drottningen", "Enigheten", "Concordia", "Finland"],
-    "denmark":  ["Kongen af Danmark", "Dronning Juliana Maria", "Grev Bernstorff", "Prinsesse Sophia", "Fortuna"]
+    "denmark":  ["Kongen af Danmark", "Dronning Juliana Maria", "Grev Bernstorff", "Prinsesse Sophia", "Fortuna"],
+    "russia":    ["Sv. Pyotr", "Sv. Pavel", "Sv. Nikolai", "Tri Svyatitelya", "Arkhangel Mikhail", "Nadezhda", "Neva", "Yunona"],
+    "ottoman":   ["Panagia", "Agios Nikolaos", "Evangelistria", "Hilal", "Derya", "Şahin", "Bereket"],
+    "oman":      ["Fath al-Khair", "Al-Ghanjah", "Sultanah", "Al-Rahmani", "Al-Mansur", "Badr al-Bahr"],
+    "persia":    ["Shahbaz", "Simorgh", "Khorshid", "Gol-e Sorkh", "Darya-ye Nur", "Morvarid"],
+    "ryukyu":    ["Chūzan", "Shurei", "Kaihō", "Shinkō", "Raihō", "Ryūō"],
+    "gowa":      ["Sombaopu", "Tallo", "Samalona", "Karaeng", "Bontoala", "Maccini"],
+    "siam":      ["Chao Phraya", "Suphannahong", "Rachasi", "Naga", "Hongsa", "Garuda"],
+    "ragusa":    ["Sveti Vlaho", "San Biagio", "Argosia", "La Perla", "Santa Maria di Ragusa", "Il Corriere"],
+    "courland":  ["Das Wappen der Herzogin", "Der Walfisch", "Cattharina", "Fortuna von Windau", "Jacobus", "Der Pfeil"],
+    "brandenburg": ["Churprinz", "Rother Löwe", "Morian", "Friedrich Wilhelm", "Dorothea", "Wasserhund"]
   },
 
   "themesByPower": {
@@ -46,6 +66,16 @@
     "portugal": { "naval": ["places", "classical"],                                 "merchant": ["byPower"] },
     "sweden":   { "naval": ["places", "virtue"],                                    "merchant": ["byPower", "abstract"] },
     "denmark":  { "naval": ["places", "virtue"],                                    "merchant": ["byPower", "abstract"] },
-    "usa":      { "naval": ["places", "classical", "virtue"],                       "merchant": ["women", "abstract", "civic"] }
+    "usa":      { "naval": ["places", "classical", "virtue"],                       "merchant": ["women", "abstract", "civic"] },
+    "russia":     { "naval": ["places"], "merchant": ["byPower"] },
+    "ottoman":    { "naval": ["places"], "merchant": ["byPower"] },
+    "oman":       { "naval": ["places"], "merchant": ["byPower"] },
+    "persia":     { "naval": ["places"], "merchant": ["byPower"] },
+    "ryukyu":     { "naval": ["places"], "merchant": ["byPower"] },
+    "gowa":       { "naval": ["places"], "merchant": ["byPower"] },
+    "siam":       { "naval": ["places"], "merchant": ["byPower"] },
+    "ragusa":     { "naval": ["places"], "merchant": ["byPower"] },
+    "courland":   { "naval": ["places"], "merchant": ["byPower"] },
+    "brandenburg": { "naval": ["places"], "merchant": ["byPower"] }
   }
 }

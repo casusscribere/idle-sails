@@ -1,0 +1,185 @@
+{
+  "title": "Minor-ports promotion queue — sim-ready staging for PLAN-2 Phase B",
+  "note": "The 33 minor ports (research/minor-ports-1500-1830.json) authored into promotable sim definitions. NOT loaded by the game: a port moves from here into data-src/ports.json + routes.json only when Phase B bakes its wind/current route fields (16 fields per port). The supporting vocabulary (cargo, powers/flags, junk & dhow rigs, regions) is ALREADY in data-src/ — promotion is: copy the port, expand its lanes into directed legs, bake, done. Tranches order by diversity-value ÷ bake-cost (PLAN-2 §5.4): 1 = bake first, 2 = next, 3 = has an open bake/design risk noted in bakeRisk/flagNeeded. Coordinates are approximate harbour positions for the 1° routing grid.",
+  "laneSchema": "lanes[].with names the counterpart port (sim port id or staged id); out = cargo carried FROM this port TO the counterpart, home = the return leg; each pair expands to two directed routes.json legs at promotion.",
+  "ports": [
+    { "id": "naha", "name": "Naha (Ryukyu)", "lon": 127.7, "lat": 26.2, "region": "east-asia", "power": "ryukyu", "tier": "minor", "era": { "from": 1550, "to": 1815 }, "roles": ["home"], "tranche": 1, "verified": true,
+      "significance": "The licensed tribute conduit between China and Japan — a tiny kingdom made an entrepôt by uniquely favourable Ming terms.",
+      "lanes": [ { "with": "canton", "out": ["copper", "pepper"], "home": ["silk", "porcelain"], "shipTypes": ["junk"], "flag": "ryukyu", "weight": 1 } ] },
+
+    { "id": "macau", "name": "Macau", "lon": 113.5, "lat": 22.2, "region": "china", "power": "portugal", "tier": "minor", "era": { "from": 1557, "to": 1815 }, "roles": ["factory"], "tranche": 1, "verified": false,
+      "significance": "Portugal's toehold in China; carried the great silk-for-silver run to Nagasaki until 1639.",
+      "lanes": [
+        { "with": "dejima", "out": ["silk", "porcelain"], "home": ["specie"], "shipTypes": ["carrack"], "flag": "portugal", "weight": 1, "era": { "from": 1557, "to": 1639 }, "note": "The nau do trato — ends with the Portuguese expulsion from Japan." },
+        { "with": "lisbon", "out": ["silk", "porcelain", "tea"], "home": ["specie", "wine"], "shipTypes": ["carrack", "east-indiaman"], "flag": "portugal", "weight": 2 } ] },
+
+    { "id": "manila", "name": "Manila", "lon": 121.0, "lat": 14.6, "region": "east-indies", "power": "spain", "tier": "minor", "era": { "from": 1571, "to": 1815 }, "roles": ["colonial"], "tranche": 1, "verified": false,
+      "significance": "Where American silver met Chinese silk — the western terminus of the Manila galleon.",
+      "lanes": [ { "with": "canton", "out": ["specie"], "home": ["silk", "porcelain"], "shipTypes": ["galleon", "merchantman"], "flag": "spain", "weight": 2 } ],
+      "note": "The Acapulco galleon itself runs east across the Pacific — Acapulco (−99.9°) sits just inside the map bounds; a candidate lane once Pacific field coverage is verified." },
+
+    { "id": "mocha", "name": "Mocha", "lon": 43.3, "lat": 13.3, "region": "arabia", "power": "ottoman", "tier": "minor", "era": { "from": 1550, "to": 1815 }, "roles": ["factory"], "tranche": 1, "verified": true,
+      "significance": "The Red Sea coffee staple that supplied Europe before Java — every company kept a factory here.",
+      "lanes": [
+        { "with": "tranquebar", "out": ["coffee"], "home": ["textiles"], "shipTypes": ["dhow"], "flag": "ottoman", "weight": 1 },
+        { "with": "batavia", "out": ["coffee"], "home": ["spices", "textiles"], "shipTypes": ["east-indiaman"], "flag": "voc", "weight": 1, "era": { "from": 1616, "to": 1795 } },
+        { "with": "london", "out": ["coffee"], "home": ["trade-goods", "specie"], "shipTypes": ["east-indiaman"], "flag": "eic", "weight": 1, "era": { "from": 1660, "to": 1815 } } ] },
+
+    { "id": "muscat", "name": "Muscat", "lon": 58.6, "lat": 23.6, "region": "arabia", "power": "oman", "tier": "minor", "era": { "from": 1650, "to": 1815 }, "roles": ["home", "naval"], "tranche": 1, "verified": false,
+      "significance": "Seat of the Omani maritime empire that drove Portugal from the Swahili coast.",
+      "lanes": [
+        { "with": "tranquebar", "out": ["frankincense", "pearls"], "home": ["textiles", "saltpetre"], "shipTypes": ["dhow"], "flag": "oman", "weight": 1 },
+        { "with": "mombasa", "out": ["textiles", "frankincense"], "home": ["ivory"], "shipTypes": ["dhow"], "flag": "oman", "weight": 1, "era": { "from": 1698, "to": 1815 } } ] },
+
+    { "id": "banda-neira", "name": "Banda Neira", "lon": 129.9, "lat": -4.5, "region": "east-indies", "power": "dutch", "tier": "minor", "era": { "from": 1550, "to": 1795 }, "roles": ["factory"], "tranche": 1, "verified": true,
+      "significance": "The world's only nutmeg source until the 1770s; the VOC monopoly at its most absolute — and most brutal (the 1621 conquest).",
+      "lanes": [ { "with": "batavia", "out": ["nutmeg-mace"], "home": ["textiles", "trade-goods"], "shipTypes": ["east-indiaman"], "flag": "voc", "weight": 1, "era": { "from": 1621, "to": 1795 } } ] },
+
+    { "id": "makassar", "name": "Makassar", "lon": 119.4, "lat": -5.1, "region": "east-indies", "power": "gowa", "tier": "minor", "era": { "from": 1550, "to": 1669 }, "roles": ["home"], "tranche": 1, "verified": true,
+      "significance": "Gowa's free-trade entrepôt — the hole in the VOC spice monopoly, until the city fell in 1669.",
+      "lanes": [
+        { "with": "batavia", "out": ["cloves", "nutmeg-mace"], "home": ["textiles"], "shipTypes": ["junk"], "flag": "gowa", "weight": 1 },
+        { "with": "macau", "out": ["cloves"], "home": ["porcelain"], "shipTypes": ["junk"], "flag": "gowa", "weight": 1 } ] },
+
+    { "id": "elmina", "name": "Elmina", "lon": -1.35, "lat": 5.1, "region": "west-africa", "power": "dutch", "tier": "minor", "era": { "from": 1550, "to": 1815 }, "roles": ["factory"], "tranche": 1, "verified": false,
+      "significance": "'The mine' — the Gold Coast castle trade, Portuguese then Dutch after 1637; gold first, later a major slave-trade factory (sober framing required for any such lane).",
+      "lanes": [
+        { "with": "lisbon", "out": ["gold-dust", "ivory"], "home": ["trade-goods"], "shipTypes": ["caravel", "carrack"], "flag": "portugal", "weight": 1, "era": { "from": 1550, "to": 1637 } },
+        { "with": "amsterdam", "out": ["gold-dust", "ivory"], "home": ["trade-goods"], "shipTypes": ["merchantman", "fluyt"], "flag": "wic", "weight": 2, "era": { "from": 1637, "to": 1792 } } ] },
+
+    { "id": "saint-louis", "name": "Saint-Louis (Senegal)", "lon": -16.5, "lat": 16.0, "region": "west-africa", "power": "france", "tier": "minor", "era": { "from": 1659, "to": 1815 }, "roles": ["factory"], "tranche": 1, "verified": false,
+      "significance": "The Senegal river trade — gum arabic, indispensable to Europe's textile printers.",
+      "lanes": [ { "with": "nantes", "out": ["gum-arabic", "ivory"], "home": ["trade-goods"], "shipTypes": ["merchantman", "brig"], "flag": "france", "weight": 1 } ] },
+
+    { "id": "st-eustatius", "name": "St Eustatius", "lon": -63.0, "lat": 17.5, "region": "caribbean", "power": "dutch", "tier": "minor", "era": { "from": 1636, "to": 1815 }, "roles": ["colonial"], "tranche": 1, "verified": false,
+      "significance": "The 'Golden Rock' — the Caribbean's free-port contraband entrepôt, so useful to the American rebels that Rodney sacked it in 1781.",
+      "lanes": [
+        { "with": "amsterdam", "out": ["sugar", "coffee", "tobacco"], "home": ["trade-goods"], "shipTypes": ["fluyt", "merchantman"], "flag": "wic", "weight": 2 },
+        { "with": "kingston", "out": ["trade-goods"], "home": ["sugar", "rum"], "shipTypes": ["brig", "sloop"], "flag": "wic", "weight": 1, "note": "Contraband inter-island carriage." } ] },
+
+    { "id": "portobelo", "name": "Portobelo", "lon": -79.65, "lat": 9.55, "region": "caribbean", "power": "spain", "tier": "minor", "era": { "from": 1597, "to": 1815 }, "roles": ["colonial"], "tranche": 1, "verified": false,
+      "significance": "The isthmus fair where Potosí silver met the galeones — the treasure-fleet system's Caribbean hinge until 1739.",
+      "lanes": [
+        { "with": "cadiz", "out": ["specie", "indigo"], "home": ["wine", "trade-goods"], "shipTypes": ["galleon"], "flag": "spain", "weight": 2, "era": { "from": 1597, "to": 1739 }, "note": "The galeones de Tierra Firme; the fair system dies with Vernon's raid and the register ships." },
+        { "with": "kingston", "out": ["specie"], "home": ["trade-goods"], "shipTypes": ["brig", "sloop"], "flag": "britain", "weight": 1, "note": "The contraband and asiento trade." } ] },
+
+    { "id": "louisbourg", "name": "Louisbourg", "lon": -60.0, "lat": 45.9, "region": "north-america", "power": "france", "tier": "minor", "era": { "from": 1713, "to": 1758 }, "roles": ["colonial", "naval"], "tranche": 1, "verified": true,
+      "significance": "France's fortress fishery — dried cod for Catholic Europe, twice besieged, razed 1758.",
+      "lanes": [
+        { "with": "bordeaux", "out": ["cod"], "home": ["wine", "salt"], "shipTypes": ["brig", "snow"], "flag": "france", "weight": 1 },
+        { "with": "kingston", "out": ["cod"], "home": ["rum", "molasses"], "shipTypes": ["brig"], "flag": "france", "weight": 1, "note": "The classic cod-for-rum triangle with the French islands (Kingston as proxy)." } ] },
+
+    { "id": "busan", "name": "Busan (Waegwan)", "lon": 129.0, "lat": 35.1, "region": "east-asia", "power": "joseon", "tier": "minor", "era": { "from": 1607, "to": 1815 }, "roles": ["factory"], "tranche": 2, "verified": false,
+      "significance": "Joseon Korea's single licensed foreign window — the Japan House, worked by Tsushima-domain vessels.",
+      "flagNeeded": "tsushima — the licensed Japanese carrier; add as a small spawning flag at promotion (Korea itself spawned no foreign-going ships).",
+      "lanes": [ { "with": "dejima", "out": ["ginseng"], "home": ["specie", "copper"], "shipTypes": ["junk"], "flag": null, "weight": 1, "note": "Proxy pairing: the real counterpart is Tsushima, not Nagasaki — decide at promotion." } ] },
+
+    { "id": "hoi-an", "name": "Hội An", "lon": 108.3, "lat": 15.9, "region": "east-indies", "power": "nguyen", "tier": "minor", "era": { "from": 1558, "to": 1777 }, "roles": ["factory"], "tranche": 2, "verified": false,
+      "significance": "The Nguyễn lords' licensed junk fair — silk, ceramics, aloeswood; Japanese and Chinese quarters side by side.",
+      "flagNeeded": "china-junk-trade — a spawnable flag for the private Chinese junk diaspora (distinct from the Qing state, which is a non-spawning shore power). Also unlocks Manila, Patani, Ayutthaya junk lanes.",
+      "lanes": [ { "with": "macau", "out": ["silk", "deerskins"], "home": ["specie", "porcelain"], "shipTypes": ["junk"], "flag": null, "weight": 1 } ] },
+
+    { "id": "galle", "name": "Galle", "lon": 80.2, "lat": 6.0, "region": "india", "power": "dutch", "tier": "minor", "era": { "from": 1640, "to": 1796 }, "roles": ["factory"], "tranche": 2, "verified": false,
+      "significance": "Ceylon cinnamon under VOC monopoly — the island's fortified export port.",
+      "lanes": [
+        { "with": "batavia", "out": ["cinnamon"], "home": ["textiles", "trade-goods"], "shipTypes": ["east-indiaman"], "flag": "voc", "weight": 1 },
+        { "with": "amsterdam", "out": ["cinnamon", "pepper"], "home": ["specie"], "shipTypes": ["east-indiaman"], "flag": "voc", "weight": 1 } ] },
+
+    { "id": "male", "name": "Malé", "lon": 73.5, "lat": 4.2, "region": "indian-ocean", "power": "maldives", "tier": "minor", "era": { "from": 1550, "to": 1815 }, "roles": ["home"], "tranche": 2, "verified": false,
+      "significance": "The cowrie fishery — shell money for Bengal and, through European hands, the West African trade.",
+      "lanes": [ { "with": "tranquebar", "out": ["cowries"], "home": ["textiles", "grain"], "shipTypes": ["dhow", "brig"], "flag": "dac", "weight": 1, "era": { "from": 1732, "to": 1815 }, "note": "European country-trade carriage (DAC as the Coromandel proxy); local and Indian bottoms carried it earlier — see flagNeeded on hoi-an for the country-trade flag question." } ] },
+
+    { "id": "bandar-abbas", "name": "Bandar Abbas", "lon": 56.3, "lat": 27.2, "region": "persian-gulf", "power": "persia", "tier": "minor", "era": { "from": 1622, "to": 1760 }, "roles": ["factory"], "tranche": 2, "verified": true,
+      "significance": "Safavid Persia's designated port after Hormuz fell — silk out, everything in; EIC and VOC factories side by side.",
+      "lanes": [
+        { "with": "tranquebar", "out": ["silk", "pearls"], "home": ["textiles", "spices"], "shipTypes": ["dhow"], "flag": "persia", "weight": 1 },
+        { "with": "london", "out": ["silk"], "home": ["trade-goods"], "shipTypes": ["east-indiaman"], "flag": "eic", "weight": 1 } ] },
+
+    { "id": "masulipatnam", "name": "Masulipatnam", "lon": 81.2, "lat": 16.2, "region": "india", "power": null, "tier": "minor", "era": { "from": 1550, "to": 1760 }, "roles": ["factory"], "tranche": 2, "verified": false,
+      "significance": "Golconda's port — the painted-cotton (chintz) trade that dressed the world.",
+      "powerNeeded": "golconda — Qutb Shahi sultanate (to 1687), then Mughal; add as a non-spawning shore power at promotion.",
+      "lanes": [ { "with": "tranquebar", "out": ["textiles", "indigo"], "home": ["spices", "specie"], "shipTypes": ["brig"], "flag": "dac", "weight": 1, "era": { "from": 1732, "to": 1760 } } ] },
+
+    { "id": "calicut", "name": "Calicut", "lon": 75.8, "lat": 11.3, "region": "india", "power": "zamorin", "tier": "minor", "era": { "from": 1550, "to": 1766 }, "roles": ["home"], "tranche": 2, "verified": false,
+      "significance": "The Zamorin's pepper port — two centuries of resistance to the Portuguese monopoly.",
+      "lanes": [
+        { "with": "lisbon", "out": ["pepper", "cinnamon"], "home": ["specie", "trade-goods"], "shipTypes": ["carrack"], "flag": "portugal", "weight": 1, "era": { "from": 1550, "to": 1663 } },
+        { "with": "muscat", "out": ["pepper"], "home": ["frankincense", "specie"], "shipTypes": ["dhow"], "flag": "oman", "weight": 1, "era": { "from": 1650, "to": 1766 } } ] },
+
+    { "id": "smyrna", "name": "Smyrna (İzmir)", "lon": 27.1, "lat": 38.4, "region": "mediterranean", "power": "ottoman", "tier": "minor", "era": { "from": 1600, "to": 1815 }, "roles": ["factory"], "tranche": 2, "verified": false,
+      "significance": "The Levant trade's great port — Persian silk, Angora mohair, cotton and figs for the Levant Company and the French échelles.",
+      "lanes": [
+        { "with": "london", "out": ["silk", "cotton"], "home": ["trade-goods"], "shipTypes": ["merchantman"], "flag": "britain", "weight": 2, "note": "The Levant Company's Smyrna fleet — Tourville burned one such convoy off Lagos in 1693." },
+        { "with": "amsterdam", "out": ["cotton", "silk"], "home": ["trade-goods", "salt"], "shipTypes": ["fluyt", "merchantman"], "flag": "dutch", "weight": 1 } ] },
+
+    { "id": "ragusa-port", "name": "Ragusa (Dubrovnik)", "lon": 18.1, "lat": 42.6, "region": "mediterranean", "power": "ragusa", "tier": "minor", "era": { "from": 1550, "to": 1808 }, "roles": ["home"], "tranche": 2, "verified": false,
+      "significance": "The neutral Adriatic republic whose argosies carried for everyone — under Ottoman protection, in everyone's ports.",
+      "lanes": [
+        { "with": "smyrna", "out": ["trade-goods"], "home": ["silk", "cotton"], "shipTypes": ["merchantman"], "flag": "ragusa", "weight": 1 },
+        { "with": "cadiz", "out": ["trade-goods"], "home": ["wine", "specie"], "shipTypes": ["merchantman"], "flag": "ragusa", "weight": 1 } ] },
+
+    { "id": "windau", "name": "Windau (Ventspils)", "lon": 21.6, "lat": 57.4, "region": "baltic", "power": "courland", "tier": "minor", "era": { "from": 1642, "to": 1698 }, "roles": ["home"], "tranche": 2, "verified": false,
+      "significance": "Duke Jacob's improbable fleet — a Baltic duchy with Tobago and Gambia colonies for a generation.",
+      "lanes": [ { "with": "amsterdam", "out": ["timber", "naval-stores", "grain"], "home": ["salt", "trade-goods"], "shipTypes": ["fluyt"], "flag": "courland", "weight": 1 } ] },
+
+    { "id": "emden", "name": "Emden", "lon": 7.2, "lat": 53.4, "region": "lowlands", "power": "brandenburg", "tier": "minor", "era": { "from": 1682, "to": 1721 }, "roles": ["home"], "tranche": 2, "verified": false,
+      "significance": "The Brandenburg African Company's brief Gold Coast venture — Prussia's first blue-water fling.",
+      "lanes": [ { "with": "elmina", "out": ["trade-goods"], "home": ["gold-dust", "ivory"], "shipTypes": ["merchantman"], "flag": "brandenburg", "weight": 1, "note": "Historically to Großfriedrichsburg, 50 km west of Elmina — same coast cell class." } ] },
+
+    { "id": "old-calabar", "name": "Old Calabar", "lon": 8.3, "lat": 4.95, "region": "west-africa", "power": "efik", "tier": "minor", "era": { "from": 1650, "to": 1815 }, "roles": ["embarkation"], "tranche": 2, "verified": false,
+      "significance": "The Efik merchant houses of the Bight of Biafra — a major embarkation point of the Atlantic slave trade, run on Efik terms; palm oil rises as abolition closes the trade.",
+      "lanes": [
+        { "with": "liverpool", "out": null, "home": ["trade-goods"], "shipTypes": ["slave-ship"], "flag": "britain", "weight": 2, "era": { "from": 1650, "to": 1807 }, "note": "PROMOTION RULE: the outward human cargo MUST replicate the Whydah pattern exactly — a middlePassage:true leg to a plantation colony carrying only enslaved-people, with the sober framing block. Never author it as ordinary cargo." },
+        { "with": "liverpool", "out": ["palm-oil"], "home": ["trade-goods"], "shipTypes": ["brig"], "flag": "britain", "weight": 1, "era": { "from": 1807, "to": 1815 }, "note": "The 'legitimate trade' after abolition." } ] },
+
+    { "id": "arkhangelsk", "name": "Arkhangelsk", "lon": 40.5, "lat": 64.5, "region": "arctic", "power": "russia", "tier": "minor", "era": { "from": 1584, "to": 1815 }, "roles": ["home"], "tranche": 3, "verified": false,
+      "significance": "Russia's White Sea door to the west — Muscovy Company furs, tar and naval stores, eclipsed but never closed by Petersburg.",
+      "bakeRisk": "The White Sea approach rounds North Cape at ~71°N — above the engine's 66°N Arctic ice-cap seal. Needs a seasonal (summer-only) mask exception or a hand-carved corridor; decide before baking.",
+      "lanes": [
+        { "with": "london", "out": ["furs", "naval-stores", "timber"], "home": ["trade-goods", "wine"], "shipTypes": ["merchantman"], "flag": "britain", "weight": 1, "note": "The Muscovy Company run." },
+        { "with": "amsterdam", "out": ["furs", "grain"], "home": ["salt", "trade-goods"], "shipTypes": ["fluyt"], "flag": "dutch", "weight": 1 } ] },
+
+    { "id": "ayutthaya", "name": "Ayutthaya", "lon": 100.55, "lat": 13.35, "region": "east-indies", "power": "siam", "tier": "minor", "era": { "from": 1550, "to": 1767 }, "roles": ["home"], "tranche": 3, "verified": false,
+      "significance": "Siam's cosmopolitan river capital — crown junks to Japan and China, deerskins and sappanwood, until the Burmese sack of 1767.",
+      "bakeRisk": "A river port ~90 km up the Chao Phraya — invisible to a 1° ocean grid. Stage the port at the river bar (coordinates given); the label can still read Ayutthaya.",
+      "lanes": [ { "with": "batavia", "out": ["deerskins", "grain"], "home": ["textiles", "trade-goods"], "shipTypes": ["junk"], "flag": "siam", "weight": 1 } ] },
+
+    { "id": "patani", "name": "Patani", "lon": 101.3, "lat": 6.9, "region": "east-indies", "power": null, "tier": "minor", "era": { "from": 1550, "to": 1630 }, "roles": ["home"], "tranche": 3, "verified": true,
+      "significance": "The queens of Patani ran the China–Malay entrepôt where the first Dutch and English factories in Siamese orbit opened.",
+      "powerNeeded": "patani — the sultanate under its four queens; add as a spawning or shore flag at promotion.",
+      "lanes": [ { "with": "macau", "out": ["pepper", "deerskins"], "home": ["silk", "porcelain"], "shipTypes": ["junk"], "flag": null, "weight": 1 } ] },
+
+    { "id": "kharg", "name": "Kharg Island", "lon": 50.3, "lat": 29.2, "region": "persian-gulf", "power": "dutch", "tier": "minor", "era": { "from": 1753, "to": 1766 }, "roles": ["factory"], "tranche": 3, "verified": true,
+      "significance": "The VOC's last Gulf venture — a fortified pearl and transit station, thirteen years from founding to Mir Muhanna's sack.",
+      "bakeRisk": "Far up the Gulf on a 1° grid — verify the Hormuz channel routes cleanly before baking.",
+      "lanes": [ { "with": "tranquebar", "out": ["pearls"], "home": ["textiles"], "shipTypes": ["east-indiaman"], "flag": "voc", "weight": 1 } ] },
+
+    { "id": "mombasa", "name": "Mombasa", "lon": 39.7, "lat": -4.05, "region": "east-africa", "power": "portugal", "tier": "minor", "era": { "from": 1593, "to": 1729 }, "roles": ["colonial"], "tranche": 3, "verified": false,
+      "significance": "Fort Jesus and the Swahili-coast ivory trade — Portuguese, then Omani after the great siege of 1698.",
+      "bakeRisk": "None structural; low priority only because the Indian-Ocean lanes above cover the region's cargo story first.",
+      "lanes": [
+        { "with": "lisbon", "out": ["ivory", "gold-dust"], "home": ["trade-goods"], "shipTypes": ["carrack"], "flag": "portugal", "weight": 1, "era": { "from": 1593, "to": 1698 } },
+        { "with": "muscat", "out": ["ivory"], "home": ["textiles", "frankincense"], "shipTypes": ["dhow"], "flag": "oman", "weight": 1, "era": { "from": 1698, "to": 1729 } } ] },
+
+    { "id": "sainte-marie", "name": "Île Sainte-Marie", "lon": 49.9, "lat": -17.0, "region": "indian-ocean", "power": null, "tier": "minor", "era": { "from": 1690, "to": 1725 }, "roles": ["haven"], "tranche": 3, "verified": true,
+      "significance": "The pirate republic off Madagascar — Every, Kidd and the Indian-Ocean roundsmen careened here between the Pilgrim-fleet raids.",
+      "powerNeeded": "freebooters — a non-national flag; better modelled as a HAZARD (a regional riskUplift on Indian-Ocean lanes 1690–1725, like a war entry) than as a trade port. Decide at promotion; no lanes staged.",
+      "lanes": [] },
+
+    { "id": "smeerenburg", "name": "Smeerenburg", "lon": 11.0, "lat": 79.7, "region": "arctic", "power": "dutch", "tier": "minor", "era": { "from": 1619, "to": 1660 }, "roles": ["station"], "tranche": 3, "verified": false,
+      "significance": "'Blubber town' on Spitsbergen — the Noordsche Compagnie's summer whale-oil boomtown.",
+      "bakeRisk": "79.7°N — far above the 66°N ice-cap seal; reaching it IS the point, so it needs a summer-season mask exception carved along the Norwegian coast. The costliest single bake on this list; consider representing the fishery as a seasonal lane terminus at the mask edge instead.",
+      "lanes": [ { "with": "amsterdam", "out": ["whale-oil"], "home": ["trade-goods", "salt"], "shipTypes": ["fluyt"], "flag": "dutch", "weight": 1, "note": "Summer season only (jja) if the mask exception lands." } ] },
+
+    { "id": "kaffa", "name": "Kaffa (Feodosia)", "lon": 35.4, "lat": 45.03, "region": "black-sea", "power": "crimea", "tier": "minor", "era": { "from": 1550, "to": 1783 }, "roles": ["home"], "tranche": 3, "verified": false,
+      "significance": "The Crimean Khanate's great port — grain, salt, and the Black Sea slave trade that fed the Ottoman world.",
+      "bakeRisk": "The Bosporus and Kerch straits are sub-cell chokepoints on a 1° grid — almost certainly needs hand-carved channel cells before any Black Sea routing works.",
+      "promotionRule": "Kaffa's slave market must reuse the sober human-trafficking framing (cargo.enslaved-people pattern) if represented at all. The current Middle-Passage invariant is Atlantic-specific by design; generalizing it is a deliberate decision to make at promotion, never a default. The staged lanes below carry only the licit goods.",
+      "lanes": [ { "with": "smyrna", "out": ["grain", "salt"], "home": ["trade-goods"], "shipTypes": ["merchantman", "dhow"], "flag": "ottoman", "weight": 1 } ] },
+
+    { "id": "sitka", "name": "Sitka (Novo-Arkhangelsk)", "lon": -135.3, "lat": 57.05, "region": "north-pacific", "power": "rac", "tier": "minor", "era": { "from": 1799, "to": 1815 }, "roles": ["colonial"], "tranche": 3, "verified": true,
+      "significance": "The Russian-American Company's capital — sea-otter pelts for the Canton market, the fur rush that carried Russia to America.",
+      "bakeRisk": "Longitude −135° lies outside the current render bounds (−100..150) and the Canton great-circle crosses the antimeridian — needs a render-bounds extension plus a field-coverage check across the Pacific. Movement fields are global, so it is feasible; it is the display that must stretch.",
+      "lanes": [ { "with": "canton", "out": ["furs"], "home": ["tea", "porcelain", "trade-goods"], "shipTypes": ["merchantman"], "flag": "rac", "weight": 1 } ] }
+  ]
+}
