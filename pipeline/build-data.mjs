@@ -8,7 +8,7 @@
 // Exit 0 on success; non-zero with a report of every error found (it collects
 // ALL problems before failing, so one run surfaces the whole list).
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -19,8 +19,8 @@ const OUT = join(ROOT, 'data');
 const ARCHIVE_FIELDS = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'data', 'fields');
 const LAND_SRC = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'assets', 'land.geojson');
 
-const DATASET_VERSION = 1;
-const ERA = { from: 1550, to: 1815 };   // flowing-clock scope (PLAN-2 Phase A)
+const DATASET_VERSION = 2;              // v2 (PLAN-3 S1): flow-driven spawning — invalidates v1 saves
+const ERA = { from: 1550, to: 1815 };   // flowing-clock scope
 const ROUTE_CLASSES = ['frigate', 'indiaman', 'brig', 'slaver'];
 const SEASONS = ['djf', 'mam', 'jja', 'son'];
 const REGIONS = new Set(['britain', 'lowlands', 'france', 'iberia', 'baltic', 'caribbean',
@@ -43,7 +43,6 @@ const cargo = load('cargo.json').cargo;
 const routes = load('routes.json').routes;
 const wars = load('wars.json').wars;
 const names = load('names.json');
-const eraWeights = load('era-weights.json');
 
 const portById = new Map(ports.map(p => [p.id, p]));
 const powerById = new Map(powers.map(p => [p.id, p]));
@@ -158,28 +157,59 @@ for (const pw of powers) {
   if (!names.themesByPower[pw.id]) err(`names: no themesByPower entry for spawning nation '${pw.id}'`);
 }
 
-// ---- validate: era-weights (PLAN-2 flowing-clock spawn weights) -----------
-// Every sim port must have a weight in every decade of the flowing window, and
-// every listed port must be a real sim port. Weights must be finite and positive.
+// ---- fold the flow matrix onto the baked lanes (PLAN-3 S1) -----------------
+// Each flow lane folds via its ports' simProxy onto a (from,to) sim pair; the
+// folded share is distributed across the baked trade lanes of that pair in
+// proportion to their static weights. Naval lanes are excluded (state voyages
+// sit outside the commercial flow matrix; world.js gives them a fixed pool).
+// Unfoldable volume — null proxies, self-pairs, pairs with no baked lane — is
+// DROPPED for Phase A and reported as coverage: the record keeps the trade,
+// the 15-port world simply can't sail all of it yet (S2's job).
+const FLOWS_DIR = join(ROOT, 'research', 'flows');
+const flowSystems = [];
+let covReport = '';
 {
-  const byDecade = eraWeights.byDecade || {};
-  const wPorts = eraWeights.ports || [];
-  for (const pid of wPorts) if (!portById.has(pid)) err(`era-weights: unknown port '${pid}'`);
-  for (const p of ports) if (!wPorts.includes(p.id)) err(`era-weights: missing port '${p.id}' from ports[]`);
-  const decades = Object.keys(byDecade).map(Number).sort((a, b) => a - b);
-  if (!decades.length) err('era-weights: byDecade is empty');
+  if (!existsSync(FLOWS_DIR)) err(`flows dir not found: ${FLOWS_DIR} (PLAN-3 R2/R3)`);
   else {
-    if (decades[0] > ERA.from + 5) err(`era-weights: first decade ${decades[0]} starts after ${ERA.from}`);
-    if (decades[decades.length - 1] < ERA.to - 15) err(`era-weights: last decade ${decades[decades.length - 1]} ends before ${ERA.to}`);
-    // decades must be a contiguous 10-year grid (so midpoint interpolation has no gaps)
-    for (let i = 1; i < decades.length; i++) if (decades[i] - decades[i - 1] !== 10) err(`era-weights: non-contiguous decades ${decades[i - 1]}→${decades[i]}`);
-    for (const d of decades) {
-      const row = byDecade[d];
-      for (const p of ports) {
-        const w = row ? row[p.id] : undefined;
-        if (typeof w !== 'number' || !(w > 0) || !Number.isFinite(w)) err(`era-weights ${d}s: port ${p.id} weight must be a finite positive number (got ${w})`);
+    const files = readdirSync(FLOWS_DIR).filter(f => f.endsWith('.json') && f !== 'silences.json');
+    const proxy = {};
+    const basinsRaw = files.map(f => JSON.parse(readFileSync(join(FLOWS_DIR, f), 'utf8')));
+    for (const B of basinsRaw) for (const p of B.ports || []) proxy[p.id] = p.simProxy;
+    // baked-pair index over TRADE lanes only
+    const pairIdx = new Map();
+    for (const r of routes) {
+      if (r.naval) continue;
+      const k = `${r.from}->${r.to}`;
+      if (!pairIdx.has(k)) pairIdx.set(k, []);
+      pairIdx.get(k).push(r);
+    }
+    const covByDec = {};   // decade → { folded, total } (midpoint-volume weighted)
+    for (const B of basinsRaw) for (const s of B.systems || []) {
+      const folded = {};
+      let foldedShare = 0;
+      for (const l of s.lanes || []) {
+        const pf = proxy[l.from], pt = proxy[l.to];
+        if (!pf || !pt || pf === pt) continue;
+        const cands = pairIdx.get(`${pf}->${pt}`);
+        if (!cands) continue;
+        const wsum = cands.reduce((x, r) => x + (r.weight || 1), 0);
+        for (const r of cands) folded[r.id] = (folded[r.id] || 0) + l.share * (r.weight || 1) / wsum;
+        foldedShare += l.share;
+      }
+      for (const [d, v] of Object.entries(s.byDecade)) {
+        const mid = (v.voyagesPerYear[0] + v.voyagesPerYear[1]) / 2;
+        covByDec[d] = covByDec[d] || { folded: 0, total: 0 };
+        covByDec[d].folded += mid * foldedShare; covByDec[d].total += mid;
+      }
+      if (Object.keys(folded).length) {
+        const byDecade = {};
+        for (const [d, v] of Object.entries(s.byDecade)) byDecade[d] = v.voyagesPerYear;
+        flowSystems.push({ id: s.id, evidence: s.evidence, byDecade, lanes: folded });
       }
     }
+    for (const [lid] of pairIdx) void lid;
+    covReport = [1550, 1650, 1750, 1810].map(d => `${d}s ${covByDec[d] ? Math.round(100 * covByDec[d].folded / covByDec[d].total) : 0}%`).join(' · ');
+    if (!flowSystems.length) err('flows: no system folds onto any baked lane');
   }
 }
 
@@ -239,7 +269,8 @@ const bundle = {
   era: ERA,
   routeClasses: ROUTE_CLASSES,
   seasons: SEASONS,
-  ports, powers, shipTypes, cargo, routes, wars, names, eraWeights
+  ports, powers, shipTypes, cargo, routes, wars, names,
+  flows: { note: 'PLAN-3 S1: flow systems folded onto the baked lanes; [lo,hi] voyage ranges realized per-seed by world.js', systems: flowSystems }
 };
 writeFileSync(join(OUT, 'datasets.json'), JSON.stringify(bundle));
 if (existsSync(LAND_SRC)) copyFileSync(LAND_SRC, join(OUT, 'land.geojson'));
@@ -249,4 +280,5 @@ console.log('✓ build-data: all datasets valid.');
 console.log(`  ports ${ports.length} · powers ${powers.length} · ship-types ${shipTypes.length} · cargo ${cargo.length} · routes ${routes.length} · wars ${wars.length}`);
 console.log(`  baked-field references: ${neededFields.size} (all present)`);
 console.log(`  plausibility self-check: ${generated} vessels generated, ${contradictions} contradictions`);
+console.log(`  flow systems folded onto baked lanes: ${flowSystems.length} · volume coverage ${covReport}`);
 console.log(`  → data/datasets.json (${kb} KB)${existsSync(LAND_SRC) ? ' + land.geojson' : ''}`);

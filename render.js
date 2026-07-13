@@ -233,17 +233,16 @@ export function createRenderer(canvas, assets) {
     const h = hex.replace('#', '');
     return `rgba(${parseInt(h.slice(0, 2), 16)},${parseInt(h.slice(2, 4), 16)},${parseInt(h.slice(4, 6), 16)},${a})`;
   }
-  // routesCtx = { year, weights } from the flowing clock: only era-active lanes
-  // draw, each scaled by static traffic × its origin port's current prominence.
-  // Faint→bold so the busiest lanes of THIS decade sit on top.
+  // routesCtx = { laneWeights } — this world's realized flow weight per
+  // era-active lane (world.laneWeightsAt): the overlay shows the traffic the
+  // sim is actually sampling. Faint→bold so the busiest lanes sit on top.
   function drawRouteOverlay(season, routesCtx) {
-    const y = Math.min(routesCtx.year, 1815);   // reset-ramp years read as 1815
-    const wts = routesCtx.weights || {};
+    const wts = routesCtx.laneWeights || {};
     const active = [];
     let maxEff = 0;
     for (const rl of routeLines) {
-      if (rl.era && (y < rl.era.from || y > rl.era.to)) continue;
-      const eff = rl.weight * (wts[rl.from] != null ? wts[rl.from] : 1);
+      const eff = wts[rl.id];
+      if (!eff) continue;                        // era-inactive or zero-flow lane
       active.push({ rl, eff });
       if (eff > maxEff) maxEff = eff;
     }

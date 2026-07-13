@@ -132,14 +132,20 @@ silences answered, and a derived world prominence whose 1590s top-10 includes
 Istanbul, Shanghai, Tianjin, Alexandria, and Smyrna — ports the ranking
 universe could not represent.)*
 
-### Phase S1 — Sim swap to flow-driven spawning
-`world.js` weight source ← per-decade lane weights derived from the flow
-matrix (same midpoint interpolation, same determinism/offline-accrual);
-era-weights retired; distribution tests against flow targets.
-**Decisions:** (1) per-seed realization on/off (from R2); (2) population
-scaling — the sim shows a *sample* of the traffic, so pick the sampling
-fraction mapping absolute voyage counts → spawn rate; (3) saves invalidated
-by datasetVersion bump (recommended: yes, accept the reset).
+### Phase S1 — Sim swap to flow-driven spawning — ✅ DONE 2026-07-13
+*(Decisions resolved: per-seed realization ON (from R2); population scaling =
+normalized data-driven drift, clamped [0.5, 1.6]× era mean — a documented
+spectator-scale concession; save reset accepted (datasetVersion 2).
+Delivered: build-data folds the flow matrix onto the baked lanes — 18 of 60
+systems fold, 25→34% of world volume, the honest Phase-A coverage number —
+and world.js realizes each system's [lo,hi] once per seed (every world is one
+plausible reading of the evidence), spawns lanes by realized flow + a 3%
+residual floor + a 6% naval pool, fades lanes over ~3 years at era boundaries
+(and across the reset seam) instead of popping, and derives port prominence
+as an output. The routes overlay now shows the traffic the sim actually
+samples. era-weights retired from the bundle. 19 tests green; at-sea 1755
+composition: gothenburg-node 25% (the folded Baltic — the stated proxy
+limit), london 19%, kingston 12%, whydah 10%, batavia/canton 4%.)*
 
 ### Phase S2 — Coverage expansion + re-bake *(old PLAN-2 Phase B, re-scoped)*
 Choose the expanded port set **by flow coverage** (which systems cannot be

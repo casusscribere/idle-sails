@@ -24,15 +24,9 @@ const CYCLE_YEARS = FLOW_SPAN + RESET_YEARS;    // 270-year loop period
 
 // Tuning (spectator-scale; ~40–120 vessels for an open tab).
 const MEAN_SPAWN_INTERVAL_DAYS = 1.0;
-// Spawn-rate drift: world shipping grows across the era, so the sea thickens
-// from the sparse 1550s to the crowded 1810s. A pure function of the flowing
-// year (multiplies the spawn RATE; blended back down across the reset ramp),
-// so determinism and granularity independence hold.
-const ACTIVITY_AT_START = 0.6, ACTIVITY_AT_END = 1.25;
-function spawnActivity(cal) {
-  if (cal.reset > 0) return ACTIVITY_AT_END + (ACTIVITY_AT_START - ACTIVITY_AT_END) * cal.reset;
-  return ACTIVITY_AT_START + (ACTIVITY_AT_END - ACTIVITY_AT_START) * (cal.yearFloat - ERA.from) / FLOW_SPAN;
-}
+// Spawn-rate drift is data-driven since PLAN-3 S1: see spawnActivity inside
+// createWorld — the realized flow totals (per-seed reading of the evidence)
+// drive the sea's thickening, clamped to spectator scale.
 const PORT_DWELL_DAYS = [3, 10];
 const FADE_DAYS = 2;               // how long a retired/lost vessel lingers before cull
 const MAX_LEGS = 3;
@@ -112,32 +106,80 @@ const fmtDate = (c) => `${c.day} ${MONTHS[c.month]} ${c.year}`;
 export function createWorld({ seed = 1, data, restore = null }) {
   const { datasets, routes } = data;
 
-  // ---- flowing-clock spawn weights (PLAN-2 Phase A, Layer 2) ----------------
-  // Per-decade prominence for each sim port (data-src/era-weights.json), folded
-  // into the bundle as datasets.eraWeights. prominenceOf() interpolates a port's
-  // weight between decade MIDPOINTS (decade+5) — piecewise-linear, so there is no
-  // jump at a decade boundary — and blends the last→first decade across the reset
-  // ramp. Missing table ⇒ uniform 1 (behaves like the old static model).
-  const EW = (datasets.eraWeights && datasets.eraWeights.byDecade) ? datasets.eraWeights : null;
-  const EW_DECADES = EW ? Object.keys(EW.byDecade).map(Number).sort((a, b) => a - b) : [];
-  const EW_FIRST = EW_DECADES[0], EW_LAST = EW_DECADES[EW_DECADES.length - 1];
-  const decadeWeight = (decade, portId) => {
-    const row = EW && EW.byDecade[decade];
-    return (row && row[portId] != null) ? row[portId] : 1;
-  };
-  function prominenceOf(portId, cal) {
-    if (!EW) return 1;
-    if (cal.reset > 0) {                         // reset ramp: blend 1810s → 1550s
-      const a = decadeWeight(EW_LAST, portId), b = decadeWeight(EW_FIRST, portId);
-      return a + (b - a) * cal.reset;
+  // ---- flow-driven spawn weights (PLAN-3 S1) --------------------------------
+  // datasets.flows.systems carries the trade systems folded onto the baked lanes
+  // (build-data), each with per-decade voyage RANGES [lo,hi]. Per the R2 decision
+  // this world REALIZES each range with one per-seed draw — every world is one
+  // plausible reading of the evidence: two seeds may disagree about how busy a
+  // trade was, and so do the historians. Same seed ⇒ same reading ⇒ same world.
+  // Weights interpolate between decade midpoints (no boundary jump) and blend
+  // last→first across the reset ramp, exactly as the clock does.
+  const FLOWS = (datasets.flows && datasets.flows.systems) || [];
+  const FLOW_DEC = []; for (let d = 1550; d <= 1810; d += 10) FLOW_DEC.push(d);
+  const flowU = new Map(FLOWS.map(s => [s.id, mulberry32(hashSeed('flow', seed, s.id))()]));
+  // per-decade realized lane weights + world totals (computed once; pure in seed)
+  const laneFlowByDec = new Map(), totalByDec = new Map();
+  for (const d of FLOW_DEC) {
+    const m = new Map(); let tot = 0;
+    for (const s of FLOWS) {
+      const v = s.byDecade[d]; if (!v) continue;
+      const rv = v[0] + (v[1] - v[0]) * flowU.get(s.id);   // the seed's reading
+      for (const [lid, sh] of Object.entries(s.lanes)) { const w = rv * sh; m.set(lid, (m.get(lid) || 0) + w); tot += w; }
     }
+    laneFlowByDec.set(d, m); totalByDec.set(d, tot);
+  }
+  const meanTotal = [...totalByDec.values()].reduce((a, b) => a + b, 0) / FLOW_DEC.length || 1;
+  // interpolate any per-decade quantity between decade midpoints, blending across the reset
+  function interpDec(get, cal) {
+    if (cal.reset > 0) { const a = get(1810), b = get(1550); return a + (b - a) * cal.reset; }
     const y = cal.yearFloat;
-    const firstMid = EW_FIRST + 5, lastMid = EW_LAST + 5;   // 1555 .. 1815
-    if (y <= firstMid) return decadeWeight(EW_FIRST, portId);
-    if (y >= lastMid) return decadeWeight(EW_LAST, portId);
-    const dLo = Math.floor((y - 5 - EW_FIRST) / 10) * 10 + EW_FIRST;  // decade whose midpoint ≤ y
+    if (y <= 1555) return get(1550);
+    if (y >= 1815) return get(1810);
+    const dLo = Math.floor((y - 5 - 1550) / 10) * 10 + 1550;
     const t = (y - (dLo + 5)) / 10;
-    return decadeWeight(dLo, portId) + (decadeWeight(dLo + 10, portId) - decadeWeight(dLo, portId)) * t;
+    return get(dLo) + (get(Math.min(dLo + 10, 1810)) - get(dLo)) * t;
+  }
+  const laneFlowAt = (laneId, cal) => interpDec(d => laneFlowByDec.get(d).get(laneId) || 0, cal);
+  const totalFlowAt = (cal) => interpDec(d => totalByDec.get(d), cal);
+
+  // Spawn-rate drift (S1 decision: normalized, data-driven): the sim's average
+  // pace keeps the spectator tuning; within-era variation follows the realized
+  // world totals, clamped to [0.5, 1.6]× the era mean so the 1550s never feel
+  // empty and the 1810s never swamp the renderer (a documented concession).
+  const spawnActivity = (cal) => Math.max(0.5, Math.min(1.6, totalFlowAt(cal) / meanTotal));
+
+  // Composite spawn weight per era-active lane: trade lanes carry their realized
+  // flow plus a small residual floor (authored lanes never fully vanish — a
+  // Phase-A proxy-coarseness concession, ~3% of the mean total spread by static
+  // weight); naval lanes get a fixed ~6% pool — state voyages sit outside the
+  // commercial flow matrix by design.
+  const RESIDUAL_SHARE = 0.03, NAVAL_SHARE = 0.06;
+  // Lanes fade in/out over ~3 years at their era boundaries instead of popping —
+  // the charter's no-sharp-changes rule applied to lane gating (a lane carrying a
+  // whole folded trade would otherwise step a port's traffic in one tick). Lanes
+  // touching the sim horizon (1550/1815) don't fade there; the reset blend wraps them.
+  const ERA_FADE_YEARS = 3;
+  function fadeAtYear(r, yF) {
+    let f = 1;
+    if (r.era.from > ERA.from) f = Math.min(f, (yF - r.era.from) / ERA_FADE_YEARS);
+    if (r.era.to < ERA.to) f = Math.min(f, (r.era.to + 1 - yF) / ERA_FADE_YEARS);
+    return Math.max(0, Math.min(1, f));
+  }
+  // During the reset ramp the fade blends toward each lane's 1550 state, so a
+  // lane that won't exist after the wrap (the Baltic set, the sugar trades)
+  // dims out across the 5 fake years instead of snapping off at the seam.
+  const eraFade = (r, cal) => cal.reset > 0
+    ? fadeAtYear(r, ERA.to) + (fadeAtYear(r, ERA.from) - fadeAtYear(r, ERA.to)) * cal.reset
+    : fadeAtYear(r, cal.yearFloat);
+  function spawnLaneWeights(cal, activeLanes) {
+    const trade = activeLanes.filter(r => !r.naval), naval = activeLanes.filter(r => r.naval);
+    const tradeWsum = trade.reduce((x, r) => x + (r.weight || 1), 0) || 1;
+    const navalWsum = naval.reduce((x, r) => x + (r.weight || 1), 0) || 1;
+    const totalNow = totalFlowAt(cal);
+    const w = new Map();
+    for (const r of trade) w.set(r.id, eraFade(r, cal) * (laneFlowAt(r.id, cal) + RESIDUAL_SHARE * totalNow * (r.weight || 1) / tradeWsum));
+    for (const r of naval) w.set(r.id, eraFade(r, cal) * NAVAL_SHARE * totalNow * (r.weight || 1) / navalWsum);
+    return w;
   }
 
   // ---- indexes over the static data ----
@@ -258,11 +300,13 @@ export function createWorld({ seed = 1, data, restore = null }) {
     // 1. historical year = the flowing clock's year at spawn (during the reset ramp
     //    it clamps to ERA.to so lanes stay active while the *weights* blend back).
     const year = cal0.reset > 0 ? ERA.to : cal0.year;
-    // 2. route lane, weighted by static traffic volume × the origin port's prominence
-    //    in the current decade (interpolated) → the spawn mix flows with history.
+    // 2. route lane, weighted by this world's REALIZED flow (PLAN-3 S1): the trade
+    //    systems' per-decade voyage ranges, drawn once per seed, folded onto the
+    //    baked lanes — plus the residual floor and the naval pool.
     const activeLanes = datasets.routes.filter(r => year >= r.era.from && year <= r.era.to);
     if (!activeLanes.length) return null; // no lane active this year — caller reschedules
-    const lane = weightedPick(rng, activeLanes, r => (r.weight || 1) * prominenceOf(r.from, cal0));
+    const lw = spawnLaneWeights(cal0, activeLanes);
+    const lane = weightedPick(rng, activeLanes, r => lw.get(r.id) || 0);
     // 3. flag / allegiance from the lane
     const power = powerById.get(lane.flag);
     // 4. ship-type compatible with {lane, year}
@@ -435,18 +479,30 @@ export function createWorld({ seed = 1, data, restore = null }) {
       + `\n#${state.counters.spawned}/${state.counters.arrived}/${state.counters.lost}@${Math.round(state.simClock)}`;
   }
 
-  // Flowing spawn weights, exposed for renderers (era label / rotating dominance)
-  // and tests (smoothness, loop continuity, historical leaders).
-  const prominenceAt = (portId, simSec) => prominenceOf(portId, calendar(simSec));
+  // Flowing spawn weights, exposed for renderers (the routes overlay's rotating
+  // dominance) and tests (smoothness, loop continuity, historical leaders).
+  // laneWeightsAt: the composite spawn weight per era-active lane at an instant.
+  // weightsAt: derived PORT prominence — half of each touching lane's weight —
+  // an output of the flows, no longer a load-bearing input (PLAN-3).
+  const laneWeightsAt = (simSec) => {
+    const cal = calendar(simSec);
+    const year = cal.reset > 0 ? ERA.to : cal.year;
+    const active = datasets.routes.filter(r => year >= r.era.from && year <= r.era.to);
+    return Object.fromEntries(spawnLaneWeights(cal, active));
+  };
   const weightsAt = (simSec) => {
-    const cal = calendar(simSec), out = {};
-    for (const p of datasets.ports) out[p.id] = prominenceOf(p.id, cal);
+    const lw = laneWeightsAt(simSec);
+    const out = Object.fromEntries(datasets.ports.map(p => [p.id, 0]));
+    for (const r of datasets.routes) {
+      const w = lw[r.id]; if (!w) continue;
+      out[r.from] += w / 2; out[r.to] += w / 2;
+    }
     return out;
   };
 
   return {
     state, tick, snapshot, activeVessels, positionOf, fingerprint, calendar,
-    prominenceAt, weightsAt, serialize,
+    laneWeightsAt, weightsAt, serialize,
     portById, powerById,
     get simClock() { return state.simClock; }
   };

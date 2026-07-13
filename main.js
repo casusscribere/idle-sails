@@ -66,7 +66,7 @@ async function boot() {
     const coordsBySeason = {};
     for (const s of SEASONS) { const leg = legById.get(`${lane.id}__${rc}__${s}`); if (leg) coordsBySeason[s] = leg.coords; }
     const power = powerById.get(lane.flag);
-    return { weight: lane.weight || 1, from: lane.from, era: lane.era, color: (power && power.color) || '#3a2c1c', coordsBySeason };
+    return { id: lane.id, era: lane.era, color: (power && power.color) || '#3a2c1c', coordsBySeason };
   });
 
   const canvas = document.getElementById('chart');
@@ -160,9 +160,9 @@ async function boot() {
     if (speed > 0) world.tick(dtReal * speed);
 
     latestSnap = world.snapshot();
-    // overlay context: the flowing year + the current interpolated port weights,
-    // so route brightness tracks each origin's prominence in the current decade.
-    const routesCtx = showRoutes ? { year: latestSnap.year, weights: world.weightsAt(latestSnap.simClock) } : null;
+    // overlay context: this world's realized per-lane flow weights at the current
+    // instant — route brightness IS the traffic the sim is actually sampling.
+    const routesCtx = showRoutes ? { laneWeights: world.laneWeightsAt(latestSnap.simClock) } : null;
     renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, routesCtx);
 
     hudAccum += dtReal;

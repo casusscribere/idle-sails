@@ -91,9 +91,18 @@ Every design decision answers to both of these:
   Pacific voyaging gestured), coerced flows beyond the Atlantic quantified
   with validator-enforced sober framing. Derived world prominence (an output
   now) puts Istanbul, Shanghai, Tianjin, Alexandria, and Smyrna in the 1590s
-  top-10 — ports the rankings could not represent. **Next: PLAN-3 Phase S1**
-  (sim swap to flow-driven spawning), then S2 (bake), S3 (surfacing). Each
-  phase pauses on its decision list (PLAN-3 §3).
+  top-10 — ports the rankings could not represent. **S1 is done**: the sim
+  spawns from the flow matrix — build-data folds the systems onto the baked
+  lanes (18 fold; 25→34% of world volume = the honest Phase-A coverage), each
+  world realizes every [lo,hi] range once per seed (one plausible reading of
+  the evidence), spawn rate follows realized totals clamped [0.5,1.6]× the
+  era mean, lanes fade ~3 yr at era boundaries and across the reset seam,
+  era-weights is retired from the bundle, datasetVersion 2 resets old saves,
+  and the routes overlay shows the realized per-lane flow. Gothenburg
+  concentrating the folded Baltic (~25% of the at-sea world) is the stated
+  proxy limit S2 exists to fix. **Next: PLAN-3 Phase S2** (coverage expansion
+  + re-bake — the big decision list), then S3 (surfacing). Each phase pauses
+  on its decision list (PLAN-3 §3).
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —
