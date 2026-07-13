@@ -74,13 +74,35 @@ check (no discontinuity at decade boundaries or the reset seam); a loop check
   port roster with the diversity layer; define era windows, weights, routes, and
   a curation framework. **See §5.** *(done before Phase 1 so the datasets are
   extended once.)*
-- **Phase A — Flowing mechanic, no re-baking.** Layers 1–3 over the **existing
-  15 ports** (map historical flows onto the nearest available ports); extend the
-  clock to 1550 + the loop; push the datasets (ship-types, powers, cargoes) back
-  to 1550 so early vessels look right. Delivers the whole mechanic immediately.
-  *Limitation, stated plainly:* the 1550s can't show Antwerp/Danzig/Venice, so
-  early-period fidelity is coarse. Minor ports already in the 15 (Dejima,
-  Kingston, Tranquebar, Whydah) work here; the rest wait for Phase B.
+- **Phase A — Flowing mechanic, no re-baking. ✅ BUILT (2026-07-13).** Layers 1–3
+  over the **existing 15 ports**. Delivered:
+  - **Time model** (`world.js`): `calendar()` now flows 1550→1815, ramps a 5-year
+    reset (1815→1820) that blends the 1810s weights back to the 1550s, then loops
+    (period **270 yr**). Pure fn of sim-time ⇒ determinism & offline-accrual intact.
+  - **Weight table** (`data-src/era-weights.json`, built from
+    `research/port-rankings-1550-1815.json` via `tmp/build-era-weights.mjs`):
+    per-decade prominence for each sim port = intrinsic floor + normalised
+    historical signal (max-per-metric so region-proxy ports don't swamp), with
+    historical ports folded onto the nearest sim port. Bundled into
+    `datasets.eraWeights` by `pipeline/build-data.mjs`.
+  - **Spawn engine** (`world.js`): each vessel is stamped with the **flowing
+    year**; lane pick is weighted by `laneWeight × prominence(origin, year)`,
+    interpolated between decade midpoints (no boundary jump). `weightsAt()` /
+    `prominenceAt()` exposed for UI + tests.
+  - **Data** pushed back to 1550: lane/ship-type/power era windows widened to
+    their real starts (China tea stays late; Liverpool slaving stays 18th-c).
+  - **Tests** (`test/world.test.mjs`): calendar flow/reset/loop, weight smoothness
+    & loop continuity, historical-dominance rotation, and a full-cycle spawn-mix
+    check. All green; population never empties across the cycle.
+  *Verified arc:* Lisbon+Cádiz ~87% of origins in the 1560s → Bahia rises 1600s →
+  Amsterdam surges 1610s (Golden Age) → London overtakes by the 1670s and
+  dominates → Canton & Liverpool rise late.
+  *Limitation, as planned:* the 1550s can't show Antwerp/Danzig/Venice (no baked
+  routes), so early-period fidelity is coarse and the pre-1610 mix is Iberian/
+  Brazil only. Minor ports already in the 15 (Dejima, Kingston, Tranquebar,
+  Whydah) work here; the rest wait for Phase B.
+  *Deferred to later phases:* population/spawn-rate drift over the era (constant
+  for now); a visible flowing-year/era-label HUD and timeline scrubber (Phase C).
 - **Phase B — Coverage expansion + re-bake.** Add the backbone hubs **and** the
   minor-ports diversity layer (§5); regenerate wind-fields (`build-grid` →
   `build-all`) and re-bake routes. Now the map genuinely shifts across centuries.

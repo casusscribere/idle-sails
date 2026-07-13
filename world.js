@@ -12,8 +12,15 @@
 
 const SEC_PER_DAY = 86400;
 const DAY_OF_YEAR = 365.25;
-const ERA = { from: 1700, to: 1815 };
-const ERA_SPAN = ERA.to - ERA.from + 1;
+// Flowing historical clock (PLAN-2 Phase A): the sim-clock advances continuously
+// through 1550→1815, then a 5-year "fake" reset ramp (1815→1820) blends the 1810s
+// spawn distribution back to the 1550s, and the whole 270-year cycle loops. Every
+// derived quantity is a pure function of sim-time, so determinism and offline-
+// accrual fast-forward are preserved (a big tick == many small ticks).
+const ERA = { from: 1550, to: 1815 };
+const RESET_YEARS = 5;                          // fake reset ramp 1815→1820
+const FLOW_SPAN = ERA.to - ERA.from;            // 265 forward years (1550→1815)
+const CYCLE_YEARS = FLOW_SPAN + RESET_YEARS;    // 270-year loop period
 
 // Tuning (spectator-scale; ~40–120 vessels for an open tab).
 const MEAN_SPAWN_INTERVAL_DAYS = 1.0;
@@ -71,22 +78,55 @@ function bearing(a, b) {
   return (Math.atan2(y, x) / D2R + 360) % 360;
 }
 
-// ---- calendar (sim-seconds → cycling 1700–1815 date + season) -------------
+// ---- calendar (sim-seconds → flowing, looping 1550→1815→reset date + season) --
 const SEASON_OF_MONTH = ['djf', 'djf', 'mam', 'mam', 'mam', 'jja', 'jja', 'jja', 'son', 'son', 'son', 'djf'];
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+// Returns the flowing year (integer + float), the reset-ramp progress (0 during the
+// 1550→1815 forward flow; 0→1 across the 5 fake reset years 1815→1820), and the
+// date/season within the current year.
 function calendar(simSec) {
-  const totalDays = simSec / SEC_PER_DAY;
-  const yearIndex = Math.floor(totalDays / DAY_OF_YEAR);
-  const year = ERA.from + (((yearIndex % ERA_SPAN) + ERA_SPAN) % ERA_SPAN);
-  const doy = totalDays - yearIndex * DAY_OF_YEAR;      // 0..365
+  const totalYears = simSec / (SEC_PER_DAY * DAY_OF_YEAR);
+  const cyc = ((totalYears % CYCLE_YEARS) + CYCLE_YEARS) % CYCLE_YEARS;   // 0..270
+  let yearFloat, reset;
+  if (cyc <= FLOW_SPAN) { yearFloat = ERA.from + cyc; reset = 0; }        // 1550..1815
+  else { yearFloat = ERA.to + (cyc - FLOW_SPAN); reset = (cyc - FLOW_SPAN) / RESET_YEARS; } // 1815..1820
+  const doy = (cyc - Math.floor(cyc)) * DAY_OF_YEAR;    // 0..365 within the current year
   const month = Math.min(11, Math.floor(doy / 30.4));
-  return { year, month, day: 1 + Math.floor(doy % 30.4), season: SEASON_OF_MONTH[month] };
+  return { year: Math.floor(yearFloat), yearFloat, reset, month, day: 1 + Math.floor(doy % 30.4), season: SEASON_OF_MONTH[month] };
 }
 const fmtDate = (c) => `${c.day} ${MONTHS[c.month]} ${c.year}`;
 
 // ===========================================================================
 export function createWorld({ seed = 1, data }) {
   const { datasets, routes } = data;
+
+  // ---- flowing-clock spawn weights (PLAN-2 Phase A, Layer 2) ----------------
+  // Per-decade prominence for each sim port (data-src/era-weights.json), folded
+  // into the bundle as datasets.eraWeights. prominenceOf() interpolates a port's
+  // weight between decade MIDPOINTS (decade+5) — piecewise-linear, so there is no
+  // jump at a decade boundary — and blends the last→first decade across the reset
+  // ramp. Missing table ⇒ uniform 1 (behaves like the old static model).
+  const EW = (datasets.eraWeights && datasets.eraWeights.byDecade) ? datasets.eraWeights : null;
+  const EW_DECADES = EW ? Object.keys(EW.byDecade).map(Number).sort((a, b) => a - b) : [];
+  const EW_FIRST = EW_DECADES[0], EW_LAST = EW_DECADES[EW_DECADES.length - 1];
+  const decadeWeight = (decade, portId) => {
+    const row = EW && EW.byDecade[decade];
+    return (row && row[portId] != null) ? row[portId] : 1;
+  };
+  function prominenceOf(portId, cal) {
+    if (!EW) return 1;
+    if (cal.reset > 0) {                         // reset ramp: blend 1810s → 1550s
+      const a = decadeWeight(EW_LAST, portId), b = decadeWeight(EW_FIRST, portId);
+      return a + (b - a) * cal.reset;
+    }
+    const y = cal.yearFloat;
+    const firstMid = EW_FIRST + 5, lastMid = EW_LAST + 5;   // 1555 .. 1815
+    if (y <= firstMid) return decadeWeight(EW_FIRST, portId);
+    if (y >= lastMid) return decadeWeight(EW_LAST, portId);
+    const dLo = Math.floor((y - 5 - EW_FIRST) / 10) * 10 + EW_FIRST;  // decade whose midpoint ≤ y
+    const t = (y - (dLo + 5)) / 10;
+    return decadeWeight(dLo, portId) + (decadeWeight(dLo + 10, portId) - decadeWeight(dLo, portId)) * t;
+  }
 
   // ---- indexes over the static data ----
   const portById = new Map(datasets.ports.map(p => [p.id, p]));
@@ -186,11 +226,14 @@ export function createWorld({ seed = 1, data }) {
     const rng = mulberry32(hashSeed('vessel', seed, id));
     const cal0 = calendar(spawnSimClock);
 
-    // 1. era-year (uniform across the calibrated era) → historical coherence
-    const year = ERA.from + Math.floor(rng() * ERA_SPAN);
-    // 2. route lane, weighted by traffic volume, active in that year
+    // 1. historical year = the flowing clock's year at spawn (during the reset ramp
+    //    it clamps to ERA.to so lanes stay active while the *weights* blend back).
+    const year = cal0.reset > 0 ? ERA.to : cal0.year;
+    // 2. route lane, weighted by static traffic volume × the origin port's prominence
+    //    in the current decade (interpolated) → the spawn mix flows with history.
     const activeLanes = datasets.routes.filter(r => year >= r.era.from && year <= r.era.to);
-    const lane = weightedPick(rng, activeLanes, r => r.weight || 1);
+    if (!activeLanes.length) return null; // no lane active this year — caller reschedules
+    const lane = weightedPick(rng, activeLanes, r => (r.weight || 1) * prominenceOf(r.from, cal0));
     // 3. flag / allegiance from the lane
     const power = powerById.get(lane.flag);
     // 4. ship-type compatible with {lane, year}
@@ -305,7 +348,7 @@ export function createWorld({ seed = 1, data }) {
         state.vessels.push(v);
         state.counters.spawned++;
         const c = calendar(at);
-        log({ t: at, kind: 'depart', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} (${v.typeName}, ${v.powerName}) cleared ${portById.get(v.schedule[0].from).name} for ${portById.get(v.schedule[0].to).name}`, date: fmtDate(c), vesselId: v.id });
+        log({ t: at, kind: 'depart', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} (${v.typeName}, ${v.powerName}) cleared ${portById.get(v.schedule[0].from).name} for ${portById.get(v.schedule[0].to).name}`, date: fmtDate(c), vesselId: v.id, from: v.schedule[0].from, year: v.year });
       }
       const u = spawnRng();
       state.nextSpawnAt = at + SEC_PER_DAY * -MEAN_SPAWN_INTERVAL_DAYS * Math.log(1 - u);
@@ -359,11 +402,21 @@ export function createWorld({ seed = 1, data }) {
       + `\n#${state.counters.spawned}/${state.counters.arrived}/${state.counters.lost}@${Math.round(state.simClock)}`;
   }
 
+  // Flowing spawn weights, exposed for renderers (era label / rotating dominance)
+  // and tests (smoothness, loop continuity, historical leaders).
+  const prominenceAt = (portId, simSec) => prominenceOf(portId, calendar(simSec));
+  const weightsAt = (simSec) => {
+    const cal = calendar(simSec), out = {};
+    for (const p of datasets.ports) out[p.id] = prominenceOf(p.id, cal);
+    return out;
+  };
+
   return {
     state, tick, snapshot, activeVessels, positionOf, fingerprint, calendar,
+    prominenceAt, weightsAt,
     portById, powerById,
     get simClock() { return state.simClock; }
   };
 }
 
-export const _internals = { calendar, mulberry32, hashSeed, triangular, havKm, SEC_PER_DAY, ERA };
+export const _internals = { calendar, mulberry32, hashSeed, triangular, havKm, SEC_PER_DAY, DAY_OF_YEAR, ERA, RESET_YEARS, FLOW_SPAN, CYCLE_YEARS };

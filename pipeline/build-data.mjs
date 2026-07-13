@@ -20,7 +20,7 @@ const ARCHIVE_FIELDS = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'data', 'fi
 const LAND_SRC = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'assets', 'land.geojson');
 
 const DATASET_VERSION = 1;
-const ERA = { from: 1700, to: 1815 };
+const ERA = { from: 1550, to: 1815 };   // flowing-clock scope (PLAN-2 Phase A)
 const ROUTE_CLASSES = ['frigate', 'indiaman', 'brig', 'slaver'];
 const SEASONS = ['djf', 'mam', 'jja', 'son'];
 const REGIONS = new Set(['britain', 'lowlands', 'france', 'iberia', 'baltic', 'caribbean',
@@ -39,6 +39,7 @@ const cargo = load('cargo.json').cargo;
 const routes = load('routes.json').routes;
 const wars = load('wars.json').wars;
 const names = load('names.json');
+const eraWeights = load('era-weights.json');
 
 const portById = new Map(ports.map(p => [p.id, p]));
 const powerById = new Map(powers.map(p => [p.id, p]));
@@ -153,6 +154,31 @@ for (const pw of powers) {
   if (!names.themesByPower[pw.id]) err(`names: no themesByPower entry for spawning nation '${pw.id}'`);
 }
 
+// ---- validate: era-weights (PLAN-2 flowing-clock spawn weights) -----------
+// Every sim port must have a weight in every decade of the flowing window, and
+// every listed port must be a real sim port. Weights must be finite and positive.
+{
+  const byDecade = eraWeights.byDecade || {};
+  const wPorts = eraWeights.ports || [];
+  for (const pid of wPorts) if (!portById.has(pid)) err(`era-weights: unknown port '${pid}'`);
+  for (const p of ports) if (!wPorts.includes(p.id)) err(`era-weights: missing port '${p.id}' from ports[]`);
+  const decades = Object.keys(byDecade).map(Number).sort((a, b) => a - b);
+  if (!decades.length) err('era-weights: byDecade is empty');
+  else {
+    if (decades[0] > ERA.from + 5) err(`era-weights: first decade ${decades[0]} starts after ${ERA.from}`);
+    if (decades[decades.length - 1] < ERA.to - 15) err(`era-weights: last decade ${decades[decades.length - 1]} ends before ${ERA.to}`);
+    // decades must be a contiguous 10-year grid (so midpoint interpolation has no gaps)
+    for (let i = 1; i < decades.length; i++) if (decades[i] - decades[i - 1] !== 10) err(`era-weights: non-contiguous decades ${decades[i - 1]}→${decades[i]}`);
+    for (const d of decades) {
+      const row = byDecade[d];
+      for (const p of ports) {
+        const w = row ? row[p.id] : undefined;
+        if (typeof w !== 'number' || !(w > 0) || !Number.isFinite(w)) err(`era-weights ${d}s: port ${p.id} weight must be a finite positive number (got ${w})`);
+      }
+    }
+  }
+}
+
 // ---- plausibility self-check (a miniature of PLAN §4 generation) ---------
 // Deterministic PRNG so the check is reproducible.
 function mulberry32(a) { return () => { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
@@ -209,7 +235,7 @@ const bundle = {
   era: ERA,
   routeClasses: ROUTE_CLASSES,
   seasons: SEASONS,
-  ports, powers, shipTypes, cargo, routes, wars, names
+  ports, powers, shipTypes, cargo, routes, wars, names, eraWeights
 };
 writeFileSync(join(OUT, 'datasets.json'), JSON.stringify(bundle));
 if (existsSync(LAND_SRC)) copyFileSync(LAND_SRC, join(OUT, 'land.geojson'));
