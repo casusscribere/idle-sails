@@ -176,6 +176,32 @@ test('flowing weights: historical dominance rotates over the era', () => {
   assert.ok(late > early * 3, `Liverpool rises late (${early.toFixed(2)} → ${late.toFixed(2)})`);
 });
 
+test('spawn-rate drift: the sea thickens from the 1550s to the 1810s', () => {
+  const YR = 365.25 * DAY;
+  const meanAtSea = (startYears) => {
+    const w = mk(51);
+    w.tick(startYears * YR);              // fast-forward to the era (offline-accrual style)
+    let sum = 0, n = 0;
+    for (let d = 0; d < 200; d++) { w.tick(DAY); if (d > 60) { sum += w.state.vessels.filter(v => v.status === 'sailing').length; n++; } }
+    return sum / n;
+  };
+  const early = meanAtSea(10), late = meanAtSea(255);   // 1560s vs 1800s
+  assert.ok(late > early * 1.4, `late era busier than early (${early.toFixed(0)} → ${late.toFixed(0)} at sea)`);
+  assert.ok(early > 15, `early era still alive (${early.toFixed(0)} at sea)`);
+});
+
+test('pre-1700 wars: early-era voyages can be taken as prizes', () => {
+  const w = mk(88);
+  const YR = 365.25 * DAY;
+  w.tick(35 * YR);                        // → 1585, the Anglo-Spanish & Dutch-Iberian wars
+  let prizes = 0;
+  for (let d = 0; d < 365 * 12 && prizes === 0; d++) {   // sail 1585–1597
+    w.tick(DAY);
+    for (const e of w.state.log) if (e.kind === 'loss' && /prize/.test(e.text)) prizes++;
+  }
+  assert.ok(prizes > 0, 'a 16th-century voyage was taken as a prize');
+});
+
 test('spawn mix flows with history: origins shift across the cycle', () => {
   const w = mk(2024);
   const YR = 365.25 * DAY, WEEK = 7 * DAY;

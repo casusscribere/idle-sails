@@ -106,7 +106,14 @@ check (no discontinuity at decade boundaries or the reset seam); a loop check
 - **Phase B — Coverage expansion + re-bake.** Add the backbone hubs **and** the
   minor-ports diversity layer (§5); regenerate wind-fields (`build-grid` →
   `build-all`) and re-bake routes. Now the map genuinely shifts across centuries.
-- **Phase C — UI / polish.** Timeline, era labels, ambient historical framing.
+- **Phase C — UI / polish. ✅ largely done (2026-07-13).** Era label HUD +
+  era-aware routes overlay (committed with Phase A's surfacing pass); spawn-rate
+  drift (the sea thickens ~0.6→1.25× across the era, blended down over the reset);
+  eight 16th–17th-c wars added so pre-1700 voyages face privateers (Anglo-Spanish,
+  Dutch-Iberian, the Anglo-Dutch wars, Nine Years' War…). *Deliberately skipped:*
+  a timeline scrubber — it fights the single persistent timeline (M6 saves one
+  world, and scrubbing would fork it); the `#t=<sim-days>` debug param covers
+  inspection. Revisit only if a "spectate another era" mode is ever wanted.
 
 ---
 

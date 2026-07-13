@@ -24,6 +24,15 @@ const CYCLE_YEARS = FLOW_SPAN + RESET_YEARS;    // 270-year loop period
 
 // Tuning (spectator-scale; ~40–120 vessels for an open tab).
 const MEAN_SPAWN_INTERVAL_DAYS = 1.0;
+// Spawn-rate drift: world shipping grows across the era, so the sea thickens
+// from the sparse 1550s to the crowded 1810s. A pure function of the flowing
+// year (multiplies the spawn RATE; blended back down across the reset ramp),
+// so determinism and granularity independence hold.
+const ACTIVITY_AT_START = 0.6, ACTIVITY_AT_END = 1.25;
+function spawnActivity(cal) {
+  if (cal.reset > 0) return ACTIVITY_AT_END + (ACTIVITY_AT_START - ACTIVITY_AT_END) * cal.reset;
+  return ACTIVITY_AT_START + (ACTIVITY_AT_END - ACTIVITY_AT_START) * (cal.yearFloat - ERA.from) / FLOW_SPAN;
+}
 const PORT_DWELL_DAYS = [3, 10];
 const FADE_DAYS = 2;               // how long a retired/lost vessel lingers before cull
 const MAX_LEGS = 3;
@@ -371,7 +380,7 @@ export function createWorld({ seed = 1, data, restore = null }) {
         log({ t: at, kind: 'depart', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} (${v.typeName}, ${v.powerName}) cleared ${portById.get(v.schedule[0].from).name} for ${portById.get(v.schedule[0].to).name}`, date: fmtDate(c), vesselId: v.id, from: v.schedule[0].from, year: v.year });
       }
       const u = spawnRng();
-      state.nextSpawnAt = at + SEC_PER_DAY * -MEAN_SPAWN_INTERVAL_DAYS * Math.log(1 - u);
+      state.nextSpawnAt = at + SEC_PER_DAY * (-MEAN_SPAWN_INTERVAL_DAYS / spawnActivity(calendar(at))) * Math.log(1 - u);
     }
 
     // advance / resolve events for each live vessel
