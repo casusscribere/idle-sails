@@ -100,7 +100,15 @@ regenerate CSV/HTML/synthesis + interim era-weights:
 clearances* (recommended) vs adding coastal colliers to the ships metric;
 (2) confirm the three promotions above (accepted in principle 2026-07-13).
 
-### Phase R2 — Flow-matrix schema + proof-of-shape basin
+### Phase R2 — Flow-matrix schema + proof-of-shape basin — ✅ DONE 2026-07-13
+*(Decisions resolved: voyage ranges `[lo,hi]`; per-seed draw within bounds;
+systems + lane shares. Delivered: `research/flows/_schema.md`,
+`baltic-north-sea.json` — 13 systems × 27 decades, Sound cross-check ✓ in all
+anchor decades — `silences.json` (6 entries incl. the asserted collier answer
+to R1's declared silence), `tools/build-baltic-flows.mjs` +
+`tools/validate-flows.mjs`. The derived prominence already shows what rankings
+couldn't: with colliers counted, London leads the basin by movements from the
+1590s.)*
 Schema for trade-systems + silences register; validator; author the
 **Baltic–North Sea** basin (mostly transcription — Sound Toll–anchored);
 sanity check that the `counted` stratum's derived prominence ≈ the rankings.

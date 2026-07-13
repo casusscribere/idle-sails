@@ -4,6 +4,7 @@
   "cargo": [
     { "id": "ballast",       "name": "in ballast (empty)", "origins": ["*"],                          "valueTier": 0, "class": "none",    "note": "No cargo; stone/sand for trim. Common on homeward or repositioning legs." },
     { "id": "salt",          "name": "salt",               "origins": ["iberia", "france"],           "valueTier": 1, "class": "bulk",    "note": "Setúbal/Bay salt for the fisheries and Baltic." },
+    { "id": "coal",          "name": "coal",               "origins": ["britain"],                    "valueTier": 1, "class": "bulk",    "note": "Tyne & Wear coal — the collier trade, Britain's largest single generator of ship movements (coastal, so outside the ships-ranking basis; see the silences register)." },
     { "id": "timber",        "name": "timber & masts",     "origins": ["baltic", "north-america"],    "valueTier": 1, "class": "bulk" },
     { "id": "naval-stores",  "name": "naval stores",       "origins": ["baltic", "north-america"],    "valueTier": 2, "class": "bulk",    "note": "Tar, pitch, hemp, cordage." },
     { "id": "iron",          "name": "bar iron",           "origins": ["baltic"],                     "valueTier": 2, "class": "bulk",    "note": "Swedish oregrounds iron, prized for steel." },

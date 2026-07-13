@@ -1,0 +1,29 @@
+{
+  "title": "The chart's silences — flows known to history that the flow matrix does not (or cannot) quantify",
+  "note": "PLAN-3 §1 rule 5: a known trade is never silently zero, and a silence we cannot answer is recorded HERE, with its reason and our chosen treatment, instead of being dropped. treatment=asserted means the silence was answered — `pointer` names the system carrying our stated estimate; gestured means acknowledged, and a candidate for ambient content (S3) without volume claims; excluded means out of scope, with the reason on record. Basin authoring (R3) appends to this register; S3 renders it as a reference page.",
+  "silences": [
+    { "id": "english-coastal-colliers-silence", "scope": "Britain (Tyne & Wear → London)", "reason": "excluded-by-basis",
+      "treatment": "asserted", "pointer": "english-coastal-colliers",
+      "note": "The ships rankings count foreign-going clearances (R1 decision), so Europe's single largest generator of ship movements is invisible to them. Answered: the flow matrix carries a reconstructed collier system (~150 voyages/yr in the 1550s → ~4,000–6,500/yr by 1810)." },
+
+    { "id": "coastal-shipping-general", "scope": "every coast, all basins", "reason": "unrecorded",
+      "treatment": "gestured",
+      "note": "Coasting dwarfed foreign-going traffic in vessel numbers everywhere — grain hoys, wine barks, fish carriers, timber floats. No source counts it; no honest range exists at world scale. Acknowledged as the sea's ambient metabolism; candidate for ambient rendering (S3) rather than a volume claim." },
+
+    { "id": "north-sea-herring-fishery", "scope": "Dutch Republic (the grote visserij)", "reason": "fishery-not-trade",
+      "treatment": "gestured",
+      "note": "Hundreds of herring busses at sea every season — among the largest fleets afloat, but grounds-traffic rather than port-to-port trade, so it fits no lane. Candidate ambient feature; the fishery's SIZE is well documented even though it has no origin→destination shape." },
+
+    { "id": "sound-toll-evasion", "scope": "Baltic (the counted stratum itself)", "reason": "evasion",
+      "treatment": "excluded",
+      "note": "The anchoring series is itself distorted: under-declaration, wartime neutral re-flagging, and the Swedish exemption (1645–1710) all bias the registers the 'counted' systems rest on. Carried as a caveat on evidence=counted rather than as a flow — the register records that even the archive's firmest ground is soft." },
+
+    { "id": "small-craft-inshore", "scope": "all basins", "reason": "unrecorded",
+      "treatment": "excluded",
+      "note": "Boats below burden thresholds — wherries, prams, coasters under ~20 tons — were never registered anywhere. Below the simulation's vessel scale; excluded knowingly." },
+
+    { "id": "r3-placeholders", "scope": "Atlantic · Mediterranean · Indian Ocean · SE Asia · East Asia", "reason": "not-yet-reconstructed",
+      "treatment": "gestured",
+      "note": "Known entries awaiting basin authoring (R3): Caribbean inter-island smuggling (silent BY EVASION — unrecorded because recording was the danger); the Nanyang junk trade's under-registration in European sources; African coastwise and lagoon trade; Indian Ocean country trade beyond company books; Pacific islander voyaging (real, seaborne, and outside every European series). Each becomes asserted-or-gestured, with reasoning, as its basin is authored." }
+  ]
+}

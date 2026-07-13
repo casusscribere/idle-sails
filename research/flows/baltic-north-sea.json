@@ -1,0 +1,2716 @@
+{
+ "basin": "baltic-north-sea",
+ "note": "PLAN-3 R2 proof-of-shape basin. Volumes authored as anchor curves (see research/tools/build-baltic-flows.mjs — the anchors carry the historical claims) and emitted as explicit per-decade [lo,hi] voyage ranges. Realization rule: per-seed draw within bounds (R2 decision). Counted systems cross-check against the Sound Toll series in validate-flows.mjs.",
+ "anchors": [
+  "Sound Toll Registers / STRO — the anchoring series for every 'counted' system",
+  "M. van Tielhof, The 'Mother of All Trades' (Baltic grain)",
+  "J. U. Nef / J. Hatcher (the coal trades); Y. Kaukiainen (Baltic shipping)",
+  "C. de Jong (Dutch whaling); J. W. Veluwenkamp (Arkhangelsk)"
+ ],
+ "ports": [
+  {
+   "id": "danzig",
+   "name": "Danzig (Gdańsk)",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "konigsberg",
+   "name": "Königsberg",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "riga",
+   "name": "Riga",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "stettin",
+   "name": "Stettin",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "memel",
+   "name": "Memel",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "stockholm",
+   "name": "Stockholm",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "gothenburg",
+   "name": "Gothenburg",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "lubeck",
+   "name": "Lübeck",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "copenhagen",
+   "name": "Copenhagen",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "st-petersburg",
+   "name": "St Petersburg",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "bergen",
+   "name": "Bergen",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "christiania",
+   "name": "Christiania (Oslo)",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "amsterdam",
+   "name": "Amsterdam",
+   "simProxy": "amsterdam"
+  },
+  {
+   "id": "rotterdam",
+   "name": "Rotterdam",
+   "simProxy": "amsterdam"
+  },
+  {
+   "id": "hamburg",
+   "name": "Hamburg",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "bremen",
+   "name": "Bremen",
+   "simProxy": "gothenburg"
+  },
+  {
+   "id": "london",
+   "name": "London",
+   "simProxy": "london"
+  },
+  {
+   "id": "hull",
+   "name": "Hull",
+   "simProxy": "london"
+  },
+  {
+   "id": "newcastle",
+   "name": "Newcastle",
+   "simProxy": "london"
+  },
+  {
+   "id": "sunderland",
+   "name": "Sunderland",
+   "simProxy": "london"
+  },
+  {
+   "id": "rouen",
+   "name": "Rouen",
+   "simProxy": "bordeaux"
+  },
+  {
+   "id": "bordeaux",
+   "name": "Bordeaux",
+   "simProxy": "bordeaux"
+  },
+  {
+   "id": "lisbon",
+   "name": "Lisbon",
+   "simProxy": "lisbon"
+  },
+  {
+   "id": "arkhangelsk",
+   "name": "Arkhangelsk",
+   "simProxy": null
+  },
+  {
+   "id": "smeerenburg",
+   "name": "Smeerenburg (Spitsbergen)",
+   "simProxy": null
+  }
+ ],
+ "systems": [
+  {
+   "id": "baltic-grain-west",
+   "name": "Baltic grain, westbound",
+   "evidence": "counted",
+   "basis": "Sound Toll Registers (grain cargoes westbound; Danzig staple); van Tielhof, The 'Mother of All Trades'.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "grain"
+   ],
+   "shipTypes": [
+    "fluyt",
+    "brig",
+    "merchantman"
+   ],
+   "lanes": [
+    {
+     "from": "danzig",
+     "to": "amsterdam",
+     "share": 0.4
+    },
+    {
+     "from": "konigsberg",
+     "to": "amsterdam",
+     "share": 0.15
+    },
+    {
+     "from": "riga",
+     "to": "amsterdam",
+     "share": 0.1
+    },
+    {
+     "from": "danzig",
+     "to": "london",
+     "share": 0.1
+    },
+    {
+     "from": "danzig",
+     "to": "lisbon",
+     "share": 0.1
+    },
+    {
+     "from": "stettin",
+     "to": "hamburg",
+     "share": 0.08
+    },
+    {
+     "from": "konigsberg",
+     "to": "london",
+     "share": 0.07
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      220,
+      380
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      253,
+      435
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      285,
+      490
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      318,
+      545
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      350,
+      600
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      327,
+      567
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      303,
+      533
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      280,
+      500
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      270,
+      483
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      260,
+      467
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      250,
+      450
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      230,
+      420
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      210,
+      390
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      190,
+      360
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      170,
+      330
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      150,
+      300
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      120,
+      260
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      160,
+      320
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      200,
+      380
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      217,
+      413
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      233,
+      447
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      250,
+      480
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      367,
+      687
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      483,
+      893
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      600,
+      1100
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      475,
+      950
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      350,
+      800
+     ]
+    }
+   },
+   "notes": "The 'mother trade'. Peak Amsterdam dependence c.1590–1650; the late-18th-c surge feeds Britain."
+  },
+  {
+   "id": "baltic-timber-naval-west",
+   "name": "Baltic timber & naval stores, westbound",
+   "evidence": "counted",
+   "basis": "Sound Toll Registers (timber, masts, pitch, tar, hemp, flax westbound); Åström; Kaukiainen.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "timber",
+    "naval-stores"
+   ],
+   "shipTypes": [
+    "fluyt",
+    "brig",
+    "snow"
+   ],
+   "lanes": [
+    {
+     "from": "riga",
+     "to": "london",
+     "share": 0.25
+    },
+    {
+     "from": "riga",
+     "to": "amsterdam",
+     "share": 0.15
+    },
+    {
+     "from": "memel",
+     "to": "london",
+     "share": 0.15
+    },
+    {
+     "from": "memel",
+     "to": "amsterdam",
+     "share": 0.1
+    },
+    {
+     "from": "danzig",
+     "to": "amsterdam",
+     "share": 0.1
+    },
+    {
+     "from": "danzig",
+     "to": "london",
+     "share": 0.15
+    },
+    {
+     "from": "riga",
+     "to": "bordeaux",
+     "share": 0.1
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      80,
+      160
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      88,
+      172
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      96,
+      184
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      104,
+      196
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      112,
+      208
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      120,
+      220
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      126,
+      232
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      132,
+      244
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      138,
+      256
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      144,
+      268
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      150,
+      280
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      160,
+      300
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      170,
+      320
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      180,
+      340
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      190,
+      360
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      200,
+      380
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      230,
+      434
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      260,
+      488
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      290,
+      542
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      320,
+      596
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      350,
+      650
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      417,
+      750
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      483,
+      850
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      550,
+      950
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      625,
+      1125
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      700,
+      1300
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      500,
+      1100
+     ]
+    }
+   },
+   "notes": "Rises all era with navies and cities; Riga masts were strategic goods."
+  },
+  {
+   "id": "swedish-iron-west",
+   "name": "Swedish bar iron, westbound",
+   "evidence": "proxied",
+   "basis": "Swedish export statistics (oregrounds iron) + Sound Toll for the Stockholm share; Gothenburg exports bypass the Sound.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "iron"
+   ],
+   "shipTypes": [
+    "brig",
+    "snow",
+    "fluyt"
+   ],
+   "lanes": [
+    {
+     "from": "stockholm",
+     "to": "london",
+     "share": 0.4
+    },
+    {
+     "from": "stockholm",
+     "to": "amsterdam",
+     "share": 0.2
+    },
+    {
+     "from": "gothenburg",
+     "to": "london",
+     "share": 0.3
+    },
+    {
+     "from": "gothenburg",
+     "to": "amsterdam",
+     "share": 0.1
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      40,
+      90
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      44,
+      98
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      48,
+      106
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      52,
+      114
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      56,
+      122
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      60,
+      130
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      72,
+      152
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      84,
+      174
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      96,
+      196
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      108,
+      218
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      120,
+      240
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      132,
+      258
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      144,
+      276
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      156,
+      294
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      168,
+      312
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      180,
+      330
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      203,
+      370
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      227,
+      410
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      250,
+      450
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      267,
+      483
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      283,
+      517
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      300,
+      550
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      307,
+      567
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      313,
+      583
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      320,
+      600
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      285,
+      575
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      250,
+      550
+     ]
+    }
+   },
+   "notes": "Britain's steel industry ran on it until Russian iron competes late in the era."
+  },
+  {
+   "id": "baltic-general-west",
+   "name": "Baltic general cargoes, westbound",
+   "evidence": "counted",
+   "basis": "Sound Toll Registers — the westbound residue beyond the named staples: flax, hemp, potash, wax, hides, linens.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "naval-stores",
+    "grain",
+    "trade-goods"
+   ],
+   "shipTypes": [
+    "brig",
+    "fluyt",
+    "snow"
+   ],
+   "lanes": [
+    {
+     "from": "danzig",
+     "to": "amsterdam",
+     "share": 0.25
+    },
+    {
+     "from": "konigsberg",
+     "to": "amsterdam",
+     "share": 0.2
+    },
+    {
+     "from": "riga",
+     "to": "london",
+     "share": 0.15
+    },
+    {
+     "from": "stettin",
+     "to": "hamburg",
+     "share": 0.15
+    },
+    {
+     "from": "konigsberg",
+     "to": "london",
+     "share": 0.15
+    },
+    {
+     "from": "danzig",
+     "to": "hamburg",
+     "share": 0.1
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      150,
+      300
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      160,
+      320
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      170,
+      340
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      180,
+      360
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      190,
+      380
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      200,
+      400
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      210,
+      420
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      220,
+      440
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      230,
+      460
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      240,
+      480
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      250,
+      500
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      275,
+      550
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      300,
+      600
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      325,
+      650
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      350,
+      700
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      375,
+      750
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      400,
+      800
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      425,
+      850
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      450,
+      900
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      475,
+      950
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      500,
+      1000
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      600,
+      1175
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      700,
+      1350
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      800,
+      1525
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      900,
+      1700
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      750,
+      1550
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      600,
+      1400
+     ]
+    }
+   },
+   "notes": "Keeps the counted stratum honest: the Sound total is more than grain + timber + iron."
+  },
+  {
+   "id": "baltic-return-east",
+   "name": "Return trade into the Baltic (salt, herring, cloth, colonial goods)",
+   "evidence": "counted",
+   "basis": "Sound Toll Registers (eastbound passages); Setúbal/Bay salt series.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "salt",
+    "trade-goods",
+    "wine"
+   ],
+   "shipTypes": [
+    "fluyt",
+    "brig",
+    "merchantman"
+   ],
+   "lanes": [
+    {
+     "from": "amsterdam",
+     "to": "danzig",
+     "share": 0.35
+    },
+    {
+     "from": "lisbon",
+     "to": "danzig",
+     "share": 0.12
+    },
+    {
+     "from": "london",
+     "to": "danzig",
+     "share": 0.1
+    },
+    {
+     "from": "amsterdam",
+     "to": "riga",
+     "share": 0.12
+    },
+    {
+     "from": "amsterdam",
+     "to": "konigsberg",
+     "share": 0.1
+    },
+    {
+     "from": "hamburg",
+     "to": "danzig",
+     "share": 0.08
+    },
+    {
+     "from": "london",
+     "to": "stockholm",
+     "share": 0.08
+    },
+    {
+     "from": "amsterdam",
+     "to": "stockholm",
+     "share": 0.05
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      350,
+      600
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      388,
+      663
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      425,
+      725
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      463,
+      788
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      500,
+      850
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      492,
+      842
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      483,
+      833
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      475,
+      825
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      467,
+      817
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      458,
+      808
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      450,
+      800
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      436,
+      780
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      422,
+      760
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      408,
+      740
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      394,
+      720
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      380,
+      700
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      444,
+      820
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      508,
+      940
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      572,
+      1060
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      636,
+      1180
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      700,
+      1300
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      975,
+      1775
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      1250,
+      2250
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      1525,
+      2725
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      1800,
+      3200
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      1400,
+      2800
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      1000,
+      2400
+     ]
+    }
+   },
+   "notes": "The eastbound half of every Baltic round trip; salt is its backbone."
+  },
+  {
+   "id": "petersburg-west",
+   "name": "St Petersburg trade, westbound",
+   "evidence": "counted",
+   "basis": "Sound Toll Registers + Russian port books after 1713; hemp, flax, iron, tallow.",
+   "era": {
+    "from": 1710,
+    "to": 1815
+   },
+   "cargo": [
+    "naval-stores",
+    "iron",
+    "timber"
+   ],
+   "shipTypes": [
+    "merchantman",
+    "brig"
+   ],
+   "lanes": [
+    {
+     "from": "st-petersburg",
+     "to": "london",
+     "share": 0.55
+    },
+    {
+     "from": "st-petersburg",
+     "to": "amsterdam",
+     "share": 0.25
+    },
+    {
+     "from": "st-petersburg",
+     "to": "hamburg",
+     "share": 0.2
+    }
+   ],
+   "byDecade": {
+    "1710": {
+     "voyagesPerYear": [
+      60,
+      140
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      105,
+      220
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      150,
+      300
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      233,
+      450
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      317,
+      600
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      400,
+      750
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      533,
+      967
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      667,
+      1183
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      800,
+      1400
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      750,
+      1450
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      700,
+      1500
+     ]
+    }
+   },
+   "notes": "Peter's window opens 1703 and by 1800 carries more than the whole 16th-c Sound."
+  },
+  {
+   "id": "norway-timber-fish-west",
+   "name": "Norwegian timber & fish, westbound",
+   "evidence": "proxied",
+   "basis": "Norwegian toll books & English port books; deals from the fjords, stockfish/klippfisk from Bergen.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "timber",
+    "cod"
+   ],
+   "shipTypes": [
+    "brig",
+    "snow",
+    "fluyt"
+   ],
+   "lanes": [
+    {
+     "from": "bergen",
+     "to": "london",
+     "share": 0.3
+    },
+    {
+     "from": "bergen",
+     "to": "amsterdam",
+     "share": 0.3
+    },
+    {
+     "from": "christiania",
+     "to": "london",
+     "share": 0.25
+    },
+    {
+     "from": "bergen",
+     "to": "hamburg",
+     "share": 0.15
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      150,
+      300
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      160,
+      315
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      170,
+      330
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      180,
+      345
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      190,
+      360
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      200,
+      375
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      210,
+      390
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      220,
+      405
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      230,
+      420
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      240,
+      435
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      250,
+      450
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      260,
+      470
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      270,
+      490
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      280,
+      510
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      290,
+      530
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      300,
+      550
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      310,
+      570
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      320,
+      590
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      330,
+      610
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      340,
+      630
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      350,
+      650
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      342,
+      650
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      333,
+      650
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      325,
+      650
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      317,
+      650
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      308,
+      650
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      300,
+      650
+     ]
+    }
+   },
+   "notes": "Does not cross the Sound — invisible to the toll series, hence proxied."
+  },
+  {
+   "id": "english-coal-foreign",
+   "name": "English coal, foreign-going",
+   "evidence": "proxied",
+   "basis": "English customs (overseas coal exports); Nef, The Rise of the British Coal Industry.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "coal"
+   ],
+   "shipTypes": [
+    "brig",
+    "snow"
+   ],
+   "lanes": [
+    {
+     "from": "newcastle",
+     "to": "amsterdam",
+     "share": 0.3
+    },
+    {
+     "from": "newcastle",
+     "to": "hamburg",
+     "share": 0.25
+    },
+    {
+     "from": "newcastle",
+     "to": "rouen",
+     "share": 0.2
+    },
+    {
+     "from": "sunderland",
+     "to": "amsterdam",
+     "share": 0.15
+    },
+    {
+     "from": "sunderland",
+     "to": "hamburg",
+     "share": 0.1
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      60,
+      120
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      72,
+      144
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      84,
+      168
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      96,
+      192
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      108,
+      216
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      120,
+      240
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      132,
+      262
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      144,
+      284
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      156,
+      306
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      168,
+      328
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      180,
+      350
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      194,
+      370
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      208,
+      390
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      222,
+      410
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      236,
+      430
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      250,
+      450
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      280,
+      500
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      310,
+      550
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      340,
+      600
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      370,
+      650
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      400,
+      700
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      450,
+      783
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      500,
+      867
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      550,
+      950
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      533,
+      967
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      517,
+      983
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      500,
+      1000
+     ]
+    }
+   },
+   "notes": "The overseas fraction of the coal trade — the part the ships-ranking basis can see."
+  },
+  {
+   "id": "english-coastal-colliers",
+   "name": "The collier coastal trade (Newcastle–London)",
+   "evidence": "reconstructed",
+   "basis": "Nef; Hatcher, History of the British Coal Industry — London imports ÷ ~250-ton collier lading. THE R1-declared silence, answered here: excluded from the ships rankings by their foreign-going basis, asserted in the flow matrix so it is never silently zero.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "coal"
+   ],
+   "shipTypes": [
+    "brig",
+    "snow"
+   ],
+   "lanes": [
+    {
+     "from": "newcastle",
+     "to": "london",
+     "share": 0.75
+    },
+    {
+     "from": "sunderland",
+     "to": "london",
+     "share": 0.25
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      120,
+      250
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      156,
+      310
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      192,
+      370
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      228,
+      430
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      264,
+      490
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      300,
+      550
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      340,
+      620
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      380,
+      690
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      420,
+      760
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      460,
+      830
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      500,
+      900
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      760,
+      1320
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      1020,
+      1740
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      1280,
+      2160
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      1540,
+      2580
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      1800,
+      3000
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      1940,
+      3240
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      2080,
+      3480
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      2220,
+      3720
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      2360,
+      3960
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      2500,
+      4200
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      2733,
+      4533
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      2967,
+      4867
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      3200,
+      5200
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      3400,
+      5633
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      3600,
+      6067
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      3800,
+      6500
+     ]
+    }
+   },
+   "notes": "By 1800 the largest single generator of ship movements in Europe. Coastal: enters the sim only when Newcastle is baked (S2), and its on-screen share is governed by the evidence-band visibility decision."
+  },
+  {
+   "id": "white-sea-west",
+   "name": "The White Sea trade (Arkhangelsk)",
+   "evidence": "reconstructed",
+   "basis": "Muscovy Company records; Dutch notarial acts; Veluwenkamp. Russia's only sea door before 1703, kept open after.",
+   "era": {
+    "from": 1584,
+    "to": 1815
+   },
+   "cargo": [
+    "furs",
+    "naval-stores",
+    "timber"
+   ],
+   "shipTypes": [
+    "merchantman",
+    "fluyt"
+   ],
+   "lanes": [
+    {
+     "from": "arkhangelsk",
+     "to": "london",
+     "share": 0.45
+    },
+    {
+     "from": "arkhangelsk",
+     "to": "amsterdam",
+     "share": 0.45
+    },
+    {
+     "from": "arkhangelsk",
+     "to": "hamburg",
+     "share": 0.1
+    }
+   ],
+   "byDecade": {
+    "1580": {
+     "voyagesPerYear": [
+      25,
+      60
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      25,
+      60
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      28,
+      65
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      30,
+      70
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      33,
+      75
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      35,
+      80
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      38,
+      85
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      40,
+      90
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      38,
+      86
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      36,
+      82
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      34,
+      78
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      32,
+      74
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      30,
+      70
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      23,
+      58
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      15,
+      45
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      16,
+      48
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      17,
+      50
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      18,
+      53
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      18,
+      55
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      19,
+      58
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      20,
+      60
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      22,
+      67
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      23,
+      73
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      25,
+      80
+     ]
+    }
+   },
+   "notes": "Dips after Petersburg opens; never closes. Rounds North Cape — the S2 ice-mask exception."
+  },
+  {
+   "id": "svalbard-whaling",
+   "name": "The Spitsbergen whale fishery",
+   "evidence": "reconstructed",
+   "basis": "Noordsche Compagnie records; de Jong, Geschiedenis van de oude Nederlandse walvisvaart — Dutch fleet 100–260 ships/yr at peak.",
+   "era": {
+    "from": 1610,
+    "to": 1800
+   },
+   "cargo": [
+    "whale-oil"
+   ],
+   "shipTypes": [
+    "fluyt",
+    "merchantman"
+   ],
+   "lanes": [
+    {
+     "from": "amsterdam",
+     "to": "smeerenburg",
+     "share": 0.55
+    },
+    {
+     "from": "hamburg",
+     "to": "smeerenburg",
+     "share": 0.2
+    },
+    {
+     "from": "hull",
+     "to": "smeerenburg",
+     "share": 0.15
+    },
+    {
+     "from": "bremen",
+     "to": "smeerenburg",
+     "share": 0.1
+    }
+   ],
+   "byDecade": {
+    "1610": {
+     "voyagesPerYear": [
+      30,
+      80
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      75,
+      165
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      120,
+      250
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      130,
+      260
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      140,
+      270
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      150,
+      280
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      145,
+      275
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      140,
+      270
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      135,
+      265
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      130,
+      260
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      120,
+      244
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      110,
+      228
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      100,
+      212
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      90,
+      196
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      80,
+      180
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      67,
+      160
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      53,
+      140
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      40,
+      120
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      30,
+      95
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      20,
+      70
+     ]
+    }
+   },
+   "notes": "Seasonal (summer only). After the 1660s increasingly pelagic — 'Smeerenburg' stands for the grounds."
+  },
+  {
+   "id": "baltic-intra",
+   "name": "Intra-Baltic carrying trade",
+   "evidence": "reconstructed",
+   "basis": "Hanseatic and Danish toll fragments; port-book studies (Lübeck, Danzig, Copenhagen). Does not cross the Sound; systematically under-recorded.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "grain",
+    "salt",
+    "trade-goods"
+   ],
+   "shipTypes": [
+    "brig",
+    "snow",
+    "fluyt"
+   ],
+   "lanes": [
+    {
+     "from": "lubeck",
+     "to": "danzig",
+     "share": 0.2
+    },
+    {
+     "from": "danzig",
+     "to": "stockholm",
+     "share": 0.15
+    },
+    {
+     "from": "stockholm",
+     "to": "lubeck",
+     "share": 0.15
+    },
+    {
+     "from": "danzig",
+     "to": "copenhagen",
+     "share": 0.15
+    },
+    {
+     "from": "copenhagen",
+     "to": "danzig",
+     "share": 0.13
+    },
+    {
+     "from": "riga",
+     "to": "lubeck",
+     "share": 0.12
+    },
+    {
+     "from": "konigsberg",
+     "to": "copenhagen",
+     "share": 0.1
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      300,
+      600
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      305,
+      610
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      310,
+      620
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      315,
+      630
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      320,
+      640
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      325,
+      650
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      330,
+      660
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      335,
+      670
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      340,
+      680
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      345,
+      690
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      350,
+      700
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      355,
+      710
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      360,
+      720
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      365,
+      730
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      370,
+      740
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      375,
+      750
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      380,
+      760
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      385,
+      770
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      390,
+      780
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      395,
+      790
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      400,
+      800
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      392,
+      792
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      383,
+      783
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      375,
+      775
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      367,
+      767
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      358,
+      758
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      350,
+      750
+     ]
+    }
+   },
+   "notes": "The sea's short-haul metabolism — the kind of traffic toll series at a single strait cannot show."
+  },
+  {
+   "id": "north-sea-shorthaul",
+   "name": "North Sea short-haul (London–Amsterdam–Hamburg)",
+   "evidence": "proxied",
+   "basis": "English port books; Amsterdam galjootsgeldregisters. Cloth out, everything back.",
+   "era": {
+    "from": 1550,
+    "to": 1815
+   },
+   "cargo": [
+    "trade-goods",
+    "wine"
+   ],
+   "shipTypes": [
+    "brig",
+    "sloop",
+    "snow"
+   ],
+   "lanes": [
+    {
+     "from": "london",
+     "to": "amsterdam",
+     "share": 0.3
+    },
+    {
+     "from": "amsterdam",
+     "to": "london",
+     "share": 0.3
+    },
+    {
+     "from": "london",
+     "to": "hamburg",
+     "share": 0.2
+    },
+    {
+     "from": "hamburg",
+     "to": "london",
+     "share": 0.2
+    }
+   ],
+   "byDecade": {
+    "1550": {
+     "voyagesPerYear": [
+      250,
+      500
+     ]
+    },
+    "1560": {
+     "voyagesPerYear": [
+      260,
+      520
+     ]
+    },
+    "1570": {
+     "voyagesPerYear": [
+      270,
+      540
+     ]
+    },
+    "1580": {
+     "voyagesPerYear": [
+      280,
+      560
+     ]
+    },
+    "1590": {
+     "voyagesPerYear": [
+      290,
+      580
+     ]
+    },
+    "1600": {
+     "voyagesPerYear": [
+      300,
+      600
+     ]
+    },
+    "1610": {
+     "voyagesPerYear": [
+      310,
+      620
+     ]
+    },
+    "1620": {
+     "voyagesPerYear": [
+      320,
+      640
+     ]
+    },
+    "1630": {
+     "voyagesPerYear": [
+      330,
+      660
+     ]
+    },
+    "1640": {
+     "voyagesPerYear": [
+      340,
+      680
+     ]
+    },
+    "1650": {
+     "voyagesPerYear": [
+      350,
+      700
+     ]
+    },
+    "1660": {
+     "voyagesPerYear": [
+      365,
+      725
+     ]
+    },
+    "1670": {
+     "voyagesPerYear": [
+      380,
+      750
+     ]
+    },
+    "1680": {
+     "voyagesPerYear": [
+      395,
+      775
+     ]
+    },
+    "1690": {
+     "voyagesPerYear": [
+      410,
+      800
+     ]
+    },
+    "1700": {
+     "voyagesPerYear": [
+      425,
+      825
+     ]
+    },
+    "1710": {
+     "voyagesPerYear": [
+      440,
+      850
+     ]
+    },
+    "1720": {
+     "voyagesPerYear": [
+      455,
+      875
+     ]
+    },
+    "1730": {
+     "voyagesPerYear": [
+      470,
+      900
+     ]
+    },
+    "1740": {
+     "voyagesPerYear": [
+      485,
+      925
+     ]
+    },
+    "1750": {
+     "voyagesPerYear": [
+      500,
+      950
+     ]
+    },
+    "1760": {
+     "voyagesPerYear": [
+      483,
+      942
+     ]
+    },
+    "1770": {
+     "voyagesPerYear": [
+      467,
+      933
+     ]
+    },
+    "1780": {
+     "voyagesPerYear": [
+      450,
+      925
+     ]
+    },
+    "1790": {
+     "voyagesPerYear": [
+      433,
+      917
+     ]
+    },
+    "1800": {
+     "voyagesPerYear": [
+      417,
+      908
+     ]
+    },
+    "1810": {
+     "voyagesPerYear": [
+      400,
+      900
+     ]
+    }
+   },
+   "notes": "Dense, routine, and mostly beneath the notice of the ranking sources."
+  }
+ ]
+}

@@ -70,6 +70,27 @@ PLAN-3 Phase S2.
   (era honesty, sober slave-trade framing, weight band, baked-or-doesn't-sail),
   and the open flag decisions (china-junk-trade, tsushima, golconda…).
 
+### 6. The flow matrix (PLAN-3) — `flows/`
+The evidence-classed **trade-system flow matrix** that will replace port
+rankings as the sim's weight source (PLAN-3 §2; schema in
+[`flows/_schema.md`](flows/_schema.md), decisions fixed at R2 2026-07-13:
+voyage **ranges** `[lo,hi]`, **per-seed draw** realization, **systems + lane
+shares**). Port prominence becomes an *output*.
+- **`flows/baltic-north-sea.json`** — the proof-of-shape basin: 13 systems ×
+  27 decades (grain, timber, iron, the return trade, St Petersburg, Norway,
+  the coal trades incl. the collier system that answers the R1-declared
+  silence, Arkhangelsk, Spitsbergen whaling, intra-Baltic, the short-haul).
+  Counted systems cross-check against the Sound Toll series (±35% band, all
+  anchor decades ✓). Authored as anchor curves in
+  `tools/build-baltic-flows.mjs` — the anchors carry the historical claims.
+- **`flows/silences.json`** — the silences register: known flows we do not or
+  cannot quantify, each with reason + treatment (asserted / gestured /
+  excluded). Rendered as "The chart's silences" at S3.
+- **`tools/validate-flows.mjs`** — structural checks (hard errors) +
+  historical cross-checks (reported).
+- Remaining basins (Atlantic, Mediterranean, Indian Ocean, Bengal–SE Asia,
+  East Asia) are Phase R3.
+
 ## Reproducing / extending
 The rankings (1 & 2) were authored from the sources above; the derived artefacts
 (3's computed fields, 4's aggregation) are produced by small Node builders. The
