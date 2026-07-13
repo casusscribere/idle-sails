@@ -33,6 +33,7 @@ async function boot() {
   const legById = new Map(routes.routes.map(r => [r.id, r]));
   const portById = new Map(datasets.ports.map(p => [p.id, p]));
   const cargoById = new Map(datasets.cargo.map(c => [c.id, c]));
+  const powerById = new Map(datasets.powers.map(p => [p.id, p]));
 
   const canvas = document.getElementById('chart');
   const renderer = createRenderer(canvas, { land, ports: datasets.ports, legById, reducedMotion });
@@ -40,23 +41,60 @@ async function boot() {
   addEventListener('resize', renderer.resize);
 
   let speed = speedFromSlider(+document.getElementById('speed').value);
-  let selectedId = null;
+  let selectedVesselId = null, selectedPortId = null, lastPanelSig = '';
   let latestSnap = world.snapshot();
+
+  const ledgerCtx = () => ({ portById, cargoById, powerById, simClock: latestSnap.simClock });
+
+  // ships whose CURRENT leg leaves this port (outbound) or is bound for it
+  // (inbound). Current leg only — ships that called here on an earlier leg and
+  // have since moved on are not counted.
+  function portTraffic(portId) {
+    const outbound = [], inbound = [];
+    for (const v of latestSnap.vessels) {
+      if (v.status !== 'sailing' || v.pos.fraction >= 1) continue;
+      if (v.pos.from === portId) outbound.push(v);
+      else if (v.pos.to === portId) inbound.push(v);
+    }
+    outbound.sort((a, b) => a.pos.fraction - b.pos.fraction);   // freshest departures first
+    inbound.sort((a, b) => b.pos.fraction - a.pos.fraction);    // soonest arrivals first
+    return { outbound, inbound };
+  }
+
+  function renderPanel() {
+    if (selectedVesselId != null) {
+      const v = latestSnap.vessels.find(x => x.id === selectedVesselId);
+      if (v) ui.showLedger(v, ledgerCtx()); else clearSelection();
+    } else if (selectedPortId != null) {
+      const traffic = portTraffic(selectedPortId);
+      // re-render only when membership or the sim-day changes (keeps scroll steady)
+      const sig = traffic.outbound.map(v => v.id).join(',') + '|' + traffic.inbound.map(v => v.id).join(',')
+        + '|' + Math.floor(latestSnap.simClock / 86400);
+      if (sig !== lastPanelSig) { lastPanelSig = sig; ui.showPort(portById.get(selectedPortId), traffic, ledgerCtx()); }
+    }
+  }
+  function selectVessel(id) { selectedVesselId = id; selectedPortId = null; lastPanelSig = ''; renderPanel(); }
+  function selectPort(id) { selectedPortId = id; selectedVesselId = null; lastPanelSig = ''; renderPanel(); }
+  function clearSelection() { selectedVesselId = null; selectedPortId = null; lastPanelSig = ''; ui.hideLedger(); }
 
   const ui = createUI({
     onSpeed: (m) => { speed = m; },
-    onClose: () => { selectedId = null; }
+    onClose: clearSelection,
+    onSelectVessel: selectVessel
   });
 
-  // selection: click a vessel to open her ledger; click empty sea to dismiss
+  // click a vessel → her ledger; click a port → its inbound/outbound traffic;
+  // click empty sea → dismiss.
   canvas.addEventListener('click', (e) => {
     const r = canvas.getBoundingClientRect();
-    const id = renderer.pick(e.clientX - r.left, e.clientY - r.top, latestSnap);
-    selectedId = id;
-    if (id) {
-      const v = latestSnap.vessels.find(x => x.id === id);
-      if (v) ui.showLedger(v, { portById, cargoById, simClock: latestSnap.simClock });
-    } else ui.hideLedger();
+    const hit = renderer.pickAt(e.clientX - r.left, e.clientY - r.top, latestSnap);
+    if (!hit) clearSelection();
+    else if (hit.type === 'vessel') selectVessel(hit.id);
+    else selectPort(hit.id);
+  });
+  canvas.addEventListener('mousemove', (e) => {
+    const r = canvas.getBoundingClientRect();
+    canvas.style.cursor = renderer.pickAt(e.clientX - r.left, e.clientY - r.top, latestSnap) ? 'pointer' : 'crosshair';
   });
 
   // animation loop
@@ -68,18 +106,10 @@ async function boot() {
     if (speed > 0) world.tick(dtReal * speed);
 
     latestSnap = world.snapshot();
-    renderer.draw(latestSnap, selectedId, now);
+    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now);
 
-    // keep an open ledger live (ETA counts down; status flips on arrival/loss)
     hudAccum += dtReal;
-    if (hudAccum > 0.2) {
-      hudAccum = 0;
-      ui.updateHUD(latestSnap);
-      if (selectedId) {
-        const v = latestSnap.vessels.find(x => x.id === selectedId);
-        if (v) ui.showLedger(v, { portById, cargoById, simClock: latestSnap.simClock });
-      }
-    }
+    if (hudAccum > 0.2) { hudAccum = 0; ui.updateHUD(latestSnap); renderPanel(); }
     requestAnimationFrame(frame);
   }
   ui.updateHUD(latestSnap);

@@ -14,15 +14,11 @@ const PAPER_HI = '#efe4cb';
 const SEA_TINT = 'rgba(120,140,150,0.06)'; // barely-cool wash over the sea
 const LAND = '#cdb488';          // warm tan landmass
 const LAND_EDGE = '#5c4630';
-const RHUMB = 'rgba(90,70,45,0.13)';
 const RHUMB_RED = 'rgba(150,70,50,0.16)';
 const WAKE = 'rgba(58,44,28,0.28)';
 
 // Chart viewport in geographic degrees (frames all ports, routes and ice caps).
 const BOUNDS = { lonMin: -100, lonMax: 150, latMin: -58, latMax: 74 };
-// Wind-rose nodes (portolan style): sea points that radiate rhumb lines.
-const ROSES = [[-38, 32], [-20, -18], [70, -20], [95, 18]];
-const COMPASS_DIRS = 16;
 
 export function createRenderer(canvas, assets) {
   const { land, ports, legById, reducedMotion } = assets;
@@ -30,6 +26,7 @@ export function createRenderer(canvas, assets) {
   let base = null, baseCtx = null;      // offscreen static chart
   let W = 0, H = 0, dpr = 1, k = 1, ox = 0, oy = 0;
   const wakes = new Map();               // vesselId → [[x,y],...] recent screen positions
+  let portScreen = [];                   // [{id, x, y}] for hit-testing the fixed ports
 
   function project(lon, lat) {
     let L = ((lon + 180) % 360 + 360) % 360 - 180;
@@ -63,10 +60,7 @@ export function createRenderer(canvas, assets) {
     c.fillStyle = SEA_TINT; c.fillRect(0, 0, W, H);
     drawGrain(c);
 
-    // rhumb-line web from the wind roses (drawn under everything, faint)
-    for (const [rl, rt] of ROSES) drawRhumbs(c, rl, rt);
-
-    // graticule every 15°
+    // graticule every 15° (the projection grid)
     c.lineWidth = 1; c.strokeStyle = INK_FAINT;
     for (let lon = -90; lon <= 150; lon += 15) { const a = project(lon, BOUNDS.latMax), b = project(lon, BOUNDS.latMin); line(c, a, b); }
     for (let lat = -45; lat <= 60; lat += 15) { const a = project(BOUNDS.lonMin, lat), b = project(BOUNDS.lonMax, lat); line(c, a, b); }
@@ -75,10 +69,8 @@ export function createRenderer(canvas, assets) {
     c.lineJoin = 'round';
     for (const f of land.features) drawGeom(c, f.geometry);
 
-    // wind roses on top of the sea web
-    for (const [rl, rt] of ROSES) drawRose(c, rl, rt);
-
-    // ports
+    // ports (and remember their screen positions for hit-testing)
+    portScreen = ports.map(p => { const [x, y] = project(p.lon, p.lat); return { id: p.id, x, y }; });
     for (const p of ports) drawPort(c, p);
   }
 
@@ -91,41 +83,6 @@ export function createRenderer(canvas, assets) {
       c.fillStyle = (i % 3 === 0) ? 'rgba(90,70,45,0.05)' : 'rgba(255,250,235,0.05)';
       c.fillRect(x, y, 1, 1);
     }
-    c.restore();
-  }
-
-  function drawRhumbs(c, lon, lat) {
-    const [cx, cy] = project(lon, lat);
-    const R = Math.max(W, H) * 1.4;
-    for (let i = 0; i < 32; i++) {
-      const ang = (i / 32) * Math.PI * 2;
-      c.strokeStyle = (i % 8 === 0) ? RHUMB_RED : RHUMB;
-      c.lineWidth = (i % 4 === 0) ? 1.1 : 0.7;
-      line(c, [cx, cy], [cx + Math.cos(ang) * R, cy + Math.sin(ang) * R]);
-    }
-  }
-
-  function drawRose(c, lon, lat) {
-    const [cx, cy] = project(lon, lat); const R = 26;
-    c.save();
-    c.strokeStyle = INK_SOFT; c.fillStyle = 'rgba(58,44,28,0.10)'; c.lineWidth = 1;
-    c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2); c.stroke();
-    c.beginPath(); c.arc(cx, cy, R * 0.62, 0, Math.PI * 2); c.stroke();
-    for (let i = 0; i < COMPASS_DIRS; i++) {
-      const a = (i / COMPASS_DIRS) * Math.PI * 2 - Math.PI / 2;
-      const long = i % 4 === 0, r0 = long ? 0 : R * 0.62, r1 = R;
-      // four-point star petals
-      c.beginPath();
-      c.moveTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1);
-      c.lineTo(cx + Math.cos(a + 0.13) * r0, cy + Math.sin(a + 0.13) * r0);
-      c.lineTo(cx + Math.cos(a - 0.13) * r0, cy + Math.sin(a - 0.13) * r0);
-      c.closePath();
-      c.fillStyle = (i % 2 === 0) ? 'rgba(58,44,28,0.16)' : 'rgba(58,44,28,0.05)';
-      c.fill(); c.stroke();
-    }
-    // north fleur mark
-    c.fillStyle = RHUMB_RED; c.beginPath();
-    c.moveTo(cx, cy - R - 6); c.lineTo(cx - 3, cy - R + 2); c.lineTo(cx + 3, cy - R + 2); c.closePath(); c.fill();
     c.restore();
   }
 
@@ -170,10 +127,11 @@ export function createRenderer(canvas, assets) {
   }
 
   // ---- dynamic frame ------------------------------------------------------
-  function draw(snapshot, selectedId, t) {
+  function draw(snapshot, selectedId, selectedPortId, t) {
     if (base) ctx.drawImage(base, 0, 0, W, H);
 
     const vessels = snapshot.vessels;
+    if (selectedPortId) drawPortFocus(snapshot, selectedPortId);
     const selected = vessels.find(v => v.id === selectedId);
     if (selected) drawSelectedRoute(selected, t);
 
@@ -184,6 +142,27 @@ export function createRenderer(canvas, assets) {
       const live = new Set(vessels.map(v => v.id));
       for (const id of wakes.keys()) if (!live.has(id)) wakes.delete(id);
     }
+  }
+
+  // Highlight a selected port: draw the current legs of the ships bound to/from
+  // it (its live "spokes") and ring the port itself.
+  function drawPortFocus(snapshot, portId) {
+    const ps = portScreen.find(p => p.id === portId); if (!ps) return;
+    ctx.save(); ctx.lineWidth = 1.2;
+    for (const v of snapshot.vessels) {
+      if (v.status !== 'sailing') continue;
+      const out = v.pos.from === portId, inb = v.pos.to === portId;
+      if ((!out && !inb) || v.pos.fraction >= 1) continue;
+      const leg = legById.get(v.schedule[v.pos.legIndex].legId); if (!leg) continue;
+      ctx.strokeStyle = out ? 'rgba(120,72,40,0.42)' : 'rgba(52,86,110,0.5)';
+      ctx.beginPath();
+      leg.coords.forEach((cpt, i) => { const [x, y] = project(cpt[0], cpt[1]); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+      ctx.stroke();
+    }
+    ctx.strokeStyle = INK; ctx.lineWidth = 1.7;
+    ctx.beginPath(); ctx.arc(ps.x, ps.y, 8.5, 0, Math.PI * 2); ctx.stroke();
+    ctx.globalAlpha = 0.5; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(ps.x, ps.y, 13, 0, Math.PI * 2); ctx.stroke();
+    ctx.restore();
   }
 
   function drawSelectedRoute(v, t) {
@@ -252,16 +231,27 @@ export function createRenderer(canvas, assets) {
   }
 
   // ---- picking ------------------------------------------------------------
-  function pick(px, py, snapshot) {
-    let best = null, bestD = 16 * 16;
+  // Pick the nearest hittable thing at (px,py): a vessel or a port, whichever is
+  // closer within its own radius. Ports are precise targets, so a click right on
+  // a port dot wins over a ship drifting nearby.
+  function pickAt(px, py, snapshot) {
+    let vBest = null, vd = 15 * 15;
     for (const v of snapshot.vessels) {
       if (v.status === 'lost') continue;
       const [x, y] = project(v.pos.lon, v.pos.lat);
       const d = (x - px) ** 2 + (y - py) ** 2;
-      if (d < bestD) { bestD = d; best = v.id; }
+      if (d < vd) { vd = d; vBest = v.id; }
     }
-    return best;
+    let pBest = null, pd = 13 * 13;
+    for (const ps of portScreen) {
+      const d = (ps.x - px) ** 2 + (ps.y - py) ** 2;
+      if (d < pd) { pd = d; pBest = ps.id; }
+    }
+    if (vBest != null && pBest != null) return vd <= pd ? { type: 'vessel', id: vBest } : { type: 'port', id: pBest };
+    if (vBest != null) return { type: 'vessel', id: vBest };
+    if (pBest != null) return { type: 'port', id: pBest };
+    return null;
   }
 
-  return { resize, draw, pick, project };
+  return { resize, draw, pickAt, project };
 }

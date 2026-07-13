@@ -67,15 +67,6 @@ input[type=range]::-moz-range-thumb {
 }
 input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rgba(158,43,37,.4); }
 
-/* ---- log ticker ---- */
-.logbar { position: fixed; left: 0; right: 0; bottom: 0; height: 26px; overflow: hidden;
-  background: rgba(58,44,28,0.9); color: #ecdfc2; display: flex; align-items: center; }
-.log-track { white-space: nowrap; font-size: 12px; letter-spacing: .02em; will-change: transform; padding-left: 100%; animation: ticker 60s linear infinite; }
-.log-track .sep { color: #b79a5f; margin: 0 14px; }
-.log-track .loss { color: #e79b8a; }
-.log-track .arrive { color: #b9d0a6; }
-@keyframes ticker { to { transform: translateX(-100%); } }
-
 /* ---- vessel ledger ---- */
 .ledger { top: 18px; right: 18px; width: min(90vw, 340px); max-height: calc(100vh - 60px);
   overflow: auto; padding: 18px 20px 22px; }
@@ -91,6 +82,11 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
 .leglist li.now { font-weight: 600; }
 .leglist li.now::before { content: "▸ "; color: var(--red); }
 .leglist .dur { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.leglist em { font-style: italic; color: var(--ink-soft); font-size: 12px; }
+.portlist li { cursor: pointer; gap: 10px; }
+.portlist li:hover, .portlist li:focus-visible { color: var(--red); outline: none; }
+.portlist li:focus-visible { text-decoration: underline; }
+.muted { color: var(--ink-soft); font-style: italic; font-size: 13px; margin: 4px 0 0; }
 .section-h { text-transform: uppercase; font-size: 10px; letter-spacing: .16em; color: var(--ink-soft); margin: 14px 0 4px; }
 .mp-note { background: rgba(158,43,37,0.08); border-left: 3px solid var(--red); padding: 8px 10px; font-size: 12.5px; line-height: 1.5; color: #4a2b22; margin-top: 10px; }
 .mp-note strong { display: block; margin-bottom: 3px; }
@@ -108,4 +104,3 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
   .ledger { top: auto; bottom: 30px; right: 8px; left: 8px; width: auto; max-height: 56vh; }
   .hint { display: none; }
 }
-@media (prefers-reduced-motion: reduce) { .log-track { animation-duration: 140s; } }

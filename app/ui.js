@@ -1,5 +1,5 @@
 // ui.js — the spectator's entire control surface: a speed instrument and a
-// click-to-inspect vessel ledger, plus ambient counters and a ship's-log ticker.
+// click-to-inspect vessel ledger, plus ambient counters.
 // Pure DOM; reads world snapshots handed in by main.js.
 
 const $ = (id) => document.getElementById(id);
@@ -20,12 +20,12 @@ function speedLabel(mult) {
   return `≈ ${(mult / 3600).toFixed(1)} hours / sec`;
 }
 
-export function createUI({ onSpeed, onClose }) {
+export function createUI({ onSpeed, onClose, onSelectVessel }) {
   const els = {
     date: $('date'), season: $('season'),
     cSea: $('c-sea'), cArr: $('c-arr'), cLost: $('c-lost'),
     speed: $('speed'), speedRead: $('speed-read'),
-    logTrack: $('log-track'), ledger: $('ledger'), ledgerBody: $('ledger-body'),
+    ledger: $('ledger'), ledgerBody: $('ledger-body'),
     hint: $('hint')
   };
 
@@ -38,24 +38,18 @@ export function createUI({ onSpeed, onClose }) {
   els.speedRead.textContent = speedLabel(speedFromSlider(+els.speed.value));
 
   $('ledger-close').addEventListener('click', () => { hideLedger(); onClose && onClose(); });
+  // clicking a vessel row in the port view opens that vessel's ledger
+  els.ledgerBody.addEventListener('click', (e) => {
+    const li = e.target.closest('[data-vid]');
+    if (li && onSelectVessel) onSelectVessel(+li.dataset.vid);
+  });
 
-  let lastLogKey = '';
   function updateHUD(snap) {
     els.date.textContent = snap.date;
     els.season.textContent = SEASON_LABEL[snap.season] || '';
     els.cSea.textContent = snap.counters.atSea;
     els.cArr.textContent = snap.counters.arrived;
     els.cLost.textContent = snap.counters.lost;
-
-    // refresh the ticker only when the newest event changes (avoid resetting the
-    // marquee every frame)
-    const key = snap.log[0] ? snap.log[0].t + snap.log[0].text : '';
-    if (key !== lastLogKey) {
-      lastLogKey = key;
-      els.logTrack.innerHTML = snap.log.map(e =>
-        `<span class="${e.kind === 'loss' ? 'loss' : e.kind === 'arrive' ? 'arrive' : ''}">${escapeHtml(e.date)} — ${escapeHtml(e.text)}</span>`
-      ).join('<span class="sep">✦</span>');
-    }
   }
 
   function showLedger(v, ctx) {
@@ -99,9 +93,46 @@ export function createUI({ onSpeed, onClose }) {
     els.ledger.hidden = false;
     els.hint && els.hint.classList.add('gone');
   }
+  // Port view: the ships currently outbound from this port (on a leg that left
+  // here) and inbound to it (on a leg headed here). Current leg only — vessels
+  // that merely called here on an earlier leg are not shown.
+  function showPort(port, traffic, ctx) {
+    const { portById, powerById, simClock } = ctx;
+    const nm = (id) => portById.get(id).name.replace(/\s*\(.*\)/, '');
+    const power = powerById.get(port.power);
+
+    const row = (v, dir) => {
+      const seg = v.schedule[v.pos.legIndex];
+      let when, other;
+      if (dir === 'out') {
+        const ago = Math.max(0, Math.round((simClock - seg.depart) / SEC_PER_DAY));
+        other = `for ${nm(v.pos.to)}`; when = ago === 0 ? 'sailed today' : `sailed ${ago}d ago`;
+      } else {
+        const due = Math.max(0, Math.round((seg.arrive - simClock) / SEC_PER_DAY));
+        other = `from ${nm(v.pos.from)}`; when = due === 0 ? 'due today' : `due ~${due}d`;
+      }
+      return `<li data-vid="${v.id}" tabindex="0">
+        <span><span class="flag" style="background:${v.flagColor}"></span>${escapeHtml((v.prefix ? v.prefix + ' ' : '') + v.name)} <em>${escapeHtml(v.typeName)}</em></span>
+        <span class="dur">${escapeHtml(other)} · ${when}</span></li>`;
+    };
+    const list = (arr, dir, empty) => arr.length
+      ? `<ul class="leglist portlist">${arr.slice(0, 30).map(v => row(v, dir)).join('')}</ul>${arr.length > 30 ? `<p class="muted">…and ${arr.length - 30} more</p>` : ''}`
+      : `<p class="muted">${empty}</p>`;
+
+    els.ledgerBody.innerHTML = `
+      <h2>${escapeHtml(nm(port.id))}</h2>
+      <p class="type">${escapeHtml(power ? power.name : port.power)} · ${escapeHtml(port.region.replace(/-/g, ' '))}</p>
+      <p class="section-h">Outbound — lately sailed (${traffic.outbound.length})</p>
+      ${list(traffic.outbound, 'out', 'No vessels have lately cleared this port.')}
+      <p class="section-h">Inbound — standing in (${traffic.inbound.length})</p>
+      ${list(traffic.inbound, 'in', 'No vessels are presently bound here.')}`;
+    els.ledger.hidden = false;
+    els.hint && els.hint.classList.add('gone');
+  }
+
   function hideLedger() { els.ledger.hidden = true; }
 
-  return { updateHUD, showLedger, hideLedger };
+  return { updateHUD, showLedger, showPort, hideLedger };
 }
 
 function escapeHtml(s) {
