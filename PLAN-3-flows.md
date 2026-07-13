@@ -79,7 +79,10 @@ Bengal–SE Asia · East Asia), each with per-decade entries:
 
 ## 3. Phases
 
-### Phase R1 — Correct the counted stratum *(rankings fixes)*
+### Phase R1 — Correct the counted stratum *(rankings fixes)* — ✅ APPLIED 2026-07-13
+*(Decisions resolved: ships basis = foreign-going, documented; all four
+promotions approved incl. Rio T1 at the gold peak. 168 edits — changelog in the
+JSON; universe 57→60; queue 33→34 with Istanbul; tools in `research/tools/`.)*
 Apply the reviewed fixes to `research/port-rankings-1550-1815.json` and
 regenerate CSV/HTML/synthesis + interim era-weights:
 - Universe/pool gaps: Rotterdam (all metrics, 1660s+); Porto (1700s+);

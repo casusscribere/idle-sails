@@ -78,9 +78,12 @@ Every design decision answers to both of these:
   the rankings→weights pipeline structurally inherits the archive's silences;
   the project moves to an **evidence-classed trade-system flow matrix**
   (counted/proxied/reconstructed/asserted, per basin, with a silences
-  register). PLAN-2 Phase B is re-scoped as PLAN-3 Phase S2. **Next: PLAN-3
-  Phase R1** (rankings corrections — the counted stratum), then R2 (flow
-  schema + Baltic proof), R3 (basin authoring), S1 (sim swap), S2 (bake), S3
+  register). PLAN-2 Phase B is re-scoped as PLAN-3 Phase S2. **R1 is applied**
+  (2026-07-13: ships basis = foreign-going; Goa/Cap-Français/Rio value-T1
+  promotions + Kingston T2; de-truncations; universe 60; Istanbul in the queue
+  as the declared-boundary exemplar; changelog in the rankings JSON; tools in
+  `research/tools/`). **Next: PLAN-3 Phase R2** (flow-matrix schema + Baltic
+  proof-of-shape), then R3 (basin authoring), S1 (sim swap), S2 (bake), S3
   (surfacing). Each phase pauses on its decision list (PLAN-3 §3).
 
 ## Earlier state (still accurate)

@@ -1,17 +1,17 @@
-rank,port,ships_decades,tonnage_decades,value_decades,total_decades,metrics_present
+rank,port,ships_decades,tonnage_decades,value_decades,total,metrics_present
 1,"London",27,27,27,81,3
 2,"Amsterdam",26,26,26,78,3
 3,"Hamburg",26,26,26,78,3
-4,"Lisbon",25,22,24,71,3
-5,"Danzig",18,20,14,52,3
-6,"Cádiz",17,17,18,52,3
+4,"Lisbon",25,22,22,69,3
+5,"Cádiz",17,17,18,52,3
+6,"Danzig",18,20,14,52,3
 7,"Bordeaux",13,13,14,40,3
 8,"Genoa",9,10,15,34,3
 9,"Seville",10,10,11,31,3
-10,"Marseille",24,0,6,30,2
+10,"Marseille",24,0,3,27,2
 11,"Königsberg",9,17,0,26,2
-12,"Livorno",8,8,8,24,3
-13,"Batavia",0,6,18,24,2
+12,"Batavia",0,6,18,24,2
+13,"Livorno",8,8,8,24,3
 14,"Riga",1,21,0,22,2
 15,"Venice",6,6,9,21,3
 16,"Canton",0,7,12,19,2
@@ -21,14 +21,16 @@ rank,port,ships_decades,tonnage_decades,value_decades,total_decades,metrics_pres
 20,"Nantes",6,0,7,13,2
 21,"Antwerp",4,4,4,12,3
 22,"Bristol",9,0,0,9,1
-23,"Havana",0,0,9,9,1
-24,"Surat",0,0,7,7,1
-25,"New York",2,2,2,6,3
-26,"St Petersburg",3,3,0,6,2
-27,"Calcutta",0,0,6,6,1
-28,"Philadelphia",3,1,0,4,2
-29,"Lübeck",1,1,1,3,3
-30,"Rotterdam",2,0,0,2,1
-31,"Gothenburg",1,0,0,1,1
-32,"Bahia",0,0,1,1,1
-33,"Rio de Janeiro",0,0,1,1,1
+23,"Surat",0,0,7,7,1
+24,"Calcutta",0,0,6,6,1
+25,"Havana",0,0,6,6,1
+26,"New York",2,2,2,6,3
+27,"St Petersburg",3,3,0,6,2
+28,"Goa",0,0,4,4,1
+29,"Philadelphia",3,1,0,4,2
+30,"Rio de Janeiro",0,0,4,4,1
+31,"Cap-Français",0,0,2,2,1
+32,"Lübeck",1,1,0,2,2
+33,"Rotterdam",2,0,0,2,1
+34,"Bahia",0,0,1,1,1
+35,"Gothenburg",1,0,0,1,1

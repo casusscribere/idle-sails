@@ -38,7 +38,7 @@
     "ships": {
       "label": "Ship movements",
       "unit": "vessels / passages",
-      "basis": "Counts hulls, not their size or cargo. Favours dense short-haul and bulk hubs (Baltic grain, North-Sea and Mediterranean coasting); the great long-distance ports carried few but huge ships and stay low.",
+      "basis": "Counts hulls, not their size or cargo. Favours dense short-haul and bulk hubs (Baltic grain, North-Sea and Mediterranean coasting); the great long-distance ports carried few but huge ships and stay low. BASIS (R1): counts FOREIGN-GOING clearances/passages, commensurable with the anchoring series (Sound Toll, customs, Carrera registers). Coastal shipping is excluded by construction — which is why Newcastle (whose collier trade was Britain's largest generator of ship movements) ranks under tonnage but not here. That exclusion is a declared silence, carried to the silences register (PLAN-3 R2).",
       "topByDecade": {
         "1550": [
           "Antwerp",
@@ -387,8 +387,8 @@
           "Bilbao",
           "Málaga",
           "Barcelona",
-          "Palermo",
-          "Stockholm"
+          "Lübeck",
+          "Emden"
         ],
         "1570": [
           "Naples",
@@ -399,8 +399,8 @@
           "Bilbao",
           "Málaga",
           "Barcelona",
-          "Palermo",
-          "Stockholm"
+          "Lübeck",
+          "Emden"
         ],
         "1580": [
           "Naples",
@@ -411,8 +411,8 @@
           "Bilbao",
           "Málaga",
           "Barcelona",
-          "Palermo",
-          "Stockholm"
+          "Lübeck",
+          "Emden"
         ],
         "1590": [
           "Copenhagen",
@@ -424,7 +424,7 @@
           "La Rochelle",
           "Bremen",
           "Bilbao",
-          "Málaga"
+          "Lübeck"
         ],
         "1600": [
           "Copenhagen",
@@ -436,7 +436,7 @@
           "La Rochelle",
           "Bremen",
           "Bilbao",
-          "Málaga"
+          "Lübeck"
         ],
         "1610": [
           "Copenhagen",
@@ -447,7 +447,7 @@
           "La Rochelle",
           "Bremen",
           "Bilbao",
-          "Málaga",
+          "Lübeck",
           "Barcelona"
         ],
         "1620": [
@@ -459,7 +459,7 @@
           "La Rochelle",
           "Bremen",
           "Bilbao",
-          "Málaga",
+          "Lübeck",
           "Barcelona"
         ],
         "1630": [
@@ -471,7 +471,7 @@
           "La Rochelle",
           "Bremen",
           "Bilbao",
-          "Málaga",
+          "Lübeck",
           "Barcelona"
         ],
         "1640": [
@@ -482,8 +482,8 @@
           "Rouen",
           "La Rochelle",
           "Bremen",
-          "Bilbao",
-          "Málaga",
+          "Venice",
+          "Lübeck",
           "Barcelona"
         ],
         "1650": [
@@ -494,8 +494,8 @@
           "Rouen",
           "La Rochelle",
           "Bremen",
-          "Bilbao",
-          "Málaga",
+          "Venice",
+          "Lübeck",
           "Barcelona"
         ],
         "1660": [
@@ -504,9 +504,9 @@
           "Bordeaux",
           "Nantes",
           "Rouen",
-          "La Rochelle",
+          "Rotterdam",
           "Bremen",
-          "Bilbao",
+          "Venice",
           "Málaga",
           "Barcelona"
         ],
@@ -516,8 +516,8 @@
           "Nantes",
           "Rouen",
           "Le Havre",
-          "La Rochelle",
-          "Bilbao",
+          "Rotterdam",
+          "Venice",
           "Málaga",
           "Barcelona",
           "Naples"
@@ -528,8 +528,8 @@
           "Nantes",
           "Rouen",
           "Le Havre",
-          "La Rochelle",
-          "Bilbao",
+          "Rotterdam",
+          "Venice",
           "Málaga",
           "Barcelona",
           "Naples"
@@ -540,8 +540,8 @@
           "Nantes",
           "Rouen",
           "Le Havre",
-          "La Rochelle",
-          "Bilbao",
+          "Rotterdam",
+          "Venice",
           "Málaga",
           "Barcelona",
           "Naples"
@@ -552,11 +552,11 @@
           "Nantes",
           "Rouen",
           "Le Havre",
-          "La Rochelle",
-          "Bilbao",
-          "Málaga",
+          "Rotterdam",
+          "Venice",
+          "Genoa",
           "Barcelona",
-          "Naples"
+          "Porto"
         ],
         "1710": [
           "Copenhagen",
@@ -564,11 +564,11 @@
           "Nantes",
           "Rouen",
           "Le Havre",
-          "La Rochelle",
-          "Bilbao",
-          "Málaga",
+          "Rotterdam",
+          "Venice",
+          "Genoa",
           "Barcelona",
-          "Naples"
+          "Porto"
         ],
         "1720": [
           "Königsberg",
@@ -576,80 +576,80 @@
           "Nantes",
           "Rouen",
           "Le Havre",
-          "La Rochelle",
-          "Bilbao",
-          "Málaga",
+          "Rotterdam",
+          "Venice",
+          "Genoa",
           "Barcelona",
-          "Naples"
+          "Porto"
         ],
         "1730": [
           "Liverpool",
-          "Rouen",
+          "Boston",
           "Le Havre",
-          "Bilbao",
-          "Málaga",
-          "Barcelona",
-          "Naples",
+          "Genoa",
+          "Rotterdam",
+          "Porto",
+          "Livorno",
           "Stockholm",
           "Bremen",
           "St Petersburg"
         ],
         "1740": [
           "Liverpool",
-          "Rouen",
+          "Boston",
           "Le Havre",
-          "Bilbao",
-          "Málaga",
-          "Barcelona",
-          "Naples",
+          "Genoa",
+          "Rotterdam",
+          "Porto",
+          "Livorno",
           "Stockholm",
           "Bremen",
           "St Petersburg"
         ],
         "1750": [
           "Bristol",
-          "Rouen",
+          "Boston",
           "Le Havre",
-          "Bilbao",
-          "Málaga",
-          "Barcelona",
-          "Naples",
+          "Philadelphia",
+          "Rotterdam",
+          "Porto",
+          "Livorno",
           "Stockholm",
           "Bremen",
           "St Petersburg"
         ],
         "1760": [
           "Bristol",
-          "Rouen",
+          "Boston",
           "Le Havre",
-          "Bilbao",
-          "Málaga",
-          "Barcelona",
-          "Naples",
+          "Philadelphia",
+          "Rotterdam",
+          "New York",
+          "Livorno",
           "Stockholm",
           "Bremen",
           "St Petersburg"
         ],
         "1770": [
           "Bristol",
-          "Rouen",
+          "Boston",
           "Le Havre",
-          "Bilbao",
-          "Málaga",
-          "Barcelona",
-          "Naples",
+          "Philadelphia",
+          "Rotterdam",
+          "New York",
+          "Livorno",
           "Stockholm",
           "Bremen",
           "St Petersburg"
         ],
         "1780": [
           "Bristol",
-          "Rouen",
+          "Boston",
           "Le Havre",
-          "Bilbao",
-          "Málaga",
-          "Barcelona",
-          "Naples",
+          "Philadelphia",
+          "Rotterdam",
+          "New York",
+          "Livorno",
           "Stockholm",
           "Bremen",
           "St Petersburg"
@@ -658,7 +658,7 @@
           "Bristol",
           "Nantes",
           "Le Havre",
-          "Rouen",
+          "Rotterdam",
           "Barcelona",
           "Naples",
           "Trieste",
@@ -671,7 +671,7 @@
           "Nantes",
           "Bordeaux",
           "Le Havre",
-          "Rouen",
+          "Rotterdam",
           "Barcelona",
           "Naples",
           "Trieste",
@@ -683,7 +683,7 @@
           "Nantes",
           "Bordeaux",
           "Le Havre",
-          "Rouen",
+          "Rotterdam",
           "Barcelona",
           "Naples",
           "Trieste",
@@ -1039,7 +1039,7 @@
           "Naples",
           "Ragusa",
           "Bremen",
-          "Palermo",
+          "Lübeck",
           "Bilbao",
           "Málaga",
           "Barcelona",
@@ -1051,7 +1051,7 @@
           "Naples",
           "Ragusa",
           "Bremen",
-          "Palermo",
+          "Lübeck",
           "Bilbao",
           "Málaga",
           "Barcelona",
@@ -1063,7 +1063,7 @@
           "Naples",
           "Ragusa",
           "Bremen",
-          "Palermo",
+          "Lübeck",
           "Bilbao",
           "Málaga",
           "Barcelona",
@@ -1080,7 +1080,7 @@
           "Bergen",
           "Rouen",
           "Bilbao",
-          "Málaga",
+          "Lübeck",
           "Barcelona"
         ],
         "1600": [
@@ -1092,7 +1092,7 @@
           "Bergen",
           "Rouen",
           "Bilbao",
-          "Málaga",
+          "Lübeck",
           "Barcelona"
         ],
         "1610": [
@@ -1103,8 +1103,8 @@
           "Stockholm",
           "Bergen",
           "Rouen",
-          "Bilbao",
-          "Málaga",
+          "Lübeck",
+          "Venice",
           "Barcelona"
         ],
         "1620": [
@@ -1115,8 +1115,8 @@
           "Stockholm",
           "Bergen",
           "Rouen",
-          "Bilbao",
-          "Málaga",
+          "Lübeck",
+          "Venice",
           "Barcelona"
         ],
         "1630": [
@@ -1127,8 +1127,8 @@
           "Stockholm",
           "Bergen",
           "Rouen",
-          "Bilbao",
-          "Málaga",
+          "Lübeck",
+          "Venice",
           "Barcelona"
         ],
         "1640": [
@@ -1139,8 +1139,8 @@
           "Stockholm",
           "Bergen",
           "Rouen",
-          "Bilbao",
-          "Málaga",
+          "Lübeck",
+          "Venice",
           "Barcelona"
         ],
         "1650": [
@@ -1151,8 +1151,8 @@
           "Stockholm",
           "Bergen",
           "Rouen",
-          "Bilbao",
-          "Málaga",
+          "Lübeck",
+          "Venice",
           "Barcelona"
         ],
         "1660": [
@@ -1161,83 +1161,83 @@
           "Bordeaux",
           "Bremen",
           "Stockholm",
-          "Bergen",
+          "Rotterdam",
           "Rouen",
-          "Bilbao",
-          "Málaga",
+          "Genoa",
+          "Venice",
           "Barcelona"
         ],
         "1670": [
           "Copenhagen",
           "Stockholm",
-          "Bergen",
+          "Rotterdam",
           "Marseille",
           "Nantes",
           "Bremen",
           "Sunderland",
           "Hull",
-          "Bilbao",
-          "Málaga"
+          "Genoa",
+          "Venice"
         ],
         "1680": [
           "Copenhagen",
           "Stockholm",
-          "Bergen",
+          "Rotterdam",
           "Marseille",
           "Nantes",
           "Bremen",
           "Sunderland",
           "Hull",
-          "Bilbao",
-          "Málaga"
+          "Genoa",
+          "Venice"
         ],
         "1690": [
           "Copenhagen",
           "Stockholm",
-          "Bergen",
+          "Rotterdam",
           "Marseille",
           "Nantes",
           "Bremen",
           "Sunderland",
           "Hull",
-          "Bilbao",
-          "Málaga"
+          "Genoa",
+          "Venice"
         ],
         "1700": [
           "Copenhagen",
           "Stockholm",
-          "Bergen",
+          "Rotterdam",
           "Marseille",
           "Nantes",
           "Bremen",
           "Sunderland",
           "Hull",
-          "Bilbao",
-          "Málaga"
+          "Genoa",
+          "Venice"
         ],
         "1710": [
           "Copenhagen",
           "Stockholm",
-          "Bergen",
+          "Rotterdam",
           "Marseille",
           "Nantes",
           "Bremen",
           "Sunderland",
           "Hull",
-          "Bilbao",
-          "Málaga"
+          "Genoa",
+          "Venice"
         ],
         "1720": [
           "Copenhagen",
           "Stockholm",
-          "Bergen",
+          "Rotterdam",
           "Marseille",
           "Nantes",
           "Bremen",
           "Sunderland",
           "Hull",
-          "Bilbao",
-          "Málaga"
+          "Genoa",
+          "Venice"
         ],
         "1730": [
           "Copenhagen",
@@ -1248,8 +1248,8 @@
           "Whitby",
           "Hull",
           "Bremen",
-          "Bilbao",
-          "Barcelona"
+          "Genoa",
+          "Livorno"
         ],
         "1740": [
           "Copenhagen",
@@ -1260,8 +1260,8 @@
           "Whitby",
           "Hull",
           "Bremen",
-          "Bilbao",
-          "Barcelona"
+          "Genoa",
+          "Livorno"
         ],
         "1750": [
           "Copenhagen",
@@ -1272,8 +1272,8 @@
           "Whitby",
           "Hull",
           "Bremen",
-          "Bilbao",
-          "Barcelona"
+          "Genoa",
+          "Livorno"
         ],
         "1760": [
           "Copenhagen",
@@ -1284,8 +1284,8 @@
           "Whitby",
           "Hull",
           "Bremen",
-          "Bilbao",
-          "Barcelona"
+          "Genoa",
+          "Livorno"
         ],
         "1770": [
           "Copenhagen",
@@ -1296,8 +1296,8 @@
           "Whitby",
           "Hull",
           "Bremen",
-          "Bilbao",
-          "Barcelona"
+          "Genoa",
+          "Livorno"
         ],
         "1780": [
           "Copenhagen",
@@ -1308,8 +1308,8 @@
           "Whitby",
           "Hull",
           "Bremen",
-          "Bilbao",
-          "Barcelona"
+          "Genoa",
+          "Livorno"
         ],
         "1790": [
           "Copenhagen",
@@ -1321,7 +1321,7 @@
           "Danzig",
           "Königsberg",
           "Marseille",
-          "Nantes"
+          "Rotterdam"
         ],
         "1800": [
           "Copenhagen",
@@ -1333,7 +1333,7 @@
           "Danzig",
           "Königsberg",
           "Bordeaux",
-          "Marseille"
+          "Rotterdam"
         ],
         "1810": [
           "Sunderland",
@@ -1345,7 +1345,7 @@
           "Königsberg",
           "Bordeaux",
           "Marseille",
-          "Nantes"
+          "Rotterdam"
         ]
       }
     },
@@ -1364,7 +1364,7 @@
           "London",
           "Hamburg",
           "Danzig",
-          "Lübeck"
+          "Goa"
         ],
         "1560": [
           "Antwerp",
@@ -1376,7 +1376,7 @@
           "London",
           "Hamburg",
           "Danzig",
-          "Marseille"
+          "Goa"
         ],
         "1570": [
           "Antwerp",
@@ -1388,7 +1388,7 @@
           "London",
           "Hamburg",
           "Danzig",
-          "Marseille"
+          "Goa"
         ],
         "1580": [
           "Lisbon",
@@ -1400,7 +1400,7 @@
           "London",
           "Hamburg",
           "Danzig",
-          "Marseille"
+          "Goa"
         ],
         "1590": [
           "Amsterdam",
@@ -1592,7 +1592,7 @@
           "Canton",
           "Hamburg",
           "Nantes",
-          "Havana"
+          "Rio de Janeiro"
         ],
         "1750": [
           "London",
@@ -1604,7 +1604,7 @@
           "Lisbon",
           "Hamburg",
           "Nantes",
-          "Havana"
+          "Rio de Janeiro"
         ],
         "1760": [
           "London",
@@ -1616,7 +1616,7 @@
           "Lisbon",
           "Calcutta",
           "Hamburg",
-          "Havana"
+          "Rio de Janeiro"
         ],
         "1770": [
           "London",
@@ -1626,7 +1626,7 @@
           "Cádiz",
           "Batavia",
           "Calcutta",
-          "Lisbon",
+          "Cap-Français",
           "Hamburg",
           "Havana"
         ],
@@ -1639,8 +1639,8 @@
           "Calcutta",
           "Batavia",
           "Liverpool",
-          "Havana",
-          "Lisbon"
+          "Cap-Français",
+          "Havana"
         ],
         "1790": [
           "London",
@@ -1690,7 +1690,7 @@
           "Rouen",
           "Palermo",
           "Bremen",
-          "Goa"
+          "Lübeck"
         ],
         "1560": [
           "Naples",
@@ -1701,7 +1701,7 @@
           "Rouen",
           "Palermo",
           "Bremen",
-          "Goa",
+          "Marseille",
           "Malacca"
         ],
         "1570": [
@@ -1713,7 +1713,7 @@
           "Rouen",
           "Palermo",
           "Bremen",
-          "Goa",
+          "Marseille",
           "Malacca"
         ],
         "1580": [
@@ -1725,7 +1725,7 @@
           "Rouen",
           "Palermo",
           "Bremen",
-          "Goa",
+          "Marseille",
           "Malacca"
         ],
         "1590": [
@@ -1743,33 +1743,33 @@
         "1600": [
           "Naples",
           "Barcelona",
-          "Bilbao",
+          "Bahia",
           "Málaga",
           "Rouen",
           "Bremen",
           "Malacca",
           "Goa",
           "Surat",
-          "Nantes"
+          "Nagasaki"
         ],
         "1610": [
           "Naples",
           "Barcelona",
-          "Bilbao",
+          "Bahia",
           "Málaga",
           "Rouen",
           "Bremen",
           "Malacca",
           "Goa",
           "Surat",
-          "Nantes"
+          "Nagasaki"
         ],
         "1620": [
           "Marseille",
           "Naples",
           "Barcelona",
-          "Bilbao",
-          "Málaga",
+          "Nagasaki",
+          "Bahia",
           "Rouen",
           "Bremen",
           "Malacca",
@@ -1780,8 +1780,8 @@
           "Marseille",
           "Naples",
           "Barcelona",
-          "Bilbao",
-          "Málaga",
+          "Nagasaki",
+          "Bahia",
           "Rouen",
           "Bremen",
           "Malacca",
@@ -1792,7 +1792,7 @@
           "Marseille",
           "Naples",
           "Barcelona",
-          "Bilbao",
+          "Bahia",
           "Málaga",
           "Rouen",
           "Bremen",
@@ -1804,7 +1804,7 @@
           "Marseille",
           "Naples",
           "Barcelona",
-          "Bilbao",
+          "Bahia",
           "Málaga",
           "Rouen",
           "Bremen",
@@ -1816,7 +1816,7 @@
           "Marseille",
           "Naples",
           "Barcelona",
-          "Bilbao",
+          "Bahia",
           "Málaga",
           "Rouen",
           "Bremen",
@@ -1829,7 +1829,7 @@
           "Livorno",
           "Naples",
           "Barcelona",
-          "Málaga",
+          "Bahia",
           "Rouen",
           "Bremen",
           "Nantes",
@@ -1841,7 +1841,7 @@
           "Livorno",
           "Naples",
           "Barcelona",
-          "Málaga",
+          "Bahia",
           "Rouen",
           "Bremen",
           "Nantes",
@@ -1870,7 +1870,7 @@
           "Bremen",
           "Madras",
           "Bombay",
-          "Malacca"
+          "Rio de Janeiro"
         ],
         "1710": [
           "Marseille",
@@ -1882,7 +1882,7 @@
           "Bremen",
           "Madras",
           "Bombay",
-          "Malacca"
+          "Rio de Janeiro"
         ],
         "1720": [
           "Marseille",
@@ -1894,7 +1894,7 @@
           "Bremen",
           "Madras",
           "Bombay",
-          "Malacca"
+          "Rio de Janeiro"
         ],
         "1730": [
           "Marseille",
@@ -1904,7 +1904,7 @@
           "Le Havre",
           "Madras",
           "Bombay",
-          "Surat",
+          "Rio de Janeiro",
           "Manila",
           "Cap-Français"
         ],
@@ -1912,11 +1912,11 @@
           "Marseille",
           "Naples",
           "Barcelona",
-          "Rouen",
+          "Havana",
           "Le Havre",
           "Madras",
           "Bombay",
-          "Surat",
+          "Kingston",
           "Manila",
           "Cap-Français"
         ],
@@ -1924,11 +1924,11 @@
           "Marseille",
           "Naples",
           "Barcelona",
-          "Rouen",
+          "Havana",
           "Le Havre",
           "Madras",
           "Bombay",
-          "Surat",
+          "Kingston",
           "Manila",
           "Cap-Français"
         ],
@@ -1936,60 +1936,60 @@
           "Marseille",
           "Naples",
           "Barcelona",
-          "Rouen",
+          "Havana",
           "Nantes",
           "Le Havre",
           "Madras",
           "Bombay",
-          "Surat",
+          "Kingston",
           "Manila"
         ],
         "1770": [
           "Marseille",
           "Naples",
           "Barcelona",
-          "Rouen",
+          "Lisbon",
           "Nantes",
           "Le Havre",
           "Madras",
           "Bombay",
-          "Surat",
-          "Manila"
+          "Kingston",
+          "Rio de Janeiro"
         ],
         "1780": [
           "Marseille",
-          "Naples",
+          "St Petersburg",
           "Barcelona",
-          "Rouen",
+          "Lisbon",
           "Nantes",
           "Le Havre",
           "Madras",
           "Bombay",
-          "Surat",
-          "Manila"
+          "Kingston",
+          "Rio de Janeiro"
         ],
         "1790": [
           "Marseille",
           "Naples",
           "Barcelona",
-          "Nantes",
+          "St Petersburg",
           "Le Havre",
           "Madras",
           "Bombay",
           "Manila",
-          "Cap-Français",
+          "Rio de Janeiro",
           "Kingston"
         ],
         "1800": [
           "Marseille",
           "Naples",
           "Barcelona",
-          "Nantes",
+          "St Petersburg",
           "Le Havre",
           "Madras",
           "Bombay",
           "Manila",
-          "Cap-Français",
+          "Rio de Janeiro",
           "Kingston"
         ],
         "1810": [
@@ -2001,7 +2001,7 @@
           "Madras",
           "Bombay",
           "Manila",
-          "Cap-Français",
+          "St Petersburg",
           "Kingston"
         ]
       }
@@ -2056,6 +2056,185 @@
       "note": "Entries 73/yr (1596–99) → 136/yr (1600–08), counting vessels above ~71.5 tons.",
       "confidence": "medium",
       "url": "https://link.springer.com/chapter/10.1007/978-3-031-04118-1_11"
+    }
+  ],
+  "boundary": "DECLARED BOUNDARY (PLAN-3 §1): these rankings order ports within the EUROPEAN COMMERCIAL RECORD — the toll, customs, and company series that survive. Ports whose traffic that record cannot measure are not ranked here regardless of their real size: Istanbul, by any physical measure among the great ports of this whole period, is the exemplar (present, unranked, in the tier-3 promotion queue). Absence from these tables is a statement about the archive, not about the sea.",
+  "changelog": [
+    {
+      "date": "2026-07-13",
+      "phase": "R1",
+      "decisions": "ships basis = foreign-going; promotions: Goa (value T1 1550s-80s), Cap-Français (value T1 1770s-80s), Kingston (value T2 1740s+), Rio de Janeiro (value T1 1740s-60s)",
+      "capped": "Porto ships-T2 ends 1750s (slot budget); Rotterdam tonnage-T2 gap 1730s-80s (slot budget); both documented rather than silently absorbed",
+      "changes": [
+        "value 1550s T1: Lübeck → Goa (Estado da Índia at peak; Euro-centrism fix inside T1)",
+        "value 1560s T1: Marseille → Goa (Estado da Índia; Marseille dips in the Wars of Religion)",
+        "value 1570s T1: Marseille → Goa (Estado da Índia; Marseille dips in the Wars of Religion)",
+        "value 1580s T1: Marseille → Goa (Estado da Índia; Marseille dips in the Wars of Religion)",
+        "value 1740s T1: Havana → Rio de Janeiro (Brazilian gold fleets at their height)",
+        "value 1750s T1: Havana → Rio de Janeiro (Brazilian gold fleets at their height)",
+        "value 1760s T1: Havana → Rio de Janeiro (Brazilian gold fleets at their height)",
+        "value 1770s T1: Lisbon → Cap-Français (Saint-Domingue boom; ends 1791)",
+        "value 1780s T1: Lisbon → Cap-Français (Saint-Domingue exports exceed the British West Indies)",
+        "value 1780s T1: Cap-Français ranked above Havana",
+        "value 1550s T2: Goa → Lübeck",
+        "value 1560s T2: Goa → Marseille",
+        "value 1570s T2: Goa → Marseille",
+        "value 1580s T2: Goa → Marseille",
+        "value 1600s T2: Nantes → Nagasaki",
+        "value 1600s T2: Bilbao → Bahia",
+        "value 1610s T2: Nantes → Nagasaki",
+        "value 1610s T2: Bilbao → Bahia",
+        "value 1620s T2: Bilbao → Nagasaki",
+        "value 1620s T2: Málaga → Bahia",
+        "value 1630s T2: Bilbao → Nagasaki",
+        "value 1630s T2: Málaga → Bahia",
+        "value 1640s T2: Bilbao → Bahia",
+        "value 1650s T2: Bilbao → Bahia",
+        "value 1660s T2: Bilbao → Bahia",
+        "value 1670s T2: Málaga → Bahia",
+        "value 1680s T2: Málaga → Bahia",
+        "value 1700s T2: Malacca → Rio de Janeiro",
+        "value 1710s T2: Malacca → Rio de Janeiro",
+        "value 1720s T2: Malacca → Rio de Janeiro",
+        "value 1730s T2: Surat → Rio de Janeiro",
+        "value 1740s T2: Surat → Kingston",
+        "value 1740s T2: Rouen → Havana",
+        "value 1750s T2: Surat → Kingston",
+        "value 1750s T2: Rouen → Havana",
+        "value 1760s T2: Surat → Kingston",
+        "value 1760s T2: Rouen → Havana",
+        "value 1770s T2: Surat → Kingston",
+        "value 1770s T2: Rouen → Lisbon",
+        "value 1770s T2: Manila → Rio de Janeiro",
+        "value 1780s T2: Surat → Kingston",
+        "value 1780s T2: Rouen → Lisbon",
+        "value 1780s T2: Manila → Rio de Janeiro",
+        "value 1780s T2: Naples → St Petersburg",
+        "value 1790s T2: Cap-Français → Rio de Janeiro",
+        "value 1790s T2: Nantes → St Petersburg",
+        "value 1800s T2: Cap-Français → Rio de Janeiro",
+        "value 1800s T2: Nantes → St Petersburg",
+        "value 1810s T2: Cap-Français → St Petersburg",
+        "ships 1560s T2: Stockholm → Emden",
+        "ships 1560s T2: Palermo → Lübeck",
+        "ships 1570s T2: Stockholm → Emden",
+        "ships 1570s T2: Palermo → Lübeck",
+        "ships 1580s T2: Stockholm → Emden",
+        "ships 1580s T2: Palermo → Lübeck",
+        "ships 1590s T2: Málaga → Lübeck",
+        "ships 1600s T2: Málaga → Lübeck",
+        "ships 1610s T2: Málaga → Lübeck",
+        "ships 1620s T2: Málaga → Lübeck",
+        "ships 1630s T2: Málaga → Lübeck",
+        "ships 1640s T2: Málaga → Lübeck",
+        "ships 1650s T2: Málaga → Lübeck",
+        "ships 1640s T2: Bilbao → Venice",
+        "ships 1650s T2: Bilbao → Venice",
+        "ships 1660s T2: La Rochelle → Rotterdam",
+        "ships 1660s T2: Bilbao → Venice",
+        "ships 1670s T2: La Rochelle → Rotterdam",
+        "ships 1670s T2: Bilbao → Venice",
+        "ships 1680s T2: La Rochelle → Rotterdam",
+        "ships 1680s T2: Bilbao → Venice",
+        "ships 1690s T2: La Rochelle → Rotterdam",
+        "ships 1690s T2: Bilbao → Venice",
+        "ships 1700s T2: La Rochelle → Rotterdam",
+        "ships 1700s T2: Bilbao → Venice",
+        "ships 1710s T2: La Rochelle → Rotterdam",
+        "ships 1710s T2: Bilbao → Venice",
+        "ships 1720s T2: La Rochelle → Rotterdam",
+        "ships 1720s T2: Bilbao → Venice",
+        "ships 1700s T2: Málaga → Genoa",
+        "ships 1700s T2: Naples → Porto",
+        "ships 1710s T2: Málaga → Genoa",
+        "ships 1710s T2: Naples → Porto",
+        "ships 1720s T2: Málaga → Genoa",
+        "ships 1720s T2: Naples → Porto",
+        "ships 1730s T2: Málaga → Rotterdam",
+        "ships 1730s T2: Bilbao → Genoa",
+        "ships 1730s T2: Naples → Livorno",
+        "ships 1730s T2: Rouen → Boston",
+        "ships 1730s T2: Barcelona → Porto",
+        "ships 1740s T2: Málaga → Rotterdam",
+        "ships 1740s T2: Bilbao → Genoa",
+        "ships 1740s T2: Naples → Livorno",
+        "ships 1740s T2: Rouen → Boston",
+        "ships 1740s T2: Barcelona → Porto",
+        "ships 1750s T2: Málaga → Rotterdam",
+        "ships 1750s T2: Bilbao → Philadelphia",
+        "ships 1750s T2: Naples → Livorno",
+        "ships 1750s T2: Rouen → Boston",
+        "ships 1750s T2: Barcelona → Porto",
+        "ships 1760s T2: Málaga → Rotterdam",
+        "ships 1760s T2: Bilbao → Philadelphia",
+        "ships 1760s T2: Naples → Livorno",
+        "ships 1760s T2: Rouen → Boston",
+        "ships 1760s T2: Barcelona → New York",
+        "ships 1770s T2: Málaga → Rotterdam",
+        "ships 1770s T2: Bilbao → Philadelphia",
+        "ships 1770s T2: Naples → Livorno",
+        "ships 1770s T2: Rouen → Boston",
+        "ships 1770s T2: Barcelona → New York",
+        "ships 1780s T2: Málaga → Rotterdam",
+        "ships 1780s T2: Bilbao → Philadelphia",
+        "ships 1780s T2: Naples → Livorno",
+        "ships 1780s T2: Rouen → Boston",
+        "ships 1780s T2: Barcelona → New York",
+        "ships 1790s T2: Rouen → Rotterdam",
+        "ships 1800s T2: Rouen → Rotterdam",
+        "ships 1810s T2: Rouen → Rotterdam",
+        "tonnage 1560s T2: Palermo → Lübeck",
+        "tonnage 1570s T2: Palermo → Lübeck",
+        "tonnage 1580s T2: Palermo → Lübeck",
+        "tonnage 1590s T2: Málaga → Lübeck",
+        "tonnage 1600s T2: Málaga → Lübeck",
+        "tonnage 1610s T2: Málaga → Venice",
+        "tonnage 1610s T2: Bilbao → Lübeck",
+        "tonnage 1620s T2: Málaga → Venice",
+        "tonnage 1620s T2: Bilbao → Lübeck",
+        "tonnage 1630s T2: Málaga → Venice",
+        "tonnage 1630s T2: Bilbao → Lübeck",
+        "tonnage 1640s T2: Málaga → Venice",
+        "tonnage 1640s T2: Bilbao → Lübeck",
+        "tonnage 1650s T2: Málaga → Venice",
+        "tonnage 1650s T2: Bilbao → Lübeck",
+        "tonnage 1660s T2: Málaga → Venice",
+        "tonnage 1660s T2: Bilbao → Genoa",
+        "tonnage 1660s T2: Bergen → Rotterdam",
+        "tonnage 1670s T2: Málaga → Venice",
+        "tonnage 1670s T2: Bilbao → Genoa",
+        "tonnage 1670s T2: Bergen → Rotterdam",
+        "tonnage 1680s T2: Málaga → Venice",
+        "tonnage 1680s T2: Bilbao → Genoa",
+        "tonnage 1680s T2: Bergen → Rotterdam",
+        "tonnage 1690s T2: Málaga → Venice",
+        "tonnage 1690s T2: Bilbao → Genoa",
+        "tonnage 1690s T2: Bergen → Rotterdam",
+        "tonnage 1700s T2: Málaga → Venice",
+        "tonnage 1700s T2: Bilbao → Genoa",
+        "tonnage 1700s T2: Bergen → Rotterdam",
+        "tonnage 1710s T2: Málaga → Venice",
+        "tonnage 1710s T2: Bilbao → Genoa",
+        "tonnage 1710s T2: Bergen → Rotterdam",
+        "tonnage 1720s T2: Málaga → Venice",
+        "tonnage 1720s T2: Bilbao → Genoa",
+        "tonnage 1720s T2: Bergen → Rotterdam",
+        "tonnage 1730s T2: Bilbao → Genoa",
+        "tonnage 1730s T2: Barcelona → Livorno",
+        "tonnage 1740s T2: Bilbao → Genoa",
+        "tonnage 1740s T2: Barcelona → Livorno",
+        "tonnage 1750s T2: Bilbao → Genoa",
+        "tonnage 1750s T2: Barcelona → Livorno",
+        "tonnage 1760s T2: Bilbao → Genoa",
+        "tonnage 1760s T2: Barcelona → Livorno",
+        "tonnage 1770s T2: Bilbao → Genoa",
+        "tonnage 1770s T2: Barcelona → Livorno",
+        "tonnage 1780s T2: Bilbao → Genoa",
+        "tonnage 1780s T2: Barcelona → Livorno",
+        "tonnage 1790s T2: Nantes → Rotterdam",
+        "tonnage 1800s T2: Marseille → Rotterdam",
+        "tonnage 1810s T2: Nantes → Rotterdam"
+      ]
     }
   ]
 }

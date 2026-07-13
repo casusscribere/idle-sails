@@ -19,11 +19,20 @@ Per-decade rankings (27 decades) three ways, each with a persistence ranking and
 a presence grid. The **top 10 are ranked**; ranks **11–20 are an unranked second
 tier** (membership, not order — the evidence can't support fine rank past ~10).
 This tiered top-20 is the weight source for the flowing sim (`PLAN-2` Step 1).
-- **`port-rankings-1550-1815.json`** — canonical: `metrics.{ships,tonnage,value}.topByDecade` (1–10) and `.tier2ByDecade` (11–20), plus sources/caveats.
+- **`port-rankings-1550-1815.json`** — canonical: `metrics.{ships,tonnage,value}.topByDecade` (1–10) and `.tier2ByDecade` (11–20), plus sources/caveats, a **declared boundary** (the European-commercial-record scope; Istanbul as exemplar), and a `changelog`.
 - **`port-top20-1550-1815.csv`** — the full top-20 (decade · metric · tier · rank · port).
 - **`ports-1550-1815.html`** — reference page with a metric switcher; the grid shows the ranked top-10 (solid) and the second tier (faint outline).
-- Port universe: **57** ports (33 ever-top-10 + 24 mid-tier).
+- Port universe: **60** ports (35 ever-top-10 + 25 mid-tier).
 - Anchors: Sound Toll Registers, Dutch-Asiatic Shipping, the Carrera de Indias (Lamikiz), English customs, van Tielhof, Kaukiainen.
+- **PLAN-3 R1 corrections applied (2026-07-13, 168 edits — see the JSON changelog):**
+  basis clarified (*ships = foreign-going clearances*; the collier silence declared);
+  promotions **Goa** (value T1 1550s–80s), **Cap-Français** (value T1 1770s–80s,
+  ends 1791), **Rio de Janeiro** (value T1 1740s–60s gold peak), **Kingston**
+  (value T2 1740s+); de-truncations (Rotterdam, Venice, Genoa, Livorno, Lübeck,
+  Emden), St Petersburg into value, the American ramp (Boston/Philadelphia/New
+  York), Bahia 1600s–80s, Nagasaki 1600s–30s, Porto. Slot-budget caps are
+  documented in the changelog rather than silently absorbed. Rebuild tools live
+  in **`tools/`** (`apply-r1.mjs`, `build-rankings-page.mjs`, `build-era-weights.mjs`).
 
 ### 2. Combined persistence synthesis
 Each port's decades-in-top-10 **summed across all three metrics** (max 81).
@@ -48,13 +57,15 @@ no source records ranked top-10 routes per port per decade.
 - **`route-persistence.html`** — filterable reference page.
 
 ### 5. Minor-ports promotion queue + curation rubric
-The 33 minor ports authored into **sim-ready staged definitions** — coordinates,
-polity/flag mappings, numeric era windows, cargo, proposed lanes, bake risks —
-ordered in three tranches by diversity-value ÷ bake-cost. The supporting
-vocabulary (18 cargoes, 19 polities/flags, junk & dhow + 16th-c rigs, 9 regions)
-is already in `data-src/`; a port is promoted (copied into the sim + its routes
-baked) in PLAN-2 Phase B.
-- **`minor-ports-promotion.json`** — the queue (tranches 12 / 12 / 9).
+The 33 minor ports — **plus Istanbul**, added at PLAN-3 R1 as the
+declared-boundary exemplar (present, never ranked) — authored into **sim-ready
+staged definitions** (34 total): coordinates, polity/flag mappings, numeric era
+windows, cargo, proposed lanes, bake risks — ordered in three tranches by
+diversity-value ÷ bake-cost. The supporting vocabulary (18 cargoes, 19
+polities/flags, junk & dhow + 16th-c rigs, 9 regions) is already in
+`data-src/`; a port is promoted (copied into the sim + its routes baked) in
+PLAN-3 Phase S2.
+- **`minor-ports-promotion.json`** — the queue (tranches 12 / 12 / 10).
 - **`CURATION.md`** — the growth rubric: four diversity axes, hard rules
   (era honesty, sober slave-trade framing, weight band, baked-or-doesn't-sail),
   and the open flag decisions (china-junk-trade, tsushima, golconda…).

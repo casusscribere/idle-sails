@@ -1,6 +1,6 @@
 {
-  "title": "Minor-ports promotion queue — sim-ready staging for PLAN-2 Phase B",
-  "note": "The 33 minor ports (research/minor-ports-1500-1830.json) authored into promotable sim definitions. NOT loaded by the game: a port moves from here into data-src/ports.json + routes.json only when Phase B bakes its wind/current route fields (16 fields per port). The supporting vocabulary (cargo, powers/flags, junk & dhow rigs, regions) is ALREADY in data-src/ — promotion is: copy the port, expand its lanes into directed legs, bake, done. Tranches order by diversity-value ÷ bake-cost (PLAN-2 §5.4): 1 = bake first, 2 = next, 3 = has an open bake/design risk noted in bakeRisk/flagNeeded. Coordinates are approximate harbour positions for the 1° routing grid.",
+  "title": "Minor-ports promotion queue — sim-ready staging for PLAN-3 Phase S2",
+  "note": "The 33 minor ports (research/minor-ports-1500-1830.json) — plus Istanbul, added at PLAN-3 R1 as the declared-boundary exemplar (34 total; tranches 12/12/10) — authored into promotable sim definitions. NOT loaded by the game: a port moves from here into data-src/ports.json + routes.json only when Phase S2 bakes its wind/current route fields (16 fields per port). The supporting vocabulary (cargo, powers/flags, junk & dhow rigs, regions) is ALREADY in data-src/ — promotion is: copy the port, expand its lanes into directed legs, bake, done. Tranches order by diversity-value ÷ bake-cost: 1 = bake first, 2 = next, 3 = has an open bake/design risk noted in bakeRisk/flagNeeded. Coordinates are approximate harbour positions for the 1° routing grid.",
   "laneSchema": "lanes[].with names the counterpart port (sim port id or staged id); out = cargo carried FROM this port TO the counterpart, home = the return leg; each pair expands to two directed routes.json legs at promotion.",
   "ports": [
     { "id": "naha", "name": "Naha (Ryukyu)", "lon": 127.7, "lat": 26.2, "region": "east-asia", "power": "ryukyu", "tier": "minor", "era": { "from": 1550, "to": 1815 }, "roles": ["home"], "tranche": 1, "verified": true,
@@ -176,6 +176,13 @@
       "bakeRisk": "The Bosporus and Kerch straits are sub-cell chokepoints on a 1° grid — almost certainly needs hand-carved channel cells before any Black Sea routing works.",
       "promotionRule": "Kaffa's slave market must reuse the sober human-trafficking framing (cargo.enslaved-people pattern) if represented at all. The current Middle-Passage invariant is Atlantic-specific by design; generalizing it is a deliberate decision to make at promotion, never a default. The staged lanes below carry only the licit goods.",
       "lanes": [ { "with": "smyrna", "out": ["grain", "salt"], "home": ["trade-goods"], "shipTypes": ["merchantman", "dhow"], "flag": "ottoman", "weight": 1 } ] },
+
+    { "id": "istanbul", "name": "Istanbul (Constantinople)", "lon": 28.98, "lat": 41.0, "region": "mediterranean", "power": "ottoman", "tier": "minor", "era": { "from": 1550, "to": 1815 }, "roles": ["home", "naval"], "tranche": 3, "verified": false,
+      "significance": "The largest city of Europe and the Near East, provisioned by sea for the whole period — by any physical measure among the great ports of these centuries. Added at PLAN-3 R1 as the exemplar of the declared boundary: the European commercial record cannot RANK it, so it is present here, unranked, rather than silently absent.",
+      "bakeRisk": "Shares Kaffa's Bosporus/Kerch sub-cell chokepoint problem — one hand-carved channel job unlocks both (and the Black Sea generally).",
+      "lanes": [
+        { "with": "smyrna", "out": ["trade-goods"], "home": ["silk", "cotton"], "shipTypes": ["merchantman", "dhow"], "flag": "ottoman", "weight": 2 },
+        { "with": "kaffa", "out": ["trade-goods", "wine"], "home": ["grain", "salt"], "shipTypes": ["dhow", "merchantman"], "flag": "ottoman", "weight": 2, "note": "The capital's Black Sea grain lifeline. Kaffa's promotionRule (sober framing for any represented coerced flow) applies to this pairing too." } ] },
 
     { "id": "sitka", "name": "Sitka (Novo-Arkhangelsk)", "lon": -135.3, "lat": 57.05, "region": "north-pacific", "power": "rac", "tier": "minor", "era": { "from": 1799, "to": 1815 }, "roles": ["colonial"], "tranche": 3, "verified": true,
       "significance": "The Russian-American Company's capital — sea-otter pelts for the Canton market, the fur rush that carried Russia to America.",
