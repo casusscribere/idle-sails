@@ -22,12 +22,17 @@ async function boot() {
   ]);
 
   // seed: from the URL hash (#seed=…) for shareable worlds, else time-derived.
-  const hashSeed = new URLSearchParams(location.hash.slice(1)).get('seed');
+  // Debug params: #t=<sim-days> fast-forwards to a point in the flowing era;
+  // #routes=1 starts with the trade-routes overlay on.
+  const hashParams = new URLSearchParams(location.hash.slice(1));
+  const hashSeed = hashParams.get('seed');
   const seed = hashSeed ? (parseInt(hashSeed, 10) >>> 0) : ((Date.now() ^ (Math.random() * 1e9)) >>> 0);
 
   const world = createWorld({ seed, data: { datasets, routes } });
   // pre-warm so the sea is already busy on load (~100 sim-days in coarse steps)
   const SEC_PER_DAY = 86400;
+  const skipDays = Math.max(0, +hashParams.get('t') || 0);
+  if (skipDays) for (let d = 0; d < skipDays; d += 200) world.tick(Math.min(200, skipDays - d) * SEC_PER_DAY);
   for (let i = 0; i < 40; i++) world.tick(2.5 * SEC_PER_DAY);
 
   const legById = new Map(routes.routes.map(r => [r.id, r]));
@@ -37,14 +42,16 @@ async function boot() {
   const routeClassOf = new Map(datasets.shipTypes.map(s => [s.id, s.routeClass]));
 
   // Popular-routes overlay data: one representative polyline per lane, per season,
-  // tagged with the lane's traffic weight (popularity) and flag colour (nation).
+  // tagged with the lane's traffic weight (popularity), flag colour (nation), and
+  // origin/era so the overlay can flow with the historical clock — lanes brighten
+  // and fade as their origin port's prominence shifts across the decades.
   const SEASONS = ['djf', 'mam', 'jja', 'son'];
   const routeLines = datasets.routes.map(lane => {
     const rc = routeClassOf.get(lane.shipTypes[0]);
     const coordsBySeason = {};
     for (const s of SEASONS) { const leg = legById.get(`${lane.id}__${rc}__${s}`); if (leg) coordsBySeason[s] = leg.coords; }
     const power = powerById.get(lane.flag);
-    return { weight: lane.weight || 1, color: (power && power.color) || '#3a2c1c', coordsBySeason };
+    return { weight: lane.weight || 1, from: lane.from, era: lane.era, color: (power && power.color) || '#3a2c1c', coordsBySeason };
   });
 
   const canvas = document.getElementById('chart');
@@ -54,7 +61,8 @@ async function boot() {
 
   let speed = speedFromSlider(+document.getElementById('speed').value);
   let selectedVesselId = null, selectedPortId = null, lastPanelSig = '';
-  let showRoutes = false;
+  let showRoutes = hashParams.get('routes') === '1';
+  if (showRoutes) document.getElementById('ov-routes').checked = true;
   let latestSnap = world.snapshot();
 
   const ledgerCtx = () => ({ portById, cargoById, powerById, simClock: latestSnap.simClock });
@@ -129,7 +137,10 @@ async function boot() {
     if (speed > 0) world.tick(dtReal * speed);
 
     latestSnap = world.snapshot();
-    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, showRoutes);
+    // overlay context: the flowing year + the current interpolated port weights,
+    // so route brightness tracks each origin's prominence in the current decade.
+    const routesCtx = showRoutes ? { year: latestSnap.year, weights: world.weightsAt(latestSnap.simClock) } : null;
+    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, routesCtx);
 
     hudAccum += dtReal;
     if (hudAccum > 0.2) { hudAccum = 0; ui.updateHUD(latestSnap); renderPanel(); }

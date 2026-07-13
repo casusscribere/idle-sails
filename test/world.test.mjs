@@ -94,6 +94,8 @@ test('log stays capped and events are ordered by recency', () => {
   const snap = w.snapshot();
   assert.ok(snap.log.length <= 40, 'snapshot log trimmed');
   assert.ok(snap.date.match(/\d+ \w+ \d{4}/), `readable date (${snap.date})`);
+  assert.ok(snap.year >= 1550 && snap.year <= 1820, `snapshot exposes the flowing year (${snap.year})`);
+  assert.ok(snap.reset >= 0 && snap.reset <= 1, 'snapshot exposes reset progress');
 });
 
 test('calendar flows 1550→1815, ramps a 5-year reset, and loops', () => {

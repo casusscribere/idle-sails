@@ -387,10 +387,12 @@ export function createWorld({ seed = 1, data }) {
     return out;
   }
   function snapshot() {
+    const cal = calendar(state.simClock);
     return {
       simClock: state.simClock,
-      date: fmtDate(calendar(state.simClock)),
-      season: calendar(state.simClock).season,
+      date: fmtDate(cal),
+      season: cal.season,
+      year: cal.year, reset: cal.reset,
       counters: { ...state.counters, atSea: state.vessels.filter(v => v.status === 'sailing').length },
       vessels: activeVessels(),
       log: state.log.slice(0, 40)

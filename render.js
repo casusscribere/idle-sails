@@ -98,9 +98,9 @@ export function createRenderer(canvas, assets) {
   let W = 0, H = 0, dpr = 1, k = 1, ox = 0, oy = 0;
   const wakes = new Map();               // vesselId → [[x,y],...] recent screen positions
   let portScreen = [];                   // [{id, x, y}] for hit-testing the fixed ports
-  // Popular-routes overlay: draw faint→bold so the busiest lanes sit on top.
-  const maxWeight = routeLines.reduce((m, r) => Math.max(m, r.weight), 1);
-  const overlayRoutes = routeLines.slice().sort((a, b) => a.weight - b.weight);
+  // Popular-routes overlay: weighted per-frame by the flowing clock (see
+  // drawRouteOverlay) — lanes brighten and fade as their origin's era-prominence
+  // shifts, so national dominance visibly rotates across the centuries.
 
   function project(lon, lat) {
     let L = ((lon + 180) % 360 + 360) % 360 - 180;
@@ -231,28 +231,43 @@ export function createRenderer(canvas, assets) {
     const h = hex.replace('#', '');
     return `rgba(${parseInt(h.slice(0, 2), 16)},${parseInt(h.slice(2, 4), 16)},${parseInt(h.slice(4, 6), 16)},${a})`;
   }
-  function drawRouteOverlay(season) {
+  // routesCtx = { year, weights } from the flowing clock: only era-active lanes
+  // draw, each scaled by static traffic × its origin port's current prominence.
+  // Faint→bold so the busiest lanes of THIS decade sit on top.
+  function drawRouteOverlay(season, routesCtx) {
+    const y = Math.min(routesCtx.year, 1815);   // reset-ramp years read as 1815
+    const wts = routesCtx.weights || {};
+    const active = [];
+    let maxEff = 0;
+    for (const rl of routeLines) {
+      if (rl.era && (y < rl.era.from || y > rl.era.to)) continue;
+      const eff = rl.weight * (wts[rl.from] != null ? wts[rl.from] : 1);
+      active.push({ rl, eff });
+      if (eff > maxEff) maxEff = eff;
+    }
+    if (!maxEff) return;
+    active.sort((a, b) => a.eff - b.eff);
     ctx.save();
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    for (const rl of overlayRoutes) {
+    for (const { rl, eff } of active) {
       const coords = rl.coordsBySeason[season] || rl.coordsBySeason.jja || Object.values(rl.coordsBySeason)[0];
       if (!coords) continue;
-      const f = rl.weight / maxWeight;
+      const f = eff / maxEff;
       ctx.strokeStyle = hexA(rl.color, 0.22 + 0.5 * f);
       ctx.lineWidth = 1.2 + 5.5 * f;
       ctx.beginPath();
-      for (let i = 0; i < coords.length; i++) { const [x, y] = project(coords[i][0], coords[i][1]); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+      for (let i = 0; i < coords.length; i++) { const [x, y2] = project(coords[i][0], coords[i][1]); i ? ctx.lineTo(x, y2) : ctx.moveTo(x, y2); }
       ctx.stroke();
     }
     ctx.restore();
   }
 
   // ---- dynamic frame ------------------------------------------------------
-  function draw(snapshot, selectedId, selectedPortId, t, showRoutes) {
+  function draw(snapshot, selectedId, selectedPortId, t, routesCtx) {
     if (base) ctx.drawImage(base, 0, 0, W, H);
 
     const vessels = snapshot.vessels;
-    if (showRoutes) drawRouteOverlay(snapshot.season);
+    if (routesCtx) drawRouteOverlay(snapshot.season, routesCtx);
     if (selectedPortId) drawPortFocus(snapshot, selectedPortId);
     const selected = vessels.find(v => v.id === selectedId);
     if (selected) drawSelectedRoute(selected, t);

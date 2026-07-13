@@ -64,6 +64,8 @@ body::after {
 #date { font-variant-numeric: tabular-nums; font-weight: 600; }
 .season { text-transform: uppercase; font-size: 10px; letter-spacing: .18em; color: var(--ink-soft);
   border: 1px solid var(--paper-edge); padding: 2px 7px; border-radius: 2px; }
+.cartouche .era { margin: -4px 0 8px; font-family: var(--serif); font-style: italic;
+  font-size: 12.5px; color: var(--ink-soft); letter-spacing: .04em; }
 
 /* ---- hamburger menu (inside the cartouche) ---- */
 .menu-toggle {

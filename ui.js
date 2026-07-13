@@ -6,6 +6,24 @@ const $ = (id) => document.getElementById(id);
 const SEASON_LABEL = { djf: 'Winter', mam: 'Spring', jja: 'Summer', son: 'Autumn' };
 const SEC_PER_DAY = 86400;
 
+// Era label for the flowing 1550–1815 clock: the period the world is sailing
+// through, keyed by first year. During the 5-year reset ramp (year > 1815) the
+// chart is "redrawn" back to the 1550s.
+const ERAS = [
+  [1550, 'the Iberian age'],
+  [1602, 'the Dutch golden age'],
+  [1652, 'the contest for trade'],
+  [1700, 'the Atlantic system'],
+  [1756, 'the wars for empire'],
+  [1793, 'the Napoleonic wars']
+];
+function eraLabel(year, reset) {
+  if (reset > 0) return 'the chart is redrawn…';
+  let label = ERAS[0][1];
+  for (const [from, name] of ERAS) { if (year >= from) label = name; else break; }
+  return label;
+}
+
 // Speed slider (0–1000) → sim-seconds per real-second, log scale. 0 = paused.
 const SPD_MIN = 8640;              // 0.1 sim-day / real-sec
 const SPD_MAX = 5_184_000;         // 60 sim-days / real-sec
@@ -22,7 +40,7 @@ function speedLabel(mult) {
 
 export function createUI({ onSpeed, onClose, onSelectVessel }) {
   const els = {
-    date: $('date'), season: $('season'),
+    date: $('date'), season: $('season'), era: $('era'),
     cSea: $('c-sea'), cArr: $('c-arr'), cLost: $('c-lost'),
     speed: $('speed'), speedRead: $('speed-read'),
     ledger: $('ledger'), ledgerBody: $('ledger-body'),
@@ -47,6 +65,7 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
   function updateHUD(snap) {
     els.date.textContent = snap.date;
     els.season.textContent = SEASON_LABEL[snap.season] || '';
+    if (els.era) els.era.textContent = eraLabel(snap.year, snap.reset);
     els.cSea.textContent = snap.counters.atSea;
     els.cArr.textContent = snap.counters.arrived;
     els.cLost.textContent = snap.counters.lost;
