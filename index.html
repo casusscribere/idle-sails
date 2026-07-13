@@ -13,11 +13,20 @@
 
   <!-- title cartouche -->
   <header class="cartouche" id="cartouche">
+    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="menu" aria-label="Menu" title="Menu">☰</button>
     <div class="rule"></div>
     <h1>Idle&nbsp;Sails</h1>
     <p class="sub">An age-of-sail chart that sails itself</p>
     <p class="clock"><span id="date">—</span> <span class="season" id="season"></span></p>
     <div class="rule"></div>
+    <div class="menu" id="menu" hidden>
+      <p class="menu-h">Overlays</p>
+      <label class="menu-item">
+        <input type="checkbox" id="ov-routes">
+        <span>Popular trade routes</span>
+      </label>
+      <p class="menu-note">Line weight ∝ traffic · colour = flag</p>
+    </div>
   </header>
 
   <!-- ambient counters -->

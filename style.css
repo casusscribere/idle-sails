@@ -15,10 +15,13 @@ body {
   background: #d3c19b;
   color: var(--ink);
   font-family: var(--sans);
-  overflow: hidden;
+  overflow-x: auto;      /* map scrolls left/right below the optimal width */
+  overflow-y: hidden;
   -webkit-font-smoothing: antialiased;
 }
-#chart { position: fixed; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; z-index: 0; }
+/* the map is an in-flow block; when wider than the viewport the body scrolls it
+   horizontally, while the fixed UI panels stay put over the top */
+#chart { display: block; cursor: crosshair; z-index: 0; }
 
 /* decorative neatline framing the top & bottom edges of the chart */
 body::before, body::after {
@@ -61,6 +64,20 @@ body::after {
 #date { font-variant-numeric: tabular-nums; font-weight: 600; }
 .season { text-transform: uppercase; font-size: 10px; letter-spacing: .18em; color: var(--ink-soft);
   border: 1px solid var(--paper-edge); padding: 2px 7px; border-radius: 2px; }
+
+/* ---- hamburger menu (inside the cartouche) ---- */
+.menu-toggle {
+  position: absolute; top: 7px; right: 9px; z-index: 1;
+  background: none; border: none; cursor: pointer; padding: 2px 4px;
+  font-size: 17px; line-height: 1; color: var(--ink-soft); border-radius: 3px;
+}
+.menu-toggle:hover { color: var(--ink); background: rgba(92, 70, 48, 0.08); }
+.menu-toggle[aria-expanded="true"] { color: var(--ink); background: rgba(92, 70, 48, 0.12); }
+.menu { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--paper-edge); }
+.menu-h { margin: 0 0 6px; font-size: 10px; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-soft); }
+.menu-item { display: flex; align-items: center; gap: 9px; font-size: 14px; cursor: pointer; padding: 3px 0; }
+.menu-item input { width: 15px; height: 15px; accent-color: #8a6a2c; cursor: pointer; margin: 0; }
+.menu-note { margin: 4px 0 0 24px; font-size: 11px; font-style: italic; color: var(--ink-soft); }
 
 /* ---- counters ---- */
 .counters { top: 18px; right: 18px; display: flex; gap: 4px; padding: 10px 8px; }

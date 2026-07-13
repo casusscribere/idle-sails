@@ -34,14 +34,27 @@ async function boot() {
   const portById = new Map(datasets.ports.map(p => [p.id, p]));
   const cargoById = new Map(datasets.cargo.map(c => [c.id, c]));
   const powerById = new Map(datasets.powers.map(p => [p.id, p]));
+  const routeClassOf = new Map(datasets.shipTypes.map(s => [s.id, s.routeClass]));
+
+  // Popular-routes overlay data: one representative polyline per lane, per season,
+  // tagged with the lane's traffic weight (popularity) and flag colour (nation).
+  const SEASONS = ['djf', 'mam', 'jja', 'son'];
+  const routeLines = datasets.routes.map(lane => {
+    const rc = routeClassOf.get(lane.shipTypes[0]);
+    const coordsBySeason = {};
+    for (const s of SEASONS) { const leg = legById.get(`${lane.id}__${rc}__${s}`); if (leg) coordsBySeason[s] = leg.coords; }
+    const power = powerById.get(lane.flag);
+    return { weight: lane.weight || 1, color: (power && power.color) || '#3a2c1c', coordsBySeason };
+  });
 
   const canvas = document.getElementById('chart');
-  const renderer = createRenderer(canvas, { land, ports: datasets.ports, legById, reducedMotion });
+  const renderer = createRenderer(canvas, { land, ports: datasets.ports, legById, reducedMotion, routeLines });
   renderer.resize();
   addEventListener('resize', renderer.resize);
 
   let speed = speedFromSlider(+document.getElementById('speed').value);
   let selectedVesselId = null, selectedPortId = null, lastPanelSig = '';
+  let showRoutes = false;
   let latestSnap = world.snapshot();
 
   const ledgerCtx = () => ({ portById, cargoById, powerById, simClock: latestSnap.simClock });
@@ -97,6 +110,16 @@ async function boot() {
     canvas.style.cursor = renderer.pickAt(e.clientX - r.left, e.clientY - r.top, latestSnap) ? 'pointer' : 'crosshair';
   });
 
+  // hamburger menu + overlays
+  const menuToggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+  menuToggle.addEventListener('click', () => {
+    const open = menu.hidden;
+    menu.hidden = !open;
+    menuToggle.setAttribute('aria-expanded', String(open));
+  });
+  document.getElementById('ov-routes').addEventListener('change', (e) => { showRoutes = e.target.checked; });
+
   // animation loop
   let last = performance.now();
   let hudAccum = 0;
@@ -106,7 +129,7 @@ async function boot() {
     if (speed > 0) world.tick(dtReal * speed);
 
     latestSnap = world.snapshot();
-    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now);
+    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, showRoutes);
 
     hudAccum += dtReal;
     if (hudAccum > 0.2) { hudAccum = 0; ui.updateHUD(latestSnap); renderPanel(); }

@@ -30,14 +30,77 @@ const WAKE = 'rgba(58,44,28,0.28)';
 // Longitude spans the Atlantic-Africa-Indian-China world (Kingston -76.8°E to
 // Dejima 129.6°E) with margin; the empty mid-Pacific is cropped.
 const BOUNDS = { lonMin: -100, lonMax: 150, latMin: -58, latMax: 74 };
+// Longitude span the map should always keep visible (all 15 ports, -76.8°→129.6°,
+// with a little margin). Sets the "optimal" width below which the page h-scrolls.
+const FIT_LON = 208;
+
+// Colour is spent on allegiance (the flag), so ship CATEGORY is carried by the
+// glyph's shape instead. The ten ship-types collapse into five map categories:
+const SHIP_CATEGORY = {
+  'ship-of-the-line': 'line',
+  'frigate': 'warship', 'sloop-of-war': 'warship',
+  'east-indiaman': 'indiaman', 'fluyt': 'indiaman',
+  'slave-ship': 'slaver'
+  // everything else (merchantman, snow, brig, sloop) → 'merchant'
+};
+export const categoryOf = (v) => SHIP_CATEGORY[v.typeId] || 'merchant';
+
+// Build a heading-aligned glyph path (bow at +x, to be rotated to heading). `s`
+// is the glyph radius (scaled from tonnage by the caller).
+export function shipGlyphPath(ctx, cat, s) {
+  ctx.beginPath();
+  switch (cat) {
+    case 'warship': // frigate / sloop-of-war — slender, sharp, barbed arrowhead
+      ctx.moveTo(1.3 * s, 0);
+      ctx.lineTo(-0.55 * s, 0.72 * s);
+      ctx.lineTo(-0.15 * s, 0);
+      ctx.lineTo(-0.55 * s, -0.72 * s);
+      ctx.closePath();
+      break;
+    case 'line': // ship of the line — broad, blunt, imposing hexagonal hull
+      ctx.moveTo(1.0 * s, 0);
+      ctx.lineTo(0.35 * s, 0.64 * s);
+      ctx.lineTo(-0.75 * s, 0.64 * s);
+      ctx.lineTo(-0.5 * s, 0);
+      ctx.lineTo(-0.75 * s, -0.64 * s);
+      ctx.lineTo(0.35 * s, -0.64 * s);
+      ctx.closePath();
+      break;
+    case 'indiaman': // east-indiaman / fluyt — full, rounded bulk hull
+      ctx.moveTo(1.05 * s, 0);
+      ctx.quadraticCurveTo(0.35 * s, 0.82 * s, -0.55 * s, 0.55 * s);
+      ctx.quadraticCurveTo(-0.85 * s, 0.28 * s, -0.7 * s, 0);
+      ctx.quadraticCurveTo(-0.85 * s, -0.28 * s, -0.55 * s, -0.55 * s);
+      ctx.quadraticCurveTo(0.35 * s, -0.82 * s, 1.05 * s, 0);
+      ctx.closePath();
+      break;
+    case 'slaver': // slave ship — blunt boxy hull (a transverse bar is added after)
+      ctx.moveTo(0.95 * s, 0);
+      ctx.lineTo(0.78 * s, 0.5 * s);
+      ctx.lineTo(-0.72 * s, 0.52 * s);
+      ctx.lineTo(-0.72 * s, -0.52 * s);
+      ctx.lineTo(0.78 * s, -0.5 * s);
+      ctx.closePath();
+      break;
+    default: // merchantman / snow / brig / sloop — slim dart with a notched stern
+      ctx.moveTo(0.95 * s, 0);
+      ctx.lineTo(-0.7 * s, 0.6 * s);
+      ctx.lineTo(-0.4 * s, 0);
+      ctx.lineTo(-0.7 * s, -0.6 * s);
+      ctx.closePath();
+  }
+}
 
 export function createRenderer(canvas, assets) {
-  const { land, ports, legById, reducedMotion } = assets;
+  const { land, ports, legById, reducedMotion, routeLines = [] } = assets;
   const ctx = canvas.getContext('2d');
   let base = null, baseCtx = null;      // offscreen static chart
   let W = 0, H = 0, dpr = 1, k = 1, ox = 0, oy = 0;
   const wakes = new Map();               // vesselId → [[x,y],...] recent screen positions
   let portScreen = [];                   // [{id, x, y}] for hit-testing the fixed ports
+  // Popular-routes overlay: draw faint→bold so the busiest lanes sit on top.
+  const maxWeight = routeLines.reduce((m, r) => Math.max(m, r.weight), 1);
+  const overlayRoutes = routeLines.slice().sort((a, b) => a.weight - b.weight);
 
   function project(lon, lat) {
     let L = ((lon + 180) % 360 + 360) % 360 - 180;
@@ -46,10 +109,16 @@ export function createRenderer(canvas, assets) {
 
   function resize() {
     dpr = Math.min(2, window.devicePixelRatio || 1);
-    const r = canvas.getBoundingClientRect();
-    W = Math.max(1, Math.floor(r.width)); H = Math.max(1, Math.floor(r.height));
-    canvas.width = W * dpr; canvas.height = H * dpr;
     const spanLon = BOUNDS.lonMax - BOUNDS.lonMin, spanLat = BOUNDS.latMax - BOUNDS.latMin;
+    const vw = document.documentElement.clientWidth || window.innerWidth;
+    const vh = window.innerHeight;
+    // The "optimal" width shows the whole longitude range at this height. Below it
+    // the canvas holds that width (in CSS px) and the page scrolls left/right,
+    // rather than cropping the map any further.
+    const optimalW = Math.ceil(vh * FIT_LON / spanLat);
+    W = Math.max(vw, optimalW); H = vh;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    canvas.width = W * dpr; canvas.height = H * dpr;
     k = Math.max(W / spanLon, H / spanLat);           // cover the canvas
     ox = (W - spanLon * k) / 2; oy = (H - spanLat * k) / 2;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -118,36 +187,27 @@ export function createRenderer(canvas, assets) {
 
   function drawGeom(c, geom) {
     const polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.type === 'MultiPolygon' ? geom.coordinates : [];
-    // A ring that crosses the antimeridian (lon ±180) has its two halves projected
-    // to opposite edges of the chart. That one edge must be filled (so winding is
-    // correct and the land fills solidly) but NOT stroked (else it draws a line
-    // straight across the map). So fill with intact rings, then stroke a second
-    // pass that lifts the pen on any segment jumping most of the map width.
-    const jump = (BOUNDS.lonMax - BOUNDS.lonMin) * k * 0.5;
+    c.fillStyle = LAND; c.strokeStyle = LAND_EDGE; c.lineWidth = 0.9;
     for (const poly of polys) {
-      c.fillStyle = LAND;
       c.beginPath();
       for (const ring of poly) {
+        // Unwrap each ring's longitudes so it stays geometrically continuous. A
+        // landmass crossing the antimeridian (lon ±180, e.g. Chukotka) otherwise
+        // has its halves projected to opposite screen edges, and both fill and
+        // stroke smear a band straight across the chart. Unwrapping keeps the
+        // crossing off-screen where it belongs (any residual pole-encircling seam,
+        // i.e. Antarctica, sits below the viewport).
+        let prevLon = null;
         for (let i = 0; i < ring.length; i++) {
-          const [x, y] = project(ring[i][0], ring[i][1]);
+          let lon = ((ring[i][0] + 180) % 360 + 360) % 360 - 180;
+          if (prevLon !== null) { while (lon - prevLon > 180) lon -= 360; while (lon - prevLon < -180) lon += 360; }
+          prevLon = lon;
+          const x = ox + (lon - BOUNDS.lonMin) * k, y = oy + (BOUNDS.latMax - ring[i][1]) * k;
           i ? c.lineTo(x, y) : c.moveTo(x, y);
         }
         c.closePath();
       }
-      c.fill();
-
-      c.strokeStyle = LAND_EDGE; c.lineWidth = 0.9;
-      c.beginPath();
-      for (const ring of poly) {
-        let prevX = null;
-        for (let i = 0; i < ring.length; i++) {
-          const [x, y] = project(ring[i][0], ring[i][1]);
-          if (i === 0 || (prevX !== null && Math.abs(x - prevX) > jump)) c.moveTo(x, y);
-          else c.lineTo(x, y);
-          prevX = x;
-        }
-      }
-      c.stroke();
+      c.fill(); c.stroke();
     }
   }
 
@@ -164,11 +224,35 @@ export function createRenderer(canvas, assets) {
     c.restore();
   }
 
+  // ---- popular-routes overlay --------------------------------------------
+  // Each lane drawn in its flag's colour (national distribution) with line
+  // weight & opacity scaled by traffic volume (popularity).
+  function hexA(hex, a) {
+    const h = hex.replace('#', '');
+    return `rgba(${parseInt(h.slice(0, 2), 16)},${parseInt(h.slice(2, 4), 16)},${parseInt(h.slice(4, 6), 16)},${a})`;
+  }
+  function drawRouteOverlay(season) {
+    ctx.save();
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    for (const rl of overlayRoutes) {
+      const coords = rl.coordsBySeason[season] || rl.coordsBySeason.jja || Object.values(rl.coordsBySeason)[0];
+      if (!coords) continue;
+      const f = rl.weight / maxWeight;
+      ctx.strokeStyle = hexA(rl.color, 0.22 + 0.5 * f);
+      ctx.lineWidth = 1.2 + 5.5 * f;
+      ctx.beginPath();
+      for (let i = 0; i < coords.length; i++) { const [x, y] = project(coords[i][0], coords[i][1]); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
   // ---- dynamic frame ------------------------------------------------------
-  function draw(snapshot, selectedId, selectedPortId, t) {
+  function draw(snapshot, selectedId, selectedPortId, t, showRoutes) {
     if (base) ctx.drawImage(base, 0, 0, W, H);
 
     const vessels = snapshot.vessels;
+    if (showRoutes) drawRouteOverlay(snapshot.season);
     if (selectedPortId) drawPortFocus(snapshot, selectedPortId);
     const selected = vessels.find(v => v.id === selectedId);
     if (selected) drawSelectedRoute(selected, t);
@@ -248,17 +332,17 @@ export function createRenderer(canvas, assets) {
       ctx.restore(); return;
     }
     ctx.rotate((v.pos.heading - 90) * Math.PI / 180);
-    // little hull glyph pointing along heading, tinted by allegiance
-    ctx.beginPath();
-    ctx.moveTo(size, 0);
-    ctx.lineTo(-size * 0.7, size * 0.6);
-    ctx.lineTo(-size * 0.4, 0);
-    ctx.lineTo(-size * 0.7, -size * 0.6);
-    ctx.closePath();
+    // hull glyph: shape = ship category, fill = allegiance flag colour
+    const cat = categoryOf(v);
+    shipGlyphPath(ctx, cat, size);
     ctx.fillStyle = v.flagColor || INK;
-    ctx.globalAlpha = v.middlePassage ? 0.95 : 0.9;
+    ctx.globalAlpha = 0.9;
     ctx.fill();
     ctx.lineWidth = 0.8; ctx.strokeStyle = INK; ctx.globalAlpha = 1; ctx.stroke();
+    if (cat === 'slaver') { // sober transverse beam bar
+      ctx.beginPath(); ctx.moveTo(0.05 * size, 0.52 * size); ctx.lineTo(0.05 * size, -0.52 * size);
+      ctx.lineWidth = 1; ctx.strokeStyle = INK; ctx.stroke();
+    }
     ctx.restore();
 
     if (isSel) {
