@@ -20,39 +20,42 @@ routing engine powers the idler's movement.
 
 - **Phase: Milestones 1–3 complete + a working parchment display.** The three
   PLAN §0 defaults and the sober slave-trade treatment are user-confirmed.
-- **Milestone 3 (headless world):** `app/world.js` — seeded, deterministic,
-  DOM-free. Procedurally generates plausible vessels (PLAN §4), rolls each
-  voyage's fate at spawn, and advances them along the baked polylines. Spawns and
-  fates are driven off sim-time so big-step fast-forward == many small steps
-  (offline accrual). `test/world.test.mjs` (run `npm test`) covers determinism,
-  granularity-independence, plausibility + the Middle-Passage invariant, bounded
-  population, and calendar cycling — **7 passing**.
-- **Display layer (spans M4/M5/M7):** `app/{render,ui,main}.js` + `index.html` +
-  `style.css` — a canvas **parchment sea chart** (blank-sea portolan style: rhumb
-  web, wind roses, engraved coastlines, allegiance-tinted ship glyphs), a speed
-  instrument, click→vessel **ledger** (the five required fields + itinerary +
-  sober Middle-Passage note), ambient counters, and a ship's-log ticker. Verified
-  rendering via headless Chromium screenshot.
-- **Deploy:** `.github/workflows/pages.yml` publishes `app/` on push to `main`
-  (needs Settings→Pages→Source→"GitHub Actions", one-time). Static; serve over
-  HTTP, not `file://`. `#seed=<n>` loads a specific world.
-- **Renderer choice (PLAN §10.4 / M4): settled on canvas** — no MapLibre.
-- Next: **Milestone 6** (persistence + offline accrual via `app/persist.js`) then
-  **M7** polish. `world.js` already fast-forwards deterministically, so persist is
-  mostly wiring localStorage + a catch-up cap.
+- **Repo structure:** the deployable site lives at the **repo root** —
+  `index.html`, `main.js`, `world.js`, `render.js`, `ui.js`, `style.css`, and
+  generated `data/` (`datasets.json`, `routes.json`, `land.geojson`). (Moved out
+  of the old `app/` dir so Pages serves `index.html` from the root.)
 - **Milestone 1 (data):** `data-src/` holds the six datasets + `ports.json` +
   `_schema.md`. `pipeline/build-data.mjs` validates cross-refs, enforces the
   Middle-Passage invariant, and runs a ~2000-vessel plausibility self-check
-  (0 contradictions) → `app/data/datasets.json` (32 KB).
+  (0 contradictions) → `data/datasets.json`.
 - **Milestone 2 (routes):** `pipeline/bake-routes.mjs` reuses the archived engine
-  to bake **208 route polylines** → `app/data/routes.json` (78 KB). See
-  `pipeline/README.md` for the three engine corrections it applies (Arctic ice
-  cap, Panama/Suez seals, Drake-Passage cap) — **read that before touching the
-  baker.** The archived `.bin` fields are left untouched.
+  to bake **208 route polylines** → `data/routes.json`. See `pipeline/README.md`
+  for the three engine corrections it applies (Arctic ice cap, Panama/Suez seals,
+  Drake-Passage cap) — **read that before touching the baker.** Archived `.bin`
+  fields untouched.
+- **Milestone 3 (headless world):** `world.js` — seeded, deterministic, DOM-free.
+  Generates plausible vessels (PLAN §4), rolls each voyage's fate at spawn, and
+  advances them along the baked polylines. Spawns/fates key off sim-time so
+  big-step fast-forward == many small steps (offline accrual). `test/world.test.mjs`
+  (`npm test`) — **7 passing** (determinism, granularity-independence, plausibility
+  + Middle-Passage invariant, bounded population, calendar cycling).
+- **Display (canvas; settles M4 — no MapLibre):** `render.js` + `ui.js` +
+  `main.js` + `index.html` + `style.css` — a **parchment sea chart** (blank-sea
+  portolan style: graticule projection grid, engraved coastlines, allegiance-tinted
+  ship glyphs; wind roses and the log ticker were later removed). Controls: speed
+  instrument, click a **vessel** → ledger (five fields + itinerary + sober
+  Middle-Passage note), click a **port** → its live inbound/outbound traffic
+  (current-leg only), ambient counters. Verified via headless Chromium.
+- **Deploy:** `.github/workflows/pages.yml` stages the root site files into
+  `_site` and publishes on push to `main` (needs Settings→Pages→Source→"GitHub
+  Actions", one-time). Static; serve over HTTP, not `file://`. `#seed=<n>` loads a
+  specific world.
 - **Git:** branch `main`; remote **`https://github.com/casusscribere/idle-sails`
-  (private)**, token-free HTTPS. The M1/M2 work (`data-src/`, `pipeline/`,
-  `app/data/`) is **uncommitted** as of this writing.
-- Still no `app/*.js` (world/render/ui/persist) — those are Milestone 3+.
+  (private)**, token-free HTTPS. M1–M3 + the display are committed and pushed; the
+  root restructure + compass-rose removal may be uncommitted — check `git status`.
+- Next: **Milestone 6** (persistence + offline accrual via `persist.js`) then
+  **M7** polish. `world.js` already fast-forwards deterministically, so persist is
+  mostly localStorage wiring + a catch-up cap.
 
 ## Repo layout right now
 

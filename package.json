@@ -9,6 +9,6 @@
     "build:routes": "node pipeline/bake-routes.mjs",
     "build": "node pipeline/build-data.mjs && node pipeline/bake-routes.mjs",
     "test": "node --test test/*.test.mjs",
-    "serve": "node --version >/dev/null && python3 -m http.server --directory app 8000"
+    "serve": "python3 -m http.server 8000"
   }
 }

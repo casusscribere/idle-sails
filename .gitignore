@@ -3,3 +3,6 @@ pipeline/node_modules/
 pipeline/build/
 *.log
 .DS_Store
+
+# GitHub Pages CI staging dir
+_site/

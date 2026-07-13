@@ -60,10 +60,18 @@ export function createRenderer(canvas, assets) {
     c.fillStyle = SEA_TINT; c.fillRect(0, 0, W, H);
     drawGrain(c);
 
-    // graticule every 15° (the projection grid)
+    // graticule every 15° (the projection grid). Snap each line's constant axis
+    // to a half-pixel so every meridian/parallel renders with identical crispness
+    // (otherwise whichever line happens to align to a device pixel looks bolder).
     c.lineWidth = 1; c.strokeStyle = INK_FAINT;
-    for (let lon = -90; lon <= 150; lon += 15) { const a = project(lon, BOUNDS.latMax), b = project(lon, BOUNDS.latMin); line(c, a, b); }
-    for (let lat = -45; lat <= 60; lat += 15) { const a = project(BOUNDS.lonMin, lat), b = project(BOUNDS.lonMax, lat); line(c, a, b); }
+    for (let lon = -90; lon <= 150; lon += 15) {
+      const a = project(lon, BOUNDS.latMax), b = project(lon, BOUNDS.latMin), x = Math.round(a[0]) + 0.5;
+      line(c, [x, a[1]], [x, b[1]]);
+    }
+    for (let lat = -45; lat <= 60; lat += 15) {
+      const a = project(BOUNDS.lonMin, lat), b = project(BOUNDS.lonMax, lat), y = Math.round(a[1]) + 0.5;
+      line(c, [a[0], y], [b[0], y]);
+    }
 
     // land
     c.lineJoin = 'round';
@@ -100,14 +108,20 @@ export function createRenderer(canvas, assets) {
   function drawGeom(c, geom) {
     const polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.type === 'MultiPolygon' ? geom.coordinates : [];
     c.fillStyle = LAND; c.strokeStyle = LAND_EDGE; c.lineWidth = 0.9;
+    // A ring that crosses the antimeridian (lon ±180) has its two halves projected
+    // to opposite edges; lift the pen on any segment that jumps most of the map
+    // width so we don't stroke a spurious line straight across the chart.
+    const jump = (BOUNDS.lonMax - BOUNDS.lonMin) * k * 0.5;
     for (const poly of polys) {
       c.beginPath();
       for (const ring of poly) {
+        let prevX = null;
         for (let i = 0; i < ring.length; i++) {
           const [x, y] = project(ring[i][0], ring[i][1]);
-          i ? c.lineTo(x, y) : c.moveTo(x, y);
+          if (i === 0 || (prevX !== null && Math.abs(x - prevX) > jump)) c.moveTo(x, y);
+          else c.lineTo(x, y);
+          prevX = x;
         }
-        c.closePath();
       }
       c.fill(); c.stroke();
     }

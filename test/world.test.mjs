@@ -5,10 +5,10 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { createWorld, _internals } from '../app/world.js';
+import { createWorld, _internals } from '../world.js';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const DATA = join(HERE, '..', 'app', 'data');
+const DATA = join(HERE, '..', 'data');
 const datasets = JSON.parse(readFileSync(join(DATA, 'datasets.json'), 'utf8'));
 const routes = JSON.parse(readFileSync(join(DATA, 'routes.json'), 'utf8'));
 const data = { datasets, routes };

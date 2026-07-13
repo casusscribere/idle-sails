@@ -5,12 +5,12 @@ routing engine into the small static JSON the app ships. Both run **offline**,
 once, and require no network. Node ≥ 18 (developed on v25).
 
 ```
-node pipeline/build-data.mjs     # data-src/*.json  → app/data/datasets.json (+ land.geojson)
-node pipeline/bake-routes.mjs    # data-src + archived fields → app/data/routes.json
+node pipeline/build-data.mjs     # data-src/*.json  → data/datasets.json (+ land.geojson)
+node pipeline/bake-routes.mjs    # data-src + archived fields → data/routes.json
 ```
 
 Neither the 31 MB of archived binary fields nor `data-src/` is shipped at
-runtime — only `app/data/{datasets.json, routes.json, land.geojson}`.
+runtime — only `data/{datasets.json, routes.json, land.geojson}`.
 
 ## `build-data.mjs` — validate + bundle (Milestone 1)
 
@@ -27,7 +27,7 @@ Loads the six `data-src` datasets, then:
   the PLAN §4 pipeline and asserts zero contradictions (wrong-era type, cargo off
   its route, inactive flag, out-of-range tonnage, etc.).
 
-Emits `app/data/datasets.json` (versioned) and copies the coastline.
+Emits `data/datasets.json` (versioned) and copies the coastline.
 
 ## `bake-routes.mjs` — bake route polylines (Milestone 2)
 
@@ -35,7 +35,7 @@ Reuses the archived least-time engine (`archive/isochrone-v1/pipeline/`) directl
 for each lane it runs Dijkstra with the **destination** port as source, then
 reconstructs the exact origin→destination path from the parent pointers (`prev`),
 simplifies it (land-aware Douglas–Peucker), and records sailing hours =
-`time[originCell]`. Output: `app/data/routes.json` (208 polylines, ~78 KB).
+`time[originCell]`. Output: `data/routes.json` (208 polylines, ~78 KB).
 
 ### Why it recomputes fields instead of reading the shipped `.bin` files
 

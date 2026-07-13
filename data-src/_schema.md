@@ -1,7 +1,7 @@
 # `data-src/` schema (human reference)
 
 Hand-authored, human-editable source datasets for Idle Sails. `pipeline/build-data.mjs`
-validates and bundles these into `app/data/datasets.json`. The `$schema` keys in each
+validates and bundles these into `data/datasets.json`. The `$schema` keys in each
 file point here; they are documentation only, not enforced JSON Schema.
 
 **Shared vocabularies**

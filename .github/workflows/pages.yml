@@ -1,20 +1,18 @@
-# Deploy the static app/ directory to GitHub Pages.
+# Deploy the static site (repo root) to GitHub Pages.
 #
-# The runtime site is entirely static: app/ ships prebuilt data (datasets.json,
-# routes.json, land.geojson) that were baked offline and committed, so there is
-# nothing to build here — we just publish app/ as-is. (Regenerating the data
-# needs the archived engine's gitignored build artifacts, which are not in the
-# repo; see pipeline/README.md.)
+# index.html lives at the repository root along with its modules, styles, and the
+# prebuilt data/ (baked offline and committed — nothing is built here). We stage
+# only the site files into _site so the published Pages artifact stays lean and
+# doesn't expose the archive, pipeline, or source docs.
 #
-# One-time setup: in the repository, Settings → Pages → Build and deployment →
-# Source → "GitHub Actions". Then every push to main redeploys.
+# One-time setup: Settings → Pages → Build and deployment → Source → "GitHub
+# Actions". Then every push to main redeploys.
 
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
-    paths: ['app/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -34,9 +32,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp index.html *.js style.css _site/
+          cp -r data _site/
+          touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: app
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

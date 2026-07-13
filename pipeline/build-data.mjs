@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // build-data.mjs — validate the hand-authored data-src/*.json datasets, run a
 // procedural-generation plausibility self-check, and bundle everything into a
-// single versioned app/data/datasets.json. Also copies the coastline into place.
+// single versioned data/datasets.json. Also copies the coastline into place.
 //
 //   node pipeline/build-data.mjs
 //
@@ -15,7 +15,7 @@ import { dirname, join } from 'node:path';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, '..');
 const SRC = join(ROOT, 'data-src');
-const OUT = join(ROOT, 'app', 'data');
+const OUT = join(ROOT, 'data');
 const ARCHIVE_FIELDS = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'data', 'fields');
 const LAND_SRC = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'assets', 'land.geojson');
 
@@ -219,4 +219,4 @@ console.log('✓ build-data: all datasets valid.');
 console.log(`  ports ${ports.length} · powers ${powers.length} · ship-types ${shipTypes.length} · cargo ${cargo.length} · routes ${routes.length} · wars ${wars.length}`);
 console.log(`  baked-field references: ${neededFields.size} (all present)`);
 console.log(`  plausibility self-check: ${generated} vessels generated, ${contradictions} contradictions`);
-console.log(`  → app/data/datasets.json (${kb} KB)${existsSync(LAND_SRC) ? ' + land.geojson' : ''}`);
+console.log(`  → data/datasets.json (${kb} KB)${existsSync(LAND_SRC) ? ' + land.geojson' : ''}`);

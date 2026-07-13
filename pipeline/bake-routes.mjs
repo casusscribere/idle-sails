@@ -17,7 +17,7 @@
 //      as source, giving a time field + parent pointers (prev). Reconstruct the
 //      EXACT least-time path origin→destination by following prev (no lossy
 //      downhill re-walk). Sailing hours = time[originCell].
-//   3. Simplify (Douglas–Peucker) and emit app/data/routes.json.
+//   3. Simplify (Douglas–Peucker) and emit data/routes.json.
 //
 // The archived fields (docs/data/fields/*.bin) are left untouched; this recomputes
 // the handful of fields it needs, ice-capped, at bake time.
@@ -33,7 +33,7 @@ import { route as dijkstra, snapToOcean } from '../archive/isochrone-v1/pipeline
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, '..');
 const SRC = join(ROOT, 'data-src');
-const OUT = join(ROOT, 'app', 'data');
+const OUT = join(ROOT, 'data');
 const ARCHIVE = join(ROOT, 'archive', 'isochrone-v1', 'pipeline');
 
 const gi = makeGridIndex(GRID);
@@ -275,6 +275,6 @@ const kb = (Buffer.byteLength(JSON.stringify(out)) / 1024).toFixed(1);
 console.log(`✓ bake-routes: ${baked.length} polylines from ${routes.length} lanes.`);
 console.log(`  ice cap: lat>${ICE_N} / lat<${ICE_S} blocked (${iced} cells) · isthmuses sealed (${sealed} cells) · fields computed ${fieldCache.size}`);
 console.log(`  field walks ${nField} · great-circle fallbacks ${nFallback}`);
-console.log(`  → app/data/routes.json (${kb} KB)`);
+console.log(`  → data/routes.json (${kb} KB)`);
 if (warnings.length) { console.log(`  ${warnings.length} fallback warning(s):`); for (const w of warnings.slice(0, 12)) console.log('    - ' + w); }
 if (problems.length) { console.error(`\n✗ ${problems.length} sanity problem(s):`); for (const p of problems.slice(0, 25)) console.error('  - ' + p); process.exit(1); }

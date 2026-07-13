@@ -197,22 +197,26 @@ period typography. (Invoke the `frontend-design` skill at build time.)
 Static, no backend, no framework required. Vanilla ES modules + a small build
 step (esbuild or none). Deployable to GitHub Pages / any static host.
 
+The deployable site lives at the **repo root** (so GitHub Pages serves
+`index.html` directly):
+
 ```
-/                     repo root
+/                     repo root = the deployable static site
+  index.html
+  main.js             bootstrap + animation loop
+  world.js            generator + simulation (headless, seeded, testable)
+  render.js           map + markers
+  ui.js               slider + vessel/port ledger
+  persist.js          localStorage + offline accrual (Milestone 6)
+  style.css
+  data/               generated: datasets.json, routes.json, land.geojson
   PLAN.md             this file
   README.md           run / build instructions
   data-src/           hand-authored datasets (ship-types, names, powers, cargo,
                       routes, wars) — CSV/JSON, human-editable
   pipeline/
-    bake-routes.mjs   archived router → app/data/routes.json
-    build-data.mjs    validate + bundle data-src → app/data/datasets.json
-  app/                the deployable static site
-    index.html
-    world.js          generator + simulation (headless, seeded, testable)
-    render.js         map + markers
-    ui.js             slider + sidebar
-    persist.js        localStorage + offline accrual
-    data/             generated: datasets.json, routes.json, land.geojson
+    bake-routes.mjs   archived router → data/routes.json
+    build-data.mjs    validate + bundle data-src → data/datasets.json
   test/               node tests for world.js (determinism, plausibility)
   archive/isochrone-v1/   the previous project (see ARCHIVE-NOTE.md)
 ```
