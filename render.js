@@ -33,9 +33,9 @@ const WAKE = 'rgba(58,44,28,0.28)';
 // and Acapulco join the chart, and the Manila↔Acapulco galleon crosses the
 // antimeridian; lat reaches 81°N for the Spitsbergen whaling ground.
 const BOUNDS = { lonMin: -180, lonMax: 180, latMin: -58, latMax: 81 };
-// Longitude span the map should always keep visible (all 15 ports, -76.8°→129.6°,
-// with a little margin). Sets the "optimal" width below which the page h-scrolls.
-const FIT_LON = 208;
+// (The old FIT_LON scroll constant is gone: the chart now CONTAINS the full
+// world in the viewport width — see resize() — scrolling only below the
+// readability floor.)
 
 // Colour is spent on allegiance (the flag), so ship CATEGORY is carried by the
 // glyph's shape instead. The ship-types collapse into five map categories:
@@ -117,14 +117,18 @@ export function createRenderer(canvas, assets) {
     const spanLon = BOUNDS.lonMax - BOUNDS.lonMin, spanLat = BOUNDS.latMax - BOUNDS.latMin;
     const vw = document.documentElement.clientWidth || window.innerWidth;
     const vh = window.innerHeight;
-    // The "optimal" width shows the whole longitude range at this height. Below it
-    // the canvas holds that width (in CSS px) and the page scrolls left/right,
-    // rather than cropping the map any further.
-    const optimalW = Math.ceil(vh * FIT_LON / spanLat);
-    W = Math.max(vw, optimalW); H = vh;
+    // CONTAIN, not cover: the whole world fits the viewport width, so Japan and
+    // Sitka stay on screen without scrolling; the parchment letterboxes above
+    // and below. Only when that would shrink the map below a readable height
+    // (narrow/mobile screens) does the canvas hold a minimum scale and the page
+    // scroll left/right instead.
+    const MIN_MAP_H = 460;                           // px readability floor
+    const kContain = vw / spanLon;
+    if (kContain * spanLat >= MIN_MAP_H) { k = kContain; W = vw; }
+    else { k = MIN_MAP_H / spanLat; W = Math.max(vw, Math.ceil(spanLon * k)); }
+    H = vh;
     canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
     canvas.width = W * dpr; canvas.height = H * dpr;
-    k = Math.max(W / spanLon, H / spanLat);           // cover the canvas
     ox = (W - spanLon * k) / 2; oy = (H - spanLat * k) / 2;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     buildBase();
@@ -148,14 +152,19 @@ export function createRenderer(canvas, assets) {
     // graticule every 15° (the projection grid). Snap each line's constant axis
     // to a half-pixel so every meridian/parallel renders with identical crispness
     // (otherwise whichever line happens to align to a device pixel looks bolder).
+    // Edges computed from ox/k directly — project() wraps +180° back to −180°,
+    // which collapsed every parallel to a zero-length line (the S2 full-globe
+    // bounds regression). Meridians and parallels now span the whole chart.
     c.lineWidth = 1; c.strokeStyle = INK_FAINT;
-    for (let lon = -90; lon <= 150; lon += 15) {
-      const a = project(lon, BOUNDS.latMax), b = project(lon, BOUNDS.latMin), x = Math.round(a[0]) + 0.5;
-      line(c, [x, a[1]], [x, b[1]]);
+    const xL = ox, xR = ox + (BOUNDS.lonMax - BOUNDS.lonMin) * k;
+    const yT = oy, yB = oy + (BOUNDS.latMax - BOUNDS.latMin) * k;
+    for (let lon = -165; lon <= 165; lon += 15) {
+      const x = Math.round(project(lon, 0)[0]) + 0.5;
+      line(c, [x, yT], [x, yB]);
     }
-    for (let lat = -45; lat <= 60; lat += 15) {
-      const a = project(BOUNDS.lonMin, lat), b = project(BOUNDS.lonMax, lat), y = Math.round(a[1]) + 0.5;
-      line(c, [a[0], y], [b[0], y]);
+    for (let lat = -45; lat <= 75; lat += 15) {
+      const y = Math.round(oy + (BOUNDS.latMax - lat) * k) + 0.5;
+      line(c, [xL, y], [xR, y]);
     }
 
     // land
@@ -229,6 +238,19 @@ export function createRenderer(canvas, assets) {
 
   // ---- helpers ------------------------------------------------------------
   function line(c, a, b) { c.beginPath(); c.moveTo(a[0], a[1]); c.lineTo(b[0], b[1]); c.stroke(); }
+
+  // Trace a lon/lat polyline, splitting where the projection wraps the
+  // antimeridian (the Manila→Acapulco galleon) so no segment streaks across
+  // the whole chart. Call between beginPath()/stroke().
+  const wrapSpan = () => (BOUNDS.lonMax - BOUNDS.lonMin) * k * 0.5;
+  function tracePath(c, coords) {
+    let prevX = null;
+    for (let i = 0; i < coords.length; i++) {
+      const [x, y] = project(coords[i][0], coords[i][1]);
+      if (i === 0 || Math.abs(x - prevX) > wrapSpan()) c.moveTo(x, y); else c.lineTo(x, y);
+      prevX = x;
+    }
+  }
   function label(c, text, x, y, size, color, align) {
     c.save();
     c.font = `${size}px "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif`;
@@ -271,7 +293,7 @@ export function createRenderer(canvas, assets) {
       ctx.strokeStyle = hexA(rl.color, 0.22 + 0.5 * f);
       ctx.lineWidth = 1.2 + 5.5 * f;
       ctx.beginPath();
-      for (let i = 0; i < coords.length; i++) { const [x, y2] = project(coords[i][0], coords[i][1]); i ? ctx.lineTo(x, y2) : ctx.moveTo(x, y2); }
+      tracePath(ctx, coords);
       ctx.stroke();
     }
     ctx.restore();
@@ -308,7 +330,7 @@ export function createRenderer(canvas, assets) {
       const leg = legById.get(v.schedule[v.pos.legIndex].legId); if (!leg) continue;
       ctx.strokeStyle = out ? 'rgba(120,72,40,0.42)' : 'rgba(52,86,110,0.5)';
       ctx.beginPath();
-      leg.coords.forEach((cpt, i) => { const [x, y] = project(cpt[0], cpt[1]); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+      tracePath(ctx, leg.coords);
       ctx.stroke();
     }
     ctx.strokeStyle = INK; ctx.lineWidth = 1.7;
@@ -323,7 +345,7 @@ export function createRenderer(canvas, assets) {
     for (const seg of v.schedule) {
       const leg = legById.get(seg.legId); if (!leg) continue;
       ctx.beginPath();
-      leg.coords.forEach((cpt, i) => { const [x, y] = project(cpt[0], cpt[1]); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+      tracePath(ctx, leg.coords);
       ctx.stroke();
     }
     ctx.setLineDash([]);
@@ -347,7 +369,12 @@ export function createRenderer(canvas, assets) {
     if (!last || Math.hypot(last[0] - x, last[1] - y) > 1.5) { w.push([x, y]); if (w.length > 14) w.shift(); }
     if (w.length > 1 && !reducedMotion) {
       ctx.beginPath(); ctx.moveTo(w[0][0], w[0][1]);
-      for (let i = 1; i < w.length; i++) ctx.lineTo(w[i][0], w[i][1]);
+      for (let i = 1; i < w.length; i++) {
+        // a vessel wrapping the antimeridian teleports across the chart — break
+        // the wake there instead of streaking it
+        if (Math.abs(w[i][0] - w[i - 1][0]) > wrapSpan()) ctx.moveTo(w[i][0], w[i][1]);
+        else ctx.lineTo(w[i][0], w[i][1]);
+      }
       ctx.strokeStyle = WAKE; ctx.lineWidth = 1; ctx.stroke();
     }
 
