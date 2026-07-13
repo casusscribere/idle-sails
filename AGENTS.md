@@ -1,4 +1,4 @@
-# CLAUDE.md — Idle Sails
+# AGENTS.md — Idle Sails
 
 Orientation for a fresh session. Read this first, then `PLAN.md`.
 
@@ -16,7 +16,7 @@ This is a **ground-up rebuild**. The previous project was an isochronic passage
 *chart* (a static travel-time map); it is archived, not deleted, because its
 routing engine powers the idler's movement.
 
-> This file is mirrored as **`AGENTS.md`** for non-Claude agents — edit both
+> This file is a mirror of **`CLAUDE.md`** for non-Claude agents — edit both
 > together (they must stay in sync).
 
 ## Project goals — twin, and co-equal

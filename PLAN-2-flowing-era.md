@@ -1,8 +1,10 @@
 # PLAN 2 — A flowing, decade-weighted 1550–1815 world
 
-**Status:** planning (not yet started). Extends `PLAN.md`; does not replace it.
-**Prerequisites for Phase 1:** (a) the tiered top-20 per-decade port dataset, and
-(b) the minor-ports / diversity-layer integration planned in §5 below.
+**Status:** Step 1, Step 2, Phase A and Phase C are **done** (see §3).
+**Phase B and the §7 decision list are re-scoped by `PLAN-3-flows.md` (Phase
+S2)** — adopted 2026-07-13, which also replaces the rankings→era-weights
+pipeline with an evidence-classed flow matrix. This document remains the record
+of the flowing-clock design. Extends `PLAN.md`; does not replace it.
 
 ---
 
