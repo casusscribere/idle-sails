@@ -73,6 +73,11 @@ archive/isochrone-v1/   the previous project (see its ARCHIVE-NOTE.md)
   architecture (§2), the six historical datasets (§3), the procedural generator
   (§4), the sim loop + idle mechanics (§5), offline route baking (§6), rendering
   & UI (§7), tech/layout (§8), milestones (§9), open questions (§10).
+- **`PLAN-2-flowing-era.md`** — the approved *next* direction (extends PLAN.md):
+  a flowing, decade-weighted 1550–1815 sim (looping via a 5-year reset) whose
+  spawns are interpolated per-decade historical distributions, plus a first-class
+  minor-ports diversity layer (§5). Weight source = the tiered top-20 dataset.
+  The `research/` reference collection underpins it.
 - **`archive/isochrone-v1/ARCHIVE-NOTE.md`** — what the old project was and
   exactly which of its assets the rebuild reuses.
 - **`archive/isochrone-v1/SOURCES.md`** — historical sourcing + calibration
