@@ -97,7 +97,10 @@ function calendar(simSec) {
 const fmtDate = (c) => `${c.day} ${MONTHS[c.month]} ${c.year}`;
 
 // ===========================================================================
-export function createWorld({ seed = 1, data }) {
+// `restore`: a previously serialize()d state (persist.js). When given, the world
+// resumes from it exactly — same vessels, clock, counters, and spawn-RNG word —
+// so a save/load round-trip is indistinguishable from never having closed.
+export function createWorld({ seed = 1, data, restore = null }) {
   const { datasets, routes } = data;
 
   // ---- flowing-clock spawn weights (PLAN-2 Phase A, Layer 2) ----------------
@@ -152,6 +155,9 @@ export function createWorld({ seed = 1, data }) {
   const wars = datasets.wars;
 
   // ---- world state ----
+  // Everything mutable lives in `state` as plain JSON-safe data — including the
+  // spawn-RNG's internal word (spawnA) — so persist.js can serialize the world
+  // and a restored session continues IDENTICALLY to one that never closed.
   const state = {
     seed,
     simClock: 0,
@@ -159,10 +165,24 @@ export function createWorld({ seed = 1, data }) {
     log: [],
     nextSpawnAt: 0,
     nextId: 1,
+    spawnA: hashSeed('spawn', seed) | 0,
     counters: { spawned: 0, arrived: 0, lost: 0 }
   };
-  const spawnRng = mulberry32(hashSeed('spawn', seed));
+  // mulberry32 stepped in place over state.spawnA (same sequence as the closure form).
+  function spawnRng() {
+    state.spawnA = (state.spawnA + 0x6D2B79F5) | 0;
+    const a = state.spawnA;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  }
   state.nextSpawnAt = SEC_PER_DAY * -MEAN_SPAWN_INTERVAL_DAYS * Math.log(1 - spawnRng());
+  // Resume a saved session. Deep-copied so the live world never aliases the
+  // caller's save object (ticking must not mutate a snapshot someone else holds).
+  if (restore) Object.assign(state, JSON.parse(JSON.stringify(restore)), { seed });
+
+  // JSON-safe copy of the whole mutable state (for persist.js).
+  function serialize() { return JSON.parse(JSON.stringify(state)); }
 
   // ---- name construction ----
   const names = datasets.names;
@@ -415,7 +435,7 @@ export function createWorld({ seed = 1, data }) {
 
   return {
     state, tick, snapshot, activeVessels, positionOf, fingerprint, calendar,
-    prominenceAt, weightsAt,
+    prominenceAt, weightsAt, serialize,
     portById, powerById,
     get simClock() { return state.simClock; }
   };

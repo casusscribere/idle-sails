@@ -98,6 +98,20 @@ test('log stays capped and events are ordered by recency', () => {
   assert.ok(snap.reset >= 0 && snap.reset <= 1, 'snapshot exposes reset progress');
 });
 
+test('serialize/restore: a reopened world continues identically (Milestone 6)', () => {
+  // Run a world, save it mid-flight, resume the save in a NEW world, then drive
+  // both forward — the restored session must be indistinguishable from the one
+  // that never closed (vessels, spawn stream, counters, everything).
+  const a = mk(314);
+  for (let i = 0; i < 120; i++) a.tick(0.7 * DAY);
+  const savedState = a.serialize();
+  const b = createWorld({ seed: 314, data, restore: savedState });
+  assert.equal(a.fingerprint(), b.fingerprint(), 'restore reproduces the saved world exactly');
+  for (let i = 0; i < 160; i++) { a.tick(0.9 * DAY); b.tick(0.9 * DAY); }
+  assert.equal(a.fingerprint(), b.fingerprint(), 'restored world continues identically');
+  assert.ok(b.state.counters.spawned > savedState.counters.spawned, 'restored world keeps living');
+});
+
 test('calendar flows 1550→1815, ramps a 5-year reset, and loops', () => {
   const { calendar, ERA, FLOW_SPAN, RESET_YEARS, CYCLE_YEARS } = _internals;
   const YR = 365.25 * DAY;

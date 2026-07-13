@@ -5,6 +5,7 @@
 import { createWorld } from './world.js';
 import { createRenderer } from './render.js';
 import { createUI, speedFromSlider } from './ui.js';
+import { loadSave, autoSave, accrualSeconds } from './persist.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -23,17 +24,31 @@ async function boot() {
 
   // seed: from the URL hash (#seed=…) for shareable worlds, else time-derived.
   // Debug params: #t=<sim-days> fast-forwards to a point in the flowing era;
-  // #routes=1 starts with the trade-routes overlay on.
+  // #routes=1 starts with the trade-routes overlay on; #fresh=1 ignores the save.
   const hashParams = new URLSearchParams(location.hash.slice(1));
   const hashSeed = hashParams.get('seed');
-  const seed = hashSeed ? (parseInt(hashSeed, 10) >>> 0) : ((Date.now() ^ (Math.random() * 1e9)) >>> 0);
-
-  const world = createWorld({ seed, data: { datasets, routes } });
-  // pre-warm so the sea is already busy on load (~100 sim-days in coarse steps)
-  const SEC_PER_DAY = 86400;
   const skipDays = Math.max(0, +hashParams.get('t') || 0);
-  if (skipDays) for (let d = 0; d < skipDays; d += 200) world.tick(Math.min(200, skipDays - d) * SEC_PER_DAY);
-  for (let i = 0; i < 40; i++) world.tick(2.5 * SEC_PER_DAY);
+  const SEC_PER_DAY = 86400;
+
+  // Restore the saved session — unless the URL pins a specific/fresh world.
+  const wantFresh = !!hashSeed || skipDays > 0 || hashParams.get('fresh') === '1';
+  const saved = wantFresh ? null : loadSave({ datasetVersion: datasets.version });
+
+  const seed = saved ? saved.seed
+    : hashSeed ? (parseInt(hashSeed, 10) >>> 0)
+    : ((Date.now() ^ (Math.random() * 1e9)) >>> 0);
+  const world = createWorld({ seed, data: { datasets, routes }, restore: saved ? saved.state : null });
+
+  if (saved) {
+    // offline accrual: real time away × last speed, capped — in a few big ticks
+    // (granularity-independent, so this matches having stayed open).
+    let acc = accrualSeconds((Date.now() - saved.savedAt) / 1000, saved.speed);
+    while (acc > 0) { const step = Math.min(acc, 30 * SEC_PER_DAY); world.tick(step); acc -= step; }
+  } else {
+    // fresh world: optional debug fast-forward, then pre-warm so the sea is busy
+    if (skipDays) for (let d = 0; d < skipDays; d += 200) world.tick(Math.min(200, skipDays - d) * SEC_PER_DAY);
+    for (let i = 0; i < 40; i++) world.tick(2.5 * SEC_PER_DAY);
+  }
 
   const legById = new Map(routes.routes.map(r => [r.id, r]));
   const portById = new Map(datasets.ports.map(p => [p.id, p]));
@@ -59,6 +74,8 @@ async function boot() {
   renderer.resize();
   addEventListener('resize', renderer.resize);
 
+  // restore the helm to its saved position (before the UI reads it)
+  if (saved && saved.slider != null) document.getElementById('speed').value = saved.slider;
   let speed = speedFromSlider(+document.getElementById('speed').value);
   let selectedVesselId = null, selectedPortId = null, lastPanelSig = '';
   let showRoutes = hashParams.get('routes') === '1';
@@ -127,6 +144,12 @@ async function boot() {
     menuToggle.setAttribute('aria-expanded', String(open));
   });
   document.getElementById('ov-routes').addEventListener('change', (e) => { showRoutes = e.target.checked; });
+
+  // persist: every 10 s + when the tab hides/closes (skip for pinned debug worlds,
+  // so a shared #seed/#t link never clobbers the player's own voyage).
+  if (!wantFresh) autoSave(world, () => ({
+    speed, slider: +document.getElementById('speed').value, datasetVersion: datasets.version
+  }));
 
   // animation loop
   let last = performance.now();
