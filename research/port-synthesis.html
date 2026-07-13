@@ -1,0 +1,73 @@
+<!doctype html><meta charset="utf-8"><title>Combined Port Persistence, 1550–1815 — the three-metric synthesis</title>
+<style>
+:root{--paper:#e8dcc0;--paper-2:#f1e7d0;--card:#efe4cc;--ink:#3a2c1c;--ink-soft:#6d5837;--faint:#8a7452;--edge:#c3ab82;--rule:#a98f66;--accent:#9e2b25;--s-ships:#4f6f4a;--s-ton:#b0885a;--s-val:#9e2b25;--grid-line:rgba(90,70,45,.16);--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--sans:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif}
+@media (prefers-color-scheme:dark){:root{--paper:#211711;--paper-2:#2a1f15;--card:#2c2016;--ink:#ecdcbc;--ink-soft:#b39a74;--faint:#8f7a58;--edge:#463527;--rule:#5c472f;--accent:#e0937a;--s-ships:#7ba06f;--s-ton:#c8a24e;--s-val:#e0937a;--grid-line:rgba(230,214,180,.12)}}
+:root[data-theme="light"]{--paper:#e8dcc0;--paper-2:#f1e7d0;--card:#efe4cc;--ink:#3a2c1c;--ink-soft:#6d5837;--faint:#8a7452;--edge:#c3ab82;--rule:#a98f66;--accent:#9e2b25;--s-ships:#4f6f4a;--s-ton:#b0885a;--s-val:#9e2b25;--grid-line:rgba(90,70,45,.16)}
+:root[data-theme="dark"]{--paper:#211711;--paper-2:#2a1f15;--card:#2c2016;--ink:#ecdcbc;--ink-soft:#b39a74;--faint:#8f7a58;--edge:#463527;--rule:#5c472f;--accent:#e0937a;--s-ships:#7ba06f;--s-ton:#c8a24e;--s-val:#e0937a;--grid-line:rgba(230,214,180,.12)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:radial-gradient(120% 80% at 50% -10%,var(--paper-2),var(--paper) 70%);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:44px 22px 80px}
+.rule{height:2px;background:var(--ink);opacity:.82}.rule.thin{height:1px;opacity:.45}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);margin:12px 0 8px}
+h1{font-family:var(--serif);font-weight:600;line-height:1.04;font-size:clamp(28px,4.8vw,48px);margin:0 0 6px;text-wrap:balance}
+h1 .yrs{color:var(--accent);font-variant-numeric:tabular-nums}
+.dek{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2vw,19px);color:var(--ink-soft);margin:6px 0 14px;max-width:64ch;text-wrap:balance}
+.legend{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin:16px 0 6px;font-size:12.5px;color:var(--ink-soft)}
+.legend .sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px}
+.tablewrap{overflow-x:auto;border:1px solid var(--edge);border-radius:4px;background:var(--card);margin-top:10px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:620px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--grid-line);white-space:nowrap}
+thead th{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;background:var(--paper-2);text-align:right;position:sticky;top:0}
+thead th.l{text-align:left}
+td.rk{color:var(--faint);text-align:right;font-variant-numeric:tabular-nums;width:2.4em}
+td.port{font-family:var(--serif);font-size:15.5px}
+td.n{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+td.tot{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;font-size:15px}
+td.bar{width:42%;min-width:220px}
+.stack{display:flex;height:13px;border-radius:2px;overflow:hidden;background:rgba(90,70,45,.08)}
+.stack i{display:block;height:100%}
+.stack .s{background:var(--s-ships)}.stack .t{background:var(--s-ton)}.stack .v{background:var(--s-val)}
+td.br{text-align:center}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin:0 1px;opacity:.35}
+.dot.on{opacity:1}
+tr:hover td{background:rgba(158,43,37,.05)}
+.note{font-size:13.5px;color:var(--ink-soft);max-width:72ch;margin:8px 0 0}.note b{font-family:var(--serif);color:var(--ink)}
+.foot{margin-top:36px;padding-top:14px;border-top:1px solid var(--rule);font-size:12px;color:var(--faint)}
+.toggle{position:fixed;top:12px;right:12px;z-index:20;background:var(--card);border:1px solid var(--edge);color:var(--ink-soft);border-radius:20px;padding:6px 12px;font:inherit;font-size:12px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<button class="toggle" id="themeBtn" aria-label="Toggle light or dark">◑ theme</button>
+<div class="wrap">
+<div class="rule"></div>
+<div class="eyebrow">Three metrics, summed · a persistence synthesis</div>
+<h1>Combined Port Persistence<br><span class="yrs">1550 – 1815</span></h1>
+<p class="dek">Each port's decades in the top ten, summed across all three rankings — ship movements, tonnage and value. A single score for staying power, and a bar that shows which metric carried it.</p>
+<div class="rule thin"></div>
+<div class="legend">
+  <span>Composition of the total:</span>
+  <span><span class="sw" style="background:var(--s-ships)"></span>Ship movements</span>
+  <span><span class="sw" style="background:var(--s-ton)"></span>Tonnage</span>
+  <span><span class="sw" style="background:var(--s-val)"></span>Value</span>
+  <span style="margin-left:auto">Max total = 81 &nbsp;(27 decades × 3 metrics)</span>
+</div>
+<div class="tablewrap"><table>
+<thead><tr><th class="l">#</th><th class="l">Port</th><th>Ships</th><th>Ton.</th><th>Val.</th><th>Total</th><th class="l" style="text-align:left;padding-left:14px">Composition (of 81)</th><th style="text-align:center">Breadth</th></tr></thead>
+<tbody id="tb"></tbody>
+</table></div>
+<p class="note"><b>Reading it.</b> The four all-rounders — London (a perfect 81), Amsterdam and Hamburg (78), Lisbon (71) — top every metric. Below them the bar turns telling: <b>specialists</b> ride one or two lenses. Marseille scores 30 with <em>zero</em> tonnage (small coasters); Newcastle, Riga and Königsberg are near-pure tonnage (coal, timber, grain); Batavia, Canton, Havana, Surat and Calcutta live almost entirely in the value column. The <b>breadth dots</b> mark how many of the three metrics each port reached — the truest measure of an all-purpose hub.</p>
+<div class="foot">Compiled for the <b>Idle Sails</b> project · summed persistence across the ship-count, tonnage and value syntheses, 1550–1815 · a scholarly reconstruction; see the per-metric ledger and sources. Data: research/port-persistence-synthesis.csv.</div>
+</div>
+<script>
+const R=[["London",27,27,27],["Amsterdam",26,26,26],["Hamburg",26,26,26],["Lisbon",25,22,24],["Danzig",18,20,14],["Cádiz",17,17,18],["Bordeaux",13,13,14],["Genoa",9,10,15],["Seville",10,10,11],["Marseille",24,0,6],["Königsberg",9,17,0],["Livorno",8,8,8],["Batavia",0,6,18],["Riga",1,21,0],["Venice",6,6,9],["Canton",0,7,12],["Newcastle",0,17,0],["Liverpool",7,5,4],["Copenhagen",13,1,0],["Nantes",6,0,7],["Antwerp",4,4,4],["Bristol",9,0,0],["Havana",0,0,9],["Surat",0,0,7],["New York",2,2,2],["St Petersburg",3,3,0],["Calcutta",0,0,6],["Philadelphia",3,1,0],["Lübeck",1,1,1],["Rotterdam",2,0,0],["Gothenburg",1,0,0],["Bahia",0,0,1],["Rio de Janeiro",0,0,1]];
+const tb=document.getElementById('tb');const MAX=81;
+R.forEach((r,i)=>{const [p,s,t,v]=r;const tot=s+t+v;const present=[s,t,v].filter(x=>x>0).length;
+  const seg=(cls,val)=>val?`<i class="${cls}" style="width:${100*val/MAX}%"></i>`:"";
+  const dots=[1,2,3].map(n=>`<span class="dot ${n<=present?'on':''}"></span>`).join("");
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td class="rk">${i+1}</td><td class="port">${p}</td>`+
+    `<td class="n">${s||'·'}</td><td class="n">${t||'·'}</td><td class="n">${v||'·'}</td><td class="tot">${tot}</td>`+
+    `<td class="bar"><div class="stack" title="ships ${s} · tonnage ${t} · value ${v}">${seg('s',s)}${seg('t',t)}${seg('v',v)}</div></td>`+
+    `<td class="br" title="${present} of 3 metrics">${dots}</td>`;
+  tb.appendChild(tr);});
+document.getElementById('themeBtn').onclick=()=>{const c=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',c?(c==='dark'?'light':'dark'):(matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark'));};
+</script>

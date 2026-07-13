@@ -1,0 +1,61 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idle Sails — historical port & route research</title>
+<style>
+:root{--paper:#e8dcc0;--paper-2:#f1e7d0;--card:#efe4cc;--ink:#3a2c1c;--ink-soft:#6d5837;--faint:#8a7452;--edge:#c3ab82;--rule:#a98f66;--accent:#9e2b25;--brass:#8a6a2c;--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--sans:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif}
+@media (prefers-color-scheme:dark){:root{--paper:#211711;--paper-2:#2a1f15;--card:#2c2016;--ink:#ecdcbc;--ink-soft:#b39a74;--faint:#8f7a58;--edge:#463527;--rule:#5c472f;--accent:#e0937a;--brass:#c8a24e}}
+:root[data-theme=light]{--paper:#e8dcc0;--paper-2:#f1e7d0;--card:#efe4cc;--ink:#3a2c1c;--ink-soft:#6d5837;--faint:#8a7452;--edge:#c3ab82;--rule:#a98f66;--accent:#9e2b25;--brass:#8a6a2c}
+:root[data-theme=dark]{--paper:#211711;--paper-2:#2a1f15;--card:#2c2016;--ink:#ecdcbc;--ink-soft:#b39a74;--faint:#8f7a58;--edge:#463527;--rule:#5c472f;--accent:#e0937a;--brass:#c8a24e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:radial-gradient(120% 80% at 50% -10%,var(--paper-2),var(--paper) 70%);-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:48px 22px 80px}
+.rule{height:2px;background:var(--ink);opacity:.82}.rule.thin{height:1px;opacity:.45}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);margin:12px 0 8px}
+h1{font-family:var(--serif);font-weight:600;line-height:1.05;font-size:clamp(28px,4.6vw,44px);margin:0 0 6px;text-wrap:balance}
+.dek{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2vw,19px);color:var(--ink-soft);margin:6px 0 16px;max-width:64ch;text-wrap:balance}
+a.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--edge);border-radius:5px;padding:16px 18px;margin:14px 0;transition:border-color .12s,transform .12s}
+a.card:hover{border-color:var(--accent);transform:translateX(2px)}
+a.card h2{font-family:var(--serif);font-size:20px;margin:0 0 3px;color:var(--ink)}
+a.card h2 .arr{color:var(--accent);font-size:15px}
+a.card p{margin:0;font-size:14px;color:var(--ink-soft)}
+a.card .files{margin-top:7px;font-size:11.5px;color:var(--faint);font-family:var(--sans)}
+.note{font-size:13px;color:var(--ink-soft);max-width:70ch;margin:18px 0 0}.note b{font-family:var(--serif)}
+.back{display:inline-block;margin-top:22px;font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--rule);font-size:12px;color:var(--faint)}footer b{font-family:var(--serif)}
+</style>
+<div class="wrap">
+<div class="rule"></div>
+<div class="eyebrow">Idle Sails · reference collection</div>
+<h1>Historical Port &amp; Route Research</h1>
+<p class="dek">The scholarly syntheses behind the game — how the world's ports ranked, decade by decade, from 1550 to 1815, and the long tail beyond the rankings. Reference data; the live 15-port world is separate.</p>
+<div class="rule thin"></div>
+
+<a class="card" href="ports-1550-1815.html">
+  <h2>Busiest ports, 1550–1815 <span class="arr">↗</span></h2>
+  <p>Per-decade top-10 ports ranked three ways — ship movements, tonnage, and approximate value — each with a persistence ranking and a presence-grid heatmap. Switch the metric to watch the board change.</p>
+  <div class="files">port-rankings-1550-1815.json</div>
+</a>
+
+<a class="card" href="port-synthesis.html">
+  <h2>Combined persistence synthesis <span class="arr">↗</span></h2>
+  <p>Each port's decades-in-top-10 summed across all three metrics — a single staying-power score, with a stacked bar showing which metric carried it (all-rounders vs. specialists).</p>
+  <div class="files">port-persistence-synthesis.csv</div>
+</a>
+
+<a class="card" href="minor-ports-1500-1830.html">
+  <h2>Thirty-three minor ports, c.1500–1830 <span class="arr">↗</span></h2>
+  <p>The long tail — ports that never troubled a ranking yet mattered for a monopoly, a chokepoint, a single precious cargo, or the flag of an excluded people. Curated for diversity of geography, cargo, and polity, à la Dejima.</p>
+  <div class="files">minor-ports-1500-1830.json · minor-ports-1500-1830.csv</div>
+</a>
+
+<a class="card" href="route-persistence.html">
+  <h2>Route persistence, 1550–1815 <span class="arr">↗</span></h2>
+  <p>A structural trade-lane model: each top-10 port's principal routes, activated by decade and ranked by staying power — 165 lanes from 1,818 port-decade entries. Filterable by port, region, or cargo.</p>
+  <div class="files">route-persistence.csv · route-persistence.json · routes-by-decade.csv</div>
+</a>
+
+<p class="note"><b>On the data.</b> These are scholarly best-effort reconstructions, not censuses. The port rankings are anchored to hard regional series (Sound Toll Registers, Dutch-Asiatic Shipping, the Carrera de Indias, English customs) where they exist and are informed estimate elsewhere; the minor-ports roster carries a ◆ where a claim was verified in an adversarial research pass; the route model is explicitly structural. Full sources and caveats live on each page.</p>
+<a class="back" href="../index.html">← back to the chart</a>
+<footer>Compiled for the <b>Idle Sails</b> project · reference data under <code>research/</code>.</footer>
+</div>

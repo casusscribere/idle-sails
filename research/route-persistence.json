@@ -1,0 +1,1326 @@
+{
+  "title": "Route persistence, 1550–1815 — a structural trade-lane model",
+  "note": "Per-decade combined top-10 ports (from the ship-count, tonnage & value rankings) × each port's principal trade lanes (grounded routes + cargo + era), aggregated. STRUCTURAL, not empirical: the lanes are each port's genuine principal routes, but there is no historical record of ranked top-10 routes per port per decade. A route is 'active' in a decade when its origin port is in that decade's combined top-10 and the decade falls in the lane's era.",
+  "decadesTotal": 27,
+  "ports": 27,
+  "distinctRoutes": 165,
+  "rawRows": 1818,
+  "topPortsByDecade": {
+    "1550": [
+      "Antwerp",
+      "Lisbon",
+      "Seville",
+      "Venice",
+      "Amsterdam",
+      "Genoa",
+      "Danzig",
+      "Hamburg",
+      "London",
+      "Lübeck"
+    ],
+    "1560": [
+      "Antwerp",
+      "Lisbon",
+      "Seville",
+      "Amsterdam",
+      "Venice",
+      "Genoa",
+      "Danzig",
+      "Hamburg",
+      "London",
+      "Marseille"
+    ],
+    "1570": [
+      "Antwerp",
+      "Lisbon",
+      "Seville",
+      "Amsterdam",
+      "Danzig",
+      "Venice",
+      "Genoa",
+      "Hamburg",
+      "London",
+      "Marseille"
+    ],
+    "1580": [
+      "Lisbon",
+      "Amsterdam",
+      "Seville",
+      "Antwerp",
+      "Danzig",
+      "Hamburg",
+      "Genoa",
+      "Venice",
+      "London",
+      "Marseille"
+    ],
+    "1590": [
+      "Amsterdam",
+      "Lisbon",
+      "Seville",
+      "Danzig",
+      "Hamburg",
+      "Genoa",
+      "Venice",
+      "London",
+      "Livorno",
+      "Marseille"
+    ],
+    "1600": [
+      "Amsterdam",
+      "Lisbon",
+      "Seville",
+      "London",
+      "Danzig",
+      "Hamburg",
+      "Genoa",
+      "Venice",
+      "Livorno",
+      "Königsberg"
+    ],
+    "1610": [
+      "Amsterdam",
+      "Lisbon",
+      "London",
+      "Seville",
+      "Danzig",
+      "Hamburg",
+      "Genoa",
+      "Livorno",
+      "Königsberg",
+      "Venice"
+    ],
+    "1620": [
+      "Amsterdam",
+      "London",
+      "Lisbon",
+      "Seville",
+      "Danzig",
+      "Hamburg",
+      "Genoa",
+      "Livorno",
+      "Königsberg",
+      "Venice"
+    ],
+    "1630": [
+      "Amsterdam",
+      "London",
+      "Lisbon",
+      "Danzig",
+      "Hamburg",
+      "Seville",
+      "Genoa",
+      "Livorno",
+      "Königsberg",
+      "Batavia"
+    ],
+    "1640": [
+      "Amsterdam",
+      "London",
+      "Lisbon",
+      "Danzig",
+      "Hamburg",
+      "Seville",
+      "Königsberg",
+      "Livorno",
+      "Genoa",
+      "Batavia"
+    ],
+    "1650": [
+      "Amsterdam",
+      "London",
+      "Lisbon",
+      "Danzig",
+      "Hamburg",
+      "Cádiz",
+      "Königsberg",
+      "Genoa",
+      "Livorno",
+      "Marseille"
+    ],
+    "1660": [
+      "Amsterdam",
+      "London",
+      "Lisbon",
+      "Cádiz",
+      "Danzig",
+      "Hamburg",
+      "Genoa",
+      "Königsberg",
+      "Livorno",
+      "Batavia"
+    ],
+    "1670": [
+      "Amsterdam",
+      "London",
+      "Cádiz",
+      "Hamburg",
+      "Lisbon",
+      "Danzig",
+      "Bordeaux",
+      "Königsberg",
+      "Batavia",
+      "Genoa"
+    ],
+    "1680": [
+      "Amsterdam",
+      "London",
+      "Cádiz",
+      "Hamburg",
+      "Lisbon",
+      "Danzig",
+      "Bordeaux",
+      "Batavia",
+      "Königsberg",
+      "Surat"
+    ],
+    "1690": [
+      "London",
+      "Amsterdam",
+      "Cádiz",
+      "Hamburg",
+      "Lisbon",
+      "Danzig",
+      "Bordeaux",
+      "Batavia",
+      "Newcastle",
+      "Surat"
+    ],
+    "1700": [
+      "London",
+      "Amsterdam",
+      "Cádiz",
+      "Hamburg",
+      "Lisbon",
+      "Bordeaux",
+      "Danzig",
+      "Batavia",
+      "Newcastle",
+      "Bristol"
+    ],
+    "1710": [
+      "London",
+      "Amsterdam",
+      "Cádiz",
+      "Hamburg",
+      "Lisbon",
+      "Bordeaux",
+      "Danzig",
+      "Batavia",
+      "Newcastle",
+      "Bristol"
+    ],
+    "1720": [
+      "London",
+      "Amsterdam",
+      "Cádiz",
+      "Hamburg",
+      "Lisbon",
+      "Bordeaux",
+      "Newcastle",
+      "Batavia",
+      "Bristol",
+      "Danzig"
+    ],
+    "1730": [
+      "London",
+      "Amsterdam",
+      "Cádiz",
+      "Bordeaux",
+      "Lisbon",
+      "Hamburg",
+      "Batavia",
+      "Bristol",
+      "Canton",
+      "Nantes"
+    ],
+    "1740": [
+      "London",
+      "Amsterdam",
+      "Bordeaux",
+      "Cádiz",
+      "Lisbon",
+      "Hamburg",
+      "Batavia",
+      "Canton",
+      "Marseille",
+      "Nantes"
+    ],
+    "1750": [
+      "London",
+      "Amsterdam",
+      "Bordeaux",
+      "Cádiz",
+      "Hamburg",
+      "Lisbon",
+      "Batavia",
+      "Canton",
+      "Marseille",
+      "Liverpool"
+    ],
+    "1760": [
+      "London",
+      "Amsterdam",
+      "Bordeaux",
+      "Cádiz",
+      "Hamburg",
+      "Lisbon",
+      "Canton",
+      "Batavia",
+      "Marseille",
+      "Newcastle"
+    ],
+    "1770": [
+      "London",
+      "Amsterdam",
+      "Bordeaux",
+      "Cádiz",
+      "Hamburg",
+      "Canton",
+      "Liverpool",
+      "Batavia",
+      "Marseille",
+      "Lisbon"
+    ],
+    "1780": [
+      "London",
+      "Bordeaux",
+      "Amsterdam",
+      "Liverpool",
+      "Cádiz",
+      "Hamburg",
+      "Canton",
+      "Batavia",
+      "Calcutta",
+      "Marseille"
+    ],
+    "1790": [
+      "London",
+      "Liverpool",
+      "Amsterdam",
+      "Hamburg",
+      "Bordeaux",
+      "Cádiz",
+      "Canton",
+      "Copenhagen",
+      "Calcutta",
+      "Marseille"
+    ],
+    "1800": [
+      "London",
+      "Liverpool",
+      "Hamburg",
+      "Cádiz",
+      "Canton",
+      "St Petersburg",
+      "Amsterdam",
+      "Calcutta",
+      "Copenhagen",
+      "Newcastle"
+    ],
+    "1810": [
+      "London",
+      "Liverpool",
+      "New York",
+      "St Petersburg",
+      "Canton",
+      "Riga",
+      "Cádiz",
+      "Copenhagen",
+      "Calcutta",
+      "Newcastle"
+    ]
+  },
+  "routes": [
+    {
+      "route": "London → Baltic",
+      "cargo": "naval stores",
+      "decades": 27,
+      "span": "1550s–1810s"
+    },
+    {
+      "route": "London → France",
+      "cargo": "wine",
+      "decades": 27,
+      "span": "1550s–1810s"
+    },
+    {
+      "route": "London → Iberia",
+      "cargo": "wine · fruit · bullion",
+      "decades": 27,
+      "span": "1550s–1810s"
+    },
+    {
+      "route": "London → Norway",
+      "cargo": "timber",
+      "decades": 27,
+      "span": "1550s–1810s"
+    },
+    {
+      "route": "Amsterdam → Baltic",
+      "cargo": "grain (the moedernegotie)",
+      "decades": 26,
+      "span": "1550s–1800s"
+    },
+    {
+      "route": "Amsterdam → France",
+      "cargo": "wine · salt",
+      "decades": 26,
+      "span": "1550s–1800s"
+    },
+    {
+      "route": "Amsterdam → Iberia",
+      "cargo": "salt · colonial goods",
+      "decades": 26,
+      "span": "1550s–1800s"
+    },
+    {
+      "route": "Amsterdam → Norway",
+      "cargo": "timber",
+      "decades": 26,
+      "span": "1550s–1800s"
+    },
+    {
+      "route": "Amsterdam → West Africa",
+      "cargo": "gold · enslaved people",
+      "decades": 26,
+      "span": "1550s–1800s"
+    },
+    {
+      "route": "Hamburg → Baltic",
+      "cargo": "grain",
+      "decades": 26,
+      "span": "1550s–1800s"
+    },
+    {
+      "route": "Hamburg → England",
+      "cargo": "manufactures",
+      "decades": 26,
+      "span": "1550s–1800s"
+    },
+    {
+      "route": "Hamburg → France",
+      "cargo": "wine",
+      "decades": 26,
+      "span": "1550s–1800s"
+    },
+    {
+      "route": "Hamburg → Iberia",
+      "cargo": "colonial re-export",
+      "decades": 26,
+      "span": "1550s–1800s"
+    },
+    {
+      "route": "Hamburg → Norway",
+      "cargo": "timber",
+      "decades": 26,
+      "span": "1550s–1800s"
+    },
+    {
+      "route": "Hamburg → Russia",
+      "cargo": "naval stores",
+      "decades": 26,
+      "span": "1550s–1800s"
+    },
+    {
+      "route": "Hamburg → West Mediterranean",
+      "cargo": "Italian goods",
+      "decades": 26,
+      "span": "1550s–1800s"
+    },
+    {
+      "route": "London → Levant",
+      "cargo": "silk · currants",
+      "decades": 24,
+      "span": "1580s–1810s"
+    },
+    {
+      "route": "Lisbon → Atlantic Isles",
+      "cargo": "Madeira wine",
+      "decades": 23,
+      "span": "1550s–1770s"
+    },
+    {
+      "route": "Lisbon → Brazil",
+      "cargo": "sugar · gold · tobacco",
+      "decades": 23,
+      "span": "1550s–1770s"
+    },
+    {
+      "route": "Lisbon → England",
+      "cargo": "colonial goods",
+      "decades": 23,
+      "span": "1550s–1770s"
+    },
+    {
+      "route": "Lisbon → Newfoundland",
+      "cargo": "cod",
+      "decades": 23,
+      "span": "1550s–1770s"
+    },
+    {
+      "route": "Lisbon → West Africa",
+      "cargo": "gold · enslaved people",
+      "decades": 23,
+      "span": "1550s–1770s"
+    },
+    {
+      "route": "Lisbon → West Mediterranean",
+      "cargo": "salt · wine",
+      "decades": 23,
+      "span": "1550s–1770s"
+    },
+    {
+      "route": "Amsterdam → Russia",
+      "cargo": "naval stores · furs",
+      "decades": 23,
+      "span": "1580s–1800s"
+    },
+    {
+      "route": "London → India",
+      "cargo": "cotton textiles",
+      "decades": 22,
+      "span": "1600s–1810s"
+    },
+    {
+      "route": "Amsterdam → East Indies",
+      "cargo": "fine spices",
+      "decades": 21,
+      "span": "1600s–1800s"
+    },
+    {
+      "route": "Amsterdam → Levant",
+      "cargo": "silk",
+      "decades": 21,
+      "span": "1600s–1800s"
+    },
+    {
+      "route": "Hamburg → Brazil",
+      "cargo": "sugar",
+      "decades": 21,
+      "span": "1600s–1800s"
+    },
+    {
+      "route": "Lisbon → Angola",
+      "cargo": "enslaved people",
+      "decades": 20,
+      "span": "1580s–1770s"
+    },
+    {
+      "route": "Amsterdam → Arctic",
+      "cargo": "whale oil",
+      "decades": 20,
+      "span": "1610s–1800s"
+    },
+    {
+      "route": "Hamburg → Arctic",
+      "cargo": "whale oil",
+      "decades": 20,
+      "span": "1610s–1800s"
+    },
+    {
+      "route": "London → North America",
+      "cargo": "tobacco",
+      "decades": 20,
+      "span": "1620s–1810s"
+    },
+    {
+      "route": "Danzig → England",
+      "cargo": "grain",
+      "decades": 18,
+      "span": "1550s–1720s"
+    },
+    {
+      "route": "Danzig → France",
+      "cargo": "grain",
+      "decades": 18,
+      "span": "1550s–1720s"
+    },
+    {
+      "route": "Danzig → Low Countries",
+      "cargo": "grain",
+      "decades": 18,
+      "span": "1550s–1720s"
+    },
+    {
+      "route": "Amsterdam → West Indies",
+      "cargo": "sugar",
+      "decades": 18,
+      "span": "1630s–1800s"
+    },
+    {
+      "route": "London → West Indies",
+      "cargo": "sugar",
+      "decades": 18,
+      "span": "1640s–1810s"
+    },
+    {
+      "route": "Cádiz → Atlantic Isles",
+      "cargo": "Canary wine",
+      "decades": 17,
+      "span": "1650s–1810s"
+    },
+    {
+      "route": "Cádiz → Caribbean",
+      "cargo": "the Indies fleets · sugar",
+      "decades": 17,
+      "span": "1650s–1810s"
+    },
+    {
+      "route": "Cádiz → England",
+      "cargo": "colonial re-export",
+      "decades": 17,
+      "span": "1650s–1810s"
+    },
+    {
+      "route": "Cádiz → France",
+      "cargo": "linens · re-export",
+      "decades": 17,
+      "span": "1650s–1810s"
+    },
+    {
+      "route": "Cádiz → Low Countries",
+      "cargo": "colonial re-export",
+      "decades": 17,
+      "span": "1650s–1810s"
+    },
+    {
+      "route": "Cádiz → Spanish Main",
+      "cargo": "silver · cochineal",
+      "decades": 17,
+      "span": "1650s–1810s"
+    },
+    {
+      "route": "Cádiz → West Africa",
+      "cargo": "enslaved people (asiento)",
+      "decades": 17,
+      "span": "1650s–1810s"
+    },
+    {
+      "route": "Cádiz → West Mediterranean",
+      "cargo": "Italian goods",
+      "decades": 17,
+      "span": "1650s–1810s"
+    },
+    {
+      "route": "Hamburg → West Indies",
+      "cargo": "colonial re-export",
+      "decades": 16,
+      "span": "1650s–1800s"
+    },
+    {
+      "route": "Batavia → East Indies",
+      "cargo": "spice collection",
+      "decades": 15,
+      "span": "1630s–1780s"
+    },
+    {
+      "route": "Batavia → India",
+      "cargo": "Coromandel textiles",
+      "decades": 15,
+      "span": "1630s–1780s"
+    },
+    {
+      "route": "Batavia → Japan",
+      "cargo": "copper · silver (via Dejima)",
+      "decades": 15,
+      "span": "1630s–1780s"
+    },
+    {
+      "route": "Batavia → Netherlands",
+      "cargo": "spice return cargoes",
+      "decades": 15,
+      "span": "1630s–1780s"
+    },
+    {
+      "route": "Batavia → Ceylon",
+      "cargo": "cinnamon",
+      "decades": 14,
+      "span": "1640s–1780s"
+    },
+    {
+      "route": "Genoa → Atlantic Isles",
+      "cargo": "re-export",
+      "decades": 13,
+      "span": "1550s–1670s"
+    },
+    {
+      "route": "Genoa → France",
+      "cargo": "Provençal trade",
+      "decades": 13,
+      "span": "1550s–1670s"
+    },
+    {
+      "route": "Genoa → Iberia",
+      "cargo": "silver · finance",
+      "decades": 13,
+      "span": "1550s–1670s"
+    },
+    {
+      "route": "Genoa → Levant",
+      "cargo": "silk",
+      "decades": 13,
+      "span": "1550s–1670s"
+    },
+    {
+      "route": "Genoa → North Africa",
+      "cargo": "coral · hides",
+      "decades": 13,
+      "span": "1550s–1670s"
+    },
+    {
+      "route": "Genoa → West Mediterranean",
+      "cargo": "Sicilian grain",
+      "decades": 13,
+      "span": "1550s–1670s"
+    },
+    {
+      "route": "Bordeaux → Baltic",
+      "cargo": "wine",
+      "decades": 13,
+      "span": "1670s–1790s"
+    },
+    {
+      "route": "Bordeaux → England",
+      "cargo": "wine",
+      "decades": 13,
+      "span": "1670s–1790s"
+    },
+    {
+      "route": "Bordeaux → Germany",
+      "cargo": "wine (via Hamburg)",
+      "decades": 13,
+      "span": "1670s–1790s"
+    },
+    {
+      "route": "Bordeaux → Iberia",
+      "cargo": "re-export",
+      "decades": 13,
+      "span": "1670s–1790s"
+    },
+    {
+      "route": "Bordeaux → Low Countries",
+      "cargo": "wine",
+      "decades": 13,
+      "span": "1670s–1790s"
+    },
+    {
+      "route": "Bordeaux → Newfoundland",
+      "cargo": "cod",
+      "decades": 13,
+      "span": "1670s–1790s"
+    },
+    {
+      "route": "Bordeaux → West Indies",
+      "cargo": "sugar · coffee",
+      "decades": 13,
+      "span": "1670s–1790s"
+    },
+    {
+      "route": "Lisbon → India",
+      "cargo": "pepper · spices",
+      "decades": 12,
+      "span": "1550s–1660s"
+    },
+    {
+      "route": "London → China",
+      "cargo": "tea",
+      "decades": 12,
+      "span": "1700s–1810s"
+    },
+    {
+      "route": "Lisbon → Low Countries",
+      "cargo": "spice distribution",
+      "decades": 11,
+      "span": "1550s–1650s"
+    },
+    {
+      "route": "London → Low Countries",
+      "cargo": "woollen cloth",
+      "decades": 11,
+      "span": "1550s–1650s"
+    },
+    {
+      "route": "Marseille → France",
+      "cargo": "coasting",
+      "decades": 11,
+      "span": "1560s–1790s"
+    },
+    {
+      "route": "Marseille → Iberia",
+      "cargo": "re-export",
+      "decades": 11,
+      "span": "1560s–1790s"
+    },
+    {
+      "route": "Marseille → Levant",
+      "cargo": "cotton · silk · coffee (Smyrna · Aleppo)",
+      "decades": 11,
+      "span": "1560s–1790s"
+    },
+    {
+      "route": "Marseille → North Africa",
+      "cargo": "Barbary hides · coral",
+      "decades": 11,
+      "span": "1560s–1790s"
+    },
+    {
+      "route": "Marseille → West Mediterranean",
+      "cargo": "Italian · Spanish coasting",
+      "decades": 11,
+      "span": "1560s–1790s"
+    },
+    {
+      "route": "Seville → Atlantic Isles",
+      "cargo": "Canary wine",
+      "decades": 10,
+      "span": "1550s–1640s"
+    },
+    {
+      "route": "Seville → Caribbean",
+      "cargo": "the Indies fleets",
+      "decades": 10,
+      "span": "1550s–1640s"
+    },
+    {
+      "route": "Seville → Low Countries",
+      "cargo": "colonial re-export",
+      "decades": 10,
+      "span": "1550s–1640s"
+    },
+    {
+      "route": "Seville → Spanish Main",
+      "cargo": "silver",
+      "decades": 10,
+      "span": "1550s–1640s"
+    },
+    {
+      "route": "Seville → West Africa",
+      "cargo": "enslaved people",
+      "decades": 10,
+      "span": "1550s–1640s"
+    },
+    {
+      "route": "Seville → West Mediterranean",
+      "cargo": "Italian goods",
+      "decades": 10,
+      "span": "1550s–1640s"
+    },
+    {
+      "route": "Bordeaux → West Africa",
+      "cargo": "enslaved people",
+      "decades": 10,
+      "span": "1700s–1790s"
+    },
+    {
+      "route": "Königsberg → England",
+      "cargo": "grain · naval stores",
+      "decades": 9,
+      "span": "1600s–1680s"
+    },
+    {
+      "route": "Königsberg → France",
+      "cargo": "grain",
+      "decades": 9,
+      "span": "1600s–1680s"
+    },
+    {
+      "route": "Königsberg → Low Countries",
+      "cargo": "grain · flax",
+      "decades": 9,
+      "span": "1600s–1680s"
+    },
+    {
+      "route": "Batavia → Arabia",
+      "cargo": "Mocha coffee",
+      "decades": 9,
+      "span": "1700s–1780s"
+    },
+    {
+      "route": "Batavia → China",
+      "cargo": "tea · porcelain",
+      "decades": 9,
+      "span": "1700s–1780s"
+    },
+    {
+      "route": "Canton → East Indies",
+      "cargo": "tea · junk trade",
+      "decades": 9,
+      "span": "1730s–1810s"
+    },
+    {
+      "route": "Canton → England",
+      "cargo": "tea",
+      "decades": 9,
+      "span": "1730s–1810s"
+    },
+    {
+      "route": "Canton → Manila",
+      "cargo": "junk trade",
+      "decades": 9,
+      "span": "1730s–1810s"
+    },
+    {
+      "route": "Canton → Northern Europe",
+      "cargo": "tea (chartered companies)",
+      "decades": 9,
+      "span": "1730s–1810s"
+    },
+    {
+      "route": "Venice → Adriatic",
+      "cargo": "Dalmatian coasting",
+      "decades": 8,
+      "span": "1550s–1620s"
+    },
+    {
+      "route": "Venice → England",
+      "cargo": "currants · glass",
+      "decades": 8,
+      "span": "1550s–1620s"
+    },
+    {
+      "route": "Venice → Levant",
+      "cargo": "silk · spices",
+      "decades": 8,
+      "span": "1550s–1620s"
+    },
+    {
+      "route": "Venice → North Africa",
+      "cargo": "Barbary trade",
+      "decades": 8,
+      "span": "1550s–1620s"
+    },
+    {
+      "route": "Venice → West Mediterranean",
+      "cargo": "Italian coasting",
+      "decades": 8,
+      "span": "1550s–1620s"
+    },
+    {
+      "route": "Danzig → Iberia",
+      "cargo": "grain",
+      "decades": 8,
+      "span": "1590s–1660s"
+    },
+    {
+      "route": "Danzig → West Mediterranean",
+      "cargo": "grain",
+      "decades": 8,
+      "span": "1590s–1660s"
+    },
+    {
+      "route": "Livorno → England",
+      "cargo": "the Straits trade",
+      "decades": 8,
+      "span": "1590s–1660s"
+    },
+    {
+      "route": "Livorno → Iberia",
+      "cargo": "colonial goods",
+      "decades": 8,
+      "span": "1590s–1660s"
+    },
+    {
+      "route": "Livorno → Levant",
+      "cargo": "silk · coffee",
+      "decades": 8,
+      "span": "1590s–1660s"
+    },
+    {
+      "route": "Livorno → Low Countries",
+      "cargo": "re-export",
+      "decades": 8,
+      "span": "1590s–1660s"
+    },
+    {
+      "route": "Livorno → North Africa",
+      "cargo": "coral",
+      "decades": 8,
+      "span": "1590s–1660s"
+    },
+    {
+      "route": "Livorno → West Mediterranean",
+      "cargo": "free-port entrepôt",
+      "decades": 8,
+      "span": "1590s–1660s"
+    },
+    {
+      "route": "Königsberg → West Mediterranean",
+      "cargo": "grain",
+      "decades": 7,
+      "span": "1600s–1660s"
+    },
+    {
+      "route": "Newcastle → England",
+      "cargo": "coal (the coastal collier trade)",
+      "decades": 7,
+      "span": "1690s–1810s"
+    },
+    {
+      "route": "Newcastle → France",
+      "cargo": "coal",
+      "decades": 7,
+      "span": "1690s–1810s"
+    },
+    {
+      "route": "Newcastle → Germany",
+      "cargo": "coal",
+      "decades": 7,
+      "span": "1690s–1810s"
+    },
+    {
+      "route": "Newcastle → Low Countries",
+      "cargo": "coal",
+      "decades": 7,
+      "span": "1690s–1810s"
+    },
+    {
+      "route": "Marseille → West Indies",
+      "cargo": "sugar · coffee",
+      "decades": 6,
+      "span": "1740s–1790s"
+    },
+    {
+      "route": "Liverpool → Iberia",
+      "cargo": "salt",
+      "decades": 6,
+      "span": "1750s–1810s"
+    },
+    {
+      "route": "Liverpool → Ireland",
+      "cargo": "provisions · linen",
+      "decades": 6,
+      "span": "1750s–1810s"
+    },
+    {
+      "route": "Liverpool → North America",
+      "cargo": "tobacco · provisions",
+      "decades": 6,
+      "span": "1750s–1810s"
+    },
+    {
+      "route": "Liverpool → West Africa",
+      "cargo": "enslaved people",
+      "decades": 6,
+      "span": "1750s–1810s"
+    },
+    {
+      "route": "Liverpool → West Indies",
+      "cargo": "sugar",
+      "decades": 6,
+      "span": "1750s–1810s"
+    },
+    {
+      "route": "Canton → India",
+      "cargo": "raw cotton · opium",
+      "decades": 5,
+      "span": "1770s–1810s"
+    },
+    {
+      "route": "Antwerp → Baltic",
+      "cargo": "grain",
+      "decades": 4,
+      "span": "1550s–1580s"
+    },
+    {
+      "route": "Antwerp → England",
+      "cargo": "woollen cloth",
+      "decades": 4,
+      "span": "1550s–1580s"
+    },
+    {
+      "route": "Antwerp → France",
+      "cargo": "trade goods",
+      "decades": 4,
+      "span": "1550s–1580s"
+    },
+    {
+      "route": "Antwerp → Germany",
+      "cargo": "metals · fustians",
+      "decades": 4,
+      "span": "1550s–1580s"
+    },
+    {
+      "route": "Antwerp → Iberia",
+      "cargo": "Portuguese spices · Spanish silver",
+      "decades": 4,
+      "span": "1550s–1580s"
+    },
+    {
+      "route": "Antwerp → West Mediterranean",
+      "cargo": "Italian goods",
+      "decades": 4,
+      "span": "1550s–1580s"
+    },
+    {
+      "route": "Bristol → Iberia",
+      "cargo": "wine",
+      "decades": 4,
+      "span": "1700s–1730s"
+    },
+    {
+      "route": "Bristol → Ireland",
+      "cargo": "provisions",
+      "decades": 4,
+      "span": "1700s–1730s"
+    },
+    {
+      "route": "Bristol → Newfoundland",
+      "cargo": "cod",
+      "decades": 4,
+      "span": "1700s–1730s"
+    },
+    {
+      "route": "Bristol → North America",
+      "cargo": "tobacco · provisions",
+      "decades": 4,
+      "span": "1700s–1730s"
+    },
+    {
+      "route": "Bristol → West Africa",
+      "cargo": "enslaved people",
+      "decades": 4,
+      "span": "1700s–1730s"
+    },
+    {
+      "route": "Bristol → West Indies",
+      "cargo": "sugar",
+      "decades": 4,
+      "span": "1700s–1730s"
+    },
+    {
+      "route": "Calcutta → China",
+      "cargo": "opium · raw cotton",
+      "decades": 4,
+      "span": "1780s–1810s"
+    },
+    {
+      "route": "Calcutta → East Indies",
+      "cargo": "textiles",
+      "decades": 4,
+      "span": "1780s–1810s"
+    },
+    {
+      "route": "Calcutta → England",
+      "cargo": "textiles · saltpetre (EIC)",
+      "decades": 4,
+      "span": "1780s–1810s"
+    },
+    {
+      "route": "Calcutta → India",
+      "cargo": "coastal country trade",
+      "decades": 4,
+      "span": "1780s–1810s"
+    },
+    {
+      "route": "Calcutta → Persian Gulf",
+      "cargo": "textiles",
+      "decades": 4,
+      "span": "1780s–1810s"
+    },
+    {
+      "route": "Canton → North America",
+      "cargo": "tea · furs",
+      "decades": 3,
+      "span": "1790s–1810s"
+    },
+    {
+      "route": "Copenhagen → Baltic",
+      "cargo": "grain · coasting",
+      "decades": 3,
+      "span": "1790s–1810s"
+    },
+    {
+      "route": "Copenhagen → China",
+      "cargo": "tea (via Canton)",
+      "decades": 3,
+      "span": "1790s–1810s"
+    },
+    {
+      "route": "Copenhagen → Iceland",
+      "cargo": "fish (royal monopoly)",
+      "decades": 3,
+      "span": "1790s–1810s"
+    },
+    {
+      "route": "Copenhagen → India",
+      "cargo": "textiles (via Tranquebar)",
+      "decades": 3,
+      "span": "1790s–1810s"
+    },
+    {
+      "route": "Copenhagen → Norway",
+      "cargo": "timber",
+      "decades": 3,
+      "span": "1790s–1810s"
+    },
+    {
+      "route": "Copenhagen → West Indies",
+      "cargo": "sugar (Danish St Thomas)",
+      "decades": 3,
+      "span": "1790s–1810s"
+    },
+    {
+      "route": "Surat → Arabia",
+      "cargo": "Mocha coffee · pilgrims",
+      "decades": 2,
+      "span": "1680s–1690s"
+    },
+    {
+      "route": "Surat → East Africa",
+      "cargo": "cloth for ivory",
+      "decades": 2,
+      "span": "1680s–1690s"
+    },
+    {
+      "route": "Surat → East Indies",
+      "cargo": "textiles for spices",
+      "decades": 2,
+      "span": "1680s–1690s"
+    },
+    {
+      "route": "Surat → England",
+      "cargo": "cotton textiles (EIC)",
+      "decades": 2,
+      "span": "1680s–1690s"
+    },
+    {
+      "route": "Surat → Netherlands",
+      "cargo": "cotton textiles (VOC)",
+      "decades": 2,
+      "span": "1680s–1690s"
+    },
+    {
+      "route": "Surat → Persian Gulf",
+      "cargo": "textiles for bullion",
+      "decades": 2,
+      "span": "1680s–1690s"
+    },
+    {
+      "route": "Nantes → Baltic",
+      "cargo": "salt",
+      "decades": 2,
+      "span": "1730s–1740s"
+    },
+    {
+      "route": "Nantes → France",
+      "cargo": "coasting",
+      "decades": 2,
+      "span": "1730s–1740s"
+    },
+    {
+      "route": "Nantes → Iberia",
+      "cargo": "re-export",
+      "decades": 2,
+      "span": "1730s–1740s"
+    },
+    {
+      "route": "Nantes → West Africa",
+      "cargo": "enslaved people",
+      "decades": 2,
+      "span": "1730s–1740s"
+    },
+    {
+      "route": "Nantes → West Indies",
+      "cargo": "sugar · coffee",
+      "decades": 2,
+      "span": "1730s–1740s"
+    },
+    {
+      "route": "St Petersburg → Baltic",
+      "cargo": "coasting",
+      "decades": 2,
+      "span": "1800s–1810s"
+    },
+    {
+      "route": "St Petersburg → England",
+      "cargo": "hemp · flax · iron · timber",
+      "decades": 2,
+      "span": "1800s–1810s"
+    },
+    {
+      "route": "St Petersburg → Netherlands",
+      "cargo": "naval stores",
+      "decades": 2,
+      "span": "1800s–1810s"
+    },
+    {
+      "route": "St Petersburg → West Mediterranean",
+      "cargo": "grain · iron",
+      "decades": 2,
+      "span": "1800s–1810s"
+    },
+    {
+      "route": "Lübeck → Baltic",
+      "cargo": "Hanseatic coasting",
+      "decades": 1,
+      "span": "1550s–1550s"
+    },
+    {
+      "route": "Lübeck → Low Countries",
+      "cargo": "re-export",
+      "decades": 1,
+      "span": "1550s–1550s"
+    },
+    {
+      "route": "Lübeck → Norway",
+      "cargo": "fish · timber",
+      "decades": 1,
+      "span": "1550s–1550s"
+    },
+    {
+      "route": "Lübeck → Russia",
+      "cargo": "furs · wax (via Novgorod)",
+      "decades": 1,
+      "span": "1550s–1550s"
+    },
+    {
+      "route": "New York → England",
+      "cargo": "furs · provisions · return",
+      "decades": 1,
+      "span": "1810s–1810s"
+    },
+    {
+      "route": "New York → Iberia",
+      "cargo": "wheat · flour",
+      "decades": 1,
+      "span": "1810s–1810s"
+    },
+    {
+      "route": "New York → North America",
+      "cargo": "coasting",
+      "decades": 1,
+      "span": "1810s–1810s"
+    },
+    {
+      "route": "New York → West Indies",
+      "cargo": "flour · provisions",
+      "decades": 1,
+      "span": "1810s–1810s"
+    },
+    {
+      "route": "Riga → England",
+      "cargo": "masts · naval stores",
+      "decades": 1,
+      "span": "1810s–1810s"
+    },
+    {
+      "route": "Riga → France",
+      "cargo": "timber",
+      "decades": 1,
+      "span": "1810s–1810s"
+    },
+    {
+      "route": "Riga → Iberia",
+      "cargo": "timber",
+      "decades": 1,
+      "span": "1810s–1810s"
+    },
+    {
+      "route": "Riga → Low Countries",
+      "cargo": "timber · flax · hemp",
+      "decades": 1,
+      "span": "1810s–1810s"
+    }
+  ]
+}
