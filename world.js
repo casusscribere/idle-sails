@@ -22,8 +22,11 @@ const RESET_YEARS = 5;                          // fake reset ramp 1815→1820
 const FLOW_SPAN = ERA.to - ERA.from;            // 265 forward years (1550→1815)
 const CYCLE_YEARS = FLOW_SPAN + RESET_YEARS;    // 270-year loop period
 
-// Tuning (spectator-scale; ~40–120 vessels for an open tab).
-const MEAN_SPAWN_INTERVAL_DAYS = 1.0;
+// Tuning (spectator-scale; ~40–150 vessels for an open tab). 0.55 since S2:
+// the 66-port world runs many SHORT legs (Mediterranean, Baltic, coastal), so
+// at-sea population per spawn fell — this restores the approved spectator band
+// while the flow weights keep the mix and drift data-driven.
+const MEAN_SPAWN_INTERVAL_DAYS = 0.55;
 // Spawn-rate drift is data-driven since PLAN-3 S1: see spawnActivity inside
 // createWorld — the realized flow totals (per-seed reading of the evidence)
 // drive the sea's thickening, clamped to spectator scale.
@@ -197,10 +200,10 @@ export function createWorld({ seed = 1, data, restore = null }) {
   // deepest southern latitude (Cape-passage risk).
   const legGeom = new Map();
   for (const leg of routes.routes) {
-    const cum = [0]; let minLat = 90;
+    const cum = [0]; let minLat = 90, maxLat = -90;
     for (let i = 1; i < leg.coords.length; i++) cum.push(cum[i - 1] + havKm(leg.coords[i - 1], leg.coords[i]));
-    for (const c of leg.coords) minLat = Math.min(minLat, c[1]);
-    legGeom.set(leg.id, { cum, total: cum[cum.length - 1], minLat });
+    for (const c of leg.coords) { minLat = Math.min(minLat, c[1]); maxLat = Math.max(maxLat, c[1]); }
+    legGeom.set(leg.id, { cum, total: cum[cum.length - 1], minLat, maxLat });
   }
 
   const wars = datasets.wars;
@@ -253,7 +256,10 @@ export function createWorld({ seed = 1, data, restore = null }) {
 
   // ---- war lookup ----
   function warsActive(year) { return wars.filter(w => year >= w.from && year <= w.to); }
+  // hazard:true entries (the Pirate Round) menace EVERY flag in their theatres;
+  // ordinary wars menace belligerents only (companies count as their parent).
   function isBelligerent(war, powerId) {
+    if (war.hazard) return true;
     const nation = powerById.get(powerId);
     const nid = nation && nation.kind === 'company' ? nation.parent : powerId;
     return war.belligerents.some(side => side.includes(nid));
@@ -331,13 +337,20 @@ export function createWorld({ seed = 1, data, restore = null }) {
     const legSpecs = buildItinerary(rng, lane, routeClass, cal0.season, year);
     if (!legSpecs.length) return null; // no baked leg — skip (caller reschedules)
 
-    // schedule legs in absolute sim-time, with port dwell between them
+    // schedule legs in absolute sim-time, with port dwell between them.
+    // LIA modifier (PLAN-3 S2, the bounded era-climate signal): North Atlantic
+    // legs during the Maunder Minimum (1645–1715) run ~7% longer — a documented
+    // storminess proxy, applied to duration rather than to wind fields (per-era
+    // reanalysis does not exist; declared boundary).
+    const liaFactor = (year >= 1645 && year <= 1715) ? 1.07 : 1.0;
     let t = spawnSimClock;
     const schedule = [];
     for (let i = 0; i < legSpecs.length; i++) {
       const { laneId, leg } = legSpecs[i];
       const depart = t;
-      const durSec = (leg.hours || (legGeom.get(leg.id).total / 1.852 / 6)) * 3600; // fallback ~6kn
+      const g0 = legGeom.get(leg.id);
+      const northAtlantic = g0.maxLat > 40 && leg.coords[0][0] < 40;   // rough N-Atlantic/N-Sea gate
+      const durSec = (leg.hours || (g0.total / 1.852 / 6)) * 3600 * (northAtlantic ? liaFactor : 1);
       const arrive = depart + durSec;
       schedule.push({ laneId, legId: leg.id, from: leg.from, to: leg.to, depart, arrive });
       t = arrive;
@@ -378,6 +391,7 @@ export function createWorld({ seed = 1, data, restore = null }) {
       tonnage, guns, crew, year, isNaval,
       cargoId, cargoName: cargo.name, cargoClass: cargo.class,
       middlePassage: cargoId === 'enslaved-people',
+      laneFraming: lane.framing || null,   // lane-specific sober framing (Kaffa ≠ the Atlantic)
       laneName: lane.name, system: lane.system,
       schedule, spawnAt: spawnSimClock, voyageEnd,
       fate,

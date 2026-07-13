@@ -54,7 +54,7 @@
   {
    "id": "copenhagen",
    "name": "Copenhagen",
-   "simProxy": "gothenburg"
+   "simProxy": "copenhagen"
   },
   {
    "id": "tranquebar",
@@ -64,22 +64,22 @@
   {
    "id": "madras",
    "name": "Madras",
-   "simProxy": "tranquebar"
+   "simProxy": "madras"
   },
   {
    "id": "bombay",
    "name": "Bombay",
-   "simProxy": "tranquebar"
+   "simProxy": "bombay"
   },
   {
    "id": "calcutta",
    "name": "Calcutta",
-   "simProxy": "tranquebar"
+   "simProxy": "calcutta"
   },
   {
    "id": "masulipatnam",
    "name": "Masulipatnam",
-   "simProxy": "tranquebar"
+   "simProxy": "madras"
   },
   {
    "id": "aceh",
@@ -89,32 +89,32 @@
   {
    "id": "malacca",
    "name": "Malacca",
-   "simProxy": null
+   "simProxy": "batavia"
   },
   {
    "id": "makassar",
    "name": "Makassar",
-   "simProxy": null
+   "simProxy": "makassar"
   },
   {
    "id": "banda",
    "name": "Banda Neira",
-   "simProxy": null
+   "simProxy": "banda-neira"
   },
   {
    "id": "manila",
    "name": "Manila",
-   "simProxy": null
+   "simProxy": "manila"
   },
   {
    "id": "acapulco",
    "name": "Acapulco",
-   "simProxy": null
+   "simProxy": "acapulco"
   },
   {
    "id": "jedda",
    "name": "Jedda",
-   "simProxy": null
+   "simProxy": "mocha"
   }
  ],
  "systems": [

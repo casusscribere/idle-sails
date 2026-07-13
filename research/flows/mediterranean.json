@@ -30,12 +30,12 @@
   {
    "id": "marseille",
    "name": "Marseille",
-   "simProxy": "bordeaux"
+   "simProxy": "marseille"
   },
   {
    "id": "barcelona",
    "name": "Barcelona",
-   "simProxy": "cadiz"
+   "simProxy": "barcelona"
   },
   {
    "id": "cadiz",
@@ -45,47 +45,47 @@
   {
    "id": "genoa",
    "name": "Genoa",
-   "simProxy": null
+   "simProxy": "genoa"
   },
   {
    "id": "livorno",
    "name": "Livorno",
-   "simProxy": null
+   "simProxy": "livorno"
   },
   {
    "id": "venice",
    "name": "Venice",
-   "simProxy": null
+   "simProxy": "venice"
   },
   {
    "id": "naples",
    "name": "Naples",
-   "simProxy": null
+   "simProxy": "naples"
   },
   {
    "id": "palermo",
    "name": "Palermo",
-   "simProxy": null
+   "simProxy": "naples"
   },
   {
    "id": "messina",
    "name": "Messina",
-   "simProxy": null
+   "simProxy": "naples"
   },
   {
    "id": "ragusa-port",
    "name": "Ragusa (Dubrovnik)",
-   "simProxy": null
+   "simProxy": "venice"
   },
   {
    "id": "smyrna",
    "name": "Smyrna (İzmir)",
-   "simProxy": null
+   "simProxy": "istanbul"
   },
   {
    "id": "istanbul",
    "name": "Istanbul (Constantinople)",
-   "simProxy": null
+   "simProxy": "istanbul"
   },
   {
    "id": "alexandria",
@@ -100,7 +100,7 @@
   {
    "id": "kaffa",
    "name": "Kaffa (Feodosia)",
-   "simProxy": null
+   "simProxy": "kaffa"
   },
   {
    "id": "london",

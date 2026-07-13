@@ -175,10 +175,12 @@ test('flowing weights: historical dominance rotates over the era', () => {
     const wt = w.weightsAt(yearsIn * YR);
     return Object.entries(wt).sort((a, b) => b[1] - a[1])[0][0];
   };
-  // 1560s: only the Iberian-Atlantic systems have sailable lanes — the leader is
-  // one of the Carrera/Brazil endpoints, and never a northern port.
-  assert.ok(['cadiz', 'kingston', 'lisbon', 'bahia'].includes(leaderAt(15)), `16th-c leader (${leaderAt(15)})`);
-  assert.ok(!['london', 'liverpool', 'amsterdam'].includes(leaderAt(15)), '16th-c leader is not a northern port');
+  // 1560s: the old world leads — with the S2 universe sailable, the busiest
+  // ports are the Mediterranean/Baltic/Iberian metabolisms (Istanbul's
+  // provisioning above all: the declared-boundary exemplar, now IN the sim) —
+  // and never the Atlantic-industrial ports whose century hasn't come.
+  assert.ok(['istanbul', 'venice', 'naples', 'genoa', 'cadiz', 'lisbon', 'danzig', 'amsterdam', 'hamburg'].includes(leaderAt(15)), `16th-c leader (${leaderAt(15)})`);
+  assert.ok(!['london', 'liverpool', 'boston', 'new-york'].includes(leaderAt(15)), '16th-c leader is not an Atlantic-industrial port');
   // 1750s: the leader is London or Gothenburg — Gothenburg is the Phase-A proxy
   // carrying the ENTIRE folded Baltic (Danzig, Riga, Stockholm, St Petersburg),
   // so its concentration is a documented coverage artifact, not a claim about
@@ -218,7 +220,10 @@ test('spawn-rate drift: the sea thickens from the 1550s to the 1810s', () => {
   };
   const early = meanAtSea(10), late = meanAtSea(255);   // 1560s vs 1800s
   assert.ok(late > early * 1.4, `late era busier than early (${early.toFixed(0)} → ${late.toFixed(0)} at sea)`);
-  assert.ok(early > 15, `early era still alive (${early.toFixed(0)} at sea)`);
+  // the S2 world's 1560s runs many SHORT Mediterranean/Baltic legs, so the
+  // at-sea count per spawn is lower than the old ocean-only world's — alive
+  // means alive, not crowded
+  assert.ok(early > 8, `early era still alive (${early.toFixed(0)} at sea)`);
 });
 
 test('pre-1700 wars: early-era voyages can be taken as prizes', () => {
@@ -256,10 +261,15 @@ test('spawn mix flows with history: origins shift across the cycle', () => {
     const tot = [...m.values()].reduce((s, n) => s + n, 0);
     return tot ? (m.get(port) || 0) / tot : 0;
   };
-  // early period is Iberian/Brazil (Cádiz+Lisbon+Bahia dominate the thin 1560s mix)
-  const iberianEarly = share(1560, 'cadiz') + share(1560, 'lisbon') + share(1560, 'bahia');
-  assert.ok(iberianEarly > 0.5, `1560s dominated by Iberian/Brazil origins (${iberianEarly.toFixed(2)})`);
-  // late period: London is a top origin and Liverpool is materially present
-  assert.ok(share(1800, 'london') > 0.1, `London a major 1800s origin (${share(1800, 'london').toFixed(2)})`);
+  // early period: the OLD WORLD dominates — Mediterranean, Baltic, Iberian —
+  // and the Atlantic-colonial ports do not yet exist as origins
+  const oldWorld1560 = ['istanbul', 'venice', 'naples', 'genoa', 'livorno', 'cadiz', 'lisbon', 'danzig', 'amsterdam', 'hamburg', 'marseille', 'kaffa']
+    .reduce((s, p) => s + share(1560, p), 0);
+  assert.ok(oldWorld1560 > 0.5, `1560s dominated by old-world origins (${oldWorld1560.toFixed(2)})`);
+  const colonial1560 = ['boston', 'new-york', 'philadelphia', 'chesapeake'].reduce((s, p) => s + share(1560, p), 0);
+  assert.ok(colonial1560 < 0.01, `no colonial-American origins in the 1560s (${colonial1560.toFixed(3)})`);
+  // late period: the Atlantic-industrial ports rise; the junk trade is present throughout
+  assert.ok(share(1800, 'london') > share(1650, 'london'), 'London rises across the era');
   assert.ok(share(1800, 'liverpool') > share(1650, 'liverpool'), 'Liverpool busier late than early');
+  assert.ok(share(1650, 'amoy') > 0, `the Nanyang junk trade sails the 17th century (${share(1650, 'amoy').toFixed(3)})`);
 });

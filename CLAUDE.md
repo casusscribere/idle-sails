@@ -98,11 +98,18 @@ Every design decision answers to both of these:
   the evidence), spawn rate follows realized totals clamped [0.5,1.6]× the
   era mean, lanes fade ~3 yr at era boundaries and across the reset seam,
   era-weights is retired from the bundle, datasetVersion 2 resets old saves,
-  and the routes overlay shows the realized per-lane flow. Gothenburg
-  concentrating the folded Baltic (~25% of the at-sea world) is the stated
-  proxy limit S2 exists to fix. **Next: PLAN-3 Phase S2** (coverage expansion
-  + re-bake — the big decision list), then S3 (surfacing). Each phase pauses
-  on its decision list (PLAN-3 §3).
+  and the routes overlay shows the realized per-lane flow. **S2 is done**
+  (2026-07-13): the world is **66 ports** — the flow backbone (Hamburg,
+  Danzig, Riga, St Petersburg, Venice, Genoa, Marseille, Boston, New York,
+  Havana, Surat, Calcutta, Amoy…), the tranche-1 diversity ports, and the six
+  exception ports (Istanbul, Kaffa, Arkhangelsk, Smeerenburg, Sitka,
+  Acapulco). 261 lanes / 1,360 polylines; junk & dhow sail their OWN polars;
+  Bosporus/Kerch/Gorlo carved; seasonal Arctic corridors with season-gated
+  legs (no winter Arkhangelsk departures); the Pirate Round as a hazard;
+  render bounds full-globe with label decluttering; flow coverage **76–89%**.
+  The 1560s' busiest port is Istanbul — the declared-boundary claim, now
+  sailable. **Next: PLAN-3 Phase S3** (surfacing the historiography: ledger
+  evidence line, "The chart's silences" page). (PLAN-3 §3.)
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —

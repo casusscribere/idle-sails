@@ -11,62 +11,62 @@
   {
    "id": "goa",
    "name": "Goa",
-   "simProxy": "tranquebar"
+   "simProxy": "bombay"
   },
   {
    "id": "surat",
    "name": "Surat",
-   "simProxy": "tranquebar"
+   "simProxy": "surat"
   },
   {
    "id": "bombay",
    "name": "Bombay",
-   "simProxy": "tranquebar"
+   "simProxy": "bombay"
   },
   {
    "id": "calicut",
    "name": "Calicut",
-   "simProxy": "tranquebar"
+   "simProxy": "madras"
   },
   {
    "id": "cochin",
    "name": "Cochin",
-   "simProxy": "tranquebar"
+   "simProxy": "madras"
   },
   {
    "id": "madras",
    "name": "Madras",
-   "simProxy": "tranquebar"
+   "simProxy": "madras"
   },
   {
    "id": "hugli",
    "name": "Hugli (Bengal)",
-   "simProxy": "tranquebar"
+   "simProxy": "calcutta"
   },
   {
    "id": "mocha",
    "name": "Mocha",
-   "simProxy": null
+   "simProxy": "mocha"
   },
   {
    "id": "jedda",
    "name": "Jedda",
-   "simProxy": null
+   "simProxy": "mocha"
   },
   {
    "id": "muscat",
    "name": "Muscat",
-   "simProxy": null
+   "simProxy": "muscat"
   },
   {
    "id": "bandar-abbas",
    "name": "Bandar Abbas",
-   "simProxy": null
+   "simProxy": "muscat"
   },
   {
    "id": "basra",
    "name": "Basra",
-   "simProxy": null
+   "simProxy": "muscat"
   },
   {
    "id": "mombasa",

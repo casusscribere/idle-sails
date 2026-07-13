@@ -52,17 +52,17 @@
   {
    "id": "macau",
    "name": "Macau",
-   "simProxy": null
+   "simProxy": "macau"
   },
   {
    "id": "amoy",
    "name": "Amoy (Xiamen)",
-   "simProxy": null
+   "simProxy": "amoy"
   },
   {
    "id": "ningbo",
    "name": "Ningbo",
-   "simProxy": null
+   "simProxy": "amoy"
   },
   {
    "id": "shanghai",
@@ -82,12 +82,12 @@
   {
    "id": "naha",
    "name": "Naha (Ryukyu)",
-   "simProxy": null
+   "simProxy": "naha"
   },
   {
    "id": "fuzhou",
    "name": "Fuzhou",
-   "simProxy": null
+   "simProxy": "amoy"
   },
   {
    "id": "busan",
@@ -107,12 +107,12 @@
   {
    "id": "malacca",
    "name": "Malacca",
-   "simProxy": null
+   "simProxy": "batavia"
   },
   {
    "id": "manila",
    "name": "Manila",
-   "simProxy": null
+   "simProxy": "manila"
   },
   {
    "id": "batavia",
@@ -132,7 +132,7 @@
   {
    "id": "boston",
    "name": "Boston",
-   "simProxy": null
+   "simProxy": "boston"
   }
  ],
  "systems": [

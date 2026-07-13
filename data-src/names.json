@@ -31,7 +31,16 @@
     "siam":     ["Ayutthaya"],
     "ragusa":   ["Ragusa"],
     "courland": ["Herzog Jacob"],
-    "brandenburg": ["Friedrich Wilhelm zu Pferde", "Kurprinz von Brandenburg"]
+    "brandenburg": ["Friedrich Wilhelm zu Pferde", "Kurprinz von Brandenburg"],
+    "hansa":    ["Wapen von Hamburg", "Leopoldus Primus"],
+    "venice":   ["Bucintoro", "San Lorenzo Giustinian", "Leon Trionfante"],
+    "genoa":    ["Capitana di Genova"],
+    "tuscany":  ["Santo Stefano"],
+    "naples":   ["Partenope", "San Carlo"],
+    "mughal":   ["Ghazi"],
+    "china-junk-trade": ["Haijing"],
+    "tsushima": ["Sō"],
+    "bugis":    ["Gowa"]
   },
 
   "merchant": {
@@ -55,7 +64,16 @@
     "siam":      ["Chao Phraya", "Suphannahong", "Rachasi", "Naga", "Hongsa", "Garuda"],
     "ragusa":    ["Sveti Vlaho", "San Biagio", "Argosia", "La Perla", "Santa Maria di Ragusa", "Il Corriere"],
     "courland":  ["Das Wappen der Herzogin", "Der Walfisch", "Cattharina", "Fortuna von Windau", "Jacobus", "Der Pfeil"],
-    "brandenburg": ["Churprinz", "Rother Löwe", "Morian", "Friedrich Wilhelm", "Dorothea", "Wasserhund"]
+    "brandenburg": ["Churprinz", "Rother Löwe", "Morian", "Friedrich Wilhelm", "Dorothea", "Wasserhund"],
+    "hansa":     ["Stadt Hamburg", "Der Greif", "Sankt Marien", "Adler von Lübeck", "Die Hoffnung", "Wappen von Danzig", "Der Pelikan"],
+    "venice":    ["San Marco", "Leon d'Oro", "Madonna della Salute", "La Serenissima", "San Giorgio", "Redentore"],
+    "genoa":     ["San Giorgio", "Nostra Signora della Guardia", "Il Grifo", "Santa Caterina", "La Superba"],
+    "tuscany":   ["San Giovanni Battista", "Il Granduca", "Santa Croce", "La Livornina"],
+    "naples":    ["San Gennaro", "Santa Lucia", "Il Vesuvio", "La Partenope", "San Francesco di Paola"],
+    "mughal":    ["Ganj-i-Sawai", "Fateh Muhammed", "Rahimi", "Salamat Ras", "Fath-i-Shahi", "Gunsway"],
+    "china-junk-trade": ["Shunfeng", "Jinfa", "Haibao", "Fuxing", "Tong'an", "Wanli", "Dehua"],
+    "tsushima":  ["Tenjinmaru", "Kotobukimaru", "Sōyōmaru"],
+    "bugis":     ["Padewakang", "Sinar Sulawesi", "Bintang Timur", "Karaeng Bontoala", "Arung Palakka", "Cempaka"]
   },
 
   "themesByPower": {
@@ -76,6 +94,15 @@
     "siam":       { "naval": ["places"], "merchant": ["byPower"] },
     "ragusa":     { "naval": ["places"], "merchant": ["byPower"] },
     "courland":   { "naval": ["places"], "merchant": ["byPower"] },
-    "brandenburg": { "naval": ["places"], "merchant": ["byPower"] }
+    "brandenburg": { "naval": ["places"], "merchant": ["byPower"] },
+    "hansa":       { "naval": ["places"], "merchant": ["byPower"] },
+    "venice":      { "naval": ["places"], "merchant": ["byPower"] },
+    "genoa":       { "naval": ["places"], "merchant": ["byPower"] },
+    "tuscany":     { "naval": ["places"], "merchant": ["byPower"] },
+    "naples":      { "naval": ["places"], "merchant": ["byPower"] },
+    "mughal":      { "naval": ["places"], "merchant": ["byPower"] },
+    "china-junk-trade": { "naval": ["places"], "merchant": ["byPower"] },
+    "tsushima":    { "naval": ["places"], "merchant": ["byPower"] },
+    "bugis":       { "naval": ["places"], "merchant": ["byPower"] }
   }
 }

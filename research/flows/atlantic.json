@@ -94,7 +94,7 @@
   {
    "id": "bristol",
    "name": "Bristol",
-   "simProxy": "liverpool"
+   "simProxy": "bristol"
   },
   {
    "id": "liverpool",
@@ -114,27 +114,27 @@
   {
    "id": "hull",
    "name": "Hull",
-   "simProxy": "london"
+   "simProxy": "newcastle"
   },
   {
    "id": "veracruz",
    "name": "Veracruz",
-   "simProxy": "kingston"
+   "simProxy": "veracruz"
   },
   {
    "id": "portobelo",
    "name": "Portobelo",
-   "simProxy": "kingston"
+   "simProxy": "portobelo"
   },
   {
    "id": "cartagena",
    "name": "Cartagena",
-   "simProxy": "kingston"
+   "simProxy": "cartagena"
   },
   {
    "id": "havana",
    "name": "Havana",
-   "simProxy": "kingston"
+   "simProxy": "havana"
   },
   {
    "id": "kingston",
@@ -144,22 +144,22 @@
   {
    "id": "bridgetown",
    "name": "Bridgetown (Barbados)",
-   "simProxy": "kingston"
+   "simProxy": "bridgetown"
   },
   {
    "id": "cap-francais",
    "name": "Cap-Français",
-   "simProxy": "kingston"
+   "simProxy": "cap-francais"
   },
   {
    "id": "st-eustatius",
    "name": "St Eustatius",
-   "simProxy": "kingston"
+   "simProxy": "st-eustatius"
   },
   {
    "id": "curacao",
    "name": "Curaçao",
-   "simProxy": "kingston"
+   "simProxy": "st-eustatius"
   },
   {
    "id": "bahia",
@@ -169,12 +169,12 @@
   {
    "id": "rio",
    "name": "Rio de Janeiro",
-   "simProxy": "bahia"
+   "simProxy": "rio"
   },
   {
    "id": "pernambuco",
    "name": "Pernambuco (Recife)",
-   "simProxy": "bahia"
+   "simProxy": "pernambuco"
   },
   {
    "id": "whydah",
@@ -184,7 +184,7 @@
   {
    "id": "elmina",
    "name": "Elmina",
-   "simProxy": "whydah"
+   "simProxy": "elmina"
   },
   {
    "id": "old-calabar",
@@ -194,32 +194,32 @@
   {
    "id": "luanda",
    "name": "Luanda",
-   "simProxy": "whydah"
+   "simProxy": "luanda"
   },
   {
    "id": "boston",
    "name": "Boston",
-   "simProxy": null
+   "simProxy": "boston"
   },
   {
    "id": "new-york",
    "name": "New York",
-   "simProxy": null
+   "simProxy": "new-york"
   },
   {
    "id": "philadelphia",
    "name": "Philadelphia",
-   "simProxy": null
+   "simProxy": "philadelphia"
   },
   {
    "id": "chesapeake",
    "name": "The Chesapeake (Norfolk/Annapolis)",
-   "simProxy": null
+   "simProxy": "chesapeake"
   },
   {
    "id": "newfoundland",
    "name": "Newfoundland (St John's & the Banks)",
-   "simProxy": null
+   "simProxy": "louisbourg"
   },
   {
    "id": "davis-strait",
@@ -229,7 +229,7 @@
   {
    "id": "nantucket",
    "name": "Nantucket",
-   "simProxy": null
+   "simProxy": "boston"
   },
   {
    "id": "madeira",

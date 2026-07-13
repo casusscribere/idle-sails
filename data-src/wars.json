@@ -2,89 +2,564 @@
   "$schema": "./_schema.md#wars",
   "note": "Dated conflicts within the flowing 1550-1815 scope. `belligerents` are opposing sets of power ids (cross-checked against powers.json; companies count as their parent nation). `theatres` are region ids where risk is elevated. `riskUplift` multiplies the baseline per-day loss chance for a belligerent flag sailing a theatre. `engagements` are notable actions for log/flavor. Neutrals (sweden, denmark, usa pre-1812) generally keep the baseline unless listed.",
   "wars": [
-    { "id": "italian-war-1551", "name": "Italian War of 1551–59", "from": 1551, "to": 1559,
-      "belligerents": [["france"], ["spain", "portugal"]],
-      "theatres": ["france", "iberia", "caribbean"], "riskUplift": 1.5,
-      "engagements": [ { "year": 1555, "name": "Sack of Havana by French corsairs" } ],
-      "note": "The last Habsburg-Valois war; French corsairs raid the Spanish Main." },
-
-    { "id": "anglo-spanish-1585", "name": "Anglo-Spanish War", "from": 1585, "to": 1604,
-      "belligerents": [["britain"], ["spain", "portugal"]],
-      "theatres": ["britain", "iberia", "caribbean"], "riskUplift": 1.9,
-      "engagements": [ { "year": 1587, "name": "Raid on Cádiz (the singeing of the King of Spain's beard)" }, { "year": 1588, "name": "The Spanish Armada" }, { "year": 1596, "name": "Capture of Cádiz" } ],
-      "note": "Sea-dog privateering against the Iberian Atlantic; Portugal under the Iberian Union crown." },
-
-    { "id": "dutch-iberian", "name": "Dutch-Iberian War (Eighty Years' War at sea)", "from": 1585, "to": 1648,
-      "belligerents": [["dutch"], ["spain", "portugal"]],
-      "theatres": ["iberia", "brazil", "caribbean", "west-africa", "east-indies"], "riskUplift": 1.6,
-      "engagements": [ { "year": 1628, "name": "Piet Heyn takes the treasure fleet at Matanzas Bay" }, { "year": 1639, "name": "Battle of the Downs" }, { "year": 1624, "name": "Dutch capture of Salvador da Bahia" } ],
-      "note": "The Dutch revolt carried worldwide: WIC assaults on Brazil and the Main, VOC against the Estado da India. Portugal a belligerent via the Iberian Union (1580-1640) and after." },
-
-    { "id": "portuguese-restoration", "name": "Portuguese Restoration War", "from": 1641, "to": 1668,
-      "belligerents": [["portugal"], ["spain"]],
-      "theatres": ["iberia"], "riskUplift": 1.4,
-      "engagements": [ { "year": 1657, "name": "Blockade of the Tagus" } ] },
-
-    { "id": "anglo-dutch-1", "name": "First Anglo-Dutch War", "from": 1652, "to": 1654,
-      "belligerents": [["britain"], ["dutch"]],
-      "theatres": ["britain", "lowlands"], "riskUplift": 2.0,
-      "engagements": [ { "year": 1653, "name": "Battle of Scheveningen" } ] },
-
-    { "id": "anglo-dutch-2", "name": "Second Anglo-Dutch War", "from": 1665, "to": 1667,
-      "belligerents": [["britain"], ["dutch", "france"]],
-      "theatres": ["britain", "lowlands", "caribbean", "west-africa"], "riskUplift": 2.0,
-      "engagements": [ { "year": 1666, "name": "The Four Days' Battle" }, { "year": 1667, "name": "The raid on the Medway" } ] },
-
-    { "id": "anglo-dutch-3", "name": "Third Anglo-Dutch War", "from": 1672, "to": 1674,
-      "belligerents": [["britain", "france"], ["dutch"]],
-      "theatres": ["britain", "lowlands"], "riskUplift": 1.9,
-      "engagements": [ { "year": 1673, "name": "Battle of Texel" } ] },
-
-    { "id": "nine-years", "name": "Nine Years' War", "from": 1688, "to": 1697,
-      "belligerents": [["britain", "dutch", "spain"], ["france"]],
-      "theatres": ["britain", "france", "lowlands", "iberia", "caribbean"], "riskUplift": 1.9,
-      "engagements": [ { "year": 1690, "name": "Battle of Beachy Head" }, { "year": 1692, "name": "Battles of Barfleur and La Hogue" }, { "year": 1693, "name": "Tourville takes the Smyrna convoy off Lagos" } ],
-      "note": "The great age of the Dunkirk corsairs; convoy predation at its height." },
-
-    { "id": "spanish-succession", "name": "War of the Spanish Succession", "from": 1701, "to": 1714,
-      "belligerents": [["britain", "dutch", "portugal"], ["france", "spain"]],
-      "theatres": ["iberia", "caribbean", "britain", "france"], "riskUplift": 1.8,
-      "engagements": [ { "year": 1704, "name": "Capture of Gibraltar" }, { "year": 1708, "name": "Battle of the Lizard" } ] },
-
-    { "id": "quadruple-alliance", "name": "War of the Quadruple Alliance", "from": 1718, "to": 1720,
-      "belligerents": [["britain", "france"], ["spain"]],
-      "theatres": ["iberia"], "riskUplift": 1.4,
-      "engagements": [ { "year": 1718, "name": "Battle of Cape Passaro" } ] },
-
-    { "id": "jenkins-ear", "name": "War of Jenkins' Ear", "from": 1739, "to": 1748,
-      "belligerents": [["britain"], ["spain"]],
-      "theatres": ["caribbean", "iberia"], "riskUplift": 1.7,
-      "engagements": [ { "year": 1741, "name": "Siege of Cartagena de Indias" }, { "year": 1743, "name": "Anson's capture of the Manila galleon", "note": "1743 in the Pacific; flavour only." } ] },
-
-    { "id": "austrian-succession", "name": "War of the Austrian Succession", "from": 1744, "to": 1748,
-      "belligerents": [["britain", "dutch"], ["france", "spain"]],
-      "theatres": ["britain", "france", "iberia", "caribbean"], "riskUplift": 1.8,
-      "engagements": [ { "year": 1747, "name": "First Battle of Cape Finisterre" }, { "year": 1747, "name": "Second Battle of Cape Finisterre" } ] },
-
-    { "id": "seven-years", "name": "Seven Years' War", "from": 1756, "to": 1763,
-      "belligerents": [["britain", "portugal"], ["france", "spain"]],
-      "theatres": ["britain", "france", "iberia", "caribbean", "india", "east-indies"], "riskUplift": 2.1,
-      "engagements": [ { "year": 1759, "name": "Battle of Quiberon Bay" }, { "year": 1759, "name": "Battle of Lagos" }, { "year": 1762, "name": "Capture of Havana" } ] },
-
-    { "id": "american-revolution", "name": "American Revolutionary War (naval)", "from": 1778, "to": 1783,
-      "belligerents": [["britain"], ["france", "spain", "dutch", "usa"]],
-      "theatres": ["caribbean", "britain", "france", "iberia", "north-america"], "riskUplift": 2.0,
-      "engagements": [ { "year": 1780, "name": "Battle of Cape St. Vincent (Moonlight Battle)" }, { "year": 1782, "name": "Battle of the Saintes" }, { "year": 1781, "name": "Battle of the Chesapeake" } ] },
-
-    { "id": "french-revolutionary", "name": "French Revolutionary Wars", "from": 1793, "to": 1802,
-      "belligerents": [["britain", "portugal"], ["france", "spain", "dutch"]],
-      "theatres": ["britain", "france", "iberia", "caribbean", "east-indies", "india"], "riskUplift": 2.2,
-      "engagements": [ { "year": 1794, "name": "Glorious First of June" }, { "year": 1797, "name": "Battle of Cape St. Vincent" }, { "year": 1798, "name": "Battle of the Nile" } ] },
-
-    { "id": "napoleonic", "name": "Napoleonic Wars", "from": 1803, "to": 1815,
-      "belligerents": [["britain", "portugal"], ["france", "spain"]],
-      "theatres": ["britain", "france", "iberia", "caribbean", "east-indies", "india", "baltic"], "riskUplift": 2.3,
-      "engagements": [ { "year": 1805, "name": "Battle of Trafalgar" }, { "year": 1806, "name": "Battle of San Domingo" }, { "year": 1801, "name": "Battle of Copenhagen", "note": "1801, spans into this period's Baltic theatre." } ],
-      "note": "Spain switches sides in 1808 (Peninsular War); modelled coarsely as a belligerent pairing for the whole span." }
+    {
+      "id": "italian-war-1551",
+      "name": "Italian War of 1551–59",
+      "from": 1551,
+      "to": 1559,
+      "belligerents": [
+        [
+          "france"
+        ],
+        [
+          "spain",
+          "portugal"
+        ]
+      ],
+      "theatres": [
+        "france",
+        "iberia",
+        "caribbean"
+      ],
+      "riskUplift": 1.5,
+      "engagements": [
+        {
+          "year": 1555,
+          "name": "Sack of Havana by French corsairs"
+        }
+      ],
+      "note": "The last Habsburg-Valois war; French corsairs raid the Spanish Main."
+    },
+    {
+      "id": "anglo-spanish-1585",
+      "name": "Anglo-Spanish War",
+      "from": 1585,
+      "to": 1604,
+      "belligerents": [
+        [
+          "britain"
+        ],
+        [
+          "spain",
+          "portugal"
+        ]
+      ],
+      "theatres": [
+        "britain",
+        "iberia",
+        "caribbean"
+      ],
+      "riskUplift": 1.9,
+      "engagements": [
+        {
+          "year": 1587,
+          "name": "Raid on Cádiz (the singeing of the King of Spain's beard)"
+        },
+        {
+          "year": 1588,
+          "name": "The Spanish Armada"
+        },
+        {
+          "year": 1596,
+          "name": "Capture of Cádiz"
+        }
+      ],
+      "note": "Sea-dog privateering against the Iberian Atlantic; Portugal under the Iberian Union crown."
+    },
+    {
+      "id": "dutch-iberian",
+      "name": "Dutch-Iberian War (Eighty Years' War at sea)",
+      "from": 1585,
+      "to": 1648,
+      "belligerents": [
+        [
+          "dutch"
+        ],
+        [
+          "spain",
+          "portugal"
+        ]
+      ],
+      "theatres": [
+        "iberia",
+        "brazil",
+        "caribbean",
+        "west-africa",
+        "east-indies"
+      ],
+      "riskUplift": 1.6,
+      "engagements": [
+        {
+          "year": 1628,
+          "name": "Piet Heyn takes the treasure fleet at Matanzas Bay"
+        },
+        {
+          "year": 1639,
+          "name": "Battle of the Downs"
+        },
+        {
+          "year": 1624,
+          "name": "Dutch capture of Salvador da Bahia"
+        }
+      ],
+      "note": "The Dutch revolt carried worldwide: WIC assaults on Brazil and the Main, VOC against the Estado da India. Portugal a belligerent via the Iberian Union (1580-1640) and after."
+    },
+    {
+      "id": "portuguese-restoration",
+      "name": "Portuguese Restoration War",
+      "from": 1641,
+      "to": 1668,
+      "belligerents": [
+        [
+          "portugal"
+        ],
+        [
+          "spain"
+        ]
+      ],
+      "theatres": [
+        "iberia"
+      ],
+      "riskUplift": 1.4,
+      "engagements": [
+        {
+          "year": 1657,
+          "name": "Blockade of the Tagus"
+        }
+      ]
+    },
+    {
+      "id": "anglo-dutch-1",
+      "name": "First Anglo-Dutch War",
+      "from": 1652,
+      "to": 1654,
+      "belligerents": [
+        [
+          "britain"
+        ],
+        [
+          "dutch"
+        ]
+      ],
+      "theatres": [
+        "britain",
+        "lowlands"
+      ],
+      "riskUplift": 2.0,
+      "engagements": [
+        {
+          "year": 1653,
+          "name": "Battle of Scheveningen"
+        }
+      ]
+    },
+    {
+      "id": "anglo-dutch-2",
+      "name": "Second Anglo-Dutch War",
+      "from": 1665,
+      "to": 1667,
+      "belligerents": [
+        [
+          "britain"
+        ],
+        [
+          "dutch",
+          "france"
+        ]
+      ],
+      "theatres": [
+        "britain",
+        "lowlands",
+        "caribbean",
+        "west-africa"
+      ],
+      "riskUplift": 2.0,
+      "engagements": [
+        {
+          "year": 1666,
+          "name": "The Four Days' Battle"
+        },
+        {
+          "year": 1667,
+          "name": "The raid on the Medway"
+        }
+      ]
+    },
+    {
+      "id": "anglo-dutch-3",
+      "name": "Third Anglo-Dutch War",
+      "from": 1672,
+      "to": 1674,
+      "belligerents": [
+        [
+          "britain",
+          "france"
+        ],
+        [
+          "dutch"
+        ]
+      ],
+      "theatres": [
+        "britain",
+        "lowlands"
+      ],
+      "riskUplift": 1.9,
+      "engagements": [
+        {
+          "year": 1673,
+          "name": "Battle of Texel"
+        }
+      ]
+    },
+    {
+      "id": "nine-years",
+      "name": "Nine Years' War",
+      "from": 1688,
+      "to": 1697,
+      "belligerents": [
+        [
+          "britain",
+          "dutch",
+          "spain"
+        ],
+        [
+          "france"
+        ]
+      ],
+      "theatres": [
+        "britain",
+        "france",
+        "lowlands",
+        "iberia",
+        "caribbean"
+      ],
+      "riskUplift": 1.9,
+      "engagements": [
+        {
+          "year": 1690,
+          "name": "Battle of Beachy Head"
+        },
+        {
+          "year": 1692,
+          "name": "Battles of Barfleur and La Hogue"
+        },
+        {
+          "year": 1693,
+          "name": "Tourville takes the Smyrna convoy off Lagos"
+        }
+      ],
+      "note": "The great age of the Dunkirk corsairs; convoy predation at its height."
+    },
+    {
+      "id": "spanish-succession",
+      "name": "War of the Spanish Succession",
+      "from": 1701,
+      "to": 1714,
+      "belligerents": [
+        [
+          "britain",
+          "dutch",
+          "portugal"
+        ],
+        [
+          "france",
+          "spain"
+        ]
+      ],
+      "theatres": [
+        "iberia",
+        "caribbean",
+        "britain",
+        "france"
+      ],
+      "riskUplift": 1.8,
+      "engagements": [
+        {
+          "year": 1704,
+          "name": "Capture of Gibraltar"
+        },
+        {
+          "year": 1708,
+          "name": "Battle of the Lizard"
+        }
+      ]
+    },
+    {
+      "id": "quadruple-alliance",
+      "name": "War of the Quadruple Alliance",
+      "from": 1718,
+      "to": 1720,
+      "belligerents": [
+        [
+          "britain",
+          "france"
+        ],
+        [
+          "spain"
+        ]
+      ],
+      "theatres": [
+        "iberia"
+      ],
+      "riskUplift": 1.4,
+      "engagements": [
+        {
+          "year": 1718,
+          "name": "Battle of Cape Passaro"
+        }
+      ]
+    },
+    {
+      "id": "jenkins-ear",
+      "name": "War of Jenkins' Ear",
+      "from": 1739,
+      "to": 1748,
+      "belligerents": [
+        [
+          "britain"
+        ],
+        [
+          "spain"
+        ]
+      ],
+      "theatres": [
+        "caribbean",
+        "iberia"
+      ],
+      "riskUplift": 1.7,
+      "engagements": [
+        {
+          "year": 1741,
+          "name": "Siege of Cartagena de Indias"
+        },
+        {
+          "year": 1743,
+          "name": "Anson's capture of the Manila galleon",
+          "note": "1743 in the Pacific; flavour only."
+        }
+      ]
+    },
+    {
+      "id": "austrian-succession",
+      "name": "War of the Austrian Succession",
+      "from": 1744,
+      "to": 1748,
+      "belligerents": [
+        [
+          "britain",
+          "dutch"
+        ],
+        [
+          "france",
+          "spain"
+        ]
+      ],
+      "theatres": [
+        "britain",
+        "france",
+        "iberia",
+        "caribbean"
+      ],
+      "riskUplift": 1.8,
+      "engagements": [
+        {
+          "year": 1747,
+          "name": "First Battle of Cape Finisterre"
+        },
+        {
+          "year": 1747,
+          "name": "Second Battle of Cape Finisterre"
+        }
+      ]
+    },
+    {
+      "id": "seven-years",
+      "name": "Seven Years' War",
+      "from": 1756,
+      "to": 1763,
+      "belligerents": [
+        [
+          "britain",
+          "portugal"
+        ],
+        [
+          "france",
+          "spain"
+        ]
+      ],
+      "theatres": [
+        "britain",
+        "france",
+        "iberia",
+        "caribbean",
+        "india",
+        "east-indies"
+      ],
+      "riskUplift": 2.1,
+      "engagements": [
+        {
+          "year": 1759,
+          "name": "Battle of Quiberon Bay"
+        },
+        {
+          "year": 1759,
+          "name": "Battle of Lagos"
+        },
+        {
+          "year": 1762,
+          "name": "Capture of Havana"
+        }
+      ]
+    },
+    {
+      "id": "american-revolution",
+      "name": "American Revolutionary War (naval)",
+      "from": 1778,
+      "to": 1783,
+      "belligerents": [
+        [
+          "britain"
+        ],
+        [
+          "france",
+          "spain",
+          "dutch",
+          "usa"
+        ]
+      ],
+      "theatres": [
+        "caribbean",
+        "britain",
+        "france",
+        "iberia",
+        "north-america"
+      ],
+      "riskUplift": 2.0,
+      "engagements": [
+        {
+          "year": 1780,
+          "name": "Battle of Cape St. Vincent (Moonlight Battle)"
+        },
+        {
+          "year": 1782,
+          "name": "Battle of the Saintes"
+        },
+        {
+          "year": 1781,
+          "name": "Battle of the Chesapeake"
+        }
+      ]
+    },
+    {
+      "id": "french-revolutionary",
+      "name": "French Revolutionary Wars",
+      "from": 1793,
+      "to": 1802,
+      "belligerents": [
+        [
+          "britain",
+          "portugal"
+        ],
+        [
+          "france",
+          "spain",
+          "dutch"
+        ]
+      ],
+      "theatres": [
+        "britain",
+        "france",
+        "iberia",
+        "caribbean",
+        "east-indies",
+        "india"
+      ],
+      "riskUplift": 2.2,
+      "engagements": [
+        {
+          "year": 1794,
+          "name": "Glorious First of June"
+        },
+        {
+          "year": 1797,
+          "name": "Battle of Cape St. Vincent"
+        },
+        {
+          "year": 1798,
+          "name": "Battle of the Nile"
+        }
+      ]
+    },
+    {
+      "id": "napoleonic",
+      "name": "Napoleonic Wars",
+      "from": 1803,
+      "to": 1815,
+      "belligerents": [
+        [
+          "britain",
+          "portugal"
+        ],
+        [
+          "france",
+          "spain"
+        ]
+      ],
+      "theatres": [
+        "britain",
+        "france",
+        "iberia",
+        "caribbean",
+        "east-indies",
+        "india",
+        "baltic"
+      ],
+      "riskUplift": 2.3,
+      "engagements": [
+        {
+          "year": 1805,
+          "name": "Battle of Trafalgar"
+        },
+        {
+          "year": 1806,
+          "name": "Battle of San Domingo"
+        },
+        {
+          "year": 1801,
+          "name": "Battle of Copenhagen",
+          "note": "1801, spans into this period's Baltic theatre."
+        }
+      ],
+      "note": "Spain switches sides in 1808 (Peninsular War); modelled coarsely as a belligerent pairing for the whole span."
+    },
+    {
+      "id": "pirate-round",
+      "name": "The Pirate Round (Île Sainte-Marie)",
+      "from": 1690,
+      "to": 1725,
+      "hazard": true,
+      "belligerents": [
+        [],
+        []
+      ],
+      "theatres": [
+        "india",
+        "indian-ocean",
+        "east-africa",
+        "arabia"
+      ],
+      "riskUplift": 1.8,
+      "engagements": [
+        {
+          "year": 1695,
+          "name": "Every takes the Ganj-i-Sawai"
+        },
+        {
+          "year": 1698,
+          "name": "Kidd takes the Quedagh Merchant"
+        }
+      ],
+      "note": "S2 (user decision): Île Sainte-Marie modeled as a HAZARD, not a port — a flag-agnostic riskUplift on Indian-Ocean theatres while the pirate republic operated. hazard:true means every flag in the theatre is at risk (world.js)."
+    }
   ]
 }

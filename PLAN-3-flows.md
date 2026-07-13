@@ -147,22 +147,32 @@ samples. era-weights retired from the bundle. 19 tests green; at-sea 1755
 composition: gothenburg-node 25% (the folded Baltic — the stated proxy
 limit), london 19%, kingston 12%, whydah 10%, batavia/canton 4%.)*
 
-### Phase S2 — Coverage expansion + re-bake *(old PLAN-2 Phase B, re-scoped)*
-Choose the expanded port set **by flow coverage** (which systems cannot be
-represented without which ports), regen wind-fields, bake, promote queue
-entries, add the unlock flags, do the engine exceptions.
-**Decisions (inherits PLAN-2 §7):** (1) port count / target universe
-(~40–55?); (2) backbone + diversity in one bake (recommended: yes);
-(3) junk/dhow polars — map onto indiaman/brig (recommended) vs author new;
-(4) **evidence-band visibility** — how much on-screen traffic the
-reconstructed/asserted strata carry (replaces the "diversity weight band");
-(5) wind-fidelity floor — accept 18th-c climatology for all eras
-(recommended); (6) engine exceptions to fund now vs defer — Bosporus/Kerch
-carving (Kaffa, Istanbul), White Sea/Svalbard seasonal ice exception
-(Arkhangelsk, Smeerenburg), Pacific render-bounds (Sitka, Manila galleon);
-(7) flag additions — china-junk-trade (recommended: unlocks Hội An, Patani,
-Manila, Ayutthaya), tsushima, golconda, patani; Île Sainte-Marie as a
-1690–1725 hazard rather than a port (recommended).
+### Phase S2 — Coverage expansion + re-bake — ✅ DONE 2026-07-13
+*(Decisions resolved: **~55-port option + the six ports the funded exceptions
+unlock = 66 total**, one combined bake; **full fidelity push** (user chose
+beyond recommendation — honored in its implementable form: junk & dhow get
+their OWN parametric polars as new routing classes, literature-derived and
+uncalibrated (declared boundary), plus the one supportable era-climate signal:
+seasonal LIA ice corridors and a Maunder-Minimum storminess modifier (+7% N.
+Atlantic leg duration 1645–1715); per-era wind REANALYSIS does not exist —
+declared boundary); **full data weight** for all evidence classes; **all four
+exception/flag bundles funded**.
+Delivered: 51 new ports (33 flow-demanded backbone + tranche-1 queue +
+Istanbul, Kaffa, Arkhangelsk, Smeerenburg, Sitka, Acapulco); 11 new polities
+incl. the Hanse, Venice, Genoa, the Gujarati marine (Mughal), **the Nanyang
+junk-trade flag**, Tsushima, the Bugis network, + golconda/patani shore
+powers; the Pirate Round as a flag-agnostic hazard (1690–1725); 219 generated
+lanes (queue + flow-derived, 261 total) with 4 sober-framed human-cargo lanes
+and lane-level framing pass-through (Kaffa's text is its own, not the
+Atlantic's); baker upgrades — per-season routing masks, Bosporus/Kerch/Gorlo
+carves, seasonal Arctic corridors with **season-gated legs** (36 ice-locked:
+no winter Arkhangelsk departures — absence is the history); **1,360 polylines
+from 492 computed fields in ~16 s**, zero sanity problems; render bounds now
+the full globe (Sitka to Smeerenburg) with port-label decluttering; flow
+coverage **25–34% → 76–89%**; population band retuned to spectator scale
+(32→110 era averages). 19 tests green — including the one that now asserts
+what the boundary statement claimed: **Istanbul is the busiest port of the
+1560s**, and the junk trade sails the 17th century.)*
 
 ### Phase S3 — Surfacing the historiography
 Ledger evidence-class line (*"this voyage stands for a reconstructed trade"*);

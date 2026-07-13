@@ -93,7 +93,12 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
     let mp = '';
     if (v.middlePassage) {
       const fr = cargoById.get('enslaved-people').framing;
-      mp = `<div class="mp-note"><strong>The Middle Passage</strong>${escapeHtml(fr.description)}</div>`;
+      // Atlantic lanes carry the Middle-Passage framing; other coerced flows
+      // (the Black Sea trade at Kaffa) carry their lane's own sober text.
+      const atlantic = v.system === 'atlantic-slave' || v.system === 'middle-passage';
+      const title = atlantic ? 'The Middle Passage' : 'Coerced human transport';
+      const body = (!atlantic && v.laneFraming) ? v.laneFraming : fr.description;
+      mp = `<div class="mp-note"><strong>${escapeHtml(title)}</strong>${escapeHtml(body)}</div>`;
     }
 
     els.ledgerBody.innerHTML = `

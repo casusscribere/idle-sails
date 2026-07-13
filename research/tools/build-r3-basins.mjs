@@ -57,17 +57,17 @@ emit("atlantic.json", {
   ports: [
     P("cadiz", "Cádiz", "cadiz"), P("seville", "Seville", "cadiz"), P("lisbon", "Lisbon", "lisbon"),
     P("bordeaux", "Bordeaux", "bordeaux"), P("nantes", "Nantes", "nantes"), P("la-rochelle", "La Rochelle", "nantes"),
-    P("london", "London", "london"), P("bristol", "Bristol", "liverpool"), P("liverpool", "Liverpool", "liverpool"),
-    P("glasgow", "Glasgow", "liverpool"), P("amsterdam", "Amsterdam", "amsterdam"), P("hull", "Hull", "london"),
-    P("veracruz", "Veracruz", "kingston"), P("portobelo", "Portobelo", "kingston"), P("cartagena", "Cartagena", "kingston"),
-    P("havana", "Havana", "kingston"), P("kingston", "Kingston", "kingston"), P("bridgetown", "Bridgetown (Barbados)", "kingston"),
-    P("cap-francais", "Cap-Français", "kingston"), P("st-eustatius", "St Eustatius", "kingston"), P("curacao", "Curaçao", "kingston"),
-    P("bahia", "Salvador da Bahia", "bahia"), P("rio", "Rio de Janeiro", "bahia"), P("pernambuco", "Pernambuco (Recife)", "bahia"),
-    P("whydah", "Whydah (Ouidah)", "whydah"), P("elmina", "Elmina", "whydah"), P("old-calabar", "Old Calabar", "whydah"),
-    P("luanda", "Luanda", "whydah"),
-    P("boston", "Boston", null), P("new-york", "New York", null), P("philadelphia", "Philadelphia", null),
-    P("chesapeake", "The Chesapeake (Norfolk/Annapolis)", null), P("newfoundland", "Newfoundland (St John's & the Banks)", null),
-    P("davis-strait", "Davis Strait (the whaling grounds)", null), P("nantucket", "Nantucket", null),
+    P("london", "London", "london"), P("bristol", "Bristol", "bristol"), P("liverpool", "Liverpool", "liverpool"),
+    P("glasgow", "Glasgow", "liverpool"), P("amsterdam", "Amsterdam", "amsterdam"), P("hull", "Hull", "newcastle"),
+    P("veracruz", "Veracruz", "veracruz"), P("portobelo", "Portobelo", "portobelo"), P("cartagena", "Cartagena", "cartagena"),
+    P("havana", "Havana", "havana"), P("kingston", "Kingston", "kingston"), P("bridgetown", "Bridgetown (Barbados)", "bridgetown"),
+    P("cap-francais", "Cap-Français", "cap-francais"), P("st-eustatius", "St Eustatius", "st-eustatius"), P("curacao", "Curaçao", "st-eustatius"),
+    P("bahia", "Salvador da Bahia", "bahia"), P("rio", "Rio de Janeiro", "rio"), P("pernambuco", "Pernambuco (Recife)", "pernambuco"),
+    P("whydah", "Whydah (Ouidah)", "whydah"), P("elmina", "Elmina", "elmina"), P("old-calabar", "Old Calabar", "whydah"),
+    P("luanda", "Luanda", "luanda"),
+    P("boston", "Boston", "boston"), P("new-york", "New York", "new-york"), P("philadelphia", "Philadelphia", "philadelphia"),
+    P("chesapeake", "The Chesapeake (Norfolk/Annapolis)", "chesapeake"), P("newfoundland", "Newfoundland (St John's & the Banks)", "louisbourg"),
+    P("davis-strait", "Davis Strait (the whaling grounds)", null), P("nantucket", "Nantucket", "boston"),
     P("madeira", "Funchal (Madeira)", "lisbon"), P("tenerife", "Santa Cruz (Tenerife)", "cadiz")
   ],
   systems: [
@@ -163,11 +163,11 @@ emit("mediterranean.json", {
       decades: { 1750: [180, 380], 1780: [200, 420] } }
   ],
   ports: [
-    P("marseille", "Marseille", "bordeaux"), P("barcelona", "Barcelona", "cadiz"), P("cadiz", "Cádiz", "cadiz"),
-    P("genoa", "Genoa", null), P("livorno", "Livorno", null), P("venice", "Venice", null), P("naples", "Naples", null),
-    P("palermo", "Palermo", null), P("messina", "Messina", null), P("ragusa-port", "Ragusa (Dubrovnik)", null),
-    P("smyrna", "Smyrna (İzmir)", null), P("istanbul", "Istanbul (Constantinople)", null), P("alexandria", "Alexandria", null),
-    P("scanderoon", "Scanderoon (İskenderun, for Aleppo)", null), P("kaffa", "Kaffa (Feodosia)", null),
+    P("marseille", "Marseille", "marseille"), P("barcelona", "Barcelona", "barcelona"), P("cadiz", "Cádiz", "cadiz"),
+    P("genoa", "Genoa", "genoa"), P("livorno", "Livorno", "livorno"), P("venice", "Venice", "venice"), P("naples", "Naples", "naples"),
+    P("palermo", "Palermo", "naples"), P("messina", "Messina", "naples"), P("ragusa-port", "Ragusa (Dubrovnik)", "venice"),
+    P("smyrna", "Smyrna (İzmir)", "istanbul"), P("istanbul", "Istanbul (Constantinople)", "istanbul"), P("alexandria", "Alexandria", null),
+    P("scanderoon", "Scanderoon (İskenderun, for Aleppo)", null), P("kaffa", "Kaffa (Feodosia)", "kaffa"),
     P("london", "London", "london"), P("amsterdam", "Amsterdam", "amsterdam")
   ],
   systems: [
@@ -241,11 +241,11 @@ emit("indian-ocean-west.json", {
   note: "PLAN-3 R3. The monsoon world west of Ceylon: almost none of it generated European-style toll series, so the basin leans on reconstruction (Chaudhuri, Das Gupta) — exactly the Euro-centrism corrective the flow matrix exists for. Includes the Indian Ocean slave trades under the sober-framing rule.",
   anchors: ["K. N. Chaudhuri, Trade and Civilisation in the Indian Ocean", "A. Das Gupta (Surat); S. Subrahmanyam (the Portuguese Estado)", "Disney (the Carreira); R. J. Barendse, The Arabian Seas", "G. Campbell, E. Alpers (Indian Ocean slavery)"],
   ports: [
-    P("goa", "Goa", "tranquebar"), P("surat", "Surat", "tranquebar"), P("bombay", "Bombay", "tranquebar"),
-    P("calicut", "Calicut", "tranquebar"), P("cochin", "Cochin", "tranquebar"), P("madras", "Madras", "tranquebar"),
-    P("hugli", "Hugli (Bengal)", "tranquebar"),
-    P("mocha", "Mocha", null), P("jedda", "Jedda", null), P("muscat", "Muscat", null),
-    P("bandar-abbas", "Bandar Abbas", null), P("basra", "Basra", null),
+    P("goa", "Goa", "bombay"), P("surat", "Surat", "surat"), P("bombay", "Bombay", "bombay"),
+    P("calicut", "Calicut", "madras"), P("cochin", "Cochin", "madras"), P("madras", "Madras", "madras"),
+    P("hugli", "Hugli (Bengal)", "calcutta"),
+    P("mocha", "Mocha", "mocha"), P("jedda", "Jedda", "mocha"), P("muscat", "Muscat", "muscat"),
+    P("bandar-abbas", "Bandar Abbas", "muscat"), P("basra", "Basra", "muscat"),
     P("mombasa", "Mombasa", null), P("zanzibar", "Zanzibar", null), P("mozambique", "Mozambique Island", null),
     P("male", "Malé (Maldives)", null), P("ile-de-france", "Île de France (Mauritius)", null),
     P("lisbon", "Lisbon", "lisbon"), P("lorient", "Lorient", "nantes")
@@ -326,11 +326,11 @@ emit("bengal-se-asia.json", {
   ],
   ports: [
     P("batavia", "Batavia", "batavia"), P("amsterdam", "Amsterdam", "amsterdam"), P("london", "London", "london"),
-    P("lorient", "Lorient", "nantes"), P("copenhagen", "Copenhagen", "gothenburg"), P("tranquebar", "Tranquebar", "tranquebar"),
-    P("madras", "Madras", "tranquebar"), P("bombay", "Bombay", "tranquebar"), P("calcutta", "Calcutta", "tranquebar"),
-    P("masulipatnam", "Masulipatnam", "tranquebar"),
-    P("aceh", "Aceh", null), P("malacca", "Malacca", null), P("makassar", "Makassar", null),
-    P("banda", "Banda Neira", null), P("manila", "Manila", null), P("acapulco", "Acapulco", null), P("jedda", "Jedda", null)
+    P("lorient", "Lorient", "nantes"), P("copenhagen", "Copenhagen", "copenhagen"), P("tranquebar", "Tranquebar", "tranquebar"),
+    P("madras", "Madras", "madras"), P("bombay", "Bombay", "bombay"), P("calcutta", "Calcutta", "calcutta"),
+    P("masulipatnam", "Masulipatnam", "madras"),
+    P("aceh", "Aceh", null), P("malacca", "Malacca", "batavia"), P("makassar", "Makassar", "makassar"),
+    P("banda", "Banda Neira", "banda-neira"), P("manila", "Manila", "manila"), P("acapulco", "Acapulco", "acapulco"), P("jedda", "Jedda", "mocha")
   ],
   systems: [
     sys("voc-arterial", "The VOC arterial (Amsterdam–Batavia)", "counted",
@@ -409,13 +409,13 @@ emit("east-asia.json", {
       decades: { 1760: [15, 40], 1800: [35, 85] } }
   ],
   ports: [
-    P("canton", "Canton (Guangzhou)", "canton"), P("macau", "Macau", null), P("amoy", "Amoy (Xiamen)", null),
-    P("ningbo", "Ningbo", null), P("shanghai", "Shanghai", null), P("tianjin", "Tianjin", null),
-    P("nagasaki", "Nagasaki", "dejima"), P("naha", "Naha (Ryukyu)", null), P("fuzhou", "Fuzhou", null),
+    P("canton", "Canton (Guangzhou)", "canton"), P("macau", "Macau", "macau"), P("amoy", "Amoy (Xiamen)", "amoy"),
+    P("ningbo", "Ningbo", "amoy"), P("shanghai", "Shanghai", null), P("tianjin", "Tianjin", null),
+    P("nagasaki", "Nagasaki", "dejima"), P("naha", "Naha (Ryukyu)", "naha"), P("fuzhou", "Fuzhou", "amoy"),
     P("busan", "Busan (Waegwan)", null), P("tsushima", "Tsushima", null), P("ayutthaya", "Ayutthaya", null),
-    P("malacca", "Malacca", null), P("manila", "Manila", null),
+    P("malacca", "Malacca", "batavia"), P("manila", "Manila", "manila"),
     P("batavia", "Batavia", "batavia"), P("london", "London", "london"), P("gothenburg", "Gothenburg", "gothenburg"),
-    P("boston", "Boston", null)
+    P("boston", "Boston", "boston")
   ],
   systems: [
     sys("canton-arterial", "The Canton arterial", "counted",

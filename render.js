@@ -29,7 +29,10 @@ const WAKE = 'rgba(58,44,28,0.28)';
 //                  that bounds the routes. Antarctica lies off-screen below.
 // Longitude spans the Atlantic-Africa-Indian-China world (Kingston -76.8°E to
 // Dejima 129.6°E) with margin; the empty mid-Pacific is cropped.
-const BOUNDS = { lonMin: -100, lonMax: 150, latMin: -58, latMax: 74 };
+// S2 (user-funded Pacific extension): lon spans the full globe — Sitka (−135°)
+// and Acapulco join the chart, and the Manila↔Acapulco galleon crosses the
+// antimeridian; lat reaches 81°N for the Spitsbergen whaling ground.
+const BOUNDS = { lonMin: -180, lonMax: 180, latMin: -58, latMax: 81 };
 // Longitude span the map should always keep visible (all 15 ports, -76.8°→129.6°,
 // with a little margin). Sets the "optimal" width below which the page h-scrolls.
 const FIT_LON = 208;
@@ -159,9 +162,20 @@ export function createRenderer(canvas, assets) {
     c.lineJoin = 'round';
     for (const f of land.features) drawGeom(c, f.geometry);
 
-    // ports (and remember their screen positions for hit-testing)
+    // ports (and remember their screen positions for hit-testing). With 66 ports
+    // the labels crowd Europe badly, so labels declutter: draw in list order,
+    // skipping any label whose rect overlaps one already placed (every port
+    // keeps its DOT and stays clickable — only the text yields).
     portScreen = ports.map(p => { const [x, y] = project(p.lon, p.lat); return { id: p.id, x, y }; });
-    for (const p of ports) drawPort(c, p);
+    const placed = [];
+    for (const p of ports) {
+      const [x, y] = project(p.lon, p.lat);
+      const wpx = 6.2 * p.name.replace(/\s*\(.*\)/, '').length + 10, hpx = 13;
+      const rect = { x0: x + 5, y0: y - 8, x1: x + 5 + wpx, y1: y - 8 + hpx };
+      const clash = placed.some(r => rect.x0 < r.x1 && rect.x1 > r.x0 && rect.y0 < r.y1 && rect.y1 > r.y0);
+      drawPort(c, p, !clash);
+      if (!clash) placed.push(rect);
+    }
   }
 
   function drawGrain(c) {
@@ -176,14 +190,14 @@ export function createRenderer(canvas, assets) {
     c.restore();
   }
 
-  function drawPort(c, p) {
+  function drawPort(c, p, withLabel = true) {
     const [x, y] = project(p.lon, p.lat);
     c.save();
     c.fillStyle = INK; c.strokeStyle = INK;
     c.beginPath(); c.arc(x, y, 2.6, 0, Math.PI * 2); c.fill();
     c.beginPath(); c.arc(x, y, 5.2, 0, Math.PI * 2); c.lineWidth = 0.8; c.globalAlpha = 0.5; c.stroke();
     c.globalAlpha = 1;
-    label(c, p.name.replace(/\s*\(.*\)/, ''), x + 7, y + 3, 11, INK, 'left');
+    if (withLabel) label(c, p.name.replace(/\s*\(.*\)/, ''), x + 7, y + 3, 11, INK, 'left');
     c.restore();
   }
 

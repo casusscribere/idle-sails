@@ -21,7 +21,7 @@ const LAND_SRC = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'assets', 'land.g
 
 const DATASET_VERSION = 2;              // v2 (PLAN-3 S1): flow-driven spawning — invalidates v1 saves
 const ERA = { from: 1550, to: 1815 };   // flowing-clock scope
-const ROUTE_CLASSES = ['frigate', 'indiaman', 'brig', 'slaver'];
+const ROUTE_CLASSES = ['frigate', 'indiaman', 'brig', 'slaver', 'junk', 'dhow'];   // junk/dhow: own polars since S2
 const SEASONS = ['djf', 'mam', 'jja', 'son'];
 const REGIONS = new Set(['britain', 'lowlands', 'france', 'iberia', 'baltic', 'caribbean',
   'brazil', 'west-africa', 'east-indies', 'china', 'india', 'japan', 'north-america', 'europe',
@@ -121,27 +121,35 @@ for (const r of routes) {
   }
 }
 
-// ---- validate: routes ↔ baked fields (ties M1 to M2 feasibility) ----------
-// The baker keys polylines to the DESTINATION port's field per routeClass/season.
-const neededFields = new Set();
-for (const r of routes) {
-  const classes = new Set((r.shipTypes || []).map(st => shipById.get(st)?.routeClass).filter(Boolean));
-  for (const rc of classes) for (const sn of SEASONS) neededFields.add(`${r.to}_${rc}_${sn}`);
-}
+// ---- validate: port feasibility (S2) ---------------------------------------
+// The baker computes fields per destination at bake time (no archived .bin
+// needed), so feasibility = every port snaps to an ocean cell of the 1° grid
+// within a sane distance. Uses the archive's grid mask directly.
 let missingFields = 0;
-if (existsSync(ARCHIVE_FIELDS)) {
-  for (const key of neededFields) {
-    if (!existsSync(join(ARCHIVE_FIELDS, `${key}.bin`))) { err(`baked field missing for a referenced lane: ${key}.bin`); missingFields++; }
+{
+  const gridPath = join(ROOT, 'archive', 'isochrone-v1', 'pipeline', 'build', 'grid.json');
+  if (!existsSync(gridPath)) { err(`archive grid not found: ${gridPath}`); missingFields++; }
+  else {
+    const g = JSON.parse(readFileSync(gridPath, 'utf8'));
+    const gmask = g.mask;
+    const colOf = (lon) => Math.max(0, Math.min(359, Math.floor(((lon + 180) % 360 + 360) % 360)));
+    const rowOf = (lat) => Math.max(0, Math.min(179, Math.floor(lat + 90)));
+    for (const p of ports) {
+      let ok = false;
+      for (let dr = -2; dr <= 2 && !ok; dr++) for (let dc = -2; dc <= 2 && !ok; dc++) {
+        const r = rowOf(p.lat) + dr, c = (colOf(p.lon) + dc + 360) % 360;
+        if (r >= 0 && r < 180 && gmask[r * 360 + c] === 0) ok = true;
+      }
+      if (!ok) { err(`port ${p.id}: no ocean cell within 2° of (${p.lon}, ${p.lat}) — cannot snap for routing`); missingFields++; }
+    }
   }
-} else {
-  err(`archive fields dir not found: ${ARCHIVE_FIELDS}`);
 }
 
 // ---- validate: wars ------------------------------------------------------
 uniq(wars, 'id', 'wars');
 for (const w of wars) {
   inEra({ from: w.from, to: w.to }, `war ${w.id}`);
-  if (!Array.isArray(w.belligerents) || w.belligerents.length !== 2) err(`war ${w.id}: belligerents must be two opposing sets`);
+  if (!w.hazard && (!Array.isArray(w.belligerents) || !w.belligerents.length || w.belligerents.length !== 2 || !w.belligerents[0].length)) err(`war ${w.id}: belligerents must be two opposing sets (or set hazard:true for flag-agnostic risk)`);
   for (const side of w.belligerents || []) for (const pw of side) if (!powerById.has(pw)) err(`war ${w.id}: unknown belligerent '${pw}'`);
   for (const th of w.theatres || []) if (!REGIONS.has(th)) err(`war ${w.id}: unknown theatre region '${th}'`);
 }
@@ -278,7 +286,7 @@ if (existsSync(LAND_SRC)) copyFileSync(LAND_SRC, join(OUT, 'land.geojson'));
 const kb = (Buffer.byteLength(JSON.stringify(bundle)) / 1024).toFixed(1);
 console.log('✓ build-data: all datasets valid.');
 console.log(`  ports ${ports.length} · powers ${powers.length} · ship-types ${shipTypes.length} · cargo ${cargo.length} · routes ${routes.length} · wars ${wars.length}`);
-console.log(`  baked-field references: ${neededFields.size} (all present)`);
+console.log(`  port feasibility: all ${ports.length} ports snap to ocean cells`);
 console.log(`  plausibility self-check: ${generated} vessels generated, ${contradictions} contradictions`);
 console.log(`  flow systems folded onto baked lanes: ${flowSystems.length} · volume coverage ${covReport}`);
 console.log(`  → data/datasets.json (${kb} KB)${existsSync(LAND_SRC) ? ' + land.geojson' : ''}`);

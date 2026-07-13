@@ -36,19 +36,19 @@ const sys = (id, name, evidence, basis, era, cargo, shipTypes, lanes, anchors, n
 
 // ---- port registry (simProxy = nearest BAKED sim port; null = unsailable until S2) ----
 const ports = [
-  ["danzig", "Danzig (Gdańsk)", "gothenburg"], ["konigsberg", "Königsberg", "gothenburg"],
-  ["riga", "Riga", "gothenburg"], ["stettin", "Stettin", "gothenburg"], ["memel", "Memel", "gothenburg"],
-  ["stockholm", "Stockholm", "gothenburg"], ["gothenburg", "Gothenburg", "gothenburg"],
-  ["lubeck", "Lübeck", "gothenburg"], ["copenhagen", "Copenhagen", "gothenburg"],
-  ["st-petersburg", "St Petersburg", "gothenburg"], ["bergen", "Bergen", "gothenburg"],
+  ["danzig", "Danzig (Gdańsk)", "danzig"], ["konigsberg", "Königsberg", "danzig"],
+  ["riga", "Riga", "riga"], ["stettin", "Stettin", "danzig"], ["memel", "Memel", "riga"],
+  ["stockholm", "Stockholm", "stockholm"], ["gothenburg", "Gothenburg", "gothenburg"],
+  ["lubeck", "Lübeck", "hamburg"], ["copenhagen", "Copenhagen", "copenhagen"],
+  ["st-petersburg", "St Petersburg", "st-petersburg"], ["bergen", "Bergen", "gothenburg"],
   ["christiania", "Christiania (Oslo)", "gothenburg"],
-  ["amsterdam", "Amsterdam", "amsterdam"], ["rotterdam", "Rotterdam", "amsterdam"],
-  ["hamburg", "Hamburg", "gothenburg"], ["bremen", "Bremen", "gothenburg"],
-  ["london", "London", "london"], ["hull", "Hull", "london"],
-  ["newcastle", "Newcastle", "london"], ["sunderland", "Sunderland", "london"],
+  ["amsterdam", "Amsterdam", "amsterdam"], ["rotterdam", "Rotterdam", "rotterdam"],
+  ["hamburg", "Hamburg", "hamburg"], ["bremen", "Bremen", "hamburg"],
+  ["london", "London", "london"], ["hull", "Hull", "newcastle"],
+  ["newcastle", "Newcastle", "newcastle"], ["sunderland", "Sunderland", "newcastle"],
   ["rouen", "Rouen", "bordeaux"], ["bordeaux", "Bordeaux", "bordeaux"],
   ["lisbon", "Lisbon", "lisbon"],
-  ["arkhangelsk", "Arkhangelsk", null], ["smeerenburg", "Smeerenburg (Spitsbergen)", null]
+  ["arkhangelsk", "Arkhangelsk", "arkhangelsk"], ["smeerenburg", "Smeerenburg (Spitsbergen)", "smeerenburg"]
 ].map(([id, name, simProxy]) => ({ id, name, simProxy }));
 
 const L = (from, to, share) => ({ from, to, share });

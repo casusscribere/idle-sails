@@ -55,32 +55,32 @@
   {
    "id": "danzig",
    "name": "Danzig (Gdańsk)",
-   "simProxy": "gothenburg"
+   "simProxy": "danzig"
   },
   {
    "id": "konigsberg",
    "name": "Königsberg",
-   "simProxy": "gothenburg"
+   "simProxy": "danzig"
   },
   {
    "id": "riga",
    "name": "Riga",
-   "simProxy": "gothenburg"
+   "simProxy": "riga"
   },
   {
    "id": "stettin",
    "name": "Stettin",
-   "simProxy": "gothenburg"
+   "simProxy": "danzig"
   },
   {
    "id": "memel",
    "name": "Memel",
-   "simProxy": "gothenburg"
+   "simProxy": "riga"
   },
   {
    "id": "stockholm",
    "name": "Stockholm",
-   "simProxy": "gothenburg"
+   "simProxy": "stockholm"
   },
   {
    "id": "gothenburg",
@@ -90,17 +90,17 @@
   {
    "id": "lubeck",
    "name": "Lübeck",
-   "simProxy": "gothenburg"
+   "simProxy": "hamburg"
   },
   {
    "id": "copenhagen",
    "name": "Copenhagen",
-   "simProxy": "gothenburg"
+   "simProxy": "copenhagen"
   },
   {
    "id": "st-petersburg",
    "name": "St Petersburg",
-   "simProxy": "gothenburg"
+   "simProxy": "st-petersburg"
   },
   {
    "id": "bergen",
@@ -120,17 +120,17 @@
   {
    "id": "rotterdam",
    "name": "Rotterdam",
-   "simProxy": "amsterdam"
+   "simProxy": "rotterdam"
   },
   {
    "id": "hamburg",
    "name": "Hamburg",
-   "simProxy": "gothenburg"
+   "simProxy": "hamburg"
   },
   {
    "id": "bremen",
    "name": "Bremen",
-   "simProxy": "gothenburg"
+   "simProxy": "hamburg"
   },
   {
    "id": "london",
@@ -140,17 +140,17 @@
   {
    "id": "hull",
    "name": "Hull",
-   "simProxy": "london"
+   "simProxy": "newcastle"
   },
   {
    "id": "newcastle",
    "name": "Newcastle",
-   "simProxy": "london"
+   "simProxy": "newcastle"
   },
   {
    "id": "sunderland",
    "name": "Sunderland",
-   "simProxy": "london"
+   "simProxy": "newcastle"
   },
   {
    "id": "rouen",
@@ -170,12 +170,12 @@
   {
    "id": "arkhangelsk",
    "name": "Arkhangelsk",
-   "simProxy": null
+   "simProxy": "arkhangelsk"
   },
   {
    "id": "smeerenburg",
    "name": "Smeerenburg (Spitsbergen)",
-   "simProxy": null
+   "simProxy": "smeerenburg"
   }
  ],
  "systems": [
