@@ -19,7 +19,7 @@ const OUT = join(ROOT, 'data');
 const ARCHIVE_FIELDS = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'data', 'fields');
 const LAND_SRC = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'assets', 'land.geojson');
 
-const DATASET_VERSION = 3;              // v3: port lifecycle windows (lane eras clamped) — invalidates v2 saves
+const DATASET_VERSION = 4;              // v4: era-named ports + reopened Banks-fishery lanes — invalidates v3 saves
 const ERA = { from: 1550, to: 1815 };   // flowing-clock scope
 const ROUTE_CLASSES = ['frigate', 'indiaman', 'brig', 'slaver', 'junk', 'dhow'];   // junk/dhow: own polars since S2
 const SEASONS = ['djf', 'mam', 'jja', 'son'];
@@ -68,6 +68,22 @@ for (const p of ports) {
   if (!REGIONS.has(p.region)) err(`port ${p.id}: unknown region '${p.region}'`);
   // port lifecycle window (optional; absent = the port existed all era)
   if (p.active !== undefined) inEra(p.active, `port ${p.id} active`);
+  // era names (optional): when the dot stands for different dominant ports
+  // across the era (Louisbourg=St John's, Kingston=Port Royal…), eraNames must
+  // tile the port's ACTIVE window exactly — contiguous, ordered, no gaps — so
+  // the chart always has exactly one honest name to show.
+  if (p.eraNames !== undefined) {
+    const w = p.active || ERA;
+    if (!Array.isArray(p.eraNames) || !p.eraNames.length) err(`port ${p.id}: eraNames must be a non-empty array`);
+    let expect = w.from;
+    for (const en of p.eraNames || []) {
+      if (!en.name) err(`port ${p.id}: eraNames entry missing name`);
+      inEra({ from: en.from, to: en.to }, `port ${p.id} eraNames '${en.name}'`);
+      if (en.from !== expect) err(`port ${p.id}: eraNames '${en.name}' starts ${en.from}, expected ${expect} (must tile the window)`);
+      expect = en.to + 1;
+    }
+    if (expect !== w.to + 1) err(`port ${p.id}: eraNames end ${expect - 1}, must reach the window end ${w.to}`);
+  }
 }
 // The port-lifecycle window a lane must respect (default: the whole era).
 const portWindow = (id) => portById.get(id)?.active || ERA;

@@ -6,6 +6,10 @@ const $ = (id) => document.getElementById(id);
 const SEASON_LABEL = { djf: 'Winter', mam: 'Spring', jja: 'Summer', son: 'Autumn' };
 const SEC_PER_DAY = 86400;
 
+// era-honest port name (ctx carries the clamped flowing year + world.portNameAt)
+const eraName = (ctx, port) =>
+  ((ctx.portNameAt && ctx.year != null) ? ctx.portNameAt(port, ctx.year) : port.name).replace(/\s*\(.*\)/, '');
+
 // Era label for the flowing 1550–1815 clock: the period the world is sailing
 // through, keyed by first year. During the 5-year reset ramp (year > 1815) the
 // chart is "redrawn" back to the 1550s.
@@ -77,8 +81,8 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
     const cargoTxt = v.cargoId === 'ballast' ? 'in ballast (empty)' : v.cargoName;
 
     const legs = v.schedule.map((seg, i) => {
-      const from = portById.get(seg.from).name.replace(/\s*\(.*\)/, '');
-      const to = portById.get(seg.to).name.replace(/\s*\(.*\)/, '');
+      const from = eraName(ctx, portById.get(seg.from));
+      const to = eraName(ctx, portById.get(seg.to));
       const days = Math.round((seg.arrive - seg.depart) / SEC_PER_DAY);
       const now = i === v.pos.legIndex && v.status === 'sailing';
       let eta = '';
@@ -135,7 +139,7 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
   // that merely called here on an earlier leg are not shown.
   function showPort(port, traffic, ctx) {
     const { portById, powerById, simClock, year } = ctx;
-    const nm = (id) => portById.get(id).name.replace(/\s*\(.*\)/, '');
+    const nm = (id) => eraName(ctx, portById.get(id));
     const power = powerById.get(port.power);
 
     // Port lifecycle: a bounded port shows its window; one past its end shows a
@@ -206,7 +210,7 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
     els.ledgerBody.innerHTML = `
       <h2>${escapeHtml((w.prefix ? w.prefix + ' ' : '') + w.name)}</h2>
       <p class="type">${escapeHtml(w.typeName)} · wreck</p>
-      <p class="war">Lost ${escapeHtml(w.date)} — ${escapeHtml(w.cause)}${w.war ? ' (' + escapeHtml(w.war) + ')' : ''}${near ? ', off ' + escapeHtml(near.name.replace(/\s*\(.*\)/, '')) + ' approaches' : ''}.</p>
+      <p class="war">Lost ${escapeHtml(w.date)} — ${escapeHtml(w.cause)}${w.war ? ' (' + escapeHtml(w.war) + ')' : ''}${(w.nearPortName || near) ? ', off ' + escapeHtml((w.nearPortName || near.name).replace(/\s*\(.*\)/, '')) + ' approaches' : ''}.</p>
       <dl>
         <dt>Allegiance</dt><dd>${flag}${escapeHtml(w.powerName)}</dd>
         <dt>Tonnage</dt><dd>${w.tonnage} tons</dd>

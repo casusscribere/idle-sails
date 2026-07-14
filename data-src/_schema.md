@@ -26,6 +26,13 @@ Madras=Coromandel, Calcutta=Hugli, Gothenburg=Älvsborg, Kingston=Port Royal),
 the window covers the proxy period and the `note` declares it; flows displaced
 by a strict window are recorded in `research/flows/silences.json`, never
 silently zeroed.
+`eraNames[]` (optional): `{from, to, name}` periods giving the dot's honest
+DISPLAY name per flowing year — the actual dominant port of the time
+(Louisbourg reads St John's outside 1713–58; Kingston reads Port Royal to
+1692). Must tile the port's `active` window exactly (contiguous, ordered, no
+gaps — build-data enforces). The chart labels, panels, and log all speak the
+era name via `world.portNameAt(port, year)`; `name` stays the canonical id
+for research pages.
 
 ## powers
 `powers[]`: `id, name, kind (nation|company|shore), color, homePorts[] (→ports.id),

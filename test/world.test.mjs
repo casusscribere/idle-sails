@@ -344,10 +344,37 @@ test('port lifecycle invariant: every lane era fits inside both endpoints’ win
         `lane ${r.id} era ${r.era.from}-${r.era.to} escapes port ${pid}'s lifecycle ${w.from}-${w.to}`);
     }
   }
-  // the flagship lifecycles are actually declared
-  assert.deepEqual(datasets.ports.find(p => p.id === 'louisbourg').active, { from: 1713, to: 1758 });
+  // the flagship lifecycles are actually declared (Louisbourg is era-NAMED
+  // instead of windowed: the node carries the Banks fishery as St John's)
   assert.deepEqual(datasets.ports.find(p => p.id === 'smeerenburg').active, { from: 1614, to: 1660 });
   assert.deepEqual(datasets.ports.find(p => p.id === 'kaffa').active, { from: 1550, to: 1783 });
+  assert.deepEqual(datasets.ports.find(p => p.id === 'kingston').active, { from: 1655, to: 1815 });
+});
+
+test('era names: the dot speaks the dominant port of the time, tiling its window exactly', () => {
+  const { portNameAt } = _internals;
+  for (const p of datasets.ports) {
+    if (!p.eraNames) continue;
+    const w = p.active || { from: 1550, to: 1815 };
+    let expect = w.from;
+    for (const en of p.eraNames) {
+      assert.ok(en.name, `${p.id}: era name has text`);
+      assert.equal(en.from, expect, `${p.id}: eraNames contiguous at ${en.from}`);
+      expect = en.to + 1;
+    }
+    assert.equal(expect, w.to + 1, `${p.id}: eraNames reach the window end`);
+  }
+  const lb = datasets.ports.find(p => p.id === 'louisbourg');
+  assert.equal(portNameAt(lb, 1600), "St John's");     // the Banks fishery, honestly named
+  assert.equal(portNameAt(lb, 1740), 'Louisbourg');    // the French fortress years
+  assert.equal(portNameAt(lb, 1790), "St John's");     // after the fall
+  const kin = datasets.ports.find(p => p.id === 'kingston');
+  assert.equal(portNameAt(kin, 1680), 'Port Royal');   // before the 1692 earthquake
+  assert.equal(portNameAt(kin, 1700), 'Kingston');
+  assert.equal(portNameAt(datasets.ports.find(p => p.id === 'batavia'), 1600), 'Jayakarta');
+  assert.equal(portNameAt(datasets.ports.find(p => p.id === 'bombay'), 1580), 'Goa');
+  // a port with no eraNames keeps its canonical name in every year
+  assert.equal(portNameAt(datasets.ports.find(p => p.id === 'london'), 1600), 'London');
 });
 
 test('port lifecycle behavior: a full 270-year cycle schedules zero calls outside any port’s window', () => {

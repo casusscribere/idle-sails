@@ -103,6 +103,18 @@ function calendar(simSec) {
 }
 const fmtDate = (c) => `${c.day} ${MONTHS[c.month]} ${c.year}`;
 
+// The port's honest display name for a given flowing year. Where a dot stands
+// for different dominant ports across the era (ports[].eraNames — Louisbourg is
+// St John's outside 1713–58, Kingston is Port Royal to 1692, Batavia is
+// Jayakarta before the VOC…), the chart, the panels, and the log all speak the
+// name of the time. Pure; falls back to the canonical name.
+export function portNameAt(port, year) {
+  if (port.eraNames && year != null) {
+    for (const en of port.eraNames) if (year >= en.from && year <= en.to) return en.name;
+  }
+  return port.name;
+}
+
 // ===========================================================================
 // `restore`: a previously serialize()d state (persist.js). When given, the world
 // resumes from it exactly — same vessels, clock, counters, and spawn-RNG word —
@@ -441,6 +453,8 @@ export function createWorld({ seed = 1, data, restore = null }) {
   }
 
   function log(entry) { state.log.unshift(entry); if (state.log.length > LOG_CAP) state.log.length = LOG_CAP; }
+  // era-honest port name for a log line (reset ramp clamps the year, as spawning does)
+  const nameAt = (pid, cal) => portNameAt(portById.get(pid), cal.reset > 0 ? ERA.to : cal.year);
 
   // ---- the tick ----
   function tick(dtSimSeconds) {
@@ -465,7 +479,7 @@ export function createWorld({ seed = 1, data, restore = null }) {
             state.portCalls[seg.to] = Math.max(state.portCalls[seg.to] || -Infinity, seg.arrive);
         }
         const c = calendar(at);
-        log({ t: at, kind: 'depart', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} (${v.typeName}, ${v.powerName}) cleared ${portById.get(v.schedule[0].from).name} for ${portById.get(v.schedule[0].to).name}`, date: fmtDate(c), vesselId: v.id, from: v.schedule[0].from, year: v.year });
+        log({ t: at, kind: 'depart', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} (${v.typeName}, ${v.powerName}) cleared ${nameAt(v.schedule[0].from, c)} for ${nameAt(v.schedule[0].to, c)}`, date: fmtDate(c), vesselId: v.id, from: v.schedule[0].from, year: v.year });
       }
       const u = spawnRng();
       state.nextSpawnAt = at + SEC_PER_DAY * (-MEAN_SPAWN_INTERVAL_DAYS / spawnActivity(calendar(at))) * Math.log(1 - u);
@@ -479,7 +493,7 @@ export function createWorld({ seed = 1, data, restore = null }) {
         const c = calendar(v.fate.atSec);
         const warTxt = v.fate.war ? ` (${v.fate.war.name})` : '';
         const nearPortId = v.fate.legId ? legByKey.get(v.fate.legId).to : v.schedule[0].to;
-        log({ t: v.fate.atSec, kind: 'loss', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} ${v.fate.cause}${warTxt} off ${portById.get(nearPortId).name} approaches`, date: fmtDate(c), vesselId: v.id });
+        log({ t: v.fate.atSec, kind: 'loss', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} ${v.fate.cause}${warTxt} off ${nameAt(nearPortId, c)} approaches`, date: fmtDate(c), vesselId: v.id });
         // The wreck marks the chart where she went down, for a sim-year.
         const wp = positionOf(v, v.fate.atSec);
         state.wrecks.push({
@@ -488,13 +502,14 @@ export function createWorld({ seed = 1, data, restore = null }) {
           tonnage: v.tonnage, crew: v.crew, cargoId: v.cargoId, cargoName: v.cargoName,
           middlePassage: v.middlePassage, laneFraming: v.laneFraming, system: v.system,
           lon: wp.lon, lat: wp.lat, at: v.fate.atSec, date: fmtDate(c),
-          cause: v.fate.cause, war: v.fate.war ? v.fate.war.name : null, nearPortId
+          cause: v.fate.cause, war: v.fate.war ? v.fate.war.name : null,
+          nearPortId, nearPortName: nameAt(nearPortId, c)   // named as of the loss
         });
       } else if (!v.fate.lost && end >= v.voyageEnd && v.status === 'sailing') {
         v.status = 'arrived'; v.retiredAt = v.voyageEnd; state.counters.arrived++;
         const last = v.schedule[v.schedule.length - 1];
         const c = calendar(v.voyageEnd);
-        log({ t: v.voyageEnd, kind: 'arrive', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} came to anchor at ${portById.get(last.to).name}`, date: fmtDate(c), vesselId: v.id });
+        log({ t: v.voyageEnd, kind: 'arrive', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} came to anchor at ${nameAt(last.to, c)}`, date: fmtDate(c), vesselId: v.id });
       }
     }
 
@@ -600,4 +615,4 @@ export function createWorld({ seed = 1, data, restore = null }) {
   };
 }
 
-export const _internals = { calendar, mulberry32, hashSeed, triangular, havKm, SEC_PER_DAY, DAY_OF_YEAR, ERA, RESET_YEARS, FLOW_SPAN, CYCLE_YEARS };
+export const _internals = { calendar, mulberry32, hashSeed, triangular, havKm, portNameAt, SEC_PER_DAY, DAY_OF_YEAR, ERA, RESET_YEARS, FLOW_SPAN, CYCLE_YEARS };

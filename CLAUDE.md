@@ -121,14 +121,18 @@ Every design decision answers to both of these:
   (a loss marks the chart a sim-year; click → the loss ledger); windward
   "zigzag" fixed in the baker (beat-to-windward legs wind-gated — ships wait
   for the monsoon — kept legs de-tacked); **port lifecycle** — `ports[].active
-  {from,to}` windows (Louisbourg 1713–58, Smeerenburg 1614–60, Kaffa –1783…),
+  {from,to}` windows (Smeerenburg 1614–60, Kaffa –1783, Kingston 1655–…),
   build-data enforces lane-era ⊆ port windows, absent-before-founding /
-  ruin-mark-after on the chart, continuity proxies declared in notes
-  (Batavia=Jayakarta, Bombay=Goa, Madras=Coromandel, Calcutta=Hugli,
-  Gothenburg=Älvsborg, Kingston=Port Royal 1655+), displaced flows in the
-  silences register (14 entries); Gulf-of-Finland carve (St Petersburg was
-  unsailable — zero baked legs — since S2). datasetVersion 3; saves gate on
-  `datasets:routes` versions. 25 tests green.
+  ruin-mark-after on the chart, displaced flows in the silences register
+  (14 entries); **era-named ports** — `ports[].eraNames` gives the dot the
+  dominant port name of the time (chart labels, panels, log all speak it via
+  `world.portNameAt`): Louisbourg reads **St John's** outside 1713–58 (the
+  Banks cod fishery sails the whole era under its honest name), Kingston
+  reads Port Royal to 1692, Batavia=Jayakarta pre-1619, Bombay=Goa pre-1661,
+  Madras=Masulipatnam pre-1639, Calcutta=Hugli pre-1690,
+  Gothenburg=Älvsborg pre-1621; Gulf-of-Finland carve (St Petersburg was
+  unsailable — zero baked legs — since S2). datasetVersion 4; saves gate on
+  `datasets:routes` versions. 26 tests green.
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —

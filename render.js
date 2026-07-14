@@ -87,7 +87,10 @@ export function shipGlyphPath(ctx, cat, s) {
 }
 
 export function createRenderer(canvas, assets) {
-  const { land, ports, legById, reducedMotion, routeLines = [] } = assets;
+  const { land, ports, legById, reducedMotion, routeLines = [], portNameAt = null } = assets;
+  // era-honest label text: eraNames-aware when the helper is supplied
+  const displayName = (p, year) =>
+    ((portNameAt && year != null) ? portNameAt(p, year) : p.name).replace(/\s*\(.*\)/, '');
   const ctx = canvas.getContext('2d');
 
   // Crop the viewport tightly around the world that is actually sailed.
@@ -119,6 +122,7 @@ export function createRenderer(canvas, assets) {
   const wakes = new Map();               // vesselId → [[x,y],...] recent screen positions
   let portScreen = [];                   // [{id, x, y}] for hit-testing the fixed ports
   let portDraw = [];                     // [{id, x, y, name, label:{ax,ay,align}|null}] cached placement
+  let labelYear = null;                  // the year the cached labels were placed for
   // Popular-routes overlay: weighted per-frame by the flowing clock (see
   // drawRouteOverlay) — lanes brighten and fade as their origin's era-prominence
   // shifts, so national dominance visibly rotates across the centuries.
@@ -190,9 +194,11 @@ export function createRenderer(canvas, assets) {
     // ports: compute each label's placement now (collision-avoiding, once per
     // resize) and cache it in portDraw; the dots + labels are drawn per-frame in
     // drawPorts(), each inked normally or greyed by whether traffic reached the
-    // port in the past sim-year. Placement is activity-independent, so it caches.
+    // port in the past sim-year. Placement caches per (resize, name-year):
+    // era-named ports (Louisbourg=St John's, Kingston=Port Royal…) change text
+    // width when the flowing year crosses a rename, so drawPorts rebuilds then.
     portScreen = ports.map(p => { const [x, y] = project(p.lon, p.lat); return { id: p.id, x, y }; });
-    computePortLabels(c);
+    computePortLabels(c, labelYear);
   }
 
   // Decide where each port's name sits, caching the result in portDraw. With 66
@@ -201,12 +207,12 @@ export function createRenderer(canvas, assets) {
   // edges, the labels already placed, and the neighbouring dots. A label with
   // nowhere to go is dropped (the dot still shows); ports like Acapulco (hard by
   // Veracruz) now find a spot instead of vanishing.
-  function computePortLabels(c) {
+  function computePortLabels(c, year) {
     c.save();
     c.font = `11px "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif`;
     const placed = [];   // committed label rects
     const dots = portScreen.map(ps => ({ x0: ps.x - 5, y0: ps.y - 5, x1: ps.x + 5, y1: ps.y + 5 }));
-    portDraw = ports.map((p, i) => ({ id: p.id, x: portScreen[i].x, y: portScreen[i].y, name: p.name.replace(/\s*\(.*\)/, ''), label: null }));
+    portDraw = ports.map((p, i) => ({ id: p.id, x: portScreen[i].x, y: portScreen[i].y, name: displayName(p, year), label: null }));
     for (let i = 0; i < portDraw.length; i++) {
       const { x, y, name } = portDraw[i];
       const w = c.measureText(name).width;
@@ -238,7 +244,10 @@ export function createRenderer(canvas, assets) {
   // world.portLifecycleAt: a port not yet founded is absent from the chart
   // entirely; a destroyed/abandoned one draws as a faint ruin mark (the chart
   // remembers) — dashed open ring, label only while selected via the panel.
-  function drawPorts(active, lifecycle, selectedPortId) {
+  function drawPorts(active, lifecycle, selectedPortId, year) {
+    // rebuild label text+placement when the flowing year moves (era renames
+    // change label widths); integer-year granularity keeps this rare and cheap
+    if (year != null && year !== labelYear) { labelYear = year; computePortLabels(ctx, year); }
     for (const pd of portDraw) {
       if (lifecycle && !lifecycle.existing.has(pd.id)) {
         if (!lifecycle.ruined.has(pd.id)) continue;        // not yet founded
@@ -367,7 +376,9 @@ export function createRenderer(canvas, assets) {
   // ---- dynamic frame ------------------------------------------------------
   function draw(snapshot, selectedId, selectedPortId, t, routesCtx, activePorts, selectedWreckId, lifecycle) {
     if (base) ctx.drawImage(base, 0, 0, W, H);
-    drawPorts(activePorts, lifecycle, selectedPortId);
+    // display year: clamped through the reset ramp, as everything era-keyed is
+    const dispYear = snapshot.reset > 0 ? 1815 : snapshot.year;
+    drawPorts(activePorts, lifecycle, selectedPortId, dispYear);
 
     const vessels = snapshot.vessels;
     if (routesCtx) drawRouteOverlay(snapshot.season, routesCtx);
