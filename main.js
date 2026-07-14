@@ -81,7 +81,7 @@ async function boot() {
   // restore the helm to its saved position (before the UI reads it)
   if (saved && saved.slider != null) document.getElementById('speed').value = saved.slider;
   let speed = speedFromSlider(+document.getElementById('speed').value);
-  let selectedVesselId = null, selectedPortId = null, lastPanelSig = '';
+  let selectedVesselId = null, selectedPortId = null, selectedWreckId = null, lastPanelSig = '';
   let showRoutes = hashParams.get('routes') === '1';
   if (showRoutes) document.getElementById('ov-routes').checked = true;
   let latestSnap = world.snapshot();
@@ -110,6 +110,12 @@ async function boot() {
     if (selectedVesselId != null) {
       const v = latestSnap.vessels.find(x => x.id === selectedVesselId);
       if (v) ui.showLedger(v, ledgerCtx()); else clearSelection();
+    } else if (selectedWreckId != null) {
+      const w = latestSnap.wrecks.find(x => x.id === selectedWreckId);
+      if (!w) { clearSelection(); return; }          // her year has passed
+      // static content — render once per selection (sig = the wreck id)
+      const sig = 'wreck:' + w.id;
+      if (sig !== lastPanelSig) { lastPanelSig = sig; ui.showWreck(w, ledgerCtx()); }
     } else if (selectedPortId != null) {
       const traffic = portTraffic(selectedPortId);
       // re-render only when membership or the sim-day changes (keeps scroll steady)
@@ -118,9 +124,10 @@ async function boot() {
       if (sig !== lastPanelSig) { lastPanelSig = sig; ui.showPort(portById.get(selectedPortId), traffic, ledgerCtx()); }
     }
   }
-  function selectVessel(id) { selectedVesselId = id; selectedPortId = null; lastPanelSig = ''; renderPanel(); }
-  function selectPort(id) { selectedPortId = id; selectedVesselId = null; lastPanelSig = ''; renderPanel(); }
-  function clearSelection() { selectedVesselId = null; selectedPortId = null; lastPanelSig = ''; ui.hideLedger(); }
+  function selectVessel(id) { selectedVesselId = id; selectedPortId = null; selectedWreckId = null; lastPanelSig = ''; renderPanel(); }
+  function selectPort(id) { selectedPortId = id; selectedVesselId = null; selectedWreckId = null; lastPanelSig = ''; renderPanel(); }
+  function selectWreck(id) { selectedWreckId = id; selectedVesselId = null; selectedPortId = null; lastPanelSig = ''; renderPanel(); }
+  function clearSelection() { selectedVesselId = null; selectedPortId = null; selectedWreckId = null; lastPanelSig = ''; ui.hideLedger(); }
 
   const ui = createUI({
     onSpeed: (m) => { speed = m; },
@@ -135,6 +142,7 @@ async function boot() {
     const hit = renderer.pickAt(e.clientX - r.left, e.clientY - r.top, latestSnap);
     if (!hit) clearSelection();
     else if (hit.type === 'vessel') selectVessel(hit.id);
+    else if (hit.type === 'wreck') selectWreck(hit.id);
     else selectPort(hit.id);
   });
   canvas.addEventListener('mousemove', (e) => {
@@ -170,7 +178,7 @@ async function boot() {
     // overlay context: this world's realized per-lane flow weights at the current
     // instant — route brightness IS the traffic the sim is actually sampling.
     const routesCtx = showRoutes ? { laneWeights: world.laneWeightsAt(latestSnap.simClock) } : null;
-    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, routesCtx, activePorts);
+    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, routesCtx, activePorts, selectedWreckId);
 
     hudAccum += dtReal;
     if (hudAccum > 0.2) { hudAccum = 0; activePorts = world.activePortsSince(latestSnap.simClock); ui.updateHUD(latestSnap); renderPanel(); }

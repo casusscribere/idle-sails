@@ -32,6 +32,7 @@ const MEAN_SPAWN_INTERVAL_DAYS = 0.55;
 // drive the sea's thickening, clamped to spectator scale.
 const PORT_DWELL_DAYS = [3, 10];
 const FADE_DAYS = 2;               // how long a retired/lost vessel lingers before cull
+const WRECK_LINGER_DAYS = DAY_OF_YEAR; // a lost ship marks the chart for one sim-year
 const MAX_LEGS = 3;
 const LOG_CAP = 200;
 const BASE_DAILY_LOSS = 0.0009;    // ~2.5% over a 30-day leg in peacetime
@@ -216,6 +217,8 @@ export function createWorld({ seed = 1, data, restore = null }) {
     seed,
     simClock: 0,
     vessels: [],
+    wrecks: [],        // losses marking the chart; culled after WRECK_LINGER_DAYS
+    portCalls: {},     // portId → latest scheduled call (sim-sec) — drives greying
     log: [],
     nextSpawnAt: 0,
     nextId: 1,
@@ -241,6 +244,9 @@ export function createWorld({ seed = 1, data, restore = null }) {
     // otherwise crash on the missing geometry. Everyone else sails on.
     state.vessels = state.vessels.filter(v =>
       Array.isArray(v.schedule) && v.schedule.length && v.schedule.every(s => legByKey.has(s.legId)));
+    // fields a pre-wrecks save won't carry
+    if (!Array.isArray(state.wrecks)) state.wrecks = [];
+    if (!state.portCalls || typeof state.portCalls !== 'object') state.portCalls = {};
   }
 
   // JSON-safe copy of the whole mutable state (for persist.js).
@@ -448,6 +454,16 @@ export function createWorld({ seed = 1, data, restore = null }) {
       if (v) {
         state.vessels.push(v);
         state.counters.spawned++;
+        // Register the voyage's port calls (departures + arrivals, truncated at
+        // the pre-rolled fate) — the ACTUAL traffic record behind port greying.
+        // Known at spawn, so a big fast-forward tick records the same calls as
+        // many small ones.
+        for (const seg of v.schedule) {
+          if (!v.fate.lost || v.fate.atSec >= seg.depart)
+            state.portCalls[seg.from] = Math.max(state.portCalls[seg.from] || -Infinity, seg.depart);
+          if (!v.fate.lost || v.fate.atSec >= seg.arrive)
+            state.portCalls[seg.to] = Math.max(state.portCalls[seg.to] || -Infinity, seg.arrive);
+        }
         const c = calendar(at);
         log({ t: at, kind: 'depart', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} (${v.typeName}, ${v.powerName}) cleared ${portById.get(v.schedule[0].from).name} for ${portById.get(v.schedule[0].to).name}`, date: fmtDate(c), vesselId: v.id, from: v.schedule[0].from, year: v.year });
       }
@@ -462,7 +478,18 @@ export function createWorld({ seed = 1, data, restore = null }) {
         v.status = 'lost'; v.retiredAt = v.fate.atSec; state.counters.lost++;
         const c = calendar(v.fate.atSec);
         const warTxt = v.fate.war ? ` (${v.fate.war.name})` : '';
-        log({ t: v.fate.atSec, kind: 'loss', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} ${v.fate.cause}${warTxt} off ${portById.get(v.fate.legId ? legByKey.get(v.fate.legId).to : v.schedule[0].to).name} approaches`, date: fmtDate(c), vesselId: v.id });
+        const nearPortId = v.fate.legId ? legByKey.get(v.fate.legId).to : v.schedule[0].to;
+        log({ t: v.fate.atSec, kind: 'loss', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} ${v.fate.cause}${warTxt} off ${portById.get(nearPortId).name} approaches`, date: fmtDate(c), vesselId: v.id });
+        // The wreck marks the chart where she went down, for a sim-year.
+        const wp = positionOf(v, v.fate.atSec);
+        state.wrecks.push({
+          id: v.id, name: v.name, prefix: v.prefix,
+          typeName: v.typeName, powerName: v.powerName, flagColor: v.flagColor,
+          tonnage: v.tonnage, crew: v.crew, cargoId: v.cargoId, cargoName: v.cargoName,
+          middlePassage: v.middlePassage, laneFraming: v.laneFraming, system: v.system,
+          lon: wp.lon, lat: wp.lat, at: v.fate.atSec, date: fmtDate(c),
+          cause: v.fate.cause, war: v.fate.war ? v.fate.war.name : null, nearPortId
+        });
       } else if (!v.fate.lost && end >= v.voyageEnd && v.status === 'sailing') {
         v.status = 'arrived'; v.retiredAt = v.voyageEnd; state.counters.arrived++;
         const last = v.schedule[v.schedule.length - 1];
@@ -471,9 +498,12 @@ export function createWorld({ seed = 1, data, restore = null }) {
       }
     }
 
-    // cull faded vessels
+    // cull faded vessels + wrecks past their lingering year
     const cullBefore = end - FADE_DAYS * SEC_PER_DAY;
     state.vessels = state.vessels.filter(v => v.status === 'sailing' || v.retiredAt > cullBefore);
+    const wreckBefore = end - WRECK_LINGER_DAYS * SEC_PER_DAY;
+    if (state.wrecks.some(w => w.at <= wreckBefore))
+      state.wrecks = state.wrecks.filter(w => w.at > wreckBefore);
 
     state.simClock = end;
   }
@@ -496,6 +526,7 @@ export function createWorld({ seed = 1, data, restore = null }) {
       year: cal.year, reset: cal.reset,
       counters: { ...state.counters, atSea: state.vessels.filter(v => v.status === 'sailing').length },
       vessels: activeVessels(),
+      wrecks: state.wrecks,
       log: state.log.slice(0, 40)
     };
   }
@@ -527,21 +558,18 @@ export function createWorld({ seed = 1, data, restore = null }) {
   };
 
   // Ports that saw traffic within the past sim-year (for the renderer's greying
-  // of dormant ports). A port is "visited" if any lane touching it — as origin
-  // or destination — carries nonzero spawn weight now OR a year ago. Every
-  // era-active lane keeps a residual floor (see spawnLaneWeights), so nonzero
-  // weight ⇔ ships are spawning/sailing/arriving there; lanes fade over ~3 yr,
-  // so the two samples a year apart catch any within-year switch-off. Pure in
-  // sim-time (no per-visit state to persist); the window wraps the reset seam
-  // exactly as the clock does. Samples before t=0 (a brand-new world's first
-  // sim-year) are skipped — there is no "past year" yet.
+  // of dormant ports). Keyed on ACTUAL port calls (state.portCalls — each spawn
+  // registers its schedule's departures/arrivals, truncated at the pre-rolled
+  // fate), not on lane spawn *weights*: an era-active lane with a minuscule flow
+  // (the 1550s slave factories — Elmina, Whydah, Luanda) has nonzero weight but
+  // may go decades between actual sailings, and greying must tell that truth.
+  // A future-dated call (a ship presently bound in) counts as active — she is
+  // this port's live traffic. Deterministic: calls are recorded at spawn from
+  // sim-time-keyed schedules, so big-tick fast-forward matches many small ticks.
   const activePortsSince = (simSec, windowSec = SEC_PER_DAY * DAY_OF_YEAR) => {
     const active = new Set();
-    for (const s of [simSec, simSec - windowSec]) {
-      if (s < 0) continue;
-      const lw = laneWeightsAt(s);
-      for (const r of datasets.routes) if ((lw[r.id] || 0) > 1e-9) { active.add(r.from); active.add(r.to); }
-    }
+    const since = simSec - windowSec;
+    for (const [pid, t] of Object.entries(state.portCalls)) if (t >= since) active.add(pid);
     return active;
   };
 

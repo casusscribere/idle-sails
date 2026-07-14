@@ -167,9 +167,44 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
     els.hint && els.hint.classList.add('gone');
   }
 
+  // Wreck view: what ship was lost here, on what day, and how. Static — the
+  // loss is a fact of the past; nothing in it ticks.
+  function showWreck(w, ctx) {
+    const { portById, simClock } = ctx;
+    const flag = `<span class="flag" style="background:${w.flagColor}"></span>`;
+    const near = portById.get(w.nearPortId);
+    const daysAgo = Math.max(0, Math.round((simClock - w.at) / SEC_PER_DAY));
+    const agoTxt = daysAgo === 0 ? 'today' : daysAgo === 1 ? 'yesterday' : `${daysAgo} days since`;
+    const cargoTxt = w.cargoId === 'ballast' ? 'in ballast (empty)' : w.cargoName;
+
+    // Sober treatment where the loss is also a mass death of captives: factual,
+    // no value framing — the Middle-Passage charter extends to the wreck.
+    let mp = '';
+    if (w.middlePassage) {
+      const atlantic = w.system === 'atlantic-slave' || w.system === 'middle-passage';
+      const title = atlantic ? 'The Middle Passage' : 'Coerced human transport';
+      mp = `<div class="mp-note"><strong>${escapeHtml(title)}</strong>She sailed with enslaved people held captive aboard; they were lost with the ship.</div>`;
+    }
+
+    els.ledgerBody.innerHTML = `
+      <h2>${escapeHtml((w.prefix ? w.prefix + ' ' : '') + w.name)}</h2>
+      <p class="type">${escapeHtml(w.typeName)} · wreck</p>
+      <p class="war">Lost ${escapeHtml(w.date)} — ${escapeHtml(w.cause)}${w.war ? ' (' + escapeHtml(w.war) + ')' : ''}${near ? ', off ' + escapeHtml(near.name.replace(/\s*\(.*\)/, '')) + ' approaches' : ''}.</p>
+      <dl>
+        <dt>Allegiance</dt><dd>${flag}${escapeHtml(w.powerName)}</dd>
+        <dt>Tonnage</dt><dd>${w.tonnage} tons</dd>
+        <dt>Cargo</dt><dd>${escapeHtml(cargoTxt)}</dd>
+        <dt>Company</dt><dd>${w.crew} hands</dd>
+        <dt>Wrecked</dt><dd>${escapeHtml(agoTxt)}</dd>
+      </dl>
+      ${mp}`;
+    els.ledger.hidden = false;
+    els.hint && els.hint.classList.add('gone');
+  }
+
   function hideLedger() { els.ledger.hidden = true; }
 
-  return { updateHUD, showLedger, showPort, hideLedger };
+  return { updateHUD, showLedger, showPort, showWreck, hideLedger };
 }
 
 function escapeHtml(s) {

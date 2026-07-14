@@ -284,3 +284,53 @@ test('spawn mix flows with history: origins shift across the cycle', () => {
   assert.ok(share(1800, 'liverpool') > share(1650, 'liverpool'), 'Liverpool busier late than early');
   assert.ok(share(1650, 'amoy') > 0, `the Nanyang junk trade sails the 17th century (${share(1650, 'amoy').toFixed(3)})`);
 });
+
+test('wrecks: a loss marks the chart for a sim-year, then fades from the record', () => {
+  // sail long enough to accumulate losses (base loss ~2.5%/30-day leg)
+  const w = mk(3);
+  w.tick(400 * DAY);
+  const wrecks = w.state.wrecks;
+  assert.ok(wrecks.length > 0, `some vessels were lost (${w.state.counters.lost} lost, ${wrecks.length} wrecks)`);
+  // every wreck is a complete, positioned record of what/when/how
+  for (const wr of wrecks) {
+    assert.ok(wr.name && wr.typeName && wr.powerName, 'wreck identifies the ship');
+    assert.ok(wr.date && wr.cause, 'wreck records the day and the cause');
+    assert.ok(Number.isFinite(wr.lon) && Number.isFinite(wr.lat), 'wreck is positioned');
+    assert.ok(wr.at > w.simClock - 365.25 * DAY, 'no wreck older than a year survives');
+  }
+  // wrecks are in the snapshot for the renderer
+  assert.deepEqual(w.snapshot().wrecks, wrecks);
+  // a year later, every one of today's wrecks has faded from the chart
+  const ids = new Set(wrecks.map(x => x.id));
+  w.tick(366 * DAY);
+  assert.ok(w.state.wrecks.every(x => !ids.has(x.id)), 'all of the earlier wrecks culled after their year');
+});
+
+test('wrecks + port calls: granularity-independent (offline accrual)', () => {
+  const total = 200 * DAY;
+  const big = mk(11); big.tick(total);
+  const small = mk(11); for (let i = 0; i < 400; i++) small.tick(total / 400);
+  assert.deepEqual(big.state.wrecks, small.state.wrecks);
+  assert.deepEqual(big.state.portCalls, small.state.portCalls);
+  assert.deepEqual([...big.activePortsSince(big.simClock)].sort(), [...small.activePortsSince(small.simClock)].sort());
+});
+
+test('port greying keys on ACTUAL calls: the 1550s slave factories stay grey until a ship truly sails', () => {
+  // At the 1550 start the middle-passage flow is [15,30] voyages per DECADE
+  // split across ~6 lanes — era-active (nonzero weight) but with no actual
+  // sailings for long stretches. The old weight-proxy lit Elmina/Whydah/Luanda
+  // permanently; the calls-based test must only light them when a vessel's
+  // schedule really touches them.
+  const w = mk(5);
+  w.tick(150 * DAY);
+  const active = w.activePortsSince(w.simClock);
+  // ground truth from the same world's spawn record: every port a live-or-past
+  // schedule actually called at
+  const called = new Set(Object.keys(w.state.portCalls));
+  for (const pid of active) assert.ok(called.has(pid), `${pid} active only via a real call`);
+  // busy old-world ports have real traffic within 150 days…
+  assert.ok(active.has('lisbon') || active.has('seville') || active.has('venice'), 'the old-world hubs are lit');
+  // …and any factory port NOT yet called is grey (the user-reported bug)
+  for (const pid of ['elmina', 'whydah', 'luanda'])
+    if (!called.has(pid)) assert.ok(!active.has(pid), `${pid} must be greyed when no ship has called`);
+});

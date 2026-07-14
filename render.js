@@ -351,7 +351,7 @@ export function createRenderer(canvas, assets) {
   }
 
   // ---- dynamic frame ------------------------------------------------------
-  function draw(snapshot, selectedId, selectedPortId, t, routesCtx, activePorts) {
+  function draw(snapshot, selectedId, selectedPortId, t, routesCtx, activePorts, selectedWreckId) {
     if (base) ctx.drawImage(base, 0, 0, W, H);
     drawPorts(activePorts);
 
@@ -361,6 +361,7 @@ export function createRenderer(canvas, assets) {
     const selected = vessels.find(v => v.id === selectedId);
     if (selected) drawSelectedRoute(selected, t);
 
+    drawWrecks(snapshot.wrecks || [], snapshot.simClock, selectedWreckId);
     for (const v of vessels) drawVessel(v, v.id === selectedId, t);
 
     // prune wake history for vessels no longer present
@@ -414,6 +415,8 @@ export function createRenderer(canvas, assets) {
   }
 
   function drawVessel(v, isSel, t) {
+    // a lost vessel's wreck marker (drawWrecks) is her chart presence now
+    if (v.status === 'lost') { wakes.delete(v.id); return; }
     const [x, y] = project(v.pos.lon, v.pos.lat);
     // wake
     let w = wakes.get(v.id); if (!w) { w = []; wakes.set(v.id, w); }
@@ -430,16 +433,9 @@ export function createRenderer(canvas, assets) {
       ctx.strokeStyle = WAKE; ctx.lineWidth = 1; ctx.stroke();
     }
 
-    const lost = v.status === 'lost';
     const size = 3 + Math.sqrt(v.tonnage) / 7;   // ~4–9 px
     ctx.save();
     ctx.translate(x, y);
-    if (lost) {
-      const age = t != null ? 1 : 1;
-      ctx.strokeStyle = 'rgba(120,40,30,0.8)'; ctx.lineWidth = 1.4;
-      ctx.beginPath(); ctx.moveTo(-4, -4); ctx.lineTo(4, 4); ctx.moveTo(4, -4); ctx.lineTo(-4, 4); ctx.stroke();
-      ctx.restore(); return;
-    }
     ctx.rotate((v.pos.heading - 90) * Math.PI / 180);
     // hull glyph: shape = ship category, fill = allegiance flag colour
     const cat = categoryOf(v);
@@ -461,10 +457,37 @@ export function createRenderer(canvas, assets) {
     }
   }
 
+  // Wreck markers: where a ship was lost, a sober saltire over a sinking hull
+  // bar marks the chart for a sim-year, fading as the year passes. Clickable
+  // (see pickAt) → the loss ledger.
+  const WRECK_SEC = 365.25 * 86400;
+  function drawWrecks(wrecks, simClock, selectedWreckId) {
+    for (const w of wrecks) {
+      const [x, y] = project(w.lon, w.lat);
+      const age = Math.max(0, Math.min(1, (simClock - w.at) / WRECK_SEC));
+      const a = 0.85 - 0.55 * age;                 // fresh 0.85 → year-old 0.30
+      ctx.save();
+      ctx.strokeStyle = `rgba(120,40,30,${a})`; ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(x - 3.5, y - 3.5); ctx.lineTo(x + 3.5, y + 3.5);
+      ctx.moveTo(x + 3.5, y - 3.5); ctx.lineTo(x - 3.5, y + 3.5);
+      ctx.stroke();
+      ctx.strokeStyle = `rgba(58,44,28,${a * 0.8})`; ctx.lineWidth = 1.1;
+      ctx.beginPath(); ctx.moveTo(x - 4.5, y + 4.5); ctx.lineTo(x + 4.5, y + 4.5); ctx.stroke(); // the waterline
+      if (w.id === selectedWreckId) {
+        ctx.strokeStyle = INK; ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.arc(x, y, 9, 0, Math.PI * 2); ctx.stroke();
+        label(ctx, (w.prefix ? w.prefix + ' ' : '') + w.name, x + 12, y + 4, 12, INK, 'left');
+      }
+      ctx.restore();
+    }
+  }
+
   // ---- picking ------------------------------------------------------------
-  // Pick the nearest hittable thing at (px,py): a vessel or a port, whichever is
-  // closer within its own radius. Ports are precise targets, so a click right on
-  // a port dot wins over a ship drifting nearby.
+  // Pick the nearest hittable thing at (px,py): a vessel, a wreck, or a port —
+  // whichever is closest within its own radius. Ports are precise targets, so a
+  // click right on a port dot wins over a ship drifting nearby; wrecks pick like
+  // vessels (a live ship shades a wreck only when genuinely nearer).
   function pickAt(px, py, snapshot) {
     let vBest = null, vd = 15 * 15;
     for (const v of snapshot.vessels) {
@@ -473,15 +496,24 @@ export function createRenderer(canvas, assets) {
       const d = (x - px) ** 2 + (y - py) ** 2;
       if (d < vd) { vd = d; vBest = v.id; }
     }
+    let wBest = null, wd = 12 * 12;
+    for (const w of snapshot.wrecks || []) {
+      const [x, y] = project(w.lon, w.lat);
+      const d = (x - px) ** 2 + (y - py) ** 2;
+      if (d < wd) { wd = d; wBest = w.id; }
+    }
     let pBest = null, pd = 13 * 13;
     for (const ps of portScreen) {
       const d = (ps.x - px) ** 2 + (ps.y - py) ** 2;
       if (d < pd) { pd = d; pBest = ps.id; }
     }
-    if (vBest != null && pBest != null) return vd <= pd ? { type: 'vessel', id: vBest } : { type: 'port', id: pBest };
-    if (vBest != null) return { type: 'vessel', id: vBest };
-    if (pBest != null) return { type: 'port', id: pBest };
-    return null;
+    const cands = [];
+    if (vBest != null) cands.push({ type: 'vessel', id: vBest, d: vd });
+    if (wBest != null) cands.push({ type: 'wreck', id: wBest, d: wd });
+    if (pBest != null) cands.push({ type: 'port', id: pBest, d: pd });
+    if (!cands.length) return null;
+    cands.sort((a, b) => a.d - b.d);
+    return { type: cands[0].type, id: cands[0].id };
   }
 
   return { resize, draw, pickAt, project };
