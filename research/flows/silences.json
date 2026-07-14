@@ -44,6 +44,18 @@
 
     { "id": "pacific-voyaging", "scope": "Oceania", "reason": "unrecorded",
       "treatment": "gestured",
-      "note": "Polynesian and Micronesian seafaring continued throughout this era, entirely outside every European series — no voyage-count basis exists at all. GESTURED (R3 decision): recorded so the chart's Pacific emptiness reads as the archive's silence, not the ocean's." }
+      "note": "Polynesian and Micronesian seafaring continued throughout this era, entirely outside every European series — no voyage-count basis exists at all. GESTURED (R3 decision): recorded so the chart's Pacific emptiness reads as the archive's silence, not the ocean's." },
+
+    { "id": "newfoundland-cod-before-louisbourg", "scope": "North Atlantic (the Banks fishery, 1550–1712 and 1759–1815)", "reason": "no-port-node",
+      "treatment": "excluded", "pointer": "newfoundland-cod",
+      "note": "The port-lifecycle pass (2026-07-14) gates Louisbourg to its historical life (1713–58), and the cod system's flow outside that window — the St John's/Placentia/Canso fishery, among the largest voyage-generators of the whole era — has no roster port to sail to. EXCLUDED, not silently zeroed: St John's heads the promotion queue; until it bakes, the fishery's chart absence is this register's entry, not a claim." },
+
+    { "id": "svalbard-offshore-whaling", "scope": "Arctic (the Greenland Sea fishery, 1660–1800)", "reason": "no-port-node",
+      "treatment": "excluded", "pointer": "svalbard-whaling",
+      "note": "Smeerenburg the STATION died c.1660, but the Dutch and German fishery sailed on offshore — ice-edge whaling with no port call at all (the counted Dutch series continues to ~1800). The lifecycle pass ends the station's lanes at 1660; the offshore fishery has no node to visit by its nature. EXCLUDED with this record; a 'grounds' node is a possible future exception." },
+
+    { "id": "black-sea-after-1783", "scope": "Black Sea (Russian period, 1783–1815)", "reason": "no-port-node",
+      "treatment": "excluded", "pointer": "ottoman-provisioning",
+      "note": "Kaffa's lanes end with the Russian annexation of 1783 — but the grain kept flowing to Istanbul, increasingly from new Russian ports (Kherson 1778, Odessa 1794). The lifecycle pass would otherwise sail it to a port whose trade, as represented here, had ended. EXCLUDED, not zeroed: Odessa is a natural promotion-queue candidate for the late-era Black Sea." }
   ]
 }

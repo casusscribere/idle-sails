@@ -234,9 +234,23 @@ export function createRenderer(canvas, assets) {
   // Draw the port dots + names over the blitted base each frame. `active` is the
   // set of ports that saw traffic in the past sim-year (world.activePortsSince):
   // a port outside it has gone quiet and is greyed; ports in it (or when no set
-  // is supplied) are inked normally.
-  function drawPorts(active) {
+  // is supplied) are inked normally. `lifecycle` = {existing, ruined} from
+  // world.portLifecycleAt: a port not yet founded is absent from the chart
+  // entirely; a destroyed/abandoned one draws as a faint ruin mark (the chart
+  // remembers) — dashed open ring, label only while selected via the panel.
+  function drawPorts(active, lifecycle, selectedPortId) {
     for (const pd of portDraw) {
+      if (lifecycle && !lifecycle.existing.has(pd.id)) {
+        if (!lifecycle.ruined.has(pd.id)) continue;        // not yet founded
+        ctx.save();
+        ctx.strokeStyle = INK_DIM; ctx.globalAlpha = 0.55; ctx.lineWidth = 1;
+        ctx.setLineDash([2.5, 2.5]);
+        ctx.beginPath(); ctx.arc(pd.x, pd.y, 3.4, 0, Math.PI * 2); ctx.stroke();
+        ctx.restore();
+        if (pd.id === selectedPortId && pd.label)
+          label(ctx, pd.name, pd.label.ax, pd.label.ay, 11, INK_DIM, pd.label.align);
+        continue;
+      }
       const on = !active || active.has(pd.id);
       const col = on ? INK : INK_DIM;
       ctx.save();
@@ -351,9 +365,9 @@ export function createRenderer(canvas, assets) {
   }
 
   // ---- dynamic frame ------------------------------------------------------
-  function draw(snapshot, selectedId, selectedPortId, t, routesCtx, activePorts, selectedWreckId) {
+  function draw(snapshot, selectedId, selectedPortId, t, routesCtx, activePorts, selectedWreckId, lifecycle) {
     if (base) ctx.drawImage(base, 0, 0, W, H);
-    drawPorts(activePorts);
+    drawPorts(activePorts, lifecycle, selectedPortId);
 
     const vessels = snapshot.vessels;
     if (routesCtx) drawRouteOverlay(snapshot.season, routesCtx);
@@ -488,7 +502,7 @@ export function createRenderer(canvas, assets) {
   // whichever is closest within its own radius. Ports are precise targets, so a
   // click right on a port dot wins over a ship drifting nearby; wrecks pick like
   // vessels (a live ship shades a wreck only when genuinely nearer).
-  function pickAt(px, py, snapshot) {
+  function pickAt(px, py, snapshot, lifecycle) {
     let vBest = null, vd = 15 * 15;
     for (const v of snapshot.vessels) {
       if (v.status === 'lost') continue;
@@ -504,6 +518,9 @@ export function createRenderer(canvas, assets) {
     }
     let pBest = null, pd = 13 * 13;
     for (const ps of portScreen) {
+      // a not-yet-founded port isn't on the chart and can't be clicked; a
+      // ruined one keeps its mark and stays inspectable
+      if (lifecycle && !lifecycle.existing.has(ps.id) && !lifecycle.ruined.has(ps.id)) continue;
       const d = (ps.x - px) ** 2 + (ps.y - py) ** 2;
       if (d < pd) { pd = d; pBest = ps.id; }
     }

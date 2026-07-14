@@ -90,7 +90,13 @@ const CHANNEL_CARVES = [
   [26.5, 40.5], [27.5, 40.5], [28.5, 40.5],   // Dardanelles → Sea of Marmara
   [29.5, 41.5], [29.5, 40.5],                 // Bosporus
   [36.5, 45.5], [36.5, 44.5],                 // Kerch Strait → Sea of Azov approach
-  [39.5, 65.5], [40.5, 65.5], [40.5, 66.5]    // the Gorlo (White Sea throat) — ~50 km wide, genuinely sub-cell
+  [39.5, 65.5], [40.5, 65.5], [40.5, 66.5],   // the Gorlo (White Sea throat) — ~50 km wide, genuinely sub-cell
+  // Gulf of Finland fairway: the ~70–120 km gulf rasterizes shut east of 25°E,
+  // which left St Petersburg's three lanes with ZERO baked legs (found by the
+  // port-lifecycle verification, 2026-07-14 — the flow matrix carries ~7k
+  // Petersburg voyages the chart could not sail). Same sub-cell-channel class
+  // as the Bosporus/Gorlo carves above.
+  [25.5, 59.5], [26.5, 59.5], [28.5, 59.5], [29.5, 59.5]
 ];
 
 const SIMPLIFY_EPS = 0.3;   // deg; Douglas–Peucker tolerance

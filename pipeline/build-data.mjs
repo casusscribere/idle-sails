@@ -19,7 +19,7 @@ const OUT = join(ROOT, 'data');
 const ARCHIVE_FIELDS = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'data', 'fields');
 const LAND_SRC = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'assets', 'land.geojson');
 
-const DATASET_VERSION = 2;              // v2 (PLAN-3 S1): flow-driven spawning — invalidates v1 saves
+const DATASET_VERSION = 3;              // v3: port lifecycle windows (lane eras clamped) — invalidates v2 saves
 const ERA = { from: 1550, to: 1815 };   // flowing-clock scope
 const ROUTE_CLASSES = ['frigate', 'indiaman', 'brig', 'slaver', 'junk', 'dhow'];   // junk/dhow: own polars since S2
 const SEASONS = ['djf', 'mam', 'jja', 'son'];
@@ -66,7 +66,11 @@ for (const p of ports) {
   if (p.lon < -180 || p.lon > 180 || p.lat < -90 || p.lat > 90) err(`port ${p.id}: lon/lat out of range`);
   if (!powerById.has(p.power)) err(`port ${p.id}: unknown power '${p.power}'`);
   if (!REGIONS.has(p.region)) err(`port ${p.id}: unknown region '${p.region}'`);
+  // port lifecycle window (optional; absent = the port existed all era)
+  if (p.active !== undefined) inEra(p.active, `port ${p.id} active`);
 }
+// The port-lifecycle window a lane must respect (default: the whole era).
+const portWindow = (id) => portById.get(id)?.active || ERA;
 
 // ---- validate: powers ----------------------------------------------------
 uniq(powers, 'id', 'powers');
@@ -118,6 +122,15 @@ for (const r of routes) {
   for (const st of r.shipTypes || []) {
     const s = shipById.get(st); if (!s) continue;
     if (s.era.to < r.era.from || s.era.from > r.era.to) err(`route ${r.id}: shipType ${st} era ${s.era.from}-${s.era.to} never overlaps lane era ${r.era.from}-${r.era.to}`);
+  }
+  // Port-lifecycle invariant: a lane may only sail while BOTH its endpoints
+  // exist — no vessel may ever be scheduled to a not-yet-founded or destroyed
+  // port. (Spawning, chaining, and fades are all lane-era-gated in world.js,
+  // so this data invariant IS the behavioral guarantee.)
+  for (const pid of [r.from, r.to]) {
+    const w = portWindow(pid);
+    if (r.era.from < w.from || r.era.to > w.to)
+      err(`route ${r.id}: era ${r.era.from}-${r.era.to} outside port ${pid}'s lifecycle ${w.from}-${w.to}`);
   }
 }
 

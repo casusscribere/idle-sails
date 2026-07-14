@@ -14,8 +14,18 @@ file point here; they are documentation only, not enforced JSON Schema.
 - **Era scope**: 1700–1815 (PLAN §0, confirmed). All `era` windows must fall inside it.
 
 ## ports
-`ports[]`: `id, name, lon, lat, power (→powers.id), region, roles[], note`.
+`ports[]`: `id, name, lon, lat, power (→powers.id), region, roles[], note,
+active{from,to}?`.
 lon/lat **must** equal the archive coordinates — the baked routing fields are keyed to them.
+`active` is the port's LIFECYCLE window (founded/destroyed inside 1550–1815);
+absent = the port existed all era. build-data enforces that every lane's era
+fits inside both endpoints' windows, so no vessel is ever scheduled to a
+not-yet-founded or destroyed port. Where a dot carries an earlier harbour's
+flow under the continuity-proxy rule (Batavia=Jayakarta, Bombay=Goa,
+Madras=Coromandel, Calcutta=Hugli, Gothenburg=Älvsborg, Kingston=Port Royal),
+the window covers the proxy period and the `note` declares it; flows displaced
+by a strict window are recorded in `research/flows/silences.json`, never
+silently zeroed.
 
 ## powers
 `powers[]`: `id, name, kind (nation|company|shore), color, homePorts[] (→ports.id),

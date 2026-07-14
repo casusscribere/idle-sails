@@ -134,9 +134,25 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
   // here) and inbound to it (on a leg headed here). Current leg only — vessels
   // that merely called here on an earlier leg are not shown.
   function showPort(port, traffic, ctx) {
-    const { portById, powerById, simClock } = ctx;
+    const { portById, powerById, simClock, year } = ctx;
     const nm = (id) => portById.get(id).name.replace(/\s*\(.*\)/, '');
     const power = powerById.get(port.power);
+
+    // Port lifecycle: a bounded port shows its window; one past its end shows a
+    // ruin banner + its note instead of traffic lists (there is no traffic).
+    const lifeline = port.active
+      ? `<p class="type">est. ${port.active.from}${port.active.to < 1815 ? ` · until ${port.active.to}` : ''}</p>` : '';
+    if (port.active && year != null && year > port.active.to) {
+      els.ledgerBody.innerHTML = `
+        <h2>${escapeHtml(nm(port.id))}</h2>
+        <p class="type">${escapeHtml(power ? power.name : port.power)} · ${escapeHtml(port.region.replace(/-/g, ' '))}</p>
+        ${lifeline}
+        <p class="war">In ruin — this harbour's trade ended in ${port.active.to}.</p>
+        ${port.note ? `<p class="muted">${escapeHtml(port.note)}</p>` : ''}`;
+      els.ledger.hidden = false;
+      els.hint && els.hint.classList.add('gone');
+      return;
+    }
 
     const row = (v, dir) => {
       const seg = v.schedule[v.pos.legIndex];
@@ -159,6 +175,7 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
     els.ledgerBody.innerHTML = `
       <h2>${escapeHtml(nm(port.id))}</h2>
       <p class="type">${escapeHtml(power ? power.name : port.power)} · ${escapeHtml(port.region.replace(/-/g, ' '))}</p>
+      ${lifeline}
       <p class="section-h">Outbound — lately sailed (${traffic.outbound.length})</p>
       ${list(traffic.outbound, 'out', 'No vessels have lately cleared this port.')}
       <p class="section-h">Inbound — standing in (${traffic.inbound.length})</p>

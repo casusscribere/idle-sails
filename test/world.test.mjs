@@ -334,3 +334,51 @@ test('port greying keys on ACTUAL calls: the 1550s slave factories stay grey unt
   for (const pid of ['elmina', 'whydah', 'luanda'])
     if (!called.has(pid)) assert.ok(!active.has(pid), `${pid} must be greyed when no ship has called`);
 });
+
+test('port lifecycle invariant: every lane era fits inside both endpoints’ windows', () => {
+  const windowOf = new Map(datasets.ports.map(p => [p.id, p.active || { from: 1550, to: 1815 }]));
+  for (const r of datasets.routes) {
+    for (const pid of [r.from, r.to]) {
+      const w = windowOf.get(pid);
+      assert.ok(r.era.from >= w.from && r.era.to <= w.to,
+        `lane ${r.id} era ${r.era.from}-${r.era.to} escapes port ${pid}'s lifecycle ${w.from}-${w.to}`);
+    }
+  }
+  // the flagship lifecycles are actually declared
+  assert.deepEqual(datasets.ports.find(p => p.id === 'louisbourg').active, { from: 1713, to: 1758 });
+  assert.deepEqual(datasets.ports.find(p => p.id === 'smeerenburg').active, { from: 1614, to: 1660 });
+  assert.deepEqual(datasets.ports.find(p => p.id === 'kaffa').active, { from: 1550, to: 1783 });
+});
+
+test('port lifecycle behavior: a full 270-year cycle schedules zero calls outside any port’s window', () => {
+  // The user-requested verification, kept as a regression: tick a whole cycle
+  // and check every scheduled departure/arrival against the port windows.
+  // Tolerance +3 yr past `to`: spawning fades out THROUGH era.to (weight >0
+  // until to+1) and a MAX_LEGS voyage can arrive up to ~2 yr later — in-flight
+  // arrivals after a founding-limited lane closes are real ships coming home,
+  // not new traffic. Reset-ramp years (>1815) clamp to 1815, as spawning does.
+  const windowOf = new Map(datasets.ports.map(p => [p.id, p.active || { from: 1550, to: 1815 }]));
+  const w = mk(42);
+  const WEEK = 7 * DAY, weeks = Math.ceil(270 * 365.25 / 7);
+  const seen = new Set();
+  const yearAt = (t) => { const c = w.calendar(t); return c.reset > 0 ? 1815 : c.year; };
+  let checked = 0;
+  for (let i = 0; i < weeks; i++) {
+    w.tick(WEEK);
+    for (const v of w.state.vessels) {
+      if (seen.has(v.id)) continue; seen.add(v.id);
+      for (const seg of v.schedule) {
+        const check = (pid, t) => {
+          if (v.fate.lost && v.fate.atSec < t) return;   // never happens — she was lost
+          const y = yearAt(t), win = windowOf.get(pid);
+          assert.ok(y >= win.from && y <= win.to + 3,
+            `${pid} called in ${y}, outside its lifecycle ${win.from}-${win.to} (vessel ${v.id}, lane ${seg.laneId})`);
+          checked++;
+        };
+        check(seg.from, seg.depart); check(seg.to, seg.arrive);
+      }
+    }
+  }
+  assert.ok(seen.size > 50000, `a full cycle of vessels was generated (${seen.size})`);
+  assert.ok(checked > 100000, `port calls were actually checked (${checked})`);
+});

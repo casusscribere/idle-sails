@@ -116,6 +116,19 @@ Every design decision answers to both of these:
   **Ongoing work needs no phase machinery**: tranche-2/3 port promotions, new
   basin systems, and roster growth proceed under `research/CURATION.md` and
   the promotion queue.
+- **Post-PLAN-3 polish (2026-07-14):** data-fit chart crop + 8-anchor label
+  declutter; dormant-port greying keyed on ACTUAL port calls; wreck markers
+  (a loss marks the chart a sim-year; click → the loss ledger); windward
+  "zigzag" fixed in the baker (beat-to-windward legs wind-gated — ships wait
+  for the monsoon — kept legs de-tacked); **port lifecycle** — `ports[].active
+  {from,to}` windows (Louisbourg 1713–58, Smeerenburg 1614–60, Kaffa –1783…),
+  build-data enforces lane-era ⊆ port windows, absent-before-founding /
+  ruin-mark-after on the chart, continuity proxies declared in notes
+  (Batavia=Jayakarta, Bombay=Goa, Madras=Coromandel, Calcutta=Hugli,
+  Gothenburg=Älvsborg, Kingston=Port Royal 1655+), displaced flows in the
+  silences register (14 entries); Gulf-of-Finland carve (St Petersburg was
+  unsailable — zero baked legs — since S2). datasetVersion 3; saves gate on
+  `datasets:routes` versions. 25 tests green.
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —

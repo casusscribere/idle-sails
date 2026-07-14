@@ -573,9 +573,28 @@ export function createWorld({ seed = 1, data, restore = null }) {
     return active;
   };
 
+  // Port lifecycle: which ports EXIST and which lie in RUIN at an instant.
+  // ports[].active {from,to} is the declared existence window (absent = all
+  // era); build-data enforces every lane's era inside both endpoints' windows,
+  // so this is presentation truth, not a traffic gate — the traffic is already
+  // impossible. Year is clamped exactly as spawning clamps it (reset ramp →
+  // 1815), so the chart doesn't flicker ports during "the chart is redrawn".
+  const portLifecycleAt = (simSec) => {
+    const cal = calendar(simSec);
+    const year = cal.reset > 0 ? ERA.to : cal.year;
+    const existing = new Set(), ruined = new Set();
+    for (const p of datasets.ports) {
+      if (!p.active) { existing.add(p.id); continue; }
+      if (year > p.active.to) ruined.add(p.id);            // fell / abandoned
+      else if (year >= p.active.from) existing.add(p.id);  // alive
+      // else: not yet founded — absent from the chart entirely
+    }
+    return { existing, ruined };
+  };
+
   return {
     state, tick, snapshot, activeVessels, positionOf, fingerprint, calendar,
-    laneWeightsAt, weightsAt, activePortsSince, serialize,
+    laneWeightsAt, weightsAt, activePortsSince, portLifecycleAt, serialize,
     portById, powerById,
     get simClock() { return state.simClock; }
   };

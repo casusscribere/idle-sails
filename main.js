@@ -85,11 +85,17 @@ async function boot() {
   let showRoutes = hashParams.get('routes') === '1';
   if (showRoutes) document.getElementById('ov-routes').checked = true;
   let latestSnap = world.snapshot();
-  // ports greyed unless they saw traffic in the past sim-year; recomputed on the
-  // HUD throttle (activity is slow, era-driven) and passed to every draw().
+  // ports greyed unless they saw traffic in the past sim-year; lifecycle
+  // (existing/ruined per the flowing year) gates chart presence. Both recomputed
+  // on the HUD throttle (era-slow) and passed to every draw()/pickAt().
   let activePorts = world.activePortsSince(latestSnap.simClock);
+  let portLife = world.portLifecycleAt(latestSnap.simClock);
 
-  const ledgerCtx = () => ({ portById, cargoById, powerById, simClock: latestSnap.simClock });
+  const ledgerCtx = () => ({
+    portById, cargoById, powerById, simClock: latestSnap.simClock,
+    // the flowing year, clamped through the reset ramp exactly as spawning is
+    year: latestSnap.reset > 0 ? 1815 : latestSnap.year
+  });
 
   // ships whose CURRENT leg leaves this port (outbound) or is bound for it
   // (inbound). Current leg only — ships that called here on an earlier leg and
@@ -139,7 +145,7 @@ async function boot() {
   // click empty sea → dismiss.
   canvas.addEventListener('click', (e) => {
     const r = canvas.getBoundingClientRect();
-    const hit = renderer.pickAt(e.clientX - r.left, e.clientY - r.top, latestSnap);
+    const hit = renderer.pickAt(e.clientX - r.left, e.clientY - r.top, latestSnap, portLife);
     if (!hit) clearSelection();
     else if (hit.type === 'vessel') selectVessel(hit.id);
     else if (hit.type === 'wreck') selectWreck(hit.id);
@@ -147,7 +153,7 @@ async function boot() {
   });
   canvas.addEventListener('mousemove', (e) => {
     const r = canvas.getBoundingClientRect();
-    canvas.style.cursor = renderer.pickAt(e.clientX - r.left, e.clientY - r.top, latestSnap) ? 'pointer' : 'crosshair';
+    canvas.style.cursor = renderer.pickAt(e.clientX - r.left, e.clientY - r.top, latestSnap, portLife) ? 'pointer' : 'crosshair';
   });
 
   // hamburger menu + overlays
@@ -178,10 +184,15 @@ async function boot() {
     // overlay context: this world's realized per-lane flow weights at the current
     // instant — route brightness IS the traffic the sim is actually sampling.
     const routesCtx = showRoutes ? { laneWeights: world.laneWeightsAt(latestSnap.simClock) } : null;
-    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, routesCtx, activePorts, selectedWreckId);
+    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, routesCtx, activePorts, selectedWreckId, portLife);
 
     hudAccum += dtReal;
-    if (hudAccum > 0.2) { hudAccum = 0; activePorts = world.activePortsSince(latestSnap.simClock); ui.updateHUD(latestSnap); renderPanel(); }
+    if (hudAccum > 0.2) {
+      hudAccum = 0;
+      activePorts = world.activePortsSince(latestSnap.simClock);
+      portLife = world.portLifecycleAt(latestSnap.simClock);
+      ui.updateHUD(latestSnap); renderPanel();
+    }
     requestAnimationFrame(frame);
   }
   ui.updateHUD(latestSnap);
