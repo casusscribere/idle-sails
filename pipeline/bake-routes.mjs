@@ -96,6 +96,18 @@ const CHANNEL_CARVES = [
 const SIMPLIFY_EPS = 0.3;   // deg; Douglas–Peucker tolerance
 const MAX_POINTS = 60;
 
+// Windward-tacking treatment (the Arabian/Mediterranean "zigzag"). The least-time
+// Dijkstra path beats to windward as a grid-quantized sawtooth when a leg must
+// sail against the season's wind. Two responses, both here in the baker:
+//   • GATE (historical): a raw path with ≥ this many latitude-direction reversals
+//     is a beat-to-windward passage no monsoon-era master would make — they
+//     waited for the wind to turn. Drop the leg (the sim reschedules, exactly as
+//     for the ice-locked Arctic winter). Safeguard below keeps ≥1 season/lane.
+//   • SMOOTH (visual): kept legs get a land-aware de-tack pass that collapses any
+//     residual oscillation to its made-good line before Douglas–Peucker.
+const TACK_REVERSALS_GATE = 6;   // raw lat-reversals ⇒ wind-gate the leg
+const TACK_SMOOTH_AMPL = 2.0;    // deg cross-track; collapse oscillation apexes up to this
+
 // ---- mask + ice cap -------------------------------------------------------
 const gridPath = join(ARCHIVE, 'build', 'grid.json');
 if (!existsSync(gridPath)) {
@@ -242,6 +254,43 @@ function simplify(points) {
   return out;
 }
 
+// ---- windward-tacking detection + smoothing -------------------------------
+// Latitude-direction reversals in a path: 0 for a monotone (with-the-wind)
+// staircase, many for a beat-to-windward sawtooth. The gate discriminator.
+function latReversals(pts) {
+  let rev = 0, prev = 0;
+  for (let i = 1; i < pts.length; i++) {
+    const d = Math.sign(pts[i][1] - pts[i - 1][1]);
+    if (d !== 0) { if (prev !== 0 && d !== prev) rev++; prev = d; }
+  }
+  return rev;
+}
+const turnZ = (a, b, c) => (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0]);
+// Collapse windward-tacking oscillation to its made-good line: iteratively drop
+// oscillation apexes — a vertex whose turn reverses a neighbour's — of small
+// cross-track amplitude, whenever the straight skip stays on ocean. Monotone
+// (genuine, wind-shaped) curvature is preserved: its turns don't reverse. The
+// coastline is respected via segCrossesLand, so no smoothed leg cuts a shore.
+function deTack(pts) {
+  let p = pts.slice(), guard = 0;
+  while (guard++ < 300 && p.length > 2) {
+    const drop = new Array(p.length).fill(false);
+    for (let i = 1; i < p.length - 1; i++) {
+      const a = p[i - 1], b = p[i], c = p[i + 1];
+      const tHere = Math.sign(turnZ(a, b, c));
+      if (tHere === 0) continue;
+      const tPrev = i >= 2 ? Math.sign(turnZ(p[i - 2], a, b)) : 0;
+      const tNext = i <= p.length - 3 ? Math.sign(turnZ(b, c, p[i + 2])) : 0;
+      const oscillates = (tPrev !== 0 && tPrev !== tHere) || (tNext !== 0 && tNext !== tHere);
+      if (oscillates && perpDist(b, a, c) < TACK_SMOOTH_AMPL && !segCrossesLand(a, c)) drop[i] = true;
+    }
+    for (let i = 1; i < p.length; i++) if (drop[i] && drop[i - 1]) drop[i] = false; // no adjacent removals per pass
+    if (!drop.some(Boolean)) break;
+    p = p.filter((_, i) => !drop[i]);
+  }
+  return p;
+}
+
 // ---- great-circle fallback (flagged low-fidelity) -------------------------
 function greatCircle(a, b, n = 24) {
   const D2R = Math.PI / 180, R2D = 180 / Math.PI;
@@ -261,41 +310,57 @@ const havKm = (a, b) => { const R = 6371, D = Math.PI / 180; const dLa = (b[1] -
 
 // ---- bake -----------------------------------------------------------------
 const baked = [], warnings = [];
-let nField = 0, nFallback = 0;
+let nField = 0, nFallback = 0, nWindGated = 0;
+const unwrap = (lon, ref) => { while (lon - ref > 180) lon -= 360; while (lon - ref < -180) lon += 360; return lon; };
 for (const route of routes) {
   const from = portById.get(route.from), to = portById.get(route.to);
   const classes = [...new Set(route.shipTypes.map(st => classOf.get(st)).filter(Boolean))];
   for (const routeClass of classes) {
+    // Pass 1 — reconstruct every season's raw least-time path + its tack score.
+    const perSeason = [];
     for (const s of SEASONS) {
       const field = fieldFor(to, routeClass, s.id);
       const [oc, or] = snapToOcean(maskBySeason.get(s.id), from.lon, from.lat);
       const originIdx = gi.idx(oc, or);
-      let coords = null, hours = null, method = null;
       const raw = reconstruct(field, originIdx);
       if (raw && raw.length >= 2 && isFinite(field.time[originIdx])) {
-        hours = field.time[originIdx] / 3600;
-        const unwrap = (lon, ref) => { while (lon - ref > 180) lon -= 360; while (lon - ref < -180) lon += 360; return lon; };
         raw[0] = [unwrap(from.lon, raw[0][0]), from.lat];
         raw[raw.length - 1] = [unwrap(to.lon, raw[raw.length - 1][0]), to.lat];
-        coords = simplify(raw); method = 'field'; nField++;
+        perSeason.push({ s, raw, hours: field.time[originIdx] / 3600, rev: latReversals(raw) });
       } else {
         // Unreachable in this season's mask (the Arctic corridors close outside
         // jja/son): SEASON-GATE the leg — emit nothing, and world.js reschedules
         // any vessel that draws this lane in a closed season. A great-circle here
         // would sail ships across pack ice; absence is the historical truth.
+        perSeason.push({ s, raw: null });
         nFallback++;
-        warnings.push(`season-gated (unreachable): ${route.id} [${routeClass}/${s.id}]`);
-        continue;
+        warnings.push(`season-gated (ice-locked): ${route.id} [${routeClass}/${s.id}]`);
       }
+    }
+    // Gate decision — a season whose raw path beats to windward (≥ the reversal
+    // gate) is a passage ships waited out, not sailed; drop it. Safeguard: never
+    // gate away a lane×class's last sailable season — keep the least-tacky one so
+    // the lane never goes wholly unsailable.
+    const sailable = perSeason.filter(x => x.raw);
+    let keep = sailable.filter(x => x.rev < TACK_REVERSALS_GATE);
+    if (!keep.length && sailable.length) keep = [sailable.slice().sort((a, b) => a.rev - b.rev)[0]];
+    const keepSet = new Set(keep);
+    for (const x of sailable) if (!keepSet.has(x)) {
+      nWindGated++;
+      warnings.push(`wind-gated (beat-to-windward, ${x.rev} tacks): ${route.id} [${routeClass}/${x.s.id}]`);
+    }
+    // Pass 2 — de-tack (smooth) + simplify + emit the kept seasons.
+    for (const x of keep) {
+      const coords = simplify(deTack(x.raw));
       const distKm = coords.reduce((acc, p, i) => i ? acc + havKm(coords[i - 1], p) : 0, 0);
       baked.push({
-        id: `${route.id}__${routeClass}__${s.id}`, route: route.id, from: route.from, to: route.to,
-        routeClass, season: s.id,
-        hours: hours == null ? null : Math.round(hours),
-        days: hours == null ? null : +(hours / 24).toFixed(1),
-        distKm: Math.round(distKm), points: coords.length, method,
+        id: `${route.id}__${routeClass}__${x.s.id}`, route: route.id, from: route.from, to: route.to,
+        routeClass, season: x.s.id,
+        hours: Math.round(x.hours), days: +(x.hours / 24).toFixed(1),
+        distKm: Math.round(distKm), points: coords.length, method: 'field',
         coords: coords.map(([lon, lat]) => [+lon.toFixed(3), +lat.toFixed(3)])
       });
+      nField++;
     }
   }
 }
@@ -353,7 +418,7 @@ const kb = (Buffer.byteLength(JSON.stringify(out)) / 1024).toFixed(1);
 
 console.log(`✓ bake-routes: ${baked.length} polylines from ${routes.length} lanes.`);
 console.log(`  ice cap: lat>${ICE_N} / lat<${ICE_S} blocked (${iced} cells) · isthmuses sealed (${sealed} cells) · fields computed ${fieldCache.size}`);
-console.log(`  field walks ${nField} · season-gated (ice-locked) ${nFallback}`);
+console.log(`  field walks ${nField} · season-gated (ice-locked) ${nFallback} · wind-gated (beat-to-windward) ${nWindGated}`);
 console.log(`  → data/routes.json (${kb} KB)`);
 if (warnings.length) { console.log(`  ${warnings.length} fallback warning(s):`); for (const w of warnings.slice(0, 12)) console.log('    - ' + w); }
 if (problems.length) { console.error(`\n✗ ${problems.length} sanity problem(s):`); for (const p of problems.slice(0, 25)) console.error('  - ' + p); process.exit(1); }

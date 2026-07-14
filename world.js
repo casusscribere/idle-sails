@@ -518,9 +518,28 @@ export function createWorld({ seed = 1, data, restore = null }) {
     return out;
   };
 
+  // Ports that saw traffic within the past sim-year (for the renderer's greying
+  // of dormant ports). A port is "visited" if any lane touching it — as origin
+  // or destination — carries nonzero spawn weight now OR a year ago. Every
+  // era-active lane keeps a residual floor (see spawnLaneWeights), so nonzero
+  // weight ⇔ ships are spawning/sailing/arriving there; lanes fade over ~3 yr,
+  // so the two samples a year apart catch any within-year switch-off. Pure in
+  // sim-time (no per-visit state to persist); the window wraps the reset seam
+  // exactly as the clock does. Samples before t=0 (a brand-new world's first
+  // sim-year) are skipped — there is no "past year" yet.
+  const activePortsSince = (simSec, windowSec = SEC_PER_DAY * DAY_OF_YEAR) => {
+    const active = new Set();
+    for (const s of [simSec, simSec - windowSec]) {
+      if (s < 0) continue;
+      const lw = laneWeightsAt(s);
+      for (const r of datasets.routes) if ((lw[r.id] || 0) > 1e-9) { active.add(r.from); active.add(r.to); }
+    }
+    return active;
+  };
+
   return {
     state, tick, snapshot, activeVessels, positionOf, fingerprint, calendar,
-    laneWeightsAt, weightsAt, serialize,
+    laneWeightsAt, weightsAt, activePortsSince, serialize,
     portById, powerById,
     get simClock() { return state.simClock; }
   };

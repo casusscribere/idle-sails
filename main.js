@@ -81,6 +81,9 @@ async function boot() {
   let showRoutes = hashParams.get('routes') === '1';
   if (showRoutes) document.getElementById('ov-routes').checked = true;
   let latestSnap = world.snapshot();
+  // ports greyed unless they saw traffic in the past sim-year; recomputed on the
+  // HUD throttle (activity is slow, era-driven) and passed to every draw().
+  let activePorts = world.activePortsSince(latestSnap.simClock);
 
   const ledgerCtx = () => ({ portById, cargoById, powerById, simClock: latestSnap.simClock });
 
@@ -163,10 +166,10 @@ async function boot() {
     // overlay context: this world's realized per-lane flow weights at the current
     // instant — route brightness IS the traffic the sim is actually sampling.
     const routesCtx = showRoutes ? { laneWeights: world.laneWeightsAt(latestSnap.simClock) } : null;
-    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, routesCtx);
+    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, routesCtx, activePorts);
 
     hudAccum += dtReal;
-    if (hudAccum > 0.2) { hudAccum = 0; ui.updateHUD(latestSnap); renderPanel(); }
+    if (hudAccum > 0.2) { hudAccum = 0; activePorts = world.activePortsSince(latestSnap.simClock); ui.updateHUD(latestSnap); renderPanel(); }
     requestAnimationFrame(frame);
   }
   ui.updateHUD(latestSnap);

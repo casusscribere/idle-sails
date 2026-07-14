@@ -9,6 +9,7 @@
 const INK = '#3a2c1c';           // iron-gall sepia
 const INK_SOFT = 'rgba(58,44,28,0.55)';
 const INK_FAINT = 'rgba(58,44,28,0.16)';
+const INK_DIM = '#9c8d72';       // dormant port — greyed (no traffic in the past sim-year)
 const PAPER = '#e7dabd';         // aged parchment
 const PAPER_HI = '#efe4cb';
 const SEA_TINT = 'rgba(120,140,150,0.06)'; // barely-cool wash over the sea
@@ -17,25 +18,14 @@ const LAND_EDGE = '#5c4630';
 const RHUMB_RED = 'rgba(150,70,50,0.16)';
 const WAKE = 'rgba(58,44,28,0.28)';
 
-// Chart viewport in geographic degrees. The latitude cutoffs frame the band the
-// age-of-sail world actually occupies, with a small margin, and crop the empty
-// poles:
-//   latMax  74°N — comfortably above the northernmost port (Gothenburg, 57.6°N)
-//                  and the northernmost baked routes (~62°N), and above the
-//                  Arctic ice cap (66°N) that bounds where any route may go.
-//   latMin -58°S — just below the southernmost sailing latitude: the Cape of
-//                  Good Hope (34.5°S) and the homeward "Roaring Forties" easting
-//                  (~45-49°S), and below the -50°S ice cap (closed Drake Passage)
-//                  that bounds the routes. Antarctica lies off-screen below.
-// Longitude spans the Atlantic-Africa-Indian-China world (Kingston -76.8°E to
-// Dejima 129.6°E) with margin; the empty mid-Pacific is cropped.
-// S2 (user-funded Pacific extension): lon spans the full globe — Sitka (−135°)
-// and Acapulco join the chart, and the Manila↔Acapulco galleon crosses the
-// antimeridian; lat reaches 81°N for the Spitsbergen whaling ground.
-const BOUNDS = { lonMin: -180, lonMax: 180, latMin: -58, latMax: 81 };
-// (The old FIT_LON scroll constant is gone: the chart now CONTAINS the full
-// world in the viewport width — see resize() — scrolling only below the
-// readability floor.)
+// The chart viewport (geographic degrees) is fit to the DATA, not hardcoded:
+// computeBounds() below crops the parchment tightly around the world that is
+// actually sailed. The east/west edges frame the farthest PORTS (so their names
+// still render), leaving only a small margin; the top/bottom edges sit just
+// beyond the highest/lowest routes-and-ports, so the decorative neatline bands
+// hug the content and the empty mid-Pacific and the empty poles are cropped.
+// (The whole world still CONTAINS in the viewport width — see resize() — the
+// page scrolls only below the readability floor.)
 
 // Colour is spent on allegiance (the flag), so ship CATEGORY is carried by the
 // glyph's shape instead. The ship-types collapse into five map categories:
@@ -99,10 +89,36 @@ export function shipGlyphPath(ctx, cat, s) {
 export function createRenderer(canvas, assets) {
   const { land, ports, legById, reducedMotion, routeLines = [] } = assets;
   const ctx = canvas.getContext('2d');
+
+  // Crop the viewport tightly around the world that is actually sailed.
+  function computeBounds() {
+    let lonMin = Infinity, lonMax = -Infinity, latMin = Infinity, latMax = -Infinity;
+    for (const p of ports) {
+      if (p.lon < lonMin) lonMin = p.lon;   // Sitka, the westernmost port
+      if (p.lon > lonMax) lonMax = p.lon;   // Banda Neira / Dejima, the easternmost
+      if (p.lat < latMin) latMin = p.lat;
+      if (p.lat > latMax) latMax = p.lat;   // Smeerenburg, the northernmost
+    }
+    // Baked routes extend the LATitude envelope only — the southern Roaring-
+    // Forties easting dips well below any port. Their longitudes are unwrapped
+    // past ±180 for the antimeridian galleon, so they must NOT widen the
+    // horizontal crop: the east/west edges frame the farthest PORTS alone.
+    for (const leg of legById.values())
+      for (const c of leg.coords) { if (c[1] < latMin) latMin = c[1]; if (c[1] > latMax) latMax = c[1]; }
+    return {
+      lonMin: lonMin - 2.5,   // the westernmost port's dot clears the left band
+      lonMax: lonMax + 10,    // room for the easternmost port's name (edge-flip covers overflow)
+      latMin: latMin - 3,     // just below the southernmost route
+      latMax: latMax + 2.5    // just above the northernmost port
+    };
+  }
+  const BOUNDS = computeBounds();
+
   let base = null, baseCtx = null;      // offscreen static chart
   let W = 0, H = 0, dpr = 1, k = 1, ox = 0, oy = 0;
   const wakes = new Map();               // vesselId → [[x,y],...] recent screen positions
   let portScreen = [];                   // [{id, x, y}] for hit-testing the fixed ports
+  let portDraw = [];                     // [{id, x, y, name, label:{ax,ay,align}|null}] cached placement
   // Popular-routes overlay: weighted per-frame by the flowing clock (see
   // drawRouteOverlay) — lanes brighten and fade as their origin's era-prominence
   // shifts, so national dominance visibly rotates across the centuries.
@@ -171,19 +187,65 @@ export function createRenderer(canvas, assets) {
     c.lineJoin = 'round';
     for (const f of land.features) drawGeom(c, f.geometry);
 
-    // ports (and remember their screen positions for hit-testing). With 66 ports
-    // the labels crowd Europe badly, so labels declutter: draw in list order,
-    // skipping any label whose rect overlaps one already placed (every port
-    // keeps its DOT and stays clickable — only the text yields).
+    // ports: compute each label's placement now (collision-avoiding, once per
+    // resize) and cache it in portDraw; the dots + labels are drawn per-frame in
+    // drawPorts(), each inked normally or greyed by whether traffic reached the
+    // port in the past sim-year. Placement is activity-independent, so it caches.
     portScreen = ports.map(p => { const [x, y] = project(p.lon, p.lat); return { id: p.id, x, y }; });
-    const placed = [];
-    for (const p of ports) {
-      const [x, y] = project(p.lon, p.lat);
-      const wpx = 6.2 * p.name.replace(/\s*\(.*\)/, '').length + 10, hpx = 13;
-      const rect = { x0: x + 5, y0: y - 8, x1: x + 5 + wpx, y1: y - 8 + hpx };
-      const clash = placed.some(r => rect.x0 < r.x1 && rect.x1 > r.x0 && rect.y0 < r.y1 && rect.y1 > r.y0);
-      drawPort(c, p, !clash);
-      if (!clash) placed.push(rect);
+    computePortLabels(c);
+  }
+
+  // Decide where each port's name sits, caching the result in portDraw. With 66
+  // ports the labels crowd Europe badly, so each tries anchors best-first — right
+  // of the dot, then left, above, below — taking the first that clears the chart
+  // edges, the labels already placed, and the neighbouring dots. A label with
+  // nowhere to go is dropped (the dot still shows); ports like Acapulco (hard by
+  // Veracruz) now find a spot instead of vanishing.
+  function computePortLabels(c) {
+    c.save();
+    c.font = `11px "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif`;
+    const placed = [];   // committed label rects
+    const dots = portScreen.map(ps => ({ x0: ps.x - 5, y0: ps.y - 5, x1: ps.x + 5, y1: ps.y + 5 }));
+    portDraw = ports.map((p, i) => ({ id: p.id, x: portScreen[i].x, y: portScreen[i].y, name: p.name.replace(/\s*\(.*\)/, ''), label: null }));
+    for (let i = 0; i < portDraw.length; i++) {
+      const { x, y, name } = portDraw[i];
+      const w = c.measureText(name).width;
+      // anchors, best-first: right of the dot, then left, above, below, corners
+      const cands = [
+        { ax: x + 7, ay: y + 3, align: 'left' }, { ax: x - 7, ay: y + 3, align: 'right' },
+        { ax: x, ay: y - 8, align: 'center' }, { ax: x, ay: y + 15, align: 'center' },
+        { ax: x + 7, ay: y - 7, align: 'left' }, { ax: x - 7, ay: y - 7, align: 'right' },
+        { ax: x + 7, ay: y + 13, align: 'left' }, { ax: x - 7, ay: y + 13, align: 'right' },
+      ];
+      for (const cd of cands) {
+        const x0 = cd.align === 'left' ? cd.ax : cd.align === 'right' ? cd.ax - w : cd.ax - w / 2;
+        const rect = { x0, y0: cd.ay - 10, x1: x0 + w, y1: cd.ay + 2 };
+        if (rect.x0 < 3 || rect.x1 > W - 3 || rect.y0 < 14 || rect.y1 > H - 14) continue;  // off-chart / under a band
+        if (placed.some(r => rect.x0 < r.x1 && rect.x1 > r.x0 && rect.y0 < r.y1 && rect.y1 > r.y0)) continue;
+        if (dots.some((r, j) => j !== i && rect.x0 < r.x1 && rect.x1 > r.x0 && rect.y0 < r.y1 && rect.y1 > r.y0)) continue;
+        portDraw[i].label = { ax: cd.ax, ay: cd.ay, align: cd.align };
+        placed.push(rect);
+        break;
+      }
+    }
+    c.restore();
+  }
+
+  // Draw the port dots + names over the blitted base each frame. `active` is the
+  // set of ports that saw traffic in the past sim-year (world.activePortsSince):
+  // a port outside it has gone quiet and is greyed; ports in it (or when no set
+  // is supplied) are inked normally.
+  function drawPorts(active) {
+    for (const pd of portDraw) {
+      const on = !active || active.has(pd.id);
+      const col = on ? INK : INK_DIM;
+      ctx.save();
+      ctx.fillStyle = col; ctx.strokeStyle = col;
+      ctx.beginPath(); ctx.arc(pd.x, pd.y, 2.6, 0, Math.PI * 2); ctx.fill();
+      ctx.globalAlpha = on ? 0.5 : 0.35; ctx.lineWidth = 0.8;
+      ctx.beginPath(); ctx.arc(pd.x, pd.y, 5.2, 0, Math.PI * 2); ctx.stroke();
+      ctx.restore();
+      if (pd.label) label(ctx, pd.name, pd.label.ax, pd.label.ay, 11, col, pd.label.align);
     }
   }
 
@@ -196,17 +258,6 @@ export function createRenderer(canvas, assets) {
       c.fillStyle = (i % 3 === 0) ? 'rgba(90,70,45,0.05)' : 'rgba(255,250,235,0.05)';
       c.fillRect(x, y, 1, 1);
     }
-    c.restore();
-  }
-
-  function drawPort(c, p, withLabel = true) {
-    const [x, y] = project(p.lon, p.lat);
-    c.save();
-    c.fillStyle = INK; c.strokeStyle = INK;
-    c.beginPath(); c.arc(x, y, 2.6, 0, Math.PI * 2); c.fill();
-    c.beginPath(); c.arc(x, y, 5.2, 0, Math.PI * 2); c.lineWidth = 0.8; c.globalAlpha = 0.5; c.stroke();
-    c.globalAlpha = 1;
-    if (withLabel) label(c, p.name.replace(/\s*\(.*\)/, ''), x + 7, y + 3, 11, INK, 'left');
     c.restore();
   }
 
@@ -300,8 +351,9 @@ export function createRenderer(canvas, assets) {
   }
 
   // ---- dynamic frame ------------------------------------------------------
-  function draw(snapshot, selectedId, selectedPortId, t, routesCtx) {
+  function draw(snapshot, selectedId, selectedPortId, t, routesCtx, activePorts) {
     if (base) ctx.drawImage(base, 0, 0, W, H);
+    drawPorts(activePorts);
 
     const vessels = snapshot.vessels;
     if (routesCtx) drawRouteOverlay(snapshot.season, routesCtx);

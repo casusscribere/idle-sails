@@ -61,6 +61,31 @@ A land-crossing sanity pass then asserts no simplified segment cuts across a
 continent (using a coastline-only mask, ice caps excluded so genuine high-latitude
 open-ocean legs aren't misread as land). The build fails loudly if any does.
 
+### Windward tacking — the "zigzag" gate + smooth
+
+When a leg must sail **against the season's wind**, the least-time Dijkstra path
+beats to windward, which on the 1° grid renders as a regular sawtooth (the
+Arabian-Sea and Mediterranean "zigzag"). The modelled *time* already accounts for
+the tacking; only the polyline geometry is unrealistic. Two responses, both in
+`bake-routes.mjs`, keyed off the raw path's **latitude-direction reversals**
+(`latReversals`): 0 for a with-the-wind staircase, many for a beat:
+
+- **Gate (historical).** A season whose raw path reverses ≥ `TACK_REVERSALS_GATE`
+  (6) times is a passage a monsoon-era master would *wait out*, not sail — so the
+  leg is dropped, exactly like an ice-locked Arctic winter, and `world.js`
+  reschedules any vessel that draws it in that season. Safeguard: a lane×class's
+  **last sailable season is never gated** (the least-tacky one is kept), so no lane
+  goes wholly unsailable. Adverse-monsoon dhow legs (e.g. Surat→Mocha in the
+  transitional mam/son) now simply don't sail those seasons.
+- **Smooth (visual).** Kept legs pass through `deTack()` before Douglas–Peucker: it
+  collapses any residual oscillation apex (a turn that reverses its neighbour's) of
+  small cross-track amplitude to its made-good line — **land-aware** via
+  `segCrossesLand`, so genuine coastal weaving (the Danish straits, the Malacca
+  approaches) and monotone wind-shaped curvature are preserved.
+
+Result: heavy-sawtooth legs go from ~90 to **0**; ~168 adverse-season legs are
+wind-gated. The bake summary line reports the `wind-gated` count.
+
 ### Inputs it depends on (present, but gitignored in the archive)
 
 `archive/isochrone-v1/pipeline/build/{grid.json, calibration.json}` — the 1° ocean
