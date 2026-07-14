@@ -233,7 +233,15 @@ export function createWorld({ seed = 1, data, restore = null }) {
   state.nextSpawnAt = SEC_PER_DAY * -MEAN_SPAWN_INTERVAL_DAYS * Math.log(1 - spawnRng());
   // Resume a saved session. Deep-copied so the live world never aliases the
   // caller's save object (ticking must not mutate a snapshot someone else holds).
-  if (restore) Object.assign(state, JSON.parse(JSON.stringify(restore)), { seed });
+  if (restore) {
+    Object.assign(state, JSON.parse(JSON.stringify(restore)), { seed });
+    // A save can predate a re-bake (persist's version gate should catch this,
+    // but never brick on it): drop any restored vessel whose itinerary
+    // references a leg the current bake no longer carries — positionOf would
+    // otherwise crash on the missing geometry. Everyone else sails on.
+    state.vessels = state.vessels.filter(v =>
+      Array.isArray(v.schedule) && v.schedule.length && v.schedule.every(s => legByKey.has(s.legId)));
+  }
 
   // JSON-safe copy of the whole mutable state (for persist.js).
   function serialize() { return JSON.parse(JSON.stringify(state)); }

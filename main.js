@@ -31,8 +31,12 @@ async function boot() {
   const SEC_PER_DAY = 86400;
 
   // Restore the saved session — unless the URL pins a specific/fresh world.
+  // The compat gate covers BOTH shipped bundles: a re-bake (routes.version)
+  // changes the leg set just as surely as a dataset change, and a save whose
+  // vessels reference retired legs must be discarded, not restored.
+  const dataVersion = `${datasets.version}:${routes.version}`;
   const wantFresh = !!hashSeed || skipDays > 0 || hashParams.get('fresh') === '1';
-  const saved = wantFresh ? null : loadSave({ datasetVersion: datasets.version });
+  const saved = wantFresh ? null : loadSave({ datasetVersion: dataVersion });
 
   const seed = saved ? saved.seed
     : hashSeed ? (parseInt(hashSeed, 10) >>> 0)
@@ -151,7 +155,7 @@ async function boot() {
   // persist: every 10 s + when the tab hides/closes (skip for pinned debug worlds,
   // so a shared #seed/#t link never clobbers the player's own voyage).
   if (!wantFresh) autoSave(world, () => ({
-    speed, slider: +document.getElementById('speed').value, datasetVersion: datasets.version
+    speed, slider: +document.getElementById('speed').value, datasetVersion: dataVersion
   }));
 
   // animation loop

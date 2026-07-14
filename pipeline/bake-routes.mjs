@@ -412,7 +412,8 @@ for (const b of baked) {
 
 // ---- emit -----------------------------------------------------------------
 if (!existsSync(OUT)) mkdirSync(OUT, { recursive: true });
-const out = { version: 1, grid: { res: GRID.res, lon0: GRID.lon0, lat0: GRID.lat0, cols, rows }, iceCap: { northLat: ICE_N, southLat: ICE_S }, count: baked.length, routes: baked };
+// version 2: wind-gated + de-tacked bake (leg set changed; saves keyed on it)
+const out = { version: 2, grid: { res: GRID.res, lon0: GRID.lon0, lat0: GRID.lat0, cols, rows }, iceCap: { northLat: ICE_N, southLat: ICE_S }, count: baked.length, routes: baked };
 writeFileSync(join(OUT, 'routes.json'), JSON.stringify(out));
 const kb = (Buffer.byteLength(JSON.stringify(out)) / 1024).toFixed(1);
 
