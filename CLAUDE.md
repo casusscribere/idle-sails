@@ -174,7 +174,20 @@ Every design decision answers to both of these:
   replaced by a chevron-row disclosure at the cartouche foot — three engraved
   down-chevrons under the rule unfold the options and flip upward while open
   (same `#menu-toggle` id and wiring; aria-expanded/controls; ≥24px target;
-  reduced-motion honoured).
+  reduced-motion honoured). **Panel regrouping (same day):** the statistics
+  panel is now a drawer folded under the counters card, opened by the same
+  chevron band (state persists as `statsOpen`); the legend moved bottom-right
+  (the events log took its old bottom-left slot above the helm; the hint
+  yields to the legend); the menu grew a toggle tree — the legend's Ship
+  types / Allegiance sections toggle independently under the parent Legend
+  toggle (children disable while the parent is off; persisted as
+  `legend.{ships,flags}`). **Research nav (same day):** `research/nav.js`
+  — the one shared piece among the self-contained research pages — injects a
+  sticky top menu bar (styled from each page's own CSS variables, so it
+  follows their light/dark scheme) with links between all seven pages, an
+  aria-current mark on the current one, and "⚓ Return to the chart" back to
+  the sim; each page carries one `<script defer src="nav.js">` line. To add
+  a page: extend PAGES in nav.js + include the script.
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —
