@@ -3,6 +3,9 @@
 *The operational form of PLAN-2 §5.6 — how the diversity roster grows without
 lopsiding, and how a research candidate becomes a sailing port.*
 
+> Research tasks that are **not** promotions (name/ownership sweeps, era
+> blurbs, and the like) queue in **`TASKS.md`**, not here.
+
 ## The pipeline (three stations)
 
 ```

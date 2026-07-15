@@ -44,6 +44,10 @@ async function boot() {
   // observation layer (log cap, wreck linger) — the sim itself is identical at
   // every setting, so it is safe to load before the world and to change live.
   const settings = loadSettings();
+  // The tracker is DISABLED until vessel persistence (feature pass 5): a
+  // one-voyage vessel makes a poor thing to follow. The world-side pin API
+  // and its tests stay; the menu row is disabled and the panel forced off.
+  settings.panels.tracker = false;
   let perf = perfValues(settings);
 
   const seed = saved ? saved.seed
@@ -137,14 +141,15 @@ async function boot() {
   function renderPanel() {
     if (selectedVesselId != null) {
       const v = latestSnap.vessels.find(x => x.id === selectedVesselId);
-      if (v) ui.showLedger(v, { ...ledgerCtx(), pinState: pinState(v.id) }); else clearSelection();
+      // pinState omitted while the tracker is disabled — no Follow button
+      if (v) ui.showLedger(v, ledgerCtx()); else clearSelection();
     } else if (selectedArchiveId != null) {
       const rec = world.trackedVessels().find(r => r.id === selectedArchiveId);
       if (!rec) { clearSelection(); return; }        // unfollowed — record gone
       // a kept record is near-static; refresh on the sim-day (a pinned ship
       // hidden by density thinning routes through here while still sailing)
       const sig = `arch:${rec.id}:${rec.status}:${Math.floor(latestSnap.simClock / 86400)}`;
-      if (sig !== lastPanelSig) { lastPanelSig = sig; ui.showLedger(rec, { ...ledgerCtx(), pinState: pinState(rec.id) }); }
+      if (sig !== lastPanelSig) { lastPanelSig = sig; ui.showLedger(rec, ledgerCtx()); }
     } else if (selectedWreckId != null) {
       const w = latestSnap.wrecks.find(x => x.id === selectedWreckId);
       if (!w) { clearSelection(); return; }          // her year has passed

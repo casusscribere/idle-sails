@@ -295,6 +295,9 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   function serialize() { return JSON.parse(JSON.stringify(state)); }
 
   // ---- name construction ----
+  // Returns the BARE stem. The naval prefix (HMS/USS) lives on the vessel as
+  // v.prefix and is applied exactly once at display time — baking it into the
+  // name as well is how "HMS HMS Vanguard" used to happen.
   const names = datasets.names;
   function makeName(rng, power, isNaval) {
     const nation = power.kind === 'nation' ? power : (powerById.get(power.parent) || power);
@@ -306,8 +309,7 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     else if (names.naval[theme]) stem = pick(rng, names.naval[theme]);
     else if (names.merchant[theme]) stem = pick(rng, names.merchant[theme]);
     else stem = pick(rng, names.merchant.abstract);
-    const prefix = isNaval && nation.navalPrefix ? nation.navalPrefix + ' ' : '';
-    return prefix + stem;
+    return stem;
   }
 
   // ---- war lookup ----

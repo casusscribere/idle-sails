@@ -33,7 +33,10 @@
         <p class="menu-note">Line weight ∝ traffic · colour = flag</p>
         <p class="menu-h" style="margin-top:14px">Panels</p>
         <label class="menu-item"><input type="checkbox" id="pn-counters" checked><span>Counters</span></label>
-        <label class="menu-item"><input type="checkbox" id="pn-tracker"><span>Tracked vessels</span></label>
+        <!-- disabled until vessel persistence (feature pass 5) gives a followed
+             ship a life worth following beyond her single voyage -->
+        <label class="menu-item is-disabled" title="Awaits vessel persistence"><input type="checkbox" id="pn-tracker" disabled><span>Tracked vessels</span></label>
+        <p class="menu-note">— awaits vessel persistence</p>
         <label class="menu-item"><input type="checkbox" id="pn-events"><span>Events log</span></label>
         <label class="menu-item"><input type="checkbox" id="pn-helm" checked><span>Speed instrument</span></label>
         <label class="menu-item"><input type="checkbox" id="pn-legend"><span>Legend</span></label>

@@ -10,3 +10,5 @@ _site/
 #custom
 feature-ideas
 feature-ideas/*
+
+settings.local.json

@@ -211,6 +211,17 @@ Every design decision answers to both of these:
   no-overlap rect asserts (all panels + drawer + open ledger), sheet
   behaviour at 320–414px, target audit ≥24px (menu rows 44), collapse
   persistence across reload. 36 tests green.
+- **Polish (2026-07-15 evening):** the tracker toggle + panel are DISABLED
+  until vessel persistence (feature pass 5) — a one-voyage vessel makes a
+  poor thing to follow; the world-side pin API and its tests stay, the menu
+  row is greyed with a note, `settings.panels.tracker` is forced off at
+  boot, and ledgers omit the Follow button. Fixed the "HMS HMS" doubled
+  naval prefix (makeName no longer bakes the prefix into the name — v.prefix
+  applies once at display; regression test in observation.test.mjs, 37 tests
+  green). New `research/TASKS.md` — the non-promotion research queue — logs
+  T1 (full-roster port name/ownership sweep → `research/port-eras.json`
+  feeding `eraNames` + a future `eraPowers`) and T2 (one-sentence era blurb
+  per port/name/ownership combination, charter register).
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —

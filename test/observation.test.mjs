@@ -87,6 +87,23 @@ test('port history: depth-capped, past-only, newest first; depth 0 records nothi
   assert.deepEqual(none.state.portHistory, {}, 'depth 0 records nothing at all');
 });
 
+test('naval prefix applies exactly once — no "HMS HMS" names', () => {
+  const w = createWorld({ seed: 77, data });
+  // the 1550s sail no HMS — jump to the 1700s, when the Royal Navy is thick
+  w.tick(150 * 365.25 * DAY);
+  const seen = new Set();
+  for (let i = 0; i < 600; i++) {
+    w.tick(0.5 * DAY);
+    for (const v of w.state.vessels) {
+      if (!v.prefix || seen.has(v.id)) continue;
+      seen.add(v.id);
+      assert.ok(!v.name.startsWith(v.prefix + ' '),
+        `the name must not bake the prefix in ("${v.prefix} ${v.name}")`);
+    }
+  }
+  assert.ok(seen.size > 0, `prefixed naval vessels sailed and were checked (${seen.size})`);
+});
+
 test('observation state survives a save/restore round-trip', () => {
   const a = createWorld({ seed: 33, data });
   for (let i = 0; i < 100; i++) a.tick(DAY);
