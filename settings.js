@@ -33,7 +33,9 @@ const DEFAULT_PANELS = { legend: false, events: false, stats: false, tracker: fa
 const defaultStorage = () => (typeof localStorage !== 'undefined' ? localStorage : null);
 
 export function defaultSettings() {
-  return { perfTier: 'medium', panels: { ...DEFAULT_PANELS } };
+  // furled: the cartouche collapsed to a small title card, all ambient
+  // panels stowed — the chart alone. Click it again to unfurl.
+  return { perfTier: 'medium', panels: { ...DEFAULT_PANELS }, furled: false };
 }
 
 export function loadSettings(storage = defaultStorage()) {
@@ -47,6 +49,7 @@ export function loadSettings(storage = defaultStorage()) {
     if (s && s.panels && typeof s.panels === 'object')
       for (const k of Object.keys(out.panels))
         if (typeof s.panels[k] === 'boolean') out.panels[k] = s.panels[k];
+    if (s && typeof s.furled === 'boolean') out.furled = s.furled;
     return out;
   } catch { return out; }
 }

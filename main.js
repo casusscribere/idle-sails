@@ -213,18 +213,40 @@ async function boot() {
     laneWeightsCache = showRoutes ? world.laneWeightsAt(latestSnap.simClock) : null;
   });
 
-  // panel signatures — declared before the wiring below, which can call the
-  // render functions during boot when a panel was left switched on
+  // panel signatures + lookups — declared before the wiring below, which can
+  // call the render functions during boot when a panel was left switched on
   let lastEventsSig = '', lastStatsSig = '', lastTrackerSig = '';
+  const laneNameById = new Map(datasets.routes.map(r => [r.id, r.name]));
   const PANEL_RENDER = { events: () => renderEventsPanel(true), stats: () => renderStatsPanel(true), tracker: () => renderTrackerPanel(true) };
 
-  // panels (settings.panels): the menu shows/hides each on-display card
+  // panels (settings.panels): the menu shows/hides each on-display card.
+  // A furled chart overrides them all — the cartouche collapses to a small
+  // title plate and every ambient panel (and the hint) is stowed with it;
+  // unfurling restores whatever the settings say. Click-to-inspect still
+  // works throughout — the ledger is the chart's business, not its chrome.
   buildLegend({ powers: datasets.powers });
   const PANEL_EL = { legend: 'legend', events: 'events', stats: 'stats', tracker: 'tracker', counters: 'counters', helm: 'helm' };
+  const cartouche = document.getElementById('cartouche');
+  const hintEl = document.getElementById('hint');
   function applyPanels() {
     for (const [key, id] of Object.entries(PANEL_EL))
-      document.getElementById(id).hidden = !settings.panels[key];
+      document.getElementById(id).hidden = settings.furled || !settings.panels[key];
+    cartouche.classList.toggle('furled', settings.furled);
+    hintEl.hidden = settings.furled;
   }
+  function toggleFurl() {
+    settings.furled = !settings.furled;
+    if (settings.furled) { menu.hidden = true; menuToggle.setAttribute('aria-expanded', 'false'); }
+    applyPanels(); saveSettings(settings);
+  }
+  cartouche.addEventListener('click', (e) => {
+    // the menu's own controls (and the hamburger) keep their meanings
+    if (!settings.furled && e.target.closest('button, input, label, a')) return;
+    toggleFurl();
+  });
+  cartouche.addEventListener('keydown', (e) => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target === cartouche) { e.preventDefault(); toggleFurl(); }
+  });
   for (const key of Object.keys(PANEL_EL)) {
     const box = document.getElementById('pn-' + key);
     box.checked = settings.panels[key];
@@ -273,7 +295,6 @@ async function boot() {
   // statistics panel: shapes the world's observation-layer tallies for
   // display. Re-rendered on the HUD throttle, gated on the fleet totals —
   // nothing changes between resolutions, so a quiet sea costs no DOM work.
-  const laneNameById = new Map(datasets.routes.map(r => [r.id, r.name]));
   function renderStatsPanel(force = false) {
     const c = latestSnap.counters;
     const sig = `${c.spawned}:${c.arrived}:${c.lost}`;

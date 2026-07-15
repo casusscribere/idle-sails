@@ -72,6 +72,16 @@ body::after {
 .cartouche .era { margin: -4px 0 8px; font-family: var(--serif); font-style: italic;
   font-size: 12.5px; color: var(--ink-soft); letter-spacing: .04em; }
 
+/* ---- furled cartouche: click the card to stow the instruments ---- */
+/* The whole card is a furl target (pointer everywhere except the menu's own
+   controls, which keep their meanings); furled, it reads as a small quiet
+   title plate and every ambient panel is hidden with it. */
+.cartouche { cursor: pointer; }
+.cartouche .menu { cursor: default; }
+.cartouche.furled { padding: 8px 16px 9px; }
+.cartouche.furled > :not(h1) { display: none; }
+.cartouche.furled h1 { margin: 0; font-size: 15px; letter-spacing: .18em; }
+
 /* ---- hamburger menu (inside the cartouche) ---- */
 .menu-toggle {
   position: absolute; top: 7px; right: 9px; z-index: 1;

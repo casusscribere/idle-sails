@@ -166,7 +166,11 @@ Every design decision answers to both of these:
   a sim-year: 34/110/148 KB by tier. **36 tests green**
   (`test/observation.test.mjs`: counter reconciliation, granularity
   independence, pin sim-inertness, cap enforcement, save round-trip +
-  pre-observation-save back-fill).
+  pre-observation-save back-fill). **Furl (same day):** clicking the cartouche
+  collapses it to a small serif title plate and stows every ambient panel
+  (counters, helm, legend, events, stats, tracker, hint) — the chart alone;
+  click again to unfurl (settings-persisted as `furled`; menu controls keep
+  their meanings; keyboard-operable).
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —

@@ -78,12 +78,13 @@ test('settings: defaults, round-trip, junk tolerance, medium = pre-slider behavi
   const storage = { getItem: k => (store.has(k) ? store.get(k) : null), setItem: (k, v) => store.set(k, v) };
   const s = loadSettings(storage);
   assert.deepEqual(s, defaultSettings());
-  s.perfTier = 'low'; s.panels.legend = true;
+  s.perfTier = 'low'; s.panels.legend = true; s.furled = true;
   saveSettings(s, storage);
   const back = loadSettings(storage);
   assert.equal(back.perfTier, 'low');
   assert.equal(back.panels.legend, true);
   assert.equal(back.panels.counters, true);
+  assert.equal(back.furled, true, 'a furled chart stays furled');
   // junk in storage falls back to defaults, never throws
   storage.setItem('idle-sails-settings', '{"perfTier":"turbo","panels"');
   assert.deepEqual(loadSettings(storage), defaultSettings());
