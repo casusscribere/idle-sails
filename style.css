@@ -83,14 +83,21 @@ body::after {
 .cartouche.furled h1 { margin: 0; font-size: 15px; letter-spacing: .18em; }
 
 /* ---- chart-options disclosure (inside the cartouche) ---- */
-/* A row of engraved chevrons under the bottom rule unfolds the options; they
-   flip upward while open. Full-width target, quiet until hovered. */
+/* A full-width engraved band under the bottom rule: hairlines flanking a row
+   of chevrons (echoing the cartouche's own rules), the hamburger's old
+   ink-wash on hover/open. The chevrons flip upward while open. */
 .menu-expander {
-  display: block; width: 100%; background: none; border: none; cursor: pointer;
-  padding: 9px 0 7px; margin: 0; line-height: 0; color: var(--ink-soft);   /* ≥24px touch target */
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  margin: 8px 0 0; padding: 9px 2px 7px;                    /* ≥24px touch target */
+  background: none; border: none; border-radius: 3px;
+  color: var(--ink-soft); cursor: pointer; line-height: 0;
 }
-.menu-expander:hover, .menu-expander[aria-expanded="true"] { color: var(--ink); }
-.menu-expander svg { transition: transform .25s ease; }
+.menu-expander::before, .menu-expander::after {
+  content: ""; flex: 1; height: 1px; background: var(--ink); opacity: .35;
+}
+.menu-expander:hover { color: var(--ink); background: rgba(92, 70, 48, 0.08); }
+.menu-expander[aria-expanded="true"] { color: var(--ink); background: rgba(92, 70, 48, 0.12); }
+.menu-expander svg { flex: none; transition: transform .25s ease; }
 .menu-expander[aria-expanded="true"] svg { transform: rotate(180deg); }
 .menu-expander:focus-visible { outline: 1px solid var(--red); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { .menu-expander svg { transition: none; } }
