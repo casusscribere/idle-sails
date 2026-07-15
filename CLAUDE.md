@@ -188,7 +188,16 @@ archive/isochrone-v1/   the previous project (see its ARCHIVE-NOTE.md)
   Phase A, Phase C): a decade-weighted 1550–1815 sim looping via a 5-year
   reset, plus the minor-ports diversity layer (§5). Its Phase B and §7 are
   re-scoped by PLAN-3.
-- **`PLAN-3-flows.md`** — **the active plan** (adopted 2026-07-13): replaces
+- **`PLAN-4-expansion.md`** — **drafted 2026-07-14, awaiting adoption**: the
+  wider-world expansion from the deep-research sweep
+  (`research/port-flow-candidates-2026-07.md`) — five Tier-1 counted-series
+  candidates (Montevideo/Río de la Plata, Basra+Bandar Abbas, a whaling
+  grounds node, Hudson Bay, Port Louis/Mascarenes), Tier-2 (Jeddah, caravane
+  maritime, Ragusa, Callao, Mozambique I.), silences-register actions, and
+  per-candidate E-R1→E-S2 phases riding PLAN-3's machinery unchanged. Four
+  adoption decisions flagged in its §3.
+- **`PLAN-3-flows.md`** — **the completed architecture** (adopted 2026-07-13,
+  complete): replaces
   rankings→weights with an evidence-classed **trade-system flow matrix**
   (counted/proxied/reconstructed/asserted; per-basin assembly; a silences
   register; port prominence as an *output*). Carries the sensitization
