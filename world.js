@@ -123,12 +123,15 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   const { datasets, routes } = data;
 
   // Observation-layer tuning (the performance settings, settings.js): these
-  // knobs bound what the world RECORDS — log length, wreck linger — never what
-  // it computes. Spawns, fates, and movement are identical at every setting
-  // (fingerprint() is blind to log/wrecks, and the tests hold it so). Mutable
-  // live via world.tuning; deliberately OUTSIDE serialized state — a device
-  // preference, not part of the world.
-  const tune = Object.assign({ logCap: LOG_CAP, wreckLingerDays: WRECK_LINGER_DAYS }, tuning || {});
+  // knobs bound what the world RECORDS — log length, wreck linger, port-history
+  // depth, tracker pins — never what it computes. Spawns, fates, and movement
+  // are identical at every setting (fingerprint() is blind to all observation
+  // state, and the tests hold it so). Mutable live via world.tuning;
+  // deliberately OUTSIDE serialized state — a device preference, not part of
+  // the world.
+  const tune = Object.assign(
+    { logCap: LOG_CAP, wreckLingerDays: WRECK_LINGER_DAYS, portHistoryDepth: 40, pinCap: 10 },
+    tuning || {});
 
   // ---- flow-driven spawn weights (PLAN-3 S1) --------------------------------
   // datasets.flows.systems carries the trade systems folded onto the baked lanes
@@ -243,7 +246,14 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     nextSpawnAt: 0,
     nextId: 1,
     spawnA: hashSeed('spawn', seed) | 0,
-    counters: { spawned: 0, arrived: 0, lost: 0 }
+    counters: { spawned: 0, arrived: 0, lost: 0 },
+    // ---- observation layer (feature pass 1): pure accounting on top of sim
+    // events — recorded at spawn or at resolution, so a big fast-forward tick
+    // records the same figures as many small ones. None of it feeds back into
+    // spawns/fates/movement, and fingerprint() never reads it.
+    stats: { byLane: {}, byCargo: {} },  // laneId → {spawned,arrived,lost}; cargoId → spawned
+    portHistory: {},   // portId → [{t, dir:'out'|'in', name, type}] capped at tune.portHistoryDepth
+    tracked: { pins: [], archive: {} }   // pinned vessel ids + their retained records after cull
   };
   // mulberry32 stepped in place over state.spawnA (same sequence as the closure form).
   function spawnRng() {
@@ -267,6 +277,18 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     // fields a pre-wrecks save won't carry
     if (!Array.isArray(state.wrecks)) state.wrecks = [];
     if (!state.portCalls || typeof state.portCalls !== 'object') state.portCalls = {};
+    // fields a pre-observation-layer save won't carry
+    if (!state.stats || typeof state.stats !== 'object') state.stats = { byLane: {}, byCargo: {} };
+    if (!state.portHistory || typeof state.portHistory !== 'object') state.portHistory = {};
+    if (!state.tracked || !Array.isArray(state.tracked.pins)) state.tracked = { pins: [], archive: {} };
+    // archived records outlive their vessels; after a re-bake their legs may be
+    // gone, and displaying them would crash positionOf — drop those, keep the rest
+    for (const [id, rec] of Object.entries(state.tracked.archive)) {
+      if (!Array.isArray(rec.schedule) || !rec.schedule.every(s => legByKey.has(s.legId))) {
+        delete state.tracked.archive[id];
+        state.tracked.pins = state.tracked.pins.filter(p => p !== +id);
+      }
+    }
   }
 
   // JSON-safe copy of the whole mutable state (for persist.js).
@@ -486,6 +508,24 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
           if (!v.fate.lost || v.fate.atSec >= seg.arrive)
             state.portCalls[seg.to] = Math.max(state.portCalls[seg.to] || -Infinity, seg.arrive);
         }
+        // observation layer: statistics + port histories, recorded at spawn
+        // (schedule and fate are already known — granularity-independent).
+        const laneId = v.schedule[0].laneId;
+        const ls = state.stats.byLane[laneId] || (state.stats.byLane[laneId] = { spawned: 0, arrived: 0, lost: 0 });
+        ls.spawned++;
+        state.stats.byCargo[v.cargoId] = (state.stats.byCargo[v.cargoId] || 0) + 1;
+        if (tune.portHistoryDepth > 0) {
+          const nm = (v.prefix ? v.prefix + ' ' : '') + v.name;
+          const call = (pid, t, dir) => {
+            const h = state.portHistory[pid] || (state.portHistory[pid] = []);
+            h.push({ t, dir, name: nm, type: v.typeName });
+            if (h.length > tune.portHistoryDepth) h.splice(0, h.length - tune.portHistoryDepth);
+          };
+          for (const seg of v.schedule) {
+            if (!v.fate.lost || v.fate.atSec >= seg.depart) call(seg.from, seg.depart, 'out');
+            if (!v.fate.lost || v.fate.atSec >= seg.arrive) call(seg.to, seg.arrive, 'in');
+          }
+        }
         const c = calendar(at);
         log({ t: at, kind: 'depart', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} (${v.typeName}, ${v.powerName}) cleared ${nameAt(v.schedule[0].from, c)} for ${nameAt(v.schedule[0].to, c)}`, date: fmtDate(c), vesselId: v.id, from: v.schedule[0].from, year: v.year });
       }
@@ -498,6 +538,7 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
       if (v.status === 'lost' || v.status === 'arrived') continue;
       if (v.fate.lost && end >= v.fate.atSec && v.status === 'sailing') {
         v.status = 'lost'; v.retiredAt = v.fate.atSec; state.counters.lost++;
+        const lls = state.stats.byLane[v.schedule[0].laneId]; if (lls) lls.lost++;
         const c = calendar(v.fate.atSec);
         const warTxt = v.fate.war ? ` (${v.fate.war.name})` : '';
         const nearPortId = v.fate.legId ? legByKey.get(v.fate.legId).to : v.schedule[0].to;
@@ -515,15 +556,23 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
         });
       } else if (!v.fate.lost && end >= v.voyageEnd && v.status === 'sailing') {
         v.status = 'arrived'; v.retiredAt = v.voyageEnd; state.counters.arrived++;
+        const als = state.stats.byLane[v.schedule[0].laneId]; if (als) als.arrived++;
         const last = v.schedule[v.schedule.length - 1];
         const c = calendar(v.voyageEnd);
         log({ t: v.voyageEnd, kind: 'arrive', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} came to anchor at ${nameAt(last.to, c)}`, date: fmtDate(c), vesselId: v.id });
       }
     }
 
-    // cull faded vessels + wrecks past their lingering year
+    // cull faded vessels + wrecks past their lingering year. A pinned vessel's
+    // record MOVES to the tracker archive instead of vanishing — the vessels
+    // array itself stays identical to an unpinned world's (fingerprint-inert),
+    // only her story is kept.
     const cullBefore = end - FADE_DAYS * SEC_PER_DAY;
-    state.vessels = state.vessels.filter(v => v.status === 'sailing' || v.retiredAt > cullBefore);
+    state.vessels = state.vessels.filter(v => {
+      if (v.status === 'sailing' || v.retiredAt > cullBefore) return true;
+      if (state.tracked.pins.includes(v.id)) state.tracked.archive[v.id] = v;
+      return false;
+    });
     const wreckBefore = end - tune.wreckLingerDays * SEC_PER_DAY;
     if (state.wrecks.some(w => w.at <= wreckBefore))
       state.wrecks = state.wrecks.filter(w => w.at > wreckBefore);
@@ -630,6 +679,45 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     return out;
   }
 
+  // ---- tracker (feature pass 1): pin a vessel and keep her story ------------
+  // Pins and the archive live in serialized state (they are about THIS world's
+  // vessels), but none of it feeds the sim: pinning only decides whether a
+  // culled vessel's record is kept. The pin cap is observation tuning.
+  function isPinned(id) { return state.tracked.pins.includes(id); }
+  function canPin() { return state.tracked.pins.length < tune.pinCap; }
+  function pinVessel(id) {
+    if (isPinned(id) || !canPin()) return false;
+    if (!state.vessels.some(v => v.id === id)) return false;   // only a ship on the chart
+    state.tracked.pins.push(id);
+    return true;
+  }
+  function unpinVessel(id) {
+    state.tracked.pins = state.tracked.pins.filter(p => p !== id);
+    delete state.tracked.archive[id];
+  }
+  // The followed fleet, pin order: live vessels with their current position,
+  // retired ones from the archive positioned where their voyage ended.
+  function trackedVessels() {
+    const out = [];
+    for (const id of state.tracked.pins) {
+      const live = state.vessels.find(v => v.id === id);
+      const rec = live || state.tracked.archive[id];
+      if (!rec) continue;   // pinned this tick, culled unpinnable — never both
+      const at = rec.status === 'sailing' ? state.simClock : rec.retiredAt;
+      out.push({ ...rec, pos: positionOf(rec, at), live: !!live });
+    }
+    return out;
+  }
+
+  // Port history for the port panel: the recorded calls, newest first, only
+  // those already in the past (a future-dated arrival is the port's inbound
+  // list's business, not its history's).
+  function portHistoryOf(portId) {
+    const h = state.portHistory[portId];
+    if (!h) return [];
+    return h.filter(e => e.t <= state.simClock).sort((a, b) => b.t - a.t);
+  }
+
   // Port lifecycle: which ports EXIST and which lie in RUIN at an instant.
   // ports[].active {from,to} is the declared existence window (absent = all
   // era); build-data enforces every lane's era inside both endpoints' windows,
@@ -653,6 +741,8 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     state, tick, snapshot, activeVessels, positionOf, fingerprint, calendar,
     laneWeightsAt, weightsAt, activePortsSince, portLifecycleAt, serialize,
     warEventsSince, tuning: tune,
+    isPinned, canPin, pinVessel, unpinVessel, trackedVessels, portHistoryOf,
+    get stats() { return state.stats; },
     portById, powerById,
     get simClock() { return state.simClock; }
   };

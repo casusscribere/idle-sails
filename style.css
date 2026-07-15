@@ -41,7 +41,7 @@ body::after {
 }
 
 /* ---- shared card treatment: aged paper with deckle shadow + ink hairline ---- */
-.cartouche, .counters, .helm, .ledger, .legend, .events {
+.cartouche, .counters, .helm, .ledger, .legend, .events, .stats, .tracker {
   position: fixed;
   z-index: 3;
   background: linear-gradient(180deg, rgba(239,228,203,0.94), rgba(231,218,189,0.9));
@@ -50,7 +50,8 @@ body::after {
   backdrop-filter: blur(1px);
 }
 /* the menu toggles cards on/off — flex cards need [hidden] to win over display */
-.counters[hidden], .helm[hidden], .legend[hidden], .events[hidden] { display: none; }
+.counters[hidden], .helm[hidden], .legend[hidden], .events[hidden],
+.stats[hidden], .tracker[hidden] { display: none; }
 
 /* ---- cartouche ---- */
 /* z above the other cards: its open menu must never be shadowed by the
@@ -156,6 +157,24 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
 .menu-btn { background: none; border: none; border-bottom: 1px solid var(--paper-edge); padding: 0; margin-top: 6px; cursor: pointer; font: inherit; font-size: 13.5px; color: var(--ink); }
 .menu-btn:hover { color: var(--red); border-bottom-color: var(--red); }
 
+/* ---- statistics (menu-toggled): fleet totals, hardest passages, cargoes ---- */
+.stats { left: 316px; bottom: 46px; width: 300px; max-height: min(48vh, 440px); overflow: auto; padding: 12px 16px 14px; }
+.stats dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 6px 0 4px; font-size: 13px; }
+.stats dt { text-transform: uppercase; font-size: 10px; letter-spacing: .14em; color: var(--ink-soft); align-self: center; }
+.stats dd { margin: 0; font-variant-numeric: tabular-nums; }
+.st-list { list-style: none; margin: 2px 0 0; padding: 0; }
+.st-list li { display: flex; justify-content: space-between; gap: 10px; padding: 4px 0; border-bottom: 1px dashed var(--paper-edge); font-size: 12.5px; }
+.st-list .dur { color: var(--ink-soft); font-variant-numeric: tabular-nums; flex: none; }
+
+/* ---- tracker (menu-toggled): the followed fleet ---- */
+.tracker { right: 18px; top: 96px; width: min(90vw, 310px); max-height: min(36vh, 340px); overflow: auto; padding: 12px 16px 14px; }
+
+/* the follow/unfollow control in a vessel's ledger */
+.pin-btn { position: absolute; top: 34px; right: 10px; background: none; border: 1px solid var(--paper-edge); border-radius: 2px;
+  padding: 2px 8px; cursor: pointer; font: inherit; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.pin-btn:hover:not(:disabled) { color: var(--red); border-color: var(--red); }
+.pin-btn[disabled] { opacity: .45; cursor: default; }
+
 /* ---- hint ---- */
 .hint { position: fixed; z-index: 3; right: 18px; bottom: 34px; margin: 0; font-family: var(--serif); font-style: italic;
   font-size: 13px; color: var(--ink-soft); max-width: 240px; text-align: right; pointer-events: none;
@@ -166,5 +185,5 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
   .counters { padding: 7px 4px; } .stat { padding: 2px 9px; } .stat .num { font-size: 20px; }
   .cartouche { max-width: 62vw; padding: 10px 16px 8px; }
   .ledger { top: auto; bottom: 30px; right: 8px; left: 8px; width: auto; max-height: 56vh; }
-  .hint, .legend, .events { display: none; }
+  .hint, .legend, .events, .stats, .tracker { display: none; }
 }

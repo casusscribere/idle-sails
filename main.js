@@ -51,7 +51,10 @@ async function boot() {
     : ((Date.now() ^ (Math.random() * 1e9)) >>> 0);
   const world = createWorld({
     seed, data: { datasets, routes }, restore: saved ? saved.state : null,
-    tuning: { logCap: perf.logCap, wreckLingerDays: perf.wreckLingerDays }
+    tuning: {
+      logCap: perf.logCap, wreckLingerDays: perf.wreckLingerDays,
+      portHistoryDepth: perf.portHistoryDepth, pinCap: perf.pinCap
+    }
   });
 
   if (saved) {
@@ -94,6 +97,7 @@ async function boot() {
   if (saved && saved.slider != null) document.getElementById('speed').value = saved.slider;
   let speed = speedFromSlider(+document.getElementById('speed').value);
   let selectedVesselId = null, selectedPortId = null, selectedWreckId = null, lastPanelSig = '';
+  let selectedArchiveId = null;   // a tracked vessel whose record outlived her
   let showRoutes = hashParams.get('routes') === '1';
   if (showRoutes) document.getElementById('ov-routes').checked = true;
   let latestSnap = world.snapshot({ density: perf.shipDensity });
@@ -127,10 +131,20 @@ async function boot() {
     return { outbound, inbound };
   }
 
+  // pin controls for a vessel ledger (live or kept record)
+  const pinState = (id) => ({ pinned: world.isPinned(id), canPin: world.canPin() });
+
   function renderPanel() {
     if (selectedVesselId != null) {
       const v = latestSnap.vessels.find(x => x.id === selectedVesselId);
-      if (v) ui.showLedger(v, ledgerCtx()); else clearSelection();
+      if (v) ui.showLedger(v, { ...ledgerCtx(), pinState: pinState(v.id) }); else clearSelection();
+    } else if (selectedArchiveId != null) {
+      const rec = world.trackedVessels().find(r => r.id === selectedArchiveId);
+      if (!rec) { clearSelection(); return; }        // unfollowed — record gone
+      // a kept record is near-static; refresh on the sim-day (a pinned ship
+      // hidden by density thinning routes through here while still sailing)
+      const sig = `arch:${rec.id}:${rec.status}:${Math.floor(latestSnap.simClock / 86400)}`;
+      if (sig !== lastPanelSig) { lastPanelSig = sig; ui.showLedger(rec, { ...ledgerCtx(), pinState: pinState(rec.id) }); }
     } else if (selectedWreckId != null) {
       const w = latestSnap.wrecks.find(x => x.id === selectedWreckId);
       if (!w) { clearSelection(); return; }          // her year has passed
@@ -142,18 +156,33 @@ async function boot() {
       // re-render only when membership or the sim-day changes (keeps scroll steady)
       const sig = traffic.outbound.map(v => v.id).join(',') + '|' + traffic.inbound.map(v => v.id).join(',')
         + '|' + Math.floor(latestSnap.simClock / 86400);
-      if (sig !== lastPanelSig) { lastPanelSig = sig; ui.showPort(portById.get(selectedPortId), traffic, ledgerCtx()); }
+      if (sig !== lastPanelSig) { lastPanelSig = sig; ui.showPort(portById.get(selectedPortId), traffic, { ...ledgerCtx(), portHistory: world.portHistoryOf(selectedPortId) }); }
     }
   }
-  function selectVessel(id) { selectedVesselId = id; selectedPortId = null; selectedWreckId = null; lastPanelSig = ''; renderPanel(); }
-  function selectPort(id) { selectedPortId = id; selectedVesselId = null; selectedWreckId = null; lastPanelSig = ''; renderPanel(); }
-  function selectWreck(id) { selectedWreckId = id; selectedVesselId = null; selectedPortId = null; lastPanelSig = ''; renderPanel(); }
-  function clearSelection() { selectedVesselId = null; selectedPortId = null; selectedWreckId = null; lastPanelSig = ''; ui.hideLedger(); }
+  function deselect() { selectedVesselId = null; selectedPortId = null; selectedWreckId = null; selectedArchiveId = null; lastPanelSig = ''; }
+  function selectVessel(id) { deselect(); selectedVesselId = id; renderPanel(); }
+  function selectPort(id) { deselect(); selectedPortId = id; renderPanel(); }
+  function selectWreck(id) { deselect(); selectedWreckId = id; renderPanel(); }
+  function selectArchived(id) { deselect(); selectedArchiveId = id; renderPanel(); }
+  function clearSelection() { deselect(); ui.hideLedger(); }
 
   const ui = createUI({
     onSpeed: (m) => { speed = m; },
     onClose: clearSelection,
-    onSelectVessel: selectVessel
+    onSelectVessel: selectVessel,
+    // follow/unfollow from a ledger: flip the pin, refresh the ledger + tracker
+    onTogglePin: (id) => {
+      if (world.isPinned(id)) {
+        world.unpinVessel(id);
+        if (selectedArchiveId === id) { clearSelection(); }   // her record is gone with the pin
+      } else world.pinVessel(id);
+      lastPanelSig = ''; renderPanel(); renderTrackerPanel(true);
+    },
+    // a tracker row: her live ledger if she still sails, else her kept record
+    onSelectTracked: (id) => {
+      if (latestSnap.vessels.some(v => v.id === id)) selectVessel(id);
+      else selectArchived(id);
+    }
   });
 
   // click a vessel → her ledger; click a port → its inbound/outbound traffic;
@@ -184,13 +213,14 @@ async function boot() {
     laneWeightsCache = showRoutes ? world.laneWeightsAt(latestSnap.simClock) : null;
   });
 
-  // events log signature — declared before the panel wiring below, which can
-  // call renderEventsPanel() during boot when the panel was left switched on
-  let lastEventsSig = '';
+  // panel signatures — declared before the wiring below, which can call the
+  // render functions during boot when a panel was left switched on
+  let lastEventsSig = '', lastStatsSig = '', lastTrackerSig = '';
+  const PANEL_RENDER = { events: () => renderEventsPanel(true), stats: () => renderStatsPanel(true), tracker: () => renderTrackerPanel(true) };
 
   // panels (settings.panels): the menu shows/hides each on-display card
   buildLegend({ powers: datasets.powers });
-  const PANEL_EL = { legend: 'legend', events: 'events', counters: 'counters', helm: 'helm' };
+  const PANEL_EL = { legend: 'legend', events: 'events', stats: 'stats', tracker: 'tracker', counters: 'counters', helm: 'helm' };
   function applyPanels() {
     for (const [key, id] of Object.entries(PANEL_EL))
       document.getElementById(id).hidden = !settings.panels[key];
@@ -201,11 +231,11 @@ async function boot() {
     box.addEventListener('change', () => {
       settings.panels[key] = box.checked;
       applyPanels(); saveSettings(settings);
-      if (key === 'events' && box.checked) renderEventsPanel(true);
+      if (box.checked && PANEL_RENDER[key]) PANEL_RENDER[key]();
     });
   }
   applyPanels();
-  if (settings.panels.events) renderEventsPanel(true);
+  for (const key of Object.keys(PANEL_RENDER)) if (settings.panels[key]) PANEL_RENDER[key]();
 
   // performance tier: render + observation knobs only — the world's spawns and
   // fates never change, so switching live is safe (and instant).
@@ -217,7 +247,10 @@ async function boot() {
       if (!radio.checked) return;
       settings.perfTier = radio.value;
       perf = perfValues(settings);
-      Object.assign(world.tuning, { logCap: perf.logCap, wreckLingerDays: perf.wreckLingerDays });
+      Object.assign(world.tuning, {
+        logCap: perf.logCap, wreckLingerDays: perf.wreckLingerDays,
+        portHistoryDepth: perf.portHistoryDepth, pinCap: perf.pinCap
+      });
       renderer.setPerf({ wakeLength: perf.wakeLength });
       perfNote.textContent = PERF_NOTES[settings.perfTier];
       saveSettings(settings);
@@ -235,6 +268,45 @@ async function boot() {
     if (!force && sig === lastEventsSig) return;
     lastEventsSig = sig;
     ui.renderEvents(entries);
+  }
+
+  // statistics panel: shapes the world's observation-layer tallies for
+  // display. Re-rendered on the HUD throttle, gated on the fleet totals —
+  // nothing changes between resolutions, so a quiet sea costs no DOM work.
+  const laneNameById = new Map(datasets.routes.map(r => [r.id, r.name]));
+  function renderStatsPanel(force = false) {
+    const c = latestSnap.counters;
+    const sig = `${c.spawned}:${c.arrived}:${c.lost}`;
+    if (!force && sig === lastStatsSig) return;
+    lastStatsSig = sig;
+    const st = world.stats;
+    const routesView = Object.entries(st.byLane).filter(([, s]) => s.lost > 0)
+      .sort((a, b) => b[1].lost - a[1].lost).slice(0, 6)
+      .map(([id, s]) => ({ name: laneNameById.get(id) || id, lost: s.lost, spawned: s.spawned, pct: Math.round(100 * s.lost / s.spawned) }));
+    const totCargo = Object.values(st.byCargo).reduce((a, b) => a + b, 0);
+    const cargoesView = !totCargo ? [] : Object.entries(st.byCargo)
+      .sort((a, b) => b[1] - a[1]).slice(0, 8)
+      .map(([id, n]) => ({ name: id === 'ballast' ? 'in ballast' : (cargoById.get(id) || { name: id }).name, pct: Math.round(100 * n / totCargo) }));
+    ui.renderStats({
+      spawned: c.spawned, arrived: c.arrived, lost: c.lost,
+      lossPct: c.spawned ? Math.round(100 * c.lost / c.spawned) : 0,
+      routes: routesView, cargoes: cargoesView
+    });
+  }
+
+  // tracker panel: the followed fleet, re-rendered when membership or a
+  // status changes (or a live destination leg advances)
+  function renderTrackerPanel(force = false) {
+    const year = latestSnap.reset > 0 ? 1815 : latestSnap.year;
+    const rows = world.trackedVessels().map(r => ({
+      id: r.id, name: r.name, prefix: r.prefix, typeName: r.typeName, flagColor: r.flagColor,
+      status: r.status,
+      where: r.status === 'sailing' ? portNameAt(portById.get(r.pos.to), year).replace(/\s*\(.*\)/, '') : ''
+    }));
+    const sig = rows.map(r => `${r.id}:${r.status}:${r.where}`).join(',');
+    if (!force && sig === lastTrackerSig) return;
+    lastTrackerSig = sig;
+    ui.renderTracker(rows);
   }
 
   // debug export: the full serialized run — state (vessels, wrecks, log, port
@@ -285,6 +357,8 @@ async function boot() {
       portLife = world.portLifecycleAt(latestSnap.simClock);
       if (showRoutes) laneWeightsCache = world.laneWeightsAt(latestSnap.simClock);
       if (settings.panels.events) renderEventsPanel();
+      if (settings.panels.stats) renderStatsPanel();
+      if (settings.panels.tracker) renderTrackerPanel();
       ui.updateHUD(latestSnap); renderPanel();
     }
     requestAnimationFrame(frame);

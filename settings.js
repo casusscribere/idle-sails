@@ -16,19 +16,19 @@
 const KEY = 'idle-sails-settings';
 
 export const PERF_TIERS = {
-  //        drawn ships   wake points  log entries  wreck linger (sim-days)
-  low:    { shipDensity: 0.5, wakeLength: 0,  logCap: 50,  wreckLingerDays: 90 },
-  medium: { shipDensity: 1,   wakeLength: 14, logCap: 200, wreckLingerDays: 365.25 },
-  high:   { shipDensity: 1,   wakeLength: 14, logCap: 500, wreckLingerDays: 365.25 }
+  //        drawn ships   wake points  log entries  wreck linger   port memory  pins
+  low:    { shipDensity: 0.5, wakeLength: 0,  logCap: 50,  wreckLingerDays: 90,     portHistoryDepth: 0,   pinCap: 3 },
+  medium: { shipDensity: 1,   wakeLength: 14, logCap: 200, wreckLingerDays: 365.25, portHistoryDepth: 40,  pinCap: 10 },
+  high:   { shipDensity: 1,   wakeLength: 14, logCap: 500, wreckLingerDays: 365.25, portHistoryDepth: 200, pinCap: 25 }
 };
 
 export const PERF_NOTES = {
-  low: 'Half the sails drawn, no wakes — the same sea, lighter on the brush.',
+  low: 'Half the sails drawn, no wakes, no port memory — the same sea, lighter on the brush.',
   medium: 'The standard chart.',
-  high: 'A longer log and a fuller record.'
+  high: 'A longer log, deeper port memory, more ships followed.'
 };
 
-const DEFAULT_PANELS = { legend: false, events: false, counters: true, helm: true };
+const DEFAULT_PANELS = { legend: false, events: false, stats: false, tracker: false, counters: true, helm: true };
 
 const defaultStorage = () => (typeof localStorage !== 'undefined' ? localStorage : null);
 

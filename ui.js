@@ -45,7 +45,7 @@ function speedLabel(mult) {
   return `≈ ${(mult / 3600).toFixed(1)} hours / sec`;
 }
 
-export function createUI({ onSpeed, onClose, onSelectVessel }) {
+export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSelectTracked }) {
   const els = {
     date: $('date'), season: $('season'), era: $('era'),
     cSea: $('c-sea'), cArr: $('c-arr'), cLost: $('c-lost'),
@@ -63,10 +63,19 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
   els.speedRead.textContent = speedLabel(speedFromSlider(+els.speed.value));
 
   $('ledger-close').addEventListener('click', () => { hideLedger(); onClose && onClose(); });
-  // clicking a vessel row in the port view opens that vessel's ledger
+  // clicking a vessel row in the port view opens that vessel's ledger; the
+  // follow/unfollow control pins her to the tracker
   els.ledgerBody.addEventListener('click', (e) => {
+    const pb = e.target.closest('[data-pin]');
+    if (pb && onTogglePin) { onTogglePin(+pb.dataset.pin); return; }
     const li = e.target.closest('[data-vid]');
     if (li && onSelectVessel) onSelectVessel(+li.dataset.vid);
+  });
+  // clicking a tracker row opens that vessel's ledger (live or kept record)
+  const trackerBody = $('tracker-body');
+  if (trackerBody) trackerBody.addEventListener('click', (e) => {
+    const li = e.target.closest('[data-tid]');
+    if (li && onSelectTracked) onSelectTracked(+li.dataset.tid);
   });
 
   function updateHUD(snap) {
@@ -120,7 +129,16 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
       mp = `<div class="mp-note"><strong>${escapeHtml(title)}</strong>${escapeHtml(body)}</div>`;
     }
 
+    // follow/unfollow: pins her to the tracker so her story is kept (ctx
+    // carries pinState only when a tracker exists — the pin cap is a
+    // performance setting)
+    const ps = ctx.pinState;
+    const pin = ps
+      ? `<button class="pin-btn" data-pin="${v.id}"${!ps.pinned && !ps.canPin ? ' disabled title="No more pins at this performance setting"' : ''}>${ps.pinned ? 'Unfollow' : 'Follow'}</button>`
+      : '';
+
     els.ledgerBody.innerHTML = `
+      ${pin}
       <h2>${escapeHtml((v.prefix ? v.prefix + ' ' : '') + v.name)}</h2>
       <p class="type">${escapeHtml(v.typeName)} · ${escapeHtml(v.rig)} · of ${v.year}</p>
       <dl>
@@ -179,6 +197,17 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
       ? `<ul class="leglist portlist">${arr.slice(0, 30).map(v => row(v, dir)).join('')}</ul>${arr.length > 30 ? `<p class="muted">…and ${arr.length - 30} more</p>` : ''}`
       : `<p class="muted">${empty}</p>`;
 
+    // Port history (feature pass 1): the recorded calls already in the past —
+    // world.portHistoryOf, depth bounded by the performance setting. Distinct
+    // from the live lists above: this is the port's MEMORY, not its present.
+    const hist = ctx.portHistory && ctx.portHistory.length ? `
+      <p class="section-h">Lately called</p>
+      <ul class="leglist">${ctx.portHistory.slice(0, 12).map(e => {
+        const ago = Math.max(0, Math.round((simClock - e.t) / SEC_PER_DAY));
+        const agoTxt = ago === 0 ? 'today' : `${ago}d ago`;
+        return `<li><span>${escapeHtml(e.name)} <em>${escapeHtml(e.type)}</em></span><span class="dur">${e.dir === 'out' ? 'sailed' : 'came in'} · ${agoTxt}</span></li>`;
+      }).join('')}</ul>` : '';
+
     els.ledgerBody.innerHTML = `
       <h2>${escapeHtml(nm(port.id))}</h2>
       <p class="type">${escapeHtml(power ? power.name : port.power)} · ${escapeHtml(port.region.replace(/-/g, ' '))}</p>
@@ -186,7 +215,8 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
       <p class="section-h">Outbound — lately sailed (${traffic.outbound.length})</p>
       ${list(traffic.outbound, 'out', 'No vessels have lately cleared this port.')}
       <p class="section-h">Inbound — standing in (${traffic.inbound.length})</p>
-      ${list(traffic.inbound, 'in', 'No vessels are presently bound here.')}`;
+      ${list(traffic.inbound, 'in', 'No vessels are presently bound here.')}
+      ${hist}`;
     els.ledger.hidden = false;
     els.hint && els.hint.classList.add('gone');
   }
@@ -240,7 +270,44 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
       : '<li class="ev-empty">The sea is quiet — no losses, no wars.</li>';
   }
 
-  return { updateHUD, showLedger, showPort, showWreck, hideLedger, renderEvents };
+  // Statistics: fleet totals, the hardest passages (losses by route), and the
+  // cargo distribution. Pure display of the world's observation-layer tallies;
+  // main.js shapes the view. Coerced human cargo appears factually in the
+  // distribution, never framed as value — the charter extends here.
+  function renderStats(view) {
+    const body = $('stats-body');
+    if (!body) return;
+    const routes = view.routes.length ? `
+      <p class="section-h">Hardest passages — losses by route</p>
+      <ul class="st-list">${view.routes.map(r =>
+        `<li><span>${escapeHtml(r.name)}</span><span class="dur">${r.lost} of ${r.spawned} · ${r.pct}%</span></li>`).join('')}</ul>` : '';
+    const cargoes = view.cargoes.length ? `
+      <p class="section-h">Cargoes carried</p>
+      <ul class="st-list">${view.cargoes.map(c =>
+        `<li><span>${escapeHtml(c.name)}</span><span class="dur">${c.pct}%</span></li>`).join('')}</ul>` : '';
+    body.innerHTML = `
+      <dl>
+        <dt>Sailed</dt><dd>${view.spawned}</dd>
+        <dt>Arrived</dt><dd>${view.arrived}</dd>
+        <dt>Lost</dt><dd>${view.lost}${view.spawned ? ` · ${view.lossPct}% of sailings` : ''}</dd>
+      </dl>
+      ${routes}${cargoes}`;
+  }
+
+  // Tracker: the followed fleet — live vessels with their destination, retired
+  // ones with their outcome. Click a row → her ledger (kept after she's gone).
+  function renderTracker(rows) {
+    const body = $('tracker-body');
+    if (!body) return;
+    body.innerHTML = rows.length ? `<ul class="leglist portlist">${rows.map(r => {
+      const st = r.status === 'sailing' ? `for ${r.where}` : r.status === 'lost' ? 'lost' : 'arrived';
+      return `<li data-tid="${r.id}" tabindex="0">
+        <span><span class="flag" style="background:${r.flagColor}"></span>${escapeHtml((r.prefix ? r.prefix + ' ' : '') + r.name)} <em>${escapeHtml(r.typeName)}</em></span>
+        <span class="dur${r.status === 'lost' ? ' war' : ''}">${escapeHtml(st)}</span></li>`;
+    }).join('')}</ul>` : '<p class="muted">No vessels followed — open a ship’s ledger and follow her.</p>';
+  }
+
+  return { updateHUD, showLedger, showPort, showWreck, hideLedger, renderEvents, renderStats, renderTracker };
 }
 
 // ---- legend (static — built once from the same vocabulary the chart draws) --

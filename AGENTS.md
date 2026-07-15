@@ -152,6 +152,22 @@ Every design decision answers to both of these:
   **31 tests green** — `test/settings.test.mjs` proves tier sim-inertness
   (same seed, any tuning ⇒ identical fingerprints).
 
+- **Feature pass 1 (2026-07-15): the observation layer — statistics, port
+  memory, tracker.** New serialized state (`stats`, `portHistory`, `tracked`)
+  is pure accounting on top of sim events — recorded at spawn or resolution,
+  granularity-independent, never read by spawns/fates/movement, invisible to
+  `fingerprint()`. Statistics panel (menu): fleet totals, hardest passages
+  (per-lane losses), cargo distribution. Port panel gains "Lately called" —
+  the port's recorded past calls, depth by tier (0/40/200). Tracker: a
+  Follow/Unfollow button in the vessel ledger pins her (cap 3/10/25 by tier);
+  a pinned vessel's record MOVES to `tracked.archive` at cull instead of
+  vanishing — the vessels array stays identical to an unpinned world's — and
+  her kept ledger stays clickable from the tracker panel. Save payload after
+  a sim-year: 34/110/148 KB by tier. **36 tests green**
+  (`test/observation.test.mjs`: counter reconciliation, granularity
+  independence, pin sim-inertness, cap enforcement, save round-trip +
+  pre-observation-save back-fill).
+
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —
   `index.html`, `main.js`, `world.js`, `render.js`, `ui.js`, `style.css`, and

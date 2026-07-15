@@ -30,6 +30,8 @@
       <p class="menu-h" style="margin-top:14px">Panels</p>
       <label class="menu-item"><input type="checkbox" id="pn-legend"><span>Legend</span></label>
       <label class="menu-item"><input type="checkbox" id="pn-events"><span>Events log</span></label>
+      <label class="menu-item"><input type="checkbox" id="pn-stats"><span>Statistics</span></label>
+      <label class="menu-item"><input type="checkbox" id="pn-tracker"><span>Tracked vessels</span></label>
       <label class="menu-item"><input type="checkbox" id="pn-counters" checked><span>Counters</span></label>
       <label class="menu-item"><input type="checkbox" id="pn-helm" checked><span>Speed instrument</span></label>
       <p class="menu-h" style="margin-top:14px">Performance</p>
@@ -69,6 +71,18 @@
   <aside class="events" id="events" hidden aria-label="Events log">
     <p class="menu-h">The log — losses &amp; wars</p>
     <ul id="events-body" class="evlist"></ul>
+  </aside>
+
+  <!-- statistics: fleet totals, hardest passages, cargoes (menu-toggled) -->
+  <aside class="stats" id="stats" hidden aria-label="Statistics">
+    <p class="menu-h">Statistics</p>
+    <div id="stats-body"></div>
+  </aside>
+
+  <!-- tracker: the followed fleet — pinned vessels and their kept records (menu-toggled) -->
+  <aside class="tracker" id="tracker" hidden aria-label="Tracked vessels">
+    <p class="menu-h">Tracked vessels</p>
+    <div id="tracker-body"></div>
   </aside>
 
   <!-- vessel ledger (opens on selecting a ship) -->
