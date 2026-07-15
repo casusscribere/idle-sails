@@ -119,8 +119,16 @@ export function portNameAt(port, year) {
 // `restore`: a previously serialize()d state (persist.js). When given, the world
 // resumes from it exactly — same vessels, clock, counters, and spawn-RNG word —
 // so a save/load round-trip is indistinguishable from never having closed.
-export function createWorld({ seed = 1, data, restore = null }) {
+export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   const { datasets, routes } = data;
+
+  // Observation-layer tuning (the performance settings, settings.js): these
+  // knobs bound what the world RECORDS — log length, wreck linger — never what
+  // it computes. Spawns, fates, and movement are identical at every setting
+  // (fingerprint() is blind to log/wrecks, and the tests hold it so). Mutable
+  // live via world.tuning; deliberately OUTSIDE serialized state — a device
+  // preference, not part of the world.
+  const tune = Object.assign({ logCap: LOG_CAP, wreckLingerDays: WRECK_LINGER_DAYS }, tuning || {});
 
   // ---- flow-driven spawn weights (PLAN-3 S1) --------------------------------
   // datasets.flows.systems carries the trade systems folded onto the baked lanes
@@ -452,7 +460,7 @@ export function createWorld({ seed = 1, data, restore = null }) {
     return { lon, lat, heading: bearing(seg0, seg1), legIndex, fraction: f, from: seg.from, to: seg.to };
   }
 
-  function log(entry) { state.log.unshift(entry); if (state.log.length > LOG_CAP) state.log.length = LOG_CAP; }
+  function log(entry) { state.log.unshift(entry); if (state.log.length > tune.logCap) state.log.length = tune.logCap; }
   // era-honest port name for a log line (reset ramp clamps the year, as spawning does)
   const nameAt = (pid, cal) => portNameAt(portById.get(pid), cal.reset > 0 ? ERA.to : cal.year);
 
@@ -516,7 +524,7 @@ export function createWorld({ seed = 1, data, restore = null }) {
     // cull faded vessels + wrecks past their lingering year
     const cullBefore = end - FADE_DAYS * SEC_PER_DAY;
     state.vessels = state.vessels.filter(v => v.status === 'sailing' || v.retiredAt > cullBefore);
-    const wreckBefore = end - WRECK_LINGER_DAYS * SEC_PER_DAY;
+    const wreckBefore = end - tune.wreckLingerDays * SEC_PER_DAY;
     if (state.wrecks.some(w => w.at <= wreckBefore))
       state.wrecks = state.wrecks.filter(w => w.at > wreckBefore);
 
@@ -524,15 +532,21 @@ export function createWorld({ seed = 1, data, restore = null }) {
   }
 
   // ---- public snapshot for renderers / tests ----
-  function activeVessels() {
+  // `density` (0..1, the performance settings' ship-density) thins which vessels
+  // are REALIZED into the snapshot — a stable per-id hash, so the same ships
+  // are always the ones shown and positionOf (the per-frame hot path) is simply
+  // skipped for the rest. The sim underneath is untouched: counters, spawns,
+  // fates, and port calls are those of the full world at every density.
+  function activeVessels(density = 1) {
     const out = [];
     for (const v of state.vessels) {
+      if (density < 1 && hashSeed('draw', v.id) / 4294967296 >= density) continue;
       const pos = positionOf(v, state.simClock);
       out.push({ ...v, pos });
     }
     return out;
   }
-  function snapshot() {
+  function snapshot({ density = 1 } = {}) {
     const cal = calendar(state.simClock);
     return {
       simClock: state.simClock,
@@ -540,7 +554,7 @@ export function createWorld({ seed = 1, data, restore = null }) {
       season: cal.season,
       year: cal.year, reset: cal.reset,
       counters: { ...state.counters, atSea: state.vessels.filter(v => v.status === 'sailing').length },
-      vessels: activeVessels(),
+      vessels: activeVessels(density),
       wrecks: state.wrecks,
       log: state.log.slice(0, 40)
     };
@@ -588,6 +602,34 @@ export function createWorld({ seed = 1, data, restore = null }) {
     return active;
   };
 
+  // War events (the events log): begin/end entries for every war whose boundary
+  // falls within the trailing window. Derived at DISPLAY time from the static
+  // wars data + the flowing clock — a pure function of sim-time, no state, so
+  // it is trivially deterministic and granularity-independent. The previous
+  // cycle's base is also checked so the window reads correctly across the
+  // 270-year loop seam. (A war ending in 1815 "ends" at the 1816 boundary,
+  // inside the reset ramp — the honest edge of the sim horizon.)
+  const YEAR_SEC = SEC_PER_DAY * DAY_OF_YEAR;
+  function warEventsSince(simSec, windowYears = 10) {
+    const since = simSec - windowYears * YEAR_SEC;
+    const cyc = ((simSec / YEAR_SEC % CYCLE_YEARS) + CYCLE_YEARS) % CYCLE_YEARS;
+    const cycleStart = simSec - cyc * YEAR_SEC;
+    const out = [];
+    for (const w of wars) {
+      for (const [year, kind] of [[w.from, 'war-begin'], [w.to + 1, 'war-end']]) {
+        for (const base of [cycleStart, cycleStart - CYCLE_YEARS * YEAR_SEC]) {
+          const t = base + (year - ERA.from) * YEAR_SEC;
+          // t >= 0: in the FIRST cycle there is no previous cycle — the world
+          // began at 1550, and no war ended before it existed
+          if (t >= 0 && t > since && t <= simSec)
+            out.push({ t, kind, text: `${w.name} ${kind === 'war-begin' ? 'began' : 'ended'}`, date: fmtDate(calendar(t)) });
+        }
+      }
+    }
+    out.sort((a, b) => b.t - a.t);
+    return out;
+  }
+
   // Port lifecycle: which ports EXIST and which lie in RUIN at an instant.
   // ports[].active {from,to} is the declared existence window (absent = all
   // era); build-data enforces every lane's era inside both endpoints' windows,
@@ -610,6 +652,7 @@ export function createWorld({ seed = 1, data, restore = null }) {
   return {
     state, tick, snapshot, activeVessels, positionOf, fingerprint, calendar,
     laneWeightsAt, weightsAt, activePortsSince, portLifecycleAt, serialize,
+    warEventsSince, tuning: tune,
     portById, powerById,
     get simClock() { return state.simClock; }
   };

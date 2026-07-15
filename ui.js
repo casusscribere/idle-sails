@@ -1,6 +1,9 @@
 // ui.js — the spectator's entire control surface: a speed instrument and a
-// click-to-inspect vessel ledger, plus ambient counters.
+// click-to-inspect vessel ledger, plus ambient counters, an optional legend,
+// and an optional events log (losses + wars).
 // Pure DOM; reads world snapshots handed in by main.js.
+
+import { shipGlyphPath } from './render.js';
 
 const $ = (id) => document.getElementById(id);
 const SEASON_LABEL = { djf: 'Winter', mam: 'Spring', jja: 'Summer', son: 'Autumn' };
@@ -225,7 +228,76 @@ export function createUI({ onSpeed, onClose, onSelectVessel }) {
 
   function hideLedger() { els.ledger.hidden = true; }
 
-  return { updateHUD, showLedger, showPort, showWreck, hideLedger };
+  // Events log: the notable entries only — losses and wars. Departures and
+  // arrivals stay out (the old ship ticker was removed on purpose; this panel
+  // must not quietly rebuild it). Entries arrive pre-merged and time-sorted.
+  function renderEvents(entries) {
+    const body = $('events-body');
+    if (!body) return;
+    body.innerHTML = entries.length
+      ? entries.map(e => `<li class="${e.kind === 'war-begin' || e.kind === 'loss' ? 'ev-bad' : ''}">
+          <span class="ev-date">${escapeHtml(e.date)}</span><span>${escapeHtml(e.text)}</span></li>`).join('')
+      : '<li class="ev-empty">The sea is quiet — no losses, no wars.</li>';
+  }
+
+  return { updateHUD, showLedger, showPort, showWreck, hideLedger, renderEvents };
+}
+
+// ---- legend (static — built once from the same vocabulary the chart draws) --
+// Shape = ship category (the five glyphs of render.js), colour = allegiance.
+const LEGEND_GLYPHS = [
+  ['merchant', 'Merchantman · brig · snow · sloop'],
+  ['indiaman', 'Indiaman · fluyt · galleon · junk'],
+  ['warship', 'Frigate · sloop-of-war'],
+  ['line', 'Ship of the line'],
+  ['slaver', 'Slave ship']
+];
+export function buildLegend({ powers }) {
+  const body = $('legend-body');
+  if (!body) return;
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const glyphRow = ([cat, label]) => {
+    const cw = 30, ch = 16;
+    const c = document.createElement('canvas');
+    c.width = cw * dpr; c.height = ch * dpr;
+    c.style.width = cw + 'px'; c.style.height = ch + 'px';
+    const g = c.getContext('2d');
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.translate(cw / 2 - 1, ch / 2);
+    const s = 6.5;
+    shipGlyphPath(g, cat, s);
+    g.fillStyle = '#d9c9a3'; g.fill();          // neutral hull — colour means flag
+    g.lineWidth = 0.9; g.strokeStyle = '#3a2c1c'; g.stroke();
+    if (cat === 'slaver') {                      // the sober transverse beam bar
+      g.beginPath(); g.moveTo(0.05 * s, 0.52 * s); g.lineTo(0.05 * s, -0.52 * s);
+      g.lineWidth = 1; g.stroke();
+    }
+    const row = document.createElement('div');
+    row.className = 'lg-row';
+    row.appendChild(c);
+    const span = document.createElement('span');
+    span.textContent = label;
+    row.appendChild(span);
+    return row;
+  };
+  const glyphs = document.createElement('div');
+  for (const gl of LEGEND_GLYPHS) glyphs.appendChild(glyphRow(gl));
+
+  const flags = document.createElement('div');
+  flags.className = 'lg-flags';
+  for (const p of [...powers].filter(p => p.color).sort((a, b) => a.name.localeCompare(b.name))) {
+    const row = document.createElement('div');
+    row.className = 'lg-row';
+    row.innerHTML = `<span class="flag" style="background:${p.color}"></span><span>${escapeHtml(p.name)}</span>`;
+    flags.appendChild(row);
+  }
+
+  body.replaceChildren(glyphs, sectionH('Allegiance'), flags);
+  function sectionH(text) {
+    const h = document.createElement('p');
+    h.className = 'section-h'; h.textContent = text;
+    return h;
+  }
 }
 
 function escapeHtml(s) {

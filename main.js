@@ -4,8 +4,9 @@
 
 import { createWorld, portNameAt } from './world.js';
 import { createRenderer } from './render.js';
-import { createUI, speedFromSlider } from './ui.js';
+import { createUI, buildLegend, speedFromSlider } from './ui.js';
 import { loadSave, autoSave, accrualSeconds } from './persist.js';
+import { loadSettings, saveSettings, perfValues, PERF_NOTES } from './settings.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -38,10 +39,20 @@ async function boot() {
   const wantFresh = !!hashSeed || skipDays > 0 || hashParams.get('fresh') === '1';
   const saved = wantFresh ? null : loadSave({ datasetVersion: dataVersion });
 
+  // device-local settings (settings.js): panel visibility + the performance
+  // tier. The tier only tunes the render layer (ship density, wakes) and the
+  // observation layer (log cap, wreck linger) — the sim itself is identical at
+  // every setting, so it is safe to load before the world and to change live.
+  const settings = loadSettings();
+  let perf = perfValues(settings);
+
   const seed = saved ? saved.seed
     : hashSeed ? (parseInt(hashSeed, 10) >>> 0)
     : ((Date.now() ^ (Math.random() * 1e9)) >>> 0);
-  const world = createWorld({ seed, data: { datasets, routes }, restore: saved ? saved.state : null });
+  const world = createWorld({
+    seed, data: { datasets, routes }, restore: saved ? saved.state : null,
+    tuning: { logCap: perf.logCap, wreckLingerDays: perf.wreckLingerDays }
+  });
 
   if (saved) {
     // offline accrual: real time away × last speed, capped — in a few big ticks
@@ -75,6 +86,7 @@ async function boot() {
 
   const canvas = document.getElementById('chart');
   const renderer = createRenderer(canvas, { land, ports: datasets.ports, legById, reducedMotion, routeLines, portNameAt });
+  renderer.setPerf({ wakeLength: perf.wakeLength });
   renderer.resize();
   addEventListener('resize', renderer.resize);
 
@@ -84,7 +96,10 @@ async function boot() {
   let selectedVesselId = null, selectedPortId = null, selectedWreckId = null, lastPanelSig = '';
   let showRoutes = hashParams.get('routes') === '1';
   if (showRoutes) document.getElementById('ov-routes').checked = true;
-  let latestSnap = world.snapshot();
+  let latestSnap = world.snapshot({ density: perf.shipDensity });
+  // overlay lane weights drift era-slow, so they're recomputed on the ~5 Hz HUD
+  // throttle (and at toggle time), not per frame — 261 lanes need no rAF math.
+  let laneWeightsCache = showRoutes ? world.laneWeightsAt(latestSnap.simClock) : null;
   // ports greyed unless they saw traffic in the past sim-year; lifecycle
   // (existing/ruined per the flowing year) gates chart presence. Both recomputed
   // on the HUD throttle (era-slow) and passed to every draw()/pickAt().
@@ -164,7 +179,83 @@ async function boot() {
     menu.hidden = !open;
     menuToggle.setAttribute('aria-expanded', String(open));
   });
-  document.getElementById('ov-routes').addEventListener('change', (e) => { showRoutes = e.target.checked; });
+  document.getElementById('ov-routes').addEventListener('change', (e) => {
+    showRoutes = e.target.checked;
+    laneWeightsCache = showRoutes ? world.laneWeightsAt(latestSnap.simClock) : null;
+  });
+
+  // events log signature — declared before the panel wiring below, which can
+  // call renderEventsPanel() during boot when the panel was left switched on
+  let lastEventsSig = '';
+
+  // panels (settings.panels): the menu shows/hides each on-display card
+  buildLegend({ powers: datasets.powers });
+  const PANEL_EL = { legend: 'legend', events: 'events', counters: 'counters', helm: 'helm' };
+  function applyPanels() {
+    for (const [key, id] of Object.entries(PANEL_EL))
+      document.getElementById(id).hidden = !settings.panels[key];
+  }
+  for (const key of Object.keys(PANEL_EL)) {
+    const box = document.getElementById('pn-' + key);
+    box.checked = settings.panels[key];
+    box.addEventListener('change', () => {
+      settings.panels[key] = box.checked;
+      applyPanels(); saveSettings(settings);
+      if (key === 'events' && box.checked) renderEventsPanel(true);
+    });
+  }
+  applyPanels();
+  if (settings.panels.events) renderEventsPanel(true);
+
+  // performance tier: render + observation knobs only — the world's spawns and
+  // fates never change, so switching live is safe (and instant).
+  const perfNote = document.getElementById('perf-note');
+  perfNote.textContent = PERF_NOTES[settings.perfTier];
+  for (const radio of document.querySelectorAll('input[name="perf"]')) {
+    radio.checked = radio.value === settings.perfTier;
+    radio.addEventListener('change', () => {
+      if (!radio.checked) return;
+      settings.perfTier = radio.value;
+      perf = perfValues(settings);
+      Object.assign(world.tuning, { logCap: perf.logCap, wreckLingerDays: perf.wreckLingerDays });
+      renderer.setPerf({ wakeLength: perf.wakeLength });
+      perfNote.textContent = PERF_NOTES[settings.perfTier];
+      saveSettings(settings);
+    });
+  }
+
+  // events log: losses from the world's log + war begin/end entries derived
+  // from the flowing clock, merged newest-first. Re-rendered on the HUD
+  // throttle, gated by a cheap signature so a quiet sea costs no DOM work.
+  function renderEventsPanel(force = false) {
+    const losses = latestSnap.log.filter(e => e.kind === 'loss');
+    const wars = world.warEventsSince(latestSnap.simClock);
+    const entries = losses.concat(wars).sort((a, b) => b.t - a.t).slice(0, 40);
+    const sig = entries.length + ':' + (entries.length ? entries[0].t : 0);
+    if (!force && sig === lastEventsSig) return;
+    lastEventsSig = sig;
+    ui.renderEvents(entries);
+  }
+
+  // debug export: the full serialized run — state (vessels, wrecks, log, port
+  // calls, counters, the spawn-RNG word), seed, versions — as a JSON download
+  // for offline analysis. Costs nothing until clicked.
+  document.getElementById('dbg-export').addEventListener('click', () => {
+    const payload = {
+      exportedAt: new Date().toISOString(),
+      datasetVersion: dataVersion,
+      seed, settings,
+      simDays: Math.round(world.simClock / SEC_PER_DAY),
+      date: latestSnap.date, year: latestSnap.year,
+      state: world.serialize()
+    };
+    const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `idle-sails-run-${seed}-day${payload.simDays}.json`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 10_000);
+  });
 
   // persist: every 10 s + when the tab hides/closes (skip for pinned debug worlds,
   // so a shared #seed/#t link never clobbers the player's own voyage).
@@ -180,10 +271,11 @@ async function boot() {
     dtReal = Math.min(dtReal, 0.25);                 // cap catch-up per frame
     if (speed > 0) world.tick(dtReal * speed);
 
-    latestSnap = world.snapshot();
-    // overlay context: this world's realized per-lane flow weights at the current
-    // instant — route brightness IS the traffic the sim is actually sampling.
-    const routesCtx = showRoutes ? { laneWeights: world.laneWeightsAt(latestSnap.simClock) } : null;
+    latestSnap = world.snapshot({ density: perf.shipDensity });
+    // overlay context: this world's realized per-lane flow weights — route
+    // brightness IS the traffic the sim is actually sampling. Weights drift
+    // era-slow, so the cache refreshed on the HUD throttle is visually exact.
+    const routesCtx = showRoutes && laneWeightsCache ? { laneWeights: laneWeightsCache } : null;
     renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, routesCtx, activePorts, selectedWreckId, portLife);
 
     hudAccum += dtReal;
@@ -191,6 +283,8 @@ async function boot() {
       hudAccum = 0;
       activePorts = world.activePortsSince(latestSnap.simClock);
       portLife = world.portLifecycleAt(latestSnap.simClock);
+      if (showRoutes) laneWeightsCache = world.laneWeightsAt(latestSnap.simClock);
+      if (settings.panels.events) renderEventsPanel();
       ui.updateHUD(latestSnap); renderPanel();
     }
     requestAnimationFrame(frame);

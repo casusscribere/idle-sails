@@ -134,6 +134,24 @@ Every design decision answers to both of these:
   unsailable — zero baked legs — since S2). datasetVersion 4; saves gate on
   `datasets:routes` versions. 26 tests green.
 
+- **Feature pass 1 (2026-07-15): settings, performance tier, menu.**
+  `feature-ideas/ideas.txt` ranked in `feature-ideas/RANKING.md` (feasibility ×
+  perf + the slider architecture: sim layer untouchable; observation/render
+  layers tunable). Built: `settings.js` (device-local, own localStorage key
+  `idle-sails-settings`, survives save resets); the cartouche menu unhidden —
+  panel toggles (legend / events log / counters / helm), performance
+  Low/Medium/High (**Medium = exactly the pre-slider behaviour**), and a debug
+  run-data JSON export; legend panel (glyph shapes + allegiance colours);
+  events-log panel (losses + war begin/end from `world.warEventsSince` — pure,
+  display-derived); port click-priority in `pickAt` (a click on the dot beats a
+  passing ship); ship-density render-thinning `world.snapshot({density})`
+  (stable id-hash subset, skips `positionOf` for hidden ships — the sim
+  UNDERNEATH is identical at every tier); log-cap/wreck-linger via
+  `createWorld({tuning})` (live-mutable `world.tuning`); wakes a render knob;
+  routes-overlay weights recomputed on the 5 Hz HUD throttle, not per frame.
+  **31 tests green** — `test/settings.test.mjs` proves tier sim-inertness
+  (same seed, any tuning ⇒ identical fingerprints).
+
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —
   `index.html`, `main.js`, `world.js`, `render.js`, `ui.js`, `style.css`, and

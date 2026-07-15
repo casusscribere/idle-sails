@@ -13,8 +13,7 @@
 
   <!-- title cartouche -->
   <header class="cartouche" id="cartouche">
-    <!-- menu hidden until there are more overlays/features to house here -->
-    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="menu" aria-label="Menu" title="Menu" hidden>☰</button>
+    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="menu" aria-label="Menu" title="Menu">☰</button>
     <div class="rule"></div>
     <h1>Idle&nbsp;Sails</h1>
     <p class="sub">An age-of-sail chart that sails itself</p>
@@ -28,8 +27,21 @@
         <span>Popular trade routes</span>
       </label>
       <p class="menu-note">Line weight ∝ traffic · colour = flag</p>
+      <p class="menu-h" style="margin-top:14px">Panels</p>
+      <label class="menu-item"><input type="checkbox" id="pn-legend"><span>Legend</span></label>
+      <label class="menu-item"><input type="checkbox" id="pn-events"><span>Events log</span></label>
+      <label class="menu-item"><input type="checkbox" id="pn-counters" checked><span>Counters</span></label>
+      <label class="menu-item"><input type="checkbox" id="pn-helm" checked><span>Speed instrument</span></label>
+      <p class="menu-h" style="margin-top:14px">Performance</p>
+      <div role="radiogroup" aria-label="Performance">
+        <label class="menu-item"><input type="radio" name="perf" value="low"><span>Low</span></label>
+        <label class="menu-item"><input type="radio" name="perf" value="medium" checked><span>Medium</span></label>
+        <label class="menu-item"><input type="radio" name="perf" value="high"><span>High</span></label>
+      </div>
+      <p class="menu-note" id="perf-note">The standard chart.</p>
       <p class="menu-h" style="margin-top:14px">Reference</p>
-      <a class="menu-link" href="research/" target="_blank" rel="noopener">Port &amp; route research ↗</a>
+      <a class="menu-link" href="research/" target="_blank" rel="noopener">Port &amp; route research ↗</a><br>
+      <button class="menu-link menu-btn" id="dbg-export" type="button">Export run data ↓</button>
     </div>
   </header>
 
@@ -46,6 +58,18 @@
     <input id="speed" type="range" min="0" max="1000" value="560" aria-describedby="speed-read">
     <output id="speed-read">—</output>
   </div>
+
+  <!-- legend: glyph shapes = ship category, colours = allegiance (menu-toggled) -->
+  <aside class="legend" id="legend" hidden aria-label="Chart legend">
+    <p class="menu-h">Legend</p>
+    <div id="legend-body"></div>
+  </aside>
+
+  <!-- events log: losses + wars, notable entries only (menu-toggled) -->
+  <aside class="events" id="events" hidden aria-label="Events log">
+    <p class="menu-h">The log — losses &amp; wars</p>
+    <ul id="events-body" class="evlist"></ul>
+  </aside>
 
   <!-- vessel ledger (opens on selecting a ship) -->
   <aside class="ledger" id="ledger" hidden aria-live="polite">

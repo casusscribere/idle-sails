@@ -41,7 +41,7 @@ body::after {
 }
 
 /* ---- shared card treatment: aged paper with deckle shadow + ink hairline ---- */
-.cartouche, .counters, .helm, .ledger {
+.cartouche, .counters, .helm, .ledger, .legend, .events {
   position: fixed;
   z-index: 3;
   background: linear-gradient(180deg, rgba(239,228,203,0.94), rgba(231,218,189,0.9));
@@ -49,9 +49,13 @@ body::after {
   box-shadow: 0 2px 0 rgba(92,70,48,0.18), 0 10px 26px rgba(60,44,28,0.22);
   backdrop-filter: blur(1px);
 }
+/* the menu toggles cards on/off — flex cards need [hidden] to win over display */
+.counters[hidden], .helm[hidden], .legend[hidden], .events[hidden] { display: none; }
 
 /* ---- cartouche ---- */
-.cartouche { top: 18px; left: 18px; padding: 14px 22px 12px; max-width: min(46vw, 360px); }
+/* z above the other cards: its open menu must never be shadowed by the
+   legend/events panels sharing its side of the chart */
+.cartouche { top: 18px; left: 18px; padding: 14px 22px 12px; max-width: min(46vw, 360px); z-index: 4; }
 .cartouche .rule { height: 2px; background: var(--ink); opacity: .8; }
 .cartouche .rule:last-child { opacity: .5; height: 1px; }
 .cartouche h1 {
@@ -133,6 +137,25 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
   border-top: 1px solid var(--paper-edge); padding-top: 7px; margin: 10px 0 0; }
 .war { color: var(--red); font-style: italic; }
 
+/* ---- legend (menu-toggled) ---- */
+.legend { left: 18px; bottom: 150px; width: 236px; max-height: min(46vh, 420px); overflow: auto; padding: 12px 16px 14px; }
+.lg-row { display: flex; align-items: center; gap: 9px; padding: 2.5px 0; font-size: 12.5px; }
+.lg-row canvas { flex: none; }
+.legend .section-h { margin-top: 10px; }
+.lg-flags { columns: 2; column-gap: 12px; }
+.lg-flags .lg-row { break-inside: avoid; }
+
+/* ---- events log (menu-toggled): losses + wars ---- */
+.events { right: 18px; bottom: 68px; width: min(90vw, 330px); max-height: min(38vh, 340px); overflow: auto; padding: 12px 16px 14px; }
+.evlist { list-style: none; margin: 4px 0 0; padding: 0; }
+.evlist li { display: flex; gap: 10px; padding: 5px 0; border-bottom: 1px dashed var(--paper-edge); font-size: 12.5px; line-height: 1.35; }
+.ev-date { flex: none; width: 82px; font-variant-numeric: tabular-nums; color: var(--ink-soft); }
+.ev-bad { color: var(--red); }
+.ev-empty { font-style: italic; color: var(--ink-soft); }
+
+.menu-btn { background: none; border: none; border-bottom: 1px solid var(--paper-edge); padding: 0; margin-top: 6px; cursor: pointer; font: inherit; font-size: 13.5px; color: var(--ink); }
+.menu-btn:hover { color: var(--red); border-bottom-color: var(--red); }
+
 /* ---- hint ---- */
 .hint { position: fixed; z-index: 3; right: 18px; bottom: 34px; margin: 0; font-family: var(--serif); font-style: italic;
   font-size: 13px; color: var(--ink-soft); max-width: 240px; text-align: right; pointer-events: none;
@@ -143,5 +166,5 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
   .counters { padding: 7px 4px; } .stat { padding: 2px 9px; } .stat .num { font-size: 20px; }
   .cartouche { max-width: 62vw; padding: 10px 16px 8px; }
   .ledger { top: auto; bottom: 30px; right: 8px; left: 8px; width: auto; max-height: 56vh; }
-  .hint { display: none; }
+  .hint, .legend, .events { display: none; }
 }

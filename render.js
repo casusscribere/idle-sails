@@ -119,6 +119,9 @@ export function createRenderer(canvas, assets) {
 
   let base = null, baseCtx = null;      // offscreen static chart
   let W = 0, H = 0, dpr = 1, k = 1, ox = 0, oy = 0;
+  // render-layer performance knobs (settings.js perf tier); mutable via setPerf
+  const perf = { wakeLength: 14 };
+  function setPerf(p) { Object.assign(perf, p); }
   const wakes = new Map();               // vesselId → [[x,y],...] recent screen positions
   let portScreen = [];                   // [{id, x, y}] for hit-testing the fixed ports
   let portDraw = [];                     // [{id, x, y, name, label:{ax,ay,align}|null}] cached placement
@@ -443,19 +446,23 @@ export function createRenderer(canvas, assets) {
     // a lost vessel's wreck marker (drawWrecks) is her chart presence now
     if (v.status === 'lost') { wakes.delete(v.id); return; }
     const [x, y] = project(v.pos.lon, v.pos.lat);
-    // wake
-    let w = wakes.get(v.id); if (!w) { w = []; wakes.set(v.id, w); }
-    const last = w[w.length - 1];
-    if (!last || Math.hypot(last[0] - x, last[1] - y) > 1.5) { w.push([x, y]); if (w.length > 14) w.shift(); }
-    if (w.length > 1 && !reducedMotion) {
-      ctx.beginPath(); ctx.moveTo(w[0][0], w[0][1]);
-      for (let i = 1; i < w.length; i++) {
-        // a vessel wrapping the antimeridian teleports across the chart — break
-        // the wake there instead of streaking it
-        if (Math.abs(w[i][0] - w[i - 1][0]) > wrapSpan()) ctx.moveTo(w[i][0], w[i][1]);
-        else ctx.lineTo(w[i][0], w[i][1]);
+    // wake (length is a perf knob; 0 = none — drop any history so a re-enable
+    // later doesn't streak a stale line across the chart)
+    if (!perf.wakeLength) { wakes.delete(v.id); }
+    else {
+      let w = wakes.get(v.id); if (!w) { w = []; wakes.set(v.id, w); }
+      const last = w[w.length - 1];
+      if (!last || Math.hypot(last[0] - x, last[1] - y) > 1.5) { w.push([x, y]); if (w.length > perf.wakeLength) w.shift(); }
+      if (w.length > 1 && !reducedMotion) {
+        ctx.beginPath(); ctx.moveTo(w[0][0], w[0][1]);
+        for (let i = 1; i < w.length; i++) {
+          // a vessel wrapping the antimeridian teleports across the chart — break
+          // the wake there instead of streaking it
+          if (Math.abs(w[i][0] - w[i - 1][0]) > wrapSpan()) ctx.moveTo(w[i][0], w[i][1]);
+          else ctx.lineTo(w[i][0], w[i][1]);
+        }
+        ctx.strokeStyle = WAKE; ctx.lineWidth = 1; ctx.stroke();
       }
-      ctx.strokeStyle = WAKE; ctx.lineWidth = 1; ctx.stroke();
     }
 
     const size = 3 + Math.sqrt(v.tonnage) / 7;   // ~4–9 px
@@ -535,6 +542,11 @@ export function createRenderer(canvas, assets) {
       const d = (ps.x - px) ** 2 + (ps.y - py) ** 2;
       if (d < pd) { pd = d; pBest = ps.id; }
     }
+    // Ports are precise, PERMANENT targets: a click right on the dot (inside
+    // its outer ring, ~8px) takes the port even when a transient ship is
+    // drifting fractionally nearer — she'll have moved by the next click; the
+    // port is what was aimed at. Beyond the ring, nearest-wins as before.
+    if (pBest != null && pd <= 8 * 8) return { type: 'port', id: pBest };
     const cands = [];
     if (vBest != null) cands.push({ type: 'vessel', id: vBest, d: vd });
     if (wBest != null) cands.push({ type: 'wreck', id: wBest, d: wd });
@@ -544,5 +556,5 @@ export function createRenderer(canvas, assets) {
     return { type: cands[0].type, id: cands[0].id };
   }
 
-  return { resize, draw, pickAt, project };
+  return { resize, draw, pickAt, project, setPerf };
 }
