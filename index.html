@@ -13,7 +13,6 @@
 
   <!-- title cartouche -->
   <header class="cartouche" id="cartouche" tabindex="0" aria-label="Idle Sails — click to furl or unfurl the instruments">
-    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="menu" aria-label="Menu" title="Menu">☰</button>
     <div class="rule"></div>
     <h1>Idle&nbsp;Sails</h1>
     <p class="sub">An age-of-sail chart that sails itself</p>
@@ -45,6 +44,15 @@
       <a class="menu-link" href="research/" target="_blank" rel="noopener">Port &amp; route research ↗</a><br>
       <button class="menu-link menu-btn" id="dbg-export" type="button">Export run data ↓</button>
     </div>
+    <!-- disclosure toggler for the chart options above: engraved chevrons under
+         the rule, rotating when open (replaces the old hamburger) -->
+    <button class="menu-expander" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Chart options" title="Chart options">
+      <svg width="54" height="8" viewBox="0 0 54 8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 2 L9 6 L15 2"/>
+        <path d="M21 2 L27 6 L33 2"/>
+        <path d="M39 2 L45 6 L51 2"/>
+      </svg>
+    </button>
   </header>
 
   <!-- ambient counters -->

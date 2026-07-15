@@ -82,15 +82,19 @@ body::after {
 .cartouche.furled > :not(h1) { display: none; }
 .cartouche.furled h1 { margin: 0; font-size: 15px; letter-spacing: .18em; }
 
-/* ---- hamburger menu (inside the cartouche) ---- */
-.menu-toggle {
-  position: absolute; top: 7px; right: 9px; z-index: 1;
-  background: none; border: none; cursor: pointer; padding: 2px 4px;
-  font-size: 17px; line-height: 1; color: var(--ink-soft); border-radius: 3px;
+/* ---- chart-options disclosure (inside the cartouche) ---- */
+/* A row of engraved chevrons under the bottom rule unfolds the options; they
+   flip upward while open. Full-width target, quiet until hovered. */
+.menu-expander {
+  display: block; width: 100%; background: none; border: none; cursor: pointer;
+  padding: 9px 0 7px; margin: 0; line-height: 0; color: var(--ink-soft);   /* ≥24px touch target */
 }
-.menu-toggle:hover { color: var(--ink); background: rgba(92, 70, 48, 0.08); }
-.menu-toggle[aria-expanded="true"] { color: var(--ink); background: rgba(92, 70, 48, 0.12); }
-.menu { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--paper-edge); }
+.menu-expander:hover, .menu-expander[aria-expanded="true"] { color: var(--ink); }
+.menu-expander svg { transition: transform .25s ease; }
+.menu-expander[aria-expanded="true"] svg { transform: rotate(180deg); }
+.menu-expander:focus-visible { outline: 1px solid var(--red); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .menu-expander svg { transition: none; } }
+.menu { margin-top: 10px; }
 .menu-h { margin: 0 0 6px; font-size: 10px; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-soft); }
 .menu-item { display: flex; align-items: center; gap: 9px; font-size: 14px; cursor: pointer; padding: 3px 0; }
 .menu-item input { width: 15px; height: 15px; accent-color: #8a6a2c; cursor: pointer; margin: 0; }

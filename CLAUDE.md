@@ -170,7 +170,11 @@ Every design decision answers to both of these:
   collapses it to a small serif title plate and stows every ambient panel
   (counters, helm, legend, events, stats, tracker, hint) — the chart alone;
   click again to unfurl (settings-persisted as `furled`; menu controls keep
-  their meanings; keyboard-operable).
+  their meanings; keyboard-operable). **Menu disclosure (same day):** the hamburger is
+  replaced by a chevron-row disclosure at the cartouche foot — three engraved
+  down-chevrons under the rule unfold the options and flip upward while open
+  (same `#menu-toggle` id and wiring; aria-expanded/controls; ≥24px target;
+  reduced-motion honoured).
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —
