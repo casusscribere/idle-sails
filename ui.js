@@ -347,19 +347,26 @@ export function buildLegend({ powers }) {
     row.appendChild(span);
     return row;
   };
-  const glyphs = document.createElement('div');
-  for (const gl of LEGEND_GLYPHS) glyphs.appendChild(glyphRow(gl));
+  // sections carry ids so the menu's toggle tree can show/hide each
+  const ships = document.createElement('div');
+  ships.id = 'lg-ships';
+  ships.appendChild(sectionH('Ship types'));
+  for (const gl of LEGEND_GLYPHS) ships.appendChild(glyphRow(gl));
 
   const flags = document.createElement('div');
-  flags.className = 'lg-flags';
+  flags.id = 'lg-flags';
+  flags.appendChild(sectionH('Allegiance'));
+  const grid = document.createElement('div');
+  grid.className = 'lg-flags';
   for (const p of [...powers].filter(p => p.color).sort((a, b) => a.name.localeCompare(b.name))) {
     const row = document.createElement('div');
     row.className = 'lg-row';
     row.innerHTML = `<span class="flag" style="background:${p.color}"></span><span>${escapeHtml(p.name)}</span>`;
-    flags.appendChild(row);
+    grid.appendChild(row);
   }
+  flags.appendChild(grid);
 
-  body.replaceChildren(glyphs, sectionH('Allegiance'), flags);
+  body.replaceChildren(ships, flags);
   function sectionH(text) {
     const h = document.createElement('p');
     h.className = 'section-h'; h.textContent = text;

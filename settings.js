@@ -28,14 +28,22 @@ export const PERF_NOTES = {
   high: 'A longer log, deeper port memory, more ships followed.'
 };
 
-const DEFAULT_PANELS = { legend: false, events: false, stats: false, tracker: false, counters: true, helm: true };
+const DEFAULT_PANELS = { legend: false, events: false, tracker: false, counters: true, helm: true };
 
 const defaultStorage = () => (typeof localStorage !== 'undefined' ? localStorage : null);
 
 export function defaultSettings() {
   // furled: the cartouche collapsed to a small title card, all ambient
   // panels stowed — the chart alone. Click it again to unfurl.
-  return { perfTier: 'medium', panels: { ...DEFAULT_PANELS }, furled: false };
+  // statsOpen: the statistics drawer under the counters (chevron band).
+  // legend.{ships,flags}: the legend's sections, independently toggleable.
+  return {
+    perfTier: 'medium',
+    panels: { ...DEFAULT_PANELS },
+    furled: false,
+    statsOpen: false,
+    legend: { ships: true, flags: true }
+  };
 }
 
 export function loadSettings(storage = defaultStorage()) {
@@ -50,6 +58,10 @@ export function loadSettings(storage = defaultStorage()) {
       for (const k of Object.keys(out.panels))
         if (typeof s.panels[k] === 'boolean') out.panels[k] = s.panels[k];
     if (s && typeof s.furled === 'boolean') out.furled = s.furled;
+    if (s && typeof s.statsOpen === 'boolean') out.statsOpen = s.statsOpen;
+    if (s && s.legend && typeof s.legend === 'object')
+      for (const k of Object.keys(out.legend))
+        if (typeof s.legend[k] === 'boolean') out.legend[k] = s.legend[k];
     return out;
   } catch { return out; }
 }

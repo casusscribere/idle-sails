@@ -217,7 +217,7 @@ async function boot() {
   // call the render functions during boot when a panel was left switched on
   let lastEventsSig = '', lastStatsSig = '', lastTrackerSig = '';
   const laneNameById = new Map(datasets.routes.map(r => [r.id, r.name]));
-  const PANEL_RENDER = { events: () => renderEventsPanel(true), stats: () => renderStatsPanel(true), tracker: () => renderTrackerPanel(true) };
+  const PANEL_RENDER = { events: () => renderEventsPanel(true), tracker: () => renderTrackerPanel(true) };
 
   // panels (settings.panels): the menu shows/hides each on-display card.
   // A furled chart overrides them all — the cartouche collapses to a small
@@ -225,14 +225,32 @@ async function boot() {
   // unfurling restores whatever the settings say. Click-to-inspect still
   // works throughout — the ledger is the chart's business, not its chrome.
   buildLegend({ powers: datasets.powers });
-  const PANEL_EL = { legend: 'legend', events: 'events', stats: 'stats', tracker: 'tracker', counters: 'counters', helm: 'helm' };
+  const PANEL_EL = { legend: 'legend', events: 'events', tracker: 'tracker', counters: 'counters', helm: 'helm' };
   const cartouche = document.getElementById('cartouche');
   const hintEl = document.getElementById('hint');
   function applyPanels() {
     for (const [key, id] of Object.entries(PANEL_EL))
       document.getElementById(id).hidden = settings.furled || !settings.panels[key];
     cartouche.classList.toggle('furled', settings.furled);
-    hintEl.hidden = settings.furled;
+    // the hint shares the legend's bottom-right corner — yield when it's on
+    hintEl.hidden = settings.furled || settings.panels.legend;
+    applyLegendSections();
+  }
+  // the legend's toggle tree: each section independently, under the parent
+  const LG_SECTIONS = { ships: 'lg-ships', flags: 'lg-flags' };
+  function applyLegendSections() {
+    for (const [key, id] of Object.entries(LG_SECTIONS))
+      document.getElementById(id).hidden = !settings.legend[key];
+    for (const key of Object.keys(LG_SECTIONS))
+      document.getElementById('lg-opt-' + key).disabled = !settings.panels.legend;
+  }
+  for (const key of Object.keys(LG_SECTIONS)) {
+    const box = document.getElementById('lg-opt-' + key);
+    box.checked = settings.legend[key];
+    box.addEventListener('change', () => {
+      settings.legend[key] = box.checked;
+      applyLegendSections(); saveSettings(settings);
+    });
   }
   function toggleFurl() {
     settings.furled = !settings.furled;
@@ -258,6 +276,22 @@ async function boot() {
   }
   applyPanels();
   for (const key of Object.keys(PANEL_RENDER)) if (settings.panels[key]) PANEL_RENDER[key]();
+
+  // statistics drawer under the counters — the cartouche's expansion-band
+  // manner: chevrons open it, flip while open, state persists
+  const statsToggle = document.getElementById('stats-toggle');
+  const statsDrawer = document.getElementById('stats-drawer');
+  function applyStatsDrawer() {
+    statsDrawer.hidden = !settings.statsOpen;
+    statsToggle.setAttribute('aria-expanded', String(settings.statsOpen));
+  }
+  statsToggle.addEventListener('click', () => {
+    settings.statsOpen = !settings.statsOpen;
+    applyStatsDrawer(); saveSettings(settings);
+    if (settings.statsOpen) renderStatsPanel(true);
+  });
+  applyStatsDrawer();
+  if (settings.statsOpen) renderStatsPanel(true);
 
   // performance tier: render + observation knobs only — the world's spawns and
   // fates never change, so switching live is safe (and instant).
@@ -378,7 +412,7 @@ async function boot() {
       portLife = world.portLifecycleAt(latestSnap.simClock);
       if (showRoutes) laneWeightsCache = world.laneWeightsAt(latestSnap.simClock);
       if (settings.panels.events) renderEventsPanel();
-      if (settings.panels.stats) renderStatsPanel();
+      if (!settings.furled && settings.panels.counters && settings.statsOpen) renderStatsPanel();
       if (settings.panels.tracker) renderTrackerPanel();
       ui.updateHUD(latestSnap); renderPanel();
     }

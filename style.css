@@ -41,7 +41,7 @@ body::after {
 }
 
 /* ---- shared card treatment: aged paper with deckle shadow + ink hairline ---- */
-.cartouche, .counters, .helm, .ledger, .legend, .events, .stats, .tracker {
+.cartouche, .counters, .helm, .ledger, .legend, .events, .tracker {
   position: fixed;
   z-index: 3;
   background: linear-gradient(180deg, rgba(239,228,203,0.94), rgba(231,218,189,0.9));
@@ -51,7 +51,7 @@ body::after {
 }
 /* the menu toggles cards on/off — flex cards need [hidden] to win over display */
 .counters[hidden], .helm[hidden], .legend[hidden], .events[hidden],
-.stats[hidden], .tracker[hidden] { display: none; }
+.tracker[hidden] { display: none; }
 
 /* ---- cartouche ---- */
 /* z above the other cards: its open menu must never be shadowed by the
@@ -105,14 +105,27 @@ body::after {
 .menu-h { margin: 0 0 6px; font-size: 10px; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-soft); }
 .menu-item { display: flex; align-items: center; gap: 9px; font-size: 14px; cursor: pointer; padding: 3px 0; }
 .menu-item input { width: 15px; height: 15px; accent-color: #8a6a2c; cursor: pointer; margin: 0; }
+/* nested toggles (the legend's sections) — a hairline marks the branch */
+.menu-sub { margin: 0 0 2px 7px; padding-left: 13px; border-left: 1px solid var(--paper-edge); }
+.menu-sub .menu-item { font-size: 13px; padding: 2px 0; }
+.menu-sub .menu-item input { width: 13px; height: 13px; }
+.menu-sub .menu-item:has(input:disabled) { opacity: .45; cursor: default; }
 .menu-note { margin: 4px 0 0 24px; font-size: 11px; font-style: italic; color: var(--ink-soft); }
 .menu-link { display: inline-block; font-size: 13.5px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--paper-edge); }
 .menu-link:hover { color: var(--red); border-bottom-color: var(--red); }
 
-/* ---- counters ---- */
-.counters { top: 18px; right: 18px; display: flex; gap: 4px; padding: 10px 8px; }
+/* ---- counters (+ the statistics drawer folded beneath) ---- */
+.counters { top: 18px; right: 18px; display: flex; flex-direction: column; padding: 10px 8px 3px; }
+.stat-row { display: flex; gap: 4px; justify-content: center; }
 .stat { display: flex; flex-direction: column; align-items: center; padding: 2px 14px; }
 .stat + .stat { border-left: 1px solid var(--paper-edge); }
+.counters .menu-expander { margin-top: 5px; }
+.stats-drawer { width: 278px; margin: 8px 4px 0; padding: 2px 6px 4px; border-top: 1px solid var(--paper-edge);
+  max-height: min(52vh, 460px); overflow: auto; }
+.stats-drawer[hidden] { display: none; }
+.stats-drawer dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 8px 0 4px; font-size: 13px; }
+.stats-drawer dt { text-transform: uppercase; font-size: 10px; letter-spacing: .14em; color: var(--ink-soft); align-self: center; }
+.stats-drawer dd { margin: 0; font-variant-numeric: tabular-nums; }
 .stat .num { font-family: var(--serif); font-size: 26px; font-variant-numeric: tabular-nums; line-height: 1; }
 .stat .cap { font-size: 9px; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-soft); margin-top: 4px; }
 
@@ -159,16 +172,16 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
   border-top: 1px solid var(--paper-edge); padding-top: 7px; margin: 10px 0 0; }
 .war { color: var(--red); font-style: italic; }
 
-/* ---- legend (menu-toggled) ---- */
-.legend { left: 18px; bottom: 150px; width: 236px; max-height: min(46vh, 420px); overflow: auto; padding: 12px 16px 14px; }
+/* ---- legend (menu-toggled, bottom-right) ---- */
+.legend { right: 18px; bottom: 34px; width: 236px; max-height: min(46vh, 420px); overflow: auto; padding: 12px 16px 14px; }
 .lg-row { display: flex; align-items: center; gap: 9px; padding: 2.5px 0; font-size: 12.5px; }
 .lg-row canvas { flex: none; }
 .legend .section-h { margin-top: 10px; }
 .lg-flags { columns: 2; column-gap: 12px; }
 .lg-flags .lg-row { break-inside: avoid; }
 
-/* ---- events log (menu-toggled): losses + wars ---- */
-.events { right: 18px; bottom: 68px; width: min(90vw, 330px); max-height: min(38vh, 340px); overflow: auto; padding: 12px 16px 14px; }
+/* ---- events log (menu-toggled, bottom-left above the helm): losses + wars ---- */
+.events { left: 18px; bottom: 150px; width: min(90vw, 330px); max-height: min(38vh, 340px); overflow: auto; padding: 12px 16px 14px; }
 .evlist { list-style: none; margin: 4px 0 0; padding: 0; }
 .evlist li { display: flex; gap: 10px; padding: 5px 0; border-bottom: 1px dashed var(--paper-edge); font-size: 12.5px; line-height: 1.35; }
 .ev-date { flex: none; width: 82px; font-variant-numeric: tabular-nums; color: var(--ink-soft); }
@@ -178,11 +191,7 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
 .menu-btn { background: none; border: none; border-bottom: 1px solid var(--paper-edge); padding: 0; margin-top: 6px; cursor: pointer; font: inherit; font-size: 13.5px; color: var(--ink); }
 .menu-btn:hover { color: var(--red); border-bottom-color: var(--red); }
 
-/* ---- statistics (menu-toggled): fleet totals, hardest passages, cargoes ---- */
-.stats { left: 316px; bottom: 46px; width: 300px; max-height: min(48vh, 440px); overflow: auto; padding: 12px 16px 14px; }
-.stats dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 6px 0 4px; font-size: 13px; }
-.stats dt { text-transform: uppercase; font-size: 10px; letter-spacing: .14em; color: var(--ink-soft); align-self: center; }
-.stats dd { margin: 0; font-variant-numeric: tabular-nums; }
+/* ---- statistics lists (inside the counters drawer) ---- */
 .st-list { list-style: none; margin: 2px 0 0; padding: 0; }
 .st-list li { display: flex; justify-content: space-between; gap: 10px; padding: 4px 0; border-bottom: 1px dashed var(--paper-edge); font-size: 12.5px; }
 .st-list .dur { color: var(--ink-soft); font-variant-numeric: tabular-nums; flex: none; }
@@ -206,5 +215,5 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
   .counters { padding: 7px 4px; } .stat { padding: 2px 9px; } .stat .num { font-size: 20px; }
   .cartouche { max-width: 62vw; padding: 10px 16px 8px; }
   .ledger { top: auto; bottom: 30px; right: 8px; left: 8px; width: auto; max-height: 56vh; }
-  .hint, .legend, .events, .stats, .tracker { display: none; }
+  .hint, .legend, .events, .tracker { display: none; }
 }
