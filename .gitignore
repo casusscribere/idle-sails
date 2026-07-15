@@ -6,3 +6,7 @@ pipeline/build/
 
 # GitHub Pages CI staging dir
 _site/
+
+#custom
+feature-ideas
+feature-ideas/*
