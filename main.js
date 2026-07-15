@@ -160,11 +160,16 @@ async function boot() {
     }
   }
   function deselect() { selectedVesselId = null; selectedPortId = null; selectedWreckId = null; selectedArchiveId = null; lastPanelSig = ''; }
-  function selectVessel(id) { deselect(); selectedVesselId = id; renderPanel(); }
-  function selectPort(id) { deselect(); selectedPortId = id; renderPanel(); }
-  function selectWreck(id) { deselect(); selectedWreckId = id; renderPanel(); }
-  function selectArchived(id) { deselect(); selectedArchiveId = id; renderPanel(); }
-  function clearSelection() { deselect(); ui.hideLedger(); }
+  // on mobile a selection presents the ledger as the bottom sheet
+  function present() { renderPanel(); if (isMobile()) openSheet('ledger'); }
+  function selectVessel(id) { deselect(); selectedVesselId = id; present(); }
+  function selectPort(id) { deselect(); selectedPortId = id; present(); }
+  function selectWreck(id) { deselect(); selectedWreckId = id; present(); }
+  function selectArchived(id) { deselect(); selectedArchiveId = id; present(); }
+  function clearSelection() {
+    deselect(); ui.hideLedger();
+    if (activeSheet === 'ledger') { activeSheet = null; applyPanels(); }
+  }
 
   const ui = createUI({
     onSpeed: (m) => { speed = m; },
@@ -228,21 +233,86 @@ async function boot() {
   const PANEL_EL = { legend: 'legend', events: 'events', tracker: 'tracker', counters: 'counters', helm: 'helm' };
   const cartouche = document.getElementById('cartouche');
   const hintEl = document.getElementById('hint');
+
+  // ---- mobile bottom sheets (the map-app pattern) ----
+  // Below 720px the ledger, legend, events, and tracker present as non-modal
+  // bottom sheets, ONE at a time; the chart stays interactive above. Desktop
+  // is untouched: the same elements sit in their corner docks.
+  const mobileMq = matchMedia('(max-width: 719px)');
+  const SHEETS = ['ledger', 'legend', 'events', 'tracker'];
+  let activeSheet = null;
+  function isMobile() { return mobileMq.matches; }
+  function openSheet(id) {
+    if (!isMobile() || settings.furled) return;
+    if (id !== 'ledger' && activeSheet === 'ledger') clearSelection();
+    activeSheet = id;
+    menu.hidden = true; menuToggle.setAttribute('aria-expanded', 'false');
+    applyPanels();
+  }
+  function closeSheet() {
+    const was = activeSheet;
+    activeSheet = null;
+    if (was === 'ledger') clearSelection();
+    applyPanels();
+  }
+  mobileMq.addEventListener('change', () => {
+    // crossing the breakpoint: drop any sheet; a live selection re-presents
+    activeSheet = null;
+    if (isMobile() && (selectedVesselId ?? selectedPortId ?? selectedWreckId ?? selectedArchiveId) != null)
+      activeSheet = 'ledger';
+    applyPanels();
+  });
+
   function applyPanels() {
-    for (const [key, id] of Object.entries(PANEL_EL))
-      document.getElementById(id).hidden = settings.furled || !settings.panels[key];
+    const mob = isMobile();
+    for (const [key, id] of Object.entries(PANEL_EL)) {
+      let show = !settings.furled && settings.panels[key];
+      if (mob && SHEETS.includes(id)) show = show && activeSheet === id;
+      document.getElementById(id).hidden = !show;
+    }
+    for (const id of SHEETS)
+      document.getElementById(id).classList.toggle('as-sheet', mob && activeSheet === id);
     cartouche.classList.toggle('furled', settings.furled);
     // the hint shares the legend's bottom-right corner — yield when it's on
     hintEl.hidden = settings.furled || settings.panels.legend;
     applyLegendSections();
+    applyCollapsed();
+  }
+
+  // ---- per-panel header collapse (the uniform disclosure idiom) ----
+  // Desktop: the header collapses the card to its title bar in place.
+  // Mobile sheet form: the header is the dismiss bar (closes = turns off).
+  const COLLAPSIBLE = { legend: 'legend-body', events: 'events-body', tracker: 'tracker-body' };
+  function applyCollapsed() {
+    const mob = isMobile();
+    for (const [key, id] of Object.entries(COLLAPSIBLE)) {
+      document.getElementById(id).hidden = !mob && settings.collapsed[key];
+      document.getElementById('ch-' + key).setAttribute('aria-expanded', String(mob || !settings.collapsed[key]));
+    }
+  }
+  for (const key of Object.keys(COLLAPSIBLE)) {
+    document.getElementById('ch-' + key).addEventListener('click', () => {
+      if (isMobile()) {
+        settings.panels[key] = false;
+        document.getElementById('pn-' + key).checked = false;
+        closeSheet(); saveSettings(settings);
+        return;
+      }
+      settings.collapsed[key] = !settings.collapsed[key];
+      applyCollapsed(); saveSettings(settings);
+    });
   }
   // the legend's toggle tree: each section independently, under the parent
   const LG_SECTIONS = { ships: 'lg-ships', flags: 'lg-flags' };
   function applyLegendSections() {
     for (const [key, id] of Object.entries(LG_SECTIONS))
       document.getElementById(id).hidden = !settings.legend[key];
-    for (const key of Object.keys(LG_SECTIONS))
-      document.getElementById('lg-opt-' + key).disabled = !settings.panels.legend;
+    for (const key of Object.keys(LG_SECTIONS)) {
+      const box = document.getElementById('lg-opt-' + key);
+      box.disabled = !settings.panels.legend;
+      // class instead of :has(input:disabled) — Firefox ESR ≤115 lacks :has()
+      box.closest('.menu-item').classList.toggle('is-disabled', box.disabled);
+    }
   }
   for (const key of Object.keys(LG_SECTIONS)) {
     const box = document.getElementById('lg-opt-' + key);
@@ -254,9 +324,19 @@ async function boot() {
   }
   function toggleFurl() {
     settings.furled = !settings.furled;
-    if (settings.furled) { menu.hidden = true; menuToggle.setAttribute('aria-expanded', 'false'); }
+    if (settings.furled) {
+      menu.hidden = true; menuToggle.setAttribute('aria-expanded', 'false');
+      if (activeSheet === 'ledger') clearSelection(); else activeSheet = null;
+    }
     applyPanels(); saveSettings(settings);
   }
+  // Escape: close the options first, then any open sheet
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (!menu.hidden) {
+      menu.hidden = true; menuToggle.setAttribute('aria-expanded', 'false'); menuToggle.focus();
+    } else if (activeSheet) closeSheet();
+  });
   cartouche.addEventListener('click', (e) => {
     // the menu's own controls (and the hamburger) keep their meanings
     if (!settings.furled && e.target.closest('button, input, label, a')) return;
@@ -270,7 +350,10 @@ async function boot() {
     box.checked = settings.panels[key];
     box.addEventListener('change', () => {
       settings.panels[key] = box.checked;
-      applyPanels(); saveSettings(settings);
+      saveSettings(settings);
+      // on mobile, switching a sheet-capable panel on presents its sheet
+      if (box.checked && isMobile() && SHEETS.includes(PANEL_EL[key])) openSheet(PANEL_EL[key]);
+      else applyPanels();
       if (box.checked && PANEL_RENDER[key]) PANEL_RENDER[key]();
     });
   }

@@ -188,6 +188,29 @@ Every design decision answers to both of these:
   aria-current mark on the current one, and "⚓ Return to the chart" back to
   the sim; each page carries one `<script defer src="nav.js">` line. To add
   a page: extend PAGES in nav.js + include the script.
+- **UI overhaul (2026-07-15): docks, uniform disclosure, mobile sheets.**
+  Research-grounded (NN/g progressive disclosure, map-app sheet pattern,
+  WCAG 2.2 §2.5.8). **Corner docks**: four fixed flex columns (tl cartouche ·
+  tr ledger/counters/tracker · bl events/helm · br legend/hint) replace all
+  hand-tuned card coordinates — hidden cards free their slot, the ledger
+  joins the right stack instead of covering the counters, top/bottom docks
+  own separate vertical territories (58/36 dvh) and cards compress+scroll
+  inside a full dock (helm and counter-row never compress). **Uniform
+  disclosure**: legend/events/tracker each carry a header band that
+  collapses the card to its title bar in place (persisted as
+  `collapsed.{…}`); counters keep the stats band, cartouche keeps furl.
+  **Mobile (<720px)**: ledger/legend/events/tracker present as non-modal
+  bottom sheets, one at a time (`.as-sheet` + a ~50-line manager in
+  main.js); header tap dismisses (and unchecks the panel); the chart stays
+  interactive; the top row auto-yields (cartouche `calc(100vw−208px)` cap,
+  clean down to 320px). **Hardening**: 44px targets on coarse pointers,
+  `touch-action:manipulation`, tap-highlight off, safe-area insets, every
+  `vh` paired with `dvh`, `-webkit-backdrop-filter` added (app + research
+  nav), the one `:has()` replaced with a JS class, Escape closes
+  menu/sheets, reduced-motion honoured. Verified headless: programmatic
+  no-overlap rect asserts (all panels + drawer + open ledger), sheet
+  behaviour at 320–414px, target audit ≥24px (menu rows 44), collapse
+  persistence across reload. 36 tests green.
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —

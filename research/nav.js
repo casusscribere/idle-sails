@@ -21,7 +21,7 @@
   style.textContent = `
 .research-nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:2px;flex-wrap:wrap;
   padding:8px 14px;background:color-mix(in srgb,var(--card) 94%,transparent);
-  border-bottom:1px solid var(--edge);backdrop-filter:blur(3px);
+  border-bottom:1px solid var(--edge);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
   font-family:var(--sans);font-size:12.5px}
 .research-nav a{color:var(--ink-soft);text-decoration:none;border-bottom:none;padding:4px 9px;border-radius:3px;letter-spacing:.04em;white-space:nowrap}
 .research-nav a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 8%,transparent)}

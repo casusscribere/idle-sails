@@ -37,12 +37,14 @@ export function defaultSettings() {
   // panels stowed — the chart alone. Click it again to unfurl.
   // statsOpen: the statistics drawer under the counters (chevron band).
   // legend.{ships,flags}: the legend's sections, independently toggleable.
+  // collapsed.{…}: per-panel header collapse (title bar only, in place).
   return {
     perfTier: 'medium',
     panels: { ...DEFAULT_PANELS },
     furled: false,
     statsOpen: false,
-    legend: { ships: true, flags: true }
+    legend: { ships: true, flags: true },
+    collapsed: { legend: false, events: false, tracker: false }
   };
 }
 
@@ -62,6 +64,9 @@ export function loadSettings(storage = defaultStorage()) {
     if (s && s.legend && typeof s.legend === 'object')
       for (const k of Object.keys(out.legend))
         if (typeof s.legend[k] === 'boolean') out.legend[k] = s.legend[k];
+    if (s && s.collapsed && typeof s.collapsed === 'object')
+      for (const k of Object.keys(out.collapsed))
+        if (typeof s.collapsed[k] === 'boolean') out.collapsed[k] = s.collapsed[k];
     return out;
   } catch { return out; }
 }

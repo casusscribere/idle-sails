@@ -11,105 +11,125 @@
 <body>
   <canvas id="chart" aria-label="A living sea chart of the age of sail"></canvas>
 
-  <!-- title cartouche -->
-  <header class="cartouche" id="cartouche" tabindex="0" aria-label="Idle Sails — click to furl or unfurl the instruments">
-    <div class="rule"></div>
-    <h1>Idle&nbsp;Sails</h1>
-    <p class="sub">An age-of-sail chart that sails itself</p>
-    <p class="clock"><span id="date">—</span> <span class="season" id="season"></span></p>
-    <p class="era" id="era"></p>
-    <div class="rule"></div>
-    <div class="menu" id="menu" hidden>
-      <p class="menu-h">Overlays</p>
-      <label class="menu-item">
-        <input type="checkbox" id="ov-routes">
-        <span>Popular trade routes</span>
-      </label>
-      <p class="menu-note">Line weight ∝ traffic · colour = flag</p>
-      <p class="menu-h" style="margin-top:14px">Panels</p>
-      <label class="menu-item"><input type="checkbox" id="pn-legend"><span>Legend</span></label>
-      <div class="menu-sub">
-        <label class="menu-item"><input type="checkbox" id="lg-opt-ships" checked><span>Ship types</span></label>
-        <label class="menu-item"><input type="checkbox" id="lg-opt-flags" checked><span>Allegiance</span></label>
-      </div>
-      <label class="menu-item"><input type="checkbox" id="pn-events"><span>Events log</span></label>
-      <label class="menu-item"><input type="checkbox" id="pn-tracker"><span>Tracked vessels</span></label>
-      <label class="menu-item"><input type="checkbox" id="pn-counters" checked><span>Counters</span></label>
-      <label class="menu-item"><input type="checkbox" id="pn-helm" checked><span>Speed instrument</span></label>
-      <p class="menu-h" style="margin-top:14px">Performance</p>
-      <div role="radiogroup" aria-label="Performance">
-        <label class="menu-item"><input type="radio" name="perf" value="low"><span>Low</span></label>
-        <label class="menu-item"><input type="radio" name="perf" value="medium" checked><span>Medium</span></label>
-        <label class="menu-item"><input type="radio" name="perf" value="high"><span>High</span></label>
-      </div>
-      <p class="menu-note" id="perf-note">The standard chart.</p>
-      <p class="menu-h" style="margin-top:14px">Reference</p>
-      <a class="menu-link" href="research/" target="_blank" rel="noopener">Port &amp; route research ↗</a><br>
-      <button class="menu-link menu-btn" id="dbg-export" type="button">Export run data ↓</button>
-    </div>
-    <!-- disclosure toggler for the chart options above: engraved chevrons under
-         the rule, rotating when open (replaces the old hamburger) -->
-    <button class="menu-expander" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Chart options" title="Chart options">
-      <svg width="54" height="8" viewBox="0 0 54 8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 2 L9 6 L15 2"/>
-        <path d="M21 2 L27 6 L33 2"/>
-        <path d="M39 2 L45 6 L51 2"/>
-      </svg>
-    </button>
-  </header>
+  <!-- Corner docks: each edge's cards stack in a flex column, so a hidden or
+       collapsed card frees its slot and nothing ever overlaps. The docks
+       themselves pass pointer events through to the chart. -->
 
-  <!-- ambient counters, with the statistics drawer folded beneath them
-       (same expansion-band manner as the cartouche) -->
-  <div class="counters" id="counters" role="status" aria-live="off">
-    <div class="stat-row">
-      <div class="stat"><span class="num" id="c-sea">0</span><span class="cap">at sea</span></div>
-      <div class="stat"><span class="num" id="c-arr">0</span><span class="cap">arrived</span></div>
-      <div class="stat"><span class="num" id="c-lost">0</span><span class="cap">lost</span></div>
-    </div>
-    <div class="stats-drawer" id="stats-drawer" hidden>
-      <div id="stats-body"></div>
-    </div>
-    <button class="menu-expander" id="stats-toggle" type="button" aria-expanded="false" aria-controls="stats-drawer" aria-label="Statistics" title="Statistics">
-      <svg width="54" height="8" viewBox="0 0 54 8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 2 L9 6 L15 2"/>
-        <path d="M21 2 L27 6 L33 2"/>
-        <path d="M39 2 L45 6 L51 2"/>
-      </svg>
-    </button>
+  <div class="dock dock-tl" id="dock-tl">
+    <!-- title cartouche -->
+    <header class="cartouche" id="cartouche" tabindex="0" aria-label="Idle Sails — click to furl or unfurl the instruments">
+      <div class="rule"></div>
+      <h1>Idle&nbsp;Sails</h1>
+      <p class="sub">An age-of-sail chart that sails itself</p>
+      <p class="clock"><span id="date">—</span> <span class="season" id="season"></span></p>
+      <p class="era" id="era"></p>
+      <div class="rule"></div>
+      <div class="menu" id="menu" hidden>
+        <p class="menu-h">Overlays</p>
+        <label class="menu-item">
+          <input type="checkbox" id="ov-routes">
+          <span>Popular trade routes</span>
+        </label>
+        <p class="menu-note">Line weight ∝ traffic · colour = flag</p>
+        <p class="menu-h" style="margin-top:14px">Panels</p>
+        <label class="menu-item"><input type="checkbox" id="pn-counters" checked><span>Counters</span></label>
+        <label class="menu-item"><input type="checkbox" id="pn-tracker"><span>Tracked vessels</span></label>
+        <label class="menu-item"><input type="checkbox" id="pn-events"><span>Events log</span></label>
+        <label class="menu-item"><input type="checkbox" id="pn-helm" checked><span>Speed instrument</span></label>
+        <label class="menu-item"><input type="checkbox" id="pn-legend"><span>Legend</span></label>
+        <div class="menu-sub">
+          <label class="menu-item"><input type="checkbox" id="lg-opt-ships" checked><span>Ship types</span></label>
+          <label class="menu-item"><input type="checkbox" id="lg-opt-flags" checked><span>Allegiance</span></label>
+        </div>
+        <p class="menu-h" style="margin-top:14px">Performance</p>
+        <div role="radiogroup" aria-label="Performance">
+          <label class="menu-item"><input type="radio" name="perf" value="low"><span>Low</span></label>
+          <label class="menu-item"><input type="radio" name="perf" value="medium" checked><span>Medium</span></label>
+          <label class="menu-item"><input type="radio" name="perf" value="high"><span>High</span></label>
+        </div>
+        <p class="menu-note" id="perf-note">The standard chart.</p>
+        <p class="menu-h" style="margin-top:14px">Reference</p>
+        <a class="menu-link" href="research/" target="_blank" rel="noopener">Port &amp; route research ↗</a><br>
+        <button class="menu-link menu-btn" id="dbg-export" type="button">Export run data ↓</button>
+      </div>
+      <!-- disclosure toggler for the chart options above: engraved chevrons under
+           the rule, rotating when open -->
+      <button class="menu-expander" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Chart options" title="Chart options">
+        <svg width="54" height="8" viewBox="0 0 54 8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 2 L9 6 L15 2"/>
+          <path d="M21 2 L27 6 L33 2"/>
+          <path d="M39 2 L45 6 L51 2"/>
+        </svg>
+      </button>
+    </header>
   </div>
 
-  <!-- speed instrument -->
-  <div class="helm" id="helm">
-    <label for="speed">Sim speed</label>
-    <input id="speed" type="range" min="0" max="1000" value="560" aria-describedby="speed-read">
-    <output id="speed-read">—</output>
+  <div class="dock dock-tr" id="dock-tr">
+    <!-- vessel ledger (opens on selecting a ship; top of the right stack) -->
+    <aside class="ledger" id="ledger" hidden aria-live="polite">
+      <button class="close" id="ledger-close" aria-label="Close vessel details">×</button>
+      <div id="ledger-body"></div>
+    </aside>
+
+    <!-- ambient counters, with the statistics drawer folded beneath them -->
+    <div class="counters" id="counters" role="status" aria-live="off">
+      <div class="stat-row">
+        <div class="stat"><span class="num" id="c-sea">0</span><span class="cap">at sea</span></div>
+        <div class="stat"><span class="num" id="c-arr">0</span><span class="cap">arrived</span></div>
+        <div class="stat"><span class="num" id="c-lost">0</span><span class="cap">lost</span></div>
+      </div>
+      <div class="stats-drawer" id="stats-drawer" hidden>
+        <div id="stats-body"></div>
+      </div>
+      <button class="menu-expander" id="stats-toggle" type="button" aria-expanded="false" aria-controls="stats-drawer" aria-label="Statistics" title="Statistics">
+        <svg width="54" height="8" viewBox="0 0 54 8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 2 L9 6 L15 2"/>
+          <path d="M21 2 L27 6 L33 2"/>
+          <path d="M39 2 L45 6 L51 2"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- tracker: the followed fleet — pinned vessels and their kept records -->
+    <aside class="tracker" id="tracker" hidden aria-label="Tracked vessels">
+      <button class="card-h" id="ch-tracker" type="button" aria-expanded="true" aria-controls="tracker-body">
+        <span>Tracked vessels</span>
+        <svg class="chev" width="12" height="8" viewBox="0 0 12 8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2 L6 6 L10 2"/></svg>
+      </button>
+      <div id="tracker-body"></div>
+    </aside>
   </div>
 
-  <!-- legend: glyph shapes = ship category, colours = allegiance (menu-toggled) -->
-  <aside class="legend" id="legend" hidden aria-label="Chart legend">
-    <p class="menu-h">Legend</p>
-    <div id="legend-body"></div>
-  </aside>
+  <div class="dock dock-bl" id="dock-bl">
+    <!-- events log: losses + wars, notable entries only -->
+    <aside class="events" id="events" hidden aria-label="Events log">
+      <button class="card-h" id="ch-events" type="button" aria-expanded="true" aria-controls="events-body">
+        <span>The log — losses &amp; wars</span>
+        <svg class="chev" width="12" height="8" viewBox="0 0 12 8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2 L6 6 L10 2"/></svg>
+      </button>
+      <ul id="events-body" class="evlist"></ul>
+    </aside>
 
-  <!-- events log: losses + wars, notable entries only (menu-toggled) -->
-  <aside class="events" id="events" hidden aria-label="Events log">
-    <p class="menu-h">The log — losses &amp; wars</p>
-    <ul id="events-body" class="evlist"></ul>
-  </aside>
+    <!-- speed instrument -->
+    <div class="helm" id="helm">
+      <label for="speed">Sim speed</label>
+      <input id="speed" type="range" min="0" max="1000" value="560" aria-describedby="speed-read">
+      <output id="speed-read">—</output>
+    </div>
+  </div>
 
-  <!-- tracker: the followed fleet — pinned vessels and their kept records (menu-toggled) -->
-  <aside class="tracker" id="tracker" hidden aria-label="Tracked vessels">
-    <p class="menu-h">Tracked vessels</p>
-    <div id="tracker-body"></div>
-  </aside>
+  <div class="dock dock-br" id="dock-br">
+    <!-- legend: glyph shapes = ship category, colours = allegiance -->
+    <aside class="legend" id="legend" hidden aria-label="Chart legend">
+      <button class="card-h" id="ch-legend" type="button" aria-expanded="true" aria-controls="legend-body">
+        <span>Legend</span>
+        <svg class="chev" width="12" height="8" viewBox="0 0 12 8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2 L6 6 L10 2"/></svg>
+      </button>
+      <div id="legend-body"></div>
+    </aside>
 
-  <!-- vessel ledger (opens on selecting a ship) -->
-  <aside class="ledger" id="ledger" hidden aria-live="polite">
-    <button class="close" id="ledger-close" aria-label="Close vessel details">×</button>
-    <div id="ledger-body"></div>
-  </aside>
-
-  <p class="hint" id="hint">Click a vessel to inspect her. Everything else runs itself.</p>
+    <p class="hint" id="hint">Click a vessel to inspect her. Everything else runs itself.</p>
+  </div>
 
   <script type="module" src="main.js"></script>
 </body>

@@ -40,23 +40,67 @@ body::after {
   box-shadow: inset 0 3px 0 rgba(255, 248, 235, 0.3), 0 -4px 9px -5px rgba(58, 44, 28, 0.55);
 }
 
+/* ---- corner docks ------------------------------------------------------- */
+/* Each edge's cards stack in a fixed flex column: a hidden or collapsed card
+   frees its slot, so cards never overlap and never need hand-tuned
+   coordinates. Empty dock space passes pointer events through to the chart.
+   Bottom docks are anchored by their bottom edge, so they grow upward. */
+.dock {
+  position: fixed; z-index: 3;
+  display: flex; flex-direction: column; gap: 12px;
+  pointer-events: none;
+  overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none;
+}
+.dock::-webkit-scrollbar { display: none; }
+/* cards may compress inside a full dock — each scrolls internally instead */
+.dock > * { pointer-events: auto; flex: 0 1 auto; min-height: 0; }
+/* top and bottom docks own separate vertical territories on their edge, so
+   a tall top stack can never run into the bottom stack (58 + 36 < 100) */
+.dock-tl, .dock-tr { max-height: 58vh; max-height: 58dvh; }
+.dock-bl, .dock-br { max-height: 36vh; max-height: 36dvh; }
+.dock-tl { top: 18px; left: calc(18px + env(safe-area-inset-left, 0px)); z-index: 4; align-items: flex-start; }
+.dock-tr { top: 18px; right: calc(18px + env(safe-area-inset-right, 0px)); align-items: flex-end; }
+.dock-bl { bottom: calc(28px + env(safe-area-inset-bottom, 0px)); left: calc(18px + env(safe-area-inset-left, 0px)); align-items: flex-start; }
+.dock-br { bottom: calc(28px + env(safe-area-inset-bottom, 0px)); right: calc(18px + env(safe-area-inset-right, 0px)); align-items: flex-end; }
+
 /* ---- shared card treatment: aged paper with deckle shadow + ink hairline ---- */
 .cartouche, .counters, .helm, .ledger, .legend, .events, .tracker {
-  position: fixed;
-  z-index: 3;
   background: linear-gradient(180deg, rgba(239,228,203,0.94), rgba(231,218,189,0.9));
   border: 1px solid var(--paper-edge);
   box-shadow: 0 2px 0 rgba(92,70,48,0.18), 0 10px 26px rgba(60,44,28,0.22);
+  -webkit-backdrop-filter: blur(1px);
   backdrop-filter: blur(1px);
 }
 /* the menu toggles cards on/off — flex cards need [hidden] to win over display */
 .counters[hidden], .helm[hidden], .legend[hidden], .events[hidden],
-.tracker[hidden] { display: none; }
+.tracker[hidden], .ledger[hidden] { display: none; }
+
+/* ---- panel header: the uniform collapse idiom ---------------------------- */
+/* Small-caps title + a chevron that flips while expanded; clicking collapses
+   the card to its title bar in place (the menu stays the on/off registry). */
+.card-h {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  width: 100%; min-height: 24px; margin: 0; padding: 2px 0 6px;
+  background: none; border: none; cursor: pointer; text-align: left;
+  font-family: inherit; font-size: 10px; text-transform: uppercase;
+  letter-spacing: .16em; color: var(--ink-soft);
+  touch-action: manipulation;
+}
+.card-h:hover { color: var(--ink); }
+.card-h .chev { flex: none; transition: transform .25s ease; }
+.card-h[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.card-h:focus-visible { outline: 1px solid var(--red); outline-offset: 2px; }
+#legend-body[hidden], #events-body[hidden], #tracker-body[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) { .card-h .chev { transition: none; } }
 
 /* ---- cartouche ---- */
-/* z above the other cards: its open menu must never be shadowed by the
-   legend/events panels sharing its side of the chart */
-.cartouche { top: 18px; left: 18px; padding: 14px 22px 12px; max-width: min(46vw, 360px); z-index: 4; }
+/* its dock (dock-tl) carries z-index 4, so the open menu overlays neighbours.
+   A flex column so that when the dock caps its height, the MENU compresses
+   and scrolls while the title block keeps its size. */
+.cartouche { padding: 14px 22px 12px; max-width: min(46vw, 360px);
+  display: flex; flex-direction: column; }
+.cartouche > * { flex: none; }
+.cartouche > .menu { flex: 0 1 auto; min-height: 0; }
 .cartouche .rule { height: 2px; background: var(--ink); opacity: .8; }
 .cartouche .rule:last-child { opacity: .5; height: 1px; }
 .cartouche h1 {
@@ -101,27 +145,33 @@ body::after {
 .menu-expander[aria-expanded="true"] svg { transform: rotate(180deg); }
 .menu-expander:focus-visible { outline: 1px solid var(--red); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { .menu-expander svg { transition: none; } }
-.menu { margin-top: 10px; }
+/* short viewports: the options scroll inside the card instead of overflowing */
+.menu { margin-top: 10px; max-height: 58vh; max-height: 58dvh; overflow-y: auto; overscroll-behavior: contain; }
 .menu-h { margin: 0 0 6px; font-size: 10px; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-soft); }
-.menu-item { display: flex; align-items: center; gap: 9px; font-size: 14px; cursor: pointer; padding: 3px 0; }
-.menu-item input { width: 15px; height: 15px; accent-color: #8a6a2c; cursor: pointer; margin: 0; }
+.menu-item { display: flex; align-items: center; gap: 9px; font-size: 14px; cursor: pointer; padding: 3px 0; touch-action: manipulation; }
+.menu-item input { width: 15px; height: 15px; accent-color: #8a6a2c; cursor: pointer; margin: 0; touch-action: manipulation; }
 /* nested toggles (the legend's sections) — a hairline marks the branch */
 .menu-sub { margin: 0 0 2px 7px; padding-left: 13px; border-left: 1px solid var(--paper-edge); }
 .menu-sub .menu-item { font-size: 13px; padding: 2px 0; }
 .menu-sub .menu-item input { width: 13px; height: 13px; }
-.menu-sub .menu-item:has(input:disabled) { opacity: .45; cursor: default; }
+/* set from JS (applyLegendSections) — :has() would exclude Firefox ESR ≤115 */
+.menu-sub .menu-item.is-disabled { opacity: .45; cursor: default; }
 .menu-note { margin: 4px 0 0 24px; font-size: 11px; font-style: italic; color: var(--ink-soft); }
 .menu-link { display: inline-block; font-size: 13.5px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--paper-edge); }
 .menu-link:hover { color: var(--red); border-bottom-color: var(--red); }
 
 /* ---- counters (+ the statistics drawer folded beneath) ---- */
-.counters { top: 18px; right: 18px; display: flex; flex-direction: column; padding: 10px 8px 3px; }
+/* when the dock compresses the card, the DRAWER shrinks and scrolls; the
+   counter row and the chevron band keep their size */
+.counters { display: flex; flex-direction: column; padding: 10px 8px 3px; }
+.counters > .stat-row, .counters > .menu-expander { flex: none; }
+.counters > .stats-drawer { flex: 0 1 auto; min-height: 0; }
 .stat-row { display: flex; gap: 4px; justify-content: center; }
 .stat { display: flex; flex-direction: column; align-items: center; padding: 2px 14px; }
 .stat + .stat { border-left: 1px solid var(--paper-edge); }
 .counters .menu-expander { margin-top: 5px; }
-.stats-drawer { width: 278px; margin: 8px 4px 0; padding: 2px 6px 4px; border-top: 1px solid var(--paper-edge);
-  max-height: min(52vh, 460px); overflow: auto; }
+.stats-drawer { width: 278px; max-width: 82vw; margin: 8px 4px 0; padding: 2px 6px 4px; border-top: 1px solid var(--paper-edge);
+  max-height: min(46vh, 460px); max-height: min(46dvh, 460px); overflow: auto; }
 .stats-drawer[hidden] { display: none; }
 .stats-drawer dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 8px 0 4px; font-size: 13px; }
 .stats-drawer dt { text-transform: uppercase; font-size: 10px; letter-spacing: .14em; color: var(--ink-soft); align-self: center; }
@@ -130,7 +180,8 @@ body::after {
 .stat .cap { font-size: 9px; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-soft); margin-top: 4px; }
 
 /* ---- helm / speed ---- */
-.helm { left: 18px; bottom: 46px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; width: min(78vw, 280px); }
+.helm { padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; width: min(78vw, 280px);
+  flex-shrink: 0; }        /* the helm never compresses in its dock */
 .helm label { font-size: 10px; text-transform: uppercase; letter-spacing: .18em; color: var(--ink-soft); }
 .helm output { font-family: var(--serif); font-size: 14px; font-style: italic; }
 input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 3px; background: var(--ink-soft); border-radius: 2px; outline: none; }
@@ -145,8 +196,8 @@ input[type=range]::-moz-range-thumb {
 }
 input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rgba(158,43,37,.4); }
 
-/* ---- vessel ledger ---- */
-.ledger { top: 18px; right: 18px; width: min(90vw, 340px); max-height: calc(100vh - 60px);
+/* ---- vessel ledger (top card of the right dock while open) ---- */
+.ledger { position: relative; width: min(90vw, 340px); max-height: min(62vh, 620px); max-height: min(62dvh, 620px);
   overflow: auto; padding: 18px 20px 22px; }
 .ledger .close { position: absolute; top: 8px; right: 10px; background: none; border: none; font-size: 22px; line-height: 1; color: var(--ink-soft); cursor: pointer; }
 .ledger h2 { font-family: var(--serif); font-size: 22px; margin: 2px 40px 2px 0; line-height: 1.1; }
@@ -172,16 +223,16 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
   border-top: 1px solid var(--paper-edge); padding-top: 7px; margin: 10px 0 0; }
 .war { color: var(--red); font-style: italic; }
 
-/* ---- legend (menu-toggled, bottom-right) ---- */
-.legend { right: 18px; bottom: 34px; width: 236px; max-height: min(46vh, 420px); overflow: auto; padding: 12px 16px 14px; }
+/* ---- legend (menu-toggled, bottom-right dock) ---- */
+.legend { width: 236px; max-height: min(46vh, 420px); max-height: min(46dvh, 420px); overflow: auto; padding: 12px 16px 14px; }
 .lg-row { display: flex; align-items: center; gap: 9px; padding: 2.5px 0; font-size: 12.5px; }
 .lg-row canvas { flex: none; }
 .legend .section-h { margin-top: 10px; }
 .lg-flags { columns: 2; column-gap: 12px; }
 .lg-flags .lg-row { break-inside: avoid; }
 
-/* ---- events log (menu-toggled, bottom-left above the helm): losses + wars ---- */
-.events { left: 18px; bottom: 150px; width: min(90vw, 330px); max-height: min(38vh, 340px); overflow: auto; padding: 12px 16px 14px; }
+/* ---- events log (menu-toggled, bottom-left dock above the helm): losses + wars ---- */
+.events { width: min(90vw, 330px); max-height: min(38vh, 340px); max-height: min(38dvh, 340px); overflow: auto; padding: 12px 16px 14px; }
 .evlist { list-style: none; margin: 4px 0 0; padding: 0; }
 .evlist li { display: flex; gap: 10px; padding: 5px 0; border-bottom: 1px dashed var(--paper-edge); font-size: 12.5px; line-height: 1.35; }
 .ev-date { flex: none; width: 82px; font-variant-numeric: tabular-nums; color: var(--ink-soft); }
@@ -196,8 +247,8 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
 .st-list li { display: flex; justify-content: space-between; gap: 10px; padding: 4px 0; border-bottom: 1px dashed var(--paper-edge); font-size: 12.5px; }
 .st-list .dur { color: var(--ink-soft); font-variant-numeric: tabular-nums; flex: none; }
 
-/* ---- tracker (menu-toggled): the followed fleet ---- */
-.tracker { right: 18px; top: 96px; width: min(90vw, 310px); max-height: min(36vh, 340px); overflow: auto; padding: 12px 16px 14px; }
+/* ---- tracker (menu-toggled, right dock): the followed fleet ---- */
+.tracker { width: min(90vw, 310px); max-height: min(36vh, 340px); max-height: min(36dvh, 340px); overflow: auto; padding: 12px 16px 14px; }
 
 /* the follow/unfollow control in a vessel's ledger */
 .pin-btn { position: absolute; top: 34px; right: 10px; background: none; border: 1px solid var(--paper-edge); border-radius: 2px;
@@ -205,15 +256,55 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
 .pin-btn:hover:not(:disabled) { color: var(--red); border-color: var(--red); }
 .pin-btn[disabled] { opacity: .45; cursor: default; }
 
-/* ---- hint ---- */
-.hint { position: fixed; z-index: 3; right: 18px; bottom: 34px; margin: 0; font-family: var(--serif); font-style: italic;
-  font-size: 13px; color: var(--ink-soft); max-width: 240px; text-align: right; pointer-events: none;
+/* ---- hint (bottom-right dock, under the legend) ---- */
+.hint { margin: 0; font-family: var(--serif); font-style: italic;
+  font-size: 13px; color: var(--ink-soft); max-width: 240px; text-align: right;
+  pointer-events: none !important;      /* never blocks the chart, even as a dock child */
   transition: opacity .6s; }
 .hint.gone { opacity: 0; }
 
-@media (max-width: 620px) {
-  .counters { padding: 7px 4px; } .stat { padding: 2px 9px; } .stat .num { font-size: 20px; }
-  .cartouche { max-width: 62vw; padding: 10px 16px 8px; }
-  .ledger { top: auto; bottom: 30px; right: 8px; left: 8px; width: auto; max-height: 56vh; }
-  .hint, .legend, .events, .tracker { display: none; }
+/* ---- touch & tap behaviour --------------------------------------------- */
+html { -webkit-tap-highlight-color: transparent; }
+button, input[type=range] { touch-action: manipulation; }
+@media (pointer: coarse) {
+  /* 44px targets on touch devices (24px is the WCAG floor; 44 is best practice) */
+  .menu-item, .card-h, .menu-expander, .menu-link, .menu-btn { min-height: 44px; }
+  .menu-item { align-items: center; }
+  .ledger .close { min-width: 44px; min-height: 44px; }
+  .pin-btn { padding: 8px 12px; }
+}
+
+/* ---- mobile (<720px): bottom sheets ------------------------------------- */
+/* The map-app pattern: the ledger, legend, events, and tracker present as
+   non-modal bottom sheets, one at a time (main.js sheet manager toggles
+   .as-sheet). The chart stays interactive above; counters + helm remain as
+   compact HUD cards in their docks. */
+@media (max-width: 719px) {
+  /* the top row must share the width: a slimmer title plate + tighter counters */
+  .counters { padding: 6px 3px 2px; } .stat { padding: 2px 7px; } .stat .num { font-size: 18px; }
+  .stat .cap { font-size: 8px; }
+  /* yield exactly the width the counters need: 100vw − counters(~166)
+     − edge margins − a breathing gap */
+  .cartouche { max-width: min(54vw, calc(100vw - 208px)); padding: 9px 12px 7px; }
+  .cartouche h1 { font-size: clamp(14px, 4.4vw, 21px); }
+  .cartouche .sub { font-size: 11.5px; }
+  .cartouche .clock { font-size: 11.5px; flex-wrap: wrap; gap: 6px; }
+  .hint { display: none; }
+
+  .as-sheet {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 6;
+    width: auto; max-width: none;
+    max-height: 60vh; max-height: 60dvh;
+    margin: 0; border-left: none; border-right: none; border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto; overscroll-behavior: contain;
+  }
+  /* the sheet's drag-handle bar */
+  .as-sheet::before {
+    content: ""; display: block; width: 44px; height: 4px; border-radius: 2px;
+    background: var(--paper-edge); margin: 2px auto 10px;
+  }
+  /* in sheet form the header reads as the dismiss bar — chevron points down */
+  .as-sheet .card-h[aria-expanded="true"] .chev { transform: none; }
 }
