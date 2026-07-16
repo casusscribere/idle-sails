@@ -64,7 +64,7 @@ body::after {
 .dock-br { bottom: calc(28px + env(safe-area-inset-bottom, 0px)); right: calc(18px + env(safe-area-inset-right, 0px)); align-items: flex-end; }
 
 /* ---- shared card treatment: aged paper with deckle shadow + ink hairline ---- */
-.cartouche, .counters, .helm, .ledger, .legend, .events, .tracker {
+.cartouche, .counters, .helm, .ledger, .legend, .events, .stats, .tracker {
   background: linear-gradient(180deg, rgba(239,228,203,0.94), rgba(231,218,189,0.9));
   border: 1px solid var(--paper-edge);
   box-shadow: 0 2px 0 rgba(92,70,48,0.18), 0 10px 26px rgba(60,44,28,0.22);
@@ -73,7 +73,7 @@ body::after {
 }
 /* the menu toggles cards on/off — flex cards need [hidden] to win over display */
 .counters[hidden], .helm[hidden], .legend[hidden], .events[hidden],
-.tracker[hidden], .ledger[hidden] { display: none; }
+.stats[hidden], .tracker[hidden], .ledger[hidden] { display: none; }
 
 /* ---- panel header: the uniform collapse idiom ---------------------------- */
 /* Small-caps title + a chevron that flips while expanded; clicking collapses
@@ -90,7 +90,7 @@ body::after {
 .card-h .chev { flex: none; transition: transform .25s ease; }
 .card-h[aria-expanded="true"] .chev { transform: rotate(180deg); }
 .card-h:focus-visible { outline: 1px solid var(--red); outline-offset: 2px; }
-#legend-body[hidden], #events-body[hidden], #tracker-body[hidden] { display: none; }
+#legend-body[hidden], #events-body[hidden], #stats-body[hidden], #tracker-body[hidden] { display: none; }
 @media (prefers-reduced-motion: reduce) { .card-h .chev { transition: none; } }
 
 /* ---- cartouche ---- */
@@ -161,22 +161,11 @@ body::after {
 .menu-link { display: inline-block; font-size: 13.5px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--paper-edge); }
 .menu-link:hover { color: var(--red); border-bottom-color: var(--red); }
 
-/* ---- counters (+ the statistics drawer folded beneath) ---- */
-/* when the dock compresses the card, the DRAWER shrinks and scrolls; the
-   counter row and the chevron band keep their size */
-.counters { display: flex; flex-direction: column; padding: 10px 8px 3px; }
-.counters > .stat-row, .counters > .menu-expander { flex: none; }
-.counters > .stats-drawer { flex: 0 1 auto; min-height: 0; }
+/* ---- counters ---- */
+.counters { padding: 10px 8px; flex-shrink: 0; }  /* the counter row never compresses */
 .stat-row { display: flex; gap: 4px; justify-content: center; }
 .stat { display: flex; flex-direction: column; align-items: center; padding: 2px 14px; }
 .stat + .stat { border-left: 1px solid var(--paper-edge); }
-.counters .menu-expander { margin-top: 5px; }
-.stats-drawer { width: 278px; max-width: 82vw; margin: 8px 4px 0; padding: 2px 6px 4px; border-top: 1px solid var(--paper-edge);
-  max-height: min(46vh, 460px); max-height: min(46dvh, 460px); overflow: auto; }
-.stats-drawer[hidden] { display: none; }
-.stats-drawer dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 8px 0 4px; font-size: 13px; }
-.stats-drawer dt { text-transform: uppercase; font-size: 10px; letter-spacing: .14em; color: var(--ink-soft); align-self: center; }
-.stats-drawer dd { margin: 0; font-variant-numeric: tabular-nums; }
 .stat .num { font-family: var(--serif); font-size: 26px; font-variant-numeric: tabular-nums; line-height: 1; }
 .stat .cap { font-size: 9px; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-soft); margin-top: 4px; }
 
@@ -243,7 +232,11 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
 .menu-btn { background: none; border: none; border-bottom: 1px solid var(--paper-edge); padding: 0; margin-top: 6px; cursor: pointer; font: inherit; font-size: 13.5px; color: var(--ink); }
 .menu-btn:hover { color: var(--red); border-bottom-color: var(--red); }
 
-/* ---- statistics lists (inside the counters drawer) ---- */
+/* ---- statistics (menu-toggled, right dock): fleet totals, hardest passages, cargoes ---- */
+.stats { width: min(90vw, 310px); max-height: min(46vh, 440px); max-height: min(46dvh, 440px); overflow: auto; padding: 12px 16px 14px; }
+.stats dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 2px 0 4px; font-size: 13px; }
+.stats dt { text-transform: uppercase; font-size: 10px; letter-spacing: .14em; color: var(--ink-soft); align-self: center; }
+.stats dd { margin: 0; font-variant-numeric: tabular-nums; }
 .st-list { list-style: none; margin: 2px 0 0; padding: 0; }
 .st-list li { display: flex; justify-content: space-between; gap: 10px; padding: 4px 0; border-bottom: 1px dashed var(--paper-edge); font-size: 12.5px; }
 .st-list .dur { color: var(--ink-soft); font-variant-numeric: tabular-nums; flex: none; }

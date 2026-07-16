@@ -1,0 +1,30 @@
+/* ARCHIVED 2026-07-16 — the statistics drawer folded under the counters.
+ *
+ * Configuration retired: from 2026-07-15 (commit 49ede15 "Regroup the panels")
+ * to 2026-07-16, the statistics panel lived INSIDE the counters card as a
+ * drawer (#stats-drawer) opened by a chevron expansion band (#stats-toggle,
+ * styled by the shared .menu-expander rules), persisted as settings.statsOpen.
+ *
+ * Replaced by: a standalone .stats card in the right dock with the uniform
+ * card-h disclosure header, toggled from the chart-options menu as
+ * settings.panels.stats (mobile: a bottom sheet like the other panels).
+ * An old saved statsOpen migrates to panels.stats in settings.js.
+ *
+ * These are the rules removed from style.css, kept verbatim for reference.
+ * Not loaded by anything — restore into style.css (with the matching
+ * index.html/main.js/settings.js wiring from git history) to revive.
+ */
+
+/* ---- counters (+ the statistics drawer folded beneath) ---- */
+/* when the dock compresses the card, the DRAWER shrinks and scrolls; the
+   counter row and the chevron band keep their size */
+.counters { display: flex; flex-direction: column; padding: 10px 8px 3px; }
+.counters > .stat-row, .counters > .menu-expander { flex: none; }
+.counters > .stats-drawer { flex: 0 1 auto; min-height: 0; }
+.counters .menu-expander { margin-top: 5px; }
+.stats-drawer { width: 278px; max-width: 82vw; margin: 8px 4px 0; padding: 2px 6px 4px; border-top: 1px solid var(--paper-edge);
+  max-height: min(46vh, 460px); max-height: min(46dvh, 460px); overflow: auto; }
+.stats-drawer[hidden] { display: none; }
+.stats-drawer dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 8px 0 4px; font-size: 13px; }
+.stats-drawer dt { text-transform: uppercase; font-size: 10px; letter-spacing: .14em; color: var(--ink-soft); align-self: center; }
+.stats-drawer dd { margin: 0; font-variant-numeric: tabular-nums; }

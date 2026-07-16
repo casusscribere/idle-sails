@@ -227,7 +227,7 @@ async function boot() {
   // call the render functions during boot when a panel was left switched on
   let lastEventsSig = '', lastStatsSig = '', lastTrackerSig = '';
   const laneNameById = new Map(datasets.routes.map(r => [r.id, r.name]));
-  const PANEL_RENDER = { events: () => renderEventsPanel(true), tracker: () => renderTrackerPanel(true) };
+  const PANEL_RENDER = { events: () => renderEventsPanel(true), stats: () => renderStatsPanel(true), tracker: () => renderTrackerPanel(true) };
 
   // panels (settings.panels): the menu shows/hides each on-display card.
   // A furled chart overrides them all — the cartouche collapses to a small
@@ -235,7 +235,7 @@ async function boot() {
   // unfurling restores whatever the settings say. Click-to-inspect still
   // works throughout — the ledger is the chart's business, not its chrome.
   buildLegend({ powers: datasets.powers });
-  const PANEL_EL = { legend: 'legend', events: 'events', tracker: 'tracker', counters: 'counters', helm: 'helm' };
+  const PANEL_EL = { legend: 'legend', events: 'events', stats: 'stats', tracker: 'tracker', counters: 'counters', helm: 'helm' };
   const cartouche = document.getElementById('cartouche');
   const hintEl = document.getElementById('hint');
 
@@ -244,7 +244,7 @@ async function boot() {
   // bottom sheets, ONE at a time; the chart stays interactive above. Desktop
   // is untouched: the same elements sit in their corner docks.
   const mobileMq = matchMedia('(max-width: 719px)');
-  const SHEETS = ['ledger', 'legend', 'events', 'tracker'];
+  const SHEETS = ['ledger', 'legend', 'events', 'stats', 'tracker'];
   let activeSheet = null;
   function isMobile() { return mobileMq.matches; }
   function openSheet(id) {
@@ -287,7 +287,7 @@ async function boot() {
   // ---- per-panel header collapse (the uniform disclosure idiom) ----
   // Desktop: the header collapses the card to its title bar in place.
   // Mobile sheet form: the header is the dismiss bar (closes = turns off).
-  const COLLAPSIBLE = { legend: 'legend-body', events: 'events-body', tracker: 'tracker-body' };
+  const COLLAPSIBLE = { legend: 'legend-body', events: 'events-body', stats: 'stats-body', tracker: 'tracker-body' };
   function applyCollapsed() {
     const mob = isMobile();
     for (const [key, id] of Object.entries(COLLAPSIBLE)) {
@@ -364,22 +364,6 @@ async function boot() {
   }
   applyPanels();
   for (const key of Object.keys(PANEL_RENDER)) if (settings.panels[key]) PANEL_RENDER[key]();
-
-  // statistics drawer under the counters — the cartouche's expansion-band
-  // manner: chevrons open it, flip while open, state persists
-  const statsToggle = document.getElementById('stats-toggle');
-  const statsDrawer = document.getElementById('stats-drawer');
-  function applyStatsDrawer() {
-    statsDrawer.hidden = !settings.statsOpen;
-    statsToggle.setAttribute('aria-expanded', String(settings.statsOpen));
-  }
-  statsToggle.addEventListener('click', () => {
-    settings.statsOpen = !settings.statsOpen;
-    applyStatsDrawer(); saveSettings(settings);
-    if (settings.statsOpen) renderStatsPanel(true);
-  });
-  applyStatsDrawer();
-  if (settings.statsOpen) renderStatsPanel(true);
 
   // performance tier: render + observation knobs only — the world's spawns and
   // fates never change, so switching live is safe (and instant).
@@ -500,7 +484,7 @@ async function boot() {
       portLife = world.portLifecycleAt(latestSnap.simClock);
       if (showRoutes) laneWeightsCache = world.laneWeightsAt(latestSnap.simClock);
       if (settings.panels.events) renderEventsPanel();
-      if (!settings.furled && settings.panels.counters && settings.statsOpen) renderStatsPanel();
+      if (settings.panels.stats) renderStatsPanel();
       if (settings.panels.tracker) renderTrackerPanel();
       ui.updateHUD(latestSnap); renderPanel();
     }

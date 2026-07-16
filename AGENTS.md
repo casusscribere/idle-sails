@@ -222,6 +222,15 @@ Every design decision answers to both of these:
   T1 (full-roster port name/ownership sweep → `research/port-eras.json`
   feeding `eraNames` + a future `eraPowers`) and T2 (one-sentence era blurb
   per port/name/ownership combination, charter register).
+- **Statistics panel un-drawered (2026-07-16):** the chevron band under the
+  counters is gone; statistics is back to a **menu-toggled standalone card**
+  in the right dock (between counters and tracker) with the uniform card-h
+  disclosure, persisted as `panels.stats` + `collapsed.stats` (a legacy saved
+  `statsOpen:true` migrates to `panels.stats` in settings.js); on mobile it
+  presents as a bottom sheet like the other panels. The retired drawer CSS is
+  archived verbatim in `archive/ui/stats-drawer-under-counters.css`.
+  Verified headless (toggle, collapse, persistence, migration, sheet swap /
+  dismiss, no-overlap); 37 tests green.
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —

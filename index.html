@@ -33,6 +33,7 @@
         <p class="menu-note">Line weight ∝ traffic · colour = flag</p>
         <p class="menu-h" style="margin-top:14px">Panels</p>
         <label class="menu-item"><input type="checkbox" id="pn-counters" checked><span>Counters</span></label>
+        <label class="menu-item"><input type="checkbox" id="pn-stats"><span>Statistics</span></label>
         <!-- disabled until vessel persistence (feature pass 5) gives a followed
              ship a life worth following beyond her single voyage -->
         <label class="menu-item is-disabled" title="Awaits vessel persistence"><input type="checkbox" id="pn-tracker" disabled><span>Tracked vessels</span></label>
@@ -74,24 +75,23 @@
       <div id="ledger-body"></div>
     </aside>
 
-    <!-- ambient counters, with the statistics drawer folded beneath them -->
+    <!-- ambient counters -->
     <div class="counters" id="counters" role="status" aria-live="off">
       <div class="stat-row">
         <div class="stat"><span class="num" id="c-sea">0</span><span class="cap">at sea</span></div>
         <div class="stat"><span class="num" id="c-arr">0</span><span class="cap">arrived</span></div>
         <div class="stat"><span class="num" id="c-lost">0</span><span class="cap">lost</span></div>
       </div>
-      <div class="stats-drawer" id="stats-drawer" hidden>
-        <div id="stats-body"></div>
-      </div>
-      <button class="menu-expander" id="stats-toggle" type="button" aria-expanded="false" aria-controls="stats-drawer" aria-label="Statistics" title="Statistics">
-        <svg width="54" height="8" viewBox="0 0 54 8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 2 L9 6 L15 2"/>
-          <path d="M21 2 L27 6 L33 2"/>
-          <path d="M39 2 L45 6 L51 2"/>
-        </svg>
-      </button>
     </div>
+
+    <!-- statistics: fleet totals, hardest passages, cargoes -->
+    <aside class="stats" id="stats" hidden aria-label="Statistics">
+      <button class="card-h" id="ch-stats" type="button" aria-expanded="true" aria-controls="stats-body">
+        <span>Statistics</span>
+        <svg class="chev" width="12" height="8" viewBox="0 0 12 8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2 L6 6 L10 2"/></svg>
+      </button>
+      <div id="stats-body"></div>
+    </aside>
 
     <!-- tracker: the followed fleet — pinned vessels and their kept records -->
     <aside class="tracker" id="tracker" hidden aria-label="Tracked vessels">
