@@ -34,6 +34,53 @@ surfaced later in the port panel beneath the lifeline line.
 precision — hedge where sources hedge; coerced human movement in the
 Middle-Passage pattern, factual and never framed as value).
 
+### T3 — Port documentation: paragraphs + citations, per port
+For each of the 66 sailing ports, research and write **period-appropriate
+descriptive text at documentation depth**: a few paragraphs per port covering
+what the harbour physically was (roadstead, river mouth, fortified basin),
+what moved through it and for whom, how its fortunes ran across 1550–1815,
+and what the era's own voices called it — each port with **citations** to the
+sources used. This is the deep layer beneath T2's one-liners: T2 gives the
+port panel its sentence; T3 gives the research section a proper entry per
+port, the way `about.html` documents the whole chart.
+**Output:** `research/port-docs.json` (per port: paragraphs, a distilled
+period-appropriate description usable in the sim's port panel, and a source
+list) + a `research/ports.html` documentation page rendering all 66 entries
+(nav.js-integrated, house style). Citations follow the about-page pattern —
+named series and scholarship, links where they exist.
+**Register:** the charter applies in full; where a port's wealth rests on
+coerced labour or the slave trade (Kingston, Cap-Français, Bahia, Elmina…),
+the entry says so factually and without value framing.
+
+### T4 — Deep research: ambient flows & naval movement patterns
+A deep-research sweep (the `port-flow-candidates-2026-07.md` pattern:
+multi-source, adversarially verified, claims flagged) into **movement
+patterns that are not port-to-port trade lanes** but may be relevant and
+mappable in this project — the evidence base for feature pass 4.5 (ambient
+flows). Candidate families to investigate, confirm, bound, or reject:
+- **Fisheries as grounds-traffic** — the Dutch herring buss fleet (the grote
+  visserij), the Banks cod fishery's seasonal rhythm, Arctic/South-Sea
+  whaling grounds cruising (each already gestured in the silences register);
+- **Naval patterns** — convoy escort cycles, guarda-costas and revenue
+  cruisers, station-keeping (guard ships, blockade squadrons in wartime),
+  cruising grounds of privateers and the Pirate Round;
+- **Scheduled/state services** — packet boats (Falmouth packets, the
+  correo marítimo), the caravane maritime, pilgrim traffic (the Surat–Jeddah
+  hajj shipping);
+- **Local metabolisms** — coastwise grain/fuel circuits already asserted in
+  the flow matrix (colliers, shachuan) that could gain visible short-circuit
+  representation.
+For each pattern: what the sources support (volume, season, era window,
+geography), what SHAPE it takes in sim terms (recurring local circuit ·
+grounds-loitering · station-keeping · scheduled line), whether the baked-
+route machinery can carry it or the baker needs new work
+(`pipeline/README.md` first), and a mappability verdict.
+**Output:** `research/ambient-flows.md` — the catalog with per-pattern
+evidence class, bounds, sim-shape recommendation, and silences-register
+cross-references (patterns that answer a gestured silence must say which).
+**Feeds:** feature pass 4.5 (`feature-ideas/RANKING.md`); silences register
+updates where a gestured entry gains representation.
+
 ## Done
 
 *(nothing yet)*

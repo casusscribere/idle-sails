@@ -211,18 +211,24 @@ export function createRenderer(canvas, assets) {
     // align to a device pixel looks bolder). Positions computed from ox/k
     // directly — project() wraps +180° back to −180°, which collapsed every
     // parallel to a zero-length line (the S2 full-globe bounds regression).
-    c.lineWidth = 1; c.strokeStyle = INK_FAINT;
+    // The plate rarely matches the viewport's ratio, so its edges can sit
+    // mid-screen in the letterbox parchment; each line overshoots the plate
+    // edge there and dissolves over GRAT_FADE px instead of stopping dead
+    // (an edge flush with the canvas gets no overshoot — nothing to fade into).
+    c.lineWidth = 1;
     const spanLon = BOUNDS.lonMax - BOUNDS.lonMin;
     const step = spanLon >= 120 ? 15 : spanLon >= 60 ? 10 : 5;
     const xL = ox, xR = ox + spanLon * k;
     const yT = oy, yB = oy + (BOUNDS.latMax - BOUNDS.latMin) * k;
+    const yT0 = Math.max(0, yT - GRAT_FADE), yB0 = Math.min(H, yB + GRAT_FADE);
+    const xL0 = Math.max(0, xL - GRAT_FADE), xR0 = Math.min(W, xR + GRAT_FADE);
     for (let lon = Math.ceil(BOUNDS.lonMin / step) * step; lon <= BOUNDS.lonMax; lon += step) {
       const x = Math.round(ox + (lon - BOUNDS.lonMin) * k) + 0.5;
-      line(c, [x, yT], [x, yB]);
+      gratLine(c, true, x, yT0, yT, yB, yB0);
     }
     for (let lat = Math.ceil(BOUNDS.latMin / step) * step; lat <= BOUNDS.latMax; lat += step) {
       const y = Math.round(oy + (BOUNDS.latMax - lat) * k) + 0.5;
-      line(c, [xL, y], [xR, y]);
+      gratLine(c, false, y, xL0, xL, xR, xR0);
     }
 
     // land
@@ -350,6 +356,26 @@ export function createRenderer(canvas, assets) {
 
   // ---- helpers ------------------------------------------------------------
   function line(c, a, b) { c.beginPath(); c.moveTo(a[0], a[1]); c.lineTo(b[0], b[1]); c.stroke(); }
+
+  // A graticule stroke whose ends dissolve: full ink between a1..b1 (the plate
+  // interior), fading to nothing across the overshoot to a0/b0 (the letterbox
+  // bleed). `pos` is the line's constant coordinate; vertical picks the axis.
+  const GRAT_FADE = 56;                        // px of dissolve past the plate edge
+  const INK_FAINT_0 = 'rgba(58,44,28,0)';      // INK_FAINT, fully transparent
+  function gratLine(c, vertical, pos, a0, a1, b1, b0) {
+    const span = b0 - a0;
+    if (span <= 0) return;
+    const t = v => Math.min(1, Math.max(0, (v - a0) / span));
+    const g = vertical ? c.createLinearGradient(0, a0, 0, b0)
+                       : c.createLinearGradient(a0, 0, b0, 0);
+    g.addColorStop(0, INK_FAINT_0);
+    g.addColorStop(t(a1), INK_FAINT);
+    g.addColorStop(t(b1), INK_FAINT);
+    g.addColorStop(1, INK_FAINT_0);
+    c.strokeStyle = g;
+    if (vertical) line(c, [pos, a0], [pos, b0]);
+    else line(c, [a0, pos], [b0, pos]);
+  }
 
   // Trace a lon/lat polyline, splitting where the projection wraps the
   // antimeridian (the Manila→Acapulco galleon) so no segment streaks across

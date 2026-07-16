@@ -221,7 +221,15 @@ Every design decision answers to both of these:
   green). New `research/TASKS.md` — the non-promotion research queue — logs
   T1 (full-roster port name/ownership sweep → `research/port-eras.json`
   feeding `eraNames` + a future `eraPowers`) and T2 (one-sentence era blurb
-  per port/name/ownership combination, charter register).
+  per port/name/ownership combination, charter register). Extended
+  2026-07-16 with T3 (per-port documentation depth: paragraphs + citations
+  → `research/port-docs.json` + a `research/ports.html` page, plus a
+  distilled period description for the port panel) and T4 (deep-research
+  catalog of ambient flows & naval movement patterns — fisheries as
+  grounds-traffic, convoy/patrol/station patterns, packets and pilgrim
+  shipping, local metabolisms → `research/ambient-flows.md`); the same day
+  RANKING.md's Pass 4 was split — Pass 4 = easter eggs + the scripted-spawn
+  channel, Pass 4.5 = ambient flows, research-gated on T4.
 - **Statistics panel un-drawered (2026-07-16):** the chevron band under the
   counters is gone; statistics is back to a **menu-toggled standalone card**
   in the right dock (between counters and tracker) with the uniform card-h
