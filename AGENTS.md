@@ -229,7 +229,17 @@ Every design decision answers to both of these:
   grounds-traffic, convoy/patrol/station patterns, packets and pilgrim
   shipping, local metabolisms → `research/ambient-flows.md`); the same day
   RANKING.md's Pass 4 was split — Pass 4 = easter eggs + the scripted-spawn
-  channel, Pass 4.5 = ambient flows, research-gated on T4.
+  channel, Pass 4.5 = ambient flows, research-gated on T4. Also added
+  (2026-07-16, after a feasibility pass): **Pass 3.5** — unique active
+  names + a refractory name-retirement period, feasible WITHOUT Pass 5's
+  fleet model (fate-at-spawn makes "name active at t" derivable; a
+  spawn-ordered `nameBlockedUntil` ledger keeps it granularity-independent;
+  never source retirement from wrecks — wreckLinger is a tuning knob) —
+  research-gated on **T5** (expand name pools until peak concurrent
+  pressure sits under 70% per culture/role pool; several pools exceed 100%
+  today). `research/tools/name-pressure.mjs` is the auditable gate: it
+  measures peak pressure per pool across seeds and exits nonzero while any
+  pool is over 70%.
 - **Statistics panel un-drawered (2026-07-16):** the chevron band under the
   counters is gone; statistics is back to a **menu-toggled standalone card**
   in the right dock (between counters and tracker) with the uniform card-h

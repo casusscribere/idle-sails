@@ -81,6 +81,33 @@ cross-references (patterns that answer a gestured silence must say which).
 **Feeds:** feature pass 4.5 (`feature-ideas/RANKING.md`); silences register
 updates where a gestured entry gains representation.
 
+### T5 — Name-pool expansion: peak pressure under 70% per pool
+The gate for feature pass 3.5 (unique active names + name retirement).
+Measured across full 270-year cycles, peak SIMULTANEOUS vessels per naming
+culture exceeds several pools outright — Portugal merchant hit 217% of its
+pool, Hansa 170%, Mughal 133%, Ottoman 120%, with Britain at ~88% and China
+at ~82% — so a uniqueness rule today would either fail or degenerate into a
+near-deterministic tail of leftover names. For **every (culture, role) name
+pool**, research and author enough additional **period-plausible ship-name
+stems** to bring peak pressure under **70%**:
+- **Measure first:** peak concurrency per (culture, role) across several
+  seeds (≥3) with margin for the refractory period R (a retired name stays
+  blocked ~5 sim-years beyond a loss, so effective demand is peak-active
+  plus recent losses). The measurement harness from the 2026-07-16
+  feasibility pass belongs in `research/tools/` so the target is re-checkable
+  after any flow-matrix change (traffic growth re-raises pressure).
+- **Author to target:** pool size ≥ peak-effective-demand ÷ 0.7. Current
+  worst cases imply roughly: Portugal merchant 12→~40, Hansa 10→~25, Mughal
+  9→~18, Ottoman 10→~18, Britain merchant 66→~85, Spain 12→~14, China
+  junk-trade 11→~14; sweep ALL culture/role pools, naval included.
+- **Stay period-plausible per culture:** Portuguese religious invocations,
+  Hansa saint-and-city names, Ottoman/Greek mixed marine, junk-trade
+  auspicious compounds — the pass-3 vocabulary is the register; no
+  anachronisms, no invented-sounding filler.
+**Output:** expanded pools in `data-src/names.json` + a short measurement
+note (per-pool peak vs. size, seeds used) so the 70% claim is auditable.
+**Feeds:** feature pass 3.5 (`feature-ideas/RANKING.md`).
+
 ## Done
 
 *(nothing yet)*
