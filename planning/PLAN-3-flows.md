@@ -1,6 +1,6 @@
 # PLAN 3 — Flows, evidence, and silences
 
-**Status:** adopted 2026-07-13 (user-accepted). Extends `PLAN.md` and
+**Status:** adopted 2026-07-13 (user-accepted). Extends `PLAN-1-rebuild.md` and
 `PLAN-2-flowing-era.md`; **supersedes** PLAN-2's Phase B scoping and §7
 decision list (re-scoped here as Phase S2), and **dissolves** the "third tier"
 question. Nothing built is discarded — see §4.

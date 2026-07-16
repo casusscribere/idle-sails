@@ -4,7 +4,7 @@
 **Phase B and the §7 decision list are re-scoped by `PLAN-3-flows.md` (Phase
 S2)** — adopted 2026-07-13, which also replaces the rankings→era-weights
 pipeline with an evidence-classed flow matrix. This document remains the record
-of the flowing-clock design. Extends `PLAN.md`; does not replace it.
+of the flowing-clock design. Extends `PLAN-1-rebuild.md`; does not replace it.
 
 ---
 

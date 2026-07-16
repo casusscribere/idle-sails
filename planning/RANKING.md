@@ -3,7 +3,11 @@
 Ranks the 14 sketches in `ideas.txt` against the codebase as of PLAN-3
 completion, and records the **performance-slider architecture** (idea #2) that
 now frames all of them. Passes 0–3 of the sequencing below have shipped
-(0–1 on 2026-07-15, 2–3 on 2026-07-16).
+(0–1 on 2026-07-15, 2–3 on 2026-07-16). The **interleaved queue** at the end
+of this document merges the feature passes with the research phases
+(`research/TASKS.md`) and the pending adoption decisions into one recommended
+order — it is the live cross-queue view, and every edit to any planning
+document must keep it current (see the directive there).
 
 ## The constraint that shapes everything
 
@@ -41,14 +45,14 @@ Feasibility: **A** trivial / scaffolding exists · **B** moderate, contained ·
 | 3 | **#3 Debug mode** — export run data | A | 0 | ✅ built — menu action |
 | 4 | **#7 Events log** — wars + losses | A | 0 | ✅ built — menu panel |
 | 5 | **#10 UI rework** — menu + toggleable boxes | A– | 0 | ✅ built (in the cartouche menu, not a new bar) |
-| 6 | **#13 Easter eggs** — Aubrey vessels | A– | 0 | open — scheduled deterministic spawns outside the Poisson stream |
+| 6 | **#13 Easter eggs** — Aubrey vessels | A– | 0 | open — **Pass 6** (moved after the movement patterns 2026-07-16, so commissions can carry convoy/prize/chase events) |
 | 7 | **#2 Performance slider** | B | n/a | ✅ built — Low/Medium/High, Medium = pre-slider behaviour |
 | 8 | **#8 Layers panel** — per-category flow toggles | B | ++ (mitigable) | ✅ built — per-basin toggles on a cached overlay canvas (5 Hz refresh) |
 | 9 | **#5 Statistics panel** | B | + (save growth) | ✅ built — aggregates + tier-capped port histories |
 | 10 | **#6 Tracker panel** — pinned vessels | B | + (capped) | built, **disabled until #11 persistence** (world API + tests live; UI greyed) |
 | 11 | **#1 Regional views** | B | + | ✅ built — four preset plates (world / Europe & Med / Caribbean / East Indies) |
 | 12 | **#4 Documentation page** | A tech, big content | 0 | ✅ built — `research/about.html` (sources, evidence classes, divergences, legend docs) |
-| 13 | **#12 Ship flows** | B→C | + → +++ | open — fishing/patrol loops are Pass 4.5, research-gated on TASKS.md T4; spawn-time route variants ride Pass 4; chases break fate-at-spawn (defer) |
+| 13 | **#12 Ship flows** | B→C | + → +++ | open — fishing/patrol loops and spawn-time route variants are Pass 4, research-gated on TASKS.md T4; chases break fate-at-spawn (defer) |
 | 14 | **#11 Ship generation** | C | +++ | decomposed: ✅ captains + longer name pools built (own RNG sub-stream); unique-active-names + retirement are Pass 3.5, research-gated on TASKS.md T5 (no fleet model needed); persistence/capture still need one (defer; world-level opt-in) |
 
 ## Tier table (auto defaults)
@@ -156,28 +160,143 @@ expanded until peak pressure sits under **70%** per (culture, role) pool
 before uniqueness reads as real rather than as a near-deterministic tail of
 leftover names.
 
-**Pass 4 — Special voyages: easter eggs (#13).** Builds the new machinery
-both this pass and 4.5 ride on: a second spawn channel outside the Poisson
-lane-weighted stream — fixed sim-date **scripted spawns with custom
-itineraries** (Aubrey's commissions at historically-appropriate dates), keyed
-to sim-time crossings for determinism, plus spawn-time route variants
-(seasonal/wartime detours from the vessel's own RNG). Pass 1's tracker pays
-off: pin the *Surprise*.
-
-**Pass 4.5 — Ambient flows (#12's easy half).** Split out of Pass 4
-(2026-07-16): the scripted-voyage channel is the shared machinery, but
-ambient flows are **research-gated** — they represent real, sourced movement
-patterns, not flavour, so they wait on `research/TASKS.md` **T4** (the
-deep-research catalog of fisheries-as-grounds, naval patterns, scheduled
-services, and local metabolisms, each with an evidence class and a sim-shape
-verdict). Build after T4 lands: recurring local circuits (fishing, patrols)
-on the pass-4 channel; may touch the bake pipeline for short local circuits —
-read `pipeline/README.md` first. Gates to the High performance tier. Patterns
-that answer a gestured silence (the herring buss fleet, Banks cod) update the
-silences register when they ship.
+**Pass 4 — Movement patterns: the scripted-spawn channel + ambient flows
+(#12's easy half).** *(Reorganized 2026-07-16: the channel was formerly
+bundled with the easter eggs and ambient flows were "Pass 4.5"; the easter
+eggs moved to Pass 6 so Aubrey's commissions can use the full movement
+vocabulary, and 4.5 is absorbed here.)* Builds the second spawn channel
+outside the Poisson lane-weighted stream — fixed sim-date **scripted spawns
+with custom itineraries**, keyed to sim-time crossings for determinism —
+plus spawn-time route variants (seasonal/wartime detours from the vessel's
+own RNG), then the ambient flows riding that channel. Ambient flows are
+**research-gated** — they represent real, sourced movement patterns, not
+flavour, so they wait on `research/TASKS.md` **T4** (the deep-research
+catalog of fisheries-as-grounds, naval patterns, scheduled services, and
+local metabolisms, each with an evidence class and a sim-shape verdict).
+Build after T4 lands: recurring local circuits (fishing, patrols) on the
+channel; may touch the bake pipeline for short local circuits — read
+`pipeline/README.md` first. Gates to the High performance tier. Patterns
+that answer a gestured silence (the herring buss fleet, Banks cod) update
+the silences register when they ship.
 
 **Pass 5 — deferred sim redesign: persistence / name retirement / capture
 (#11 hard) + chases (#12 hard).** Ship–ship interaction breaks
 fate-rolled-at-spawn — a real architecture change needing its own design doc
 (PLAN-5 material), a `datasetVersion` bump, and a save reset. Nothing above
-depends on it; it must never block the rest.
+depends on it; it must never block the rest — only Pass 6 below deliberately
+waits for it.
+
+**Pass 6 — Aubrey easter eggs (#13).** *(Moved here from the old Pass 4,
+2026-07-16 — user decision: build the content after ALL the movement
+patterns exist.)* Aubrey's commissions as scripted spawns on the Pass-4
+channel at historically-appropriate dates — deliberately last, so each
+itinerary can express the full vocabulary: convoy and escort legs
+(`PLAN-convoys.md`), ambient patterns as the sea's backdrop, and Pass-5
+prize-takings and chases at book-appropriate moments (the *Sophie*'s prize,
+the *Boadicea*'s Mauritius campaign). **Research-gated on `research/TASKS.md`
+T6**, which catalogs the events per commission. A coherence bonus of the
+late slot: the tracker panel (disabled until Pass 5's vessel persistence)
+is live by now — pin the *Surprise* and follow her properly.
+
+## Outside the ladder
+
+- **New chart views** (planned 2026-07-16) — two additions to the Pass-2
+  regional plates (`render.js` `REGIONS`; render-layer only, no research
+  gate, buildable anytime):
+  - **`arabia-india` — "Arabia & India".** Bounds ≈ lon 36→92, lat −2→31:
+    the Red Sea mouth and the Arabian Sea through the Bay of Bengal. Covers
+    seven roster ports — **Mocha**, Muscat, Surat, Bombay (era-named Goa
+    pre-1661), Madras (Masulipatnam pre-1639), Tranquebar, and **Calcutta
+    (era-named Hugli pre-1690)** — so the monsoon dhow lanes, the pepper and
+    coffee trades, and the Europe–India arrivals read on one plate. The
+    north/west margins deliberately leave headroom for PLAN-4's E2
+    (Basra + Bandar Abbas, to ~30.5 N in the Gulf) and E6 (Jeddah, ~39 E in
+    the Red Sea) so adoption needs no re-crop; E5 Port Louis (~20 S) is
+    deliberately OUT of frame — the Mascarenes belong to the world plate
+    (stretching to −22 S would flatten everything else).
+  - **`na-northeast` — "Newfoundland to the Chesapeake".** Bounds ≈ lon
+    −82→−49, lat 34.5→52.5: the North American northeast from the
+    Newfoundland Banks down through the Chesapeake capes. Covers five roster
+    ports — Louisbourg (era-named St John's outside 1713–58, carrying the
+    Banks cod fishery all era), Boston, New York, Philadelphia, Chesapeake.
+    The eastern margin reaches past −50 so the Grand Banks sea room is in
+    frame — the plate is ready to show grounds-loitering fishery traffic if
+    Pass 4 (T4) ships it.
+  - **Build notes:** each plate is one `REGIONS` entry — `setRegion`,
+    containment on both axes, the 5° regional graticule, label declutter,
+    era names, and `settings.region` boot validation all come free by
+    construction. Verify the menu "Chart view" radiogroup renders from
+    `REGIONS` (if its rows are hand-written in `index.html`, add the two
+    rows). Extend `test/regions.test.mjs` to pin each new plate to the port
+    lists above (and keep the pins in sync if PLAN-4/PLAN-6 adoption later
+    adds ports inside these frames). Names/bounds are recommendations —
+    tune the margins against the readability floor at build time.
+- **Convoys** (`PLAN-convoys.md`, drafted 2026-07-16) — a sim-layer feature
+  that does NOT break fate-at-spawn, so it needs no pass slot: buildable
+  whenever, independent of everything above. Its rules ship `asserted`;
+  research task **T9** (`research/TASKS.md`, Phase RB) refines the rates and
+  windows without gating the build — if Phase RB runs first, build convoys
+  after it and inherit the evidence-classed numbers for free.
+- **Tweaks** (`ideas.txt`'s sibling `tweaks.txt`) — small render/UX
+  adjustments, no research, no pass machinery; fold into whatever pass is
+  in flight. Currently queued: revisit the dormant-port greying threshold
+  (extend the duration before a port greys?).
+
+## The interleaved queue — recommended order (live)
+
+> **Maintenance directive.** This queue is the merge of the feature passes
+> above, the research phases in `research/TASKS.md`, and the pending adoption
+> decisions (`PLAN-4-expansion.md` §3, `PLAN-6-era-1850.md` §6). **Whenever
+> any planning document, the research queue, or an adoption decision changes,
+> update this section in the same edit** — it must never lag its sources.
+> Mirror directives sit in `planning/README.md` (conventions),
+> `research/TASKS.md` (header), and CLAUDE.md/AGENTS.md (key documents).
+
+Tags: **[F]** feature build · **[R]** research · **[D]** user decision ·
+**[B]** adopted-plan build. Hard gates are marked; everything else is
+recommended order, not law.
+
+1. **[F] New chart views + tweaks** — ungated render work (the two plates
+   above, the greying tweak). Quick wins now, or fold into any later step.
+2. **[D] Adoption calls: PLAN-4 §3 + PLAN-6 §6, decided together** (PLAN-6
+   D4). The hinge of everything below — sets the roster and the era span
+   that steps 3, 7, 10, and 11 read. Nothing else waits on it except as
+   marked.
+3. **[R] T5 — name-pool expansion** (Phase RA). Self-contained. If PLAN-6
+   was adopted at step 2, expect a re-run after its traffic lands — the
+   `name-pressure.mjs` gate is cheap and auditable either way.
+4. **[F] Pass 3.5 — unique active names + retirement.** HARD GATE: T5.
+5. **[R] Phase RB as ONE campaign — T4 + T8 + T9**, plus PLAN-4 E-R1
+   verification and PLAN-6 X-R1 (T10) if adopted at step 2. The big source
+   pass; the whole point of the phase grouping is that it runs once.
+6. **[F] Convoys** (`PLAN-convoys.md`). Buildable any time after step 1,
+   but cheapest here — it inherits T9's evidence-classed rates for free.
+7. **[F] Pass 4 — the scripted-spawn channel + ambient flows.** HARD GATE:
+   T4 (step 5). May touch the baker (`pipeline/README.md` first) — share
+   the bake session with step 8 where possible.
+8. **[B] PLAN-4 E-S / PLAN-6 X-S builds** (whatever step 2 adopted) —
+    fold, bake, surface. One combined bake beats several.
+9. **[R] Phase RC — the per-port sweep (T1+T2+T3, one port at a time).**
+    HARD GATE: the roster and era span must be FINAL (steps 2 and 8 done
+    or declined) — otherwise the sweep runs twice.
+10. **[R] T7 — vessel lifecycle & prize practice** (Phase RD) + drafting
+    **PLAN-5** from it.
+11. **[F] Pass 5 — persistence / capture / chases.** HARD GATE: PLAN-5
+    adopted; `datasetVersion` bump + save reset. Must never block anything
+    above it — Pass 6 below waits for it by design.
+12. **[R] T6 — Aubrey canon** (Phase RA). Deliberately this late: per
+    commission, the catalog also records convoy/escort legs, historical
+    prize-takings and engagements, and chase episodes, so Pass 6 can
+    express them through the convoy and Pass-5 mechanics (and the E5 /
+    Port Louis question for the *Boadicea* itinerary is long decided by
+    now). Can run earlier at the cost of a second look once the mechanics
+    exist.
+13. **[F] Pass 6 — Aubrey easter eggs.** HARD GATES: T6 + the Pass-4
+    channel. Deliberately after convoys and Pass 5 (user decision
+    2026-07-16) so the commissions sail with the full movement vocabulary.
+
+The only hard edges are the marked gates (T5→3.5, T4→4, roster-final→RC,
+PLAN-5→5, and {T6, Pass 4, Pass 5}→6). Steps 3–4 commute with steps 5–7;
+step 1 commutes with everything; convoys floats anywhere from step 1 onward
+at the cost of `asserted` numbers until T9 lands; T6 may run early, but the
+Pass-6 build should not.

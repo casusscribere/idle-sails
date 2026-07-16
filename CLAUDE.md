@@ -1,6 +1,6 @@
 # CLAUDE.md — Idle Sails
 
-Orientation for a fresh session. Read this first, then `PLAN.md`.
+Orientation for a fresh session. Read this first, then `planning/README.md` (the design-document index).
 
 ## What this is
 
@@ -34,7 +34,7 @@ Every design decision answers to both of these:
    archive is not the past* (Trouillot, *Silencing the Past*: silences enter
    at source creation, archive assembly, retrieval, and retrospective
    significance) and that the surviving quantitative record is Euro-centric.
-   The charter (full form in `PLAN-3-flows.md` §1):
+   The charter (full form in `planning/PLAN-3-flows.md` §1):
    - **No silent zeros** — a trade known to have existed is never implicitly
      absent; every flow is `counted`, `proxied`, `reconstructed`, or
      `asserted` (our estimate, with stated bounds and reasoning). An implicit
@@ -52,7 +52,7 @@ Every design decision answers to both of these:
 
 ## Current state (as of 2026-07-13)
 
-- **Phase: PLAN.md M1–M6 complete (M7 mostly) + PLAN-2 Phase A, Phase C, and
+- **Phase: PLAN-1 M1–M6 complete (M7 mostly) + PLAN-2 Phase A, Phase C, and
   Step 2 done.** The three PLAN §0 defaults and the sober slave-trade treatment
   are user-confirmed. Tests: `npm test` — **18 passing**.
 - **Flowing era (PLAN-2 Phase A + C):** `world.js` clock flows **1550→1815**,
@@ -135,7 +135,7 @@ Every design decision answers to both of these:
   `datasets:routes` versions. 26 tests green.
 
 - **Feature pass 1 (2026-07-15): settings, performance tier, menu.**
-  `feature-ideas/ideas.txt` ranked in `feature-ideas/RANKING.md` (feasibility ×
+  `feature-ideas/ideas.txt` ranked in `planning/RANKING.md` (feasibility ×
   perf + the slider architecture: sim layer untouchable; observation/render
   layers tunable). Built: `settings.js` (device-local, own localStorage key
   `idle-sails-settings`, survives save resets); the cartouche menu unhidden —
@@ -250,7 +250,7 @@ Every design decision answers to both of these:
   Verified headless (toggle, collapse, persistence, migration, sheet swap /
   dismiss, no-overlap); 37 tests green.
 - **Feature pass 2 (2026-07-16): regional views + layers panel**
-  (`feature-ideas/RANKING.md` Pass 2 — both `render.js` work, sim untouched).
+  (`planning/RANKING.md` Pass 2 — both `render.js` work, sim untouched).
   **Regional views (#1):** `render.js` exports `REGIONS` — four preset plates
   (world data-fit crop · Europe & the Mediterranean · the Caribbean · the East
   Indies & China); `renderer.setRegion(id)` swaps the mutable BOUNDS and
@@ -273,7 +273,7 @@ Every design decision answers to both of these:
   (`test/regions.test.mjs` pins each plate to the ports it exists for + the
   fold's basin coverage; settings round-trip extended).
 - **Feature pass 3 (2026-07-16): captains, longer name pools, docs page**
-  (`feature-ideas/RANKING.md` Pass 3 — #11's easy pieces + #4).
+  (`planning/RANKING.md` Pass 3 — #11's easy pieces + #4).
   **Captains:** every vessel sails under a named shipmaster drawn in
   `world.js makeCaptain` from `hashSeed('captain', seed, id)` — her OWN
   sub-stream, never the vessel stream: name-stripped fingerprints verified
@@ -298,6 +298,39 @@ Every design decision answers to both of these:
   for headless verification (display-only). **46 tests green**
   (`test/captains.test.mjs`: every vessel has a master, pool-swap
   sim-inertness, granularity independence, restore backfill, wreck records).
+
+- **Docs reorganization (2026-07-16): the `planning/` directory + the phased
+  research queue.** All Claude-authored plans consolidated under `planning/`
+  (`PLAN.md` → `planning/PLAN-1-rebuild.md`, PLAN-2/3/4 alongside;
+  `feature-ideas/RANKING.md` → `planning/RANKING.md`, now git-tracked —
+  `feature-ideas/` stays untracked, human-written input only;
+  `planning/README.md` is the index). `research/TASKS.md` regrouped into
+  four phases so each body of sources is read once: **RA** feature gates
+  (T5, T6) · **RB** movement & flows as ONE campaign (T4 + T8 + new **T9**
+  convoy institutions & rates, coordinated with PLAN-4 E-R1 — the whaling /
+  caravane / Jeddah / fisheries / naval-pattern sources all overlap) ·
+  **RC** the per-port sweep (T1+T2+T3 together, one port at a time; fix the
+  near-term roster first) · **RD** deferred design (T7 → PLAN-5).
+  `planning/PLAN-convoys.md` drafted (sim-layer, does NOT break
+  fate-at-spawn, buildable now; T9 refines its `asserted` rates without
+  gating it). Every scheduled feature now has its research linkage:
+  pass 3.5→T5, 4→T6, 4.5→T4, 5→T7, convoys→T9; RANKING.md gained an
+  "Outside the ladder" section (convoys + the tweaks.txt queue). Root
+  README refreshed; all cross-references repointed.
+
+- **Pass reorg (2026-07-16, user decision): Aubrey after the movement
+  patterns.** The feature passes renumbered in `planning/RANKING.md`:
+  **Pass 4** is now the scripted-spawn channel + ambient flows (absorbing
+  the old 4.5; still research-gated on T4), Pass 5 is unchanged, and the
+  Aubrey easter eggs moved to a new **Pass 6 at the end of the ladder** —
+  deliberately after convoys, ambient flows, AND Pass 5, so each commission
+  can carry convoy/escort legs, prize-takings, and chases instead of sailing
+  a bare lane (bonus: the tracker, disabled until Pass 5, is live in time to
+  pin the *Surprise*). T6 now feeds pass 6 and its catalog gains a per-
+  commission `events` field (convoy legs, prizes, engagements, chases); the
+  interleaved queue is re-ordered accordingly (T6 sits at step 12, Pass 6
+  at step 13). Earlier dated bullets referring to "Pass 4 = easter eggs" and
+  "Pass 4.5" describe the pre-reorg numbering.
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —
@@ -336,24 +369,38 @@ Every design decision answers to both of these:
 ## Repo layout right now
 
 ```
-CLAUDE.md            this file
-PLAN.md              full rebuild design — the source of truth
-README.md            short project intro + target layout
-.gitignore
+CLAUDE.md            this file (mirrored as AGENTS.md)
+README.md            short project intro + layout + build/deploy
+planning/            ALL design & feature plans — planning/README.md is the index
+  PLAN-1-rebuild.md      the rebuild design (complete; still the architecture reference)
+  PLAN-2-flowing-era.md  flowing clock + diversity (complete / partly superseded)
+  PLAN-3-flows.md        the flow-matrix architecture (complete)
+  PLAN-4-expansion.md    the wider-world expansion (awaiting adoption)
+  PLAN-convoys.md        convoys feature spec (drafted, unbuilt)
+  RANKING.md             the feature queue: passes + outside-the-ladder items (live)
+research/            evidence work — TASKS.md is the phased research queue,
+                     CURATION.md the promotion rubric; datasets + reference pages
+feature-ideas/       the user's raw sketches (untracked; never edited by agents)
 archive/isochrone-v1/   the previous project (see its ARCHIVE-NOTE.md)
 ```
 
 ## Key documents
 
-- **`PLAN.md`** — the design: assumed decisions (§0), reused assets (§1),
+- **`planning/README.md`** — the design-document index: every plan with its
+  status, plus the conventions (status headers, decision ledgers, completed
+  plans kept verbatim as the design record).
+- **`planning/PLAN-1-rebuild.md`** (was `PLAN.md`) — the design: assumed
+  decisions (§0), reused assets (§1),
   architecture (§2), the six historical datasets (§3), the procedural generator
   (§4), the sim loop + idle mechanics (§5), offline route baking (§6), rendering
   & UI (§7), tech/layout (§8), milestones (§9), open questions (§10).
-- **`PLAN-2-flowing-era.md`** — the flowing-clock design (built: Step 1–2,
+- **`planning/PLAN-2-flowing-era.md`** — the flowing-clock design (built:
+  Step 1–2,
   Phase A, Phase C): a decade-weighted 1550–1815 sim looping via a 5-year
   reset, plus the minor-ports diversity layer (§5). Its Phase B and §7 are
   re-scoped by PLAN-3.
-- **`PLAN-4-expansion.md`** — **drafted 2026-07-14, awaiting adoption**: the
+- **`planning/PLAN-4-expansion.md`** — **drafted 2026-07-14, awaiting
+  adoption**: the
   wider-world expansion from the deep-research sweep
   (`research/port-flow-candidates-2026-07.md`) — five Tier-1 counted-series
   candidates (Montevideo/Río de la Plata, Basra+Bandar Abbas, a whaling
@@ -361,14 +408,31 @@ archive/isochrone-v1/   the previous project (see its ARCHIVE-NOTE.md)
   maritime, Ragusa, Callao, Mozambique I.), silences-register actions, and
   per-candidate E-R1→E-S2 phases riding PLAN-3's machinery unchanged. Four
   adoption decisions flagged in its §3.
-- **`PLAN-3-flows.md`** — **the completed architecture** (adopted 2026-07-13,
-  complete): replaces
+- **`planning/PLAN-3-flows.md`** — **the completed architecture** (adopted
+  2026-07-13, complete): replaces
   rankings→weights with an evidence-classed **trade-system flow matrix**
   (counted/proxied/reconstructed/asserted; per-basin assembly; a silences
   register; port prominence as an *output*). Carries the sensitization
   charter (§1) and the phase/decision ledger (§3): R1 rankings fixes → R2
   schema + Baltic proof → R3 basin authoring → S1 sim swap → S2 bake → S3
   surfacing.
+- **`planning/PLAN-convoys.md`** — **drafted 2026-07-16, unbuilt**: the
+  convoys feature spec (spawn-event grouping, escorted reprieve, the convoy
+  ledger UI). Does NOT break fate-at-spawn — buildable now, outside the pass
+  ladder; research task T9 refines its rates without gating it.
+- **`planning/RANKING.md`** — the feature queue: `feature-ideas/ideas.txt`
+  ranked by feasibility × performance, the three-layer slider architecture,
+  the pass ledger (0–3 shipped; 3.5, 4, 5, 6 open), the
+  outside-the-ladder items (new chart views, convoys, tweaks), and **the
+  interleaved queue** — the one recommended order merging feature passes,
+  research phases, and adoption decisions. **Sync directive: whenever you
+  edit ANY `planning/` document, `research/TASKS.md`, or an adoption status,
+  update RANKING.md's interleaved queue in the same change.**
+- **`research/TASKS.md`** — the phased research queue (non-promotion tasks):
+  RA feature gates (T5→pass 3.5, T6→pass 6) · RB movement & flows, one
+  source campaign (T4 ambient flows + T8 declared silences + T9 convoy
+  rates, coordinated with PLAN-4 E-R1) · RC the per-port sweep (T1+T2+T3
+  together, one port at a time) · RD deferred design (T7→PLAN-5).
 - **`archive/isochrone-v1/ARCHIVE-NOTE.md`** — what the old project was and
   exactly which of its assets the rebuild reuses.
 - **`archive/isochrone-v1/SOURCES.md`** — historical sourcing + calibration
@@ -379,21 +443,21 @@ archive/isochrone-v1/   the previous project (see its ARCHIVE-NOTE.md)
 - `archive/isochrone-v1/pipeline/ports.json` — 15 georeferenced historical ports.
 - `archive/isochrone-v1/docs/data/fields/*.bin` + `pipeline/router.mjs` — the
   wind/current/polar least-time engine. Run **once, offline** to bake curved
-  route polylines (`PLAN.md §6`); the 31 MB fields are **not** shipped at runtime.
+  route polylines (`planning/PLAN-1-rebuild.md §6`); the 31 MB fields are **not** shipped at runtime.
 - `archive/isochrone-v1/docs/app.js → routeFrom()` — downhill route-walk to port,
   to be ported into the offline route baker.
 - `archive/isochrone-v1/docs/assets/land.geojson` — coastline for the map.
 
 ## Decisions assumed (chosen while the user was away — NOT yet confirmed)
 
-See `PLAN.md §0`. Flag these for confirmation before deep work depends on them:
+See `planning/PLAN-1-rebuild.md §0`. Flag these for confirmation before deep work depends on them:
 
 1. **Movement:** bake route polylines offline from the archived fields; ship only
    the polylines (not the 31 MB fields).
 2. **Persistence:** persist to `localStorage` with offline-accrual fast-forward.
 3. **Era scope:** lock to ~1700–1815 (matches the calibrated data).
 
-Still open (`PLAN.md §10`): renderer choice (canvas — recommended — vs. MapLibre,
+Still open (`planning/PLAN-1-rebuild.md §10`): renderer choice (canvas — recommended — vs. MapLibre,
 settle at Milestone 4); and the sober, non-gamified treatment of the slave trade,
 which is historically central to this dataset.
 

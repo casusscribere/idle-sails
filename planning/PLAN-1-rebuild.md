@@ -210,7 +210,7 @@ The deployable site lives at the **repo root** (so GitHub Pages serves
   persist.js          localStorage + offline accrual (Milestone 6)
   style.css
   data/               generated: datasets.json, routes.json, land.geojson
-  PLAN.md             this file
+  PLAN-1-rebuild.md   this file (was PLAN.md at the repo root)
   README.md           run / build instructions
   data-src/           hand-authored datasets (ship-types, names, powers, cargo,
                       routes, wars) — CSV/JSON, human-editable

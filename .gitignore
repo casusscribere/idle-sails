@@ -7,8 +7,11 @@ pipeline/build/
 # GitHub Pages CI staging dir
 _site/
 
+#vscode
+idle_sails.code-workspace
+
+
 #custom
 feature-ideas
 feature-ideas/*
-
 settings.local.json

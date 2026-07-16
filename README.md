@@ -10,12 +10,13 @@ The only controls: a **speed** slider, and **click a vessel** for a sidebar
 
 ## Status
 
-**Milestones 1–3 done; live display running.** See [PLAN.md](PLAN.md) for the
-full design and [CLAUDE.md](CLAUDE.md) for current state. Built so far: the six
-historical datasets, the offline route baker, the headless deterministic
-simulation (`world.js`, tested), and the parchment sea-chart display that
-runs it in the browser. Still to come: persistence / offline-accrual (M6) and
-final polish (M7).
+**The rebuild plan and the flow-matrix architecture are complete; feature
+passes are in flight.** See [planning/README.md](planning/README.md) for the
+design-document index and [CLAUDE.md](CLAUDE.md) for detailed current state.
+Built so far: the historical datasets and evidence-classed flow matrix, the
+offline route baker (66 ports), the headless deterministic simulation
+(`world.js`, tested), persistence with offline accrual, and the parchment
+sea-chart display with settings, statistics, regional views, and captains.
 
 This is a ground-up rebuild. The previous project — an isochronic passage-*chart*
 (a static travel-time map) — is preserved under
@@ -39,6 +40,8 @@ data/         generated: datasets.json, routes.json, land.geojson
 data-src/     hand-authored historical datasets (ships, names, powers, cargo, routes, wars)
 pipeline/     offline builders: build-data.mjs (datasets) + bake-routes.mjs (routes) — see pipeline/README.md
 test/         node tests for world.js (determinism, plausibility, offline accrual)
+planning/     design & feature-planning documents (see planning/README.md)
+research/     evidence work: datasets, reference pages, the research task queue (TASKS.md)
 archive/      the previous isochronic-chart project
 ```
 

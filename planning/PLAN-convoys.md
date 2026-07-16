@@ -33,7 +33,10 @@ as prior passes; note it in the commit.
 
 Convoying was not flavour; it was policy. The rules ship as data with the
 honest evidence class (`asserted` — institutional facts are well documented,
-the per-decade *rates* are our estimate with stated reasoning):
+the per-decade *rates* are our estimate with stated reasoning). Research task
+**T9** (`research/TASKS.md`, Phase RB — shares T4's naval-patterns sources)
+verifies these windows and bounds the rates; it refines this table but does
+not gate the build:
 
 | Pattern | Systems / lanes | Rate | Size | Escort |
 |---|---|---|---|---|
