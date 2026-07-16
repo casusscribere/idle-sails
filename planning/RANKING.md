@@ -303,10 +303,13 @@ recommended order, not law.
    2026-07-16** (see the pass ledger above: nameLedger in world.js,
    fate-inertness proven vs HEAD, 52 tests). The step-3 re-gate note
    stands: re-run `name-pressure.mjs` when X-S lands.
-5. **[R] Phase RB as ONE campaign — T4 + T8 + T9 + T10 (X-R1)**, plus
+5. **[R] Phase RB as ONE campaign — T4 + T8 + ~~T9~~ + T10 (X-R1)**, plus
    PLAN-4 E-R1 verification. The big source pass; the whole point of the
    phase grouping is that it runs once. Includes X-R2's charter sign-off
-   texts staged for user review.
+   texts staged for user review. **IN PROGRESS** (`research/rb-campaign.md`):
+   chunk 1 done 2026-07-16 — **T9 complete** (+ T4's naval strand) with
+   full-adversarial verification; `ambient-flows.md` §1 landed and
+   PLAN-convoys' grounding table refreshed.
 6. **[F] Convoys** (`PLAN-convoys.md`). Buildable any time after step 1,
    but cheapest here — it inherits T9's evidence-classed rates for free.
 7. **[F] Pass 4 — the scripted-spawn channel + ambient flows.** HARD GATE:

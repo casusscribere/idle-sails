@@ -29,11 +29,11 @@ the tasks share a source campaign and should run together.
   running T4 and a PLAN-4 wave-1 verification separately would read the same
   sources twice. T8 (the sweep's declared silences) extends the same
   campaign northward (fisheries, stockfish) and is natural to fold in.
-  T9 (convoy institutions & rates) shares T4's naval-patterns strand — the
-  convoy-escort sources ARE the convoy-rules sources; read them once.
+  ~~T9~~ (convoy institutions & rates — **done 2026-07-16**, chunk 1 of the
+  campaign) shared T4's naval-patterns strand, which landed with it.
   **T10 (PLAN-6 X-R1, live since the 2026-07-16 adoption)** is a member of
   the same campaign: whaling, packet lines, and the suppression squadron
-  sit on both its list and T4's.
+  sit on both its list and T4's. Campaign state: `research/rb-campaign.md`.
 - **Phase RC — the per-port sweep.** T1 + T2 + T3 executed **together, one
   port at a time**: a single reading of a port's sources yields its
   name/ownership timeline (T1), the one-line blurb per window (T2), and the
@@ -140,26 +140,6 @@ lines, and the suppression squadron overlap T4 — one campaign, one reading.
 candidate dossiers, and X-R2's charter sign-off texts staged for review.
 **Feeds:** PLAN-6 X-S1/X-S2; PLAN-4 E-R1 (shared verification fleet).
 
-#### T9 — Convoy institutions & rates
-*(added 2026-07-16, from `planning/PLAN-convoys.md` §1)* The convoy plan is
-buildable now — its rules ship `asserted` with stated reasoning, which the
-charter permits — but every number in its grounding table is our estimate.
-This task turns those estimates into evidence-classed bounds: per pattern
-(the **flota** system and its 1564→1778 ordinance window; **company return
-fleets** — VOC retourvloot, EIC/CdI homeward practice; **wartime trade
-convoy** culminating in the Convoy Acts 1793/98; the **caravane/Levant
-convoy** against corsairs), verify the institutional windows, and bound the
-*rates* — what share of a lane's sailings actually went in company, per
-decade window — plus typical sizes, escort practice, and any pattern the
-table misses (Portuguese Brazil fleets? Manila galleon pairing?).
-**Coordinate with T4:** the naval-patterns strand (convoy escort cycles,
-station-keeping) reads the same squadron and admiralty sources — run the two
-as one pass when both are wanted.
-**Output:** a grounding note (extend `research/ambient-flows.md` or a short
-sibling doc) + evidence-classed values for `data-src/convoys.json` rules
-(each rule carries `class` + `note` — the validator already requires it).
-**Feeds:** `planning/PLAN-convoys.md` (refines its §1/§5 numbers; does NOT
-gate the build).
 
 ### Phase RC — the per-port sweep (run T1+T2+T3 together, one port at a time)
 
@@ -246,6 +226,20 @@ bounds + a sim-shape recommendation; the silences-register `steam` entry
 ladder); until that plan is drafted, steam remains a declared boundary.
 
 ## Done
+
+- **T9 — convoy institutions & rates (2026-07-16, Phase-RB chunk 1).**
+  Full-adversarial campaign: 84 claims gathered (Iberian · company/British/
+  Levant · naval patterns), every one independently attacked — 62 verified,
+  22 corrected, 0 refuted. Output: `research/ambient-flows.md` §1 with the
+  evidence-classed rule-values table; `planning/PLAN-convoys.md` §1 table
+  refreshed with corrected values. Substantive findings: the caravane
+  maritime is NOT a convoy institution (row re-scoped to Dutch/English
+  Smyrna convoys); galeones END 1739 with sueltos at 79.5–87% after;
+  Brazil frotas 1649–1765 added; the British convoyed-trade share stays
+  `asserted` 0.75–0.95 (no source quantifies it — verify vs Knight).
+  T4's naval-patterns strand landed in the same section (station-keeping
+  needs a station-node primitive; guarda-costas = hazard-uplift only;
+  Pirate Round's existing hazard treatment confirmed).
 
 - **T5 — name-pool expansion (2026-07-16).** All eight failing pools
   expanded to period-plausible target sizes (Portugal 12→44, Hansa 10→28,

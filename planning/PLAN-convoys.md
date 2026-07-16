@@ -32,18 +32,21 @@ as prior passes; note it in the commit.
 ## 1. Historical grounding — who convoys, and when
 
 Convoying was not flavour; it was policy. The rules ship as data with the
-honest evidence class (`asserted` — institutional facts are well documented,
-the per-decade *rates* are our estimate with stated reasoning). Research task
-**T9** (`research/TASKS.md`, Phase RB — shares T4's naval-patterns sources)
-verifies these windows and bounds the rates; it refines this table but does
-not gate the build:
+honest evidence class. **T9 is DONE (2026-07-16)** — the full
+adversarially-verified grounding is `research/ambient-flows.md` §1 (84
+claims, 62 verified / 22 corrected / 0 refuted); this table carries its
+corrected values. Sizes below are SIM-SCALE spawn groups (the spectator
+band cannot draw a 200-ship convoy) — the historical sizes and rates are in
+the T9 table; the sim's group sizes sample the small end and the ledger
+text may cite the real scale.
 
-| Pattern | Systems / lanes | Rate | Size | Escort |
-|---|---|---|---|---|
-| **The flota system** — convoy compulsory by Spanish ordinance from 1564 to the 1778 free-trade decree | Carrera lanes (Seville/Cadiz ↔ Veracruz/Portobello/Havana) | high, all-era to ~1778, low after | 4–7 | armed galleon, all-era |
-| **Company return fleets** — VOC retourvloot, EIC/CdI homeward fleets | Cape-route Indies lanes | moderate | 3–5 | wartime only |
-| **Wartime trade convoy** — culminating in the British Convoy Acts (1793/1798, convoy mandatory) | any lane whose flag is a belligerent in an active war covering its theatre | low base × war uplift, rising late-era | 3–6 | frigate / sloop-of-war when a naval type is era-valid |
-| **Caravane / Levant convoy** against corsairs | Mediterranean échelles lanes | low–moderate | 3–4 | rare |
+| Pattern | Systems / lanes | Rate | Size (sim group) | Escort | T9 notes |
+|---|---|---|---|---|---|
+| **The flota system** — compulsory by ordinance 1564 → galeones END 1739; flota tail to 1776 | Carrera lanes (Cadiz ↔ Veracruz/Portobelo/Havana) | dominant pre-1739 (qualitative — NOT "90%"); 17th-c realized frequency 0.4–0.6 fleets/yr; **0.13–0.21 after 1739** (sueltos carried 79.5–87%) | 4–7 | armed galleon pair (capitana/almiranta), all-era | historical sizes 17→50+→15–20; Havana-by-June season gate |
+| **Brazil frotas** — compulsory 1649 → Sept 1765 | Lisbon/Oporto ↔ Bahia/Rio/Recife | high while compulsory; return-leg-weighted after 1658 | 4–7 | 1–2 crown warships | Pará/Pernambuco leave 1755/59; sizes historically 20–100 (asserted) |
+| **Company return fleets** — VOC cohorts, EIC homeward | Cape-route Indies lanes | VOC: 2–3 outward cohorts/yr, 1–3 homeward fleets/yr; EIC: monsoon-season grouping, war default | 3–5 | wartime only; VOC escort European legs only; EIC staged (St Helena→Channel) | letters-of-marque Indiamen legally EXEMPT from compulsory convoy |
+| **Wartime trade convoy** — British Convoy Acts 1793/1798 (+1803), convoy mandatory | any lane whose flag is a belligerent in an active war covering its theatre | low base × war uplift; post-1793 British share `asserted` 0.75–0.95 (wide — verify vs Knight) | 3–6 | frigate / sloop-of-war when era-valid | escort ratio ~1:20–35; reprieve applies to CAPTURE fates only (the Apollo convoy wrecked under escort) |
+| **Dutch/English Smyrna convoy** (re-scoped from "caravane/Levant" — the French caravane maritime is individual-ship tramping, NOT convoy) | Smyrna/Levant lanes, Dutch + English flags only | Dutch compulsory 1621→; ~1–2 convoys/yr | 3–4 | Dutch ordered 6 warships; rare otherwise | French échelles lanes stay single-ship; Venice convoy-less all era (muda ended 1533) |
 
 **Exclusions (charter):** no convoy grouping on `middlePassage` lanes or any
 lane carrying `framing` (coerced flows). The sober treatment stays exactly as
