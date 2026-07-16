@@ -53,7 +53,7 @@ Feasibility: **A** trivial / scaffolding exists · **B** moderate, contained ·
 | 11 | **#1 Regional views** | B | + | ✅ built — four preset plates (world / Europe & Med / Caribbean / East Indies) |
 | 12 | **#4 Documentation page** | A tech, big content | 0 | ✅ built — `research/about.html` (sources, evidence classes, divergences, legend docs) |
 | 13 | **#12 Ship flows** | B→C | + → +++ | open — fishing/patrol loops and spawn-time route variants are Pass 4, research-gated on TASKS.md T4; chases break fate-at-spawn (defer) |
-| 14 | **#11 Ship generation** | C | +++ | decomposed: ✅ captains + longer name pools built (own RNG sub-stream); unique-active-names + retirement are Pass 3.5, research-gated on TASKS.md T5 (no fleet model needed); persistence/capture still need one (defer; world-level opt-in) |
+| 14 | **#11 Ship generation** | C | +++ | decomposed: ✅ captains + longer name pools built (own RNG sub-stream); ✅ unique-active-names + retirement shipped (Pass 3.5, 2026-07-16); persistence/capture still need a fleet model (defer; world-level opt-in) |
 
 ## Tier table (auto defaults)
 
@@ -138,7 +138,21 @@ a declared divergences list; wired into nav.js and the research hub.
 green (`test/captains.test.mjs`: pool-swap sim-inertness, granularity
 independence, restore backfill, wreck records).
 
-**Pass 3.5 — Unique active names + name retirement (#11's middle pieces).**
+**Pass 3.5 — ✅ shipped 2026-07-16. Unique active names + name retirement
+(#11's middle pieces).** Built exactly as designed below, with one refinement:
+candidate #0 still comes from the vessel stream (burning the draws makeName
+always burned), so an UNBLOCKED name is byte-identical to the pre-pass world —
+no reshuffle at all; only blocked names redraw, from `hashSeed('name', seed,
+id)`, K=8 then accept-the-duplicate. `state.nameLedger` (name → blocked-until)
+is written at spawn AFTER every reschedule-return, pruned lazily, serialized,
+and backfilled from surviving vessels+archive on pre-3.5 saves (presence
+checked on the RAW save object). Measured: live-duplicate samples 97% → ~1.6%;
+refractory violations ~0.1% of spawns (the designed accept-the-duplicate
+tail). Verified fate-inert by the pass-3 method: name-stripped fingerprints
+IDENTICAL vs pre-pass HEAD code on seeds 42/7/23 over 20 mixed-granularity
+years. 52 tests green (`test/names.test.mjs`: rarity, refractory, granularity
+independence, save round-trip, old-save backfill, pool-swap fate-inertness).
+Original design notes (all held):
 Feasibility established 2026-07-16 (it does NOT need Pass 5's fleet model):
 because fates are pre-rolled at spawn, "is this name active at sim-time t"
 derives from already-generated vessels, and a spawn-ordered ledger keeps it
@@ -200,9 +214,12 @@ is live by now — pin the *Surprise* and follow her properly.
 
 ## Outside the ladder
 
-- **New chart views** (planned 2026-07-16) — two additions to the Pass-2
-  regional plates (`render.js` `REGIONS`; render-layer only, no research
-  gate, buildable anytime):
+- **New chart views** (planned 2026-07-16 — ✅ **built the same day**: both
+  plates in `render.js` REGIONS, menu rows auto-generated, containment pinned
+  in `test/regions.test.mjs`, verified headless — plate switching, settings
+  persistence across reload, zero console errors) — two additions to the
+  Pass-2 regional plates (`render.js` `REGIONS`; render-layer only, no
+  research gate, buildable anytime):
   - **`arabia-india` — "Arabia & India".** Bounds ≈ lon 36→92, lat −2→31:
     the Red Sea mouth and the Arabian Sea through the Bay of Bengal. Covers
     seven roster ports — **Mocha**, Muscat, Surat, Bombay (era-named Goa
@@ -247,8 +264,10 @@ is live by now — pin the *Surprise* and follow her properly.
   taken up. Until then the declared boundary stands.
 - **Tweaks** (`ideas.txt`'s sibling `tweaks.txt`) — small render/UX
   adjustments, no research, no pass machinery; fold into whatever pass is
-  in flight. Currently queued: revisit the dormant-port greying threshold
-  (extend the duration before a port greys?).
+  in flight. ✅ Dormant-port greying threshold extended 2026-07-16: the
+  window is now DISPLAY policy in main.js (3 sim-years, up from the world
+  default of 1 — `world.activePortsSince` keeps its contract); sparse-but-
+  real flows read as quiet, not abandoned. Queue currently empty.
 
 ## The interleaved queue — recommended order (live)
 
@@ -264,8 +283,10 @@ Tags: **[F]** feature build · **[R]** research · **[D]** user decision ·
 **[B]** adopted-plan build. Hard gates are marked; everything else is
 recommended order, not law.
 
-1. **[F] New chart views + tweaks** — ungated render work (the two plates
-   above, the greying tweak). Quick wins now, or fold into any later step.
+1. ~~**[F] New chart views + tweaks**~~ — **✅ DONE 2026-07-16**: the
+   `arabia-india` and `na-northeast` plates shipped (menu auto-rows, test
+   pins, headless-verified); greying window extended to 3 sim-years as
+   display policy in main.js.
 2. ~~**[D] Adoption calls**~~ — **✅ DECIDED 2026-07-16**: PLAN-4 + PLAN-6
    adopted together; all five Tier-1 candidates; all five new ports; steam =
    declared boundary + queued feature (T11); reset ramp = a DESIGNED
@@ -278,8 +299,10 @@ recommended order, not law.
    `research/name-pressure-2026-07-16.md`). **Standing re-gate:** re-run
    `name-pressure.mjs` at X-S2 (310-year cycle, new powers) and before
    pass 3.5 ships.
-4. **[F] Pass 3.5 — unique active names + retirement.** HARD GATE: T5 ✅ —
-   now unblocked (mind the step-3 re-gate note if built after X-S lands).
+4. ~~**[F] Pass 3.5 — unique active names + retirement**~~ — **✅ SHIPPED
+   2026-07-16** (see the pass ledger above: nameLedger in world.js,
+   fate-inertness proven vs HEAD, 52 tests). The step-3 re-gate note
+   stands: re-run `name-pressure.mjs` when X-S lands.
 5. **[R] Phase RB as ONE campaign — T4 + T8 + T9 + T10 (X-R1)**, plus
    PLAN-4 E-R1 verification. The big source pass; the whole point of the
    phase grouping is that it runs once. Includes X-R2's charter sign-off
@@ -312,10 +335,9 @@ recommended order, not law.
     channel. Deliberately after convoys and Pass 5 (user decision
     2026-07-16) so the commissions sail with the full movement vocabulary.
 
-The only hard edges are the marked gates (T5→3.5 ✅ satisfied, T4→4,
-roster-final→RC, PLAN-5→5, and {T6, Pass 4, Pass 5}→6). With steps 2–3 done,
-the front of the queue is: step 1 (anytime), step 4 (unblocked), and step 5
-(the Phase-RB campaign). Step 4 commutes with steps 5–7; step 1 commutes
-with everything; convoys floats anywhere from step 1 onward at the cost of
-`asserted` numbers until T9 lands; T6 may run early, but the Pass-6 build
-should not.
+The only hard edges are the marked gates (T5→3.5 ✅, T4→4, roster-final→RC,
+PLAN-5→5, and {T6, Pass 4, Pass 5}→6). With steps 1–4 done, the front of the
+queue is **step 5 (the Phase-RB campaign: T4+T8+T9+T10 + E-R1)**, then
+convoys (step 6) inheriting T9's rates. Convoys still floats anywhere at the
+cost of `asserted` numbers until T9 lands; T6 may run early, but the Pass-6
+build should not.

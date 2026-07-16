@@ -35,6 +35,17 @@ const FADE_DAYS = 2;               // how long a retired/lost vessel lingers bef
 const WRECK_LINGER_DAYS = DAY_OF_YEAR; // a lost ship marks the chart for one sim-year
 const MAX_LEGS = 3;
 const LOG_CAP = 200;
+// Unique active names + retirement (feature pass 3.5). A spawning vessel
+// redraws her name (from her own dedicated stream) while it is blocked in the
+// name ledger; a name blocks until the voyage ends — or, when the pre-rolled
+// fate is a loss, for a refractory period beyond the loss (a lost name rests).
+// After the redraw budget she accepts the duplicate: historically defensible —
+// real fleets ran several Rosários at once. Sim-layer, but fate-inert: the
+// candidate draw burns the same vessel-stream words as before, and redraws
+// consume only hashSeed('name', seed, id). NEVER source retirement from
+// wrecks — tune.wreckLingerDays is observation tuning the sim must not read.
+const NAME_REFRACTORY_YEARS = 5;
+const NAME_REDRAWS = 8;
 const BASE_DAILY_LOSS = 0.0009;    // ~2.5% over a 30-day leg in peacetime
 const HURRICANE_UPLIFT = 2.0;      // Caribbean, jun–nov
 const CAPE_UPLIFT = 1.6;           // leg passing south of 30°S (Cape of Good Hope)
@@ -246,6 +257,7 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     nextSpawnAt: 0,
     nextId: 1,
     spawnA: hashSeed('spawn', seed) | 0,
+    nameLedger: {},    // name → blocked-until (sim-sec); written at spawn, pruned lazily
     counters: { spawned: 0, arrived: 0, lost: 0 },
     // ---- observation layer (feature pass 1): pure accounting on top of sim
     // events — recorded at spawn or at resolution, so a big fast-forward tick
@@ -295,6 +307,18 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
       if (v.captain === undefined) v.captain = makeCaptain(v.id, powerById.get(v.powerId));
     for (const rec of Object.values(state.tracked.archive))
       if (rec.captain === undefined) rec.captain = makeCaptain(rec.id, powerById.get(rec.powerId));
+    // a pre-3.5 save backfills the name ledger from its surviving records:
+    // each vessel's block end is derivable from her pre-rolled fate. (Blocks
+    // from already-culled lost vessels are unrecoverable — accepted: the
+    // ledger converges within one refractory period.) Presence is checked on
+    // the RAW save — the state literal's fresh {} would mask an absent field.
+    if (!restore.nameLedger || typeof restore.nameLedger !== 'object') {
+      state.nameLedger = {};
+      for (const v of [...state.vessels, ...Object.values(state.tracked.archive)]) {
+        const end = v.fate.lost ? v.fate.atSec + NAME_REFRACTORY_YEARS * SEC_PER_DAY * DAY_OF_YEAR : v.voyageEnd;
+        state.nameLedger[v.name] = Math.max(state.nameLedger[v.name] || 0, end);
+      }
+    }
   }
 
   // JSON-safe copy of the whole mutable state (for persist.js).
@@ -419,7 +443,11 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     //    a Carrera galleon is a merchant (religious Iberian names), an escort on a
     //    naval lane is a warship. Pure-naval types are naval everywhere.
     const isNaval = lane.naval === true || (type.roles.includes('naval') && !type.roles.includes('merchant'));
-    const name = makeName(rng, power, isNaval);
+    // candidate #0 from the vessel stream — burning exactly the draws makeName
+    // always burned here, so every later draw (cargo, itinerary, fate) is
+    // untouched by pass 3.5; the uniqueness redraw happens at the end, on the
+    // vessel's own dedicated name stream.
+    let name = makeName(rng, power, isNaval);
     // 7. cargo (Middle-Passage lanes carry only enslaved-people)
     const cargoId = lane.middlePassage ? 'enslaved-people'
       : weightedPick(rng, lane.cargo, c => (c === 'ballast' ? 0.6 : 1));
@@ -474,6 +502,27 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
         }
       }
     }
+
+    // 10. unique active name (pass 3.5). The ledger is written in spawn order,
+    //     so a big fast-forward tick resolves names exactly as many small
+    //     ticks would (granularity-independent by the portCalls argument). It
+    //     is only written here — after every reschedule-return above — so a
+    //     skipped spawn never pollutes it.
+    if ((state.nameLedger[name] || 0) > spawnSimClock) {
+      const nrng = mulberry32(hashSeed('name', seed, id));
+      for (let k = 0; k < NAME_REDRAWS; k++) {
+        const cand = makeName(nrng, power, isNaval);
+        if (!((state.nameLedger[cand] || 0) > spawnSimClock)) { name = cand; break; }
+      }
+      // still blocked after the budget → she sails as a duplicate
+    }
+    const nameBlockEnd = fate.lost
+      ? fate.atSec + NAME_REFRACTORY_YEARS * SEC_PER_DAY * DAY_OF_YEAR
+      : voyageEnd;
+    state.nameLedger[name] = Math.max(state.nameLedger[name] || 0, nameBlockEnd);
+    // lazy prune: spawn times only move forward, so an expired block can
+    // never matter again (bounded by the distinct-name vocabulary, ~1k keys)
+    for (const n in state.nameLedger) if (state.nameLedger[n] <= spawnSimClock) delete state.nameLedger[n];
 
     return {
       id, name, prefix: isNaval && power.navalPrefix ? power.navalPrefix : null,

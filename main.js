@@ -128,10 +128,15 @@ async function boot() {
   // overlay lane weights drift era-slow, so they're recomputed on the ~5 Hz HUD
   // throttle (and at toggle time), not per frame — 261 lanes need no rAF math.
   let laneWeightsCache = showRoutes ? world.laneWeightsAt(latestSnap.simClock) : null;
-  // ports greyed unless they saw traffic in the past sim-year; lifecycle
+  // ports greyed unless they saw traffic in the recent past; lifecycle
   // (existing/ruined per the flowing year) gates chart presence. Both recomputed
   // on the HUD throttle (era-slow) and passed to every draw()/pickAt().
-  let activePorts = world.activePortsSince(latestSnap.simClock);
+  // The greying window is DISPLAY policy (tweaks.txt, 2026-07-16): 3 sim-years,
+  // up from the world default of 1 — minor ports with sparse but real flows
+  // (a slave factory between sailings, a seasonal Arctic port in winter) read
+  // as quiet, not abandoned. world.activePortsSince keeps its own default.
+  const GREY_WINDOW_SEC = 3 * 365.25 * 86400;
+  let activePorts = world.activePortsSince(latestSnap.simClock, GREY_WINDOW_SEC);
   let portLife = world.portLifecycleAt(latestSnap.simClock);
 
   const ledgerCtx = () => ({
@@ -577,7 +582,7 @@ async function boot() {
     hudAccum += dtReal;
     if (hudAccum > 0.2) {
       hudAccum = 0;
-      activePorts = world.activePortsSince(latestSnap.simClock);
+      activePorts = world.activePortsSince(latestSnap.simClock, GREY_WINDOW_SEC);
       portLife = world.portLifecycleAt(latestSnap.simClock);
       // overlay weights: this world's realized per-lane flow — route brightness
       // IS the traffic the sim is actually sampling. They drift era-slow, so a

@@ -9,7 +9,7 @@
 const INK = '#3a2c1c';           // iron-gall sepia
 const INK_SOFT = 'rgba(58,44,28,0.55)';
 const INK_FAINT = 'rgba(58,44,28,0.16)';
-const INK_DIM = '#9c8d72';       // dormant port — greyed (no traffic in the past sim-year)
+const INK_DIM = '#9c8d72';       // dormant port — greyed (no traffic within main.js's greying window)
 const PAPER = '#e7dabd';         // aged parchment
 const PAPER_HI = '#efe4cb';
 const SEA_TINT = 'rgba(120,140,150,0.06)'; // barely-cool wash over the sea
@@ -39,7 +39,18 @@ export const REGIONS = [
   { id: 'caribbean', name: 'The Caribbean',
     bounds: { lonMin: -100, lonMax: -54, latMin: 5, latMax: 30 } },
   { id: 'east-indies', name: 'The East Indies & China',
-    bounds: { lonMin: 100, lonMax: 140, latMin: -12, latMax: 38 } }
+    bounds: { lonMin: 100, lonMax: 140, latMin: -12, latMax: 38 } },
+  // The two 2026-07-16 additions (RANKING "Outside the ladder"). Arabia & India
+  // deliberately leaves north/west headroom for PLAN-4's E2 (Basra/Bandar
+  // Abbas, ~30.5N in the Gulf) and E6 (Jeddah, ~39E in the Red Sea) so their
+  // adoption needs no re-crop; Port Louis (~20S) is deliberately OUT of frame —
+  // the Mascarenes belong to the world plate. Newfoundland→Chesapeake reaches
+  // past −50 so the Grand Banks sea room is in frame, ready for grounds-
+  // loitering fishery traffic if Pass 4 (T4) ships it.
+  { id: 'arabia-india', name: 'Arabia & India',
+    bounds: { lonMin: 36, lonMax: 92, latMin: -2, latMax: 31 } },
+  { id: 'na-northeast', name: 'Newfoundland to the Chesapeake',
+    bounds: { lonMin: -82, lonMax: -49, latMin: 34.5, latMax: 52.5 } }
 ];
 
 // Colour is spent on allegiance (the flag), so ship CATEGORY is carried by the

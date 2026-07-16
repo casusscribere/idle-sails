@@ -34,7 +34,14 @@ const MUST_CONTAIN = {
   'caribbean': ['havana', 'veracruz', 'kingston', 'bridgetown', 'cartagena',
     'portobelo', 'st-eustatius', 'cap-francais'],
   'east-indies': ['batavia', 'manila', 'makassar', 'banda-neira', 'canton',
-    'macau', 'amoy', 'dejima', 'naha']
+    'macau', 'amoy', 'dejima', 'naha'],
+  // the 2026-07-16 plates: Arabia & India keeps Gulf/Red-Sea headroom for
+  // PLAN-4 E2/E6 (no re-crop on adoption); Newfoundland→Chesapeake keeps the
+  // Grand Banks sea room in frame for future fishery traffic
+  'arabia-india': ['mocha', 'muscat', 'surat', 'bombay', 'madras',
+    'tranquebar', 'calcutta'],
+  'na-northeast': ['louisbourg', 'boston', 'new-york', 'philadelphia',
+    'chesapeake']
 };
 
 test('every regional plate contains the ports it exists for', () => {

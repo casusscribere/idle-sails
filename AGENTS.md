@@ -354,6 +354,31 @@ Every design decision answers to both of these:
   unblocked** — with a standing re-gate at X-S2 (310-yr cycle + new
   powers re-raise pressure).
 
+- **Queue steps 1 + 4 shipped (2026-07-16): new chart views + greying
+  tweak, and feature pass 3.5.** Two new regional plates in `render.js`
+  REGIONS — **`arabia-india`** (lon 36→92, lat −2→31; Gulf/Red-Sea headroom
+  so PLAN-4 E2/E6 need no re-crop; Mascarenes deliberately out) and
+  **`na-northeast`** (lon −82→−49, lat 34.5→52.5; Grand Banks sea room in
+  frame for future fishery traffic) — menu rows auto-generate from REGIONS;
+  containment pinned in test/regions.test.mjs; headless-verified (plate
+  switching, settings persistence, zero console errors). Dormant-port
+  greying window extended to **3 sim-years as DISPLAY policy in main.js**
+  (`world.activePortsSince` keeps its 1-year default contract). **Pass 3.5
+  (unique active names + retirement) is built**: `state.nameLedger` (name →
+  blocked-until) written at spawn after every reschedule-return, pruned
+  lazily, serialized, backfilled from surviving vessels+archive on pre-3.5
+  saves (presence checked on the RAW save — the state literal's fresh `{}`
+  would mask absence); candidate #0 still burns the same vessel-stream
+  draws (unblocked names byte-identical to pre-pass; no reshuffle), blocked
+  names redraw from `hashSeed('name', seed, id)` K=8 then
+  accept-the-duplicate; a lost name rests `fate.atSec + 5 sim-years`,
+  arrivals release at voyageEnd; retirement NEVER sourced from wrecks.
+  Live-duplicate samples 97%→~1.6%; refractory violations ~0.1% (the
+  designed tail). Fate-inertness proven: name-stripped fingerprints
+  IDENTICAL vs pre-pass HEAD code, seeds 42/7/23, 20 mixed-granularity
+  years. **52 tests green** (`test/names.test.mjs` +2 region pins). Next
+  up: the Phase-RB research campaign (T4+T8+T9+T10 + E-R1), then convoys.
+
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —
   `index.html`, `main.js`, `world.js`, `render.js`, `ui.js`, `style.css`, and
