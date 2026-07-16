@@ -37,10 +37,16 @@ export function defaultSettings() {
   // panels stowed — the chart alone. Click it again to unfurl.
   // legend.{ships,flags}: the legend's sections, independently toggleable.
   // collapsed.{…}: per-panel header collapse (title bar only, in place).
+  // region: the active chart view ('world' or a render.js REGIONS preset id —
+  // validated against the presets by main.js, so settings.js stays layout-only).
+  // layers: the routes overlay's per-basin toggles, keyed by basin id; a key is
+  // stored only when switched OFF (absent = on), so new basins default visible.
   return {
     perfTier: 'medium',
     panels: { ...DEFAULT_PANELS },
     furled: false,
+    region: 'world',
+    layers: {},
     legend: { ships: true, flags: true },
     collapsed: { legend: false, events: false, stats: false, tracker: false }
   };
@@ -58,6 +64,10 @@ export function loadSettings(storage = defaultStorage()) {
       for (const k of Object.keys(out.panels))
         if (typeof s.panels[k] === 'boolean') out.panels[k] = s.panels[k];
     if (s && typeof s.furled === 'boolean') out.furled = s.furled;
+    if (s && typeof s.region === 'string' && /^[a-z0-9-]{1,40}$/.test(s.region)) out.region = s.region;
+    if (s && s.layers && typeof s.layers === 'object')
+      for (const k of Object.keys(s.layers).slice(0, 64))
+        if (typeof s.layers[k] === 'boolean' && /^[a-z0-9-]{1,40}$/.test(k)) out.layers[k] = s.layers[k];
     // legacy (pre-2026-07-16): statistics was a drawer under the counters
     // (statsOpen) — an open drawer carries over as the statistics panel
     if (s && typeof s.statsOpen === 'boolean' && !(s.panels && typeof s.panels.stats === 'boolean'))

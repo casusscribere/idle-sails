@@ -95,3 +95,28 @@ test('settings: defaults, round-trip, junk tolerance, medium = pre-slider behavi
   // the default tier is exactly the constants the world always used
   assert.deepEqual(perfValues(defaultSettings()), PERF_TIERS.medium);
 });
+
+test('settings: chart view + layer toggles round-trip and reject junk', () => {
+  const store = new Map();
+  const storage = { getItem: k => (store.has(k) ? store.get(k) : null), setItem: (k, v) => store.set(k, v) };
+  const s = loadSettings(storage);
+  assert.equal(s.region, 'world');
+  assert.deepEqual(s.layers, {}, 'no basin stored ⇒ every layer on');
+  // sparse storage: only switched-off basins persist
+  s.region = 'caribbean'; s.layers['east-asia'] = false;
+  saveSettings(s, storage);
+  const back = loadSettings(storage);
+  assert.equal(back.region, 'caribbean', 'the chosen plate persists');
+  assert.equal(back.layers['east-asia'], false, 'a hidden layer stays hidden');
+  assert.equal(back.layers['atlantic'], undefined, 'absent basin = on');
+  // junk shapes are dropped, never throw
+  storage.setItem('idle-sails-settings', JSON.stringify({
+    region: { evil: true },
+    layers: { 'east-asia': 'nope', 'INVALID KEY!': false, atlantic: false }
+  }));
+  const junk = loadSettings(storage);
+  assert.equal(junk.region, 'world', 'a non-string region falls back');
+  assert.deepEqual(junk.layers, { atlantic: false }, 'only well-formed boolean layer entries survive');
+  storage.setItem('idle-sails-settings', JSON.stringify({ region: 'x'.repeat(99) }));
+  assert.equal(loadSettings(storage).region, 'world', 'an over-long region id falls back');
+});

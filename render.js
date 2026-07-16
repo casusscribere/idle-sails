@@ -27,6 +27,21 @@ const WAKE = 'rgba(58,44,28,0.28)';
 // (The whole world still CONTAINS in the viewport width — see resize() — the
 // page scrolls only below the readability floor.)
 
+// Regional views (feature pass 2): preset crops for the crowded corners of the
+// chart — hand-tuned degree boxes, not free zoom, so each reads as its own
+// engraved plate. 'world' keeps the data-fit crop above. Everything downstream
+// of BOUNDS (projection, base chart, labels, overlay, picking) follows the
+// active region; the sim underneath never knows a region exists.
+export const REGIONS = [
+  { id: 'world', name: 'The whole world' },
+  { id: 'europe', name: 'Europe & the Mediterranean',
+    bounds: { lonMin: -13, lonMax: 46, latMin: 33, latMax: 67.5 } },
+  { id: 'caribbean', name: 'The Caribbean',
+    bounds: { lonMin: -100, lonMax: -54, latMin: 5, latMax: 30 } },
+  { id: 'east-indies', name: 'The East Indies & China',
+    bounds: { lonMin: 100, lonMax: 140, latMin: -12, latMax: 38 } }
+];
+
 // Colour is spent on allegiance (the flag), so ship CATEGORY is carried by the
 // glyph's shape instead. The ship-types collapse into five map categories:
 const SHIP_CATEGORY = {
@@ -115,7 +130,21 @@ export function createRenderer(canvas, assets) {
       latMax: latMax + 2.5    // just above the northernmost port
     };
   }
-  const BOUNDS = computeBounds();
+  const WORLD_BOUNDS = computeBounds();
+  let BOUNDS = WORLD_BOUNDS;
+  let regionId = 'world';
+
+  // Switch the chart to a preset regional plate (or back to the world). The
+  // projection, base chart, labels, and overlay all rebuild from the new
+  // bounds; wakes are screen-space history from the old projection, so they
+  // are dropped rather than streaked across the new plate.
+  function setRegion(id) {
+    const r = REGIONS.find(r => r.id === id);
+    regionId = r ? r.id : 'world';
+    BOUNDS = (r && r.bounds) ? r.bounds : WORLD_BOUNDS;
+    wakes.clear();
+    resize();
+  }
 
   let base = null, baseCtx = null;      // offscreen static chart
   let W = 0, H = 0, dpr = 1, k = 1, ox = 0, oy = 0;
@@ -142,11 +171,13 @@ export function createRenderer(canvas, assets) {
     const vh = window.innerHeight;
     // CONTAIN, not cover: the whole world fits the viewport width, so Japan and
     // Sitka stay on screen without scrolling; the parchment letterboxes above
-    // and below. Only when that would shrink the map below a readable height
-    // (narrow/mobile screens) does the canvas hold a minimum scale and the page
-    // scroll left/right instead.
+    // and below. Regional plates contain on BOTH axes (their aspect is close to
+    // the screen's, so they fill it). Only when that would shrink the map below
+    // a readable height (narrow/mobile screens) does the canvas hold a minimum
+    // scale and the page scroll left/right instead.
     const MIN_MAP_H = 460;                           // px readability floor
-    const kContain = vw / spanLon;
+    const kContain = regionId === 'world' ? vw / spanLon
+      : Math.min(vw / spanLon, vh / spanLat);
     if (kContain * spanLat >= MIN_MAP_H) { k = kContain; W = vw; }
     else { k = MIN_MAP_H / spanLat; W = Math.max(vw, Math.ceil(spanLon * k)); }
     H = vh;
@@ -155,6 +186,7 @@ export function createRenderer(canvas, assets) {
     ox = (W - spanLon * k) / 2; oy = (H - spanLat * k) / 2;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     buildBase();
+    renderOverlay();      // the overlay buffer projects through the new bounds
   }
 
   // ---- static chart layer -------------------------------------------------
@@ -172,20 +204,23 @@ export function createRenderer(canvas, assets) {
     c.fillStyle = SEA_TINT; c.fillRect(0, 0, W, H);
     drawGrain(c);
 
-    // graticule every 15° (the projection grid). Snap each line's constant axis
-    // to a half-pixel so every meridian/parallel renders with identical crispness
-    // (otherwise whichever line happens to align to a device pixel looks bolder).
-    // Edges computed from ox/k directly — project() wraps +180° back to −180°,
-    // which collapsed every parallel to a zero-length line (the S2 full-globe
-    // bounds regression). Meridians and parallels now span the whole chart.
+    // graticule (the projection grid): every 15° on the world plate, tightening
+    // to 10°/5° on regional crops so the grid stays present without crowding.
+    // Snap each line's constant axis to a half-pixel so every meridian/parallel
+    // renders with identical crispness (otherwise whichever line happens to
+    // align to a device pixel looks bolder). Positions computed from ox/k
+    // directly — project() wraps +180° back to −180°, which collapsed every
+    // parallel to a zero-length line (the S2 full-globe bounds regression).
     c.lineWidth = 1; c.strokeStyle = INK_FAINT;
-    const xL = ox, xR = ox + (BOUNDS.lonMax - BOUNDS.lonMin) * k;
+    const spanLon = BOUNDS.lonMax - BOUNDS.lonMin;
+    const step = spanLon >= 120 ? 15 : spanLon >= 60 ? 10 : 5;
+    const xL = ox, xR = ox + spanLon * k;
     const yT = oy, yB = oy + (BOUNDS.latMax - BOUNDS.latMin) * k;
-    for (let lon = -165; lon <= 165; lon += 15) {
-      const x = Math.round(project(lon, 0)[0]) + 0.5;
+    for (let lon = Math.ceil(BOUNDS.lonMin / step) * step; lon <= BOUNDS.lonMax; lon += step) {
+      const x = Math.round(ox + (lon - BOUNDS.lonMin) * k) + 0.5;
       line(c, [x, yT], [x, yB]);
     }
-    for (let lat = -45; lat <= 75; lat += 15) {
+    for (let lat = Math.ceil(BOUNDS.latMin / step) * step; lat <= BOUNDS.latMax; lat += step) {
       const y = Math.round(oy + (BOUNDS.latMax - lat) * k) + 0.5;
       line(c, [xL, y], [xR, y]);
     }
@@ -346,14 +381,33 @@ export function createRenderer(canvas, assets) {
     const h = hex.replace('#', '');
     return `rgba(${parseInt(h.slice(0, 2), 16)},${parseInt(h.slice(2, 4), 16)},${parseInt(h.slice(4, 6), 16)},${a})`;
   }
-  // routesCtx = { laneWeights } — this world's realized flow weight per
-  // era-active lane (world.laneWeightsAt): the overlay shows the traffic the
-  // sim is actually sampling. Faint→bold so the busiest lanes sit on top.
-  function drawRouteOverlay(season, routesCtx) {
-    const wts = routesCtx.laneWeights || {};
+  // The overlay is drawn to its own offscreen canvas and blitted per frame:
+  // lane weights drift era-slow, so main.js refreshes it on the ~5 Hz HUD
+  // throttle (and at toggle/filter time) via setOverlay — 261 polylines cost
+  // one drawImage per frame, not a re-stroke. overlayData = { season,
+  // laneWeights, visible }: this world's realized flow weight per era-active
+  // lane (world.laneWeightsAt) — the overlay shows the traffic the sim is
+  // actually sampling — and `visible`, an optional Set of lane ids (the layers
+  // filter; null = every lane). Faint→bold so the busiest lanes sit on top;
+  // brightness normalizes within the VISIBLE set, so an isolated basin's own
+  // hierarchy reads instead of drowning under the Atlantic's.
+  let overlay = null, overlayData = null;
+  function setOverlay(data) { overlayData = data; renderOverlay(); }
+  function renderOverlay() {
+    if (!overlayData) { overlay = null; return; }
+    const { season, laneWeights, visible } = overlayData;
+    const wts = laneWeights || {};
+    if (!overlay) overlay = document.createElement('canvas');
+    if (overlay.width !== W * dpr || overlay.height !== H * dpr) {
+      overlay.width = W * dpr; overlay.height = H * dpr;
+    }
+    const c = overlay.getContext('2d');
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    c.clearRect(0, 0, W, H);
     const active = [];
     let maxEff = 0;
     for (const rl of routeLines) {
+      if (visible && !visible.has(rl.id)) continue;   // layer toggled off
       const eff = wts[rl.id];
       if (!eff) continue;                        // era-inactive or zero-flow lane
       active.push({ rl, eff });
@@ -361,30 +415,28 @@ export function createRenderer(canvas, assets) {
     }
     if (!maxEff) return;
     active.sort((a, b) => a.eff - b.eff);
-    ctx.save();
-    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    c.lineCap = 'round'; c.lineJoin = 'round';
     for (const { rl, eff } of active) {
       const coords = rl.coordsBySeason[season] || rl.coordsBySeason.jja || Object.values(rl.coordsBySeason)[0];
       if (!coords) continue;
       const f = eff / maxEff;
-      ctx.strokeStyle = hexA(rl.color, 0.22 + 0.5 * f);
-      ctx.lineWidth = 1.2 + 5.5 * f;
-      ctx.beginPath();
-      tracePath(ctx, coords);
-      ctx.stroke();
+      c.strokeStyle = hexA(rl.color, 0.22 + 0.5 * f);
+      c.lineWidth = 1.2 + 5.5 * f;
+      c.beginPath();
+      tracePath(c, coords);
+      c.stroke();
     }
-    ctx.restore();
   }
 
   // ---- dynamic frame ------------------------------------------------------
-  function draw(snapshot, selectedId, selectedPortId, t, routesCtx, activePorts, selectedWreckId, lifecycle) {
+  function draw(snapshot, selectedId, selectedPortId, t, activePorts, selectedWreckId, lifecycle) {
     if (base) ctx.drawImage(base, 0, 0, W, H);
     // display year: clamped through the reset ramp, as everything era-keyed is
     const dispYear = snapshot.reset > 0 ? 1815 : snapshot.year;
     drawPorts(activePorts, lifecycle, selectedPortId, dispYear);
 
     const vessels = snapshot.vessels;
-    if (routesCtx) drawRouteOverlay(snapshot.season, routesCtx);
+    if (overlay) ctx.drawImage(overlay, 0, 0, W, H);
     if (selectedPortId) drawPortFocus(snapshot, selectedPortId);
     const selected = vessels.find(v => v.id === selectedId);
     if (selected) drawSelectedRoute(selected, t);
@@ -556,5 +608,5 @@ export function createRenderer(canvas, assets) {
     return { type: cands[0].type, id: cands[0].id };
   }
 
-  return { resize, draw, pickAt, project, setPerf };
+  return { resize, draw, pickAt, project, setPerf, setRegion, setOverlay };
 }

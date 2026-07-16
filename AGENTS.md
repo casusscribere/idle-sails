@@ -231,6 +231,29 @@ Every design decision answers to both of these:
   archived verbatim in `archive/ui/stats-drawer-under-counters.css`.
   Verified headless (toggle, collapse, persistence, migration, sheet swap /
   dismiss, no-overlap); 37 tests green.
+- **Feature pass 2 (2026-07-16): regional views + layers panel**
+  (`feature-ideas/RANKING.md` Pass 2 — both `render.js` work, sim untouched).
+  **Regional views (#1):** `render.js` exports `REGIONS` — four preset plates
+  (world data-fit crop · Europe & the Mediterranean · the Caribbean · the East
+  Indies & China); `renderer.setRegion(id)` swaps the mutable BOUNDS and
+  rebuilds base/labels/overlay through the new projection (wakes drop, not
+  streak; the graticule tightens 15°→5° on regional crops; regional plates
+  contain on both axes with the same readability floor). Chosen via a "Chart
+  view" radiogroup in the menu, persisted as `settings.region` (validated
+  against the presets at boot). Port lifecycle and era names carry through on
+  every plate. **Layers panel (#8):** the routes overlay now draws to a cached
+  offscreen canvas refreshed on the existing 5 Hz HUD throttle (one blit per
+  frame), and the master toggle gained a menu-sub tree of per-BASIN toggles —
+  the six flow-matrix basins + "Naval & other voyages" — children disabled
+  while the parent is off (the legend-tree idiom). `build-data.mjs` carries
+  `basin` on each folded flow system (additive; datasetVersion stays 4, saves
+  survive); main.js votes each lane's basin by folded share; overlay
+  brightness normalizes within the visible set so an isolated basin reads its
+  own hierarchy. Off basins persist sparsely as `settings.layers` (absent =
+  on). Verified headless via Playwright (plate switching, filter isolation,
+  persistence across reload, zero console errors). **41 tests green**
+  (`test/regions.test.mjs` pins each plate to the ports it exists for + the
+  fold's basin coverage; settings round-trip extended).
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —

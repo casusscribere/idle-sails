@@ -3,7 +3,7 @@
 // touches the network, the clock, and the DOM event wiring.
 
 import { createWorld, portNameAt } from './world.js';
-import { createRenderer } from './render.js';
+import { createRenderer, REGIONS } from './render.js';
 import { createUI, buildLegend, speedFromSlider } from './ui.js';
 import { loadSave, autoSave, accrualSeconds } from './persist.js';
 import { loadSettings, saveSettings, perfValues, PERF_NOTES } from './settings.js';
@@ -91,10 +91,30 @@ async function boot() {
     return { id: lane.id, era: lane.era, color: (power && power.color) || '#3a2c1c', coordsBySeason };
   });
 
+  // Each lane's basin, for the overlay's layer toggles: a lane folded from
+  // several flow systems takes the basin that contributes the most share;
+  // lanes outside the flow matrix (naval stations, residual-only trades)
+  // gather under 'other'.
+  const laneBasin = new Map();
+  {
+    const votes = new Map();   // laneId → { basin: share }
+    for (const s of (datasets.flows && datasets.flows.systems) || []) {
+      if (!s.basin) continue;
+      for (const [lid, sh] of Object.entries(s.lanes)) {
+        if (!votes.has(lid)) votes.set(lid, {});
+        votes.get(lid)[s.basin] = (votes.get(lid)[s.basin] || 0) + sh;
+      }
+    }
+    for (const [lid, v] of votes)
+      laneBasin.set(lid, Object.entries(v).sort((a, b) => b[1] - a[1])[0][0]);
+  }
+
   const canvas = document.getElementById('chart');
   const renderer = createRenderer(canvas, { land, ports: datasets.ports, legById, reducedMotion, routeLines, portNameAt });
   renderer.setPerf({ wakeLength: perf.wakeLength });
-  renderer.resize();
+  // the saved chart view, validated against the presets (a stale id → world)
+  if (!REGIONS.some(r => r.id === settings.region)) settings.region = 'world';
+  renderer.setRegion(settings.region);      // sizes the canvas (includes resize)
   addEventListener('resize', renderer.resize);
 
   // restore the helm to its saved position (before the UI reads it)
@@ -218,10 +238,84 @@ async function boot() {
     menu.hidden = !open;
     menuToggle.setAttribute('aria-expanded', String(open));
   });
+  // ---- routes overlay: master toggle + per-basin layers + chart views ----
+  // The overlay draws to the renderer's cached offscreen canvas, refreshed on
+  // the 5 Hz HUD throttle (weights drift era-slow) and at toggle/filter/view
+  // time — per frame it costs one blit.
+  const BASIN_ORDER = ['atlantic', 'baltic-north-sea', 'mediterranean',
+    'indian-ocean-west', 'bengal-se-asia', 'east-asia'];
+  const BASIN_LABEL = {
+    'atlantic': 'The Atlantic', 'baltic-north-sea': 'Baltic & North Sea',
+    'mediterranean': 'The Mediterranean', 'indian-ocean-west': 'Western Indian Ocean',
+    'bengal-se-asia': 'Bengal & Southeast Asia', 'east-asia': 'East Asia',
+    'other': 'Naval & other voyages'
+  };
+  const basinsPresent = new Set(laneBasin.values());
+  const basinIds = BASIN_ORDER.filter(b => basinsPresent.has(b))
+    .concat([...basinsPresent].filter(b => !BASIN_ORDER.includes(b)).sort(), ['other']);
+  const layerOn = (b) => settings.layers[b] !== false;
+
+  // visible lane set for the overlay: null = no filter (every basin on)
+  function laneVisibleSet() {
+    if (basinIds.every(layerOn)) return null;
+    return new Set(routeLines.filter(rl => layerOn(laneBasin.get(rl.id) || 'other')).map(rl => rl.id));
+  }
+  function refreshOverlay() {
+    renderer.setOverlay(showRoutes && laneWeightsCache
+      ? { season: latestSnap.season, laneWeights: laneWeightsCache, visible: laneVisibleSet() }
+      : null);
+  }
+
+  // the per-basin rows under the master toggle (disabled while it is off)
+  const layerSubs = document.getElementById('layer-subs');
+  for (const b of basinIds) {
+    const lab = document.createElement('label');
+    lab.className = 'menu-item';
+    const box = document.createElement('input');
+    box.type = 'checkbox'; box.id = 'ly-opt-' + b; box.checked = layerOn(b);
+    const span = document.createElement('span');
+    span.textContent = BASIN_LABEL[b] || b.replace(/-/g, ' ');
+    lab.append(box, span);
+    layerSubs.appendChild(lab);
+    box.addEventListener('change', () => {
+      // stored sparsely: only switched-off basins persist (absent = on)
+      if (box.checked) delete settings.layers[b]; else settings.layers[b] = false;
+      saveSettings(settings); refreshOverlay();
+    });
+  }
+  function applyLayerSubs() {
+    for (const b of basinIds) {
+      const box = document.getElementById('ly-opt-' + b);
+      box.disabled = !showRoutes;
+      box.closest('.menu-item').classList.toggle('is-disabled', box.disabled);
+    }
+  }
   document.getElementById('ov-routes').addEventListener('change', (e) => {
     showRoutes = e.target.checked;
     laneWeightsCache = showRoutes ? world.laneWeightsAt(latestSnap.simClock) : null;
+    applyLayerSubs(); refreshOverlay();
   });
+  applyLayerSubs(); refreshOverlay();      // honour #routes=1 at boot
+
+  // chart views: preset regional plates from render.js REGIONS
+  const viewBox = document.getElementById('view-radios');
+  for (const r of REGIONS) {
+    const lab = document.createElement('label');
+    lab.className = 'menu-item';
+    const radio = document.createElement('input');
+    radio.type = 'radio'; radio.name = 'view'; radio.value = r.id;
+    radio.checked = r.id === settings.region;
+    const span = document.createElement('span');
+    span.textContent = r.name;
+    lab.append(radio, span);
+    viewBox.appendChild(lab);
+    radio.addEventListener('change', () => {
+      if (!radio.checked) return;
+      settings.region = r.id;
+      renderer.setRegion(r.id);      // rebuilds base + labels + overlay buffer
+      saveSettings(settings);
+    });
+  }
 
   // panel signatures + lookups — declared before the wiring below, which can
   // call the render functions during boot when a panel was left switched on
@@ -471,18 +565,19 @@ async function boot() {
     if (speed > 0) world.tick(dtReal * speed);
 
     latestSnap = world.snapshot({ density: perf.shipDensity });
-    // overlay context: this world's realized per-lane flow weights — route
-    // brightness IS the traffic the sim is actually sampling. Weights drift
-    // era-slow, so the cache refreshed on the HUD throttle is visually exact.
-    const routesCtx = showRoutes && laneWeightsCache ? { laneWeights: laneWeightsCache } : null;
-    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, routesCtx, activePorts, selectedWreckId, portLife);
+    // the routes overlay is a cached canvas inside the renderer, refreshed on
+    // the HUD throttle below — the frame just draws snapshot + blits
+    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, activePorts, selectedWreckId, portLife);
 
     hudAccum += dtReal;
     if (hudAccum > 0.2) {
       hudAccum = 0;
       activePorts = world.activePortsSince(latestSnap.simClock);
       portLife = world.portLifecycleAt(latestSnap.simClock);
-      if (showRoutes) laneWeightsCache = world.laneWeightsAt(latestSnap.simClock);
+      // overlay weights: this world's realized per-lane flow — route brightness
+      // IS the traffic the sim is actually sampling. They drift era-slow, so a
+      // 5 Hz redraw of the cached overlay canvas is visually exact.
+      if (showRoutes) { laneWeightsCache = world.laneWeightsAt(latestSnap.simClock); refreshOverlay(); }
       if (settings.panels.events) renderEventsPanel();
       if (settings.panels.stats) renderStatsPanel();
       if (settings.panels.tracker) renderTrackerPanel();

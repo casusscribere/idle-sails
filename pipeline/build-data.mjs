@@ -242,7 +242,7 @@ let covReport = '';
       if (Object.keys(folded).length) {
         const byDecade = {};
         for (const [d, v] of Object.entries(s.byDecade)) byDecade[d] = v.voyagesPerYear;
-        flowSystems.push({ id: s.id, evidence: s.evidence, byDecade, lanes: folded });
+        flowSystems.push({ id: s.id, basin: B.basin, evidence: s.evidence, byDecade, lanes: folded });
         // accumulate per-lane evidence votes (weighted by folded share x mean volume)
         const decsAll = Object.keys(s.byDecade);
         const meanMid = decsAll.reduce((a, d) => a + (s.byDecade[d].voyagesPerYear[0] + s.byDecade[d].voyagesPerYear[1]) / 2, 0) / decsAll.length;

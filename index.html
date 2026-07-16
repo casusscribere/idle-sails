@@ -30,7 +30,14 @@
           <input type="checkbox" id="ov-routes">
           <span>Popular trade routes</span>
         </label>
+        <!-- per-basin layer toggles (feature pass 2) — rows built by main.js
+             from the flow matrix's basins; disabled while the parent is off -->
+        <div class="menu-sub" id="layer-subs"></div>
         <p class="menu-note">Line weight ∝ traffic · colour = flag</p>
+        <p class="menu-h" style="margin-top:14px">Chart view</p>
+        <!-- regional plates (feature pass 2) — rows built by main.js from
+             render.js REGIONS -->
+        <div role="radiogroup" aria-label="Chart view" id="view-radios"></div>
         <p class="menu-h" style="margin-top:14px">Panels</p>
         <label class="menu-item"><input type="checkbox" id="pn-counters" checked><span>Counters</span></label>
         <label class="menu-item"><input type="checkbox" id="pn-stats"><span>Statistics</span></label>
