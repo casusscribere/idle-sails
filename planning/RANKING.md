@@ -237,6 +237,14 @@ is live by now — pin the *Surprise* and follow her properly.
   research task **T9** (`research/TASKS.md`, Phase RB) refines the rates and
   windows without gating the build — if Phase RB runs first, build convoys
   after it and inherit the evidence-classed numbers for free.
+- **Steam layer** (queued 2026-07-16 with the PLAN-6 D1 decision) — v1 of
+  the era extension is a **sail chart, declared** (steam is a
+  silences-register entry + a declared-divergences paragraph), and a steam
+  layer is queued as a planned future feature: the P&O/Cunard-era mail and
+  packet services as their own movement class (great-circle legs, coaling
+  calls — the wind engine cannot produce a steamer's track). Research-gated
+  on **T11** (`research/TASKS.md`, Phase RD); needs its own plan when
+  taken up. Until then the declared boundary stands.
 - **Tweaks** (`ideas.txt`'s sibling `tweaks.txt`) — small render/UX
   adjustments, no research, no pass machinery; fold into whatever pass is
   in flight. Currently queued: revisit the dormant-port greying threshold
@@ -258,24 +266,33 @@ recommended order, not law.
 
 1. **[F] New chart views + tweaks** — ungated render work (the two plates
    above, the greying tweak). Quick wins now, or fold into any later step.
-2. **[D] Adoption calls: PLAN-4 §3 + PLAN-6 §6, decided together** (PLAN-6
-   D4). The hinge of everything below — sets the roster and the era span
-   that steps 3, 7, 10, and 11 read. Nothing else waits on it except as
-   marked.
-3. **[R] T5 — name-pool expansion** (Phase RA). Self-contained. If PLAN-6
-   was adopted at step 2, expect a re-run after its traffic lands — the
-   `name-pressure.mjs` gate is cheap and auditable either way.
-4. **[F] Pass 3.5 — unique active names + retirement.** HARD GATE: T5.
-5. **[R] Phase RB as ONE campaign — T4 + T8 + T9**, plus PLAN-4 E-R1
-   verification and PLAN-6 X-R1 (T10) if adopted at step 2. The big source
-   pass; the whole point of the phase grouping is that it runs once.
+2. ~~**[D] Adoption calls**~~ — **✅ DECIDED 2026-07-16**: PLAN-4 + PLAN-6
+   adopted together; all five Tier-1 candidates; all five new ports; steam =
+   declared boundary + queued feature (T11); reset ramp = a DESIGNED
+   epilogue decade (new X-S1 design work); coerced flows confirmed under the
+   sober pattern; grounds-node pattern approved with the Arctic fishery
+   staying registered; placements by precedent. Ledgers in each plan's
+   header.
+3. ~~**[R] T5 — name-pool expansion**~~ — **✅ DONE 2026-07-16** (all pools
+   under the 70% gate, worst 64%; note in
+   `research/name-pressure-2026-07-16.md`). **Standing re-gate:** re-run
+   `name-pressure.mjs` at X-S2 (310-year cycle, new powers) and before
+   pass 3.5 ships.
+4. **[F] Pass 3.5 — unique active names + retirement.** HARD GATE: T5 ✅ —
+   now unblocked (mind the step-3 re-gate note if built after X-S lands).
+5. **[R] Phase RB as ONE campaign — T4 + T8 + T9 + T10 (X-R1)**, plus
+   PLAN-4 E-R1 verification. The big source pass; the whole point of the
+   phase grouping is that it runs once. Includes X-R2's charter sign-off
+   texts staged for user review.
 6. **[F] Convoys** (`PLAN-convoys.md`). Buildable any time after step 1,
    but cheapest here — it inherits T9's evidence-classed rates for free.
 7. **[F] Pass 4 — the scripted-spawn channel + ambient flows.** HARD GATE:
    T4 (step 5). May touch the baker (`pipeline/README.md` first) — share
    the bake session with step 8 where possible.
-8. **[B] PLAN-4 E-S / PLAN-6 X-S builds** (whatever step 2 adopted) —
-    fold, bake, surface. One combined bake beats several.
+8. **[B] PLAN-4 E-S + PLAN-6 X-S builds** — fold, bake, surface; one
+    combined bake beats several. X-S1 now includes **designing the epilogue
+    decade** (D3: the 1850→1860 ramp is a designed wind-down, not the
+    stretched blend) before the clock constants are re-pinned.
 9. **[R] Phase RC — the per-port sweep (T1+T2+T3, one port at a time).**
     HARD GATE: the roster and era span must be FINAL (steps 2 and 8 done
     or declined) — otherwise the sweep runs twice.
@@ -295,8 +312,10 @@ recommended order, not law.
     channel. Deliberately after convoys and Pass 5 (user decision
     2026-07-16) so the commissions sail with the full movement vocabulary.
 
-The only hard edges are the marked gates (T5→3.5, T4→4, roster-final→RC,
-PLAN-5→5, and {T6, Pass 4, Pass 5}→6). Steps 3–4 commute with steps 5–7;
-step 1 commutes with everything; convoys floats anywhere from step 1 onward
-at the cost of `asserted` numbers until T9 lands; T6 may run early, but the
-Pass-6 build should not.
+The only hard edges are the marked gates (T5→3.5 ✅ satisfied, T4→4,
+roster-final→RC, PLAN-5→5, and {T6, Pass 4, Pass 5}→6). With steps 2–3 done,
+the front of the queue is: step 1 (anytime), step 4 (unblocked), and step 5
+(the Phase-RB campaign). Step 4 commutes with steps 5–7; step 1 commutes
+with everything; convoys floats anywhere from step 1 onward at the cost of
+`asserted` numbers until T9 lands; T6 may run early, but the Pass-6 build
+should not.

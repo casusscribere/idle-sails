@@ -16,11 +16,12 @@ are independent of each other (any order, or in parallel); *within* a phase
 the tasks share a source campaign and should run together.
 
 - **Phase RA — feature gates.** Small, self-contained tasks that each unblock
-  a scheduled feature pass: T5 → pass 3.5, T6 → pass 6. No shared sources;
-  run whenever a pass is wanted — though T6 is deliberately sequenced LATE
-  in the interleaved queue (`planning/RANKING.md`): pass 6 builds after the
-  movement patterns, so the Aubrey catalog should know the convoy and
-  Pass-5 mechanics it will be expressed through.
+  a scheduled feature pass: ~~T5 → pass 3.5~~ (done 2026-07-16), T6 → pass 6.
+  No shared sources; run whenever a pass is wanted — though T6 is
+  deliberately sequenced LATE in the interleaved queue
+  (`planning/RANKING.md`): pass 6 builds after the movement patterns, so the
+  Aubrey catalog should know the convoy and Pass-5 mechanics it will be
+  expressed through.
 - **Phase RB — movement & flows.** One campaign over voyage-pattern sources:
   T4 (ambient flows) coordinated with PLAN-4's E-R1 verification where the
   two overlap — whaling grounds (E3), the caravane maritime (E7), Jeddah
@@ -30,51 +31,26 @@ the tasks share a source campaign and should run together.
   campaign northward (fisheries, stockfish) and is natural to fold in.
   T9 (convoy institutions & rates) shares T4's naval-patterns strand — the
   convoy-escort sources ARE the convoy-rules sources; read them once.
+  **T10 (PLAN-6 X-R1, live since the 2026-07-16 adoption)** is a member of
+  the same campaign: whaling, packet lines, and the suppression squadron
+  sit on both its list and T4's.
 - **Phase RC — the per-port sweep.** T1 + T2 + T3 executed **together, one
   port at a time**: a single reading of a port's sources yields its
   name/ownership timeline (T1), the one-line blurb per window (T2), and the
   documentation-depth entry with citations (T3). Doing them as three separate
-  66-port passes would triple the source work. **Fix the near-term roster
-  first**: if PLAN-4 wave 1, tranche-2 promotions, and/or PLAN-6 (the
-  1550→1850 temporal expansion — it adds ports AND retiles every window to
-  1850) are close, adopt those decisions before starting the sweep so new
-  ports and the final era span ride the same pass instead of a follow-up
-  (outputs are per-port and additive, so late ports are appendable — but at
-  the cost of re-entering research mode per port).
+  66-port passes would triple the source work. **The roster question is now
+  decided** (2026-07-16): PLAN-4 wave 1 (all five Tier-1) and PLAN-6 (era to
+  1850, five new ports) are both adopted — the sweep waits for their E-S/X-S
+  builds so it runs once over the final roster, with windows tiling
+  1550–1850.
 - **Phase RD — deferred design research.** T7 feeds the eventual PLAN-5
-  design doc (vessel persistence / capture). Needed only when PLAN-5 is
-  drafted; listed now so pass-5 design isn't done from nothing.
+  design doc (vessel persistence / capture); T11 feeds the future
+  steam-layer plan (PLAN-6 D1 queued it). Each starts only when its plan is
+  being drafted; listed now so neither design is done from nothing.
 
 ## Open
 
 ### Phase RA — feature gates
-
-#### T5 — Name-pool expansion: peak pressure under 70% per pool
-The gate for feature pass 3.5 (unique active names + name retirement).
-Measured across full 270-year cycles, peak SIMULTANEOUS vessels per naming
-culture exceeds several pools outright — Portugal merchant hit 217% of its
-pool, Hansa 170%, Mughal 133%, Ottoman 120%, with Britain at ~88% and China
-at ~82% — so a uniqueness rule today would either fail or degenerate into a
-near-deterministic tail of leftover names. For **every (culture, role) name
-pool**, research and author enough additional **period-plausible ship-name
-stems** to bring peak pressure under **70%**:
-- **Measure first:** peak concurrency per (culture, role) across several
-  seeds (≥3) with margin for the refractory period R (a retired name stays
-  blocked ~5 sim-years beyond a loss, so effective demand is peak-active
-  plus recent losses). The measurement harness landed 2026-07-16 as
-  `research/tools/name-pressure.mjs` — the auditable gate; re-run it after
-  any flow-matrix change (traffic growth re-raises pressure).
-- **Author to target:** pool size ≥ peak-effective-demand ÷ 0.7. Current
-  worst cases imply roughly: Portugal merchant 12→~40, Hansa 10→~25, Mughal
-  9→~18, Ottoman 10→~18, Britain merchant 66→~85, Spain 12→~14, China
-  junk-trade 11→~14; sweep ALL culture/role pools, naval included.
-- **Stay period-plausible per culture:** Portuguese religious invocations,
-  Hansa saint-and-city names, Ottoman/Greek mixed marine, junk-trade
-  auspicious compounds — the pass-3 vocabulary is the register; no
-  anachronisms, no invented-sounding filler.
-**Output:** expanded pools in `data-src/names.json` + a short measurement
-note (per-pool peak vs. size, seeds used) so the 70% claim is auditable.
-**Feeds:** feature pass 3.5 (`planning/RANKING.md`).
 
 #### T6 — Aubrey canon: vessels, dates, and book-appropriate routes
 *(added 2026-07-16; re-scoped the same day when the easter eggs moved to
@@ -147,6 +123,22 @@ with T4 — fold them into the same Phase-RB campaign when both run.
 of the existing sweep doc) + silences-register entries for whatever stays
 unquantifiable.
 **Feeds:** PLAN-4's next wave; the promotion queue; the silences register.
+
+#### T10 — The 1815–1850 research campaign (PLAN-6 X-R1)
+*(live 2026-07-16 on PLAN-6 adoption — the plan's X-R1 phase, run as part of
+the Phase-RB campaign)* Per basin, author the new decades **1820/1830/1840**
+for surviving systems and the era's new systems, deep-research style with
+adversarial verification (the R3 pattern); the 1815–1850 wars sweep; and
+new-port candidate dossiers (Singapore, Hong Kong, Valparaíso, Sydney, New
+Orleans — the adopted D5 list) in the `port-flow-candidates` pattern.
+Charter-critical inclusions per the adoption sign-off: the **illegal-era
+Brazil/Cuba slave trade** (counted, SlaveVoyages through 1866; Middle-Passage
+sober pattern; the West Africa suppression squadron as a naval pattern) and
+**convict transportation** to Sydney (same sober pattern). Whaling, packet
+lines, and the suppression squadron overlap T4 — one campaign, one reading.
+**Output:** extended basin files in `research/flows/`, wars additions,
+candidate dossiers, and X-R2's charter sign-off texts staged for review.
+**Feeds:** PLAN-6 X-S1/X-S2; PLAN-4 E-R1 (shared verification fleet).
 
 #### T9 — Convoy institutions & rates
 *(added 2026-07-16, from `planning/PLAN-convoys.md` §1)* The convoy plan is
@@ -235,6 +227,31 @@ sim-shape recommendation per mechanism, and explicit flags where sources
 support only qualitative statements (no fabricated precision).
 **Feeds:** the PLAN-5 design doc (feature pass 5, `planning/RANKING.md`).
 
+#### T11 — Steam under sail: the evidence base for a future steam layer
+*(added 2026-07-16 with the PLAN-6 D1 decision: v1 of the era extension is a
+declared sail chart, and steam becomes a QUEUED feature with its own research
+task — this one. Deferred; start when the steam layer is being planned.)*
+The 1815–1850 window ends with steam real (P&O mail 1837, transatlantic
+steamers 1838, Cunard 1840) but unrepresentable by the wind/polar routing
+engine. For a future steam layer: **which services** actually ran under
+steam by 1850 (mail packets, river/coastal services, the pioneering ocean
+lines), their **routes, schedules, and coaling stations**, how volume split
+sail-vs-steam per trade (bulk freight stayed sail — bound this properly),
+and what a sim representation needs (great-circle legs + coaling calls vs.
+baked polylines; era windows per line). Evidence-classed throughout.
+**Output:** `research/steam-services-1815-1850.md` — services catalog with
+bounds + a sim-shape recommendation; the silences-register `steam` entry
+(created at X-R2) gains a pointer to it.
+**Feeds:** the future steam-layer plan (`planning/RANKING.md`, outside the
+ladder); until that plan is drafted, steam remains a declared boundary.
+
 ## Done
 
-*(nothing yet)*
+- **T5 — name-pool expansion (2026-07-16).** All eight failing pools
+  expanded to period-plausible target sizes (Portugal 12→44, Hansa 10→28,
+  Mughal 9→20, Ottoman 10→20, Britain merchant 66→90, junk-trade 11→16,
+  Gowa 8→12, Spain 12→16; dutch/france padded as headroom); gate green on
+  seeds 42/7/23 (worst pool 64%), 46 tests pass. Measurement note:
+  `research/name-pressure-2026-07-16.md`. **Standing caveat:** PLAN-6's
+  adoption re-raises pressure — re-run `research/tools/name-pressure.mjs`
+  over the 310-year cycle at X-S2, and again before pass 3.5 ships.

@@ -332,6 +332,28 @@ Every design decision answers to both of these:
   at step 13). Earlier dated bullets referring to "Pass 4 = easter eggs" and
   "Pass 4.5" describe the pre-reorg numbering.
 
+- **Adoptions + research T5 (2026-07-16, user decisions):** **PLAN-4 and
+  PLAN-6 are ADOPTED together** (decision ledgers in each plan's header):
+  wave 1 = all five Tier-1 candidates (E1–E5); era 1550→1850 with all five
+  new ports (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans);
+  **steam** = declared boundary for v1 PLUS a queued steam-layer feature
+  (RANKING outside-the-ladder) with research task **T11**; the 1850→1860
+  reset is a **designed epilogue decade**, not the stretched blend (new
+  X-S1 design work); coerced flows (illegal-era Brazil/Cuba, Plata,
+  Mascarene, convict transportation) confirmed under the Middle-Passage
+  sober pattern with framing texts reviewed as authored; grounds-node
+  pattern approved via E3 with the Arctic fishery staying registered;
+  node placements by the staging-rule precedents. PLAN-6 X-R1 is now
+  research task **T10** (Phase RB). **T5 is DONE** — the first completed
+  research task: all eight failing name pools expanded period-plausibly
+  (Portugal 12→44, Hansa 10→28, Mughal 9→20, Ottoman 10→20, Britain
+  merchant 66→90, junk-trade 11→16, Gowa 8→12, Spain 12→16; dutch/france
+  padded as headroom), `name-pressure.mjs` gate green on seeds 42/7/23
+  (worst pool 64%), duplicate-name samples 97%→89%, 46 tests green;
+  measurement note `research/name-pressure-2026-07-16.md`. **Pass 3.5 is
+  unblocked** — with a standing re-gate at X-S2 (310-yr cycle + new
+  powers re-raise pressure).
+
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —
   `index.html`, `main.js`, `world.js`, `render.js`, `ui.js`, `style.css`, and
@@ -375,7 +397,8 @@ planning/            ALL design & feature plans — planning/README.md is the in
   PLAN-1-rebuild.md      the rebuild design (complete; still the architecture reference)
   PLAN-2-flowing-era.md  flowing clock + diversity (complete / partly superseded)
   PLAN-3-flows.md        the flow-matrix architecture (complete)
-  PLAN-4-expansion.md    the wider-world expansion (awaiting adoption)
+  PLAN-4-expansion.md    the wider-world expansion (adopted 2026-07-16, unbuilt)
+  PLAN-6-era-1850.md     the temporal expansion 1550→1850 (adopted 2026-07-16, unbuilt)
   PLAN-convoys.md        convoys feature spec (drafted, unbuilt)
   RANKING.md             the feature queue: passes + outside-the-ladder items (live)
 research/            evidence work — TASKS.md is the phased research queue,
@@ -399,15 +422,19 @@ archive/isochrone-v1/   the previous project (see its ARCHIVE-NOTE.md)
   Phase A, Phase C): a decade-weighted 1550–1815 sim looping via a 5-year
   reset, plus the minor-ports diversity layer (§5). Its Phase B and §7 are
   re-scoped by PLAN-3.
-- **`planning/PLAN-4-expansion.md`** — **drafted 2026-07-14, awaiting
-  adoption**: the
+- **`planning/PLAN-4-expansion.md`** — **adopted 2026-07-16 (unbuilt)**: the
   wider-world expansion from the deep-research sweep
   (`research/port-flow-candidates-2026-07.md`) — five Tier-1 counted-series
   candidates (Montevideo/Río de la Plata, Basra+Bandar Abbas, a whaling
   grounds node, Hudson Bay, Port Louis/Mascarenes), Tier-2 (Jeddah, caravane
   maritime, Ragusa, Callao, Mozambique I.), silences-register actions, and
-  per-candidate E-R1→E-S2 phases riding PLAN-3's machinery unchanged. Four
-  adoption decisions flagged in its §3.
+  per-candidate E-R1→E-S2 phases riding PLAN-3's machinery unchanged. All
+  five Tier-1 are wave 1; the §3 decisions are recorded in its ledger.
+- **`planning/PLAN-6-era-1850.md`** — **adopted 2026-07-16 (unbuilt)**: the
+  temporal expansion — era 1550→1850, a designed epilogue decade 1850→1860
+  (310-yr loop), the illegal-era slave trade carried under the sober
+  pattern, five new ports, steam as a declared boundary with a queued steam
+  layer (T11). X-R1 is research task T10; §6 decisions in its ledger.
 - **`planning/PLAN-3-flows.md`** — **the completed architecture** (adopted
   2026-07-13, complete): replaces
   rankings→weights with an evidence-classed **trade-system flow matrix**

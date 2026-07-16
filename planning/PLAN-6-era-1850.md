@@ -1,10 +1,35 @@
 # PLAN-6 — The temporal expansion: 1550→1850, reset 1850→1860
 
-**Status: drafted 2026-07-16 — AWAITING ADOPTION.** Do not build without user
-sign-off on the §6 decisions. Extends the flowing era from `PLAN-2-flowing-era.md`
+**Status: drafted 2026-07-16 — ADOPTED 2026-07-16** (same day, together with
+PLAN-4 per D4). Extends the flowing era from `PLAN-2-flowing-era.md`
 (supersedes its span parameters) and rides `PLAN-3-flows.md`'s machinery
 unchanged, the same way PLAN-4 does. Numbered 6 because **PLAN-5 stays
 reserved** for the vessel-persistence design (RANKING.md Pass 5, research T7).
+
+**Decision ledger (adoption, 2026-07-16 — the §6 flags, user-decided):**
+
+1. **D1 Steam: declared boundary for v1** (the §3 recommendation) — silences
+   register entry + declared-divergences paragraph — **plus** a steam layer
+   QUEUED as a planned feature (`planning/RANKING.md`, outside the ladder)
+   with its own research task (**T11**, `research/TASKS.md` Phase RD).
+2. **D2 Illegal-era slave trade: confirmed** — the Middle-Passage sober
+   treatment extends to the Brazil/Cuba illegal trade; the West Africa
+   suppression squadron enters as a naval pattern. Framing texts reviewed as
+   authored.
+3. **D3 Reset ramp: a DESIGNED EPILOGUE DECADE**, not the stretched blend —
+   the 1850→1860 ramp gets its own design treatment (a distinct wind-down
+   rather than a mechanical re-blend). **This adds design work to X-S1**:
+   spec the epilogue before the clock constants are re-pinned. (The blend
+   machinery stays as the fallback underneath whatever the epilogue shows.)
+4. **D4 Sequencing: adopted together with PLAN-4** — the roster settles
+   once; Phase RC waits for the union.
+5. **D5 New ports, wave 1: all five** — Singapore, Hong Kong, Valparaíso,
+   Sydney, New Orleans.
+6. **D6 Convict transportation: confirmed** — Sydney's convict flow takes
+   the Middle-Passage-pattern sober treatment.
+
+X-R1 is research task **T10** (`research/TASKS.md`), a member of the
+Phase-RB campaign with T4/T8/T9 and PLAN-4 E-R1.
 
 ## 0. What this is
 

@@ -1,11 +1,32 @@
 # PLAN 4 — The wider world: new basins, counted fleets, and the register answered
 
 **Status:** drafted 2026-07-14 from the deep-research sweep
-(`research/port-flow-candidates-2026-07.md`) — **awaiting adoption**. Extends
+(`research/port-flow-candidates-2026-07.md`) — **ADOPTED 2026-07-16**,
+together with PLAN-6 (the D4 recommendation). Extends
 `PLAN-3-flows.md`; changes none of its architecture. Everything here rides the
 machinery PLAN-3 built: trade systems with per-decade [lo,hi] ranges, per-seed
 realization, basin-local assembly, the silences register, lifecycle windows,
 era names, and the promotion queue under `research/CURATION.md`.
+
+**Decision ledger (adoption, 2026-07-16 — the §3 flags, user-decided):**
+
+1. **Wave-1 scope: all five Tier-1** (E1–E5), phases per-candidate
+   independent as designed; adopt in evidence order.
+2. **Grounds nodes: pattern approved via E3; the Arctic fishery stays
+   registered.** E3 ships alone as the pattern's proof; the
+   `svalbard-offshore-whaling` register entry is revised to point at it, and
+   Svalbard/Davis Strait queues for a later wave.
+3. **Node placements: apply the established staging-rule precedents**
+   (Delaware capes / Hooghly mouth) to Montevideo-for-the-complex, the
+   grounds-node coordinates, and Mozambique Island superseding queued
+   Mombasa; each placement documented in the port entry's note.
+4. **Coerced flows: confirmed.** E1 (Plata) and E5 (Mascarene) coerced
+   systems enter under the validator-enforced Middle-Passage sober pattern;
+   each system's specific framing text is presented for user review as it is
+   authored (the R3/E-R1 workflow).
+
+E-R1 runs as part of the Phase-RB research campaign with T4/T8/T9 and T10
+(PLAN-6 X-R1) — see `research/TASKS.md`.
 
 ---
 
