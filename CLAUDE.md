@@ -254,6 +254,32 @@ Every design decision answers to both of these:
   persistence across reload, zero console errors). **41 tests green**
   (`test/regions.test.mjs` pins each plate to the ports it exists for + the
   fold's basin coverage; settings round-trip extended).
+- **Feature pass 3 (2026-07-16): captains, longer name pools, docs page**
+  (`feature-ideas/RANKING.md` Pass 3 — #11's easy pieces + #4).
+  **Captains:** every vessel sails under a named shipmaster drawn in
+  `world.js makeCaptain` from `hashSeed('captain', seed, id)` — her OWN
+  sub-stream, never the vessel stream: name-stripped fingerprints verified
+  IDENTICAL against pre-pass HEAD (fixed seed, worktree comparison).
+  `data-src/names.json` gained a `captains` section covering all 27 naming
+  cultures (build-data-validated: every themesByPower culture must have a
+  well-formed pool): Europeans compose given+surname; the maritime title
+  travels IN the name where history put it (Nakhoda … in the Indian Ocean,
+  … Reis for Ottoman masters with Greek kapetans alongside, Daeng … at
+  Makassar; China/Ryukyu surname-first) and stays out for Europeans, whose
+  role the ledger labels (Captain naval / Master merchant). Wreck records
+  carry `captain` + `isNaval`; a pre-captain save backfills the exact same
+  master on restore (pure in seed+id+power). **Name pools** extended
+  ~1.5–2× across all themes — name strings shift per seed, fates/counters
+  verified unchanged. **Docs page (#4):** `research/about.html` ("How this
+  chart is made") — the twin goals, determinism/movement + calibration
+  summary, the flow matrix + anchor series, the five evidence classes, port
+  selection & lifecycle, legend documentation (glyph shapes, flags, master
+  titles), the sober treatments, a declared divergences list, and a cited
+  further-reading list; added to `research/nav.js` PAGES and the hub.
+  **Debug hook:** `#debug=1` exposes `window.__is = {world, renderer, snap}`
+  for headless verification (display-only). **46 tests green**
+  (`test/captains.test.mjs`: every vessel has a master, pool-swap
+  sim-inertness, granularity independence, restore backfill, wreck records).
 
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —

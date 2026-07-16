@@ -289,6 +289,12 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
         state.tracked.pins = state.tracked.pins.filter(p => p !== +id);
       }
     }
+    // a pre-captain save backfills to exactly the master she would have had —
+    // the captain is a pure function of ('captain', seed, id) + her power
+    for (const v of state.vessels)
+      if (v.captain === undefined) v.captain = makeCaptain(v.id, powerById.get(v.powerId));
+    for (const rec of Object.values(state.tracked.archive))
+      if (rec.captain === undefined) rec.captain = makeCaptain(rec.id, powerById.get(rec.powerId));
   }
 
   // JSON-safe copy of the whole mutable state (for persist.js).
@@ -310,6 +316,33 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     else if (names.merchant[theme]) stem = pick(rng, names.merchant[theme]);
     else stem = pick(rng, names.merchant.abstract);
     return stem;
+  }
+
+  // Shipmaster (feature pass 3). Drawn from her OWN RNG sub-stream, keyed
+  // ('captain', seed, id) — NOT from the vessel stream — so adding captains
+  // changed no existing #seed= world, and a save without the field backfills
+  // to exactly the captain she would have sailed with. Cultures follow the
+  // vessel-name mapping (companies take their parent nation's pool); the
+  // maritime title travels IN the name where that is the historical usage
+  // (Nakhoda …, … Reis, Daeng …) and stays out of it for Europeans, whose
+  // role the ledger already labels (Captain / Master).
+  function makeCaptain(id, power) {
+    const pools = datasets.names.captains;
+    if (!pools || !power) return null;
+    const nation = power.kind === 'nation' ? power : (powerById.get(power.parent) || power);
+    const c = pools[nation.id] || pools.britain;
+    if (!c) return null;
+    const rng = mulberry32(hashSeed('captain', seed, id));
+    let nm;
+    if (c.full) nm = pick(rng, c.full);
+    else {
+      const g = pick(rng, c.given);
+      const s = c.surname ? pick(rng, c.surname) : '';
+      nm = !s ? g : c.order === 'sf' ? `${s} ${g}` : `${g} ${s}`;
+    }
+    if (c.prefix) nm = `${c.prefix} ${nm}`;
+    if (c.suffix) nm = `${nm} ${c.suffix}`;
+    return nm;
   }
 
   // ---- war lookup ----
@@ -444,6 +477,7 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
 
     return {
       id, name, prefix: isNaval && power.navalPrefix ? power.navalPrefix : null,
+      captain: makeCaptain(id, power),
       typeId: type.id, typeName: type.name, rig: type.rig, routeClass,
       powerId: power.id, powerName: power.name, flagColor: power.color,
       tonnage, guns, crew, year, isNaval,
@@ -548,7 +582,7 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
         // The wreck marks the chart where she went down, for a sim-year.
         const wp = positionOf(v, v.fate.atSec);
         state.wrecks.push({
-          id: v.id, name: v.name, prefix: v.prefix,
+          id: v.id, name: v.name, prefix: v.prefix, captain: v.captain, isNaval: v.isNaval,
           typeName: v.typeName, powerName: v.powerName, flagColor: v.flagColor,
           tonnage: v.tonnage, crew: v.crew, cargoId: v.cargoId, cargoName: v.cargoName,
           middlePassage: v.middlePassage, laneFraming: v.laneFraming, system: v.system,

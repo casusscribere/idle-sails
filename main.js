@@ -556,6 +556,11 @@ async function boot() {
     speed, slider: +document.getElementById('speed').value, datasetVersion: dataVersion
   }));
 
+  // debug hook (#debug=1): exposes the live world + renderer for headless
+  // verification scripts. Display-only access — never wired to any UI.
+  if (hashParams.get('debug') === '1')
+    window.__is = { world, renderer, snap: () => latestSnap };
+
   // animation loop
   let last = performance.now();
   let hudAccum = 0;

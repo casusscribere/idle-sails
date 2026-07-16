@@ -137,12 +137,19 @@ export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSele
       ? `<button class="pin-btn" data-pin="${v.id}"${!ps.pinned && !ps.canPin ? ' disabled title="No more pins at this performance setting"' : ''}>${ps.pinned ? 'Unfollow' : 'Follow'}</button>`
       : '';
 
+    // the shipmaster (feature pass 3): naval commanders are captains, merchant
+    // shipmasters are masters; cultures whose title travels in the name
+    // (Nakhoda …, … Reis, Daeng …) read correctly under either label
+    const master = v.captain
+      ? `<dt>${v.isNaval ? 'Captain' : 'Master'}</dt><dd>${escapeHtml(v.captain)}</dd>` : '';
+
     els.ledgerBody.innerHTML = `
       ${pin}
       <h2>${escapeHtml((v.prefix ? v.prefix + ' ' : '') + v.name)}</h2>
       <p class="type">${escapeHtml(v.typeName)} · ${escapeHtml(v.rig)} · of ${v.year}</p>
       <dl>
         <dt>Allegiance</dt><dd>${flag}${escapeHtml(v.powerName)}</dd>
+        ${master}
         <dt>Tonnage</dt><dd>${v.tonnage} tons</dd>
         <dt>Cargo</dt><dd>${escapeHtml(cargoTxt)}</dd>
         <dt>Company</dt><dd>${v.guns} guns · ${v.crew} hands</dd>
@@ -246,6 +253,7 @@ export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSele
       <p class="war">Lost ${escapeHtml(w.date)} — ${escapeHtml(w.cause)}${w.war ? ' (' + escapeHtml(w.war) + ')' : ''}${(w.nearPortName || near) ? ', off ' + escapeHtml((w.nearPortName || near.name).replace(/\s*\(.*\)/, '')) + ' approaches' : ''}.</p>
       <dl>
         <dt>Allegiance</dt><dd>${flag}${escapeHtml(w.powerName)}</dd>
+        ${w.captain ? `<dt>${w.isNaval ? 'Captain' : 'Master'}</dt><dd>${escapeHtml(w.captain)}</dd>` : ''}
         <dt>Tonnage</dt><dd>${w.tonnage} tons</dd>
         <dt>Cargo</dt><dd>${escapeHtml(cargoTxt)}</dd>
         <dt>Company</dt><dd>${w.crew} hands</dd>

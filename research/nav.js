@@ -8,6 +8,7 @@
 (function () {
   const PAGES = [
     ['index.html', 'Overview'],
+    ['about.html', 'About & methods'],
     ['silences.html', 'Silences'],
     ['flow-prominence.html', 'Flow prominence'],
     ['ports-1550-1815.html', 'Busiest ports'],

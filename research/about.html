@@ -1,0 +1,182 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How this chart is made — Idle Sails</title><script defer src="nav.js"></script>
+<style>
+:root{--paper:#e8dcc0;--paper-2:#f1e7d0;--card:#efe4cc;--ink:#3a2c1c;--ink-soft:#6d5837;--faint:#8a7452;--edge:#c3ab82;--rule:#a98f66;--accent:#9e2b25;--grid-line:rgba(90,70,45,.16);--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--sans:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif}
+@media (prefers-color-scheme:dark){:root{--paper:#211711;--paper-2:#2a1f15;--card:#2c2016;--ink:#ecdcbc;--ink-soft:#b39a74;--faint:#8f7a58;--edge:#463527;--rule:#5c472f;--accent:#e0937a;--grid-line:rgba(230,214,180,.12)}}
+:root[data-theme=light]{--paper:#e8dcc0;--paper-2:#f1e7d0;--card:#efe4cc;--ink:#3a2c1c;--ink-soft:#6d5837;--faint:#8a7452;--edge:#c3ab82;--rule:#a98f66;--accent:#9e2b25;--grid-line:rgba(90,70,45,.16)}
+:root[data-theme=dark]{--paper:#211711;--paper-2:#2a1f15;--card:#2c2016;--ink:#ecdcbc;--ink-soft:#b39a74;--faint:#8f7a58;--edge:#463527;--rule:#5c472f;--accent:#e0937a;--grid-line:rgba(230,214,180,.12)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.58;background-image:radial-gradient(120% 80% at 50% -10%,var(--paper-2),var(--paper) 70%);-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:40px 22px 70px}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+h1{font-family:var(--serif);font-size:clamp(26px,4.6vw,40px);line-height:1.12;margin:8px 0 10px;text-wrap:balance}
+h2{font-family:var(--serif);font-size:22px;margin:34px 0 6px}
+h3{font-family:var(--serif);font-size:16.5px;margin:18px 0 4px}
+.dek{font-family:var(--serif);font-style:italic;font-size:16.5px;color:var(--ink-soft);max-width:64ch;margin:0 0 8px}
+.rule{height:2px;background:var(--rule);opacity:.5;margin:20px 0}
+p{max-width:76ch;font-size:14.5px;margin:8px 0}
+ul{max-width:76ch;font-size:14.5px;padding-left:22px}
+li{margin:5px 0}
+.card{background:var(--card);border:1px solid var(--edge);border-radius:5px;padding:14px 18px;margin:14px 0}
+.card p{margin:6px 0}
+.badge{display:inline-block;font-size:10px;letter-spacing:.13em;text-transform:uppercase;border:1px solid var(--edge);border-radius:3px;padding:2px 8px;margin-right:6px;color:var(--ink-soft)}
+.badge.asserted{background:rgba(158,43,37,.1);color:var(--accent);border-color:var(--accent)}
+dl.ev{max-width:76ch;font-size:14.5px}
+dl.ev dt{font-family:var(--serif);font-weight:600;margin-top:10px}
+dl.ev dd{margin:2px 0 0 0;color:var(--ink-soft)}
+.note{font-size:13.5px;color:var(--ink-soft);max-width:76ch;font-style:italic}
+.mp{background:rgba(158,43,37,.07);border-left:3px solid var(--accent);padding:10px 14px;max-width:76ch;font-size:14px}
+.src{font-size:13.5px}
+.src li{margin:7px 0}
+.foot{margin-top:34px;font-size:12.5px;color:var(--faint)}
+a{color:var(--ink)}
+a:hover{color:var(--accent)}
+code{font-size:12.5px;background:var(--card);border:1px solid var(--edge);border-radius:3px;padding:0 4px}
+</style>
+<div class="wrap">
+<p class="eyebrow">Idle Sails · about &amp; methods</p>
+<h1>How this chart is made</h1>
+<p class="dek">Idle Sails is a spectator&rsquo;s idler: leave the tab open and a procedurally generated,
+historically grounded age of sail plays itself out. This page documents what stands behind the spectacle —
+where the numbers come from, how they were interpreted, what the simulation invents, and where it knowingly
+departs from the record.</p>
+<div class="rule"></div>
+
+<h2>Two goals, held together</h2>
+<p>Every design decision answers to two co-equal aims. The first is <b>simulative</b>: a zero-friction,
+deterministic world — the same seed always produces the same sea, at any clock speed, which is what makes
+closing the tab and returning days later exact rather than approximate. The whole control surface is a speed
+slider and click-to-inspect; there is nothing to build, buy, or win.</p>
+<p>The second is <b>historical sensitization</b>. The dataset is built knowing that <i>the archive is not the
+past</i> (after Michel-Rolph Trouillot&rsquo;s <i>Silencing the Past</i>): the surviving quantitative record of
+this era is Euro-centric, institutional, and full of silences that enter at every stage — at the making of
+sources, of archives, and of narratives. The chart tries to be honest about that rather than hiding it behind
+a confident-looking map. The rules it follows are set out in the project charter: <b>no silent zeros</b>
+(a trade known to have existed is never implicitly absent), <b>no fabricated precision</b> (rank only where
+sources support ranking), <b>basin-local assembly</b> (no forced commensuration between seas with
+incommensurable records), <b>declared boundaries</b> (every dataset states what it excludes and why), a
+public <a href="silences.html">silences register</a>, and sober treatment of coerced human movement wherever
+it appears.</p>
+
+<h2>How the world sails itself</h2>
+<p>The simulation is a seeded, deterministic world running a flowing clock from <b>1550 to 1815</b>, after
+which the chart is &ldquo;redrawn&rdquo; over a five-year ramp and the cycle begins again. Every vessel is
+generated the moment she puts to sea: her lane is drawn from the era&rsquo;s trade-flow weights, then her
+type, flag, tonnage, cargo, name, and master follow from period-specific vocabularies, and her entire
+fate — every leg, every port call, whether and when she is lost — is rolled at spawn from her own random
+stream. Nothing about her is decided later, which is why fast-forwarding a saved world in a few big steps
+lands on exactly the sea that leaving the tab open would have produced.</p>
+<p>Ships move along <b>pre-computed route polylines</b>: curved, seasonal tracks baked offline by a
+least-time router over parametric wind and current fields with per-class sailing polars (square-riggers
+cannot point closer than ≈60° to the wind; the monsoon reverses; the Roaring Forties carry the eastbound
+Indiamen). Junks and dhows sail their own polars. Passage durations were calibrated against recorded at-sea
+sailing times — Middle Passage legs within a fraction of a percent of the SlaveVoyages medians, England to
+the East Indies against East India Company records — with the known residuals documented in the
+project&rsquo;s calibration report rather than smoothed away.</p>
+
+<h2>Where the traffic comes from</h2>
+<p>Since 2026 the sim spawns from an <b>evidence-classed trade-system flow matrix</b>: sixty-odd named trade
+systems (the Carrera de Indias, the Sound-toll Baltic trades, the VOC spice circuit, the Nanyang junk trade,
+the English coastal colliers…), each carrying per-decade voyage-count <i>ranges</i> assembled basin by basin
+from the sources that basin actually has. Each seeded world draws one reading from every range — two seeds
+may honestly disagree about how busy a trade was, because the historians do. Port prominence is an
+<i>output</i> of these flows, not an input: the 1560s&rsquo; busiest port on this chart is Istanbul, a city
+the ranked European record could never place there. See <a href="flow-prominence.html">prominence, derived
+from the flows</a>.</p>
+<p>The anchor series behind the counted systems include the <b>Sound Toll Registers</b> (Baltic passages,
+1497–1857), the <b>Trans-Atlantic Slave Trade Database</b> (SlaveVoyages), Chaunu&rsquo;s reconstruction of
+the <b>Carrera de Indias</b> from the Seville records, <b>Dutch-Asiatic Shipping</b> (the VOC&rsquo;s complete
+voyage list), the <b>Nagasaki registers</b> kept under the Tokugawa trade restrictions (where a state did
+count, Chinese hulls outnumber Dutch ten to one — the anchor for the junk-trade reconstruction), the
+<b>Canton</b> trade records of the European companies, and the Marseille <b>échelles du Levant</b> series.
+Where no series exists, systems are classed as reconstructions from scholarship or as declared assertions
+with wide bounds — never as silent zeros.</p>
+
+<h2>The evidence classes</h2>
+<p>Click any vessel and her ledger ends with one italic line saying what kind of evidence stands behind the
+trade her voyage samples. There are five:</p>
+<dl class="ev">
+  <dt>counted</dt><dd>A surviving series records this trade — a toll register, a customs house, a company ledger. Even these are soft ground: the Sound registers are biased by evasion and exemption, and the register says so.</dd>
+  <dt>proxied</dt><dd>Inferred from adjacent records — a trade visible only in someone else&rsquo;s books.</dd>
+  <dt>reconstructed</dt><dd>Scholarship&rsquo;s estimate, not a surviving ledger — strong secondary literature (the Nanyang junk trade after Blussé, Reid, and Sugihara).</dd>
+  <dt>asserted</dt><dd>Our own stated estimate where the archive is silent — wide bounds, reasoning on record (Caribbean smuggling, the Chinese coastal grain fleets). An assertion you can see is safer than a zero you can&rsquo;t.</dd>
+  <dt>state</dt><dd>A naval voyage — outside the commercial record entirely.</dd>
+</dl>
+
+<h2>How the ports were chosen</h2>
+<p>The world sails <b>66 ports</b>, chosen in three layers. The backbone is the flow matrix itself: the ports
+the sixty systems need (Hamburg, Danzig, Riga, St Petersburg, Venice, Genoa, Marseille, Boston, New York,
+Havana, Surat, Calcutta, Amoy…). On top of that sits a curated diversity tranche — minor ports that never
+troubled a ranking but carry a monopoly, a chokepoint, a single precious cargo, or the flag of an otherwise
+excluded people (Dejima, Tranquebar, Banda Neira, Naha). Last come six declared exceptions kept for what
+they say about the record itself — Istanbul above all, present <i>without a rank</i> for decades because the
+sources support presence but not ranking; that state is data, not a defect.</p>
+<p>Ports also live and die: founding and destruction windows are enforced against every lane
+(no Kingston before 1655; Smeerenburg&rsquo;s blubber town burns out by 1660; Kaffa closes in 1783), a
+destroyed harbour keeps a faint ruin mark because the chart remembers, and the dot speaks <b>the dominant
+port name of its time</b> — Jayakarta before Batavia, Port Royal before Kingston, Hugli before Calcutta,
+St John&rsquo;s for the Banks fishery outside Louisbourg&rsquo;s brief French decades.</p>
+
+<h2>Reading the chart</h2>
+<h3>Ship glyphs — shape is class, colour is flag</h3>
+<ul>
+  <li><b>Slim dart</b> — merchantman, brig, snow, sloop: the ordinary carriers of the sea.</li>
+  <li><b>Full rounded hull</b> — East Indiaman, fluyt, and the great hulls of the earlier era: galleon, carrack, junk.</li>
+  <li><b>Sharp barbed arrowhead</b> — frigate, sloop-of-war.</li>
+  <li><b>Broad hexagonal hull</b> — ship of the line.</li>
+  <li><b>Boxy hull with a transverse bar</b> — slave ship. The bar is deliberate and sober: these hulls should never read as just another trader.</li>
+</ul>
+<p>Colour always means allegiance — the legend lists every flag. Company ships (EIC, VOC, WIC, the Danish
+and Swedish East India companies…) fly their company&rsquo;s colour and take their naming culture from their
+parent nation.</p>
+<h3>Masters and captains</h3>
+<p>Every vessel sails under a named shipmaster, drawn from period naming pools per culture. The title travels
+where the history put it: European naval commanders are <i>captains</i> and merchant shipmasters are
+<i>masters</i>, while in the Indian Ocean the <b>nakhoda</b> — the shipowner-master of the dhow and Mughal
+marine — carries the title in the name, Ottoman masters are <i>&hellip;&nbsp;Reis</i> (with Greek kapetans
+alongside, as that empire&rsquo;s marine truly sailed), and Makassar&rsquo;s masters carry <i>Daeng</i>.
+These are plausible names, not attested individuals; any resemblance to a real voyage is the period&rsquo;s,
+not the record&rsquo;s.</p>
+
+<h2>The sober treatments</h2>
+<div class="mp"><b>The Middle Passage and other coerced flows.</b> The trans-Atlantic slave trade is
+historically central to this era&rsquo;s shipping and is therefore in the data — but it is never gamified.
+Slave ships carry no cargo value, no profit framing, and no reward of any kind; their ledgers state factually
+that the vessel carries enslaved people held captive aboard, and a loss records that they were lost with the
+ship. The same charter rule extends to every promoted coerced flow — the Black Sea trade at Kaffa and the
+Indian Ocean slave trades sail under validator-enforced sober framing of their own.</div>
+
+<h2>Where the chart knowingly differs from the record</h2>
+<ul>
+  <li><b>Vessels are statistical samples, not registered hulls.</b> Each ship stands for the traffic of her lane in her decade; names, masters, and tonnages are plausible vocabulary, not archival entries.</li>
+  <li><b>One seed, one reading.</b> Each world realizes a single value from every trade&rsquo;s [low, high] evidence range. Uncertainty lives <i>between</i> worlds, not within one.</li>
+  <li><b>Coverage is partial and declared.</b> The folded flow systems account for roughly 76–89% of recorded world voyage volume depending on the decade; the remainder is either unsailable at this port roster or lives in the <a href="silences.html">silences register</a>.</li>
+  <li><b>Spawn pacing is clamped.</b> Traffic follows the realized totals but is held within 0.5–1.6× the era mean, so the 1550s never feel empty and the 1810s never swamp the renderer — a spectator concession, on record.</li>
+  <li><b>A residual floor keeps authored lanes alive.</b> About 3% of volume is spread across era-active lanes so no authored trade fully vanishes between decades; naval movements are a fixed ~6% pool outside the commercial matrix.</li>
+  <li><b>Weather is climatology, not events.</b> Routes are seasonal averages; the one era-climate signal is a bounded +7% passage-time factor on North Atlantic legs during the Maunder Minimum (1645–1715). Hurricane and wartime risk raise <i>loss odds</i>, not individual storms.</li>
+  <li><b>The loop is a fiction.</b> History does not restart in 1550; the five-year &ldquo;redrawing&rdquo; ramp exists so an idler can run forever, and the era label says so while it happens.</li>
+</ul>
+
+<h2>Sources &amp; further reading</h2>
+<ul class="src">
+  <li>Michel-Rolph Trouillot, <i>Silencing the Past: Power and the Production of History</i> (Beacon, 1995) — the framework behind the charter and the silences register.</li>
+  <li><b>Sound Toll Registers Online</b> — Danish sound passages 1497–1857. <a href="http://www.soundtoll.nl" rel="noopener">soundtoll.nl</a></li>
+  <li><b>SlaveVoyages</b> — Trans-Atlantic &amp; Intra-American Slave Trade Databases (voyage counts, durations, mortality). <a href="https://www.slavevoyages.org" rel="noopener">slavevoyages.org</a></li>
+  <li>Pierre &amp; Huguette Chaunu, <i>Séville et l&rsquo;Atlantique, 1504–1650</i> — the Carrera de Indias reconstruction.</li>
+  <li>Bruijn, Gaastra &amp; Schöffer, <i>Dutch-Asiatic Shipping in the 17th and 18th Centuries</i> — the complete VOC voyage list. <a href="https://resources.huygens.knaw.nl/das" rel="noopener">huygens.knaw.nl/das</a></li>
+  <li><i>The Deshima Dagregisters</i> (Japan-Netherlands Institute / Brill) and the Nagasaki trade registers — the East Asian anchor.</li>
+  <li>Leonard Blussé, Anthony Reid, and Kaoru Sugihara — scholarship behind the Nanyang junk-trade reconstruction.</li>
+  <li>H.B. Morse, <i>The Chronicles of the East India Company Trading to China</i> — the Canton series.</li>
+  <li>The Marseille chamber of commerce series on the <i>échelles du Levant</i> — the Ottoman-Mediterranean cross-check.</li>
+  <li><b>CLIWOC</b> — Climatological Database for the World&rsquo;s Oceans 1750–1854 (wind regimes behind the route baker). García-Herrera et al., <i>Climatic Change</i> (2005).</li>
+  <li><b>ICOADS</b> — wind climatology corroboration. <a href="https://icoads.noaa.gov" rel="noopener">icoads.noaa.gov</a></li>
+  <li><b>Natural Earth</b> — coastline and land mask. <a href="https://www.naturalearthdata.com" rel="noopener">naturalearthdata.com</a></li>
+</ul>
+<p class="note">Full per-page sourcing and caveats live on each research page; the route-engine calibration
+report (fit and hold-out legs, error table, known residuals) ships with the project repository.</p>
+
+<p class="foot">Idle Sails · about &amp; methods · the chart is a claim under revision, and this page is its
+list of admissions. ⚓ <a href="../index.html">Return to the chart</a></p>
+</div>

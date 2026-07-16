@@ -193,6 +193,19 @@ for (const pw of powers) {
   if (pw.kind !== 'nation') continue;
   if (!names.themesByPower[pw.id]) err(`names: no themesByPower entry for spawning nation '${pw.id}'`);
 }
+// captains (feature pass 3): every naming culture needs a shipmaster pool of a
+// valid shape — either a `full` list, or `given` (with optional `surname`,
+// `prefix`/`suffix` title carried in the name, and `order:'sf'` surname-first).
+for (const [cid, c] of Object.entries(names.captains || {})) {
+  if (!names.themesByPower[cid]) err(`names.captains: '${cid}' is not a naming culture (no themesByPower entry)`);
+  const okShape = (Array.isArray(c.full) && c.full.length) ||
+    (Array.isArray(c.given) && c.given.length && (!c.surname || (Array.isArray(c.surname) && c.surname.length)));
+  if (!okShape) err(`names.captains.${cid}: needs a non-empty 'full' list or 'given' (+optional 'surname') lists`);
+  if (c.order === 'sf' && !(Array.isArray(c.surname) && c.surname.length)) err(`names.captains.${cid}: order 'sf' needs surnames`);
+}
+for (const cid of Object.keys(names.themesByPower || {})) {
+  if (!(names.captains || {})[cid]) err(`names.captains: no shipmaster pool for naming culture '${cid}'`);
+}
 
 // ---- fold the flow matrix onto the baked lanes (PLAN-3 S1) -----------------
 // Each flow lane folds via its ports' simProxy onto a (from,to) sim pair; the
