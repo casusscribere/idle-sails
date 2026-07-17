@@ -402,6 +402,21 @@ Every design decision answers to both of these:
   (observation.test.mjs +1 seam test; settings.test war-wrap assertion
   flipped to the new contract).
 
+- **Addenda intake (2026-07-17):** `feature-ideas/research_addenda.txt`
+  (human input) folded into the queues — **T12** (the addenda sweep:
+  Japan/Dejima + Japanese ports, Indonesia [= T8's Aceh/Bantam strand],
+  cross-Pacific & around-SA [w/ E9 Callao], Med African coast, Caribbean,
+  India–Arabia–E-Africa lens, one-time specials catalog, goods-thread
+  lens) added to Phase RB as the campaign's tail (rb-campaign chunk 11);
+  Pass 4 gained two requirements — **scripted-only ports** (Dejima the
+  exemplar: no Poisson draw, scripted voyages only) and **per-seed
+  probabilistic specials** (rare routes need not fire every run; T6
+  records a suggested probability per Aubrey commission); RANKING's
+  outside-the-ladder gained **trade-goods threads** (follow silver /
+  Middle Passage [sober register kept] / whaling as display threads);
+  tweaks.txt's new render bugs queued (port dots in the sea on close
+  views, land clipping, residual zigzags).
+
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —
   `index.html`, `main.js`, `world.js`, `render.js`, `ui.js`, `style.css`, and

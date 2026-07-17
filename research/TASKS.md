@@ -34,7 +34,11 @@ the tasks share a source campaign and should run together.
   campaign) shared T4's naval-patterns strand, which landed with it.
   **T10 (PLAN-6 X-R1, live since the 2026-07-16 adoption)** is a member of
   the same campaign: whaling, packet lines, and the suppression squadron
-  sit on both its list and T4's. Campaign state: `research/rb-campaign.md`.
+  sit on both its list and T4's. **T12 (the 2026-07-17 addenda sweep)** is
+  the campaign's tail: a T8-successor over Japan, Indonesia, the Pacific
+  coasts, the Med African coast, and the Caribbean, plus the specials
+  catalog and goods-thread lens — its Indonesia strand IS T8's Aceh/Bantam
+  item. Campaign state: `research/rb-campaign.md`.
 - **Phase RC — the per-port sweep.** T1 + T2 + T3 executed **together, one
   port at a time**: a single reading of a port's sources yields its
   name/ownership timeline (T1), the one-line blurb per window (T2), and the
@@ -72,7 +76,11 @@ Mauritius campaign — **overlaps PLAN-4 E5 Port Louis**: if E5 is adopted,
 this itinerary gains its real ports), *Leopard* (Desolation Island),
 *Worcester*/*Bellona*. Note which spawns fall inside wars the sim already
 models. Deliberately sequenced late in the interleaved queue; running it
-earlier costs a second look once the mechanics exist.
+earlier costs a second look once the mechanics exist. *(2026-07-17,
+addendum #7): commissions may carry a per-seed FIRING PROBABILITY so not
+every run sails every easter egg — record a suggested probability per
+commission; the around-South-America legs (#3) note which need the Cape
+Horn / west-coast candidates from T12.*
 **Output:** `research/aubrey-voyages.json` — per commission
 `{vessel, rig, window, itinerary, events, book, notes}`.
 **Feeds:** feature pass 6 (`planning/RANKING.md`).
@@ -91,6 +99,45 @@ with T4 — fold them into the same Phase-RB campaign when both run.
 of the existing sweep doc) + silences-register entries for whatever stays
 unquantifiable.
 **Feeds:** PLAN-4's next wave; the promotion queue; the silences register.
+
+#### T12 — The addenda sweep: under-searched waters & goods threads
+*(added 2026-07-17 from `feature-ideas/research_addenda.txt` — a
+T8-successor candidates campaign; run with or after Phase-RB chunks 5–10,
+sharing sources where they overlap)* Deep-search sweeps in the
+`port-flow-candidates` pattern (evidence class, bounds, adversarial
+verification, mappability) over the waters the addenda flag:
+- **Japan** (#1): Dejima trade histories beyond the Nagasaki registers the
+  matrix already uses; candidate additional Japanese ports (with the
+  sakoku boundary declared honestly); feeds the Pass-4 `scriptedOnly` port
+  gate (Dejima the exemplar).
+- **Indonesia** (#2): deep search for archipelago trade — **overlaps T8's
+  Aceh/Bantam item; run as one strand.**
+- **Cross-Pacific & around South America** (#3): NA/SA west-coast port
+  candidates (overlaps queued E9 Callao); Cape Horn / around-SA routes —
+  chunk 1 verified post-1740 registros sueltos rounded the Horn, and the
+  Aubrey canon (T6) sails these waters.
+- **Mediterranean African coast** (#4): valid ports on the bare coast
+  (Tripoli, Tunis, Algiers…) — chunks 1/3 already ground the corsair and
+  caravane-Barbary context.
+- **Caribbean** (#5): trade and pattern deep search — piracy beyond the
+  existing hazard treatment, the NA gulf coast (New Orleans is adopted via
+  PLAN-6; what else?). Chunk 1's guarda-costas findings are the starting
+  bounds.
+- **India–Arabia–East Africa review** (#6): should there be more
+  Ottoman/Mughal trade? Run as a lens over E2/E6/E10's E-R1 work rather
+  than a separate gather.
+- **Special one-time routes** (#7): a catalog of unique/rare historical
+  voyages suitable as probabilistic scripted specials (per-seed firing —
+  see RANKING Pass 4). Feeds Pass 4 and Pass 6.
+- **Goods-thread lens** (#8): the global silver circuit, whaling (incl.
+  Japanese coastal whaling), and the Middle Passage as followable threads
+  — research for the queued trade-goods-threads display feature (RANKING,
+  outside the ladder). The Middle-Passage thread keeps the sober register
+  exactly; charter review as authored.
+**Output:** dated candidates doc(s) + register entries + the specials
+catalog; promotion-queue updates via `CURATION.md`.
+**Feeds:** the promotion queue; Pass 4/6; the trade-goods-threads feature;
+PLAN-4's next wave.
 
 #### T10 — The 1815–1850 research campaign (PLAN-6 X-R1)
 *(live 2026-07-16 on PLAN-6 adoption — the plan's X-R1 phase, run as part of

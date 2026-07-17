@@ -191,7 +191,24 @@ Build after T4 lands: recurring local circuits (fishing, patrols) on the
 channel; may touch the bake pipeline for short local circuits — read
 `pipeline/README.md` first. Gates to the High performance tier. Patterns
 that answer a gestured silence (the herring buss fleet, Banks cod) update
-the silences register when they ship.
+the silences register when they ship. **T4 is DONE (2026-07-17) — the gate
+is OPEN**; `research/ambient-flows.md` §§1–4 is the build's evidence base,
+and its split holds: the scheduled lines, sack triangle, collier lane,
+caravane tramping, and tribute-grain showpiece ride existing machinery;
+the six grounds-loitering patterns wait for the grounds-node primitive
+(recommended: build it once, with E3's bake at queue step 8).
+Two requirements from `feature-ideas/research_addenda.txt` (2026-07-17):
+- **Scripted-only ports (addendum #1).** Some ports must NOT accept the
+  statistical spawn distribution — they receive only scripted voyages.
+  **Dejima is the exemplar** (1–2 ships/yr under the Nagasaki registers —
+  a Poisson draw misrepresents it); the channel should support a
+  per-port `scriptedOnly` gate so the Manila galleon pair and similar
+  counted-singleton services use the same mechanism.
+- **Probabilistic specials (addendum #7).** One-time or few-time historic
+  routes may carry a **per-seed firing probability** (drawn from the
+  seed's own sub-stream, granularity-independent) so rare voyages do not
+  appear in every run — the "did this world get the 1721 Cabo cruise?"
+  texture. Applies to Pass-6 easter eggs too (see T6).
 
 **Pass 5 — deferred sim redesign: persistence / name retirement / capture
 (#11 hard) + chases (#12 hard).** Ship–ship interaction breaks
@@ -267,7 +284,22 @@ is live by now — pin the *Surprise* and follow her properly.
   in flight. ✅ Dormant-port greying threshold extended 2026-07-16: the
   window is now DISPLAY policy in main.js (3 sim-years, up from the world
   default of 1 — `world.activePortsSince` keeps its contract); sparse-but-
-  real flows read as quiet, not abandoned. Queue currently empty.
+  real flows read as quiet, not abandoned. Currently queued (2026-07-17):
+  port icon positions off on close views (Newcastle renders in the sea);
+  regional plates reveal ships clipping over land and residual zigzag
+  legs; some oddly-square routing worth a baker review
+  (`pipeline/README.md` first for anything touching the bake).
+- **Trade-goods threads** (queued 2026-07-17, `research_addenda.txt` #8) —
+  a display/docs feature, sim untouched: follow a COMMODITY across the
+  world as one thread — the global silver circuit (Potosí→Carrera,
+  Acapulco→Manila, the Dejima/Japan silver leg, the Red Sea bullion
+  counterflow chunk 3 verified), the Middle Passage (already
+  sober-treated; the thread view must keep the exact same register), and
+  whaling (incl. Japanese coastal whaling as a research question). Shape:
+  a "follow the cargo" research page in the `silences.html` idiom and/or a
+  chart layer highlighting lanes by carried good. Research rides T12's
+  goods-thread lens; the Middle-Passage thread needs charter review as
+  authored.
 
 ## The interleaved queue — recommended order (live)
 
@@ -315,7 +347,11 @@ recommended order, not law.
    that ONE new movement primitive (the grounds node) unlocks six ambient
    patterns. Remaining in the campaign: chunks 5–10 (T10 basin extensions
    + new-port dossiers + wars; T8's remaining candidates; E1/E2/E4/E5
-   verification closeout).
+   verification closeout) and chunk 11 = **T12, the 2026-07-17 addenda
+   sweep** (Japan/Dejima, Indonesia = T8's Aceh strand, Pacific coasts,
+   Med African coast, Caribbean, the specials catalog, the goods-thread
+   lens) — its outputs feed Pass 4's scripted-only ports, Pass 6's
+   probabilistic specials, and the queued trade-goods-threads feature.
 6. **[F] Convoys** (`PLAN-convoys.md`). Buildable any time after step 1,
    but cheapest here — it inherits T9's evidence-classed rates for free.
 7. **[F] Pass 4 — the scripted-spawn channel + ambient flows.** HARD GATE:
