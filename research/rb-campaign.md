@@ -26,7 +26,7 @@ RANKING queue if a task completes; (5) commit.
 | 2 | **Fisheries & whaling as grounds-traffic** (T4 fisheries strand + PLAN-4 E3 verification + T8 Iceland/North-Atlantic + Bergen/Trondheim stockfish) | `ambient-flows.md` §2 + E3 stamps + T8 partial | **✅ done 2026-07-16** |
 | 3 | **Scheduled & state services** (T4: Falmouth packets, correo marítimo, caravane services, Surat–Jeddah hajj + PLAN-4 E6 verification; T10 packet lines 1818–50) | `ambient-flows.md` §3 | **✅ done 2026-07-16** |
 | 4 | **Local metabolisms** (T4: colliers, shachuan, coastwise circuits — short-circuit representability) | `ambient-flows.md` §4 + mappability verdicts | **✅ done 2026-07-17 — T4 COMPLETE** |
-| 5 | **T10 basin extensions, Atlantic** (1820/30/40 decades; illegal-era Brazil/Cuba trade — counted, sober framing staged for review; Latin American independence; suppression squadron) | `research/flows/atlantic.json` decades + framing texts staged | **in progress 2026-07-17** (gathers L/M/N out; raw results commit to `rb-campaign-wip/` on arrival) |
+| 5 | **T10 basin extensions, Atlantic** (1820/30/40 decades; illegal-era Brazil/Cuba trade — counted, sober framing staged for review; Latin American independence; suppression squadron) | `research/flows/atlantic-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-17** |
 | 6 | **T10 basin extensions, East Asia + Indian Ocean W** (Canton→treaty ports, opium named honestly, Mascarene/Plata coerced systems with E1/E5 verification) | basin files + stamps | queued |
 | 7 | **T10 basin extensions, Baltic/Med/Bengal** (Sound Toll to 1857, échelles after Barbary ends, country trade) | basin files | queued |
 | 8 | **T10 new-port dossiers + wars sweep** (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans; wars 1815–50 incl. Navarino, Opium War) | `port-flow-candidates` pattern dossiers + wars.json inputs | queued |
@@ -35,6 +35,15 @@ RANKING queue if a task completes; (5) commit.
 | 11 | **T12 — the addenda sweep** (2026-07-17): Japan/Dejima + Japanese ports · Indonesia (= T8's Aceh/Bantam strand) · cross-Pacific & around-SA (w/ E9 Callao) · Med African coast · Caribbean deep search · India–Arabia–E-Africa lens · one-time specials catalog (per-seed probabilistic) · goods-thread lens (silver, whaling, Middle Passage — sober register kept) | dated candidates doc(s) + specials catalog + register entries | queued |
 
 ## Done
+
+- **Chunk 5 (2026-07-17):** T10's Atlantic strand — 101 claims, 82 ✅ /
+  19 ⚠ / 0 ✂; `research/flows/atlantic-1815-1850.md` stages the decade
+  tables (illegal-era systems with verified annual anchors; six new
+  commercial systems; 13 wars.json entries all verified sound), the
+  squadron pattern, and the three sober framing texts FOR USER REVIEW.
+  Refuter catches: the Cisplatine blockade gap (1826–28), Cuban 1830s
+  bounds widened, the timber anchor unpinned, Triton date, Arana–Southern
+  date. WIP files superseded and removed.
 
 - **Chunk 1 (2026-07-16):** T9 complete + T4 naval strand — 84 claims,
   62 ✅ / 22 ⚠ / 0 ✂; `ambient-flows.md` §1 landed; PLAN-convoys §1 table
