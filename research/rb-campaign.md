@@ -27,7 +27,7 @@ RANKING queue if a task completes; (5) commit.
 | 3 | **Scheduled & state services** (T4: Falmouth packets, correo marítimo, caravane services, Surat–Jeddah hajj + PLAN-4 E6 verification; T10 packet lines 1818–50) | `ambient-flows.md` §3 | **✅ done 2026-07-16** |
 | 4 | **Local metabolisms** (T4: colliers, shachuan, coastwise circuits — short-circuit representability) | `ambient-flows.md` §4 + mappability verdicts | **✅ done 2026-07-17 — T4 COMPLETE** |
 | 5 | **T10 basin extensions, Atlantic** (1820/30/40 decades; illegal-era Brazil/Cuba trade — counted, sober framing staged for review; Latin American independence; suppression squadron) | `research/flows/atlantic-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-17** |
-| 6 | **T10 basin extensions, East Asia + Indian Ocean W** (Canton→treaty ports, opium named honestly, Mascarene/Plata coerced systems with E1/E5 verification) | basin files + stamps | queued |
+| 6 | **T10 basin extensions, East Asia + Indian Ocean W** (Canton→treaty ports, opium named honestly, Mascarene/Plata coerced systems with E1/E5 verification) | basin files + stamps | **in progress 2026-07-17** (gathers O/P/Q out) |
 | 7 | **T10 basin extensions, Baltic/Med/Bengal** (Sound Toll to 1857, échelles after Barbary ends, country trade) | basin files | queued |
 | 8 | **T10 new-port dossiers + wars sweep** (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans; wars 1815–50 incl. Navarino, Opium War) | `port-flow-candidates` pattern dossiers + wars.json inputs | queued |
 | 9 | **T8 remaining candidates** (Ostend & Trieste companies, New Julfa carriage, Aceh/Bantam pepper) | new dated candidates doc + register entries | queued |
