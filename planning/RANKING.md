@@ -307,12 +307,15 @@ recommended order, not law.
    PLAN-4 E-R1 verification. The big source pass; the whole point of the
    phase grouping is that it runs once. Includes X-R2's charter sign-off
    texts staged for user review. **IN PROGRESS** (`research/rb-campaign.md`):
-   chunks 1–3 done 2026-07-16 — **T9 complete** (+ T4's naval strand);
-   T4's fisheries strand + **E3 verification passed** + two T8 items;
-   T4's scheduled-services strand + **E6 verification passed** + T10's
-   packet lines (§§1–3 of `ambient-flows.md` landed; one refuted claim
-   caught — India mail 1815). T4 is 3/4 strands done — chunk 4 (local
-   metabolisms) completes it and opens Pass 4's gate.
+   chunks 1–4 done 2026-07-16/17 — **T9 complete**, **T4 COMPLETE** (all
+   four strands of `ambient-flows.md` landed, 286 claims at 229 ✅ / 56 ⚠ /
+   1 ✂ under full adversarial verification), **E3 + E6 verifications
+   passed**, two T8 items done, T10's packet-lines item done. **Pass 4's
+   hard gate (T4) is OPEN** — and the catalog's engineering conclusion is
+   that ONE new movement primitive (the grounds node) unlocks six ambient
+   patterns. Remaining in the campaign: chunks 5–10 (T10 basin extensions
+   + new-port dossiers + wars; T8's remaining candidates; E1/E2/E4/E5
+   verification closeout).
 6. **[F] Convoys** (`PLAN-convoys.md`). Buildable any time after step 1,
    but cheapest here — it inherits T9's evidence-classed rates for free.
 7. **[F] Pass 4 — the scripted-spawn channel + ambient flows.** HARD GATE:

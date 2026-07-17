@@ -25,7 +25,7 @@ RANKING queue if a task completes; (5) commit.
 | 1 | **Convoy institutions & rates + naval movement patterns** (T9 complete + T4 naval strand): flota, Brazil frotas, carreira, Manila pairing, VOC retourvloot, EIC/CdI homeward, Convoy Acts 1793/98 wartime convoy, caravane/Levant convoy; guarda-costas & revenue cruisers, station-keeping/blockade, privateer cruising grounds & the Pirate Round | `research/ambient-flows.md` §1 (+ PLAN-convoys §1 table refresh) | **✅ done 2026-07-16** |
 | 2 | **Fisheries & whaling as grounds-traffic** (T4 fisheries strand + PLAN-4 E3 verification + T8 Iceland/North-Atlantic + Bergen/Trondheim stockfish) | `ambient-flows.md` §2 + E3 stamps + T8 partial | **✅ done 2026-07-16** |
 | 3 | **Scheduled & state services** (T4: Falmouth packets, correo marítimo, caravane services, Surat–Jeddah hajj + PLAN-4 E6 verification; T10 packet lines 1818–50) | `ambient-flows.md` §3 | **✅ done 2026-07-16** |
-| 4 | **Local metabolisms** (T4: colliers, shachuan, coastwise circuits — short-circuit representability) | `ambient-flows.md` §4 + mappability verdicts | queued |
+| 4 | **Local metabolisms** (T4: colliers, shachuan, coastwise circuits — short-circuit representability) | `ambient-flows.md` §4 + mappability verdicts | **✅ done 2026-07-17 — T4 COMPLETE** |
 | 5 | **T10 basin extensions, Atlantic** (1820/30/40 decades; illegal-era Brazil/Cuba trade — counted, sober framing staged for review; Latin American independence; suppression squadron) | `research/flows/atlantic.json` decades + framing texts staged | queued |
 | 6 | **T10 basin extensions, East Asia + Indian Ocean W** (Canton→treaty ports, opium named honestly, Mascarene/Plata coerced systems with E1/E5 verification) | basin files + stamps | queued |
 | 7 | **T10 basin extensions, Baltic/Med/Bengal** (Sound Toll to 1857, échelles after Barbary ends, country trade) | basin files | queued |
@@ -62,3 +62,16 @@ RANKING queue if a task completes; (5) commit.
   Pontic grain (86% of 181,000 t/yr) must be a declared silence if no
   Black Sea port enters. Follow-ups: Choudhury/Das Gupta/Malabar
   page-level checks.
+- **Chunk 4 (2026-07-17):** T4's final strand (local metabolisms) — 45
+  claims, 34 ✅ / 11 ⚠ / 0 ✂; `ambient-flows.md` §4 landed and **T4 is
+  COMPLETE** (286 claims across chunks 1–4: 229 ✅ / 56 ⚠ / 1 ✂). Key
+  outcomes: the collier metronome sails on the Europe plate at a declared
+  ~1:200 compression (fleet 300–600 as a range; two tonnage series never
+  to be mixed); the shachuan trunk quantified (Jianghai register anchor;
+  the 1826/1848 tribute-grain convoys the best-counted objects; 1684
+  era-gate survived attack; shi→ton conversion = the dominant
+  uncertainty, one declared conversion + widened bands); coastal-shipping
+  and china-coastal register entries upgradeable. **Pass 4's hard gate is
+  OPEN.** One session-limit interruption mid-gather — recovered, nothing
+  lost. Cross-cutting: the grounds-node primitive is the ONE new movement
+  primitive the program needs.

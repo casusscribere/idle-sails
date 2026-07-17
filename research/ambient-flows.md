@@ -737,4 +737,147 @@ any of those set parameters.
 
 ## §4 — Local metabolisms (T4)
 
-*(queued — chunk 4)*
+*Landed 2026-07-17 (campaign chunk 4 — the final T4 strand). 45 claims
+gathered by two agents (J colliers/European coastwise · K China coastal),
+every one attacked by an independent refuter: 34 ✅, 11 ⚠ (corrected
+readings below), 0 ✂.* **This section completes research task T4** — all
+four strands (naval §1 · fisheries §2 · scheduled services §3 · local
+metabolisms §4) are landed, and feature pass 4's hard gate is open.
+
+### 4.1 The collier metronome — Tyne/Sunderland → London, the exemplar lane
+
+- **The counted series (verified to exact figures):** London seaborne coal
+  imports 10,667 t (1561–62, port books) → ~27,000 t (1580 — the folk
+  "~50k in the 1580s" is a decade early) → 283,375 t (1637/38) →
+  ~460–510k t (1700/01, coal-meters' records) → ~1.24M t (1810) →
+  **1,973,917 t (1829**, Parliamentary Papers — the gatherer's citation
+  year corrected) (J-01..06 ✅/⚠). A ~70× growth curve across the era —
+  the steepest of any lane in the world; **show it growing, never
+  averaged**. Origin concentration: Newcastle + Sunderland, 250+ years
+  (J-08 ✅).
+- **The rhythm:** ~4,395 coal cargoes delivered to London in 1795 (≈12
+  arrivals/day), ~7,000 by 1824, 9,000+ by 1839 (J-09 ✅ — one MacGregor
+  lineage, faithfully copied); 8–11 voyages per collier per year c. 1800
+  (~4–6 pre-1700, winter laydown; the laydown fades once wagonways allow
+  winter loading) (J-10, J-25 ✅); the standing fleet reads **300–600
+  hulls, central ~400–500 — a range, not a point** (the ÷8–9 derivation
+  was circular; J-11 ⚠). Passage ~2 weeks down (elastic 7–22 days), round
+  trip 4–6 weeks (J-12 ✅; Dunn's 633-voyage series: 24.2 mi/day made
+  good, the fastest coastal category, J-13 ✅). Vessels: two DISTINCT size
+  series that must never be mixed — London-owned colliers averaged 139 t
+  (1638) → 248 t (1701); the fleet-wide series runs 140 t (1702) →
+  580 t (1840) (J-14 ✅, J-15 ⚠). Crews 10–12 (boys undercounted).
+- **Texture:** the "nursery of seamen" is genuine contemporary
+  parliamentary language — Cook apprenticed at Whitby 1746, first sailed
+  on a collier, and all four exploration ships were Whitby-built colliers
+  (J-17 ✅) — a ready ledger hook for naval captains. Wartime: massed
+  east-coast convoys of 100–300+ sail assembling in Yarmouth Roads
+  (Pepys's ~200-collier fleet of Dec 1666 is the citable set-piece),
+  compulsory after 1798 (J-18 ✅) — the natural first user of the convoys
+  feature.
+- **Sim shape & mappability:** a metronome, not a voyage — one lane, coal
+  southbound only, ballast home. **World plate: do NOT sail it**
+  (sub-glyph; it reads as ambient port activity). **Europe plate: sail
+  it**, at a DECLARED compression of ~1:200 (≈20–25 spawned voyages/
+  sim-year late-era scaling down to ~2–3/yr in the 1560s) with the ledger
+  saying so plainly ("one vessel stands for roughly two hundred sailings
+  of the coal fleet") — the compression factor is itself an
+  evidence-classed statement, never hidden.
+
+### 4.2 European coastwise — the register upgrade, one exemplar sailed
+
+The general coastwise metabolism is real, enormous, and unmappable at
+spectator scale: British COASTAL registered tonnage exceeded foreign-going
+tonnage in 1709 (96,941 vs 74,191 t — a single-manuscript snapshot carried
+inside Davis's quarter-to-half bracket; J-19 ✅); France issued 44,537
+clearances in 1787 **of every trade** (cabotage ≈ half-plus of ships but a
+small fraction of tonnage — the gatherer's coastal-only label corrected;
+J-23 ⚠); the Dutch **beurtvaart** ran Europe's earliest timetabled shipping
+(schedules mandatory from 1594; ~800 scheduled departures WEEKLY from
+Amsterdam to 180 destinations in 1765, inland + short-sea mixed; J-21,
+J-22 ✅); Stockholm's firewood skutor stay asserted with no invented
+volume (J-24 ✅).
+**Verdict:** upgrade `coastal-shipping-general` in the silences register
+from asserted to **proxied, with these numbers in its text**, and promote
+exactly ONE exemplar — the collier run — to sail as the visible synecdoche
+for the whole class. The beurtvaart's Amsterdam–London/Hamburg short-sea
+beurten are the defensible second exemplar if scheduled-service texture is
+ever wanted.
+
+### 4.3 The Chinese coastal metabolism — the north-ocean shuttle, quantified
+
+- **Era gate (survived attack):** the commercial system era-gates at
+  **1684** (the Qing sea-ban lifted after Taiwan; four customs houses
+  1685). The 1717–27 Kangxi re-ban targeted the Nanyang trade only and
+  never closed the coast (K-01 ✅). Pre-1684 there was episodic STATE sea
+  logistics (Wang Zongmu's 1572 experiment — 120,000 shi, now verified —
+  and the post-1621 Denglai–Liaodong military runs), so the pre-1684 state
+  is an exception to note, not a silence (K-19 ⚠ corrected).
+- **The shachuan fleet:** ~3,500–3,600 sand junks congregating at Shanghai
+  in the Jiaqing–Daoguang decades (Bao Shichen's advocate figure, verbatim
+  — and beware: his numbers permeate the secondary literature, so apparent
+  multi-source agreement is often one witness echoed; K-02 ✅ as labeled).
+  The **Jianghai customs register** is the counted anchor: 500–800
+  arrivals/month at Shanghai in the March–April peak, ~1,500–1,600 over
+  the two months, with May counts of 536/715/854 in successive years
+  (K-03 ✅). Tonnage: **~50–250 t** per hull (the shi→ton conversion
+  spreads 2–4× across sources — pick ONE declared conversion, ~60–80
+  kg/shi, and widen bands; K-04 ⚠). Rhythm: north on the spring/summer
+  southerlies, south in autumn, Bohai closed ~Oct–Feb; 2–5 round trips/yr
+  (K-18 ✅ widened). Volume: Bao's ">10M shi/yr" of Manchurian
+  soybeans/wheat vs Xue Yong's 10–25× deflation — **a live scholarly
+  dispute the flow must carry as a wide [lo,hi]**, the charter's
+  contested-magnitude case in its purest form (K-05, K-06 ✅).
+- **The tribute-grain sea convoys — the best-counted object in the
+  system:** 1826, ~1.5–1.63M shi of Jiangnan tribute rice Shanghai→Tianjin
+  in two escorted waves, hired entirely from the private shachuan fleet —
+  **~1,500–2,000 junk-voyages by ~1,000–1,600 hulls** (corrected from the
+  flat "~1,500 vessels"; K-09 ✅, K-10 ⚠); repeated 1848 (1,076,058 shi,
+  archival; 1,400+ hired vessels), regular from 1852, permanent after the
+  1855 Yellow River avulsion (K-11 ✅). A natural Pass-4 scripted-channel
+  showpiece with a real naval escort — and the load-bearing structural
+  fact: the existing commercial fleet absorbed the state cargo in one
+  season without ceasing its own trade.
+- **The Fujian arm & Taiwan:** the 北艚 northern circuit
+  (Amoy→Ningbo→Shanghai→Tianjin — the sim's chain IS this circuit; the
+  Ningbo waypoint absorbed and declared) ran **once a year** — a frequency
+  constraint (K-14 ✅). Taiwan→Amoy grain: the counted 85,297 shi/yr is
+  the military/family quota FLOOR with commercial flows above it (K-15 ✅);
+  no Taiwan port and a 1–2-day crossing → a named silences entry or an
+  Amoy prominence input, not a lane. Fujian registrations support ≥4,000
+  ocean-going hulls province-wide as a scholar's inference (the "Tong'an
+  298" is contradicted by the serials — dropped; K-13 ⚠).
+- **Sim shape & mappability:** Shanghai⇄Tianjin as the visible trunk
+  (Tianjin proxying the whole Liaodong+Zhili littoral — declared),
+  compression ~100–300:1 (10–30 sim sailings/yr), era-gated 1684, seasonal
+  legs. `china-coastal-grain` upgrades **asserted →
+  reconstructed-with-contested-bounds**; `china-coastal-silence` upgrades
+  gestured → **bounded** (the trunk is proven; the entry should say the
+  shown lanes are the visible fraction of a metabolism several times
+  larger, concentrated below port resolution).
+
+### Verification record — chunk 4
+
+34 ✅ / 11 ⚠ / 0 ✂ across 45 claims (J-01..25 colliers/coastwise ·
+K-01..20 China coastal). Systemic findings: single-lineage counts behind
+apparently multi-attested figures (MacGregor for the cargo counts; Bao
+Shichen echoing through the Chinese secondary literature); series
+measuring different populations that must not be mixed (London-owned vs
+fleet-wide collier tonnage); unit-conversion spreads as the dominant
+uncertainty (chaldrons pre-1831; shi→tons at 2–4×) — in both cases the
+honest fix is one declared conversion and widened bands; and two label
+errors caught (a citation year; total-vs-coastal clearances). Follow-ups
+flagged: Leonard's monographs for the 1826 hull/voyage split; the
+Solar/Dunn/Kane 40,000-voyage dataset (paywalled) for collier
+productivity; Flinn's table for the 1829 coastwise total.
+
+---
+
+**T4 STATUS: COMPLETE.** All four strands landed with full adversarial
+verification (chunks 1–4: 286 claims, 229 ✅ / 56 ⚠ / 1 ✂). The catalog's
+cross-cutting engineering conclusion: **the grounds-node primitive is the
+one new movement primitive the ambient-flows program needs** — whaling
+(E3), the banks wet fishery, Iceland, the herring track, privateer
+cruising, and blockade station-keeping all wait on it; everything else
+(convoys, scheduled lines, tramping, the collier and shachuan trunks)
+rides machinery the sim already has.

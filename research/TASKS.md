@@ -23,7 +23,8 @@ the tasks share a source campaign and should run together.
   Aubrey catalog should know the convoy and Pass-5 mechanics it will be
   expressed through.
 - **Phase RB — movement & flows.** One campaign over voyage-pattern sources:
-  T4 (ambient flows) coordinated with PLAN-4's E-R1 verification where the
+  ~~T4~~ (ambient flows — **done 2026-07-17**, chunks 1–4 of the campaign)
+  coordinated with PLAN-4's E-R1 verification where the
   two overlap — whaling grounds (E3), the caravane maritime (E7), Jeddah
   pilgrim shipping (E6), and the fisheries all appear on BOTH lists, so
   running T4 and a PLAN-4 wave-1 verification separately would read the same
@@ -77,39 +78,6 @@ earlier costs a second look once the mechanics exist.
 **Feeds:** feature pass 6 (`planning/RANKING.md`).
 
 ### Phase RB — movement & flows
-
-#### T4 — Deep research: ambient flows & naval movement patterns
-A deep-research sweep (the `port-flow-candidates-2026-07.md` pattern:
-multi-source, adversarially verified, claims flagged) into **movement
-patterns that are not port-to-port trade lanes** but may be relevant and
-mappable in this project — the evidence base for feature pass 4 (the
-scripted-spawn channel + ambient flows). Candidate families to investigate,
-confirm, bound, or reject:
-- **Fisheries as grounds-traffic** — the Dutch herring buss fleet (the grote
-  visserij), the Banks cod fishery's seasonal rhythm, Arctic/South-Sea
-  whaling grounds cruising (each already gestured in the silences register);
-- **Naval patterns** — convoy escort cycles, guarda-costas and revenue
-  cruisers, station-keeping (guard ships, blockade squadrons in wartime),
-  cruising grounds of privateers and the Pirate Round;
-- **Scheduled/state services** — packet boats (Falmouth packets, the
-  correo marítimo), the caravane maritime, pilgrim traffic (the Surat–Jeddah
-  hajj shipping);
-- **Local metabolisms** — coastwise grain/fuel circuits already asserted in
-  the flow matrix (colliers, shachuan) that could gain visible short-circuit
-  representation.
-For each pattern: what the sources support (volume, season, era window,
-geography), what SHAPE it takes in sim terms (recurring local circuit ·
-grounds-loitering · station-keeping · scheduled line), whether the baked-
-route machinery can carry it or the baker needs new work
-(`pipeline/README.md` first), and a mappability verdict.
-**Coordinate with PLAN-4 E-R1:** the whaling grounds (E3), caravane maritime
-(E7), and Jeddah pilgrim shipping (E6) sit on both lists — if a PLAN-4 wave
-is being verified, share the source pass rather than reading twice.
-**Output:** `research/ambient-flows.md` — the catalog with per-pattern
-evidence class, bounds, sim-shape recommendation, and silences-register
-cross-references (patterns that answer a gestured silence must say which).
-**Feeds:** feature pass 4 (`planning/RANKING.md`); silences register
-updates where a gestured entry gains representation.
 
 #### T8 — The 2026-07 sweep's declared silences: follow-up candidates sweep
 *(added 2026-07-16, from PLAN-4 §1)* The 2026-07 port-flow sweep declared
@@ -226,6 +194,17 @@ bounds + a sim-shape recommendation; the silences-register `steam` entry
 ladder); until that plan is drafted, steam remains a declared boundary.
 
 ## Done
+
+- **T4 — ambient flows & naval movement patterns (2026-07-17, Phase-RB
+  chunks 1–4).** The full catalog is `research/ambient-flows.md` §§1–4:
+  naval patterns · fisheries & whaling · scheduled/state services · local
+  metabolisms — 286 claims total under full-adversarial verification
+  (229 ✅ / 56 ⚠ / 1 ✂). Cross-cutting conclusion: the GROUNDS-NODE
+  primitive is the one new movement primitive the program needs (six
+  patterns wait on it); everything else rides existing machinery. Register
+  implications recorded per section (herring quantified; coastal-shipping
+  and china-coastal upgradeable; Pontic grain a mandatory declared silence
+  if no Black Sea port). **Feature pass 4's hard gate is OPEN.**
 
 - **T9 — convoy institutions & rates (2026-07-16, Phase-RB chunk 1).**
   Full-adversarial campaign: 84 claims gathered (Iberian · company/British/
