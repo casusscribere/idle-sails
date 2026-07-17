@@ -1,0 +1,12 @@
+# Chunk 5 verdicts M — Atlantic commerce (28 ✅ / 9 ⚠ / 0 ✂)
+[M-02..07, 09, 10, 12, 13, 15, 17..20, 23..26, 28..30, 32..36] CONFIRMED — the canonical series verified (coffee shares, cotton bales verbatim w/ purchases-not-exports caveat, EH.net emigration averages exact, 1847 mortality figures verified in detail (~17–20% that year ONLY), Sound 15,000+ verbatim, whaling 736 peak, BSWF ramp-down, Jamaica halving, cod exports verbatim). M-08 IMPROVED: all-flags Valparaíso 1840 = 287 (166 British) — use 287. M-17 bounded: 400–1,100 ocean arrivals/yr defensible, 1840s top may stretch ~1,200.
+[M-01] WEAKENED — arrival counts unverifiable AND the rising 1824→27 curve is suspect: the CISPLATINE BLOCKADE (Dec 1825–1828) depressed arrivals — a dent the patterns section omitted. Read "tens of British arrivals/yr mid-1820s" + add the 1826–28 blockade dent.
+[M-11] WEAKENED — American bales via Liverpool c.1850 ≈ 1.1–1.3M (UK total ~1.3–1.6M bales × 70–80% American); >1.5M holds only from the mid-1850s.
+[M-14] WEAKENED — New Orleans nearer 40–50% of the crop in the 1840s (the ⅓ quote is 1870s — sim share conservative if anything); drop the world-rank superlative; keep 236-t average + top-3-US.
+[M-16] WEAKENED — the 1,520-of-1819 anchor is UNPINNED (likely Wynn/Lower) and 1819 was a boom year before the 1819–21 slump; counted/medium; 1820s floor probably nearer 800–1,200.
+[M-21] WEAKENED — "~50k/yr early 1840s" is the IRISH baseline, not UK (UK ran 57–128k); famine-year figures hold (129,851 in 1846; 258,270 in 1847).
+[M-22] WEAKENED — magnitudes right but the exact figures match no identifiable compilation within 2% (Vaughan & Fitzpatrick differ) — identify the compilation before these are counted anchors.
+[M-27] WEAKENED — "25 Black Ball ships by 1850" overstates the concurrent fleet (~8–12; ~60 over its life); keep the several-hundred-sailings/yr aggregate.
+[M-31] WEAKENED — cod divisor top-heavy; honest 1,500–3,500 q/ship → ~250–450 market voyages/yr.
+[M-37] WEAKENED — Puerto Rico also grew strongly; correct to "largest and fastest-growing, with Puerto Rico the other riser".
+SUMMARY: timber 1820s floor generous (suggest 800–1,200 early decade); emigration block strong in magnitude, sloppy in series identity; asserted divisors skew high (cod −20% voyages; cotton 1840s ceiling slightly low ~1,400; residual Cadiz–Havana likely understates the 1830s–40s Catalan recovery); Plata blockade calendar MUST add 1826–28.
