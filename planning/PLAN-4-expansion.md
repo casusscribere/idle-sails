@@ -36,7 +36,13 @@ ANCHORS, not a series (class lane volumes reconstructed/asserted with
 anchors, not "proxied"); the 1785 near-parity claim restated (both routes,
 Basra dominant 1720s–1773); the "Jeddah break" confirmed institutional and
 firm to ~1840 — India→Suez must not exist as a through lane before then.
-E1/E2/E4/E5 verification outstanding (campaign chunk 10).
+**E1 VERIFIED chunk 6** (Borucki 2011 confirmed in full; Camarda-not-Jumar
+citation correction; coerced windows: counted 1777–1812, tail to 1833,
+absolute end 1835 — `research/flows/east-asia-io-1815-1850.md` §3).
+**E5 VERIFIED chunk 6** (Allen's 641-voyage inventory exact; illegal era
+~52,550 to Mauritius alone to c.1827; indenture series counted). E2 was
+verified 3–0 in the original sweep. **Only E4 (York Factory/HBCA) remains**
+(campaign chunk 10).
 
 ---
 

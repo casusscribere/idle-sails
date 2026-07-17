@@ -27,7 +27,7 @@ RANKING queue if a task completes; (5) commit.
 | 3 | **Scheduled & state services** (T4: Falmouth packets, correo marítimo, caravane services, Surat–Jeddah hajj + PLAN-4 E6 verification; T10 packet lines 1818–50) | `ambient-flows.md` §3 | **✅ done 2026-07-16** |
 | 4 | **Local metabolisms** (T4: colliers, shachuan, coastwise circuits — short-circuit representability) | `ambient-flows.md` §4 + mappability verdicts | **✅ done 2026-07-17 — T4 COMPLETE** |
 | 5 | **T10 basin extensions, Atlantic** (1820/30/40 decades; illegal-era Brazil/Cuba trade — counted, sober framing staged for review; Latin American independence; suppression squadron) | `research/flows/atlantic-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-17** |
-| 6 | **T10 basin extensions, East Asia + Indian Ocean W** (Canton→treaty ports, opium named honestly, Mascarene/Plata coerced systems with E1/E5 verification) | basin files + stamps | **in progress 2026-07-17** (gathers O/P/Q out) |
+| 6 | **T10 basin extensions, East Asia + Indian Ocean W** (Canton→treaty ports, opium named honestly, Mascarene/Plata coerced systems with E1/E5 verification) | `research/flows/east-asia-io-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-17 — E1 + E5 VERIFIED** |
 | 7 | **T10 basin extensions, Baltic/Med/Bengal** (Sound Toll to 1857, échelles after Barbary ends, country trade) | basin files | queued |
 | 8 | **T10 new-port dossiers + wars sweep** (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans; wars 1815–50 incl. Navarino, Opium War) | `port-flow-candidates` pattern dossiers + wars.json inputs | queued |
 | 9 | **T8 remaining candidates** (Ostend & Trieste companies, New Julfa carriage, Aceh/Bantam pepper) | new dated candidates doc + register entries | queued |
@@ -35,6 +35,16 @@ RANKING queue if a task completes; (5) commit.
 | 11 | **T12 — the addenda sweep** (2026-07-17): Japan/Dejima + Japanese ports · Indonesia (= T8's Aceh/Bantam strand) · cross-Pacific & around-SA (w/ E9 Callao) · Med African coast · Caribbean deep search · India–Arabia–E-Africa lens · one-time specials catalog (per-seed probabilistic) · goods-thread lens (silver, whaling, Middle Passage — sober register kept) | dated candidates doc(s) + specials catalog + register entries | queued |
 
 ## Done
+
+- **Chunk 6 (2026-07-17):** T10's East Asia + IO-W strands — 59 claims,
+  47 ✅ / 11 ⚠ / 1 ✂ (the Crawfurd junk-tonnage scope error);
+  `research/flows/east-asia-io-1815-1850.md` stages both basins. **E1 and
+  E5 both VERIFIED for the build** (Borucki confirmed; Camarda citation
+  correction; Allen's 641 exact; the illegal-era published point found);
+  honest coerced end-dates fixed (Plata absolute end 1835; Mascarene
+  illegal era to c.1827). Two more framing texts staged (indenture; Amoy
+  emigration). East Asia reconstruction bands all shifted UP under
+  refutation. E4 alone remains for chunk 10. WIP superseded and removed.
 
 - **Chunk 5 (2026-07-17):** T10's Atlantic strand — 101 claims, 82 ✅ /
   19 ⚠ / 0 ✂; `research/flows/atlantic-1815-1850.md` stages the decade
