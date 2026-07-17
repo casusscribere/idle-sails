@@ -379,6 +379,29 @@ Every design decision answers to both of these:
   years. **52 tests green** (`test/names.test.mjs` +2 region pins). Next
   up: the Phase-RB research campaign (T4+T8+T9+T10 + E-R1), then convoys.
 
+- **Cycle-scoped histories (2026-07-17, user request):** at every 1550 wrap
+  the chart's displayed histories reset to the CURRENT iteration of the
+  270-yr loop — earlier cycles' records are **retained in state, only
+  hidden** (a display filter, never a sim input). `world.js`: statistics are
+  bucketed per cycle (`state.stats.byCycle[idx]` — spawned/arrived/lost +
+  byLane/byCargo), keyed by each EVENT's own sim-time (spawn at / loss at /
+  voyage end — granularity-independent; a ship sailing across the seam
+  spawns in one cycle's books and resolves in the next's); the display
+  contracts filter to `cycleIndexOf(simClock)`: `snapshot()` counters (from
+  the current bucket) + log + wrecks, the `world.stats` getter (current
+  bucket), `portHistoryOf` (this cycle's calls only), and `warEventsSince`
+  (clamped to the cycle start — cycle two's opening years no longer read the
+  previous cycle's "…Wars ended"; the prev-cycle base is gone). Lifetime
+  `state.counters` are untouched (fingerprint unchanged ⇒ sim-inert).
+  Ships at sea across the seam sail on: their arrivals ARE the new
+  iteration's traffic, so `portCalls` greying deliberately keeps reading
+  through the wrap. A flat pre-cycle save's `stats` migrates into its own
+  cycle's bucket on restore. main.js/ui.js needed ZERO changes (the world's
+  display contracts do the filtering). Headless-verified across a fabricated
+  seam (teleported clock, all panels). **53 tests green**
+  (observation.test.mjs +1 seam test; settings.test war-wrap assertion
+  flipped to the new contract).
+
 ## Earlier state (still accurate)
 - **Repo structure:** the deployable site lives at the **repo root** —
   `index.html`, `main.js`, `world.js`, `render.js`, `ui.js`, `style.css`, and

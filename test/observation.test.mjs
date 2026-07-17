@@ -25,11 +25,13 @@ test('statistics: tallies reconcile with the counters and are granularity-indepe
   assert.deepEqual(small.state.stats, big.state.stats, 'stats: big tick == many small ticks');
   assert.deepEqual(small.state.portHistory, big.state.portHistory, 'port history too');
 
-  const st = big.state.stats, c = big.state.counters;
+  // stats are bucketed per 270-year cycle; 90 days in, everything is cycle 0
+  const st = big.state.stats.byCycle[0], c = big.state.counters;
   const sum = (k) => Object.values(st.byLane).reduce((a, s) => a + s[k], 0);
   assert.equal(sum('spawned'), c.spawned, 'per-lane spawns sum to the counter');
   assert.equal(sum('arrived'), c.arrived, 'per-lane arrivals sum to the counter');
   assert.equal(sum('lost'), c.lost, 'per-lane losses sum to the counter');
+  assert.deepEqual({ spawned: st.spawned, arrived: st.arrived, lost: st.lost }, c, 'the bucket carries its own counters');
   assert.equal(Object.values(st.byCargo).reduce((a, b) => a + b, 0), c.spawned, 'every spawn carries one cargo');
 });
 
@@ -125,4 +127,58 @@ test('observation state survives a save/restore round-trip', () => {
   const c = createWorld({ seed: 33, data, restore: old });
   c.tick(30 * DAY);   // records from now on, never crashes
   assert.ok(c.state.stats && c.state.tracked.pins.length === 0);
+
+  // a pre-cycle-scoped save's flat { byLane, byCargo } folds into its own
+  // cycle's bucket, with the lifetime counters as that cycle's counts
+  const flat = a.serialize();
+  flat.stats = { byLane: flat.stats.byCycle[0].byLane, byCargo: flat.stats.byCycle[0].byCargo };
+  const d = createWorld({ seed: 33, data, restore: flat });
+  assert.deepEqual(d.state.stats, a.state.stats, 'the flat shape migrates into the cycle bucket');
+});
+
+test('cycle wrap: displayed histories hide at the 1550 restart; the record is retained', () => {
+  const CYC = _internals.CYCLE_SEC;
+  // Enter a late-cycle world directly: spawns, fates, and buckets all key off
+  // sim-time, so teleporting the clock to just before the seam gives us a
+  // world with pre-wrap history without ticking 270 years.
+  const mk = () => {
+    const w = createWorld({ seed: 13, data });
+    w.state.simClock = CYC - 60 * DAY;
+    w.state.nextSpawnAt = w.state.simClock;
+    return w;
+  };
+  const w = mk();
+  w.tick(59 * DAY);                       // sail up to a day short of the seam
+  const pre = w.snapshot();
+  assert.ok(pre.counters.spawned > 0 && pre.log.length > 0, 'the old cycle shows its own history');
+  assert.ok(Object.values(w.state.portHistory).some(h => h.length), 'ports recorded pre-wrap calls');
+
+  w.tick(31 * DAY);                       // 30 days into the new 1550
+  const snap = w.snapshot();
+  assert.equal(snap.year, 1550, 'the clock wrapped');
+  // counters + stats read from the new iteration's bucket only…
+  assert.ok(snap.counters.spawned < w.state.counters.spawned, 'lifetime counters retained; display scoped');
+  assert.equal(snap.counters.spawned, w.state.stats.byCycle[1].spawned);
+  assert.equal(w.stats.spawned, w.state.stats.byCycle[1].spawned, 'world.stats is the current bucket');
+  assert.ok(w.state.stats.byCycle[0].spawned > 0, 'the old cycle’s book is kept in state');
+  // …the log and the wreck marks show only current-cycle entries
+  for (const e of snap.log) assert.ok(e.t >= CYC, 'displayed log entries are this cycle’s');
+  assert.ok(w.state.log.some(e => e.t < CYC), 'older log entries retained in state');
+  for (const wr of snap.wrecks) assert.ok(wr.at >= CYC, 'displayed wrecks are this cycle’s');
+  // port history displays only this iteration's calls, keeps the rest
+  let retained = false;
+  for (const [pid, h] of Object.entries(w.state.portHistory)) {
+    for (const e of w.portHistoryOf(pid)) assert.ok(e.t >= CYC, 'displayed calls are this cycle’s');
+    if (h.some(e => e.t < CYC)) retained = true;
+  }
+  assert.ok(retained, 'pre-wrap port calls are retained in state');
+  // war events never read the previous cycle across the seam
+  assert.ok(w.warEventsSince(w.simClock, 10).every(e => e.t >= CYC), 'no pre-wrap war events');
+
+  // the bucketing is exactly as granularity-independent as the sim
+  const small = mk();
+  for (let i = 0; i < 900; i++) small.tick(0.1 * DAY);
+  const big = mk(); big.tick(90 * DAY);
+  assert.deepEqual(small.state.stats, big.state.stats, 'buckets: big tick == many small ticks');
+  assert.deepEqual(small.state.portHistory, big.state.portHistory, 'port history too');
 });

@@ -67,10 +67,12 @@ test('war events derive purely from the flowing clock', () => {
   // "Napoleonic Wars ended" out of a previous cycle that never happened
   assert.ok(w.warEventsSince(0.4 * YEAR, 10).every(e => e.kind !== 'war-end'),
     'no pre-world endings in cycle one');
-  // …but the same instant one cycle on DOES see the previous cycle's late wars
+  // …and the same instant one cycle on ALSO shows no endings: the chart is
+  // redrawn at every 1550 wrap, and its displayed past starts there — the
+  // previous cycle's late wars are hidden with the rest of its history
   const wrap = w.warEventsSince(_internals.CYCLE_YEARS * YEAR + 0.4 * YEAR, 10);
-  assert.ok(wrap.some(e => e.kind === 'war-end'),
-    'cycle two’s opening window reads the previous cycle’s endings');
+  assert.ok(wrap.every(e => e.kind !== 'war-end'),
+    'cycle two’s opening window does not read the previous cycle’s endings');
 });
 
 test('settings: defaults, round-trip, junk tolerance, medium = pre-slider behaviour', () => {

@@ -21,6 +21,14 @@ const ERA = { from: 1550, to: 1815 };
 const RESET_YEARS = 5;                          // fake reset ramp 1815→1820
 const FLOW_SPAN = ERA.to - ERA.from;            // 265 forward years (1550→1815)
 const CYCLE_YEARS = FLOW_SPAN + RESET_YEARS;    // 270-year loop period
+const YEAR_SEC = SEC_PER_DAY * DAY_OF_YEAR;
+const CYCLE_SEC = YEAR_SEC * CYCLE_YEARS;
+// Which iteration of the 1550→1820 loop an instant falls in. The chart is
+// "redrawn" at every wrap: displayed histories (statistics, counters, port
+// calls, the log, wrecks, war events) are scoped to the current iteration.
+// Earlier cycles' records are RETAINED in state — a display filter, never a
+// sim input.
+const cycleIndexOf = (simSec) => Math.floor(simSec / CYCLE_SEC);
 
 // Tuning (spectator-scale; ~40–150 vessels for an open tab). 0.55 since S2:
 // the 66-port world runs many SHORT legs (Mediterranean, Baltic, coastal), so
@@ -263,7 +271,10 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     // events — recorded at spawn or at resolution, so a big fast-forward tick
     // records the same figures as many small ones. None of it feeds back into
     // spawns/fates/movement, and fingerprint() never reads it.
-    stats: { byLane: {}, byCargo: {} },  // laneId → {spawned,arrived,lost}; cargoId → spawned
+    // Statistics are bucketed per 270-year cycle, keyed by each EVENT's own
+    // sim-time, so the redrawn chart shows only the current iteration's books
+    // while every earlier cycle's stay in the save.
+    stats: { byCycle: {} },  // cycle idx → { spawned, arrived, lost, byLane: {laneId → {spawned,arrived,lost}}, byCargo: {cargoId → spawned} }
     portHistory: {},   // portId → [{t, dir:'out'|'in', name, type}] capped at tune.portHistoryDepth
     tracked: { pins: [], archive: {} }   // pinned vessel ids + their retained records after cull
   };
@@ -276,6 +287,18 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   }
   state.nextSpawnAt = SEC_PER_DAY * -MEAN_SPAWN_INTERVAL_DAYS * Math.log(1 - spawnRng());
+  // The statistics bucket an event belongs to, keyed by the EVENT's sim-time
+  // (spawn at, loss at, voyage end) — never by when the tick processed it — so
+  // a big fast-forward tick fills the same buckets as many small ones, and a
+  // ship sailing across the 1550 seam spawns in one iteration's books and
+  // resolves in the next's.
+  const statsBucketAt = (simSec) => {
+    const i = cycleIndexOf(simSec);
+    return state.stats.byCycle[i] ||
+      (state.stats.byCycle[i] = { spawned: 0, arrived: 0, lost: 0, byLane: {}, byCargo: {} });
+  };
+  const laneStats = (bucket, laneId) =>
+    bucket.byLane[laneId] || (bucket.byLane[laneId] = { spawned: 0, arrived: 0, lost: 0 });
   // Resume a saved session. Deep-copied so the live world never aliases the
   // caller's save object (ticking must not mutate a snapshot someone else holds).
   if (restore) {
@@ -289,8 +312,14 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     // fields a pre-wrecks save won't carry
     if (!Array.isArray(state.wrecks)) state.wrecks = [];
     if (!state.portCalls || typeof state.portCalls !== 'object') state.portCalls = {};
-    // fields a pre-observation-layer save won't carry
-    if (!state.stats || typeof state.stats !== 'object') state.stats = { byLane: {}, byCargo: {} };
+    // fields a pre-observation-layer save won't carry — and a pre-cycle-scoped
+    // save's flat { byLane, byCargo } folds into its own cycle's bucket. Its
+    // lifetime counters ARE that cycle's counts: no flat-shape save can have
+    // recorded a wrap.
+    if (!state.stats || typeof state.stats !== 'object') state.stats = { byCycle: {} };
+    else if (!state.stats.byCycle) state.stats = { byCycle: { [cycleIndexOf(state.simClock)]: {
+      spawned: state.counters.spawned, arrived: state.counters.arrived, lost: state.counters.lost,
+      byLane: state.stats.byLane || {}, byCargo: state.stats.byCargo || {} } } };
     if (!state.portHistory || typeof state.portHistory !== 'object') state.portHistory = {};
     if (!state.tracked || !Array.isArray(state.tracked.pins)) state.tracked = { pins: [], archive: {} };
     // archived records outlive their vessels; after a re-bake their legs may be
@@ -595,10 +624,10 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
         }
         // observation layer: statistics + port histories, recorded at spawn
         // (schedule and fate are already known — granularity-independent).
-        const laneId = v.schedule[0].laneId;
-        const ls = state.stats.byLane[laneId] || (state.stats.byLane[laneId] = { spawned: 0, arrived: 0, lost: 0 });
-        ls.spawned++;
-        state.stats.byCargo[v.cargoId] = (state.stats.byCargo[v.cargoId] || 0) + 1;
+        const sb = statsBucketAt(at);
+        sb.spawned++;
+        laneStats(sb, v.schedule[0].laneId).spawned++;
+        sb.byCargo[v.cargoId] = (sb.byCargo[v.cargoId] || 0) + 1;
         if (tune.portHistoryDepth > 0) {
           const nm = (v.prefix ? v.prefix + ' ' : '') + v.name;
           const call = (pid, t, dir) => {
@@ -623,7 +652,8 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
       if (v.status === 'lost' || v.status === 'arrived') continue;
       if (v.fate.lost && end >= v.fate.atSec && v.status === 'sailing') {
         v.status = 'lost'; v.retiredAt = v.fate.atSec; state.counters.lost++;
-        const lls = state.stats.byLane[v.schedule[0].laneId]; if (lls) lls.lost++;
+        const lb = statsBucketAt(v.fate.atSec);
+        lb.lost++; laneStats(lb, v.schedule[0].laneId).lost++;
         const c = calendar(v.fate.atSec);
         const warTxt = v.fate.war ? ` (${v.fate.war.name})` : '';
         const nearPortId = v.fate.legId ? legByKey.get(v.fate.legId).to : v.schedule[0].to;
@@ -641,7 +671,8 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
         });
       } else if (!v.fate.lost && end >= v.voyageEnd && v.status === 'sailing') {
         v.status = 'arrived'; v.retiredAt = v.voyageEnd; state.counters.arrived++;
-        const als = state.stats.byLane[v.schedule[0].laneId]; if (als) als.arrived++;
+        const ab = statsBucketAt(v.voyageEnd);
+        ab.arrived++; laneStats(ab, v.schedule[0].laneId).arrived++;
         const last = v.schedule[v.schedule.length - 1];
         const c = calendar(v.voyageEnd);
         log({ t: v.voyageEnd, kind: 'arrive', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} came to anchor at ${nameAt(last.to, c)}`, date: fmtDate(c), vesselId: v.id });
@@ -682,15 +713,24 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   }
   function snapshot({ density = 1 } = {}) {
     const cal = calendar(state.simClock);
+    // Displayed histories are scoped to the current 270-year iteration: at the
+    // 1550 wrap the chart is redrawn, and the counters, the log, and the wreck
+    // marks read from this cycle's books only. Ships already at sea sail on
+    // across the seam (their arrivals are this iteration's traffic); the full
+    // records stay in state — lifetime counters, the capped log, the per-cycle
+    // stats — merely out of view.
+    const cycStart = cycleIndexOf(state.simClock) * CYCLE_SEC;
+    const cyc = state.stats.byCycle[cycleIndexOf(state.simClock)];
     return {
       simClock: state.simClock,
       date: fmtDate(cal),
       season: cal.season,
       year: cal.year, reset: cal.reset,
-      counters: { ...state.counters, atSea: state.vessels.filter(v => v.status === 'sailing').length },
+      counters: { spawned: cyc ? cyc.spawned : 0, arrived: cyc ? cyc.arrived : 0, lost: cyc ? cyc.lost : 0,
+        atSea: state.vessels.filter(v => v.status === 'sailing').length },
       vessels: activeVessels(density),
-      wrecks: state.wrecks,
-      log: state.log.slice(0, 40)
+      wrecks: state.wrecks.filter(w => w.at >= cycStart),
+      log: state.log.filter(e => e.t >= cycStart).slice(0, 40)
     };
   }
   // Compact serialization used to assert determinism in tests.
@@ -739,25 +779,21 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   // War events (the events log): begin/end entries for every war whose boundary
   // falls within the trailing window. Derived at DISPLAY time from the static
   // wars data + the flowing clock — a pure function of sim-time, no state, so
-  // it is trivially deterministic and granularity-independent. The previous
-  // cycle's base is also checked so the window reads correctly across the
-  // 270-year loop seam. (A war ending in 1815 "ends" at the 1816 boundary,
-  // inside the reset ramp — the honest edge of the sim horizon.)
-  const YEAR_SEC = SEC_PER_DAY * DAY_OF_YEAR;
+  // it is trivially deterministic and granularity-independent. Clamped to the
+  // current iteration: the chart is redrawn at every 1550 wrap and its
+  // displayed past starts there, so cycle two's opening years do not read
+  // "…Wars ended" out of the previous cycle. (A war ending in 1815 "ends" at
+  // the 1816 boundary, inside the reset ramp — the honest edge of the sim
+  // horizon, shown until the wrap.)
   function warEventsSince(simSec, windowYears = 10) {
     const since = simSec - windowYears * YEAR_SEC;
-    const cyc = ((simSec / YEAR_SEC % CYCLE_YEARS) + CYCLE_YEARS) % CYCLE_YEARS;
-    const cycleStart = simSec - cyc * YEAR_SEC;
+    const cycleStart = cycleIndexOf(simSec) * CYCLE_SEC;
     const out = [];
     for (const w of wars) {
       for (const [year, kind] of [[w.from, 'war-begin'], [w.to + 1, 'war-end']]) {
-        for (const base of [cycleStart, cycleStart - CYCLE_YEARS * YEAR_SEC]) {
-          const t = base + (year - ERA.from) * YEAR_SEC;
-          // t >= 0: in the FIRST cycle there is no previous cycle — the world
-          // began at 1550, and no war ended before it existed
-          if (t >= 0 && t > since && t <= simSec)
-            out.push({ t, kind, text: `${w.name} ${kind === 'war-begin' ? 'began' : 'ended'}`, date: fmtDate(calendar(t)) });
-        }
+        const t = cycleStart + (year - ERA.from) * YEAR_SEC;
+        if (t >= cycleStart && t > since && t <= simSec)
+          out.push({ t, kind, text: `${w.name} ${kind === 'war-begin' ? 'began' : 'ended'}`, date: fmtDate(calendar(t)) });
       }
     }
     out.sort((a, b) => b.t - a.t);
@@ -796,11 +832,14 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
 
   // Port history for the port panel: the recorded calls, newest first, only
   // those already in the past (a future-dated arrival is the port's inbound
-  // list's business, not its history's).
+  // list's business, not its history's) — and only THIS iteration's. Calls
+  // from before the 1550 wrap stay in state.portHistory; the redrawn chart
+  // simply does not show them.
   function portHistoryOf(portId) {
     const h = state.portHistory[portId];
     if (!h) return [];
-    return h.filter(e => e.t <= state.simClock).sort((a, b) => b.t - a.t);
+    const cycStart = cycleIndexOf(state.simClock) * CYCLE_SEC;
+    return h.filter(e => e.t <= state.simClock && e.t >= cycStart).sort((a, b) => b.t - a.t);
   }
 
   // Port lifecycle: which ports EXIST and which lie in RUIN at an instant.
@@ -827,10 +866,15 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     laneWeightsAt, weightsAt, activePortsSince, portLifecycleAt, serialize,
     warEventsSince, tuning: tune,
     isPinned, canPin, pinVessel, unpinVessel, trackedVessels, portHistoryOf,
-    get stats() { return state.stats; },
+    // the CURRENT iteration's statistics — the display contract. The full
+    // per-cycle record is retained in state.stats.byCycle.
+    get stats() {
+      return state.stats.byCycle[cycleIndexOf(state.simClock)] ||
+        { spawned: 0, arrived: 0, lost: 0, byLane: {}, byCargo: {} };
+    },
     portById, powerById,
     get simClock() { return state.simClock; }
   };
 }
 
-export const _internals = { calendar, mulberry32, hashSeed, triangular, havKm, portNameAt, SEC_PER_DAY, DAY_OF_YEAR, ERA, RESET_YEARS, FLOW_SPAN, CYCLE_YEARS };
+export const _internals = { calendar, mulberry32, hashSeed, triangular, havKm, portNameAt, cycleIndexOf, SEC_PER_DAY, DAY_OF_YEAR, ERA, RESET_YEARS, FLOW_SPAN, CYCLE_YEARS, CYCLE_SEC };
