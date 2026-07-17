@@ -307,12 +307,12 @@ recommended order, not law.
    PLAN-4 E-R1 verification. The big source pass; the whole point of the
    phase grouping is that it runs once. Includes X-R2's charter sign-off
    texts staged for user review. **IN PROGRESS** (`research/rb-campaign.md`):
-   chunks 1–2 done 2026-07-16 — **T9 complete** (+ T4's naval strand),
-   `ambient-flows.md` §1 landed, PLAN-convoys' grounding table refreshed;
-   then T4's fisheries strand + **PLAN-4 E3 verification passed** + two T8
-   items, §2 landed (herring quantified; sack triangle mappable now;
-   Bergen recommended to the promotion queue). Next: chunk 3, scheduled &
-   state services.
+   chunks 1–3 done 2026-07-16 — **T9 complete** (+ T4's naval strand);
+   T4's fisheries strand + **E3 verification passed** + two T8 items;
+   T4's scheduled-services strand + **E6 verification passed** + T10's
+   packet lines (§§1–3 of `ambient-flows.md` landed; one refuted claim
+   caught — India mail 1815). T4 is 3/4 strands done — chunk 4 (local
+   metabolisms) completes it and opens Pass 4's gate.
 6. **[F] Convoys** (`PLAN-convoys.md`). Buildable any time after step 1,
    but cheapest here — it inherits T9's evidence-classed rates for free.
 7. **[F] Pass 4 — the scripted-spawn channel + ambient flows.** HARD GATE:

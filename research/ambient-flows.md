@@ -540,7 +540,200 @@ citation before the GDP-share figure is used anywhere.
 
 ## §3 — Scheduled & state services (T4 + E6 + T10 packet lines)
 
-*(queued — chunk 3)*
+*Landed 2026-07-16 (campaign chunk 3). 73 claims gathered by three agents
+(G packets · H hajj/Jeddah incl. PLAN-4 E6 verification · I caravane/
+Ottoman carriage), every one attacked by an independent refuter: 59 ✅,
+13 ⚠ (corrected readings below), and the campaign's first ✂ — a refuted
+negative claim about India mail, recorded in full at §3.3. This lands T4's
+scheduled-services strand, E6's verification, and T10's packet-lines item.*
+
+### 3.1 The Falmouth Post Office packets — the archetype scheduled line, counted
+
+- **Windows per route (era-gates for the scripted channel):** station
+  opened 1689 (Corunna; diverted to **Lisbon 1702**, continuous to the end);
+  West Indies: Dummer's contract service 1702–11 (Portsmouth/Plymouth-based,
+  NOT Falmouth — G-04 ⚠) then permanent from **1744/45**; New York from
+  1755 (Franklin-organized; disrupted 1775–83); **Rio 1808** (via Madeira;
+  Plata extensions 1820s–30s); Gibraltar/Malta 1806, wider Med 1813;
+  Admiralty transfer 1823, steam on near routes from the early 1830s,
+  **disbanded 1850**, last sailing packet home 30 Apr 1851 (G-01..09,
+  G-12 ✅ — every establishment count checked digit-for-digit: 18 vessels
+  1744, 39 in 1827, ~40 in the 1830s on ten routes).
+- **Frequency:** nominally monthly per ocean route — but "monthly" is not a
+  safe blanket: the Falmouth–Kingston run at one point had **16 packets
+  sailing fortnightly** (G-11 ⚠). Vessels: fast brigs ~150–230 t, ~10 guns,
+  crews 28–35 (G-10 ✅ typology).
+- **War:** the 1797–98 capture wave and reform crisis are attested (the
+  specific "≥7 in 18 months" count is uncorroborated — G-11 ⚠); packets
+  carry a capture-risk uplift 1793–1815 and famous defensive actions.
+- **Sim shape:** the pass-4 scripted channel, one spawn per route per
+  schedule tick. **Proxy warnings:** Falmouth is not in the roster (a
+  London proxy loses the west-country identity — the whole point of
+  Falmouth was avoiding the Channel); Halifax needs a proxy; Barbados/
+  Antigua calls compress onto Kingston.
+
+### 3.2 The Spanish correo marítimo — two scheduled routes, counted
+
+Created 6 Aug 1764: monthly Coruña–Havana via San Juan/Santo Domingo
+(realized **~10.4/yr** — 342 voyages 1764–96, independently confirmed) +
+Coruña–Montevideo from Dec 1767, quarterly → bimonthly (the 1771-vs-1778
+date split is genuinely in the sources; six-per-year firm from the 1777
+Ordenanza), ~9-month Plata round trips (La Princesa's documented 9.3
+months). Navy absorption 6 Apr 1802 ends the true scheduled window; the
+Plata line dies with Montevideo 1814; extinct by ~1824 (G-13..17 ✅).
+**Sim shape:** scheduled lines; Corunna is absent from the roster and the
+Cadiz proxy genuinely distorts (it conflates the mail identity with the
+flota's) — **the Plata line should ship WITH PLAN-4's Montevideo**, not
+before.
+
+### 3.3 Other state mail — including the campaign's first refutation
+
+- **French royal packets** (Sept 1783–1793): 62 round trips ≈ 6.5/yr —
+  "monthly" was aspirational (G-18 ✅). No French Atlantic roster port;
+  candidate silences entry rather than a lane.
+- **Portuguese mail brigs** (Mar 1798–1803): two circuits × 6/yr, 16 brigs
+  (peer-reviewed match); a single scripted Lisbon–Rio route bridging into
+  the Falmouth–Rio line at 1808 is the honest cheap rendering (G-19 ✅).
+- **✂ REFUTED — "no scheduled India sea mail before the 1830s" (G-20).**
+  The refuter found an 1814 Act of Parliament under which the Post Office
+  ran **monthly packet sailings to Madras and Calcutta from 1815** (EIC
+  hulls; plus the EIC's own "Suez packet" experiment from 1798). The
+  corrected reading: no dedicated packet VESSELS before the 1830s, and
+  pre-1814 mail rode the seasonal Indiaman fleets — but a sim era-gating
+  India mail on "the 1830s" would be wrong; the 1815 service is real.
+  (Recorded per the strike-list rule: the refutation is data.)
+
+### 3.4 The American sailing packet lines, 1818–1850 (the T10 item)
+
+The Black Ball Line: first fixed-day sailing 5 Jan 1818, four ships
+NY–Liverpool monthly, semimonthly from 1822 (G-21 ✅); passages ~23 d
+east / ~40 d west — the westerlies asymmetry the sim's wind-routed lanes
+already produce (G-22 ✅); Red Star + Swallowtail 1821/22; by 1824–25 four
+monthly Liverpool sailings + two Havre + one London from New York
+(G-23 ✅); the Havre lines' 8th/16th/24th schedule verified verbatim
+(G-25 ✅). Fleet growth 32 ships (1825) → ~52 (mid-1840s) ≈ three European
+sailings/week — **an Albion single-source series with one corrupted
+transmission; medium confidence** (G-24 ⚠). Mail leaves sail 4 Jul 1840
+(Cunard, fortnightly Liverpool–Halifax–Boston) (G-26 ✅); sail packets
+hold emigrant steerage + coarse freight through the 1850s — for the
+1850–60 epilogue decade they still run, demoted (G-27 ✅).
+**Sim shape:** the signature scheduled-line content for PLAN-6 — frequency
+growth is the display story. Liverpool and Le Havre are absent from the
+roster: proxy or promote (X-R1 roster question).
+
+### 3.5 The sea hajj: India → Jeddah (E6 verification: PASSED with restatements)
+
+- **The pulse (Burckhardt 1814, verified verbatim against the primary):**
+  India fleets (Calcutta/Surat/Bombay) depart ~Mar–Apr, reach Jeddah early
+  May, returns staggered June–early Aug (Bengal first), home by September;
+  Muscat, Basra, and Mozambique-coast vessels arrive in the same window
+  (H-05 ✅). Passage 40–60 days (H-04). Scale: order 10–25 sail/season
+  era-wide; to ~1700, 1–3 outsized pilgrim ships (the Rahimi: ~1,500 t
+  CAPACITY, ~700 aboard when seized 1613 — the sweep had conflated the
+  two; H-01 ✅) under **royal/noble patronage** (the 1576 imperial fleet
+  was Ilahi + Salimi; Rahimi/Karimi/Salari were noble-owned — H-02 ⚠);
+  the 1695 convoy Every attacked was ~25 mixed trading+pilgrim ships
+  (H-03 ✅). After Surat's decline the lane migrates to Bombay/Calcutta —
+  English colours, "entirely manned and commanded by the people of the
+  country", Muslim capital (H-20 ✅). Pilgrim volumes: sea share is
+  honestly unquantifiable (assert 10–30% of a 20,000–70,000 hajj, wide;
+  the remembered "Pearson 15,000/yr" could not be found and must not be
+  used — H-09 ⚠, H-10 ✅). Hajj-fair economics confirmed; the India fleet
+  drains silver — a bullion counterflow cargo (H-16 ✅).
+- **E6 verification verdicts (all HELD under second attack):**
+  (a) Jeddah's customs base is **fragmentary anchors, not a series**
+  (1580s Faroqhi · 1698 tithe grant · 1770s–80s consular · 1814
+  Burckhardt) — class E6 lane volumes reconstructed/asserted WITH anchors,
+  not "proxied" as the sweep implied (H-17). (b) The 1785 claim restates
+  safely as: Indian goods reaching the Ottoman market ~10M livres
+  tournois, near parity with European imports — via BOTH Basra and Red
+  Sea routes, Basra dominant only from the 1720s to 1773 (H-18).
+  (c) **The "Jeddah break" is real and institutional** — India ships did
+  not pass north of Jeddah, Egyptian craft not south; keep it firm to
+  ~1840 (H-19). Jeddah's own fleet 1814: ~250 vessels, only the largest
+  making the India run (H-14 ✅).
+- **Sim shape:** highly mappable — a hard annual monsoon pulse on
+  Surat/Bombay→Mocha→Jeddah legs; Jeddah needs carved Red Sea water and
+  season-gated legs (the Arctic-corridor precedent). **The break means
+  India→Suez must NOT exist as a through lane before ~1840: two lane
+  families MEETING at Jeddah is the port's whole simulative point.** The
+  lunar hajj drifts while the shipping pulse is monsoon-fixed — the fixed
+  seasonal pulse is historically right; no lunar machinery.
+
+### 3.6 Aceh, the Egyptian shuttle, East Africa
+
+- **Aceh** ("the verandah of Mecca"): a real separate lane ~1530s–1630s —
+  a few large pepper ships/yr direct to the Red Sea, 20,000–25,000
+  quintals/yr by the 1560s rivalling the Cape route (Boxer's 1566 report
+  confirmed, if anything conservative; H-11 ✅), pilgrims aboard as a
+  ledger note. After ~1650 the stream dissolves into staged passages on
+  existing India lanes — do NOT draw a dedicated lane (H-12 ✅).
+- **The Egyptian Red Sea shuttle**: ~40 small Cairo-controlled ships
+  Suez/Qusayr↔Jeddah (coffee/India goods north, pilgrims both ways)
+  (H-13 ✅) — one short lane pair once Jeddah exists.
+- **East Africa**: presence counted (Burckhardt names the Swahili and
+  Mozambique-coast arrivals in the May window), scale unknowable —
+  silences-register material; the Mozambique-coast vessels are slave
+  ships and take the sober pattern if ever represented (H-15 ✅).
+- Malabar→Red Sea sailings (25→11–12/yr, 16th c) are single-attribution
+  and often terminated at Aden under Portuguese pressure (H-06 ⚠).
+
+### 3.7 The caravane maritime & the Ottoman carrying trade (tramping, counted)
+
+- **The caravane** (~1686–1792): Panzac's corpus — 70–80,000 surviving
+  charters; ~300 French charters/yr as the mid-century AVERAGE; French
+  ≈60% of documented contracts, Venetians and Ragusans 16–17% each; at
+  Rhodes 1776–79 Europeans took 77.6% of calls (all ✅ verified VERBATIM
+  against the openedition chapters). Hulls: small (barques ~78 t, pinques
+  ~57 t, crews 9–18), from the Provençal small ports (Saint-Tropez ahead
+  of Marseille); campaigns were 16–34-month tramping absences chaining
+  10–14 charters — the Gironde's 10-charter Egypt–Aegean–Istanbul circuit
+  at 19.9%/yr is the canonical shape (I-05..09 ✅). Dwell DOMINATES:
+  2:1 to 3:1 over passage time (I-10 ⚠ corrected upward). Recomputed
+  aggregate: **~500 European charters/yr ≈ order 100 European hulls**
+  mid-century (I-26 ⚠ — the gatherer's 600–700 was unsupported).
+  The end is exogenous and total: French flag eliminated from 1792, Venice
+  abolished 1797, Ragusa 1808; **29 Tunis charters TOTAL 1815–31** — no
+  revival (I-21, I-22 ✅).
+- **The Greek succession**: Hydra 1 large ship (1757) → 79 (1787) → 186
+  (1820); the 1813 national fleet 615 ships / ~150,000 t order (the
+  "193,580" variant looks corrupted — I-20 ⚠); the Black Sea opens to the
+  Russian flag 1774 (adoptable by Ottoman Greeks; Austria nominally 1784;
+  Britain effectively 1802 — I-17 ⚠ refined). Flag-substitution on the
+  SAME lanes: French dominant to 1790, Greek ramp 1774–90, exclusive
+  1792–1815 (I-19, I-21 ✅).
+- **Istanbul's grain metabolism**: 7.07M kile ≈ **181,000 t of cereals by
+  sea in 1758** — 85.8% Black Sea/Marmara, 14.2% Aegean/Med (I-14 ✅
+  verbatim; consistent with Aynural). The Black Sea run was an
+  Ottoman-flag monopoly (1782: 146 ships, every captain Ottoman, 93%
+  Muslim — I-15 ✅); Europeans could only ever carry the Aegean slice,
+  surging in crises (1772: 60+ French ships chartered for Macedonia
+  wheat — VERIFIED, Panzac IJMES fn.45, the E7 counted episode; 1789–91:
+  178 vessels/44,160 t — I-11, I-16 ✅). **If no Black Sea port enters the
+  roster, the Pontic 86% MUST be a declared silences entry — it dwarfs
+  everything Europeans carried** (the existing `black-sea-after-1783`
+  entry widens to the whole provisioning system).
+- **Sim shape:** the sim's existing 3-leg itinerary chaining + inter-leg
+  dwell carries the tramping pattern honestly as a windowed sample of a
+  campaign (the evidence line should say each sim voyage is a segment of
+  a longer real campaign); calibrate spawns to ~300 French charters/yr ÷
+  legs-per-spawn; requires the queued Salonica + Alexandria promotions.
+  Greek succession = era-gated lane-share weights, no new geometry.
+
+### Verification record — chunk 3
+
+59 ✅ / 13 ⚠ / 1 ✂ across 73 claims (G-01..27 packets · H-01..20
+hajj/Jeddah · I-01..26 caravane). The ✂: G-20's India-mail negative
+(monthly Post Office sailings to Madras/Calcutta existed from 1815).
+Systemic findings: "nominally monthly" understates busy packet routes;
+single-source series behind the American packet fleet counts (Albion, one
+corrupted transmission); single-eyewitness dependence on Burckhardt for
+the Red Sea architecture (verified verbatim, uncrosscheckable); and the
+caravane corpus's single-scholar dependence — every weakened claim was a
+place the gatherer went BEYOND Panzac's page, while everything ON the page
+checked verbatim. Follow-ups flagged: page-level checks on Choudhury
+(passage times), Das Gupta's profit shares, and the Malabar counts before
+any of those set parameters.
 
 ## §4 — Local metabolisms (T4)
 

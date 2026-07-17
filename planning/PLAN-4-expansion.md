@@ -30,8 +30,13 @@ E-R1 runs as part of the Phase-RB research campaign with T4/T8/T9 and T10
 base re-verified 2026-07-16 (campaign chunk 2, full adversarial — BSWF
 2,543 voyages/930 vessels, AOWV from 1667, Sanger all confirmed;
 `research/ambient-flows.md` §2.7); the grounds "Brazil Banks" node belongs
-off the Plata, beside E1's Montevideo complex. E1/E2/E4/E5 verification
-outstanding (campaign chunk 10).
+off the Plata, beside E1's Montevideo complex. **E6 (Jeddah) verified
+chunk 3** (`ambient-flows.md` §3.5): the customs base is fragmentary
+ANCHORS, not a series (class lane volumes reconstructed/asserted with
+anchors, not "proxied"); the 1785 near-parity claim restated (both routes,
+Basra dominant 1720s–1773); the "Jeddah break" confirmed institutional and
+firm to ~1840 — India→Suez must not exist as a through lane before then.
+E1/E2/E4/E5 verification outstanding (campaign chunk 10).
 
 ---
 
