@@ -346,7 +346,197 @@ Knight, Ryan, or Bowen directly. Flagged for one more source each: the
 
 ## §2 — Fisheries & whaling as grounds-traffic (T4 + E3 + T8 strands)
 
-*(queued — chunk 2)*
+*Landed 2026-07-16 (campaign chunk 2). 84 claims gathered by three agents
+(D herring · E cod/Iceland/stockfish · F whaling incl. PLAN-4 E3
+verification), every one attacked by an independent refuter: 74 ✅, 10 ⚠
+(corrected readings below), 0 ✂. This lands T4's fisheries strand, the
+adversarial re-verification PLAN-4 E-R1 requires for E3, and two of T8's
+declared-silences items (Iceland fisheries; Bergen/Trondheim stockfish).*
+
+### 2.1 The grote visserij — the Dutch herring buss fleet (grounds-loitering, quantified)
+
+- **Fleet series (safe for sim parameters):** ~500 busses averaging
+  20,000–25,000 lasts/yr in the early 17th c (counted landings 25,600–32,100
+  lasts/yr 1600–24; the "500–800" folk range is defensible only at its low
+  end — Kranenburg consigned the pamphlet counts "to the realm of fables")
+  (D-01 ✅); ~300 ships by 1736, 162 by 1779, near-stop 1795–1814, small
+  persistence to 1857 (D-13 ✅); catch falling to ~6,000 lasts/yr by the
+  mid-18th c (D-14 ✅). Late-era sailings ran on a 500-guilder state subsidy
+  (D-24 ✅). Crew is era-dependent: ~18–20 at the 17th-c peak, ~13–15 late
+  (D-04 ⚠ corrected); peak direct employment ~6,000–10,000 men (D-18 ⚠).
+- **Calendar & grounds-track (safe):** season opens St John's Day, 24 June,
+  enforced fleet-wide by the College van de Grote Visserij (D-05 ✅); the
+  track runs Shetland/Fair Isle (late June) → Buchan Ness by September →
+  south along the English coast → off Yarmouth 25 Nov–1 Jan (D-06 ✅);
+  3 voyages/season, ~40–60 lasts per SEASON (the per-voyage reading is
+  arithmetically refuted) (D-07 ✅ corrected); no herring traffic Feb–May
+  (D-26). Home ports: Maas-mouth (Vlaardingen, Maassluis…) and Enkhuizen/
+  Amsterdam — **Amsterdam is the roster proxy** (D-19 ✅).
+- **Ventjagers:** fast carriers ≈1 per 10 busses racing the first maatjes
+  home from 24 June, early-season only (D-08 ✅) — a seasonally-gated
+  scheduled line on the same geometry, nearly free flavor.
+- **Escorts & raids:** escort institutional from 1439 (lastgeld), realistic
+  ratio one warship per ~160 busses (1635) (D-09 ✅). Wartime = deep
+  suppression, not zero: counted landings fell ~70–80% in the WSS
+  (5,089–9,228 lasts/yr 1700–14) (D-12 ⚠ corrected — and vessel counts DO
+  exist for 1703: >160 busses burned in Shetland ports in June + a
+  ~200-vessel fleet destroyed 10 Aug, French-side figures, reconstructed/
+  low). Dated catastrophes for the scripted channel: Oct 1625 (150 vessels
+  incl. 20 warships, a fortnight, D-10 ✅); Aug 1635 Collaert — 74 of 160
+  burned in the first strike, ~50 more near the Dogger on 19 Aug, 975
+  captives across the cruise (D-11 ⚠ corrected).
+- **Foreign buss fleets (counted, palette-swap spawns):** Emden 6→55 busses
+  1770–1799 (Prussian; sometimes under Dutch passports), Altona 13–29
+  busses 1769–1807 (Danish; the 1783 Shetland snapshot: 29 busses × 14
+  men), Nieuwpoort/Ostend ~24 (1784), the Free British Fishery Society
+  1750–72 marginal (its 200–300 "busses" inflated by inshore craft)
+  (D-20, D-22, D-23 ✅). Scottish/English inshore boats (~6,000 by the late
+  18th c) never cross open water — a declared boundary, not chartable
+  (D-21 ✅).
+- **Sim shape:** the canonical grounds-node case — honest WITHOUT new dwell
+  machinery as 3 round-trips/season to the month-appropriate node
+  (Shetland → Fladen/Buchan → Dogger → Yarmouth Roads), the E3 precedent.
+  **Register:** `north-sea-herring-fishery` graduates gestured → QUANTIFIED
+  when the pattern ships.
+
+### 2.2 Dogger Bank cod/haddock doggers — scale unquantified, stays gestured
+
+Line-fishing at anchor on a single static ground, attested from the 14th c —
+but **no fleet-size series exists in anything fetched** (the one counted
+datum: a Farsund family's 12 mixed-deployment vessels, 1770s) (D-25 ✅).
+Verdict: keep gestured in the register (or asserted tens-of-vessels at
+most); quantify the herring fishery first.
+
+### 2.3 The Banks cod fishery — three shapes, the sack triangle mappable now
+
+- **Scale profile for the EXISTING lane** (the sim already sails Banks cod
+  under the St John's era-name): English ~50 ships (1578, Parkhurst ✅) →
+  250–300 (1615–20, ✅) → ~100 by 1660 → 43 in 1684 (official; excludes
+  sacks/bye-boats) → 171 in 1700 → 20–30 in the WSS (all ✅ counted) →
+  ~150–200 through the 18th c → the 1780s peak (more ships in 1783 than
+  ever; ~280 bankers 1788; the 950,000-quintal glut breaking prices,
+  E-17 ✅) → irreversible migratory collapse 1793–1815 (82→33 bankers;
+  residents 4:1 by 1805; Ryan's *Fishery to Colony* confirmed) (E-18 ✅).
+  French: 60–90 (1520s) → Turgeon's ~500 c.1550 (the eyewitness counts are
+  inshore-biased lows) → 359 in 1686 (state records) → 300–400 to the
+  1770s, **suspended in every Anglo-French war** — the lane must war-gate
+  (E-15 ✅). Granville alone armed 80–105+ ships/yr 1750–80s (E-16 ✅
+  understated if anything). The 1573 English count is contested (4 vs 30
+  readings — anchor on 1578, E-04 ⚠). Season: depart early spring, fish
+  Jun–Aug, home in autumn (E-20 ✅).
+- **The banks WET fishery** (French morue verte to Norman ports; English
+  bankers post-1713) is grounds-loitering on the Grand Banks — needs the E3
+  grounds-node primitive; the na-northeast plate already leaves it sea room.
+- **The sack-ship triangle is mappable TODAY** — a normal trade lane:
+  London/Bristol → St John's (goods) → Lisbon/Cadiz/Livorno/Naples/
+  Marseille (dried cod) → home (wine/oil/specie); ~50 English sacks in
+  1700, 7 in 1708, Dutch sacks prominent 1620–60 (E-21, E-11, E-13 ✅). All
+  market ports are in the roster. **The best single addition from this
+  chunk — the missing half of the existing Banks lane.** Also: a distinct
+  New England ↔ Newfoundland supply lane (20 vessels 1721 → 95 in 1748,
+  refuse cod onward to the West Indies) (E-19 ✅).
+- Beware the portal error the gatherer caught and the refuter confirmed:
+  Heritage NL's "17 million tons British production 1763–1815" is wrong by
+  ~an order of magnitude — direction only (E-22 ✅ as flagged).
+
+### 2.4 Iceland fisheries — a quantified gap for the register (T8 item)
+
+English doggers: ≥100 vessels/yr at the 15th–16th-c peak (149 counted in
+1528 — of England's 440 total fishing vessels); driven from the islands by
+1560; the 1630s revival hit ~160 Norfolk/Suffolk ships ("the greatest
+fishing of the kingdom", exceeding Newfoundland) before collapsing to 19 by
+1654, remnant to c.1702 (E-24, E-25, E-26 ✅; the 1425 mass-loss date
+corrects to the Maundy Thursday gale of **1419**, E-23 ⚠). The Danish
+monopoly (1602–1786/87) closed the SHORE, not the sea — Dutch offshore
+fishing attested from 1655 (series 1751–86), French from Dunkirk (series
+1763–92; the famous Islandais boom is post-1852 — do not backdate)
+(E-27, E-28, E-29 ✅); combined landings ~34,000 t/yr 1766–72
+(proxied/medium). **Verdict:** grounds-loitering at a SW-Iceland node —
+needs the grounds-node primitive + a new sea node; until then a NEW
+silences-register entry (declared, quantified). Weak roster proxy for the
+English east-coast ports: Newcastle.
+
+### 2.5 Bergen stockfish — a genuine trade lane; the strongest promotion candidate here
+
+Two stages: the Lofoten→Bergen jekt feeder (~200 boats/season on two fixed
+stevner, E-32 ✅) is coastal-ambient — register as context, don't sail it.
+But **Bergen → Hamburg/Lübeck/Amsterdam/London (stockfish out, grain back)
+is an ordinary port-to-port exchange lane** — parameterize the sim's opening
+decades at **~2,000–3,000 t/yr (≈30–60 shiploads), rising** (the gatherer's
+">4,500 t/yr by 1600" was uncorroborated — E-31 ⚠ corrected); counted-class
+after 1731 (Bergen >70% of Norway's fishery exports — counted/medium until
+the paywalled SEHR 2025 body is read, E-34 ⚠); clean institutional
+era-marker (Hansa Kontor to 1754, Norwegian Kontor after, a traffic
+non-event) (E-33 ✅). **Verdict: mappable with the sim's NORMAL machinery,
+conditional on adding Bergen as a port — recommend Bergen to the promotion
+queue** (destinations all in roster); without Bergen it is a silences entry.
+
+### 2.6 Northern (bowhead) whaling — annual grounds-run, counted volumes
+
+Smeerenburg 1614–~1660 exactly as the sim's port window has it (the
+"10,000-man Blubber Town" is debunked myth) (F-05 ✅); the bay→pelagic
+transition ~1640s–60s IS the `svalbard-offshore-whaling` silences
+transition — **open the offshore grounds node ~1660 as Smeerenburg closes**
+(F-06 ✅). Volumes are genuinely counted (de Jong): Dutch peak 251 ships
+in 1721 (of 355 total incl. 79 German, 20 Biscayan); 1,337 Greenland +
+340 Davis Strait voyages in 1749–58 (~168/yr); ~48/yr by 1789–94, dead in
+the French period (F-07, F-08 ✅). Davis Strait opened 1719 (29→64→100+
+ships in three years — a dated second node) (F-09 ✅). British: the bounty
+statute is 1733 but **traffic ramps only from ~1750** (2 ships 1749 → 20 →
+83 by 1756); peak 1786–88 at ~250 vessels from 23 ports (London 91, Hull
+36); second phase 1810s–20s (Hull ~60 ~1820); English ports' trades
+collapse 1823–49 (dates = effective collapse, not last voyages — F-13 ⚠),
+the Scots (Peterhead/Dundee) carrying the late trade to era end
+(F-11, F-12 ✅). Season: out Mar–Apr, whale May–Jul at the ice edge, home
+Aug–Oct; wintering = disaster (F-14 ✅ — season-gate exactly like
+Arkhangelsk). Dutch share ≈2/3 of the northern fishery (weight only, never
+surfaced as precision) (F-10 ✅).
+**Sim shape: HIGH mappability** — seasonal lanes to two dated grounds nodes
+(Greenland Sea/Spitsbergen ~1660→; Davis Strait 1719→) with season-gated
+legs; counted decade volumes ready for a flow system.
+
+### 2.7 Southern whaling — E3's evidence base verified; honest-rendering rules
+
+**PLAN-4 E3 verification (the E-R1 requirement): PASSED.** The BSWF
+database is real and as described — 2,543 voyages / 930 vessels 1775–1859
+(Jones/Richards/Chatwin; cargo returns on ~70%; the "~30/yr" is arithmetic
+masking thin-pre-1815/dense-post-1815 coverage) (F-01 ✅). AOWV: 15,000+
+records, coverage from 1667 — earlier than the sweep claimed (F-02 ✅).
+Sanger's Scottish database confirmed (F-03 ✅). Nantucket offshore fishery
+~1715 confirmed with the 1712 legend hedge (F-04 ✅).
+Grounds openings (all ✅): the misnamed "Brazil Banks" are **right-whale
+water off the Plata** — the node belongs beside the adopted Montevideo
+complex (F-15); BSWF born 1775 from the captured Nantucket "Falklands
+Fleet" (F-16); the Pacific opens with the Emilia (London, 1 Sept 1788;
+first sperm whale off Chile 3 Mar 1789) (F-17); the Offshore Ground 1818
+(50+ ships within two years) (F-18); the Japan Grounds 1819–20, credit
+shared British/American — a both-flags lane (F-19). Voyage lengths grow
+~9–12 months (Atlantic, 1770s–90s) → 2–3 yr (Pacific) → 3–4+ yr (1840s)
+(F-20 ✅); the American fleet peaks 1846 at 735–736 registered vessels
+(~80% of a world fleet of ~900; registered ≠ annual departures) (F-21 ✅) —
+in-scope thanks to the 1850 extension. British per-decade shape stays
+asserted (bounds 15–70/yr) until the downloadable BSWF CSV is tallied — an
+easy counted upgrade; note the timeline reads the peak as ~1820–35
+(F-22 ✅ as flagged); wartime losses cluster 1807–13 (F-23 ✅).
+**Sim shape: MEDIUM** — dated grounds nodes visited in sequence with long
+at-grounds dwell; NEVER draw a confident polyline across a cruising ground
+(a hatched grounds region with dwelling vessels is the no-fabricated-
+precision rendering).
+
+### Verification record — chunk 2
+
+74 ✅ / 10 ⚠ / 0 ✂ across 84 claims (D-01..26 herring · E-01..35
+cod/Iceland/stockfish · F-01..23 whaling). Systemic findings: era-blending
+(late-18th-c counted details projected onto 17th-c peaks — crew sizes,
+employment); catastrophe narratives absorbing cruise totals into single
+actions (Collaert 1635); single-portal dependence (Heritage NL — matched
+wherever independently checkable); date slips (the 1419 gale; port-exit
+dates meaning effective collapse); and headline statistics cited but
+unverifiable (the 8.9%→0.3% GDP share — direction certain, endpoints
+uncited; the >70%-Bergen share pending the paywalled body). Follow-ups
+flagged: tally the BSWF CSV (upgrades British southern whaling to counted);
+read SEHR 2025's body (Bergen shares); produce the van Bochove page
+citation before the GDP-share figure is used anywhere.
 
 ## §3 — Scheduled & state services (T4 + E6 + T10 packet lines)
 

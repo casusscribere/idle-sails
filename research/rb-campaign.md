@@ -23,7 +23,7 @@ RANKING queue if a task completes; (5) commit.
 | # | Scope (tasks) | Artifact | Status |
 |---|---|---|---|
 | 1 | **Convoy institutions & rates + naval movement patterns** (T9 complete + T4 naval strand): flota, Brazil frotas, carreira, Manila pairing, VOC retourvloot, EIC/CdI homeward, Convoy Acts 1793/98 wartime convoy, caravane/Levant convoy; guarda-costas & revenue cruisers, station-keeping/blockade, privateer cruising grounds & the Pirate Round | `research/ambient-flows.md` §1 (+ PLAN-convoys §1 table refresh) | **✅ done 2026-07-16** |
-| 2 | **Fisheries & whaling as grounds-traffic** (T4 fisheries strand + PLAN-4 E3 verification + T8 Iceland/North-Atlantic + Bergen/Trondheim stockfish) | `ambient-flows.md` §2 + E3 stamps + T8 partial | queued |
+| 2 | **Fisheries & whaling as grounds-traffic** (T4 fisheries strand + PLAN-4 E3 verification + T8 Iceland/North-Atlantic + Bergen/Trondheim stockfish) | `ambient-flows.md` §2 + E3 stamps + T8 partial | **✅ done 2026-07-16** |
 | 3 | **Scheduled & state services** (T4: Falmouth packets, correo marítimo, caravane services, Surat–Jeddah hajj + PLAN-4 E6 verification; T10 packet lines 1818–50) | `ambient-flows.md` §3 | queued |
 | 4 | **Local metabolisms** (T4: colliers, shachuan, coastwise circuits — short-circuit representability) | `ambient-flows.md` §4 + mappability verdicts | queued |
 | 5 | **T10 basin extensions, Atlantic** (1820/30/40 decades; illegal-era Brazil/Cuba trade — counted, sober framing staged for review; Latin American independence; suppression squadron) | `research/flows/atlantic.json` decades + framing texts staged | queued |
@@ -40,4 +40,14 @@ RANKING queue if a task completes; (5) commit.
   refreshed (caravane re-scoped to Smyrna convoys; galeones end 1739;
   frotas added). Deferred follow-ups flagged in the section: 1658 Brazil
   return-only rule (check Costa), 18th-c Carreira rate (check Duncan),
-  convoyed-trade share (check Knight).
+  convoyed-trade share (check Knight). Commit 027718c.
+- **Chunk 2 (2026-07-16):** T4 fisheries strand + PLAN-4 **E3 verification
+  PASSED** + T8's Iceland & Bergen items — 84 claims, 74 ✅ / 10 ⚠ / 0 ✂;
+  `ambient-flows.md` §2 landed. Key outcomes: herring fishery QUANTIFIED
+  (register entry can graduate when the pattern ships); the sack-ship
+  triangle mappable today; **Bergen recommended to the promotion queue**;
+  northern whaling counted-class (two dated grounds nodes, 1660/1719);
+  the "Brazil Banks" node belongs off the Plata beside Montevideo (E1).
+  Follow-ups: tally the BSWF CSV; read SEHR 2025's body; van Bochove page
+  citation for the GDP-share figure. One session-limit interruption
+  mid-gather — no data lost (chunked writes held).

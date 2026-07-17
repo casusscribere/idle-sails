@@ -26,7 +26,12 @@ era names, and the promotion queue under `research/CURATION.md`.
    authored (the R3/E-R1 workflow).
 
 E-R1 runs as part of the Phase-RB research campaign with T4/T8/T9 and T10
-(PLAN-6 X-R1) — see `research/TASKS.md`.
+(PLAN-6 X-R1) — see `research/TASKS.md`. **E-R1 progress:** E3's evidence
+base re-verified 2026-07-16 (campaign chunk 2, full adversarial — BSWF
+2,543 voyages/930 vessels, AOWV from 1667, Sanger all confirmed;
+`research/ambient-flows.md` §2.7); the grounds "Brazil Banks" node belongs
+off the Plata, beside E1's Montevideo complex. E1/E2/E4/E5 verification
+outstanding (campaign chunk 10).
 
 ---
 
