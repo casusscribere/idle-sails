@@ -54,7 +54,7 @@ test('plausibility: no generated vessel contradicts the historical data', () => 
       checked++;
       const type = shipById.get(v.typeId), power = powerById.get(v.powerId), cargo = cargoById.get(v.cargoId);
       assert.ok(type && power && cargo, `resolvable refs for #${v.id}`);
-      assert.ok(v.year >= 1550 && v.year <= 1815, `era-year in scope (${v.year})`);
+      assert.ok(v.year >= 1550 && v.year <= 1850, `era-year in scope (${v.year})`);
       assert.ok(v.year >= type.era.from && v.year <= type.era.to, `${v.typeId} active in ${v.year}`);
       assert.ok(v.year >= power.era.from && v.year <= power.era.to, `${v.powerId} active in ${v.year}`);
       assert.equal(v.routeClass, type.routeClass, 'routeClass matches ship-type');
@@ -96,7 +96,7 @@ test('log stays capped and events are ordered by recency', () => {
   const snap = w.snapshot();
   assert.ok(snap.log.length <= 40, 'snapshot log trimmed');
   assert.ok(snap.date.match(/\d+ \w+ \d{4}/), `readable date (${snap.date})`);
-  assert.ok(snap.year >= 1550 && snap.year <= 1820, `snapshot exposes the flowing year (${snap.year})`);
+  assert.ok(snap.year >= 1550 && snap.year <= 1860, `snapshot exposes the flowing year (${snap.year})`);
   assert.ok(snap.reset >= 0 && snap.reset <= 1, 'snapshot exposes reset progress');
 });
 
@@ -114,7 +114,7 @@ test('serialize/restore: a reopened world continues identically (Milestone 6)', 
   assert.ok(b.state.counters.spawned > savedState.counters.spawned, 'restored world keeps living');
 });
 
-test('calendar flows 1550→1815, ramps a 5-year reset, and loops', () => {
+test('calendar flows 1550→1850, ramps a 10-year reset, and loops', () => {
   const { calendar, ERA, FLOW_SPAN, RESET_YEARS, CYCLE_YEARS } = _internals;
   const YR = 365.25 * DAY;
   assert.equal(ERA.from, 1550);
@@ -124,11 +124,11 @@ test('calendar flows 1550→1815, ramps a 5-year reset, and loops', () => {
   // partway through the forward flow
   assert.equal(calendar(132.5 * YR).year, 1682);
   assert.equal(calendar(132.5 * YR).reset, 0);
-  // end of the forward flow = 1815
-  assert.equal(calendar(FLOW_SPAN * YR).year, 1815);
+  // end of the forward flow = 1850
+  assert.equal(calendar(FLOW_SPAN * YR).year, 1850);
   // inside the reset ramp: a "fake" post-1815 year with reset progress in (0,1)
   const mid = calendar((FLOW_SPAN + RESET_YEARS / 2) * YR);
-  assert.ok(mid.year > 1815 && Math.abs(mid.reset - 0.5) < 1e-9, `reset midpoint (${mid.year}, ${mid.reset})`);
+  assert.ok(mid.year > 1850 && Math.abs(mid.reset - 0.5) < 1e-9, `reset midpoint (${mid.year}, ${mid.reset})`);
   // one full cycle later ⇒ identical calendar (loops with period CYCLE_YEARS)
   const a = calendar(37 * YR), b = calendar((37 + CYCLE_YEARS) * YR);
   assert.equal(a.year, b.year);
@@ -336,7 +336,7 @@ test('port greying keys on ACTUAL calls: the 1550s slave factories stay grey unt
 });
 
 test('port lifecycle invariant: every lane era fits inside both endpoints’ windows', () => {
-  const windowOf = new Map(datasets.ports.map(p => [p.id, p.active || { from: 1550, to: 1815 }]));
+  const windowOf = new Map(datasets.ports.map(p => [p.id, p.active || { from: 1550, to: 1850 }]));
   for (const r of datasets.routes) {
     for (const pid of [r.from, r.to]) {
       const w = windowOf.get(pid);
@@ -355,7 +355,7 @@ test('era names: the dot speaks the dominant port of the time, tiling its window
   const { portNameAt } = _internals;
   for (const p of datasets.ports) {
     if (!p.eraNames) continue;
-    const w = p.active || { from: 1550, to: 1815 };
+    const w = p.active || { from: 1550, to: 1850 };
     let expect = w.from;
     for (const en of p.eraNames) {
       assert.ok(en.name, `${p.id}: era name has text`);
@@ -377,18 +377,18 @@ test('era names: the dot speaks the dominant port of the time, tiling its window
   assert.equal(portNameAt(datasets.ports.find(p => p.id === 'london'), 1600), 'London');
 });
 
-test('port lifecycle behavior: a full 270-year cycle schedules zero calls outside any port’s window', () => {
+test('port lifecycle behavior: a full 310-year cycle schedules zero calls outside any port’s window', () => {
   // The user-requested verification, kept as a regression: tick a whole cycle
   // and check every scheduled departure/arrival against the port windows.
   // Tolerance +3 yr past `to`: spawning fades out THROUGH era.to (weight >0
   // until to+1) and a MAX_LEGS voyage can arrive up to ~2 yr later — in-flight
   // arrivals after a founding-limited lane closes are real ships coming home,
   // not new traffic. Reset-ramp years (>1815) clamp to 1815, as spawning does.
-  const windowOf = new Map(datasets.ports.map(p => [p.id, p.active || { from: 1550, to: 1815 }]));
+  const windowOf = new Map(datasets.ports.map(p => [p.id, p.active || { from: 1550, to: 1850 }]));
   const w = mk(42);
-  const WEEK = 7 * DAY, weeks = Math.ceil(270 * 365.25 / 7);
+  const WEEK = 7 * DAY, weeks = Math.ceil(_internals.CYCLE_YEARS * 365.25 / 7);
   const seen = new Set();
-  const yearAt = (t) => { const c = w.calendar(t); return c.reset > 0 ? 1815 : c.year; };
+  const yearAt = (t) => { const c = w.calendar(t); return c.reset > 0 ? 1850 : c.year; };
   let checked = 0;
   for (let i = 0; i < weeks; i++) {
     w.tick(WEEK);

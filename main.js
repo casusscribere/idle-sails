@@ -142,7 +142,7 @@ async function boot() {
   const ledgerCtx = () => ({
     portById, cargoById, powerById, portNameAt, simClock: latestSnap.simClock,
     // the flowing year, clamped through the reset ramp exactly as spawning is
-    year: latestSnap.reset > 0 ? 1815 : latestSnap.year
+    year: latestSnap.reset > 0 ? 1850 : latestSnap.year
   });
 
   // ships whose CURRENT leg leaves this port (outbound) or is bound for it
@@ -523,7 +523,7 @@ async function boot() {
   // tracker panel: the followed fleet, re-rendered when membership or a
   // status changes (or a live destination leg advances)
   function renderTrackerPanel(force = false) {
-    const year = latestSnap.reset > 0 ? 1815 : latestSnap.year;
+    const year = latestSnap.reset > 0 ? 1850 : latestSnap.year;
     const rows = world.trackedVessels().map(r => ({
       id: r.id, name: r.name, prefix: r.prefix, typeName: r.typeName, flagColor: r.flagColor,
       status: r.status,

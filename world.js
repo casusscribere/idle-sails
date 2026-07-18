@@ -17,10 +17,10 @@ const DAY_OF_YEAR = 365.25;
 // spawn distribution back to the 1550s, and the whole 270-year cycle loops. Every
 // derived quantity is a pure function of sim-time, so determinism and offline-
 // accrual fast-forward are preserved (a big tick == many small ticks).
-const ERA = { from: 1550, to: 1815 };
-const RESET_YEARS = 5;                          // fake reset ramp 1815→1820
-const FLOW_SPAN = ERA.to - ERA.from;            // 265 forward years (1550→1815)
-const CYCLE_YEARS = FLOW_SPAN + RESET_YEARS;    // 270-year loop period
+const ERA = { from: 1550, to: 1850 };
+const RESET_YEARS = 10;                         // designed epilogue decade 1850→1860 (blend fallback; PLAN-6 D3)
+const FLOW_SPAN = ERA.to - ERA.from;            // 300 forward years (1550→1850)
+const CYCLE_YEARS = FLOW_SPAN + RESET_YEARS;    // 310-year loop period
 const YEAR_SEC = SEC_PER_DAY * DAY_OF_YEAR;
 const CYCLE_SEC = YEAR_SEC * CYCLE_YEARS;
 // Which iteration of the 1550→1820 loop an instant falls in. The chart is

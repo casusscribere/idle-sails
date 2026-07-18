@@ -58,7 +58,8 @@ already-open clock, filling an initially-empty late era). All of this on the
 ## Increment checklist (branch `phase-1-world-build`; flip-first)
 
 - [x] **1 — Epilogue spec + tracker** *(main; done 2026-07-18)*. Design only.
-- [ ] **2 — Branch + the ATOMIC CLOCK-FLIP** *(one commit; the old 2+7 merged)*. On `phase-1-world-build`: `world.js` `ERA.to 1815→1850` + `RESET_YEARS 5→10` (⇒ `CYCLE_YEARS 310`; the epilogue **blend** is the fallback, the designed taper/HUD is a fast-follow per §Epilogue); `build-data.mjs` `ERA.to→1850` + `DATASET_VERSION 4→5` + coverage decade `1850`; `main.js:145/526` reset-year `1815→1850`; the **6 erroring `eraNames`** extended 1815→1850 (`gothenburg`, `batavia`, `louisbourg`/St John's, `bombay`, `madras`, `calcutta` — all name-continuous; `kingston` has an explicit `active` to 1815 so it does NOT error, its late-era window is increment 5's job). Re-pin the clock tests (`world.test.mjs`: the `1815→1850`/`1820→1860` asserts + the title; `CYCLE_YEARS` is read dynamically). `npm run build` + `npm test` green. **Expected: an EMPTY late era 1815–1850** (no systems there yet) — correct on the branch; increment 3 fills it. **Saves reset by design (v4→v5).**
+- [~] **2 — Branch + the ATOMIC CLOCK-FLIP** — **LANDED on `phase-1-world-build` 2026-07-18** (52 pass / 1 skip). `world.js` `ERA.to 1815→1850` + `RESET_YEARS 5→10` (⇒ `CYCLE_YEARS 310`); `build-data.mjs` `ERA.to→1850` + `DATASET_VERSION 4→5` + coverage decade `1850`; `main.js:145/526` reset-year `1815→1850`; the **6 erroring `eraNames`** extended 1815→1850 (`gothenburg`, `batavia`, `louisbourg`/St John's, `bombay`, `madras`, `calcutta`; `kingston` keeps its explicit `active`-to-1815, its late-era window is increment 5's job); clock-test re-pins (`world.test.mjs` 1815→1850 / 1820→1860, the two default-window `{1550,1815}`→`{1550,1850}`, the 270→`CYCLE_YEARS` tick, the reset clamp 1815→1850).
+  - **⚠ SEAM FINDING (the reason 2 & 3 are ONE landing):** the reset ramp clamps the spawn year to **`ERA.to`** (`world.js:452`, by design — "so lanes stay active while the *weights* blend back"). That assumes lanes REACH `ERA.to`. With the late era empty, at year 1850–1860 **no lane is active** (all end 1815) → the reset seam spawns **zero** vessels. Verified by debug (year 1859, reset 1.0, 0 vessels). So the `cycle wrap` seam test is **`test.skip`**'d (`observation.test.mjs`) with a re-enable note. **The flip is only fully green once increment 3 authors lanes reaching 1850** — flip + first-basin-authoring land together. **v4→v5, saves reset.** `main` stays green at 1815.
 - [ ] **3 — Author the 1815–50 basin extensions** into the six `research/flows/*.json`, **one basin per commit**, from the staged chunk-5/6/7 synthesis (`atlantic-1815-1850.md`, `east-asia-io-1815-1850.md`, `baltic-med-bengal-1815-1850.md`): extend surviving systems' `era.to` + add `byDecade` 1820/1830/1840/1850 ranges; add the new systems (illegal-era Brazil/Cuba, cotton-gulf-liverpool, bna-timber-emigrants, emigrant-packets, brazil-coffee, plata-republics-trade, around-the-horn-pacific, treaty-port-trade, opium-carriage, zanzibar, mauritius-sugar, indenture, black-sea-grain, alexandria-cotton, sicily-sulphur, singapore-entrepot, nhm-java, manila, german-emigration-atlantic…). Each with cargo/shipTypes ids that resolve, lanes summing ~1.0, evidence class, and — for coerced systems — the **approved framing blocks** (§Framing). `research/tools/validate-flows.mjs` + `npm run build:data` + `npm test` per basin. Commit per basin. *This is what populates the empty late era.*
 - [ ] **4 — Author the T8/T12 new SYSTEMS** (barbary-concessions, barbary-regency-exports, guianas-plantations, logwood-mahogany, pacific-colonial-spanish, guayaquil-cacao, nootka-fur, bantam-pepper, ostend-interlude/fold) into their basins, from `port-flow-candidates-2026-07-18.md` + `-T12-addenda.md`. Same validation. Commit per basin/group.
 - [ ] **5 — New PORTS + powers/vocab** (no bake yet): the PLAN-4/6 five + Montevideo/Basra/York-Factory/Port-Louis/whaling-grounds + the T8/T12 promotions (Ostend, Bantam, Callao, Guayaquil, Nootka, Algiers, Tunis, Tripoli, Alexandria, Curaçao, St Thomas, Paramaribo, Belize). Coords, `active{from,to}`, `eraNames`/`eraPowers` where flagged, `simProxy: null`. **Extend the late-era windows** of existing ports that need it (kingston etc.). New powers (`algiers/tunis/tripoli/morocco`) + name/captain pools. `npm run build:data` + `npm test`. Commit in logical groups.
@@ -117,11 +118,13 @@ stretched blend — though the blend machinery stays as the fallback underneath.
 
 ## Current state
 
-**Increment 1 (this doc + epilogue spec) landed on `main` 2026-07-18.** Two
-probes on 2026-07-18 established the atomic-era finding (Method): widening
-build-data ERA alone → eraNames-tiling error; extending eraNames to 1850 with
-world.js still at 1815 → the `era names` test rejects them. Both reverted clean;
-**`main` is green at 1815, deployable.** Approach corrected to **flip-first on a
-branch**. Next: create `phase-1-world-build` and land increment 2 (the atomic
-clock-flip) there — green at 1850 with an intentionally-empty late era, which
-increment 3's basin authoring then fills.
+**Increment 1** (this doc + epilogue spec) landed on `main` 2026-07-18.
+**Increment 2** (the atomic clock-flip) landed on branch `phase-1-world-build`
+2026-07-18: 52 pass / 1 skip, the sim flows 1550→1850, `main` untouched at 1815.
+The seam finding (above) proved the flip needs increment 3's lanes to be fully
+green — so **the next chunk is increment 3 (author the 1815–50 basin systems on
+the branch), which populates the late era, un-skips the `cycle wrap` test, and
+completes the flip.** Only then does the branch merge toward `main` (increments
+5–8 add the new ports/bake/surfacing first). The three probes this session
+(2× era-widen, 1× seam) de-risked the whole era migration by finding its
+couplings before any of it touched `main`.

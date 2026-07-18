@@ -19,8 +19,8 @@ const OUT = join(ROOT, 'data');
 const ARCHIVE_FIELDS = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'data', 'fields');
 const LAND_SRC = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'assets', 'land.geojson');
 
-const DATASET_VERSION = 4;              // v4: era-named ports + reopened Banks-fishery lanes — invalidates v3 saves
-const ERA = { from: 1550, to: 1815 };   // flowing-clock scope
+const DATASET_VERSION = 5;              // v5: era extended 1550→1850 (PLAN-6); 310-yr cycle — invalidates v4 saves
+const ERA = { from: 1550, to: 1850 };   // flowing-clock scope (Phase-1 X-S1: 1815→1850)
 const ROUTE_CLASSES = ['frigate', 'indiaman', 'brig', 'slaver', 'junk', 'dhow'];   // junk/dhow: own polars since S2
 const SEASONS = ['djf', 'mam', 'jja', 'son'];
 const REGIONS = new Set(['britain', 'lowlands', 'france', 'iberia', 'baltic', 'caribbean',
@@ -266,7 +266,7 @@ let covReport = '';
       }
     }
     for (const [lid] of pairIdx) void lid;
-    covReport = [1550, 1650, 1750, 1810].map(d => `${d}s ${covByDec[d] ? Math.round(100 * covByDec[d].folded / covByDec[d].total) : 0}%`).join(' · ');
+    covReport = [1550, 1650, 1750, 1810, 1850].map(d => `${d}s ${covByDec[d] ? Math.round(100 * covByDec[d].folded / covByDec[d].total) : 0}%`).join(' · ');
     if (!flowSystems.length) err('flows: no system folds onto any baked lane');
   }
 }
