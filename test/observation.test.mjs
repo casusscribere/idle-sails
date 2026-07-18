@@ -136,7 +136,7 @@ test('observation state survives a save/restore round-trip', () => {
   assert.deepEqual(d.state.stats, a.state.stats, 'the flat shape migrates into the cycle bucket');
 });
 
-test.skip('cycle wrap: seam spawns need the routes.json eras extended (Phase-1 increment 3b); re-enable then', () => {
+test('cycle wrap: displayed histories hide at the 1550 restart; the record is retained', () => {
   const CYC = _internals.CYCLE_SEC;
   // Enter a late-cycle world directly: spawns, fates, and buckets all key off
   // sim-time, so teleporting the clock to just before the seam gives us a
