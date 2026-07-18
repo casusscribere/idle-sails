@@ -349,12 +349,16 @@ recommended order, not law.
    **Pass 4's hard gate (T4) is OPEN** — and the catalog's engineering
    conclusion is that ONE new movement primitive (the grounds node) unlocks
    six ambient patterns. Chunk 10 also assembled the **X-R2 coerced-flow
-   framing sign-off** (seven texts) — **USER SIGN-OFF PENDING** before X-S1
-   enforces them. Remaining in the campaign: **chunk 11 = T12**, the
-   2026-07-17 addenda sweep (Japan/Dejima, Indonesia = T8's Aceh strand,
-   Pacific coasts, Med African coast, Caribbean, the specials catalog, the
-   goods-thread lens) — its outputs feed Pass 4's scripted-only ports, Pass 6's
-   probabilistic specials, and the queued trade-goods-threads feature.
+   framing sign-off** (eight texts after review) — **USER SIGN-OFF PENDING**
+   before X-S1 enforces them. **COMPLETE 2026-07-18** — chunk 11 (T12) closed
+   the campaign: Japan/Dejima (scriptedOnly + Kanagawa correction), Pacific/SA
+   (Callao=E9 + Guayaquil + a Pacific whaling grounds-node + Nootka→Canton fur),
+   Med-African coast (Algiers/Tunis/Tripoli/Alexandria + barbary-concessions),
+   Caribbean (Curaçao/St Thomas/Paramaribo/Belize + a golden-age-piracy hazard
+   zone), the 28-item **specials catalog** (→ Pass 4/6), and the **goods-thread
+   lens** (→ the queued trade-goods-threads feature). **All of Phase RB (T4, T8,
+   T9, T10, T12 + PLAN-4 E-R1) is now done; ~9 new nodes / 7 systems / 2 hazard
+   zones / ~11 silences stage for the X-S1/S2 build.**
 6. **[F] Convoys** (`PLAN-convoys.md`). Buildable any time after step 1,
    but cheapest here — it inherits T9's evidence-classed rates for free.
 7. **[F] Pass 4 — the scripted-spawn channel + ambient flows.** HARD GATE:

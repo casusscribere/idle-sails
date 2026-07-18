@@ -32,9 +32,42 @@ RANKING queue if a task completes; (5) commit.
 | 8 | **T10 new-port dossiers + wars sweep** (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans; wars 1815–50 incl. Navarino, Opium War) | `research/flows/new-ports-wars-1815-1850.md` (staged for X-S1/X-S2) | **✅ done 2026-07-18** |
 | 9 | **T8 remaining candidates** (Ostend & Trieste companies, New Julfa carriage, Aceh/Bantam pepper) | [`port-flow-candidates-2026-07-18.md`](port-flow-candidates-2026-07-18.md) | **✅ done 2026-07-18 — T8 COMPLETE** |
 | 10 | **E-R1 re-verification closeout** (any PLAN-4 Tier-1 claim still unstamped: Jumar/Borucki E1, HBCA E4, Allen E5) + X-R2 framing sign-off texts | [`flows/e-r1-closeout-and-framing-signoff.md`](flows/e-r1-closeout-and-framing-signoff.md) | **✅ done 2026-07-18 — E-R1 COMPLETE** |
-| 11 | **T12 — the addenda sweep** (2026-07-17): Japan/Dejima + Japanese ports · Indonesia (= T8's Aceh/Bantam strand) · cross-Pacific & around-SA (w/ E9 Callao) · Med African coast · Caribbean deep search · India–Arabia–E-Africa lens · one-time specials catalog (per-seed probabilistic) · goods-thread lens (silver, whaling, Middle Passage — sober register kept) | dated candidates doc(s) + specials catalog + register entries | **in progress 2026-07-18** (gathers out) |
+| 11 | **T12 — the addenda sweep** (2026-07-17): Japan/Dejima + Japanese ports · Indonesia (= T8's Aceh/Bantam strand) · cross-Pacific & around-SA (w/ E9 Callao) · Med African coast · Caribbean deep search · India–Arabia–E-Africa lens · one-time specials catalog (per-seed probabilistic) · goods-thread lens (silver, whaling, Middle Passage — sober register kept) | [`port-flow-candidates-T12-addenda.md`](port-flow-candidates-T12-addenda.md) | **✅ done 2026-07-18 — T12 COMPLETE · PHASE RB COMPLETE** |
 
 ## Done
+
+- **Chunk 11 (2026-07-18): T12 addenda sweep — and with it PHASE RB IS
+  COMPLETE.** `port-flow-candidates-T12-addenda.md`. Eight strands (5 gathered,
+  3 lenses); the four substantive candidate strands attacked by independent
+  refuters — **53 ✅ / 13 ⚠ / 0 ✂**; the 28-item specials catalog self-verified;
+  **zero refutations.** Outcomes: **Japan** — no new sailable node (sakoku is the
+  boundary); Dejima formalized `scriptedOnly` (2/yr from the 1715 cap; Hirado an
+  eraName); 2 silences (Ezo gate, domestic coasting); the 1854 Kanagawa premise
+  corrected (refuge ports, not trade — trade = Harris 1858/**4 July 1859**),
+  placed in the epilogue. **Pacific** — **Callao PROMOTE (= PLAN-4 E9) +
+  `pacific-colonial-spanish`** (Armada silver run as one annual convoy;
+  almojarifazgo counted-pending); **Guayaquil + `guayaquil-cacao`** (early
+  cacao-to-Mexico was contraband → silence; reopening 1774 not 1779); the
+  registros-sueltos Horn lane as a Portobelo substitution; **two new late-era
+  circuits — a Pacific whaling grounds-node (E3, Pacific subset only) and a
+  Nootka→Canton fur system (1785–1841)**. **Med-African** — promote Algiers
+  (1516; +1830 French flip), Tunis (La Goulette), Tripoli, Alexandria (endorse);
+  `barbary-concessions` (counted, the ONLY clean Barbary flow — French/Genoese
+  coral+grain, kept narrow) + `barbary-regency-exports`; the corsair-slavery
+  register made **bidirectional**; new powers tunis/tripoli/morocco re-raise T5.
+  **Caribbean** — Curaçao to its own dot (the St Eustatius fold is a 700 km
+  error), St Thomas + Paramaribo (+`guianas-plantations`, coffee 7,615 t 1772–76)
+  + Belize (+`logwood-mahogany`) new nodes; St Barth folded (double-count
+  exposure); **golden-age piracy hazard zone 1716–1726**; Denmark/Sweden already
+  exist as powers (gather error caught). **Specials:** 28 one-time voyages for
+  Pass 4/6 (fire once/cycle off a dedicated hash sub-stream, sim-inert; top pick
+  the real HMS Surprise cutting out the Hermione 1799); sober flags on
+  Whydah/Batavia/Bounty. **Lenses:** Indonesia covered by chunk 9; India–Arabia–
+  E-Africa adequately covered; the goods-thread lens = 3 display threads (silver,
+  whaling, Middle Passage — sober kept). ~9 new nodes / 7 systems / 2 hazard
+  zones / ~11 silences all stage for X-S1/S2. WIP superseded and removed.
+  **Corrections carried: Harris 4 July 1859; Peru–Mexico 1774; Compagnie royale
+  d'Afrique 1793; several single-web-source figures flagged for re-sourcing.**
 
 - **Chunk 10 (2026-07-18):** E-R1 closeout + X-R2 framing sign-off —
   `research/flows/e-r1-closeout-and-framing-signoff.md`. **(A) E4 (York

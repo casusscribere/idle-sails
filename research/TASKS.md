@@ -35,11 +35,12 @@ the tasks share a source campaign and should run together.
   campaign) shared T4's naval-patterns strand, which landed with it.
   **T10 (PLAN-6 X-R1, live since the 2026-07-16 adoption)** is a member of
   the same campaign: whaling, packet lines, and the suppression squadron
-  sit on both its list and T4's. **T12 (the 2026-07-17 addenda sweep)** is
-  the campaign's tail: a T8-successor over Japan, Indonesia, the Pacific
-  coasts, the Med African coast, and the Caribbean, plus the specials
-  catalog and goods-thread lens — its Indonesia strand IS T8's Aceh/Bantam
-  item. Campaign state: `research/rb-campaign.md`.
+  sit on both its list and T4's. ~~T12~~ (the 2026-07-17 addenda sweep —
+  **done 2026-07-18**, chunk 11: Japan/Dejima, Pacific/SA, Med-African coast,
+  Caribbean, the specials catalog, + the Indonesia/India-Arabia/goods-thread
+  lenses) closed the campaign. **Phase RB is COMPLETE (chunks 1–11):** T4, T8,
+  T9, T10, T12 all done + PLAN-4 E-R1 fully stamped. Campaign state:
+  `research/rb-campaign.md`.
 - **Phase RC — the per-port sweep.** T1 + T2 + T3 executed **together, one
   port at a time**: a single reading of a port's sources yields its
   name/ownership timeline (T1), the one-line blurb per window (T2), and the
@@ -242,6 +243,20 @@ bounds + a sim-shape recommendation; the silences-register `steam` entry
 ladder); until that plan is drafted, steam remains a declared boundary.
 
 ## Done
+
+- **T12 — the addenda sweep (2026-07-18, Phase-RB chunk 11).** Eight strands
+  in `port-flow-candidates-T12-addenda.md`; four gathered strands attacked by
+  independent refuters (53 ✅ / 13 ⚠ / 0 ✂), the 28-item specials catalog
+  self-verified, zero refutations. Japan: no new sailable node (sakoku
+  boundary), Dejima `scriptedOnly`, 2 silences, the Kanagawa-1854 correction.
+  Pacific: Callao (= PLAN-4 E9) + `pacific-colonial-spanish`, Guayaquil +
+  `guayaquil-cacao`, a Pacific whaling grounds-node (E3) and the Nootka→Canton
+  fur system. Med-African: Algiers/Tunis/Tripoli/Alexandria nodes,
+  `barbary-concessions` (counted) + `barbary-regency-exports`, the corsair-
+  slavery register made bidirectional. Caribbean: Curaçao own dot, St Thomas/
+  Paramaribo/Belize nodes, the golden-age-piracy hazard zone. Plus the 28-item
+  specials catalog (Pass 4/6) and the goods-thread display-feature spec. **This
+  closes Phase RB (chunks 1–11).** Outputs stage for X-S1/S2 via `CURATION.md`.
 
 - **T8 — the 2026-07 sweep's declared silences (2026-07-18, Phase-RB
   chunks 2 + 9).** All five declared gaps answered: the Iceland/North-Atlantic

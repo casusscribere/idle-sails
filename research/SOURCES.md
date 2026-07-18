@@ -39,7 +39,7 @@ preserved in each artifact's in-file **Verification record** and in
 | 8 | New-port dossiers (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans) + wars sweep | [`flows/new-ports-wars-1815-1850.md`](flows/new-ports-wars-1815-1850.md) §6 | 114 — 95/18/**1**✂ |
 | 9 | T8 remaining candidates (Ostend/Trieste cos., New Julfa, Aceh/Bantam) | [`port-flow-candidates-2026-07-18.md`](port-flow-candidates-2026-07-18.md) §7 | 64 — 55/9/0 |
 | 10 | E-R1 closeout (E4 York Factory/HBCA) + X-R2 framing sign-off | [`flows/e-r1-closeout-and-framing-signoff.md`](flows/e-r1-closeout-and-framing-signoff.md) | E4: 6 — 5/1/0 |
-| 11 | T12 addenda sweep (Japan/Dejima, Indonesia, cross-Pacific, specials catalog) | queued | — |
+| 11 | T12 addenda sweep (Japan/Dejima, cross-Pacific, Med-African, Caribbean, specials) | [`port-flow-candidates-T12-addenda.md`](port-flow-candidates-T12-addenda.md) §8 | 53/13/0 (+ 28 specials) |
 
 - **T4 COMPLETE** across chunks 1–4: **286 claims — 229 ✅ / 56 ⚠ / 1 ✂.**
 - **T10 COMPLETE** across chunks 5–8: **384 claims — 322 ✅ / 59 ⚠ / 3 ✂** —
@@ -380,6 +380,42 @@ Impressions…* 1844 series for Hong Kong; the Valparaíso 287/166 anchor; the
 
 *(Part B, the X-R2 framing sign-off, is assembly of framing texts authored in
 chunks 5/6/8 — no new sources.)*
+
+### T12 addenda sweep (chunk 11, `port-flow-candidates-T12-addenda.md`)
+
+- **Japan:** Matsuura Akira, "Sino-Japanese Interaction via Chinese Junks in the
+  Edo Period" (*SCIEA*); *Convention of Kanagawa* / *Treaty of Amity and Commerce
+  (Harris Treaty)* (Avalon Project + Wikipedia); *Dejima* / *Hirado Dutch Trading
+  Post* / *Sakoku* (Wikipedia); TANAP Hirado database; **cite at authoring:**
+  Ronald Toby, *State and Diplomacy in Early Modern Japan* (1984); Robert Hellyer,
+  *Defining Engagement* (2009); Brett Walker, *The Conquest of Ainu Lands* (2001).
+- **Cross-Pacific/SA:** Pierre Chaunu, *Séville et l'Atlantique* (via ANU Press,
+  "The East Pacific trading zone"); *Armada del Mar del Sur* (Encyclopedia.com);
+  "Perú y la transición del comercio político al comercio libre, 1740–1778"
+  (*Estudios Americanos*); the Real Cédula of 17 Jan 1774 (Internet Archive);
+  James R. Gibson, *Otter Skins, Boston Ships, and China Goods… 1785–1841*; Miño
+  Grijalva / del Valle Pavón (Guayaquil cacao); britishwhaling.org + the NHA
+  (Emilia, 1788).
+- **Med-African coast:** R. C. Davis, *Christian Slaves, Muslim Masters* (2003)
+  — with Earle/Toledano as the contestation; A. Tinniswood, *Pirates of Barbary*
+  (2010); P. Masson, *Les compagnies du corail* (1908); L. Valensi, *Fellahs
+  tunisiens* (1977) + S. Boubaker (Tunis commerce — to re-source the chèchia
+  figure); K. Folayan, *Tripoli During the Reign of Yūsuf Pāshā Qaramānlī* (1979);
+  L. Maziane, *Salé et ses corsaires* (2007); the Tabarka/Genoese grain-trade
+  literature.
+- **Caribbean:** J. Postma, *The Dutch in the Atlantic Slave Trade 1600–1815*;
+  W. Klooster (Curaçao smuggling); D. Wheat, *Atlantic Africa and the Spanish
+  Caribbean* (Cartagena); N. A. T. Hall / K. Gøbel (the Danish West Indies);
+  O. N. Bolland (Belize logwood/mahogany); C. Woodard, *The Republic of Pirates*
+  + M. Rediker (golden-age piracy); the Free Port Act 1766 + St-Barthélemy
+  Itinerario literature.
+- **Specials catalog:** *Cutting out of the Hermione* / *Capture of the frigate
+  Esmeralda* / *Action of 31 May 1762* / *La Capitana Shipwreck of 1654* /
+  *Nonsuch (1650 ship)* / *Vergulde Draeck* (Wikipedia); britishwhaling.org
+  (Emilia); Royal Museums Greenwich (the 1762 Hermione prize); the standard
+  attested dates for the iconic wrecks and single-ship actions.
+
+*(Phase RB is complete with chunk 11; §A's cross-walk covers all eleven chunks.)*
 
 ### PLAN-4 wider-world candidates (`port-flow-candidates-2026-07.md`)
 
