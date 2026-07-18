@@ -75,8 +75,13 @@
    "simProxy": null
   },
   {
+   "id": "dejima",
+   "name": "Dejima (the Dutch factory island, Nagasaki harbour)",
+   "simProxy": "dejima"
+  },
+  {
    "id": "nagasaki",
-   "name": "Nagasaki",
+   "name": "Nagasaki (the port & the Tojin-yashiki, Chinese quarter)",
    "simProxy": "dejima"
   },
   {
@@ -889,11 +894,11 @@
    "lanes": [
     {
      "from": "batavia",
-     "to": "nagasaki",
+     "to": "dejima",
      "share": 0.55
     },
     {
-     "from": "nagasaki",
+     "from": "dejima",
      "to": "batavia",
      "share": 0.45
     }
@@ -1019,7 +1024,8 @@
       2
      ]
     }
-   }
+   },
+   "notes": "Ends 1795 with the VOC itself (management dissolved 1 Mar 1796; charter lapsed 31 Dec 1799). The disrupted 1795-1816 trade - 13 arrivals on chartered AMERICAN hulls under Dutch colours, and eight shipless years - is carried in the silences register, not smoothed into this system."
   },
   {
    "id": "ryukyu-tribute",
@@ -1829,6 +1835,71 @@
     }
    },
    "notes": "Coastal, like the colliers: enters the sailing world only when its ports exist (S2+), and its on-screen share is governed by the evidence-band visibility decision."
+  },
+  {
+   "id": "dutch-japan",
+   "name": "The resumed Dutch-Japan trade (Dejima)",
+   "evidence": "reconstructed",
+   "basis": "Resumed 1817 (NOT 1815 - the 1815 date is the political restoration of the Indies, not shipping): two ships brought Blomhoff to a factory of six remaining Dutchmen. Carried 1817-1858 on the NETHERLANDS INDIES COLONIAL GOVERNMENT's account from Batavia in chartered private hulls - the NHM took over only in 1859. Shogunal ceiling 1-2/yr (the 1790 Kansei retrenchment cut the Dutch to one; whether 1799 restored two is contested - Cullen reads it as unchanged to 1859). A COUNTED series is recoverable from the Dejima archive NL-HaNA 1.04.21; reconstructed here pending that reading.",
+   "era": {
+    "from": 1817,
+    "to": 1850
+   },
+   "cargo": [
+    "copper",
+    "specie",
+    "textiles",
+    "sugar"
+   ],
+   "shipTypes": [
+    "east-indiaman",
+    "merchantman"
+   ],
+   "lanes": [
+    {
+     "from": "batavia",
+     "to": "dejima",
+     "share": 0.55
+    },
+    {
+     "from": "dejima",
+     "to": "batavia",
+     "share": 0.45
+    }
+   ],
+   "byDecade": {
+    "1810": {
+     "voyagesPerYear": [
+      1,
+      2
+     ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      1,
+      2
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      1,
+      2
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      1,
+      2
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      1,
+      2
+     ]
+    }
+   },
+   "notes": "Arrivals are monsoon-gated June-September from Batavia. SCRIPTED-ONLY candidate (Pass 4): with a 1-2 ceiling and hard zero years this is a scheduled node, not a rate - a Poisson draw would smooth away the shipless years that are the point."
   }
  ]
 }

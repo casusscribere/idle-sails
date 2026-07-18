@@ -1,61 +1,119 @@
 {
-  "title": "The chart's silences — flows known to history that the flow matrix does not (or cannot) quantify",
-  "note": "PLAN-3 §1 rule 5: a known trade is never silently zero, and a silence we cannot answer is recorded HERE, with its reason and our chosen treatment, instead of being dropped. treatment=asserted means the silence was answered — `pointer` names the system carrying our stated estimate; gestured means acknowledged, and a candidate for ambient content (S3) without volume claims; excluded means out of scope, with the reason on record. Basin authoring (R3) appends to this register; S3 renders it as a reference page.",
-  "silences": [
-    { "id": "english-coastal-colliers-silence", "scope": "Britain (Tyne & Wear → London)", "reason": "excluded-by-basis",
-      "treatment": "asserted", "pointer": "english-coastal-colliers",
-      "note": "The ships rankings count foreign-going clearances (R1 decision), so Europe's single largest generator of ship movements is invisible to them. Answered: the flow matrix carries a reconstructed collier system (~150 voyages/yr in the 1550s → ~4,000–6,500/yr by 1810)." },
-
-    { "id": "coastal-shipping-general", "scope": "every coast, all basins", "reason": "unrecorded",
-      "treatment": "gestured",
-      "note": "Coasting dwarfed foreign-going traffic in vessel numbers everywhere — grain hoys, wine barks, fish carriers, timber floats. No source counts it; no honest range exists at world scale. Acknowledged as the sea's ambient metabolism; candidate for ambient rendering (S3) rather than a volume claim." },
-
-    { "id": "north-sea-herring-fishery", "scope": "Dutch Republic (the grote visserij)", "reason": "fishery-not-trade",
-      "treatment": "gestured",
-      "note": "Hundreds of herring busses at sea every season — among the largest fleets afloat, but grounds-traffic rather than port-to-port trade, so it fits no lane. Candidate ambient feature; the fishery's SIZE is well documented even though it has no origin→destination shape." },
-
-    { "id": "sound-toll-evasion", "scope": "Baltic (the counted stratum itself)", "reason": "evasion",
-      "treatment": "excluded",
-      "note": "The anchoring series is itself distorted: under-declaration, wartime neutral re-flagging, and the Swedish exemption (1645–1710) all bias the registers the 'counted' systems rest on. Carried as a caveat on evidence=counted rather than as a flow — the register records that even the archive's firmest ground is soft." },
-
-    { "id": "small-craft-inshore", "scope": "all basins", "reason": "unrecorded",
-      "treatment": "excluded",
-      "note": "Boats below burden thresholds — wherries, prams, coasters under ~20 tons — were never registered anywhere. Below the simulation's vessel scale; excluded knowingly." },
-
-    { "id": "caribbean-smuggling-silence", "scope": "Caribbean (the free ports and the asiento's shadow)", "reason": "evasion",
-      "treatment": "asserted", "pointer": "caribbean-smuggling",
-      "note": "Silent BY EVASION — unrecorded because recording was the danger. Answered at R3: the atlantic basin carries an asserted system (±60% bounds around free-port scholarship's central guesses; St Eustatius alone logged 3,000+ ship calls at its 1770s peak, most of them the traffic everyone else's customs never saw)." },
-
-    { "id": "junk-trade-under-registration", "scope": "East & Southeast Asia", "reason": "unrecorded",
-      "treatment": "asserted", "pointer": "nanyang-junk-trade",
-      "note": "The great structural silence of the European record: the Nanyang junk trade generated no western toll series, yet the Nagasaki registers — where a state DID count — show Chinese hulls outnumbering Dutch ten to one. Answered at R3 by reconstruction (Blussé, Reid, Sugihara), not assertion: the scholarship is strong enough to class it reconstructed." },
-
-    { "id": "china-coastal-silence", "scope": "the Chinese littoral", "reason": "excluded-by-basis",
-      "treatment": "asserted", "pointer": "china-coastal-grain",
-      "note": "The coastal junk metabolism of the world's largest economy — the Shanghai shachuan grain fleet alone counted in the thousands. Answered at R3 (asserted, ±60%) on the same consistency grounds as the English colliers: if Newcastle's coasting is in, Tianjin's is." },
-
-    { "id": "coerced-flows-beyond-atlantic", "scope": "Black Sea · western Indian Ocean", "reason": "not-yet-reconstructed",
-      "treatment": "asserted", "pointer": "black-sea-slave-trade",
-      "note": "Resolved at R3 (decision 4): the Black Sea trade at Kaffa and the Indian Ocean slave trades (see also indian-ocean-slave-trades) are quantified as sober-framed systems rather than left as silences — charter rule 6's framing block is validator-enforced on both. Sim-side representation waits for S2's generalization of the Middle-Passage invariant." },
-
-    { "id": "african-coastwise", "scope": "West & East African coasts", "reason": "unrecorded",
-      "treatment": "gestured",
-      "note": "Canoe-house, lagoon, and coastal commerce along the Gold Coast, the Bight, and the Swahili littoral — real, substantial, organized (the Efik houses ran it on their own terms), and with no defensible voyage unit at the sim's vessel scale. GESTURED (R3 decision): acknowledged here, candidate for ambient representation, no volume claim fabricated." },
-
-    { "id": "pacific-voyaging", "scope": "Oceania", "reason": "unrecorded",
-      "treatment": "gestured",
-      "note": "Polynesian and Micronesian seafaring continued throughout this era, entirely outside every European series — no voyage-count basis exists at all. GESTURED (R3 decision): recorded so the chart's Pacific emptiness reads as the archive's silence, not the ocean's." },
-
-    { "id": "newfoundland-cod-before-louisbourg", "scope": "North Atlantic (the Banks fishery, 1550–1712 and 1759–1815)", "reason": "no-port-node",
-      "treatment": "asserted", "pointer": "newfoundland-cod",
-      "note": "The port-lifecycle pass (2026-07-14) briefly EXCLUDED the cod flow outside Louisbourg's life (1713–58) — the St John's/Placentia/Canso fishery, among the largest voyage-generators of the whole era. RESOLVED the same day by era-naming: the node sails the full era and reads ST JOHN'S outside the fortress years (ports.json eraNames), so the fishery is charted under the honest name of its time. St John's proper (~500 km east) remains a promotion-queue refinement." },
-
-    { "id": "svalbard-offshore-whaling", "scope": "Arctic (the Greenland Sea fishery, 1660–1800)", "reason": "no-port-node",
-      "treatment": "excluded", "pointer": "svalbard-whaling",
-      "note": "Smeerenburg the STATION died c.1660, but the Dutch and German fishery sailed on offshore — ice-edge whaling with no port call at all (the counted Dutch series continues to ~1800). The lifecycle pass ends the station's lanes at 1660; the offshore fishery has no node to visit by its nature. EXCLUDED with this record; a 'grounds' node is a possible future exception." },
-
-    { "id": "black-sea-after-1783", "scope": "Black Sea (Russian period, 1783–1815)", "reason": "no-port-node",
-      "treatment": "excluded", "pointer": "ottoman-provisioning",
-      "note": "Kaffa's lanes end with the Russian annexation of 1783 — but the grain kept flowing to Istanbul, increasingly from new Russian ports (Kherson 1778, Odessa 1794). The lifecycle pass would otherwise sail it to a port whose trade, as represented here, had ended. EXCLUDED, not zeroed: Odessa is a natural promotion-queue candidate for the late-era Black Sea." }
-  ]
+ "title": "The chart's silences — flows known to history that the flow matrix does not (or cannot) quantify",
+ "note": "PLAN-3 §1 rule 5: a known trade is never silently zero, and a silence we cannot answer is recorded HERE, with its reason and our chosen treatment, instead of being dropped. treatment=asserted means the silence was answered — `pointer` names the system carrying our stated estimate; gestured means acknowledged, and a candidate for ambient content (S3) without volume claims; excluded means out of scope, with the reason on record. Basin authoring (R3) appends to this register; S3 renders it as a reference page.",
+ "silences": [
+  {
+   "id": "english-coastal-colliers-silence",
+   "scope": "Britain (Tyne & Wear → London)",
+   "reason": "excluded-by-basis",
+   "treatment": "asserted",
+   "pointer": "english-coastal-colliers",
+   "note": "The ships rankings count foreign-going clearances (R1 decision), so Europe's single largest generator of ship movements is invisible to them. Answered: the flow matrix carries a reconstructed collier system (~150 voyages/yr in the 1550s → ~4,000–6,500/yr by 1810)."
+  },
+  {
+   "id": "coastal-shipping-general",
+   "scope": "every coast, all basins",
+   "reason": "unrecorded",
+   "treatment": "gestured",
+   "note": "Coasting dwarfed foreign-going traffic in vessel numbers everywhere — grain hoys, wine barks, fish carriers, timber floats. No source counts it; no honest range exists at world scale. Acknowledged as the sea's ambient metabolism; candidate for ambient rendering (S3) rather than a volume claim."
+  },
+  {
+   "id": "north-sea-herring-fishery",
+   "scope": "Dutch Republic (the grote visserij)",
+   "reason": "fishery-not-trade",
+   "treatment": "gestured",
+   "note": "Hundreds of herring busses at sea every season — among the largest fleets afloat, but grounds-traffic rather than port-to-port trade, so it fits no lane. Candidate ambient feature; the fishery's SIZE is well documented even though it has no origin→destination shape."
+  },
+  {
+   "id": "sound-toll-evasion",
+   "scope": "Baltic (the counted stratum itself)",
+   "reason": "evasion",
+   "treatment": "excluded",
+   "note": "The anchoring series is itself distorted: under-declaration, wartime neutral re-flagging, and the Swedish exemption (1645–1710) all bias the registers the 'counted' systems rest on. Carried as a caveat on evidence=counted rather than as a flow — the register records that even the archive's firmest ground is soft."
+  },
+  {
+   "id": "small-craft-inshore",
+   "scope": "all basins",
+   "reason": "unrecorded",
+   "treatment": "excluded",
+   "note": "Boats below burden thresholds — wherries, prams, coasters under ~20 tons — were never registered anywhere. Below the simulation's vessel scale; excluded knowingly."
+  },
+  {
+   "id": "caribbean-smuggling-silence",
+   "scope": "Caribbean (the free ports and the asiento's shadow)",
+   "reason": "evasion",
+   "treatment": "asserted",
+   "pointer": "caribbean-smuggling",
+   "note": "Silent BY EVASION — unrecorded because recording was the danger. Answered at R3: the atlantic basin carries an asserted system (±60% bounds around free-port scholarship's central guesses; St Eustatius alone logged 3,000+ ship calls at its 1770s peak, most of them the traffic everyone else's customs never saw)."
+  },
+  {
+   "id": "junk-trade-under-registration",
+   "scope": "East & Southeast Asia",
+   "reason": "unrecorded",
+   "treatment": "asserted",
+   "pointer": "nanyang-junk-trade",
+   "note": "The great structural silence of the European record: the Nanyang junk trade generated no western toll series, yet the Nagasaki registers — where a state DID count — show Chinese hulls outnumbering Dutch ten to one. Answered at R3 by reconstruction (Blussé, Reid, Sugihara), not assertion: the scholarship is strong enough to class it reconstructed."
+  },
+  {
+   "id": "china-coastal-silence",
+   "scope": "the Chinese littoral",
+   "reason": "excluded-by-basis",
+   "treatment": "asserted",
+   "pointer": "china-coastal-grain",
+   "note": "The coastal junk metabolism of the world's largest economy — the Shanghai shachuan grain fleet alone counted in the thousands. Answered at R3 (asserted, ±60%) on the same consistency grounds as the English colliers: if Newcastle's coasting is in, Tianjin's is."
+  },
+  {
+   "id": "coerced-flows-beyond-atlantic",
+   "scope": "Black Sea · western Indian Ocean",
+   "reason": "not-yet-reconstructed",
+   "treatment": "asserted",
+   "pointer": "black-sea-slave-trade",
+   "note": "Resolved at R3 (decision 4): the Black Sea trade at Kaffa and the Indian Ocean slave trades (see also indian-ocean-slave-trades) are quantified as sober-framed systems rather than left as silences — charter rule 6's framing block is validator-enforced on both. Sim-side representation waits for S2's generalization of the Middle-Passage invariant."
+  },
+  {
+   "id": "african-coastwise",
+   "scope": "West & East African coasts",
+   "reason": "unrecorded",
+   "treatment": "gestured",
+   "note": "Canoe-house, lagoon, and coastal commerce along the Gold Coast, the Bight, and the Swahili littoral — real, substantial, organized (the Efik houses ran it on their own terms), and with no defensible voyage unit at the sim's vessel scale. GESTURED (R3 decision): acknowledged here, candidate for ambient representation, no volume claim fabricated."
+  },
+  {
+   "id": "pacific-voyaging",
+   "scope": "Oceania",
+   "reason": "unrecorded",
+   "treatment": "gestured",
+   "note": "Polynesian and Micronesian seafaring continued throughout this era, entirely outside every European series — no voyage-count basis exists at all. GESTURED (R3 decision): recorded so the chart's Pacific emptiness reads as the archive's silence, not the ocean's."
+  },
+  {
+   "id": "newfoundland-cod-before-louisbourg",
+   "scope": "North Atlantic (the Banks fishery, 1550–1712 and 1759–1815)",
+   "reason": "no-port-node",
+   "treatment": "asserted",
+   "pointer": "newfoundland-cod",
+   "note": "The port-lifecycle pass (2026-07-14) briefly EXCLUDED the cod flow outside Louisbourg's life (1713–58) — the St John's/Placentia/Canso fishery, among the largest voyage-generators of the whole era. RESOLVED the same day by era-naming: the node sails the full era and reads ST JOHN'S outside the fortress years (ports.json eraNames), so the fishery is charted under the honest name of its time. St John's proper (~500 km east) remains a promotion-queue refinement."
+  },
+  {
+   "id": "svalbard-offshore-whaling",
+   "scope": "Arctic (the Greenland Sea fishery, 1660–1800)",
+   "reason": "no-port-node",
+   "treatment": "excluded",
+   "pointer": "svalbard-whaling",
+   "note": "Smeerenburg the STATION died c.1660, but the Dutch and German fishery sailed on offshore — ice-edge whaling with no port call at all (the counted Dutch series continues to ~1800). The lifecycle pass ends the station's lanes at 1660; the offshore fishery has no node to visit by its nature. EXCLUDED with this record; a 'grounds' node is a possible future exception."
+  },
+  {
+   "id": "black-sea-after-1783",
+   "scope": "Black Sea (Russian period, 1783–1815)",
+   "reason": "no-port-node",
+   "treatment": "excluded",
+   "pointer": "ottoman-provisioning",
+   "note": "Kaffa's lanes end with the Russian annexation of 1783 — but the grain kept flowing to Istanbul, increasingly from new Russian ports (Kherson 1778, Odessa 1794). The lifecycle pass would otherwise sail it to a port whose trade, as represented here, had ended. EXCLUDED, not zeroed: Odessa is a natural promotion-queue candidate for the late-era Black Sea."
+  },
+  {
+   "id": "dejima-disrupted-1795-1816",
+   "scope": "Dejima (the Dutch factory, Nagasaki), 1795-1816",
+   "reason": "not-yet-reconstructed",
+   "treatment": "gestured",
+   "note": "Between the VOC's end and the 1817 resumption the Dutch-Japan trade did not stop, but it stopped being Dutch-carried: with the Republic gone (management dissolved 1796, charter lapsed 1799) and the British blockading, ~13 arrivals 1797-1809 came on CHARTERED AMERICAN HULLS flying Dutch colours out of Batavia (Eliza, Franklin, Massachusetts, Margaret, Rebecca, America, Mount Vernon...). Then it stopped entirely: no ship reached Dejima for three years from 1810 - the Nagasaki kaisho issued the factory's food monthly by shogunal order - and 1815-16 were blank too; eight shipless years in all (1804, 1805, 1808, 1810-12, 1815-16). In 1813-14 the only ships were British-sent under Raffles, flying the Dutch flag, which opperhoofd Hendrik Doeff refused to hand the factory over to. The flow model carries one flag per lane and cannot express 'American hull, Dutch colours, no ship at all this year', so the period is gestured here rather than smoothed into either voc-japan (which correctly ends 1795) or dutch-japan (which correctly begins 1817). Verified 2026-07-18."
+  }
+ ]
 }
