@@ -348,7 +348,7 @@ test('port lifecycle invariant: every lane era fits inside both endpoints’ win
   // instead of windowed: the node carries the Banks fishery as St John's)
   assert.deepEqual(datasets.ports.find(p => p.id === 'smeerenburg').active, { from: 1614, to: 1660 });
   assert.deepEqual(datasets.ports.find(p => p.id === 'kaffa').active, { from: 1550, to: 1783 });
-  assert.deepEqual(datasets.ports.find(p => p.id === 'kingston').active, { from: 1655, to: 1815 });
+  assert.deepEqual(datasets.ports.find(p => p.id === 'kingston').active, { from: 1655, to: 1850 });
 });
 
 test('era names: the dot speaks the dominant port of the time, tiling its window exactly', () => {
