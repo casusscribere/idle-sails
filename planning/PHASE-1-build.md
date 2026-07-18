@@ -130,6 +130,22 @@ namespace, `middlePassage` cargo, `slave-ship`, the historically-dead types, and
 routes that died before the horizon. **THE FLIP IS NOW COHERENT: the sim flows
 1550→1850, the late era is populated, the reset seam spawns again (1859: 0→49),
 and all 53 tests pass with nothing skipped.** `main` remains green at 1815.
-**Next: increment 5** — extend the port `active` windows (kingston, boston,
-bridgetown, st-eustatius, cap-francais…), which unblocks the remaining surviving
-systems, then add the new ports so the new 1815–50 systems can be authored.
+**Increments 5a + 5b DONE (2026-07-18), 53/53 green.** 5a extended the 13 port
+windows that continued (kingston/boston/new-york/philadelphia/bridgetown/
+st-eustatius/tranquebar/st-petersburg/saint-louis/banda-neira/arkhangelsk/
+acapulco/sitka), HOLDING kaffa, smeerenburg, **cap-francais** (Saint-Domingue →
+Haiti 1804 — a french flag to 1850 would be false; needs eraNames+eraPowers and a
+`haiti` power) and **portobelo** (Spanish colonial, independent 1821). 5b authored
+the **Baltic late era** — 12 systems + 25 routes + powers sweden/denmark/russia/
+hansa (+ `usa`, `sloop`) — on chunk 7's verified doubling of Sound traffic.
+**The late era is now genuinely populated: ~327 spawns/120 days at 1830/1845/1850.**
+
+**Next:** the remaining basins (Mediterranean, East Asia, Indian-Ocean-W,
+Bengal/SE-Asia) follow the identical seven-layer recipe — audit port-safety →
+extend flow systems from the staged synthesis → curate routes (no `slave-*`, no
+`middlePassage`, only `era.to==1815`, ports safe) → extend the types/flags they
+need. Then the NEW ports + NEW systems (illegal-era, cotton-gulf, packets,
+Singapore/HK/Valparaíso/Sydney/New Orleans…), which need a **bake**, then
+surfacing, then merge. Queued authoring debts: US-flagged late-era lanes
+(new-england-caribbean), the Haiti/Cap-Haïtien pair, caribbean-sugar's late-era
+British-only geography.
