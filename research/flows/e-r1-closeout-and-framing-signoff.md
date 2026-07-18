@@ -109,10 +109,12 @@ post-abolition plantation regime):
 > system is shown factually: people under contract, not cargo."
 
 **5. `amoy-emigration`** (East Asia / nanyang, chunk 6; the coolie traffic from
-1847):
+1847) — **refined in the chunk-10 review** (the original "under contracts many
+did not understand" understated the documented coercion of the Chinese coolie
+trade; strengthened to name it):
 > "From 1847 vessels carried indentured emigrants from Amoy toward Cuba and Peru
-> under contracts many did not understand; mortality on these passages was high.
-> The traffic is shown factually and is never a reward."
+> — bound by contracts many could not read, and some taken by force; mortality on
+> these passages was high. The traffic is shown factually and is never a reward."
 
 **6. `sydney-convicts`** (Pacific/Australasia, chunk 8; convict transportation;
 counted — indent records):
@@ -140,34 +142,50 @@ blocks in the JSON, user-confirmed at R3: **`middle-passage`** (Atlantic),
 (Indian Ocean W). Their shared `rule` string is the template the seven above will
 use.
 
-### Completeness audit — two gaps to close at X-S1 authoring
+### Completeness audit — two gaps, RESOLVED IN THE CHUNK-10 REVIEW
 
-Every coerced flow the campaign has *named* is accounted for except two, which
-have verified data but no dedicated framing text yet:
+Every coerced flow the campaign has *named* is now accounted for. The two gaps
+the audit found are resolved below (both still need your ratification):
 
 - **The Plata / Montevideo transatlantic slave trade** (E1, verified chunk 6 —
   712 voyages / ≥70,225 disembarked 1777–1812; Montevideo the sole authorized
-  entry from 1791; the tasajo triangle). When this is authored as its own Atlantic
-  system at X-S1 it **needs a framing block** — either its own text or an explicit
-  inheritance of `middle-passage.framing`. **Flagged; not yet drafted.**
+  entry from 1791; the tasajo triangle) has distinctive features a generic
+  inheritance of `middle-passage.framing` would lose (Montevideo's 1791 monopoly,
+  the Brazil routing, the Mozambique source, the salt-beef triangle), so it earns
+  **its own text.** Proposed (an eighth framing text, for the same sign-off):
+  > "These vessels carried enslaved people to the Río de la Plata, where
+  > Montevideo was made the sole authorized port of entry in 1791 — most brought
+  > by way of Brazil, others direct from Mozambique and the Angolan coast. Vessels
+  > on this lane carried enslaved people; many died on the passage. The estuary's
+  > salt-beef exports in turn provisioned enslaved plantations elsewhere; the
+  > trade is shown factually and is never a reward."
 - **The illegal-era Mascarene tail** (E5, verified chunk 6 — ~52,550 to Mauritius
-  to c.1827). Confirm it **inherits `indian-ocean-slave-trades.framing`** or
-  receives its own; the earlier French-era Mascarene coerced flow is already
-  covered by that system. **Flagged for confirmation.**
+  to c.1827): **recommend it INHERITS `indian-ocean-slave-trades.framing`** — it
+  is the same East-African-to-Mascarene flow the R3 system already frames, now
+  under prohibition, not a distinct trade. A one-line `notes` addition on the
+  system ("the trade continued illegally into the 1820s") records the continuation
+  without a second framing block. (Adopt unless you prefer a dedicated text.)
 
 *(Convict transportation to Van Diemen's Land — Hobart, to 1853 — is not a gap
 now: Hobart is not a node; if promoted it would need its own text.)*
 
 ### What sign-off asks of you
 
-1. **Approve or edit** the seven framing texts above (wording is the point — this
-   is the charter's sober-treatment commitment made concrete).
-2. **Decide** the two audit gaps: does the Plata slave-trade system get its own
-   framing text or inherit `middle-passage`'s? Does the Mascarene illegal tail
-   inherit `indian-ocean-slave-trades`'?
+1. **Ratify or edit the eight framing texts** — the original seven (one, the Amoy
+   text, refined in review to name the trade's coercion) **plus the proposed Plata
+   text** (the audit gap, now drafted). Wording is the point — this is the
+   charter's sober-treatment commitment made concrete.
+2. **Confirm the Mascarene-tail recommendation** (inherit
+   `indian-ocean-slave-trades.framing` + a one-line `notes` on the illegal
+   continuation), or ask for a dedicated text instead.
 3. On approval, X-S1 writes each as a `framing{sober:true, description, rule}`
    block on its system; the validator then enforces presence, and S3 can surface
    the sober notes in the vessel ledger (the one-line evidence note idiom).
+
+*(Chunk-10 review changes, for your visibility: the Amoy text was strengthened to
+name the coercion — "bound by contracts many could not read, and some taken by
+force"; the Plata gap was closed with a drafted text; the Mascarene gap was
+resolved by inheritance. The other six texts passed review unchanged.)*
 
 ---
 
