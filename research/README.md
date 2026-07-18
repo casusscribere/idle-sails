@@ -12,6 +12,11 @@ All of it is **best-effort historical reconstruction, not a census** — anchore
 to hard regional series where they exist and flagged as estimate elsewhere. Each
 page carries its own sources and caveats.
 
+> **[`SOURCES.md`](SOURCES.md)** is the documentation index: a cross-walk from
+> every research chunk & validation pass to its artifact and verdict tally, plus
+> a **consolidated bibliography** of every source referenced across the flow
+> matrix. The live chunk tracker is [`rb-campaign.md`](rb-campaign.md).
+
 ## Datasets
 
 ### 1. Busiest ports, 1550–1815 — three metrics, **top 20**
