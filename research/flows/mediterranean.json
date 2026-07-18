@@ -121,7 +121,7 @@
    "basis": "French échelles series (the dominant carrier by the 18th c) + Levant Company and Dutch directie records; silk, mohair, cotton, and drugs against cloth and silver.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "silk",
@@ -347,6 +347,30 @@
       100,
       350
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      120,
+      400
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      140,
+      470
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      180,
+      600
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      220,
+      720
+     ]
     }
    }
   },
@@ -357,7 +381,7 @@
    "basis": "Braudel and the annona studies: Sicilian and Puglian wheat feeding the Italian cities, with Egyptian grain north in dearth years.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "grain",
@@ -571,6 +595,30 @@
       200,
       450
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      200,
+      450
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      210,
+      470
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      220,
+      490
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      210,
+      470
+     ]
     }
    }
   },
@@ -581,7 +629,7 @@
    "basis": "Sella, Rapp, Tenenti: the Serenissima's long decline from spice emporium to regional carrier — visible here as a falling curve, not a disappearance.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "trade-goods",
@@ -786,6 +834,30 @@
      "voyagesPerYear": [
       60,
       150
+     ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      55,
+      140
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      60,
+      150
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      58,
+      145
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      55,
+      140
      ]
     }
    }
@@ -1016,7 +1088,7 @@
    "basis": "Marseille chamber of commerce series: the coasting and Spanish/Italian exchange beneath the Levant headline.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "wine",
@@ -1238,6 +1310,30 @@
       100,
       400
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      130,
+      500
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      170,
+      650
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      220,
+      850
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      260,
+      1000
+     ]
     }
    }
   },
@@ -1248,7 +1344,7 @@
    "basis": "The capital's grain lifeline — Egyptian wheat and Black Sea grain into the largest city of Europe and the Near East. The system the European commercial record cannot rank (the R1 declared boundary), quantified here from Ottoman provisioning scholarship.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "grain",
@@ -1449,6 +1545,30 @@
       300,
       700
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      300,
+      700
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      310,
+      720
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      330,
+      760
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      350,
+      800
+     ]
     }
    }
   },
@@ -1459,7 +1579,7 @@
    "basis": "ASSERTED — the record's blind spot: the caïques and polaccas of Greek, Armenian, and Turkish shippers who carried the eastern basin's daily exchange under flags no western customs house logged. Central guesses scale with the known ports' consumption; bounds ±60%. By the 1780s the Greek merchant marine is large enough to enter western records — the curve rises accordingly.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "grain",
@@ -1676,6 +1796,30 @@
      "voyagesPerYear": [
       200,
       800
+     ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      100,
+      400
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      260,
+      1040
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      360,
+      1440
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      400,
+      1600
      ]
     }
    }
