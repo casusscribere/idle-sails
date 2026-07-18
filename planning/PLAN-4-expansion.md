@@ -41,8 +41,13 @@ citation correction; coerced windows: counted 1777–1812, tail to 1833,
 absolute end 1835 — `research/flows/east-asia-io-1815-1850.md` §3).
 **E5 VERIFIED chunk 6** (Allen's 641-voyage inventory exact; illegal era
 ~52,550 to Mauritius alone to c.1827; indenture series counted). E2 was
-verified 3–0 in the original sweep. **Only E4 (York Factory/HBCA) remains**
-(campaign chunk 10).
+verified 3–0 in the original sweep. **E4 (York Factory/HBCA) VERIFIED-WITH-
+RESTATEMENTS chunk 10** (`research/flows/e-r1-closeout-and-framing-signoff.md`):
+counted class holds on the underlying HBCA series (bills of health / logs /
+post journals — not the derived web table); node era 1670–1815 with York
+Factory the era-name from 1684 (Rupert House earlier); the 1694–1714 French
+occupation as a lifecycle gap + reroute to Fort Albany; season-gated Jun–Oct,
+~1–3 ships/yr. **E-R1 is COMPLETE — all five Tier-1 candidates stamped.**
 
 ---
 

@@ -31,10 +31,34 @@ RANKING queue if a task completes; (5) commit.
 | 7 | **T10 basin extensions, Baltic/Med/Bengal** (Sound Toll to 1857, échelles after Barbary ends, country trade) | `research/flows/baltic-med-bengal-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-18** |
 | 8 | **T10 new-port dossiers + wars sweep** (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans; wars 1815–50 incl. Navarino, Opium War) | `research/flows/new-ports-wars-1815-1850.md` (staged for X-S1/X-S2) | **✅ done 2026-07-18** |
 | 9 | **T8 remaining candidates** (Ostend & Trieste companies, New Julfa carriage, Aceh/Bantam pepper) | [`port-flow-candidates-2026-07-18.md`](port-flow-candidates-2026-07-18.md) | **✅ done 2026-07-18 — T8 COMPLETE** |
-| 10 | **E-R1 re-verification closeout** (any PLAN-4 Tier-1 claim still unstamped: Jumar/Borucki E1, HBCA E4, Allen E5) + X-R2 framing sign-off texts | stamps + staged texts | **in progress 2026-07-18** (E4 gather out) |
+| 10 | **E-R1 re-verification closeout** (any PLAN-4 Tier-1 claim still unstamped: Jumar/Borucki E1, HBCA E4, Allen E5) + X-R2 framing sign-off texts | [`flows/e-r1-closeout-and-framing-signoff.md`](flows/e-r1-closeout-and-framing-signoff.md) | **✅ done 2026-07-18 — E-R1 COMPLETE** |
 | 11 | **T12 — the addenda sweep** (2026-07-17): Japan/Dejima + Japanese ports · Indonesia (= T8's Aceh/Bantam strand) · cross-Pacific & around-SA (w/ E9 Callao) · Med African coast · Caribbean deep search · India–Arabia–E-Africa lens · one-time specials catalog (per-seed probabilistic) · goods-thread lens (silver, whaling, Middle Passage — sober register kept) | dated candidates doc(s) + specials catalog + register entries | queued |
 
 ## Done
+
+- **Chunk 10 (2026-07-18):** E-R1 closeout + X-R2 framing sign-off —
+  `research/flows/e-r1-closeout-and-framing-signoff.md`. **(A) E4 (York
+  Factory/HBCA): VERIFIED-WITH-RESTATEMENTS** (6 points, 5 ✅ / 1 ⚠ / 0 ✂,
+  independent refuter) — counted class holds, but cite the underlying HBCA
+  archival series (bills of health / ships' logs / post journals / the
+  *Archivaria* "Cycle of Commerce" study), not the derived web table (⚠).
+  Restatements: era-start **Option A** (node 1670–1815, York Factory the
+  era-name from 1684, **Rupert House** earlier — not "Charles Fort"; matches the
+  Louisbourg⇄St John's idiom + no-silent-zeros); the **1694–1714 French
+  occupation** modelled as a York lifecycle gap + reroute to Fort Albany.
+  Season-gating (Jun–Oct), the ~1–3 ships/yr band, and the named ships (Nimble
+  1792–93, Beaver 1788–93) all verified. **With E4 stamped, PLAN-4 E-R1 is
+  COMPLETE** (E1/E5 chunk 6 · E2 sweep · E3 chunk 2 · E6 chunk 3 · E4 here).
+  **(B) X-R2 framing sign-off:** the **seven** new coerced-flow framing texts
+  (brazil-illegal-era, cuba-illegal-era, west-africa-squadron, indenture,
+  amoy-emigration, sydney-convicts, neworleans-coastwise) assembled verbatim
+  **FOR USER REVIEW** before the validator enforces them at X-S1; the three R3
+  blocks (middle-passage, black-sea-slave-trade, indian-ocean-slave-trades)
+  already enforced. **Completeness audit found two gaps** to close at X-S1: the
+  Plata/Montevideo slave-trade system and the illegal-era Mascarene tail each
+  need a framing block (own text or explicit inheritance). **USER ACTION
+  PENDING:** approve/edit the seven texts + decide the two gaps. WIP superseded
+  and removed. **Only chunk 11 (T12 addenda sweep) remains in Phase RB.**
 
 - **Chunk 9 (2026-07-18):** T8 remaining candidates — 64 claims, **55 ✅ /
   9 ⚠ / 0 ✂** (zero refutations); `port-flow-candidates-2026-07-18.md` is the

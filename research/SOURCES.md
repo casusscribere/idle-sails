@@ -38,7 +38,7 @@ preserved in each artifact's in-file **Verification record** and in
 | 7 | T10 basin extensions — Baltic/Med/Bengal | [`flows/baltic-med-bengal-1815-1850.md`](flows/baltic-med-bengal-1815-1850.md) §6 | 110 — 98/11/**1**✂ |
 | 8 | New-port dossiers (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans) + wars sweep | [`flows/new-ports-wars-1815-1850.md`](flows/new-ports-wars-1815-1850.md) §6 | 114 — 95/18/**1**✂ |
 | 9 | T8 remaining candidates (Ostend/Trieste cos., New Julfa, Aceh/Bantam) | [`port-flow-candidates-2026-07-18.md`](port-flow-candidates-2026-07-18.md) §7 | 64 — 55/9/0 |
-| 10 | E-R1 closeout (E4 York Factory/HBCA) + X-R2 framing sign-off | queued | — |
+| 10 | E-R1 closeout (E4 York Factory/HBCA) + X-R2 framing sign-off | [`flows/e-r1-closeout-and-framing-signoff.md`](flows/e-r1-closeout-and-framing-signoff.md) | E4: 6 — 5/1/0 |
 | 11 | T12 addenda sweep (Japan/Dejima, Indonesia, cross-Pacific, specials catalog) | queued | — |
 
 - **T4 COMPLETE** across chunks 1–4: **286 claims — 229 ✅ / 56 ⚠ / 1 ✂.**
@@ -363,6 +363,23 @@ Impressions…* 1844 series for Hong Kong; the Valparaíso 287/166 anchor; the
   1962); Claude Guillot, *The Sultanate of Banten* / *Banten: Sejarah dan
   Peradaban Abad X–XVII*; D. K. Bassett, *The Factory of the English East India
   Company at Bantam, 1602–1682*.
+
+### E-R1 closeout — E4 York Factory/HBCA (chunk 10, `flows/e-r1-closeout-and-framing-signoff.md`)
+
+- **Hudson's Bay Company Archives (HBCA), Archives of Manitoba** — the ships'
+  histories register + the underlying counted series (York Factory **bills of
+  health**, ships' **logs** [Section C], **post journals**).
+- **"The Cycle of Commerce: York Factory Records of Hudson's Bay Company
+  Supplies," *Archivaria*** — the account-book analysis; the counted basis.
+- **Manitoba Historical Society, "Navigation of Hudson Bay and Straits"** — the
+  season-gating (the ~15 July–1 Oct strait window).
+- *Hudson's Bay Company* / *York Factory* / *Hudson's Bay Company vessels* /
+  *Battle of Hudson's Bay* (Wikipedia); Canadian Encyclopedia "Nonsuch"; Parks
+  Canada, York Factory NHS — the 1668 voyage, the 1684 founding, the 1694–1714
+  French occupation, the named ships.
+
+*(Part B, the X-R2 framing sign-off, is assembly of framing texts authored in
+chunks 5/6/8 — no new sources.)*
 
 ### PLAN-4 wider-world candidates (`port-flow-candidates-2026-07.md`)
 

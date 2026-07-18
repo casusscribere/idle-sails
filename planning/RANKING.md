@@ -344,11 +344,13 @@ recommended order, not law.
    chunk 9's four candidates → two new ports Ostend/Bantam, two folds, three
    silences), **T10 COMPLETE** (chunks 5–8: six basin extensions + five
    new-port dossiers + the full 1815–50 wars set, 384 claims at 322 ✅ /
-   59 ⚠ / 3 ✂), **E1/E3/E5/E6 verifications passed**. **Pass 4's hard gate
-   (T4) is OPEN** — and the catalog's engineering conclusion is that ONE new
-   movement primitive (the grounds node) unlocks six ambient patterns.
-   Remaining in the campaign: **chunk 10** (E-R1 closeout — E4/York Factory +
-   the X-R2 charter framing sign-off texts) and **chunk 11 = T12**, the
+   59 ⚠ / 3 ✂), and **PLAN-4 E-R1 COMPLETE** (all five Tier-1 stamped: E1/E5
+   chunk 6, E2 sweep, E3 chunk 2, E6 chunk 3, **E4 York Factory chunk 10**).
+   **Pass 4's hard gate (T4) is OPEN** — and the catalog's engineering
+   conclusion is that ONE new movement primitive (the grounds node) unlocks
+   six ambient patterns. Chunk 10 also assembled the **X-R2 coerced-flow
+   framing sign-off** (seven texts) — **USER SIGN-OFF PENDING** before X-S1
+   enforces them. Remaining in the campaign: **chunk 11 = T12**, the
    2026-07-17 addenda sweep (Japan/Dejima, Indonesia = T8's Aceh strand,
    Pacific coasts, Med African coast, Caribbean, the specials catalog, the
    goods-thread lens) — its outputs feed Pass 4's scripted-only ports, Pass 6's
