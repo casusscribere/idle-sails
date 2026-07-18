@@ -186,7 +186,7 @@
    "basis": "Sound Toll Registers (grain cargoes westbound; Danzig staple); van Tielhof, The 'Mother of All Trades'.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "grain"
@@ -395,6 +395,30 @@
       350,
       800
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      420,
+      960
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      390,
+      880
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      560,
+      1280
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      875,
+      2000
+     ]
     }
    },
    "notes": "The 'mother trade'. Peak Amsterdam dependence c.1590–1650; the late-18th-c surge feeds Britain."
@@ -406,7 +430,7 @@
    "basis": "Sound Toll Registers (timber, masts, pitch, tar, hemp, flax westbound); Åström; Kaukiainen.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "timber",
@@ -616,6 +640,30 @@
       500,
       1100
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      450,
+      1000
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      430,
+      950
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      480,
+      1050
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      600,
+      1300
+     ]
     }
    },
    "notes": "Rises all era with navies and cities; Riga masts were strategic goods."
@@ -627,7 +675,7 @@
    "basis": "Swedish export statistics (oregrounds iron) + Sound Toll for the Stockholm share; Gothenburg exports bypass the Sound.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "iron"
@@ -821,6 +869,30 @@
       250,
       550
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      210,
+      470
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      180,
+      400
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      155,
+      340
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      155,
+      340
+     ]
     }
    },
    "notes": "Britain's steel industry ran on it until Russian iron competes late in the era."
@@ -832,7 +904,7 @@
    "basis": "Sound Toll Registers — the westbound residue beyond the named staples: flax, hemp, potash, wax, hides, linens.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "naval-stores",
@@ -1038,6 +1110,30 @@
       600,
       1400
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      840,
+      1960
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      870,
+      2030
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      1200,
+      2800
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      1380,
+      3220
+     ]
     }
    },
    "notes": "Keeps the counted stratum honest: the Sound total is more than grain + timber + iron."
@@ -1049,7 +1145,7 @@
    "basis": "Sound Toll Registers (eastbound passages); Setúbal/Bay salt series.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "salt",
@@ -1265,6 +1361,30 @@
       1000,
       2400
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      1400,
+      3360
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      1450,
+      3480
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      2000,
+      4800
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      2300,
+      5520
+     ]
     }
    },
    "notes": "The eastbound half of every Baltic round trip; salt is its backbone."
@@ -1276,7 +1396,7 @@
    "basis": "Sound Toll Registers + Russian port books after 1713; hemp, flax, iron, tallow.",
    "era": {
     "from": 1710,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "naval-stores",
@@ -1370,6 +1490,30 @@
       700,
       1500
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      850,
+      1800
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      800,
+      1700
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      1100,
+      2300
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      1300,
+      2700
+     ]
     }
    },
    "notes": "Peter's window opens 1703 and by 1800 carries more than the whole 16th-c Sound."
@@ -1381,7 +1525,7 @@
    "basis": "Norwegian toll books & English port books; deals from the fjords, stockfish/klippfisk from Bergen.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "timber",
@@ -1576,6 +1720,30 @@
       300,
       650
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      390,
+      845
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      510,
+      1100
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      660,
+      1430
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      860,
+      1860
+     ]
     }
    },
    "notes": "Does not cross the Sound — invisible to the toll series, hence proxied."
@@ -1587,7 +1755,7 @@
    "basis": "English customs (overseas coal exports); Nef, The Rise of the British Coal Industry.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "coal"
@@ -1785,6 +1953,30 @@
       500,
       1000
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      600,
+      1200
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      720,
+      1440
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      880,
+      1750
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      1100,
+      2200
+     ]
     }
    },
    "notes": "The overseas fraction of the coal trade — the part the ships-ranking basis can see."
@@ -1796,7 +1988,7 @@
    "basis": "Nef; Hatcher, History of the British Coal Industry — London imports ÷ ~250-ton collier lading. THE R1-declared silence, answered here: excluded from the ships rankings by their foreign-going basis, asserted in the flow matrix so it is never silently zero.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "coal"
@@ -1979,6 +2171,30 @@
       3800,
       6500
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      4200,
+      7200
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      4800,
+      8200
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      5500,
+      9400
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      6300,
+      10800
+     ]
     }
    },
    "notes": "By 1800 the largest single generator of ship movements in Europe. Coastal: enters the sim only when Newcastle is baked (S2), and its on-screen share is governed by the evidence-band visibility decision."
@@ -1990,7 +2206,7 @@
    "basis": "Muscovy Company records; Dutch notarial acts; Veluwenkamp. Russia's only sea door before 1703, kept open after.",
    "era": {
     "from": 1584,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "furs",
@@ -2161,6 +2377,30 @@
      "voyagesPerYear": [
       25,
       80
+     ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      25,
+      80
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      25,
+      80
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      30,
+      90
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      30,
+      90
      ]
     }
    },
@@ -2335,7 +2575,7 @@
    "basis": "Hanseatic and Danish toll fragments; port-book studies (Lübeck, Danzig, Copenhagen). Does not cross the Sound; systematically under-recorded.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "grain",
@@ -2546,6 +2786,30 @@
       350,
       750
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      490,
+      1050
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      510,
+      1090
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      700,
+      1500
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      805,
+      1725
+     ]
     }
    },
    "notes": "The sea's short-haul metabolism — the kind of traffic toll series at a single strait cannot show."
@@ -2557,7 +2821,7 @@
    "basis": "English port books; Amsterdam galjootsgeldregisters. Cloth out, everything back.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "trade-goods",
@@ -2751,6 +3015,30 @@
      "voyagesPerYear": [
       400,
       900
+     ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      400,
+      900
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      420,
+      950
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      440,
+      990
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      380,
+      860
      ]
     }
    },
