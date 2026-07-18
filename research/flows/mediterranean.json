@@ -1996,8 +1996,8 @@
    },
    "framing": {
     "sober": true,
-    "label": "coerced human movement — recorded, not celebrated",
-    "description": "Captive people carried across the Black Sea to Ottoman slave markets — the northern counterpart of the trans-Saharan routes, and for the 16th–17th centuries among the largest coerced flows anywhere. Recorded at documented scale; no value framing.",
+    "label": "coerced human movement",
+    "description": "Captive people carried across the Black Sea to Ottoman slave markets — the northern counterpart of the trans-Saharan routes, and for the 16th–17th centuries among the largest coerced flows anywhere.",
     "rule": "No value framing, no profit framing, never a reward. Sim-side representation waits for S2's generalization of the Middle-Passage invariant; until then these flows exist as historical record only."
    }
   }

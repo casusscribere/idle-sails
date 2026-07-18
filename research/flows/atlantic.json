@@ -924,8 +924,8 @@
    },
    "framing": {
     "sober": true,
-    "label": "coerced human movement — recorded, not celebrated",
-    "description": "Human beings trafficked against their will across the Atlantic — the largest forced migration in history. The flow is recorded at full documented scale; mortality, not profit, is its measure. The sim's existing Middle-Passage invariant (sober ledger framing, no value tier, elevated attrition) applies to every lane this system feeds.",
+    "label": "coerced human movement",
+    "description": "Human beings trafficked against their will across the Atlantic — the largest forced migration in history. Mortality on the passage was immense.",
     "rule": "No value framing, no profit framing, never a reward. Sim-side representation waits for S2's generalization of the Middle-Passage invariant; until then these flows exist as historical record only."
    }
   },

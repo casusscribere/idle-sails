@@ -1155,8 +1155,8 @@
    },
    "framing": {
     "sober": true,
-    "label": "coerced human movement — recorded, not celebrated",
-    "description": "Captive people carried from East Africa into Arabian, Persian, Indian, and Mascarene bondage — a coerced flow spanning this whole era and beyond it at both ends. Recorded at reconstructed scale; no value framing.",
+    "label": "coerced human movement",
+    "description": "Captive people carried from East Africa into Arabian, Persian, Indian, and Mascarene bondage — a coerced flow spanning this whole era and beyond it at both ends.",
     "rule": "No value framing, no profit framing, never a reward. Sim-side representation waits for S2's generalization of the Middle-Passage invariant; until then these flows exist as historical record only."
    }
   },

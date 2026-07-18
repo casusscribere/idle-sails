@@ -65,127 +65,122 @@ on the chart.
 
 ---
 
-## Part B — X-R2 charter framing sign-off  ·  ⚠ FOR USER REVIEW
+## Part B — X-R2 charter framing sign-off  ·  ✅ APPROVED 2026-07-18
 
 **What this is.** PLAN-3 §1 rule 6 (the charter): *coerced human movement carries
 the sober framing — no value tier, no profit framing, never a reward.* The
 validator (`tools/validate-flows.mjs`) hard-fails any system with `enslaved-people`
 cargo that lacks a `framing{sober:true}` block. The campaign added several new
-coerced flows (PLAN-4/PLAN-6); this is **the assembled set of their framing texts,
-presented verbatim for your approval BEFORE they are written into the JSON and
-enforced at X-S1.** Each will be wrapped in the standard block —
-`framing: { sober: true, description: <the text below>, rule: "No value framing,
-no profit framing, never a reward. …" }` — matching the three R3 blocks already in
-the data.
+coerced flows (PLAN-4/PLAN-6); the user reviewed each text one at a time and
+**approved all eight** below. Each lands at X-S1 wrapped in the standard block —
+`framing: { sober: true, description: <the text>, rule: "No value framing, no
+profit framing, never a reward. …" }`.
 
-### The seven new framing texts staged for sign-off
+**Governing principle the user set in review (the "no tone-narration" rule):** the
+`description` states **fact only** — it never narrates its own tone. The
+"shown factually / never a reward / not cargo" meta-lines were removed from every
+text; the no-reward commitment lives in the `rule` field (enforcement metadata),
+not the player-visible prose. This was applied to the eight new texts AND
+retroactively to the three enforced R3 descriptions (see below).
 
-**1. `brazil-illegal-era`** (Atlantic, chunk 5; cargo enslaved-people; counted):
+### The eight approved framing texts (final wording)
+
+**1. `brazil-illegal-era`** (Atlantic, chunk 5; enslaved-people; counted) — *approved as written*:
 > "After 1831 this trade was illegal under Brazilian law and it continued
 > regardless, carrying more than three-quarters of a million people across these
 > decades. Vessels on this lane carried enslaved people; many died on the passage.
 > The trade ended only in 1850–52, under Brazilian law backed by naval pressure."
 
-**2. `cuba-illegal-era`** (Atlantic, chunk 5; enslaved-people; counted):
+**2. `cuba-illegal-era`** (Atlantic, chunk 5; enslaved-people; counted) — *approved as written*:
 > "This trade was conducted in defiance of treaty from 1820, sustained by Cuban
 > plantation demand and sheltered late in the era by flags the patrols could not
 > search. Vessels on this lane carried enslaved people; many died on the passage.
 > It outlasted every suppression effort of this era, ending only in 1867."
 
-**3. `west-africa-squadron`** (Atlantic naval pattern, chunk 5; a `note`, not an
-enslaved-people cargo system — included so the suppression squadron is never shown
-as a triumphal counter-flow):
-> "The squadron patrolled the African coast against the slave trade from 1808. It
-> intercepted a minority of voyages — roughly one in ten or fewer — and its
-> captures are shown as they were: a vessel detained, people landed at Freetown.
-> Disease made this among the navy's deadliest stations."
-
-**4. `indenture`** (Indian Ocean W, chunk 6; contract labour into a
-post-abolition plantation regime):
-> "These vessels carried indentured laborers from India to Mauritius under
-> contract, into a plantation labor regime built directly on the site of slavery.
-> Recruitment abuses were documented from the start — emigration was suspended
-> from 1839 to 1842 for that reason — and mortality on the passage was real. The
-> system is shown factually: people under contract, not cargo."
-
-**5. `amoy-emigration`** (East Asia / nanyang, chunk 6; the coolie traffic from
-1847) — **refined in the chunk-10 review** (the original "under contracts many
-did not understand" understated the documented coercion of the Chinese coolie
-trade; strengthened to name it):
-> "From 1847 vessels carried indentured emigrants from Amoy toward Cuba and Peru
-> — bound by contracts many could not read, and some taken by force; mortality on
-> these passages was high. The traffic is shown factually and is never a reward."
-
-**6. `sydney-convicts`** (Pacific/Australasia, chunk 8; convict transportation;
-counted — indent records):
-> "These ships carried men and women transported under sentence from Britain and
-> Ireland to a penal colony on Gadigal land. Transportation to New South Wales ran
-> from 1788 until 1840. Mortality on the early passage was severe — on the Second
-> Fleet of 1790, roughly a quarter died at sea — and fell only after naval
-> surgeons were placed aboard every ship from 1815. The people aboard are shown as
-> what they were: prisoners under sentence, not cargo."
-
-**7. `neworleans-coastwise`** (Atlantic, chunk 8; the domestic coastwise slave
-trade; enslaved-people; counted):
+**3. `neworleans-coastwise`** (Atlantic, chunk 8; enslaved-people; counted) — *edited: dropped the tone-narration sentence*:
 > "These vessels carried enslaved people by sea from the ports of the Upper South
 > — Baltimore, Alexandria, Norfolk, Richmond — to New Orleans, the largest slave
 > market in the United States. Federal manifests recorded more than sixty thousand
 > people on this coastwise passage between 1818 and 1860 — a domestic continuation
-> of the Middle Passage. They are shown factually; many were separated from their
-> families by the voyage, and the trade is never a reward."
+> of the Middle Passage. Many were separated from their families by the voyage."
 
-### Already enforced (R3 — shown for completeness, not for re-approval)
+**4. `plata-montevideo`** (Atlantic; the E1 slave trade; counted) — *drafted to close the audit gap; cleaned + de-duplicated*:
+> "These vessels carried enslaved people to the Río de la Plata, where Montevideo
+> was made the sole authorized port of entry in 1791 — most brought by way of
+> Brazil, others direct from Mozambique and the Angolan coast. Many died on the
+> passage. The estuary's salt-beef exports in turn provisioned enslaved
+> plantations elsewhere."
 
-Three coerced systems already carry validator-enforced `framing{sober:true}`
-blocks in the JSON, user-confirmed at R3: **`middle-passage`** (Atlantic),
-**`black-sea-slave-trade`** (Mediterranean/Kaffa), **`indian-ocean-slave-trades`**
-(Indian Ocean W). Their shared `rule` string is the template the seven above will
-use.
+**5. `west-africa-squadron`** (Atlantic naval pattern, chunk 5; a `note`, so no
+`rule` field — kept so the suppression squadron never reads as a triumphal
+counter-flow) — *cleaned: dropped "captures are shown as they were"*:
+> "The squadron patrolled the African coast against the slave trade from 1808. It
+> intercepted a minority of voyages — roughly one in ten or fewer; a capture meant
+> a single vessel detained, its people landed at Freetown. Disease made this among
+> the navy's deadliest stations."
 
-### Completeness audit — two gaps, RESOLVED IN THE CHUNK-10 REVIEW
+**6. `indenture`** (Indian Ocean W, chunk 6; contract labour into a post-abolition
+plantation regime) — *cleaned: dropped "The system is shown factually: people under
+contract, not cargo"*:
+> "These vessels carried indentured laborers from India to Mauritius under
+> contract, into a plantation labor regime built directly on the site of slavery.
+> Recruitment abuses were documented from the start — emigration was suspended
+> from 1839 to 1842 for that reason — and mortality on the passage was real."
 
-Every coerced flow the campaign has *named* is now accounted for. The two gaps
-the audit found are resolved below (both still need your ratification):
+**7. `amoy-emigration`** (East Asia / nanyang, chunk 6; the coolie traffic from
+1847) — *coercion-strengthened in the chunk-10 review + cleaned*:
+> "From 1847 vessels carried indentured emigrants from Amoy toward Cuba and Peru
+> — bound by contracts many could not read, and some taken by force; mortality on
+> these passages was high."
 
-- **The Plata / Montevideo transatlantic slave trade** (E1, verified chunk 6 —
-  712 voyages / ≥70,225 disembarked 1777–1812; Montevideo the sole authorized
-  entry from 1791; the tasajo triangle) has distinctive features a generic
-  inheritance of `middle-passage.framing` would lose (Montevideo's 1791 monopoly,
-  the Brazil routing, the Mozambique source, the salt-beef triangle), so it earns
-  **its own text.** Proposed (an eighth framing text, for the same sign-off):
-  > "These vessels carried enslaved people to the Río de la Plata, where
-  > Montevideo was made the sole authorized port of entry in 1791 — most brought
-  > by way of Brazil, others direct from Mozambique and the Angolan coast. Vessels
-  > on this lane carried enslaved people; many died on the passage. The estuary's
-  > salt-beef exports in turn provisioned enslaved plantations elsewhere; the
-  > trade is shown factually and is never a reward."
-- **The illegal-era Mascarene tail** (E5, verified chunk 6 — ~52,550 to Mauritius
-  to c.1827): **recommend it INHERITS `indian-ocean-slave-trades.framing`** — it
-  is the same East-African-to-Mascarene flow the R3 system already frames, now
-  under prohibition, not a distinct trade. A one-line `notes` addition on the
-  system ("the trade continued illegally into the 1820s") records the continuation
-  without a second framing block. (Adopt unless you prefer a dedicated text.)
+**8. `sydney-convicts`** (Pacific/Australasia, chunk 8; convict transportation;
+counted — indent records) — *cleaned: dropped "The people aboard are shown as what
+they were…"*:
+> "These ships carried men and women transported under sentence from Britain and
+> Ireland to a penal colony on Gadigal land. Transportation to New South Wales ran
+> from 1788 until 1840. Mortality on the early passage was severe — on the Second
+> Fleet of 1790, roughly a quarter died at sea — and fell only after naval
+> surgeons were placed aboard every ship from 1815."
 
-*(Convict transportation to Van Diemen's Land — Hobart, to 1853 — is not a gap
-now: Hobart is not a node; if promoted it would need its own text.)*
+### The three R3 blocks — CLEANED to match the principle (applied 2026-07-18)
 
-### What sign-off asks of you
+The user extended the no-tone-narration rule to the three already-enforced R3
+descriptions. Applied directly to the JSON (the `sober:true` flag and each `rule`
+field are unchanged, so enforcement is intact; only the prose was trimmed). The
+shared `label` was also trimmed from "coerced human movement — recorded, not
+celebrated" to **"coerced human movement."**
 
-1. **Ratify or edit the eight framing texts** — the original seven (one, the Amoy
-   text, refined in review to name the trade's coercion) **plus the proposed Plata
-   text** (the audit gap, now drafted). Wording is the point — this is the
-   charter's sober-treatment commitment made concrete.
-2. **Confirm the Mascarene-tail recommendation** (inherit
-   `indian-ocean-slave-trades.framing` + a one-line `notes` on the illegal
-   continuation), or ask for a dedicated text instead.
-3. On approval, X-S1 writes each as a `framing{sober:true, description, rule}`
-   block on its system; the validator then enforces presence, and S3 can surface
-   the sober notes in the vessel ledger (the one-line evidence note idiom).
+- **`middle-passage`** (`atlantic.json`): → "Human beings trafficked against their
+  will across the Atlantic — the largest forced migration in history. Mortality on
+  the passage was immense."
+- **`black-sea-slave-trade`** (`mediterranean.json`): → "Captive people carried
+  across the Black Sea to Ottoman slave markets — the northern counterpart of the
+  trans-Saharan routes, and for the 16th–17th centuries among the largest coerced
+  flows anywhere."
+- **`indian-ocean-slave-trades`** (`indian-ocean-west.json`): → "Captive people
+  carried from East Africa into Arabian, Persian, Indian, and Mascarene bondage — a
+  coerced flow spanning this whole era and beyond it at both ends."
 
-*(Chunk-10 review changes, for your visibility: the Amoy text was strengthened to
-name the coercion — "bound by contracts many could not read, and some taken by
-force"; the Plata gap was closed with a drafted text; the Mascarene gap was
-resolved by inheritance. The other six texts passed review unchanged.)*
+### Completeness audit — both gaps resolved (ratified)
+
+- **Plata / Montevideo** — has its own text (#4 above), ratified. Distinctive
+  features a generic `middle-passage` inheritance would lose (the 1791 monopoly,
+  the Brazil routing, the Mozambique source, the tasajo triangle) are carried.
+- **The illegal-era Mascarene tail** (E5, ~52,550 to Mauritius to c.1827) —
+  **INHERITS `indian-ocean-slave-trades.framing`** (ratified): it is the same
+  East-African-to-Mascarene flow the R3 system already frames, now under
+  prohibition. At X-S1, add a one-line `notes` on the system — *"the trade
+  continued illegally into the 1820s"* — no second framing block.
+
+*(Convict transportation to Van Diemen's Land — Hobart, to 1853 — is not a gap now:
+Hobart is not a node; if promoted it would need its own text.)*
+
+### Remaining at X-S1 (mechanical, no further sign-off needed)
+
+The eight approved texts are written as `framing{sober:true, description, rule}`
+blocks on their systems when those systems are authored at X-S1; the validator then
+enforces presence, and S3 can surface the sober notes in the vessel ledger. The
+three R3 cleanups are already live in the JSON.
 
 ---
 
@@ -198,9 +193,15 @@ basis. Restatements carried into the build: era-start Option A (1670 node, York
 Factory as the ≥1684 era-name, Rupert House earlier); the 1694–1714 French
 occupation modelled as a York lifecycle gap + reroute to Fort Albany.
 
-**X-R2:** the seven new coerced-flow framing texts are assembled and staged for
-user sign-off; three R3 blocks already enforced; two gaps (Plata, Mascarene tail)
-flagged for X-S1. No new adversarial claims — Part B is assembly + audit, not
-research.
+**X-R2: APPROVED 2026-07-18.** The user reviewed the framing texts one at a time
+and approved all eight (brazil/cuba/neworleans/plata illegal-era + west-africa-
+squadron + indenture + amoy-emigration + sydney-convicts). Governing edit: the
+**description states fact, never narrates its own tone** — the "shown factually /
+never a reward / not cargo" meta-lines were stripped from all eight and, on the
+user's instruction, retroactively from the three enforced R3 descriptions (the
+`sober:true` flag + each `rule` field unchanged, so enforcement holds). Both audit
+gaps ratified: Plata got its own text; the Mascarene tail inherits
+`indian-ocean-slave-trades.framing` + a one-line `notes` at X-S1.
 
-**With chunk 10 done, only chunk 11 (T12, the addenda sweep) remains in Phase RB.**
+**With chunk 11 (T12) also complete, Phase RB is COMPLETE — and the X-R2 framing
+sign-off, the campaign's one standing user-action item, is now closed.**
