@@ -28,13 +28,43 @@ RANKING queue if a task completes; (5) commit.
 | 4 | **Local metabolisms** (T4: colliers, shachuan, coastwise circuits — short-circuit representability) | `ambient-flows.md` §4 + mappability verdicts | **✅ done 2026-07-17 — T4 COMPLETE** |
 | 5 | **T10 basin extensions, Atlantic** (1820/30/40 decades; illegal-era Brazil/Cuba trade — counted, sober framing staged for review; Latin American independence; suppression squadron) | `research/flows/atlantic-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-17** |
 | 6 | **T10 basin extensions, East Asia + Indian Ocean W** (Canton→treaty ports, opium named honestly, Mascarene/Plata coerced systems with E1/E5 verification) | `research/flows/east-asia-io-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-17 — E1 + E5 VERIFIED** |
-| 7 | **T10 basin extensions, Baltic/Med/Bengal** (Sound Toll to 1857, échelles after Barbary ends, country trade) | basin files | **in progress 2026-07-17** (gathers R/S/T out) |
+| 7 | **T10 basin extensions, Baltic/Med/Bengal** (Sound Toll to 1857, échelles after Barbary ends, country trade) | `research/flows/baltic-med-bengal-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-18** |
 | 8 | **T10 new-port dossiers + wars sweep** (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans; wars 1815–50 incl. Navarino, Opium War) | `port-flow-candidates` pattern dossiers + wars.json inputs | queued |
 | 9 | **T8 remaining candidates** (Ostend & Trieste companies, New Julfa carriage, Aceh/Bantam pepper) | new dated candidates doc + register entries | queued |
 | 10 | **E-R1 re-verification closeout** (any PLAN-4 Tier-1 claim still unstamped: Jumar/Borucki E1, HBCA E4, Allen E5) + X-R2 framing sign-off texts | stamps + staged texts | queued |
 | 11 | **T12 — the addenda sweep** (2026-07-17): Japan/Dejima + Japanese ports · Indonesia (= T8's Aceh/Bantam strand) · cross-Pacific & around-SA (w/ E9 Callao) · Med African coast · Caribbean deep search · India–Arabia–E-Africa lens · one-time specials catalog (per-seed probabilistic) · goods-thread lens (silver, whaling, Middle Passage — sober register kept) | dated candidates doc(s) + specials catalog + register entries | queued |
 
 ## Done
+
+- **Chunk 7 (2026-07-18):** T10's three remaining basins (Baltic/North Sea ·
+  Mediterranean/Black Sea · Bengal/SE Asia) — 110 claims, **98 ✅ / 11 ⚠ /
+  1 ✂**; `research/flows/baltic-med-bengal-1815-1850.md` stages all three
+  decade extensions to 1850. The ✂: Hamburg's Sandtorhafen dated 1840 →
+  1866 (out of era). Key outcomes: the Baltic story is **re-weighting, not
+  new geography** — the British-wheat backbone confirmed to the digit
+  (Sharp 2010: 1,144 qr 1833; 87,701 qr 1845), the post-1846 grain
+  step-change and mid-1830s trough both real; one new system
+  (`german-emigration-atlantic`) folds to the Atlantic. **`black-sea-grain`
+  authored counted** (Kremmidas/Harlaftis verbatim — Chiot ~40% and Greek
+  merchants 31%→57% of the Britain trade), plus `alexandria-cotton` (Owen's
+  quinquennials) and a `sicily-sulphur` lane with the scripted 1838–40
+  Sulphur Crisis; `singapore-entrepot` + `nhm-java` + `manila` author the
+  eastern strand (Java exports 11.3M→66.1M guilders exact; galleon
+  severance corrected to **1821** Mexican independence, not 1823).
+  **Silences actions:** `black-sea-after-1783` retires CONDITIONALLY
+  (gated on Odessa's node promotion, chunk 8) and PARTIALLY (residual kept
+  for Azov/Danube-pre-1840 + Ottoman coastwise per the refuter), which also
+  discharges chunk 3's Istanbul-Pontic-grain flag; the ~80,000-ton junk
+  economy STAYS registered (`junk-trade-under-registration`, £10M reclassed
+  asserted). Corrections applied at synthesis: Sound-abolition
+  capitalization ~35M → ~30.5–33.5M; Swedish iron to Britain >52k → ~20–30k;
+  Austrian Lloyd first steamer 15 May 1837; Singapore backbone → counted/
+  MEDIUM (Wong Lin Ken single-source, ~60% level gap vs his later series);
+  opium year-values read as trends (season-vs-calendar artifact). Recurring
+  ⚠ types: inflated headline numbers, causal over-reach on solid counts,
+  class inflation on single-table anchors. WIP superseded and removed. **T10
+  basins are all authored (chunks 5–7); chunk 8 = the five new-port dossiers
+  + wars sweep, then chunk 10 closes E-R1.**
 
 - **Chunk 6 (2026-07-17):** T10's East Asia + IO-W strands — 59 claims,
   47 ✅ / 11 ⚠ / 1 ✂ (the Crawfurd junk-tonnage scope error);
