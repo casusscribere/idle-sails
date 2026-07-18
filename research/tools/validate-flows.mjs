@@ -5,7 +5,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 const ROOT = "/home/kirk/REPOS_LINUX/idle_sails";
 const load = (p) => JSON.parse(readFileSync(`${ROOT}/${p}`, "utf8"));
-const DEC = []; for (let d = 1550; d <= 1810; d += 10) DEC.push(d);
+const DEC = []; for (let d = 1550; d <= 1850; d += 10) DEC.push(d);
 
 const cargoIds = new Set(load("data-src/cargo.json").cargo.map(c => c.id));
 const shipIds = new Set(load("data-src/ship-types.json").shipTypes.map(s => s.id));

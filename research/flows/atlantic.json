@@ -483,7 +483,7 @@
    "basis": "Portuguese frota records and Bahia/Rio port studies; sugar boom c.1600, gold era 1700s–60s, the court at Rio and open ports after 1808.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "sugar",
@@ -702,6 +702,30 @@
      "voyagesPerYear": [
       150,
       300
+     ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      150,
+      300
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      160,
+      320
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      170,
+      340
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      180,
+      360
      ]
     }
    }
@@ -1165,7 +1189,7 @@
    "basis": "English and Dutch port books; the Bordeaux wine fleets and the Lisbon/Cádiz trades to northwest Europe (the Baltic salt run is carried in the Baltic basin).",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "wine",
@@ -1386,6 +1410,30 @@
       350,
       700
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      350,
+      700
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      350,
+      700
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      350,
+      700
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      350,
+      700
+     ]
     }
    }
   },
@@ -1396,7 +1444,7 @@
    "basis": "Cell & Pope; English West Country, French, and Basque fleets to the Banks; the 'sack ships' carrying cod direct to Iberia and the Mediterranean.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "cod",
@@ -1607,6 +1655,30 @@
       300,
       650
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      280,
+      560
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      260,
+      480
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      250,
+      450
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      250,
+      450
+     ]
     }
    }
   },
@@ -1797,7 +1869,7 @@
    "basis": "English customs and the Glasgow tobacco lords' records.",
    "era": {
     "from": 1620,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "tobacco",
@@ -1948,6 +2020,30 @@
      "voyagesPerYear": [
       80,
       180
+     ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      80,
+      180
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      75,
+      170
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      70,
+      160
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      70,
+      160
      ]
     }
    }
