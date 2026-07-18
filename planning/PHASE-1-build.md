@@ -45,7 +45,7 @@ the sim keeps flowing 1550→1815 while the late-era data accumulates unsailed.
 ## Increment checklist (safe → disruptive)
 
 - [ ] **1 — Epilogue-decade design spec** *(this doc, §Epilogue below; design only, no code)*. ✅ increment-1 content is written; ratify/adjust before the clock-flip (increment 7).
-- [ ] **2 — Widen the validation/fold scope.** `build-data.mjs` `ERA.to → 1850` + add `1850` to the coverage-report decades. `npm run build:data` + `npm test` (should be unchanged — no data uses >1815 yet). Commit. *Enables all 1815–50 authoring.*
+- [ ] **2 — Widen the validation/fold scope.** `build-data.mjs` `ERA.to → 1850` + add `1850` to the coverage-report decades. **⚠ NOT a no-op (probed 2026-07-18):** widening the era makes each port's default lifecycle window `{1550,1850}`, so `eraNames` must tile to 1850 — `build:data` errors until the **last `eraName` window of 7 ports is extended 1815→1850**: `gothenburg` (Gothenburg 1621–), `kingston` (Kingston 1693–), `batavia` (Batavia 1619–), `louisbourg` (St John's 1759–), `bombay` (Bombay 1661–), `madras` (Madras 1639–), `calcutta` (Calcutta 1690–). All seven kept their names 1815–1850, so the extension is historically safe (the RC sweep can refine). Bundle the ERA widen + these 7 `eraNames` edits in ONE commit; `npm run build:data` + `npm test`. *(Powers/shipTypes ending 1815 stay valid — they're within scope; their late-era activity is a data-completeness question for increments 3–5, not a validation error.)*
 - [ ] **3 — Author the 1815–50 basin extensions** into the six `research/flows/*.json`, **one basin per commit**, from the staged chunk-5/6/7 synthesis (`atlantic-1815-1850.md`, `east-asia-io-1815-1850.md`, `baltic-med-bengal-1815-1850.md`): extend surviving systems' `era.to` + add `byDecade` 1820/1830/1840/1850 ranges; add the new systems (illegal-era Brazil/Cuba, cotton-gulf-liverpool, bna-timber-emigrants, emigrant-packets, brazil-coffee, plata-republics-trade, around-the-horn-pacific, treaty-port-trade, opium-carriage, zanzibar, mauritius-sugar, indenture, black-sea-grain, alexandria-cotton, sicily-sulphur, singapore-entrepot, nhm-java, manila, german-emigration-atlantic…). Each with cargo/shipTypes ids that resolve, lanes summing ~1.0, evidence class, and — for coerced systems — the **approved framing blocks** (§Framing below). Run `research/tools/validate-flows.mjs` + `npm run build:data` + `npm test` per basin. Commit per basin.
 - [ ] **4 — Author the T8/T12 new SYSTEMS** (barbary-concessions, barbary-regency-exports, guianas-plantations, logwood-mahogany, pacific-colonial-spanish, guayaquil-cacao, nootka-fur, bantam-pepper, ostend-interlude/fold) into their basins, from `port-flow-candidates-2026-07-18.md` + `-T12-addenda.md`. Same validation. Commit per basin/group.
 - [ ] **5 — New PORTS into `data-src/ports.json`** (no bake yet): the PLAN-4/6 five + Montevideo/Basra/York-Factory/Port-Louis/whaling-grounds + the T8/T12 promotions (Ostend, Bantam, Callao, Guayaquil, Nootka, Algiers, Tunis, Tripoli, Alexandria, Curaçao, St Thomas, Paramaribo, Belize). Coords, `active{from,to}` windows, `eraNames`/`eraPowers` where flagged, `simProxy: null`. Add new powers (`algiers/tunis/tripoli/morocco`) + name/captain pools. `npm run build:data` + `npm test`. Commit in logical groups.
@@ -105,6 +105,9 @@ stretched blend — though the blend machinery stays as the fallback underneath.
 
 ## Current state
 
-**Increment 1 (this doc + the epilogue spec) landed 2026-07-18.** Increments
-2–9 queued above. Next up: increment 2 (widen the build-data ERA scope) — the
-smallest possible enabling change, then the basin authoring begins.
+**Increment 1 (this doc + the epilogue spec) landed 2026-07-18.** Increment 2
+was **probed 2026-07-18** and found to couple to the 7-port `eraNames` tiling
+(see its note); the probe was reverted clean (build green at 1815, 53 tests
+pass) rather than shipped as a fiddly orphan. Next up: execute increment 2 as
+specified (ERA widen + the 7 `eraNames` extensions, one commit), then the basin
+authoring (increment 3) begins. The tree is at a clean, deployable 1815 state.
