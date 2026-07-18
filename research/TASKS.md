@@ -28,8 +28,9 @@ the tasks share a source campaign and should run together.
   two overlap — whaling grounds (E3), the caravane maritime (E7), Jeddah
   pilgrim shipping (E6), and the fisheries all appear on BOTH lists, so
   running T4 and a PLAN-4 wave-1 verification separately would read the same
-  sources twice. T8 (the sweep's declared silences) extends the same
-  campaign northward (fisheries, stockfish) and is natural to fold in.
+  sources twice. ~~T8~~ (the sweep's declared silences — **done 2026-07-18**:
+  fisheries/stockfish in chunk 2, the four remaining candidates in chunk 9)
+  extended the same campaign.
   ~~T9~~ (convoy institutions & rates — **done 2026-07-16**, chunk 1 of the
   campaign) shared T4's naval-patterns strand, which landed with it.
   **T10 (PLAN-6 X-R1, live since the 2026-07-16 adoption)** is a member of
@@ -241,6 +242,20 @@ bounds + a sim-shape recommendation; the silences-register `steam` entry
 ladder); until that plan is drafted, steam remains a declared boundary.
 
 ## Done
+
+- **T8 — the 2026-07 sweep's declared silences (2026-07-18, Phase-RB
+  chunks 2 + 9).** All five declared gaps answered: the Iceland/North-Atlantic
+  fisheries + Bergen stockfish in chunk 2 (`ambient-flows.md` §2); the four
+  remaining — the Ostend & Trieste companies, the New Julfa Armenian carriage,
+  the Aceh/Bantam pre-VOC pepper — in chunk 9 (`port-flow-candidates-2026-07-18.md`;
+  64 claims, 55 ✅ / 9 ⚠ / 0 ✂). Outcomes: **two new ports** (Ostend 1715–1745,
+  Bantam 1550–1685 — both inside the current era, so promotable now via
+  `CURATION.md`), **two folds** (Ostend hard-clamped into `minor-company-
+  arterials`; Trieste/Bolts's 9-yr micro-flow), and **three silences answered**
+  (New Julfa `gestured` + a mapped Madras–Manila proxied lane; the failed
+  Habsburg stations `gestured`; Bantam's pre-VOC carriage a `monopoly-
+  displacement` `asserted` pointing at the new `bantam-pepper` system). Feeds
+  the promotion queue + the silences register.
 
 - **T4 — ambient flows & naval movement patterns (2026-07-17, Phase-RB
   chunks 1–4).** The full catalog is `research/ambient-flows.md` §§1–4:

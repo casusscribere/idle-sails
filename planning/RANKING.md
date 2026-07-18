@@ -335,22 +335,23 @@ recommended order, not law.
    2026-07-16** (see the pass ledger above: nameLedger in world.js,
    fate-inertness proven vs HEAD, 52 tests). The step-3 re-gate note
    stands: re-run `name-pressure.mjs` when X-S lands.
-5. **[R] Phase RB as ONE campaign — T4 + T8 + ~~T9~~ + T10 (X-R1)**, plus
+5. **[R] Phase RB as ONE campaign — ~~T4~~ + ~~T8~~ + ~~T9~~ + T10 (X-R1)**, plus
    PLAN-4 E-R1 verification. The big source pass; the whole point of the
    phase grouping is that it runs once. Includes X-R2's charter sign-off
    texts staged for user review. **IN PROGRESS** (`research/rb-campaign.md`):
-   chunks 1–4 done 2026-07-16/17 — **T9 complete**, **T4 COMPLETE** (all
-   four strands of `ambient-flows.md` landed, 286 claims at 229 ✅ / 56 ⚠ /
-   1 ✂ under full adversarial verification), **E3 + E6 verifications
-   passed**, two T8 items done, T10's packet-lines item done. **Pass 4's
-   hard gate (T4) is OPEN** — and the catalog's engineering conclusion is
-   that ONE new movement primitive (the grounds node) unlocks six ambient
-   patterns. Remaining in the campaign: chunks 5–10 (T10 basin extensions
-   + new-port dossiers + wars; T8's remaining candidates; E1/E2/E4/E5
-   verification closeout) and chunk 11 = **T12, the 2026-07-17 addenda
-   sweep** (Japan/Dejima, Indonesia = T8's Aceh strand, Pacific coasts,
-   Med African coast, Caribbean, the specials catalog, the goods-thread
-   lens) — its outputs feed Pass 4's scripted-only ports, Pass 6's
+   chunks 1–9 done 2026-07-16/17/18 — **T9 complete**, **T4 COMPLETE**
+   (286 claims, 229 ✅ / 56 ⚠ / 1 ✂), **T8 COMPLETE** (chunk 2 fisheries +
+   chunk 9's four candidates → two new ports Ostend/Bantam, two folds, three
+   silences), **T10 COMPLETE** (chunks 5–8: six basin extensions + five
+   new-port dossiers + the full 1815–50 wars set, 384 claims at 322 ✅ /
+   59 ⚠ / 3 ✂), **E1/E3/E5/E6 verifications passed**. **Pass 4's hard gate
+   (T4) is OPEN** — and the catalog's engineering conclusion is that ONE new
+   movement primitive (the grounds node) unlocks six ambient patterns.
+   Remaining in the campaign: **chunk 10** (E-R1 closeout — E4/York Factory +
+   the X-R2 charter framing sign-off texts) and **chunk 11 = T12**, the
+   2026-07-17 addenda sweep (Japan/Dejima, Indonesia = T8's Aceh strand,
+   Pacific coasts, Med African coast, Caribbean, the specials catalog, the
+   goods-thread lens) — its outputs feed Pass 4's scripted-only ports, Pass 6's
    probabilistic specials, and the queued trade-goods-threads feature.
 6. **[F] Convoys** (`PLAN-convoys.md`). Buildable any time after step 1,
    but cheapest here — it inherits T9's evidence-classed rates for free.

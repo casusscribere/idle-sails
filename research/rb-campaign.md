@@ -30,11 +30,34 @@ RANKING queue if a task completes; (5) commit.
 | 6 | **T10 basin extensions, East Asia + Indian Ocean W** (Canton→treaty ports, opium named honestly, Mascarene/Plata coerced systems with E1/E5 verification) | `research/flows/east-asia-io-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-17 — E1 + E5 VERIFIED** |
 | 7 | **T10 basin extensions, Baltic/Med/Bengal** (Sound Toll to 1857, échelles after Barbary ends, country trade) | `research/flows/baltic-med-bengal-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-18** |
 | 8 | **T10 new-port dossiers + wars sweep** (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans; wars 1815–50 incl. Navarino, Opium War) | `research/flows/new-ports-wars-1815-1850.md` (staged for X-S1/X-S2) | **✅ done 2026-07-18** |
-| 9 | **T8 remaining candidates** (Ostend & Trieste companies, New Julfa carriage, Aceh/Bantam pepper) | new dated candidates doc + register entries | **in progress 2026-07-18** (gathers OS/TR/NJ/AB out) |
+| 9 | **T8 remaining candidates** (Ostend & Trieste companies, New Julfa carriage, Aceh/Bantam pepper) | [`port-flow-candidates-2026-07-18.md`](port-flow-candidates-2026-07-18.md) | **✅ done 2026-07-18 — T8 COMPLETE** |
 | 10 | **E-R1 re-verification closeout** (any PLAN-4 Tier-1 claim still unstamped: Jumar/Borucki E1, HBCA E4, Allen E5) + X-R2 framing sign-off texts | stamps + staged texts | queued |
 | 11 | **T12 — the addenda sweep** (2026-07-17): Japan/Dejima + Japanese ports · Indonesia (= T8's Aceh/Bantam strand) · cross-Pacific & around-SA (w/ E9 Callao) · Med African coast · Caribbean deep search · India–Arabia–E-Africa lens · one-time specials catalog (per-seed probabilistic) · goods-thread lens (silver, whaling, Middle Passage — sober register kept) | dated candidates doc(s) + specials catalog + register entries | queued |
 
 ## Done
+
+- **Chunk 9 (2026-07-18):** T8 remaining candidates — 64 claims, **55 ✅ /
+  9 ⚠ / 0 ✂** (zero refutations); `port-flow-candidates-2026-07-18.md` is the
+  dated candidates doc. Four verdicts, all endorsed under refutation: **Ostend
+  Company** → PROMOTE a new node (1715–1745, a new Austrian/Imperial flag) +
+  a hard-clamped fold into `minor-company-arterials` (1715–1734 + a Banquibazar
+  afterlife tail 1731–1744; 55 counted sailings; the ~42%-of-Europe's-tea claim
+  held); **Trieste/Bolts** → FOLD (a 9-yr micro-flow, Trieste→India/Canton,
+  1770+1780) + a `gestured` silence for the failed Nicobar & Delagoa stations;
+  **New Julfa Armenian carriage** → a `gestured` silence (`carriage-under-other-
+  flags`, cross-ref greek-ottoman-coasting + persian-gulf-trade/country-trade-
+  west; the Russia-transit stratum counted-but-unmappable) **+ one mapped
+  `proxied` Madras–Manila lane** (the leg upgraded from held-back under
+  refutation); **Bantam** → PROMOTE a new port (−6.0424/106.1609, distinct from
+  Batavia, `active {1550,1685}`) + a `bantam-pepper` system (counted on the
+  Bulbeck spine, "counted-pending" the decade tonnages) + a `monopoly-
+  displacement` silence (VOC 1682 forced the trade to Batavia — displacement,
+  not disappearance). Three staged silences entries + two new register `reason`
+  strings. **Ostend (1715–45) and Bantam (1550–1685) fall INSIDE the current
+  1550–1815 era** — they promote via `CURATION.md` now, not gated on PLAN-6.
+  **T8 is COMPLETE** (chunk 2 fisheries + chunk 9's four = all five 2026-07
+  declared gaps answered). WIP superseded and removed. Next: chunk 10 (E-R1
+  closeout — E4/York Factory + the X-R2 framing sign-off), chunk 11 (T12).
 
 - **Chunk 8 (2026-07-18):** T10 new-port dossiers + the wars sweep — 114 claims,
   **95 ✅ / 18 ⚠ / 1 ✂**; `research/flows/new-ports-wars-1815-1850.md` stages the

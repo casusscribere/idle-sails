@@ -37,7 +37,7 @@ preserved in each artifact's in-file **Verification record** and in
 | 6 | T10 basin extensions — East Asia + Indian Ocean W | [`flows/east-asia-io-1815-1850.md`](flows/east-asia-io-1815-1850.md) §5 | 59 — 47/11/**1**✂ |
 | 7 | T10 basin extensions — Baltic/Med/Bengal | [`flows/baltic-med-bengal-1815-1850.md`](flows/baltic-med-bengal-1815-1850.md) §6 | 110 — 98/11/**1**✂ |
 | 8 | New-port dossiers (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans) + wars sweep | [`flows/new-ports-wars-1815-1850.md`](flows/new-ports-wars-1815-1850.md) §6 | 114 — 95/18/**1**✂ |
-| 9 | T8 remaining candidates (Ostend/Trieste cos., New Julfa, Aceh/Bantam) | queued | — |
+| 9 | T8 remaining candidates (Ostend/Trieste cos., New Julfa, Aceh/Bantam) | [`port-flow-candidates-2026-07-18.md`](port-flow-candidates-2026-07-18.md) §7 | 64 — 55/9/0 |
 | 10 | E-R1 closeout (E4 York Factory/HBCA) + X-R2 framing sign-off | queued | — |
 | 11 | T12 addenda sweep (Japan/Dejima, Indonesia, cross-Pacific, specials catalog) | queued | — |
 
@@ -333,6 +333,36 @@ Impressions…* 1844 series for Hong Kong; the Valparaíso 287/166 anchor; the
   1840; Acre 3 Nov 1840); the War of the Confederation (Casma 12 Jan 1839; Yungay
   20 Jan 1839); the First Carlist War (Bilbao relief 1836); the Battle of Navarino
   (20 Oct 1827).
+
+### T8 remaining candidates (chunk 9, `port-flow-candidates-2026-07-18.md`)
+
+- **Ostend Company:** *Ostend Company* (Wikipedia); Jan Parmentier / *Mapping
+  Bengal — The Ostend Company*; Wim De Winter, "The Afterlife of the Ostend
+  Company, 1727–1745," *Mariner's Mirror* 105:3 (2019); Banglapedia "Ostend
+  Company" + Sarkar & Majumdar eds., *History of Bengal Vol. II*.
+- **Trieste / Bolts:** *Austrian East India Company* + *William Bolts* +
+  *Austrian colonization of the Nicobar Islands* (Wikipedia); Klemen Kocjančič,
+  "Imperial Asiatic Company in Trieste and Antwerp… 1781–1785"; N. L. Hallward,
+  *William Bolts: A Dutch Adventurer under John Company* (Cambridge, 1920).
+- **New Julfa Armenian carriage:** Sebouh David Aslanian, *From the Indian Ocean
+  to the Mediterranean: The Global Trade Networks of Armenian Merchants from New
+  Julfa* (UC Press, 2011) + "Trade Diaspora versus Colonial State… 1748–1752"
+  (the *Santa Catharina*); Levon Khachikian, "The Ledger of the Merchant Hovhannes
+  Joughayetsi," *J. Asiatic Society* 8/3 (1966); Tamara Ganjalyan, "Armenian Trade
+  Networks," *EGO* (+ her *Russland-Route* monograph for the counted Russia-transit
+  silk series); *Encyclopaedia Iranica* "Julfa i/ii/v"; Bhaswati Bhattacharya,
+  "Making money at the blessed place of Manila," *J. Global History* (2008) — the
+  mapped Madras–Manila proxied lane; Ina Baghdiantz McCabe, *The Shah's Silk for
+  Europe's Silver* (1999).
+- **Aceh/Bantam pepper:** Bulbeck, Reid, Tan & Wu, *Southeast Asian Exports since
+  the 14th Century: Cloves, Pepper, Coffee, and Sugar* (KITLV/ISEAS, 1998) — the
+  counted pepper spine ("counted-pending" the Banten decade tonnages); Anthony
+  Reid, *Southeast Asia in the Age of Commerce 1450–1680* (Yale, 1988 & 1993);
+  Tomé Pires, *Suma Oriental* (the ~1,000-bahar 1522 figure); M. A. P.
+  Meilink-Roelofsz, *Asian Trade and European Influence… 1500–c.1630* (Nijhoff,
+  1962); Claude Guillot, *The Sultanate of Banten* / *Banten: Sejarah dan
+  Peradaban Abad X–XVII*; D. K. Bassett, *The Factory of the English East India
+  Company at Bantam, 1602–1682*.
 
 ### PLAN-4 wider-world candidates (`port-flow-candidates-2026-07.md`)
 
