@@ -32,7 +32,7 @@ RANKING queue if a task completes; (5) commit.
 | 8 | **T10 new-port dossiers + wars sweep** (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans; wars 1815–50 incl. Navarino, Opium War) | `research/flows/new-ports-wars-1815-1850.md` (staged for X-S1/X-S2) | **✅ done 2026-07-18** |
 | 9 | **T8 remaining candidates** (Ostend & Trieste companies, New Julfa carriage, Aceh/Bantam pepper) | [`port-flow-candidates-2026-07-18.md`](port-flow-candidates-2026-07-18.md) | **✅ done 2026-07-18 — T8 COMPLETE** |
 | 10 | **E-R1 re-verification closeout** (any PLAN-4 Tier-1 claim still unstamped: Jumar/Borucki E1, HBCA E4, Allen E5) + X-R2 framing sign-off texts | [`flows/e-r1-closeout-and-framing-signoff.md`](flows/e-r1-closeout-and-framing-signoff.md) | **✅ done 2026-07-18 — E-R1 COMPLETE** |
-| 11 | **T12 — the addenda sweep** (2026-07-17): Japan/Dejima + Japanese ports · Indonesia (= T8's Aceh/Bantam strand) · cross-Pacific & around-SA (w/ E9 Callao) · Med African coast · Caribbean deep search · India–Arabia–E-Africa lens · one-time specials catalog (per-seed probabilistic) · goods-thread lens (silver, whaling, Middle Passage — sober register kept) | dated candidates doc(s) + specials catalog + register entries | queued |
+| 11 | **T12 — the addenda sweep** (2026-07-17): Japan/Dejima + Japanese ports · Indonesia (= T8's Aceh/Bantam strand) · cross-Pacific & around-SA (w/ E9 Callao) · Med African coast · Caribbean deep search · India–Arabia–E-Africa lens · one-time specials catalog (per-seed probabilistic) · goods-thread lens (silver, whaling, Middle Passage — sober register kept) | dated candidates doc(s) + specials catalog + register entries | **in progress 2026-07-18** (gathers out) |
 
 ## Done
 
