@@ -36,19 +36,21 @@ preserved in each artifact's in-file **Verification record** and in
 | 5 | T10 basin extensions — Atlantic 1815–50 | [`flows/atlantic-1815-1850.md`](flows/atlantic-1815-1850.md) §5 | 101 — 82/19/0 |
 | 6 | T10 basin extensions — East Asia + Indian Ocean W | [`flows/east-asia-io-1815-1850.md`](flows/east-asia-io-1815-1850.md) §5 | 59 — 47/11/**1**✂ |
 | 7 | T10 basin extensions — Baltic/Med/Bengal | [`flows/baltic-med-bengal-1815-1850.md`](flows/baltic-med-bengal-1815-1850.md) §6 | 110 — 98/11/**1**✂ |
-| 8 | New-port dossiers (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans) + wars sweep | queued | — |
+| 8 | New-port dossiers (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans) + wars sweep | [`flows/new-ports-wars-1815-1850.md`](flows/new-ports-wars-1815-1850.md) §6 | 114 — 95/18/**1**✂ |
 | 9 | T8 remaining candidates (Ostend/Trieste cos., New Julfa, Aceh/Bantam) | queued | — |
 | 10 | E-R1 closeout (E4 York Factory/HBCA) + X-R2 framing sign-off | queued | — |
 | 11 | T12 addenda sweep (Japan/Dejima, Indonesia, cross-Pacific, specials catalog) | queued | — |
 
 - **T4 COMPLETE** across chunks 1–4: **286 claims — 229 ✅ / 56 ⚠ / 1 ✂.**
-- **T10 basin extensions COMPLETE** across chunks 5–7: **270 claims — 227 ✅ /
-  41 ⚠ / 2 ✂.** All six basins now carry authored 1815–1850 decade guidance
-  staged for X-S1 (JSON edits not yet applied).
-- The two ✂ in chunks 5–7: Crawfurd's 80,000-ton junk figure miscast as a
+- **T10 COMPLETE** across chunks 5–8: **384 claims — 322 ✅ / 59 ⚠ / 3 ✂** —
+  the six basin extensions (chunks 5–7) plus the five new-port dossiers and the
+  full 1815–50 wars set (chunk 8). All staged for PLAN-6's X-S1/X-S2 (era default
+  1550→1850; JSON/`wars.json`/node edits not yet applied).
+- The three ✂ in chunks 5–8: Crawfurd's 80,000-ton junk figure miscast as a
   Siam–Cochinchina subtotal (it is the whole trade); Hamburg's Sandtorhafen
-  dated 1840 (actually 1866, out of era). Chunk 3's ✂: monthly Post Office
-  India mail existed from 1815, not the 1830s.
+  dated 1840 (actually 1866, out of era); the `java-war` draft dropped (interior
+  land war, no sea risk). Chunk 3's ✂: monthly Post Office India mail existed
+  from 1815, not the 1830s.
 
 ### PLAN-4 wider-world candidate sweep (pre-campaign, feeds chunks 8/10)
 
@@ -290,6 +292,47 @@ convoy); Davis (1709 coastal tonnage bracket); Bao Shichen (~3,500 sand junks at
 Shanghai); the Jianghai customs register (monthly arrivals); Xue Yong (the grain-
 volume deflation dispute); Wang Zongmu 1572 (the pre-1684 state sea-logistics
 exception); Leonard's monographs, Flinn's table (follow-ups).
+
+### New-port dossiers + wars sweep (chunk 8, `flows/new-ports-wars-1815-1850.md`)
+
+*Node bake data + the 1815–50 wars set. Much of the port magnitude is carried by
+sources already listed above (Wong Lin Ken for Singapore; the *Twentieth Century
+Impressions…* 1844 series for Hong Kong; the Valparaíso 287/166 anchor; the
+`cotton-gulf-liverpool` bale series for New Orleans). New to this chunk:*
+
+- **Jennie K. Williams, *Oceans of Kinfolk* (JHU diss. 2020)** + the Coastwise
+  Traffic to New Orleans Dataset — ~4,000 manifests / >63,000 people by sea to
+  New Orleans, 1818–1860. New Orleans coastwise coerced lane (counted).
+- **NARA RG36, *Slave Ship Manifests Filed at New Orleans, 1807–1860*** (M1895,
+  under the Act of 2 Mar 1807) — the manifest series behind Williams. New Orleans.
+- **R. J. Follett, *The Sugar Masters* (2005)** + Champomier's series — the
+  Louisiana sugar hogshead series (5,000 hhd 1802 → 449,000 1853). New Orleans.
+- **Museums of History NSW / SLNSW convict indent index** (97,797 records
+  1788–1842) + the standard ~80,000 / ~162,000 convict estimates — Sydney convict
+  transportation (counted). *Reconciled: the two NSW figures are the same window
+  measured two ways.*
+- **W. Redfern, *Report on convict ships* (1814)**; P. Pearn, "Surgeon-
+  superintendents on convict ships," *ANZ J. Surgery* 66 (1996) — the convict
+  passage mortality shift (Second Fleet ~26%; surgeon-superintendents from 1815).
+- **J. Macarthur / NSW wool export series** (175k→3.693M lb, 1821–1836) — Sydney
+  wool arc (counted). *King George* (1805) — first Sydney-owned whaler.
+- **P&O Heritage, *Lady Mary Wood* (1842)** — first P&O Hong Kong departure,
+  1 Sept 1845 (behind the declared steam boundary).
+- **Wikisource primary instruments** — *Proclamation of Free Port (Hong Kong)*
+  (Elliot, 7 June 1841); *Hong Kong Letters Patent 1843*; *Treaty of Nanking*
+  (1842). Hong Kong lifecycle.
+- **Memoria Chilena / Biblioteca del Congreso Nacional (Chile)** — the *almacenes
+  francos* legislation (1824/1832/1833/1834). Valparaíso lifecycle.
+- **N. Twohill, "The British World…" (SciELO Chile, *Historia* 2010)** — early US
+  ship shares at Valparaíso; the flour-diversion trade.
+- **Wars-sweep event chronologies** (encyclopedic, WebSearch-verified dates):
+  the French conquest of Algeria (Sidi Ferruch 14 June / Algiers 5 July 1830;
+  Abd el-Kader 23 Dec 1847); the Russo-Turkish War 1828–29 & the Treaty of
+  Adrianople (14 Sept 1829); the First Syrian War (Acre 27 May 1832 / Kütahya
+  1833); the Oriental Crisis (Nezib 24 June 1839; Convention of London 15 July
+  1840; Acre 3 Nov 1840); the War of the Confederation (Casma 12 Jan 1839; Yungay
+  20 Jan 1839); the First Carlist War (Bilbao relief 1836); the Battle of Navarino
+  (20 Oct 1827).
 
 ### PLAN-4 wider-world candidates (`port-flow-candidates-2026-07.md`)
 

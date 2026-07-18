@@ -29,12 +29,37 @@ RANKING queue if a task completes; (5) commit.
 | 5 | **T10 basin extensions, Atlantic** (1820/30/40 decades; illegal-era Brazil/Cuba trade — counted, sober framing staged for review; Latin American independence; suppression squadron) | `research/flows/atlantic-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-17** |
 | 6 | **T10 basin extensions, East Asia + Indian Ocean W** (Canton→treaty ports, opium named honestly, Mascarene/Plata coerced systems with E1/E5 verification) | `research/flows/east-asia-io-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-17 — E1 + E5 VERIFIED** |
 | 7 | **T10 basin extensions, Baltic/Med/Bengal** (Sound Toll to 1857, échelles after Barbary ends, country trade) | `research/flows/baltic-med-bengal-1815-1850.md` (staged for X-S1) | **✅ done 2026-07-18** |
-| 8 | **T10 new-port dossiers + wars sweep** (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans; wars 1815–50 incl. Navarino, Opium War) | `port-flow-candidates` pattern dossiers + wars.json inputs | **in progress 2026-07-18** (gathers U/V/W/X/Y/Z out) |
+| 8 | **T10 new-port dossiers + wars sweep** (Singapore, Hong Kong, Valparaíso, Sydney, New Orleans; wars 1815–50 incl. Navarino, Opium War) | `research/flows/new-ports-wars-1815-1850.md` (staged for X-S1/X-S2) | **✅ done 2026-07-18** |
 | 9 | **T8 remaining candidates** (Ostend & Trieste companies, New Julfa carriage, Aceh/Bantam pepper) | new dated candidates doc + register entries | queued |
 | 10 | **E-R1 re-verification closeout** (any PLAN-4 Tier-1 claim still unstamped: Jumar/Borucki E1, HBCA E4, Allen E5) + X-R2 framing sign-off texts | stamps + staged texts | queued |
 | 11 | **T12 — the addenda sweep** (2026-07-17): Japan/Dejima + Japanese ports · Indonesia (= T8's Aceh/Bantam strand) · cross-Pacific & around-SA (w/ E9 Callao) · Med African coast · Caribbean deep search · India–Arabia–E-Africa lens · one-time specials catalog (per-seed probabilistic) · goods-thread lens (silver, whaling, Middle Passage — sober register kept) | dated candidates doc(s) + specials catalog + register entries | queued |
 
 ## Done
+
+- **Chunk 8 (2026-07-18):** T10 new-port dossiers + the wars sweep — 114 claims,
+  **95 ✅ / 18 ⚠ / 1 ✂**; `research/flows/new-ports-wars-1815-1850.md` stages the
+  five new-port NODE bake data + the wars additions + new power/region ids +
+  silences actions + two coerced-flow framing texts. The ✂: the `java-war` draft
+  dropped (interior land war, no sea risk). Ports: **Singapore** (1819, no
+  eraNames; only the 1834 517/156,513 anchor confirmed counted — pin the rest to
+  Wong 1960), **Hong Kong** (1841; the 538/189,257 1844 anchor CONFIRMED to Hong
+  Kong not Shanghai via the primary — the cleanest dossier, 25/25 ✅),
+  **Valparaíso** (fresh {1818,1850}; 287/166 endorsed counted-but-unpinned; new
+  `pacific-america` region), **Sydney** (the one new port — new `pacific` basin +
+  Australasia render plate; convict transportation `counted`, ends NSW 1840;
+  Warrane/Gadigal dispossession framing; wool arc verbatim), **New Orleans**
+  (city-node + ~185 km river leg; eraPowers France/Spain/US not eraNames;
+  coastwise coerced lane `counted`, Oceans of Kinfolk >63k). Wars kept: Algeria
+  (corrected — `algiers` id, `mediterranean` only), Russo-Turkish 1828,
+  egyptian-ottoman-1, oriental-crisis-1839 (+`austria`), war-of-the-confederation;
+  Carlist held at floor; Navarino → an engagement on chunk 5's greek-independence.
+  New ids: powers `ottoman/egypt/russia/chile/peru/algiers/austria` (re-raises T5
+  name-pressure), regions `mediterranean/black-sea/levant/pacific-america/
+  australasia`. Everything lands when PLAN-6's 1550→1850 era is live (X-S1/X-S2).
+  WIP superseded and removed. **T10 is now COMPLETE (chunks 5–8): six basins +
+  five new ports + the full 1815–50 wars set.** Next: chunk 9 (T8 remaining
+  candidates), chunk 10 (E-R1 closeout — E4 York Factory + X-R2 framing sign-off),
+  chunk 11 (T12 addenda sweep).
 
 - **Chunk 7 (2026-07-18):** T10's three remaining basins (Baltic/North Sea ·
   Mediterranean/Black Sea · Bengal/SE Asia) — 110 claims, **98 ✅ / 11 ⚠ /
