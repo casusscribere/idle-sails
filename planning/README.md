@@ -23,6 +23,7 @@ document is live for the work at hand.
 | [PLAN-6-era-1850.md](PLAN-6-era-1850.md) | ✅ **adopted 2026-07-16** (unbuilt) | The temporal expansion: era 1550→1850, reset 1850→1860 (310-yr loop). §6 decisions recorded in its ledger — steam is a declared boundary (layer queued via T11), reset ramp is a designed epilogue decade, all five new ports in. X-R1 = research task T10 (Phase RB). |
 | [RANKING.md](RANKING.md) | 🔄 **live** | The feature-pass sequencing: `ideas.txt` ranked by feasibility × performance, the three-layer slider architecture, the pass ledger (0–3 shipped; 3.5, 4, 5, 6 open — Aubrey easter eggs are pass 6, deliberately after the movement patterns), and the outside-the-ladder items (new chart views, convoys, tweaks). |
 | [PLAN-convoys.md](PLAN-convoys.md) | 📋 drafted, unbuilt | Full implementation plan for convoys (sim/render/UI/data/tests). Feasible now — does not break fate-at-spawn. Research task T9 (Phase RB) refines its rates without gating it. |
+| [PHASE-1-build.md](PHASE-1-build.md) | 🔨 **in progress** | The World Build tracker (RANKING Phase 1 = PLAN-4 E-S + PLAN-6 X-S): era→1850, fold the 1815–50 systems, bake the new ports, enforce the approved framing, design the epilogue decade. Rate-aware increment checklist; the disruptive clock-flip is last. Increment 1 (epilogue spec) done 2026-07-18. |
 
 ## Conventions
 

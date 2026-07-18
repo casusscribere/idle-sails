@@ -359,37 +359,67 @@ recommended order, not law.
    lens** (→ the queued trade-goods-threads feature). **All of Phase RB (T4, T8,
    T9, T10, T12 + PLAN-4 E-R1) is now done; ~9 new nodes / 7 systems / 2 hazard
    zones / ~11 silences stage for the X-S1/S2 build.**
-6. **[F] Convoys** (`PLAN-convoys.md`). Buildable any time after step 1,
-   but cheapest here — it inherits T9's evidence-classed rates for free.
-7. **[F] Pass 4 — the scripted-spawn channel + ambient flows.** HARD GATE:
-   T4 (step 5). May touch the baker (`pipeline/README.md` first) — share
-   the bake session with step 8 where possible.
-8. **[B] PLAN-4 E-S + PLAN-6 X-S builds** — fold, bake, surface; one
-    combined bake beats several. X-S1 now includes **designing the epilogue
-    decade** (D3: the 1850→1860 ramp is a designed wind-down, not the
-    stretched blend) before the clock constants are re-pinned.
-9. **[R] Phase RC — the per-port sweep (T1+T2+T3, one port at a time).**
-    HARD GATE: the roster and era span must be FINAL (steps 2 and 8 done
-    or declined) — otherwise the sweep runs twice.
-10. **[R] T7 — vessel lifecycle & prize practice** (Phase RD) + drafting
-    **PLAN-5** from it.
-11. **[F] Pass 5 — persistence / capture / chases.** HARD GATE: PLAN-5
-    adopted; `datasetVersion` bump + save reset. Must never block anything
-    above it — Pass 6 below waits for it by design.
-12. **[R] T6 — Aubrey canon** (Phase RA). Deliberately this late: per
-    commission, the catalog also records convoy/escort legs, historical
-    prize-takings and engagements, and chase episodes, so Pass 6 can
-    express them through the convoy and Pass-5 mechanics (and the E5 /
-    Port Louis question for the *Boadicea* itinerary is long decided by
-    now). Can run earlier at the cost of a second look once the mechanics
-    exist.
-13. **[F] Pass 6 — Aubrey easter eggs.** HARD GATES: T6 + the Pass-4
-    channel. Deliberately after convoys and Pass 5 (user decision
-    2026-07-16) so the commissions sail with the full movement vocabulary.
+**Steps 1–5 are DONE.** With the whole Phase-RB research campaign complete
+(2026-07-18), the research now runs well ahead of the build, so the remaining
+work re-groups into **six phases** (grouped 2026-07-18). The old flat steps
+6–13 map into them as noted. Order is **build-first**: Phase RB finished the
+research, so defining the final world (Phase 1) is the front of the queue —
+it unblocks the per-port sweep and gives the movement features their content.
 
-The only hard edges are the marked gates (T5→3.5 ✅, T4→4, roster-final→RC,
-PLAN-5→5, and {T6, Pass 4, Pass 5}→6). With steps 1–4 done, the front of the
-queue is **step 5 (the Phase-RB campaign: T4+T8+T9+T10 + E-R1)**, then
-convoys (step 6) inheriting T9's rates. Convoys still floats anywhere at the
-cost of `asserted` numbers until T9 lands; T6 may run early, but the Pass-6
-build should not.
+### Phase 1 — The World Build  ·  [B]  (was step 8; NOW THE FRONT)
+PLAN-4 E-S + PLAN-6 X-S, carrying everything chunks 5–11 staged. Sub-steps:
+**X-S1** era 1550→1815 ⇒ **1550→1850** + build-data folds the extended matrix
++ the eight **approved** framing texts + a **designed epilogue decade**
+(1850→1860, D3) + `datasetVersion` bump + save reset + tests re-pinned;
+**E-R2/X-S2** the new ports into `data-src/ports.json` + **route bake**
+(`pipeline/README.md` first; ocean-cell + routing-field-coverage checks) +
+new powers' vocabulary + **`name-pressure.mjs` re-gate over the 310-yr
+cycle**; **X-S3/E-S2** surfacing (era HUD, silences/about pages, hazard zones,
+`scriptedOnly` ports, ledger evidence lines). Build tracker:
+`planning/PHASE-1-build.md`. **Unblocks Phase 4.** No gate now (research +
+framing sign-off done).
+
+### Phase 2 — Movement patterns  ·  [F]  (was steps 6–7)
+**Pass 4** (the scripted-spawn channel + `scriptedOnly` ports [Dejima] +
+probabilistic specials [the 28-item catalog] + ambient flows) — HARD GATE T4
+✅ open; the **grounds-node primitive** (unlocks six ambient patterns + the E3
+whaling nodes) is built once during Phase 1's E3 bake and reused here. Plus
+**Convoys** (`PLAN-convoys.md`) — fate-at-spawn-safe, so it can run first / in
+parallel as low-risk momentum; inherits T9's rates for free. May touch the
+baker (`pipeline/README.md` first).
+
+### Phase 3 — Threads & polish  ·  [F]  (render/observation; floats anywhere)
+**Trade-goods threads** (T12 lens done → buildable; the Middle-Passage thread
+keeps the exact sober register) + the queued **render tweaks** (port dots in
+the sea, land clipping, residual zigzags — several want a baker review). No
+gate; low risk; slot into whatever pass is in flight.
+
+### Phase 4 — Per-port documentation  ·  [R]  (was step 9)
+**Phase RC — T1+T2+T3 together, one port at a time** → `port-eras.json`
+(eraNames + a new eraPowers), per-window blurbs, `port-docs.json` +
+`research/ports.html`. HARD GATE: the roster + era span must be FINAL
+(Phase 1 done) or the sweep runs twice.
+
+### Phase 5 — The sim redesign  ·  [R]+[F]  (was steps 10–11)
+**T7** (vessel lifecycle & prize practice) → draft **PLAN-5** → **Pass 5**
+(persistence / capture / chases). Breaks fate-at-spawn — a real architecture
+change; `datasetVersion` bump + save reset; **unlocks the tracker panel**.
+HARD GATE: PLAN-5 adopted. Highest-risk; kept late so nothing waits on it.
+
+### Phase 6 — The Aubrey capstone  ·  [R]+[F]  (was steps 12–13)
+**T6** (the Aubrey canon catalog: convoy legs, prizes, engagements, chases) →
+**Pass 6** (commissions as scripted spawns). Deliberately LAST (user decision
+2026-07-16) so each itinerary sails the full vocabulary — convoy legs
+(Phase 2), ambient backdrop (Phase 2), Pass-5 prizes/chases — and the tracker
+(live after Phase 5) can pin the *Surprise*. HARD GATES: T6 + the Pass-4
+channel + Pass 5.
+
+### Deferred track — the Steam layer  ·  [R]
+v1 is a **sail chart, declared** (steam = a silences entry + a divergences
+paragraph). A future steam layer (P&O/Cunard mail as a distinct movement
+class — great-circle legs, coaling calls) is research-gated on **T11**
+(Phase RD) and needs its own plan. Not on the critical path.
+
+**Hard gates:** roster-final→Phase 4, PLAN-5→Phase 5, {T6, Pass 4, Pass 5}→
+Phase 6. The **front of the queue is now Phase 1**; Convoys (Phase 2) floats
+alongside it as low-risk parallel work; Phase 3 floats anywhere.
