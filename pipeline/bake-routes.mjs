@@ -133,6 +133,21 @@ const CHANNEL_CARVES = [
   [25.5, 59.5], [26.5, 59.5], [28.5, 59.5], [29.5, 59.5]
 ];
 
+// Island seals (Phase 3 render-fidelity): long thin islands render at 50m
+// (land.geojson) but rasterize at 1° into a BROKEN chain of land cells with
+// false-ocean gaps — so a least-time path threads a gap and, drawn straight over
+// the fine coastline, a ship appears to sail across the island. Seal an island's
+// spine cells (the false-ocean gaps along its length) so routes must round it,
+// exactly as they did. Cuba is the exemplar: routes to Kingston cut clean across
+// its centre (~−78.7/22.3). Only the central-western spine is sealed — Cuba's
+// eastern tip abuts Hispaniola sub-cell (the Windward Passage is already closed
+// at 1°), so routes round the east end with at most a coastal graze, and the
+// Florida Straits (N), Caribbean (S), and Yucatán Channel (W) all stay open
+// (flood-fill verified).
+const ISLAND_SEAL = [
+  { name: 'Cuba', cells: [[-85, 22], [-84, 22], [-83, 22], [-82, 22], [-81, 22], [-80, 22], [-79, 22], [-78, 22], [-77, 22], [-77, 21], [-76, 21]] }
+];
+
 const SIMPLIFY_EPS = 0.3;   // deg; Douglas–Peucker tolerance
 const MAX_POINTS = 60;
 
@@ -173,7 +188,15 @@ for (const b of ISTHMUS_CLOSE)
       const i = gi.idx(gi.colOf(lon), gi.rowOf(lat));
       if (baseMask[i] === 0) { baseMask[i] = 1; sealed++; }
     }
-const landMask = Uint8Array.from(baseMask); // coastline + isthmus, NO ice cap
+// Island spine seals — fill the false-ocean gaps in a thin island's 1° raster so
+// routes round it instead of threading a gap that renders as sailing over land.
+let islandSealed = 0;
+for (const isle of ISLAND_SEAL)
+  for (const [lon, lat] of isle.cells) {
+    const i = gi.idx(gi.colOf(lon), gi.rowOf(lat));
+    if (baseMask[i] === 0) { baseMask[i] = 1; islandSealed++; }
+  }
+const landMask = Uint8Array.from(baseMask); // coastline + isthmus + island spines, NO ice cap
 // The ice caps are routing constraints (pack ice), not coastline — applied only
 // to the routing masks. One routing mask PER SEASON now: the Arctic corridors
 // open only in their navigation season (jja/son), so a winter field simply
@@ -497,7 +520,7 @@ writeFileSync(join(OUT, 'routes.json'), JSON.stringify(out));
 const kb = (Buffer.byteLength(JSON.stringify(out)) / 1024).toFixed(1);
 
 console.log(`✓ bake-routes: ${baked.length} polylines from ${routes.length} lanes.`);
-console.log(`  ice cap: lat>${ICE_N} / lat<${ICE_S} blocked (${iced} cells) · isthmuses sealed (${sealed} cells) · fields computed ${fieldCache.size}`);
+console.log(`  ice cap: lat>${ICE_N} / lat<${ICE_S} blocked (${iced} cells) · isthmuses sealed (${sealed} cells) · island spines sealed (${islandSealed} cells) · fields computed ${fieldCache.size}`);
 console.log(`  field walks ${nField} · season-gated (ice-locked) ${nFallback} · wind-gated (beat-to-windward) ${nWindGated}`);
 console.log(`  → data/routes.json (${kb} KB)`);
 if (warnings.length) { console.log(`  ${warnings.length} fallback warning(s):`); for (const w of warnings.slice(0, 12)) console.log('    - ' + w); }
