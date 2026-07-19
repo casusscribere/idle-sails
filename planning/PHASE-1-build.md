@@ -140,12 +140,30 @@ the **Baltic late era** — 12 systems + 25 routes + powers sweden/denmark/russi
 hansa (+ `usa`, `sloop`) — on chunk 7's verified doubling of Sound traffic.
 **The late era is now genuinely populated: ~327 spawns/120 days at 1830/1845/1850.**
 
-**Next:** the remaining basins (Mediterranean, East Asia, Indian-Ocean-W,
-Bengal/SE-Asia) follow the identical seven-layer recipe — audit port-safety →
-extend flow systems from the staged synthesis → curate routes (no `slave-*`, no
-`middlePassage`, only `era.to==1815`, ports safe) → extend the types/flags they
-need. Then the NEW ports + NEW systems (illegal-era, cotton-gulf, packets,
-Singapore/HK/Valparaíso/Sydney/New Orleans…), which need a **bake**, then
-surfacing, then merge. Queued authoring debts: US-flagged late-era lanes
+**Increments 5c–5g DONE (2026-07-18), 53/53 green — ALL SIX BASINS ARE NOW
+AUTHORED TO 1850.** 5c Mediterranean (6 systems, 19 routes, ottoman/naples).
+5d–5e East Asia — the `netherlands` power added (Kingdom, 1815–1850), **Dejima
+separated from Nagasaki** as its own flow port (the Dutch factory island vs. the
+port and its Chinese quarter), the post-1795 Dejima trade verified and authored
+as `dutch-japan` (1817–1850, 1–2 voyages/yr, reconstructed) with the 1795–1816
+disruption entered in the silences register; `eic` closed at **1834** (Charter
+Act 1833). 5f Indian-Ocean-West (8 systems) — including the **deliberate
+charter asymmetry**: `indian-ocean-slave-trades` was EXTENDED and rising while
+the Atlantic legal trade was not, because the East African trade demonstrably
+continued and grew with Zanzibar; refusing it would be a silent zero.
+5g Bengal/SE-Asia (5 systems + the new `nhm-java`, 1824–1850).
+
+**Pipeline fix found by 5g:** the flow fold matched baked lanes by **endpoints
+only, ignoring era**, so `nhm-java` (1824–1850) poured 86% of its volume into
+`voc-*` routes that died in 1795 — fully folded on paper, sailing nothing.
+Lanes now fold only onto routes whose era overlaps the system's own era.
+Coverage 1850s 89% → 91%; still 54 systems folded. (Note: two commits are both
+labelled "increment 5f"; the second is 5g.)
+
+**Next:** the NEW ports + NEW systems (illegal-era, cotton-gulf, packets,
+Singapore/HK/Valparaíso/Sydney/New Orleans…). Unlike the basin work, these
+need a **bake** — every new port and lane must go through `bake-routes.mjs`
+before it can sail. Then surfacing (era HUD, silences page, hazard zones,
+`scriptedOnly`, the name-pressure re-gate), then merge to `main`. Queued authoring debts: US-flagged late-era lanes
 (new-england-caribbean), the Haiti/Cap-Haïtien pair, caribbean-sugar's late-era
 British-only geography.
