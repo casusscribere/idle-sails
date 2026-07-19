@@ -286,7 +286,11 @@ is live by now — pin the *Surprise* and follow her properly.
   sim. Respect the baker's ≥1-season-per-lane safeguard, and verify against
   the ANNUAL figure — concentrating the same volume into fewer months raises
   in-flight density in the window, which is correct and will look like an
-  increase.
+  increase. **PARTIAL (Phase 1 increment 6i):** the ICE half shipped — a new
+  sub-66 `SEASONAL_ICE` baker zone gates Hudson Bay to its Jun–Oct season
+  (York Factory), reusable for any winter-frozen sub-Arctic sea. The MONSOON
+  half (narrowing bantam-pepper / dutch-japan and the two convoy lanes to
+  their real months) is still a baker to-do — do it at the next bake.
 - **Steam layer** (queued 2026-07-16 with the PLAN-6 D1 decision) — v1 of
   the era extension is a **sail chart, declared** (steam is a
   silences-register entry + a declared-divergences paragraph), and a steam
@@ -382,18 +386,24 @@ work re-groups into **six phases** (grouped 2026-07-18). The old flat steps
 research, so defining the final world (Phase 1) is the front of the queue —
 it unblocks the per-port sweep and gives the movement features their content.
 
-### Phase 1 — The World Build  ·  [B]  (was step 8; NOW THE FRONT)
-PLAN-4 E-S + PLAN-6 X-S, carrying everything chunks 5–11 staged. Sub-steps:
-**X-S1** era 1550→1815 ⇒ **1550→1850** + build-data folds the extended matrix
-+ the eight **approved** framing texts + a **designed epilogue decade**
-(1850→1860, D3) + `datasetVersion` bump + save reset + tests re-pinned;
-**E-R2/X-S2** the new ports into `data-src/ports.json` + **route bake**
-(`pipeline/README.md` first; ocean-cell + routing-field-coverage checks) +
-new powers' vocabulary + **`name-pressure.mjs` re-gate over the 310-yr
-cycle**; **X-S3/E-S2** surfacing (era HUD, silences/about pages, hazard zones,
-`scriptedOnly` ports, ledger evidence lines). Build tracker:
-`planning/PHASE-1-build.md`. **Unblocks Phase 4.** No gate now (research +
-framing sign-off done).
+### Phase 1 — The World Build  ·  [B]  ·  ✅ **COMPLETE + MERGED + LIVE 2026-07-19**
+PLAN-4 E-S + PLAN-6 X-S, delivered across increments 1–8 (tracker
+`planning/PHASE-1-build.md`). The world now runs **1550→1850** (designed 10-year
+epilogue decade, 310-yr loop), **105 ports · 414 routes · 82 folded systems ·
+95% 1850s coverage**, `datasetVersion 5`, **55 tests green**, 0 console errors,
+deployed to the live site. The eight approved framing texts are enforced; the
+seven orphan ports (Singapore, Hong Kong, Sydney, Montevideo, New Orleans, York
+Factory, the whaling grounds — + Basra/Bandar Abbas) each shipped with a
+`research/flows/<port>-authoring.md` dossier. Baker infra: Panama seal→land-wall,
+a destination-aware Cape-Horn cap, a sub-66 Hudson-Bay `SEASONAL_ICE` seal. The
+name-pressure re-gate ran (china-junk-trade pool 16→44). **Unblocked: Phase 4
+(per-port docs).** **Carried forward as small debts** (noted in the tracker, NOT
+blocking): `scriptedOnly` ports (Dejima) folds into **Pass 4** where the channel
+is built; the **`egypt` power + its 2 Mediterranean wars** (needs name/captain
+pools); the designed epilogue **spawn-taper** (§Epilogue-permitted fast-follow —
+the blend + HUD note shipped); the monsoon-narrowing half of **seasonal departure
+windows** (Hudson Bay's ice seal shipped; bantam-pepper/dutch-japan monsoon
+gating still on the baker to-do).
 
 ### Phase 2 — Movement patterns  ·  [F]  (was steps 6–7)
 **Pass 4** (the scripted-spawn channel + `scriptedOnly` ports [Dejima] +
@@ -445,5 +455,8 @@ class — great-circle legs, coaling calls) is research-gated on **T11**
 (Phase RD) and needs its own plan. Not on the critical path.
 
 **Hard gates:** roster-final→Phase 4, PLAN-5→Phase 5, {T6, Pass 4, Pass 5}→
-Phase 6. The **front of the queue is now Phase 1**; Convoys (Phase 2) floats
-alongside it as low-risk parallel work; Phase 3 floats anywhere.
+Phase 6. **Phase 1 is DONE (2026-07-19)**, so the **front of the queue is now
+Phase 2 (Movement patterns)** — with **Convoys** as the lowest-risk, fate-at-
+spawn-safe starting point (needs no pass slot, inherits T9's rates) — while
+**Phase 4 (per-port docs)** is unblocked (the roster is final) and **Phase 3
+(threads & polish, incl. the render tweaks)** floats anywhere.
