@@ -82,8 +82,10 @@ a{color:var(--ink)}
         tocHtml+=`<a href="#p-${esc(id)}">${esc(p.name.replace(/\s*\(.*\)/,''))}</a>`;
         const eras=tl.length>1?`<div class="eras">${tl.map(w=>`<div class="era"><span class="yr">${w.from}–${w.to}</span><span class="lab">${esc(w.nm)} &middot; ${esc(powerName[w.pw]||w.pw)}</span>${w.blurb?` &mdash; ${esc(w.blurb)}`:''}</div>`).join('')}</div>`
           : `<p class="meta">${esc(powerName[tl[0]?tl[0].pw:p.power]||p.power)}${(p.active&&p.active.from>1550)?` &middot; from ${p.active.from}`:''}${(p.active&&p.active.to<1850)?` &middot; to ${p.active.to}`:''}</p>${(typeof d.blurb==='string')?`<p class="para" style="font-style:italic;color:var(--ink-soft)">${esc(d.blurb)}</p>`:''}`;
-        const doc=(d.doc||[]).map(par=>`<p class="para">${esc(par)}</p>`).join('');
-        const src=(d.sources&&d.sources.length)?`<p class="meta" style="margin:12px 0 2px">Sources</p><ul class="sources">${d.sources.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:'';
+        const docArr=Array.isArray(d.doc)?d.doc:(d.doc?[d.doc]:[]);
+        const srcArr=Array.isArray(d.sources)?d.sources:(d.sources?[d.sources]:[]);
+        const doc=docArr.map(par=>`<p class="para">${esc(par)}</p>`).join('');
+        const src=srcArr.length?`<p class="meta" style="margin:12px 0 2px">Sources</p><ul class="sources">${srcArr.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:'';
         bodyHtml+=`<div class="card" id="p-${esc(id)}"><h2>${esc(p.name)}</h2>${eras}${doc}${src}</div>`;
       }
     }
