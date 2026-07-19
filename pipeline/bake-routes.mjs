@@ -51,6 +51,24 @@ const SEASON_IDX = new Map(SEASONS.map(s => [s.id, s.idx]));
 //     Hope (34.5°S) and the Brouwer easting (~35-45°S) — stays north of -50°.
 const ICE_N = 66, ICE_S = -50;
 
+// Cape Horn (increment 6): the −50° southern cap keeps Europe↔far-East lanes
+// (Canton, Batavia) rounding the Cape of Good Hope instead of finding a false
+// far-south easting — but it ALSO walls off Cape Horn (55.98°S), which the
+// maritime fur trade (Boston↔Nootka) and the Pacific-coast Americas legitimately
+// round. A single geographic corridor can't tell the two apart: once the Drake
+// Passage is open, Dijkstra will also thread Europe→Asia through it in an
+// adverse-monsoon season (verified empirically — every Atlantic↔Pacific corridor
+// that lets Boston round the Horn also lets London→Canton cheat). The
+// discriminator is the DESTINATION: the baker computes one field per destination,
+// so we lower the cap to −58° ONLY in the fields of Pacific-coast-Americas ports.
+// A route to Canton uses Canton's −50 field (no Horn); a route to Nootka uses
+// Nootka's −58 field (Horn open). Intra-Pacific and trans-Pacific legs to these
+// same ports are unaffected — the coastal / mid-latitude path stays the fastest.
+const ICE_S_HORN = -58;
+const HORN_DEST = new Set([
+  'sitka', 'nootka', 'valparaiso', 'callao', 'guayaquil', 'panama', 'acapulco'
+]);
+
 // PLAN-3 S2 — seasonal Arctic corridors (user-funded ice exception): the 66°N
 // seal stays global, EXCEPT two summer/autumn corridors reflecting the real
 // (Little-Ice-Age-era) navigation season: the North Cape → White Sea run
@@ -157,23 +175,34 @@ const landMask = Uint8Array.from(baseMask); // coastline + isthmus, NO ice cap
 // to the routing masks. One routing mask PER SEASON now: the Arctic corridors
 // open only in their navigation season (jja/son), so a winter field simply
 // cannot reach Arkhangelsk or the whaling grounds — which is the history.
+// Two southern-cap variants (see the Cape Horn note above): the default −50 set
+// for all destinations, and a −58 set that opens the Drake Passage, used ONLY
+// for the fields of Pacific-coast-Americas destinations. Both share the same
+// −66 Arctic seal + seasonal corridors; only the southern latitude differs.
 let iced = 0;
-const maskBySeason = new Map();
-for (const s of SEASONS) {
-  const m = Uint8Array.from(baseMask);
-  for (let r = 0; r < rows; r++) {
-    const lat = gi.latOf(r);
-    if (lat > ICE_N || lat < ICE_S) for (let c = 0; c < cols; c++) {
-      const i = gi.idx(c, r);
-      if (m[i] !== 0) continue;
-      const lon = gi.lonOf(c);
-      const inCorridor = ICE_CORRIDORS.some(k => k.seasons.includes(s.id) &&
-        lon >= k.lon[0] && lon <= k.lon[1] && lat >= k.lat[0] && lat <= k.lat[1]);
-      if (!inCorridor) { m[i] = 1; iced++; }
+function buildMaskSet(iceSouth) {
+  const bySeason = new Map();
+  for (const s of SEASONS) {
+    const m = Uint8Array.from(baseMask);
+    for (let r = 0; r < rows; r++) {
+      const lat = gi.latOf(r);
+      if (lat > ICE_N || lat < iceSouth) for (let c = 0; c < cols; c++) {
+        const i = gi.idx(c, r);
+        if (m[i] !== 0) continue;
+        const lon = gi.lonOf(c);
+        const inCorridor = ICE_CORRIDORS.some(k => k.seasons.includes(s.id) &&
+          lon >= k.lon[0] && lon <= k.lon[1] && lat >= k.lat[0] && lat <= k.lat[1]);
+        if (!inCorridor) { m[i] = 1; if (iceSouth === ICE_S) iced++; }
+      }
     }
+    bySeason.set(s.id, m);
   }
-  maskBySeason.set(s.id, m);
+  return bySeason;
 }
+const maskBySeason = buildMaskSet(ICE_S);
+const maskBySeasonHorn = buildMaskSet(ICE_S_HORN);
+// Per-destination mask set: Pacific-coast-Americas ports get the Horn-open set.
+const masksFor = destPort => HORN_DEST.has(destPort.id) ? maskBySeasonHorn : maskBySeason;
 const mask = maskBySeason.get('jja'); // default mask for port snapping
 
 // ---- calibrated vessels (mirror build-all.mjs) ----------------------------
@@ -202,7 +231,7 @@ const fieldCache = new Map();
 function fieldFor(destPort, routeClass, seasonId) {
   const key = `${destPort.id}_${routeClass}_${seasonId}`;
   if (fieldCache.has(key)) return fieldCache.get(key);
-  const m = maskBySeason.get(seasonId);
+  const m = masksFor(destPort).get(seasonId);
   const [sc, sr] = snapToOcean(m, destPort.lon, destPort.lat);
   const { time, prev } = dijkstra(m, vesselByClass.get(routeClass), SEASON_IDX.get(seasonId), sc, sr);
   const f = { time, prev, srcIdx: gi.idx(sc, sr) };
@@ -337,9 +366,10 @@ for (const route of routes) {
   for (const routeClass of classes) {
     // Pass 1 — reconstruct every season's raw least-time path + its tack score.
     const perSeason = [];
+    const destMasks = masksFor(to);   // origin must snap in the SAME mask the field used
     for (const s of SEASONS) {
       const field = fieldFor(to, routeClass, s.id);
-      const [oc, or] = snapToOcean(maskBySeason.get(s.id), from.lon, from.lat);
+      const [oc, or] = snapToOcean(destMasks.get(s.id), from.lon, from.lat);
       const originIdx = gi.idx(oc, or);
       const raw = reconstruct(field, originIdx);
       if (raw && raw.length >= 2 && isFinite(field.time[originIdx])) {
@@ -409,8 +439,11 @@ function landCrossings(a, b) {
 const problems = [];
 for (const b of baked) {
   if (b.coords.length < 2) problems.push(`${b.id}: <2 coords`);
+  // Pacific-coast-Americas destinations legitimately round Cape Horn to −58; every
+  // other lane stays north of the −50 cap.
+  const southFloor = HORN_DEST.has(b.to) ? ICE_S_HORN : ICE_S;
   for (const c of b.coords) {
-    if (c[1] < ICE_S - 1) { problems.push(`${b.id}: point beyond southern ice cap (lat ${c[1]})`); continue; }
+    if (c[1] < southFloor - 1) { problems.push(`${b.id}: point beyond southern ice cap (lat ${c[1]})`); continue; }
     if (c[1] > ICE_N + 1) {
       const lonN = ((c[0] + 180) % 360 + 360) % 360 - 180;
       const inCorridor = ICE_CORRIDORS.some(k => lonN >= k.lon[0] - 1 && lonN <= k.lon[1] + 1 && c[1] <= k.lat[1] + 1);
