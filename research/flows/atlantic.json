@@ -159,7 +159,7 @@
     {
       "id": "curacao",
       "name": "Curaçao",
-      "simProxy": "st-eustatius"
+      "simProxy": "curacao"
     },
     {
       "id": "bahia",
@@ -244,12 +244,12 @@
     {
       "id": "paramaribo",
       "name": "Paramaribo (Suriname)",
-      "simProxy": null
+      "simProxy": "paramaribo"
     },
     {
       "id": "belize",
       "name": "Belize (the Bay settlement)",
-      "simProxy": null
+      "simProxy": "belize"
     }
   ],
   "systems": [

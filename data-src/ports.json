@@ -1159,6 +1159,119 @@
         "to": 1841
       },
       "note": "The anchorage of the maritime fur trade, in Mowachaht territory: American and British ships watered and traded here for sea-otter pelts bound for Canton, and did so on Maquinna's terms. Active 1785-1841, when the trade ended with the otter rather than with any policy."
+    },
+    {
+      "id": "curacao",
+      "name": "Curaçao",
+      "lon": -68.94,
+      "lat": 12.11,
+      "power": "dutch",
+      "region": "caribbean",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1634,
+        "to": 1850
+      },
+      "note": "Willemstad: the Dutch West India Company's Caribbean entrepot and, under the asiento, a slave depot for re-export to the Spanish Main. It had been folding onto St Eustatius, roughly 700 km away - two quite different Dutch islands collapsed into one dot."
+    },
+    {
+      "id": "st-thomas",
+      "name": "St Thomas",
+      "lon": -64.93,
+      "lat": 18.34,
+      "power": "denmark",
+      "region": "caribbean",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1672,
+        "to": 1850
+      },
+      "note": "Danish from 1672, and thin until the free-port declaration of 1764 turned Charlotte Amalie into a neutral entrepot that traded through everyone else's wars."
+    },
+    {
+      "id": "paramaribo",
+      "name": "Paramaribo",
+      "lon": -55.17,
+      "lat": 5.87,
+      "power": "dutch",
+      "region": "caribbean",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1667,
+        "to": 1850
+      },
+      "note": "Suriname's capital, Dutch from 1667: a coffee and sugar plantation colony distinct from the sugar islands, and worked by people carried there under middle-passage."
+    },
+    {
+      "id": "belize",
+      "name": "Belize",
+      "lon": -88.2,
+      "lat": 17.5,
+      "power": "britain",
+      "region": "caribbean",
+      "roles": [
+        "station"
+      ],
+      "active": {
+        "from": 1660,
+        "to": 1850
+      },
+      "note": "The Bay of Honduras cutting settlement, English-speaking from the 1660s - deliberately not dated to the contested 1638. Logwood first, mahogany from the 1770s, cut by enslaved gangs far up the rivers."
+    },
+    {
+      "id": "new-orleans",
+      "name": "New Orleans",
+      "lon": -89.95,
+      "lat": 29.3,
+      "power": "france",
+      "region": "north-america",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1718,
+        "to": 1850
+      },
+      "eraNames": [
+        {
+          "from": 1718,
+          "to": 1762,
+          "name": "La Nouvelle-Orléans"
+        },
+        {
+          "from": 1763,
+          "to": 1802,
+          "name": "Nueva Orleans"
+        },
+        {
+          "from": 1803,
+          "to": 1850,
+          "name": "New Orleans"
+        }
+      ],
+      "note": "Founded 1718; French, then Spanish from 1763, then French again and American with the Louisiana Purchase of 1803. The Mississippi's outlet and, by the 1830s and 40s, the great cotton port - and the largest slave market in the United States, whose coastwise traffic is carried soberly in neworleans-coastwise."
+    },
+    {
+      "id": "montevideo",
+      "name": "Montevideo",
+      "lon": -56.18,
+      "lat": -34.9,
+      "power": "spain",
+      "region": "brazil",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1724,
+        "to": 1850
+      },
+      "note": "Founded 1724 to hold the Rio de la Plata against Portuguese Colonia; the estuary's deep-water port, and the Plata's Atlantic gate for hides, tallow, and salt beef."
     }
   ]
 }

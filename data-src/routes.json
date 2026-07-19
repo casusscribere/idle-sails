@@ -6630,6 +6630,507 @@
       },
       "weight": 2,
       "flag": "spain"
+    },
+    {
+      "id": "a-paramaribo-amsterdam",
+      "system": "guianas-plantations",
+      "name": "Paramaribo to Amsterdam (coffee, sugar)",
+      "from": "paramaribo",
+      "to": "amsterdam",
+      "shipTypes": [
+        "merchantman",
+        "fluyt",
+        "brig"
+      ],
+      "cargo": [
+        "coffee",
+        "sugar"
+      ],
+      "era": {
+        "from": 1667,
+        "to": 1795
+      },
+      "weight": 4,
+      "flag": "dutch"
+    },
+    {
+      "id": "a-amsterdam-paramaribo",
+      "system": "guianas-plantations",
+      "name": "Amsterdam to Paramaribo",
+      "from": "amsterdam",
+      "to": "paramaribo",
+      "shipTypes": [
+        "merchantman",
+        "fluyt",
+        "brig"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1667,
+        "to": 1795
+      },
+      "weight": 4,
+      "flag": "dutch"
+    },
+    {
+      "id": "a-paramaribo-boston",
+      "system": "guianas-plantations",
+      "name": "Paramaribo to Boston",
+      "from": "paramaribo",
+      "to": "boston",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "molasses",
+        "sugar"
+      ],
+      "era": {
+        "from": 1667,
+        "to": 1795
+      },
+      "weight": 1,
+      "flag": "dutch"
+    },
+    {
+      "id": "a-boston-paramaribo",
+      "system": "guianas-plantations",
+      "name": "Boston to Paramaribo (provisions)",
+      "from": "boston",
+      "to": "paramaribo",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "timber",
+        "cod"
+      ],
+      "era": {
+        "from": 1667,
+        "to": 1795
+      },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
+      "id": "a-paramaribo-steustatius",
+      "system": "guianas-plantations",
+      "name": "Paramaribo to St Eustatius",
+      "from": "paramaribo",
+      "to": "st-eustatius",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "coffee",
+        "sugar"
+      ],
+      "era": {
+        "from": 1667,
+        "to": 1795
+      },
+      "weight": 1,
+      "flag": "dutch"
+    },
+    {
+      "id": "a-steustatius-paramaribo",
+      "system": "guianas-plantations",
+      "name": "St Eustatius to Paramaribo",
+      "from": "st-eustatius",
+      "to": "paramaribo",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1667,
+        "to": 1795
+      },
+      "weight": 1,
+      "flag": "dutch"
+    },
+    {
+      "id": "a-belize-london",
+      "system": "logwood-mahogany",
+      "name": "Belize to London (logwood, mahogany)",
+      "from": "belize",
+      "to": "london",
+      "shipTypes": [
+        "merchantman",
+        "brig",
+        "snow"
+      ],
+      "cargo": [
+        "timber"
+      ],
+      "era": {
+        "from": 1660,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "britain"
+    },
+    {
+      "id": "a-london-belize",
+      "system": "logwood-mahogany",
+      "name": "London to Belize",
+      "from": "london",
+      "to": "belize",
+      "shipTypes": [
+        "merchantman",
+        "brig",
+        "snow"
+      ],
+      "cargo": [
+        "trade-goods",
+        "textiles"
+      ],
+      "era": {
+        "from": 1660,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "britain"
+    },
+    {
+      "id": "a-belize-kingston",
+      "system": "logwood-mahogany",
+      "name": "Belize to Kingston (re-export)",
+      "from": "belize",
+      "to": "kingston",
+      "shipTypes": [
+        "merchantman",
+        "brig",
+        "snow"
+      ],
+      "cargo": [
+        "timber"
+      ],
+      "era": {
+        "from": 1660,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "britain"
+    },
+    {
+      "id": "a-kingston-belize",
+      "system": "logwood-mahogany",
+      "name": "Kingston to Belize",
+      "from": "kingston",
+      "to": "belize",
+      "shipTypes": [
+        "merchantman",
+        "brig",
+        "snow"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1660,
+        "to": 1850
+      },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
+      "id": "a-belize-bristol",
+      "system": "logwood-mahogany",
+      "name": "Belize to Bristol",
+      "from": "belize",
+      "to": "bristol",
+      "shipTypes": [
+        "merchantman",
+        "brig",
+        "snow"
+      ],
+      "cargo": [
+        "timber"
+      ],
+      "era": {
+        "from": 1660,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "britain"
+    },
+    {
+      "id": "a-bristol-belize",
+      "system": "logwood-mahogany",
+      "name": "Bristol to Belize",
+      "from": "bristol",
+      "to": "belize",
+      "shipTypes": [
+        "merchantman",
+        "brig",
+        "snow"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1660,
+        "to": 1850
+      },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
+      "id": "a-curacao-amsterdam",
+      "system": "caribbean-smuggling",
+      "name": "Curaçao to Amsterdam",
+      "from": "curacao",
+      "to": "amsterdam",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "sugar",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1634,
+        "to": 1792
+      },
+      "weight": 2,
+      "flag": "wic"
+    },
+    {
+      "id": "a-amsterdam-curacao",
+      "system": "caribbean-smuggling",
+      "name": "Amsterdam to Curaçao",
+      "from": "amsterdam",
+      "to": "curacao",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "textiles",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1634,
+        "to": 1792
+      },
+      "weight": 2,
+      "flag": "wic"
+    },
+    {
+      "id": "a-curacao-cartagena",
+      "system": "caribbean-smuggling",
+      "name": "Curaçao to Cartagena (the Main)",
+      "from": "curacao",
+      "to": "cartagena",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "textiles",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1634,
+        "to": 1795
+      },
+      "weight": 2,
+      "flag": "dutch"
+    },
+    {
+      "id": "a-cartagena-curacao",
+      "system": "caribbean-smuggling",
+      "name": "Cartagena to Curaçao",
+      "from": "cartagena",
+      "to": "curacao",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "specie",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1634,
+        "to": 1795
+      },
+      "weight": 2,
+      "flag": "dutch"
+    },
+    {
+      "id": "a-stthomas-copenhagen",
+      "system": "caribbean-smuggling",
+      "name": "St Thomas to Copenhagen",
+      "from": "st-thomas",
+      "to": "copenhagen",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "sugar",
+        "rum"
+      ],
+      "era": {
+        "from": 1672,
+        "to": 1850
+      },
+      "weight": 1,
+      "flag": "denmark"
+    },
+    {
+      "id": "a-copenhagen-stthomas",
+      "system": "caribbean-smuggling",
+      "name": "Copenhagen to St Thomas",
+      "from": "copenhagen",
+      "to": "st-thomas",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1672,
+        "to": 1850
+      },
+      "weight": 1,
+      "flag": "denmark"
+    },
+    {
+      "id": "a-stthomas-kingston",
+      "system": "caribbean-smuggling",
+      "name": "St Thomas to Kingston",
+      "from": "st-thomas",
+      "to": "kingston",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1764,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "denmark"
+    },
+    {
+      "id": "a-kingston-stthomas",
+      "system": "caribbean-smuggling",
+      "name": "Kingston to St Thomas",
+      "from": "kingston",
+      "to": "st-thomas",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1764,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "britain"
+    },
+    {
+      "id": "a-paramaribo-ams-nl",
+      "system": "guianas-plantations",
+      "name": "Paramaribo to Amsterdam (the Kingdom)",
+      "from": "paramaribo",
+      "to": "amsterdam",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "coffee",
+        "sugar"
+      ],
+      "era": {
+        "from": 1816,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "netherlands"
+    },
+    {
+      "id": "a-ams-paramaribo-nl",
+      "system": "guianas-plantations",
+      "name": "Amsterdam to Paramaribo (the Kingdom)",
+      "from": "amsterdam",
+      "to": "paramaribo",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1816,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "netherlands"
+    },
+    {
+      "id": "a-curacao-ams-nl",
+      "system": "caribbean-smuggling",
+      "name": "Curaçao to Amsterdam (the Kingdom)",
+      "from": "curacao",
+      "to": "amsterdam",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "sugar",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1816,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "netherlands"
+    },
+    {
+      "id": "a-ams-curacao-nl",
+      "system": "caribbean-smuggling",
+      "name": "Amsterdam to Curaçao (the Kingdom)",
+      "from": "amsterdam",
+      "to": "curacao",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "textiles",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1816,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "netherlands"
     }
   ]
 }
