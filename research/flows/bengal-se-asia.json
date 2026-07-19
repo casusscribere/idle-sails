@@ -1,1853 +1,1847 @@
 {
- "basin": "bengal-se-asia",
- "note": "PLAN-3 R3. The Bay of Bengal and the archipelago: the European arterials are superbly counted (DAS), the indigenous carrying trades are not — the Bugis network is asserted at ±60% precisely so it is never silently zero.",
- "anchors": [
-  "Dutch-Asiatic Shipping (DAS) — the VOC arterial, voyage by voyage",
-  "EIC marine records; Chaudhuri's fleet series",
-  "A. Reid, Southeast Asia in the Age of Commerce",
-  "L. Blussé (Batavia and the junk connection)"
- ],
- "crossChecks": [
-  {
-   "id": "voc-das",
-   "source": "Dutch-Asiatic Shipping, outward+return per decade ÷ 10",
-   "systems": {
-    "voc-arterial": 1
-   },
-   "decades": {
-    "1650": [
-     28,
-     52
-    ],
-    "1730": [
-     42,
-     72
-    ],
-    "1770": [
-     32,
-     62
-    ]
-   }
-  }
- ],
- "ports": [
-  {
-   "id": "batavia",
-   "name": "Batavia",
-   "simProxy": "batavia"
-  },
-  {
-   "id": "amsterdam",
-   "name": "Amsterdam",
-   "simProxy": "amsterdam"
-  },
-  {
-   "id": "london",
-   "name": "London",
-   "simProxy": "london"
-  },
-  {
-   "id": "lorient",
-   "name": "Lorient",
-   "simProxy": "nantes"
-  },
-  {
-   "id": "copenhagen",
-   "name": "Copenhagen",
-   "simProxy": "copenhagen"
-  },
-  {
-   "id": "tranquebar",
-   "name": "Tranquebar",
-   "simProxy": "tranquebar"
-  },
-  {
-   "id": "madras",
-   "name": "Madras",
-   "simProxy": "madras"
-  },
-  {
-   "id": "bombay",
-   "name": "Bombay",
-   "simProxy": "bombay"
-  },
-  {
-   "id": "calcutta",
-   "name": "Calcutta",
-   "simProxy": "calcutta"
-  },
-  {
-   "id": "masulipatnam",
-   "name": "Masulipatnam",
-   "simProxy": "madras"
-  },
-  {
-   "id": "aceh",
-   "name": "Aceh",
-   "simProxy": null
-  },
-  {
-   "id": "malacca",
-   "name": "Malacca",
-   "simProxy": "batavia"
-  },
-  {
-   "id": "makassar",
-   "name": "Makassar",
-   "simProxy": "makassar"
-  },
-  {
-   "id": "banda",
-   "name": "Banda Neira",
-   "simProxy": "banda-neira"
-  },
-  {
-   "id": "manila",
-   "name": "Manila",
-   "simProxy": "manila"
-  },
-  {
-   "id": "acapulco",
-   "name": "Acapulco",
-   "simProxy": "acapulco"
-  },
-  {
-   "id": "jedda",
-   "name": "Jedda",
-   "simProxy": "mocha"
-  }
- ],
- "systems": [
-  {
-   "id": "voc-arterial",
-   "name": "The VOC arterial (Amsterdam–Batavia)",
-   "evidence": "counted",
-   "basis": "Dutch-Asiatic Shipping: every voyage, both directions, 1595–1795 — the best-documented long-haul trade of the entire era.",
-   "era": {
-    "from": 1600,
-    "to": 1795
-   },
-   "cargo": [
-    "spices",
-    "textiles",
-    "coffee",
-    "specie",
-    "trade-goods"
-   ],
-   "shipTypes": [
-    "east-indiaman",
-    "fluyt"
-   ],
-   "lanes": [
+  "basin": "bengal-se-asia",
+  "note": "PLAN-3 R3. The Bay of Bengal and the archipelago: the European arterials are superbly counted (DAS), the indigenous carrying trades are not — the Bugis network is asserted at ±60% precisely so it is never silently zero.",
+  "anchors": [
+    "Dutch-Asiatic Shipping (DAS) — the VOC arterial, voyage by voyage",
+    "EIC marine records; Chaudhuri's fleet series",
+    "A. Reid, Southeast Asia in the Age of Commerce",
+    "L. Blussé (Batavia and the junk connection)"
+  ],
+  "crossChecks": [
     {
-     "from": "amsterdam",
-     "to": "batavia",
-     "share": 0.5
-    },
-    {
-     "from": "batavia",
-     "to": "amsterdam",
-     "share": 0.5
+      "id": "voc-das",
+      "source": "Dutch-Asiatic Shipping, outward+return per decade ÷ 10",
+      "systems": {
+        "voc-arterial": 1
+      },
+      "decades": {
+        "1650": [
+          28,
+          52
+        ],
+        "1730": [
+          42,
+          72
+        ],
+        "1770": [
+          32,
+          62
+        ]
+      }
     }
-   ],
-   "byDecade": {
-    "1600": {
-     "voyagesPerYear": [
-      15,
-      30
-     ]
+  ],
+  "ports": [
+    {
+      "id": "batavia",
+      "name": "Batavia",
+      "simProxy": "batavia"
     },
-    "1610": {
-     "voyagesPerYear": [
-      18,
-      34
-     ]
+    {
+      "id": "amsterdam",
+      "name": "Amsterdam",
+      "simProxy": "amsterdam"
     },
-    "1620": {
-     "voyagesPerYear": [
-      21,
-      38
-     ]
+    {
+      "id": "london",
+      "name": "London",
+      "simProxy": "london"
     },
-    "1630": {
-     "voyagesPerYear": [
-      24,
-      42
-     ]
+    {
+      "id": "lorient",
+      "name": "Lorient",
+      "simProxy": "nantes"
     },
-    "1640": {
-     "voyagesPerYear": [
-      27,
-      46
-     ]
+    {
+      "id": "copenhagen",
+      "name": "Copenhagen",
+      "simProxy": "copenhagen"
     },
-    "1650": {
-     "voyagesPerYear": [
-      30,
-      50
-     ]
+    {
+      "id": "tranquebar",
+      "name": "Tranquebar",
+      "simProxy": "tranquebar"
     },
-    "1660": {
-     "voyagesPerYear": [
-      32,
-      53
-     ]
+    {
+      "id": "madras",
+      "name": "Madras",
+      "simProxy": "madras"
     },
-    "1670": {
-     "voyagesPerYear": [
-      34,
-      56
-     ]
+    {
+      "id": "bombay",
+      "name": "Bombay",
+      "simProxy": "bombay"
     },
-    "1680": {
-     "voyagesPerYear": [
-      36,
-      59
-     ]
+    {
+      "id": "calcutta",
+      "name": "Calcutta",
+      "simProxy": "calcutta"
     },
-    "1690": {
-     "voyagesPerYear": [
-      38,
-      62
-     ]
+    {
+      "id": "masulipatnam",
+      "name": "Masulipatnam",
+      "simProxy": "madras"
     },
-    "1700": {
-     "voyagesPerYear": [
-      40,
-      65
-     ]
+    {
+      "id": "aceh",
+      "name": "Aceh",
+      "simProxy": null
     },
-    "1710": {
-     "voyagesPerYear": [
-      42,
-      67
-     ]
+    {
+      "id": "malacca",
+      "name": "Malacca",
+      "simProxy": "batavia"
     },
-    "1720": {
-     "voyagesPerYear": [
-      43,
-      68
-     ]
+    {
+      "id": "makassar",
+      "name": "Makassar",
+      "simProxy": "makassar"
     },
-    "1730": {
-     "voyagesPerYear": [
-      45,
-      70
-     ]
+    {
+      "id": "banda",
+      "name": "Banda Neira",
+      "simProxy": "banda-neira"
     },
-    "1740": {
-     "voyagesPerYear": [
-      43,
-      68
-     ]
+    {
+      "id": "manila",
+      "name": "Manila",
+      "simProxy": "manila"
     },
-    "1750": {
-     "voyagesPerYear": [
-      40,
-      65
-     ]
+    {
+      "id": "acapulco",
+      "name": "Acapulco",
+      "simProxy": "acapulco"
     },
-    "1760": {
-     "voyagesPerYear": [
-      38,
-      63
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      35,
-      60
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      25,
-      50
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      15,
-      40
-     ]
+    {
+      "id": "jedda",
+      "name": "Jedda",
+      "simProxy": "mocha"
     }
-   }
-  },
-  {
-   "id": "eic-india-arterial",
-   "name": "The EIC India arterial",
-   "evidence": "counted",
-   "basis": "EIC marine records: London against Bombay, Madras, and — increasingly everything — Calcutta.",
-   "era": {
-    "from": 1600,
-    "to": 1834
-   },
-   "cargo": [
-    "textiles",
-    "saltpetre",
-    "indigo",
-    "specie",
-    "trade-goods"
-   ],
-   "shipTypes": [
-    "east-indiaman"
-   ],
-   "lanes": [
+  ],
+  "systems": [
     {
-     "from": "london",
-     "to": "bombay",
-     "share": 0.15
+      "id": "voc-arterial",
+      "name": "The VOC arterial (Amsterdam–Batavia)",
+      "evidence": "counted",
+      "basis": "Dutch-Asiatic Shipping: every voyage, both directions, 1595–1795 — the best-documented long-haul trade of the entire era.",
+      "era": {
+        "from": 1600,
+        "to": 1795
+      },
+      "cargo": [
+        "spices",
+        "textiles",
+        "coffee",
+        "specie",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "east-indiaman",
+        "fluyt"
+      ],
+      "lanes": [
+        {
+          "from": "amsterdam",
+          "to": "batavia",
+          "share": 0.5
+        },
+        {
+          "from": "batavia",
+          "to": "amsterdam",
+          "share": 0.5
+        }
+      ],
+      "byDecade": {
+        "1600": {
+          "voyagesPerYear": [
+            15,
+            30
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            18,
+            34
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            21,
+            38
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            24,
+            42
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            27,
+            46
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            30,
+            50
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            32,
+            53
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            34,
+            56
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            36,
+            59
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            38,
+            62
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            40,
+            65
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            42,
+            67
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            43,
+            68
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            45,
+            70
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            43,
+            68
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            40,
+            65
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            38,
+            63
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            35,
+            60
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            25,
+            50
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            15,
+            40
+          ]
+        }
+      }
     },
     {
-     "from": "london",
-     "to": "madras",
-     "share": 0.15
+      "id": "eic-india-arterial",
+      "name": "The EIC India arterial",
+      "evidence": "counted",
+      "basis": "EIC marine records: London against Bombay, Madras, and — increasingly everything — Calcutta.",
+      "era": {
+        "from": 1600,
+        "to": 1834
+      },
+      "cargo": [
+        "textiles",
+        "saltpetre",
+        "indigo",
+        "specie",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "east-indiaman"
+      ],
+      "lanes": [
+        {
+          "from": "london",
+          "to": "bombay",
+          "share": 0.15
+        },
+        {
+          "from": "london",
+          "to": "madras",
+          "share": 0.15
+        },
+        {
+          "from": "london",
+          "to": "calcutta",
+          "share": 0.2
+        },
+        {
+          "from": "bombay",
+          "to": "london",
+          "share": 0.12
+        },
+        {
+          "from": "madras",
+          "to": "london",
+          "share": 0.13
+        },
+        {
+          "from": "calcutta",
+          "to": "london",
+          "share": 0.25
+        }
+      ],
+      "byDecade": {
+        "1600": {
+          "voyagesPerYear": [
+            5,
+            12
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            6,
+            14
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            7,
+            15
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            8,
+            17
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            9,
+            18
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            10,
+            20
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            11,
+            22
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            12,
+            24
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            13,
+            26
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            14,
+            28
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            15,
+            30
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            16,
+            32
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            17,
+            34
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            18,
+            36
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            19,
+            38
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            20,
+            40
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            23,
+            47
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            27,
+            53
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            30,
+            60
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            33,
+            67
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            37,
+            73
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            40,
+            80
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            50,
+            100
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            55,
+            110
+          ]
+        }
+      },
+      "notes": "Ends 1834: the Charter Act of 1833 ended ALL EIC trading (verified chunk 7, T-17). The India-Britain trade continued and grew under private British flags - that successor traffic needs britain-flagged lanes (authoring debt)."
     },
     {
-     "from": "london",
-     "to": "calcutta",
-     "share": 0.2
+      "id": "minor-company-arterials",
+      "name": "The minor company arterials (Danish, French)",
+      "evidence": "counted",
+      "basis": "DAC and Compagnie des Indes records: Copenhagen–Tranquebar and Lorient–Pondicherry (Madras as proxy) — the small neutral carriers whose flags mattered most in wartime.",
+      "era": {
+        "from": 1620,
+        "to": 1845
+      },
+      "cargo": [
+        "textiles",
+        "spices",
+        "specie",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "east-indiaman"
+      ],
+      "lanes": [
+        {
+          "from": "copenhagen",
+          "to": "tranquebar",
+          "share": 0.3
+        },
+        {
+          "from": "tranquebar",
+          "to": "copenhagen",
+          "share": 0.25
+        },
+        {
+          "from": "lorient",
+          "to": "madras",
+          "share": 0.25
+        },
+        {
+          "from": "madras",
+          "to": "lorient",
+          "share": 0.2
+        }
+      ],
+      "byDecade": {
+        "1620": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            2,
+            7
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            3,
+            8
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            3,
+            8
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            4,
+            9
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            4,
+            11
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            5,
+            12
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            6,
+            14
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            7,
+            15
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            7,
+            17
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            8,
+            18
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            9,
+            19
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            9,
+            21
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            10,
+            22
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            8,
+            19
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            6,
+            15
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            4,
+            12
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            3,
+            10
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            3,
+            9
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            2,
+            7
+          ]
+        }
+      },
+      "notes": "Ends 1845: Danish Tranquebar was sold to Britain in 1845, closing the last of the small neutral carriers."
     },
     {
-     "from": "bombay",
-     "to": "london",
-     "share": 0.12
+      "id": "coromandel-se-asia",
+      "name": "Coromandel textiles to Southeast Asia",
+      "evidence": "reconstructed",
+      "basis": "Chaudhuri, Arasaratnam: painted cottons east for spices and gold — the exchange that clothed the archipelago, fading as Europeans capture the carriage after 1700.",
+      "era": {
+        "from": 1550,
+        "to": 1740
+      },
+      "cargo": [
+        "textiles",
+        "indigo",
+        "spices"
+      ],
+      "shipTypes": [
+        "merchantman",
+        "dhow",
+        "brig"
+      ],
+      "lanes": [
+        {
+          "from": "masulipatnam",
+          "to": "aceh",
+          "share": 0.2
+        },
+        {
+          "from": "masulipatnam",
+          "to": "malacca",
+          "share": 0.15
+        },
+        {
+          "from": "madras",
+          "to": "malacca",
+          "share": 0.15
+        },
+        {
+          "from": "aceh",
+          "to": "masulipatnam",
+          "share": 0.15
+        },
+        {
+          "from": "malacca",
+          "to": "madras",
+          "share": 0.15
+        },
+        {
+          "from": "masulipatnam",
+          "to": "makassar",
+          "share": 0.1
+        },
+        {
+          "from": "makassar",
+          "to": "masulipatnam",
+          "share": 0.1
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            30,
+            70
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            31,
+            73
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            33,
+            76
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            34,
+            79
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            36,
+            81
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            37,
+            84
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            39,
+            87
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            40,
+            90
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            38,
+            87
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            37,
+            83
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            35,
+            80
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            33,
+            77
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            32,
+            73
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            30,
+            70
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            28,
+            66
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            25,
+            62
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            23,
+            58
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            20,
+            53
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            18,
+            49
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            15,
+            45
+          ]
+        }
+      }
     },
     {
-     "from": "madras",
-     "to": "london",
-     "share": 0.13
+      "id": "spice-islands",
+      "name": "The spice islands (Banda, the Moluccas)",
+      "evidence": "counted",
+      "basis": "VOC records for the monopoly circuit; the Makassar smuggling era (to 1669) rides the same lanes — nutmeg, mace, and cloves out of the world's only sources.",
+      "era": {
+        "from": 1550,
+        "to": 1815
+      },
+      "cargo": [
+        "nutmeg-mace",
+        "cloves",
+        "textiles",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "east-indiaman",
+        "junk",
+        "brig"
+      ],
+      "lanes": [
+        {
+          "from": "banda",
+          "to": "batavia",
+          "share": 0.3
+        },
+        {
+          "from": "batavia",
+          "to": "banda",
+          "share": 0.25
+        },
+        {
+          "from": "makassar",
+          "to": "banda",
+          "share": 0.15
+        },
+        {
+          "from": "banda",
+          "to": "makassar",
+          "share": 0.1
+        },
+        {
+          "from": "batavia",
+          "to": "malacca",
+          "share": 0.2
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            15,
+            40
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            16,
+            41
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            16,
+            43
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            17,
+            44
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            18,
+            46
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            19,
+            47
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            19,
+            49
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            20,
+            50
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            21,
+            51
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            22,
+            52
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            23,
+            53
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            23,
+            53
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            24,
+            54
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            25,
+            55
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            24,
+            54
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            24,
+            54
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            23,
+            53
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            22,
+            52
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            21,
+            51
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            21,
+            51
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            20,
+            50
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            19,
+            48
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            18,
+            47
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            18,
+            45
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            17,
+            43
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            16,
+            42
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            15,
+            40
+          ]
+        }
+      },
+      "notes": "Not extended past 1795: every lane is voc-flagged and the VOC ended. The Moluccas spice trade continued under the Netherlands Indies; that carriage rides the new nhm-java trunk and awaits re-flagged lanes."
     },
     {
-     "from": "calcutta",
-     "to": "london",
-     "share": 0.25
+      "id": "bugis-carrying",
+      "name": "The Bugis–Makassar carrying network",
+      "evidence": "asserted",
+      "basis": "ASSERTED (R3 decision) — Reid's synthesis documents a great indigenous carrying trade (Makassar, the Bugis diaspora after 1669, Riau) that no European series counts as such. Central guesses from port-call fragments and the VOC's own complaints; bounds ±60%.",
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "cargo": [
+        "spices",
+        "textiles",
+        "trade-goods",
+        "deerskins"
+      ],
+      "shipTypes": [
+        "junk",
+        "dhow"
+      ],
+      "lanes": [
+        {
+          "from": "makassar",
+          "to": "batavia",
+          "share": 0.2
+        },
+        {
+          "from": "makassar",
+          "to": "malacca",
+          "share": 0.2
+        },
+        {
+          "from": "malacca",
+          "to": "makassar",
+          "share": 0.15
+        },
+        {
+          "from": "makassar",
+          "to": "manila",
+          "share": 0.15
+        },
+        {
+          "from": "aceh",
+          "to": "malacca",
+          "share": 0.15
+        },
+        {
+          "from": "malacca",
+          "to": "aceh",
+          "share": 0.15
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            60,
+            240
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            62,
+            248
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            64,
+            256
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            66,
+            264
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            68,
+            272
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            70,
+            280
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            72,
+            288
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            74,
+            296
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            76,
+            304
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            78,
+            312
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            80,
+            320
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            82,
+            328
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            84,
+            336
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            86,
+            344
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            88,
+            352
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            90,
+            360
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            92,
+            368
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            94,
+            376
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            96,
+            384
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            98,
+            392
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            100,
+            400
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            100,
+            400
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            100,
+            400
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            100,
+            400
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            100,
+            400
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            100,
+            400
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            100,
+            400
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            100,
+            400
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            105,
+            420
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            110,
+            440
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            110,
+            440
+          ]
+        }
+      },
+      "notes": "The archipelago's own metabolism — the counterpart of Europe's coasting trades, and as invisible to the toll series."
+    },
+    {
+      "id": "manila-galleon",
+      "name": "The Manila galleon",
+      "evidence": "counted",
+      "basis": "The Acapulco registers: one to four ships a year, and half the world's silver output moving through them at the peak.",
+      "era": {
+        "from": 1571,
+        "to": 1815
+      },
+      "cargo": [
+        "specie",
+        "silk",
+        "porcelain"
+      ],
+      "shipTypes": [
+        "galleon"
+      ],
+      "lanes": [
+        {
+          "from": "manila",
+          "to": "acapulco",
+          "share": 0.5
+        },
+        {
+          "from": "acapulco",
+          "to": "manila",
+          "share": 0.5
+        }
+      ],
+      "byDecade": {
+        "1570": {
+          "voyagesPerYear": [
+            2,
+            4
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            2,
+            4
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            2,
+            4
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            2,
+            4
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            2,
+            4
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        }
+      },
+      "notes": "Ends 1815: the last galleon (the Magallanes) made the run that year and the trade was abolished with it. Mexican independence in 1821 is the political end of the Acapulco connection, but the ships had already stopped."
+    },
+    {
+      "id": "aceh-red-sea",
+      "name": "The Aceh–Red Sea pepper route",
+      "evidence": "reconstructed",
+      "basis": "Reid, Subrahmanyam: the 16th-c Muslim pepper route that broke the Portuguese monopoly — Aceh to Jedda past the Estado's patrols, fading in the 17th c.",
+      "era": {
+        "from": 1550,
+        "to": 1700
+      },
+      "cargo": [
+        "pepper",
+        "spices",
+        "textiles"
+      ],
+      "shipTypes": [
+        "dhow",
+        "junk"
+      ],
+      "lanes": [
+        {
+          "from": "aceh",
+          "to": "jedda",
+          "share": 0.55
+        },
+        {
+          "from": "jedda",
+          "to": "aceh",
+          "share": 0.45
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            3,
+            10
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            3,
+            11
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            4,
+            12
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            4,
+            13
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            5,
+            14
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            5,
+            15
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            5,
+            14
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            4,
+            13
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            4,
+            12
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            3,
+            11
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            3,
+            10
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            3,
+            9
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            2,
+            8
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            2,
+            7
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            1,
+            6
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            1,
+            5
+          ]
+        }
+      }
+    },
+    {
+      "id": "bengal-country-trade",
+      "name": "The Bengal country trade",
+      "evidence": "proxied",
+      "basis": "Company shipping lists' private-trade margins: Calcutta's intra-Asian carriage — rice, saltpetre, opium late — binding Bengal to the Coromandel, the straits, and Batavia.",
+      "era": {
+        "from": 1650,
+        "to": 1850
+      },
+      "cargo": [
+        "saltpetre",
+        "textiles",
+        "grain",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "lanes": [
+        {
+          "from": "calcutta",
+          "to": "madras",
+          "share": 0.2
+        },
+        {
+          "from": "madras",
+          "to": "calcutta",
+          "share": 0.15
+        },
+        {
+          "from": "calcutta",
+          "to": "bombay",
+          "share": 0.15
+        },
+        {
+          "from": "calcutta",
+          "to": "batavia",
+          "share": 0.15
+        },
+        {
+          "from": "batavia",
+          "to": "calcutta",
+          "share": 0.1
+        },
+        {
+          "from": "calcutta",
+          "to": "malacca",
+          "share": 0.15
+        },
+        {
+          "from": "malacca",
+          "to": "calcutta",
+          "share": 0.1
+        }
+      ],
+      "byDecade": {
+        "1650": {
+          "voyagesPerYear": [
+            20,
+            50
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            21,
+            53
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            23,
+            56
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            24,
+            59
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            26,
+            61
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            27,
+            64
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            29,
+            67
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            30,
+            70
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            33,
+            77
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            37,
+            83
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            40,
+            90
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            43,
+            97
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            47,
+            103
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            50,
+            110
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            53,
+            117
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            57,
+            123
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            60,
+            130
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            80,
+            175
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            100,
+            220
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            130,
+            285
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            150,
+            325
+          ]
+        }
+      }
+    },
+    {
+      "id": "nhm-java",
+      "name": "The NHM / Cultivation-System trade (Java)",
+      "evidence": "counted",
+      "basis": "Chunk 7 (T-21/22/23): the Nederlandsche Handel-Maatschappij (1824; Batavia branch 1826) carried the Cultivation System's produce on consignment from 1830 and controlled two-thirds of Java's exports by 1840. Java exports 11.3M -> 66.1M guilders 1830->1840 (weight 36.4M -> 161.7M kg) - the sharpest regime change in the region; the Dutch East-Indies fleet grew 9 (1823) -> 49 (1832) -> 92 (1835) ships on ~2x guaranteed freight rates (Broeze). Thick Batavia<->Amsterdam, deliberately THIN Batavia<->Singapore: the system isolated Java from the intra-Asian networks, which is why the Amoy junks deserted Batavia for Singapore.",
+      "era": {
+        "from": 1824,
+        "to": 1850
+      },
+      "cargo": [
+        "coffee",
+        "sugar",
+        "spices",
+        "textiles"
+      ],
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "lanes": [
+        {
+          "from": "batavia",
+          "to": "amsterdam",
+          "share": 0.5
+        },
+        {
+          "from": "amsterdam",
+          "to": "batavia",
+          "share": 0.5
+        }
+      ],
+      "byDecade": {
+        "1820": {
+          "voyagesPerYear": [
+            10,
+            30
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            45,
+            95
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            70,
+            140
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            75,
+            150
+          ]
+        }
+      },
+      "notes": "Enabled by the new `netherlands` power (the Dutch Republic ends 1795). Dutch bottoms only, by design of the consignment system."
     }
-   ],
-   "byDecade": {
-    "1600": {
-     "voyagesPerYear": [
-      5,
-      12
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      6,
-      14
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      7,
-      15
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      8,
-      17
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      9,
-      18
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      10,
-      20
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      11,
-      22
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      12,
-      24
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      13,
-      26
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      14,
-      28
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      15,
-      30
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      16,
-      32
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      17,
-      34
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      18,
-      36
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      19,
-      38
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      20,
-      40
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      23,
-      47
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      27,
-      53
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      30,
-      60
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      33,
-      67
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      37,
-      73
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      40,
-      80
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      50,
-      100
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      55,
-      110
-     ]
-    }
-   },
-   "notes": "Ends 1834: the Charter Act of 1833 ended ALL EIC trading (verified chunk 7, T-17). The India-Britain trade continued and grew under private British flags - that successor traffic needs britain-flagged lanes (authoring debt)."
-  },
-  {
-   "id": "minor-company-arterials",
-   "name": "The minor company arterials (Danish, French)",
-   "evidence": "counted",
-   "basis": "DAC and Compagnie des Indes records: Copenhagen–Tranquebar and Lorient–Pondicherry (Madras as proxy) — the small neutral carriers whose flags mattered most in wartime.",
-   "era": {
-    "from": 1620,
-    "to": 1845
-   },
-   "cargo": [
-    "textiles",
-    "spices",
-    "specie",
-    "trade-goods"
-   ],
-   "shipTypes": [
-    "east-indiaman"
-   ],
-   "lanes": [
-    {
-     "from": "copenhagen",
-     "to": "tranquebar",
-     "share": 0.3
-    },
-    {
-     "from": "tranquebar",
-     "to": "copenhagen",
-     "share": 0.25
-    },
-    {
-     "from": "lorient",
-     "to": "madras",
-     "share": 0.25
-    },
-    {
-     "from": "madras",
-     "to": "lorient",
-     "share": 0.2
-    }
-   ],
-   "byDecade": {
-    "1620": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      2,
-      7
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      3,
-      7
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      3,
-      7
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      3,
-      8
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      3,
-      8
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      4,
-      9
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      4,
-      11
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      5,
-      12
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      6,
-      14
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      7,
-      15
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      7,
-      17
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      8,
-      18
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      9,
-      19
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      9,
-      21
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      10,
-      22
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      8,
-      19
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      6,
-      15
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      4,
-      12
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      3,
-      10
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      3,
-      9
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      2,
-      7
-     ]
-    }
-   },
-   "notes": "Ends 1845: Danish Tranquebar was sold to Britain in 1845, closing the last of the small neutral carriers."
-  },
-  {
-   "id": "coromandel-se-asia",
-   "name": "Coromandel textiles to Southeast Asia",
-   "evidence": "reconstructed",
-   "basis": "Chaudhuri, Arasaratnam: painted cottons east for spices and gold — the exchange that clothed the archipelago, fading as Europeans capture the carriage after 1700.",
-   "era": {
-    "from": 1550,
-    "to": 1740
-   },
-   "cargo": [
-    "textiles",
-    "indigo",
-    "spices"
-   ],
-   "shipTypes": [
-    "merchantman",
-    "dhow",
-    "brig"
-   ],
-   "lanes": [
-    {
-     "from": "masulipatnam",
-     "to": "aceh",
-     "share": 0.2
-    },
-    {
-     "from": "masulipatnam",
-     "to": "malacca",
-     "share": 0.15
-    },
-    {
-     "from": "madras",
-     "to": "malacca",
-     "share": 0.15
-    },
-    {
-     "from": "aceh",
-     "to": "masulipatnam",
-     "share": 0.15
-    },
-    {
-     "from": "malacca",
-     "to": "madras",
-     "share": 0.15
-    },
-    {
-     "from": "masulipatnam",
-     "to": "makassar",
-     "share": 0.1
-    },
-    {
-     "from": "makassar",
-     "to": "masulipatnam",
-     "share": 0.1
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      30,
-      70
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      31,
-      73
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      33,
-      76
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      34,
-      79
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      36,
-      81
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      37,
-      84
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      39,
-      87
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      40,
-      90
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      38,
-      87
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      37,
-      83
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      35,
-      80
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      33,
-      77
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      32,
-      73
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      30,
-      70
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      28,
-      66
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      25,
-      62
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      23,
-      58
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      20,
-      53
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      18,
-      49
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      15,
-      45
-     ]
-    }
-   }
-  },
-  {
-   "id": "spice-islands",
-   "name": "The spice islands (Banda, the Moluccas)",
-   "evidence": "counted",
-   "basis": "VOC records for the monopoly circuit; the Makassar smuggling era (to 1669) rides the same lanes — nutmeg, mace, and cloves out of the world's only sources.",
-   "era": {
-    "from": 1550,
-    "to": 1815
-   },
-   "cargo": [
-    "nutmeg-mace",
-    "cloves",
-    "textiles",
-    "trade-goods"
-   ],
-   "shipTypes": [
-    "east-indiaman",
-    "junk",
-    "brig"
-   ],
-   "lanes": [
-    {
-     "from": "banda",
-     "to": "batavia",
-     "share": 0.3
-    },
-    {
-     "from": "batavia",
-     "to": "banda",
-     "share": 0.25
-    },
-    {
-     "from": "makassar",
-     "to": "banda",
-     "share": 0.15
-    },
-    {
-     "from": "banda",
-     "to": "makassar",
-     "share": 0.1
-    },
-    {
-     "from": "batavia",
-     "to": "malacca",
-     "share": 0.2
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      15,
-      40
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      16,
-      41
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      16,
-      43
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      17,
-      44
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      18,
-      46
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      19,
-      47
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      19,
-      49
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      20,
-      50
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      21,
-      51
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      22,
-      52
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      23,
-      53
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      23,
-      53
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      24,
-      54
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      25,
-      55
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      24,
-      54
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      24,
-      54
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      23,
-      53
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      22,
-      52
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      21,
-      51
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      21,
-      51
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      20,
-      50
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      19,
-      48
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      18,
-      47
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      18,
-      45
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      17,
-      43
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      16,
-      42
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      15,
-      40
-     ]
-    }
-   },
-   "notes": "Not extended past 1795: every lane is voc-flagged and the VOC ended. The Moluccas spice trade continued under the Netherlands Indies; that carriage rides the new nhm-java trunk and awaits re-flagged lanes."
-  },
-  {
-   "id": "bugis-carrying",
-   "name": "The Bugis–Makassar carrying network",
-   "evidence": "asserted",
-   "basis": "ASSERTED (R3 decision) — Reid's synthesis documents a great indigenous carrying trade (Makassar, the Bugis diaspora after 1669, Riau) that no European series counts as such. Central guesses from port-call fragments and the VOC's own complaints; bounds ±60%.",
-   "era": {
-    "from": 1550,
-    "to": 1850
-   },
-   "cargo": [
-    "spices",
-    "textiles",
-    "trade-goods",
-    "deerskins"
-   ],
-   "shipTypes": [
-    "junk",
-    "dhow"
-   ],
-   "lanes": [
-    {
-     "from": "makassar",
-     "to": "batavia",
-     "share": 0.2
-    },
-    {
-     "from": "makassar",
-     "to": "malacca",
-     "share": 0.2
-    },
-    {
-     "from": "malacca",
-     "to": "makassar",
-     "share": 0.15
-    },
-    {
-     "from": "makassar",
-     "to": "manila",
-     "share": 0.15
-    },
-    {
-     "from": "aceh",
-     "to": "malacca",
-     "share": 0.15
-    },
-    {
-     "from": "malacca",
-     "to": "aceh",
-     "share": 0.15
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      60,
-      240
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      62,
-      248
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      64,
-      256
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      66,
-      264
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      68,
-      272
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      70,
-      280
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      72,
-      288
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      74,
-      296
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      76,
-      304
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      78,
-      312
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      80,
-      320
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      82,
-      328
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      84,
-      336
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      86,
-      344
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      88,
-      352
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      90,
-      360
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      92,
-      368
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      94,
-      376
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      96,
-      384
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      98,
-      392
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      100,
-      400
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      100,
-      400
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      100,
-      400
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      100,
-      400
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      100,
-      400
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      100,
-      400
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      100,
-      400
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      100,
-      400
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      105,
-      420
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      110,
-      440
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      110,
-      440
-     ]
-    }
-   },
-   "notes": "The archipelago's own metabolism — the counterpart of Europe's coasting trades, and as invisible to the toll series."
-  },
-  {
-   "id": "manila-galleon",
-   "name": "The Manila galleon",
-   "evidence": "counted",
-   "basis": "The Acapulco registers: one to four ships a year, and half the world's silver output moving through them at the peak.",
-   "era": {
-    "from": 1571,
-    "to": 1821
-   },
-   "cargo": [
-    "specie",
-    "silk",
-    "porcelain"
-   ],
-   "shipTypes": [
-    "galleon"
-   ],
-   "lanes": [
-    {
-     "from": "manila",
-     "to": "acapulco",
-     "share": 0.5
-    },
-    {
-     "from": "acapulco",
-     "to": "manila",
-     "share": 0.5
-    }
-   ],
-   "byDecade": {
-    "1570": {
-     "voyagesPerYear": [
-      2,
-      4
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      2,
-      4
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      2,
-      4
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      2,
-      4
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      2,
-      4
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      0,
-      1
-     ]
-    }
-   },
-   "notes": "Tiny by count, enormous by value — the flow matrix records voyages; the value story lives in the rankings. Ends 1821, not 1815: the last galleon sailed 1815 and the formal abolition preceded it, but the transpacific circuit was severed by MEXICAN INDEPENDENCE in 1821 (verified chunk 11). The 1820 decade carries the final residual."
-  },
-  {
-   "id": "aceh-red-sea",
-   "name": "The Aceh–Red Sea pepper route",
-   "evidence": "reconstructed",
-   "basis": "Reid, Subrahmanyam: the 16th-c Muslim pepper route that broke the Portuguese monopoly — Aceh to Jedda past the Estado's patrols, fading in the 17th c.",
-   "era": {
-    "from": 1550,
-    "to": 1700
-   },
-   "cargo": [
-    "pepper",
-    "spices",
-    "textiles"
-   ],
-   "shipTypes": [
-    "dhow",
-    "junk"
-   ],
-   "lanes": [
-    {
-     "from": "aceh",
-     "to": "jedda",
-     "share": 0.55
-    },
-    {
-     "from": "jedda",
-     "to": "aceh",
-     "share": 0.45
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      3,
-      10
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      3,
-      11
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      4,
-      12
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      4,
-      13
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      5,
-      14
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      5,
-      15
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      5,
-      14
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      4,
-      13
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      4,
-      12
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      3,
-      11
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      3,
-      10
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      3,
-      9
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      2,
-      8
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      2,
-      7
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      1,
-      6
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      1,
-      5
-     ]
-    }
-   }
-  },
-  {
-   "id": "bengal-country-trade",
-   "name": "The Bengal country trade",
-   "evidence": "proxied",
-   "basis": "Company shipping lists' private-trade margins: Calcutta's intra-Asian carriage — rice, saltpetre, opium late — binding Bengal to the Coromandel, the straits, and Batavia.",
-   "era": {
-    "from": 1650,
-    "to": 1850
-   },
-   "cargo": [
-    "saltpetre",
-    "textiles",
-    "grain",
-    "trade-goods"
-   ],
-   "shipTypes": [
-    "merchantman",
-    "brig"
-   ],
-   "lanes": [
-    {
-     "from": "calcutta",
-     "to": "madras",
-     "share": 0.2
-    },
-    {
-     "from": "madras",
-     "to": "calcutta",
-     "share": 0.15
-    },
-    {
-     "from": "calcutta",
-     "to": "bombay",
-     "share": 0.15
-    },
-    {
-     "from": "calcutta",
-     "to": "batavia",
-     "share": 0.15
-    },
-    {
-     "from": "batavia",
-     "to": "calcutta",
-     "share": 0.1
-    },
-    {
-     "from": "calcutta",
-     "to": "malacca",
-     "share": 0.15
-    },
-    {
-     "from": "malacca",
-     "to": "calcutta",
-     "share": 0.1
-    }
-   ],
-   "byDecade": {
-    "1650": {
-     "voyagesPerYear": [
-      20,
-      50
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      21,
-      53
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      23,
-      56
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      24,
-      59
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      26,
-      61
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      27,
-      64
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      29,
-      67
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      30,
-      70
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      33,
-      77
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      37,
-      83
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      40,
-      90
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      43,
-      97
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      47,
-      103
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      50,
-      110
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      53,
-      117
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      57,
-      123
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      60,
-      130
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      80,
-      175
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      100,
-      220
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      130,
-      285
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      150,
-      325
-     ]
-    }
-   }
-  },
-  {
-   "id": "nhm-java",
-   "name": "The NHM / Cultivation-System trade (Java)",
-   "evidence": "counted",
-   "basis": "Chunk 7 (T-21/22/23): the Nederlandsche Handel-Maatschappij (1824; Batavia branch 1826) carried the Cultivation System's produce on consignment from 1830 and controlled two-thirds of Java's exports by 1840. Java exports 11.3M -> 66.1M guilders 1830->1840 (weight 36.4M -> 161.7M kg) - the sharpest regime change in the region; the Dutch East-Indies fleet grew 9 (1823) -> 49 (1832) -> 92 (1835) ships on ~2x guaranteed freight rates (Broeze). Thick Batavia<->Amsterdam, deliberately THIN Batavia<->Singapore: the system isolated Java from the intra-Asian networks, which is why the Amoy junks deserted Batavia for Singapore.",
-   "era": {
-    "from": 1824,
-    "to": 1850
-   },
-   "cargo": [
-    "coffee",
-    "sugar",
-    "spices",
-    "textiles"
-   ],
-   "shipTypes": [
-    "east-indiaman",
-    "merchantman"
-   ],
-   "lanes": [
-    {
-     "from": "batavia",
-     "to": "amsterdam",
-     "share": 0.5
-    },
-    {
-     "from": "amsterdam",
-     "to": "batavia",
-     "share": 0.5
-    }
-   ],
-   "byDecade": {
-    "1820": {
-     "voyagesPerYear": [
-      10,
-      30
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      45,
-      95
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      70,
-      140
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      75,
-      150
-     ]
-    }
-   },
-   "notes": "Enabled by the new `netherlands` power (the Dutch Republic ends 1795). Dutch bottoms only, by design of the consignment system."
-  }
- ]
+  ]
 }

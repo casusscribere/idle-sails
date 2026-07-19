@@ -1,2149 +1,2761 @@
 {
- "basin": "mediterranean",
- "note": "PLAN-3 R3. The inland sea's traffic is dense, short-haul, and mostly outside the northern toll series — hence the high share of reconstructed/asserted systems. Includes the Black Sea slave trade under the charter's sober-framing rule (R3 decision 4).",
- "anchors": [
-  "F. Braudel, La Méditerranée (the structural picture)",
-  "Levant Company records; the French échelles du Levant series (Marseille chamber of commerce)",
-  "D. Sella, R. Rapp (Venice); F. W. Carter (Ragusa)",
-  "Ottoman provisioning studies (Istanbul's grain lifeline)"
- ],
- "crossChecks": [
-  {
-   "id": "french-levant-peak",
-   "source": "Marseille échelles series, 18th-c peak",
-   "systems": {
-    "levant-trade": 0.6
-   },
-   "decades": {
-    "1750": [
-     180,
-     380
-    ],
-    "1780": [
-     200,
-     420
-    ]
-   }
-  }
- ],
- "ports": [
-  {
-   "id": "marseille",
-   "name": "Marseille",
-   "simProxy": "marseille"
-  },
-  {
-   "id": "barcelona",
-   "name": "Barcelona",
-   "simProxy": "barcelona"
-  },
-  {
-   "id": "cadiz",
-   "name": "Cádiz",
-   "simProxy": "cadiz"
-  },
-  {
-   "id": "genoa",
-   "name": "Genoa",
-   "simProxy": "genoa"
-  },
-  {
-   "id": "livorno",
-   "name": "Livorno",
-   "simProxy": "livorno"
-  },
-  {
-   "id": "venice",
-   "name": "Venice",
-   "simProxy": "venice"
-  },
-  {
-   "id": "naples",
-   "name": "Naples",
-   "simProxy": "naples"
-  },
-  {
-   "id": "palermo",
-   "name": "Palermo",
-   "simProxy": "naples"
-  },
-  {
-   "id": "messina",
-   "name": "Messina",
-   "simProxy": "naples"
-  },
-  {
-   "id": "ragusa-port",
-   "name": "Ragusa (Dubrovnik)",
-   "simProxy": "venice"
-  },
-  {
-   "id": "smyrna",
-   "name": "Smyrna (İzmir)",
-   "simProxy": "istanbul"
-  },
-  {
-   "id": "istanbul",
-   "name": "Istanbul (Constantinople)",
-   "simProxy": "istanbul"
-  },
-  {
-   "id": "alexandria",
-   "name": "Alexandria",
-   "simProxy": null
-  },
-  {
-   "id": "scanderoon",
-   "name": "Scanderoon (İskenderun, for Aleppo)",
-   "simProxy": null
-  },
-  {
-   "id": "kaffa",
-   "name": "Kaffa (Feodosia)",
-   "simProxy": "kaffa"
-  },
-  {
-   "id": "london",
-   "name": "London",
-   "simProxy": "london"
-  },
-  {
-   "id": "amsterdam",
-   "name": "Amsterdam",
-   "simProxy": "amsterdam"
-  }
- ],
- "systems": [
-  {
-   "id": "levant-trade",
-   "name": "The Levant trade",
-   "evidence": "counted",
-   "basis": "French échelles series (the dominant carrier by the 18th c) + Levant Company and Dutch directie records; silk, mohair, cotton, and drugs against cloth and silver.",
-   "era": {
-    "from": 1550,
-    "to": 1850
-   },
-   "cargo": [
-    "silk",
-    "cotton",
-    "trade-goods",
-    "specie"
-   ],
-   "shipTypes": [
-    "merchantman",
-    "brig"
-   ],
-   "lanes": [
+  "basin": "mediterranean",
+  "note": "PLAN-3 R3. The inland sea's traffic is dense, short-haul, and mostly outside the northern toll series — hence the high share of reconstructed/asserted systems. Includes the Black Sea slave trade under the charter's sober-framing rule (R3 decision 4).",
+  "anchors": [
+    "F. Braudel, La Méditerranée (the structural picture)",
+    "Levant Company records; the French échelles du Levant series (Marseille chamber of commerce)",
+    "D. Sella, R. Rapp (Venice); F. W. Carter (Ragusa)",
+    "Ottoman provisioning studies (Istanbul's grain lifeline)"
+  ],
+  "crossChecks": [
     {
-     "from": "marseille",
-     "to": "smyrna",
-     "share": 0.2
-    },
-    {
-     "from": "smyrna",
-     "to": "marseille",
-     "share": 0.2
-    },
-    {
-     "from": "marseille",
-     "to": "alexandria",
-     "share": 0.08
-    },
-    {
-     "from": "alexandria",
-     "to": "marseille",
-     "share": 0.08
-    },
-    {
-     "from": "london",
-     "to": "smyrna",
-     "share": 0.08
-    },
-    {
-     "from": "smyrna",
-     "to": "london",
-     "share": 0.08
-    },
-    {
-     "from": "venice",
-     "to": "smyrna",
-     "share": 0.07
-    },
-    {
-     "from": "smyrna",
-     "to": "venice",
-     "share": 0.07
-    },
-    {
-     "from": "scanderoon",
-     "to": "marseille",
-     "share": 0.1
-    },
-    {
-     "from": "marseille",
-     "to": "scanderoon",
-     "share": 0.04
+      "id": "french-levant-peak",
+      "source": "Marseille échelles series, 18th-c peak",
+      "systems": {
+        "levant-trade": 0.6
+      },
+      "decades": {
+        "1750": [
+          180,
+          380
+        ],
+        "1780": [
+          200,
+          420
+        ]
+      }
     }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      80,
-      160
-     ]
+  ],
+  "ports": [
+    {
+      "id": "marseille",
+      "name": "Marseille",
+      "simProxy": "marseille"
     },
-    "1560": {
-     "voyagesPerYear": [
-      84,
-      168
-     ]
+    {
+      "id": "barcelona",
+      "name": "Barcelona",
+      "simProxy": "barcelona"
     },
-    "1570": {
-     "voyagesPerYear": [
-      88,
-      176
-     ]
+    {
+      "id": "cadiz",
+      "name": "Cádiz",
+      "simProxy": "cadiz"
     },
-    "1580": {
-     "voyagesPerYear": [
-      92,
-      184
-     ]
+    {
+      "id": "genoa",
+      "name": "Genoa",
+      "simProxy": "genoa"
     },
-    "1590": {
-     "voyagesPerYear": [
-      96,
-      192
-     ]
+    {
+      "id": "livorno",
+      "name": "Livorno",
+      "simProxy": "livorno"
     },
-    "1600": {
-     "voyagesPerYear": [
-      100,
-      200
-     ]
+    {
+      "id": "venice",
+      "name": "Venice",
+      "simProxy": "venice"
     },
-    "1610": {
-     "voyagesPerYear": [
-      104,
-      204
-     ]
+    {
+      "id": "naples",
+      "name": "Naples",
+      "simProxy": "naples"
     },
-    "1620": {
-     "voyagesPerYear": [
-      108,
-      208
-     ]
+    {
+      "id": "palermo",
+      "name": "Palermo",
+      "simProxy": "naples"
     },
-    "1630": {
-     "voyagesPerYear": [
-      112,
-      212
-     ]
+    {
+      "id": "messina",
+      "name": "Messina",
+      "simProxy": "naples"
     },
-    "1640": {
-     "voyagesPerYear": [
-      116,
-      216
-     ]
+    {
+      "id": "ragusa-port",
+      "name": "Ragusa (Dubrovnik)",
+      "simProxy": "venice"
     },
-    "1650": {
-     "voyagesPerYear": [
-      120,
-      220
-     ]
+    {
+      "id": "smyrna",
+      "name": "Smyrna (İzmir)",
+      "simProxy": "istanbul"
     },
-    "1660": {
-     "voyagesPerYear": [
-      126,
-      236
-     ]
+    {
+      "id": "istanbul",
+      "name": "Istanbul (Constantinople)",
+      "simProxy": "istanbul"
     },
-    "1670": {
-     "voyagesPerYear": [
-      132,
-      252
-     ]
+    {
+      "id": "alexandria",
+      "name": "Alexandria",
+      "simProxy": null
     },
-    "1680": {
-     "voyagesPerYear": [
-      138,
-      268
-     ]
+    {
+      "id": "scanderoon",
+      "name": "Scanderoon (İskenderun, for Aleppo)",
+      "simProxy": null
     },
-    "1690": {
-     "voyagesPerYear": [
-      144,
-      284
-     ]
+    {
+      "id": "kaffa",
+      "name": "Kaffa (Feodosia)",
+      "simProxy": "kaffa"
     },
-    "1700": {
-     "voyagesPerYear": [
-      150,
-      300
-     ]
+    {
+      "id": "london",
+      "name": "London",
+      "simProxy": "london"
     },
-    "1710": {
-     "voyagesPerYear": [
-      180,
-      350
-     ]
+    {
+      "id": "amsterdam",
+      "name": "Amsterdam",
+      "simProxy": "amsterdam"
     },
-    "1720": {
-     "voyagesPerYear": [
-      210,
-      400
-     ]
+    {
+      "id": "algiers",
+      "name": "Algiers",
+      "simProxy": null
     },
-    "1730": {
-     "voyagesPerYear": [
-      240,
-      450
-     ]
+    {
+      "id": "tunis",
+      "name": "Tunis (the dot at La Goulette)",
+      "simProxy": null
     },
-    "1740": {
-     "voyagesPerYear": [
-      270,
-      500
-     ]
+    {
+      "id": "tripoli",
+      "name": "Tripoli",
+      "simProxy": null
     },
-    "1750": {
-     "voyagesPerYear": [
-      300,
-      550
-     ]
+    {
+      "id": "la-calle",
+      "name": "La Calle (the French concession; Bastion de France to 1677)",
+      "simProxy": null
     },
-    "1760": {
-     "voyagesPerYear": [
-      317,
-      583
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      333,
-      617
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      350,
-      650
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      250,
-      525
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      150,
-      400
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      100,
-      350
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      120,
-      400
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      140,
-      470
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      180,
-      600
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      220,
-      720
-     ]
+    {
+      "id": "tabarka",
+      "name": "Tabarka (the Genoese coral concession)",
+      "simProxy": null
     }
-   }
-  },
-  {
-   "id": "italian-grain",
-   "name": "The Italian grain redistribution",
-   "evidence": "reconstructed",
-   "basis": "Braudel and the annona studies: Sicilian and Puglian wheat feeding the Italian cities, with Egyptian grain north in dearth years.",
-   "era": {
-    "from": 1550,
-    "to": 1850
-   },
-   "cargo": [
-    "grain",
-    "salt"
-   ],
-   "shipTypes": [
-    "merchantman",
-    "brig"
-   ],
-   "lanes": [
+  ],
+  "systems": [
     {
-     "from": "palermo",
-     "to": "naples",
-     "share": 0.2
+      "id": "levant-trade",
+      "name": "The Levant trade",
+      "evidence": "counted",
+      "basis": "French échelles series (the dominant carrier by the 18th c) + Levant Company and Dutch directie records; silk, mohair, cotton, and drugs against cloth and silver.",
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "cargo": [
+        "silk",
+        "cotton",
+        "trade-goods",
+        "specie"
+      ],
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "lanes": [
+        {
+          "from": "marseille",
+          "to": "smyrna",
+          "share": 0.2
+        },
+        {
+          "from": "smyrna",
+          "to": "marseille",
+          "share": 0.2
+        },
+        {
+          "from": "marseille",
+          "to": "alexandria",
+          "share": 0.08
+        },
+        {
+          "from": "alexandria",
+          "to": "marseille",
+          "share": 0.08
+        },
+        {
+          "from": "london",
+          "to": "smyrna",
+          "share": 0.08
+        },
+        {
+          "from": "smyrna",
+          "to": "london",
+          "share": 0.08
+        },
+        {
+          "from": "venice",
+          "to": "smyrna",
+          "share": 0.07
+        },
+        {
+          "from": "smyrna",
+          "to": "venice",
+          "share": 0.07
+        },
+        {
+          "from": "scanderoon",
+          "to": "marseille",
+          "share": 0.1
+        },
+        {
+          "from": "marseille",
+          "to": "scanderoon",
+          "share": 0.04
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            80,
+            160
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            84,
+            168
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            88,
+            176
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            92,
+            184
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            96,
+            192
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            100,
+            200
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            104,
+            204
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            108,
+            208
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            112,
+            212
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            116,
+            216
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            120,
+            220
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            126,
+            236
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            132,
+            252
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            138,
+            268
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            144,
+            284
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            150,
+            300
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            180,
+            350
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            210,
+            400
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            240,
+            450
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            270,
+            500
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            300,
+            550
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            317,
+            583
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            333,
+            617
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            350,
+            650
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            250,
+            525
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            150,
+            400
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            100,
+            350
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            120,
+            400
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            140,
+            470
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            180,
+            600
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            220,
+            720
+          ]
+        }
+      }
     },
     {
-     "from": "palermo",
-     "to": "genoa",
-     "share": 0.15
+      "id": "italian-grain",
+      "name": "The Italian grain redistribution",
+      "evidence": "reconstructed",
+      "basis": "Braudel and the annona studies: Sicilian and Puglian wheat feeding the Italian cities, with Egyptian grain north in dearth years.",
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "cargo": [
+        "grain",
+        "salt"
+      ],
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "lanes": [
+        {
+          "from": "palermo",
+          "to": "naples",
+          "share": 0.2
+        },
+        {
+          "from": "palermo",
+          "to": "genoa",
+          "share": 0.15
+        },
+        {
+          "from": "palermo",
+          "to": "livorno",
+          "share": 0.15
+        },
+        {
+          "from": "messina",
+          "to": "livorno",
+          "share": 0.1
+        },
+        {
+          "from": "naples",
+          "to": "genoa",
+          "share": 0.1
+        },
+        {
+          "from": "palermo",
+          "to": "barcelona",
+          "share": 0.1
+        },
+        {
+          "from": "alexandria",
+          "to": "livorno",
+          "share": 0.1
+        },
+        {
+          "from": "naples",
+          "to": "barcelona",
+          "share": 0.1
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            250,
+            500
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            260,
+            520
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            270,
+            540
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            280,
+            560
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            290,
+            580
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            300,
+            600
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            290,
+            580
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            280,
+            560
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            270,
+            540
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            260,
+            520
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            250,
+            500
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            240,
+            490
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            230,
+            480
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            220,
+            470
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            210,
+            460
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            200,
+            450
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            210,
+            460
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            220,
+            470
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            230,
+            480
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            240,
+            490
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            250,
+            500
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            242,
+            492
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            233,
+            483
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            225,
+            475
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            217,
+            467
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            208,
+            458
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            200,
+            450
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            200,
+            450
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            210,
+            470
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            220,
+            490
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            210,
+            470
+          ]
+        }
+      }
     },
     {
-     "from": "palermo",
-     "to": "livorno",
-     "share": 0.15
+      "id": "venice-adriatic",
+      "name": "Venice and the eastern sea",
+      "evidence": "reconstructed",
+      "basis": "Sella, Rapp, Tenenti: the Serenissima's long decline from spice emporium to regional carrier — visible here as a falling curve, not a disappearance.",
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "cargo": [
+        "trade-goods",
+        "wine",
+        "silk",
+        "grain"
+      ],
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "lanes": [
+        {
+          "from": "venice",
+          "to": "istanbul",
+          "share": 0.2
+        },
+        {
+          "from": "istanbul",
+          "to": "venice",
+          "share": 0.2
+        },
+        {
+          "from": "venice",
+          "to": "ragusa-port",
+          "share": 0.15
+        },
+        {
+          "from": "ragusa-port",
+          "to": "venice",
+          "share": 0.15
+        },
+        {
+          "from": "venice",
+          "to": "alexandria",
+          "share": 0.15
+        },
+        {
+          "from": "alexandria",
+          "to": "venice",
+          "share": 0.15
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            200,
+            400
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            196,
+            390
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            192,
+            380
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            188,
+            370
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            184,
+            360
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            180,
+            350
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            168,
+            330
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            156,
+            310
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            144,
+            290
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            132,
+            270
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            120,
+            250
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            116,
+            240
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            112,
+            230
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            108,
+            220
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            104,
+            210
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            100,
+            200
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            96,
+            196
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            92,
+            192
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            88,
+            188
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            84,
+            184
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            80,
+            180
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            77,
+            175
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            73,
+            170
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            70,
+            165
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            67,
+            160
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            63,
+            155
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            60,
+            150
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            55,
+            140
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            60,
+            150
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            58,
+            145
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            55,
+            140
+          ]
+        }
+      }
     },
     {
-     "from": "messina",
-     "to": "livorno",
-     "share": 0.1
+      "id": "ragusa-carrying",
+      "name": "The Ragusan carrying trade",
+      "evidence": "reconstructed",
+      "basis": "Carter; the neutral argosies at their 16th-c peak, broken by the 1667 earthquake, reviving under 18th-c neutrality.",
+      "era": {
+        "from": 1550,
+        "to": 1808
+      },
+      "cargo": [
+        "trade-goods",
+        "grain",
+        "salt",
+        "wine"
+      ],
+      "shipTypes": [
+        "merchantman"
+      ],
+      "lanes": [
+        {
+          "from": "ragusa-port",
+          "to": "messina",
+          "share": 0.15
+        },
+        {
+          "from": "ragusa-port",
+          "to": "barcelona",
+          "share": 0.15
+        },
+        {
+          "from": "ragusa-port",
+          "to": "alexandria",
+          "share": 0.15
+        },
+        {
+          "from": "ragusa-port",
+          "to": "istanbul",
+          "share": 0.15
+        },
+        {
+          "from": "istanbul",
+          "to": "ragusa-port",
+          "share": 0.1
+        },
+        {
+          "from": "barcelona",
+          "to": "ragusa-port",
+          "share": 0.1
+        },
+        {
+          "from": "ragusa-port",
+          "to": "cadiz",
+          "share": 0.1
+        },
+        {
+          "from": "ragusa-port",
+          "to": "livorno",
+          "share": 0.1
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            60,
+            140
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            63,
+            143
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            67,
+            147
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            70,
+            150
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            63,
+            138
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            55,
+            125
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            48,
+            113
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            40,
+            100
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            35,
+            90
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            30,
+            80
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            25,
+            70
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            20,
+            60
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            15,
+            50
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            18,
+            56
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            21,
+            63
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            24,
+            69
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            28,
+            75
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            31,
+            81
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            34,
+            88
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            37,
+            94
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            40,
+            100
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            38,
+            98
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            36,
+            96
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            34,
+            94
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            32,
+            92
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            30,
+            90
+          ]
+        }
+      }
     },
     {
-     "from": "naples",
-     "to": "genoa",
-     "share": 0.1
+      "id": "marseille-trade",
+      "name": "Marseille and the western basin",
+      "evidence": "proxied",
+      "basis": "Marseille chamber of commerce series: the coasting and Spanish/Italian exchange beneath the Levant headline.",
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "cargo": [
+        "wine",
+        "salt",
+        "trade-goods",
+        "grain"
+      ],
+      "shipTypes": [
+        "brig",
+        "sloop",
+        "merchantman"
+      ],
+      "lanes": [
+        {
+          "from": "marseille",
+          "to": "genoa",
+          "share": 0.15
+        },
+        {
+          "from": "genoa",
+          "to": "marseille",
+          "share": 0.12
+        },
+        {
+          "from": "marseille",
+          "to": "livorno",
+          "share": 0.13
+        },
+        {
+          "from": "livorno",
+          "to": "marseille",
+          "share": 0.1
+        },
+        {
+          "from": "marseille",
+          "to": "barcelona",
+          "share": 0.13
+        },
+        {
+          "from": "barcelona",
+          "to": "marseille",
+          "share": 0.1
+        },
+        {
+          "from": "marseille",
+          "to": "naples",
+          "share": 0.1
+        },
+        {
+          "from": "naples",
+          "to": "marseille",
+          "share": 0.07
+        },
+        {
+          "from": "marseille",
+          "to": "cadiz",
+          "share": 0.1
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            150,
+            350
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            160,
+            360
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            170,
+            370
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            180,
+            380
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            190,
+            390
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            200,
+            400
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            210,
+            410
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            220,
+            420
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            230,
+            430
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            240,
+            440
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            250,
+            450
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            265,
+            475
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            280,
+            500
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            295,
+            525
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            310,
+            550
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            325,
+            575
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            340,
+            600
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            355,
+            625
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            370,
+            650
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            385,
+            675
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            400,
+            700
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            413,
+            725
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            425,
+            750
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            438,
+            775
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            450,
+            800
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            150,
+            450
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            100,
+            400
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            130,
+            500
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            170,
+            650
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            220,
+            850
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            260,
+            1000
+          ]
+        }
+      }
     },
     {
-     "from": "palermo",
-     "to": "barcelona",
-     "share": 0.1
+      "id": "ottoman-provisioning",
+      "name": "The provisioning of Istanbul",
+      "evidence": "reconstructed",
+      "basis": "The capital's grain lifeline — Egyptian wheat and Black Sea grain into the largest city of Europe and the Near East. The system the European commercial record cannot rank (the R1 declared boundary), quantified here from Ottoman provisioning scholarship.",
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "cargo": [
+        "grain",
+        "salt",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "merchantman",
+        "dhow",
+        "brig"
+      ],
+      "lanes": [
+        {
+          "from": "alexandria",
+          "to": "istanbul",
+          "share": 0.3
+        },
+        {
+          "from": "kaffa",
+          "to": "istanbul",
+          "share": 0.3
+        },
+        {
+          "from": "istanbul",
+          "to": "kaffa",
+          "share": 0.15
+        },
+        {
+          "from": "istanbul",
+          "to": "alexandria",
+          "share": 0.15
+        },
+        {
+          "from": "smyrna",
+          "to": "istanbul",
+          "share": 0.1
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            300,
+            700
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            305,
+            705
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            310,
+            710
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            315,
+            715
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            320,
+            720
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            325,
+            725
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            330,
+            730
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            335,
+            735
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            340,
+            740
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            345,
+            745
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            350,
+            750
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            350,
+            750
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            350,
+            750
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            350,
+            750
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            350,
+            750
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            350,
+            750
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            350,
+            750
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            350,
+            750
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            350,
+            750
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            350,
+            750
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            350,
+            750
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            342,
+            742
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            333,
+            733
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            325,
+            725
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            317,
+            717
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            308,
+            708
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            300,
+            700
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            300,
+            700
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            310,
+            720
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            330,
+            760
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            350,
+            800
+          ]
+        }
+      }
     },
     {
-     "from": "alexandria",
-     "to": "livorno",
-     "share": 0.1
+      "id": "greek-ottoman-coasting",
+      "name": "Greek and Ottoman coasting",
+      "evidence": "asserted",
+      "basis": "ASSERTED — the record's blind spot: the caïques and polaccas of Greek, Armenian, and Turkish shippers who carried the eastern basin's daily exchange under flags no western customs house logged. Central guesses scale with the known ports' consumption; bounds ±60%. By the 1780s the Greek merchant marine is large enough to enter western records — the curve rises accordingly.",
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "cargo": [
+        "grain",
+        "wine",
+        "salt",
+        "trade-goods",
+        "cotton"
+      ],
+      "shipTypes": [
+        "brig",
+        "sloop",
+        "dhow"
+      ],
+      "lanes": [
+        {
+          "from": "smyrna",
+          "to": "istanbul",
+          "share": 0.2
+        },
+        {
+          "from": "istanbul",
+          "to": "smyrna",
+          "share": 0.15
+        },
+        {
+          "from": "alexandria",
+          "to": "smyrna",
+          "share": 0.15
+        },
+        {
+          "from": "smyrna",
+          "to": "alexandria",
+          "share": 0.1
+        },
+        {
+          "from": "kaffa",
+          "to": "smyrna",
+          "share": 0.1
+        },
+        {
+          "from": "messina",
+          "to": "smyrna",
+          "share": 0.1
+        },
+        {
+          "from": "smyrna",
+          "to": "ragusa-port",
+          "share": 0.1
+        },
+        {
+          "from": "istanbul",
+          "to": "messina",
+          "share": 0.1
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            120,
+            480
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            122,
+            488
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            124,
+            496
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            126,
+            504
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            128,
+            512
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            130,
+            520
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            132,
+            528
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            134,
+            536
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            136,
+            544
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            138,
+            552
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            140,
+            560
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            144,
+            576
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            148,
+            592
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            152,
+            608
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            156,
+            624
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            160,
+            640
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            164,
+            656
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            168,
+            672
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            172,
+            688
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            176,
+            704
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            180,
+            720
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            183,
+            733
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            187,
+            747
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            190,
+            760
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            193,
+            773
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            197,
+            787
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            200,
+            800
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            100,
+            400
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            260,
+            1040
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            360,
+            1440
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            400,
+            1600
+          ]
+        }
+      }
     },
     {
-     "from": "naples",
-     "to": "barcelona",
-     "share": 0.1
+      "id": "habsburg-genoa-route",
+      "name": "The Habsburg silver route (Barcelona–Genoa)",
+      "evidence": "reconstructed",
+      "basis": "Braudel's 'Spanish road' at sea: silver, troops, and credit between Iberia and Habsburg Italy, ending with the dynasty's Mediterranean system.",
+      "era": {
+        "from": 1550,
+        "to": 1714
+      },
+      "cargo": [
+        "specie",
+        "trade-goods",
+        "wine"
+      ],
+      "shipTypes": [
+        "galleon",
+        "merchantman"
+      ],
+      "lanes": [
+        {
+          "from": "barcelona",
+          "to": "genoa",
+          "share": 0.4
+        },
+        {
+          "from": "genoa",
+          "to": "barcelona",
+          "share": 0.3
+        },
+        {
+          "from": "cadiz",
+          "to": "genoa",
+          "share": 0.15
+        },
+        {
+          "from": "genoa",
+          "to": "naples",
+          "share": 0.15
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            50,
+            120
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            52,
+            122
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            54,
+            124
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            56,
+            126
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            58,
+            128
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            60,
+            130
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            56,
+            124
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            52,
+            118
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            48,
+            112
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            44,
+            106
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            40,
+            100
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            37,
+            93
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            33,
+            87
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            30,
+            80
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            27,
+            73
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            23,
+            67
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            20,
+            60
+          ]
+        }
+      }
+    },
+    {
+      "id": "black-sea-slave-trade",
+      "name": "The Black Sea slave trade (Kaffa)",
+      "evidence": "reconstructed",
+      "basis": "The Crimean Khanate's raiding economy shipped captives from Kaffa to Ottoman markets for two centuries — a coerced flow the charter forbids leaving silently zero (R3 decision 4). Volume reconstructions from Ottoman customs studies; declines with the raids and ends with Russian annexation (1783).",
+      "era": {
+        "from": 1550,
+        "to": 1783
+      },
+      "cargo": [
+        "enslaved-people"
+      ],
+      "shipTypes": [
+        "dhow",
+        "merchantman"
+      ],
+      "lanes": [
+        {
+          "from": "kaffa",
+          "to": "istanbul",
+          "share": 1
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            60,
+            140
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            59,
+            138
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            58,
+            136
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            57,
+            134
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            56,
+            132
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            55,
+            130
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            54,
+            128
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            53,
+            126
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            52,
+            124
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            51,
+            122
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            50,
+            120
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            46,
+            114
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            42,
+            108
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            38,
+            102
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            34,
+            96
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            30,
+            90
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            28,
+            86
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            26,
+            81
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            24,
+            77
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            21,
+            73
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            19,
+            69
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            17,
+            64
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            15,
+            60
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            15,
+            60
+          ]
+        }
+      },
+      "framing": {
+        "sober": true,
+        "label": "coerced human movement",
+        "description": "Captive people carried across the Black Sea to Ottoman slave markets — the northern counterpart of the trans-Saharan routes, and for the 16th–17th centuries among the largest coerced flows anywhere.",
+        "rule": "No value framing, no profit framing, never a reward. Sim-side representation waits for S2's generalization of the Middle-Passage invariant; until then these flows exist as historical record only."
+      }
+    },
+    {
+      "id": "barbary-concessions",
+      "name": "The French Barbary concessions",
+      "evidence": "counted",
+      "basis": "European company bookkeeping only, and deliberately narrow: the Bastion de France (built 1561), its successor establishment at La Calle (1677), and the Compagnie royale d'Afrique (Constantinois grain and coral, chartered 1741, DISSOLVED 1793). These are the one cleanly counted Barbary flow because a European company kept the books. They must NOT be read as the volume of Maghrib commerce - the bulk of that trade is reconstructed in barbary-regency-exports or gestured in the register. Guarded against double-counting with marseille-trade: these are the concession's own shipping, not Marseille's general Levant business.",
+      "era": {
+        "from": 1561,
+        "to": 1793
+      },
+      "cargo": [
+        "grain",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "merchantman"
+      ],
+      "lanes": [
+        {
+          "from": "la-calle",
+          "to": "marseille",
+          "share": 0.52
+        },
+        {
+          "from": "marseille",
+          "to": "la-calle",
+          "share": 0.48
+        }
+      ],
+      "byDecade": {
+        "1560": {
+          "voyagesPerYear": [
+            2,
+            5
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            3,
+            6
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            4,
+            8
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            4,
+            8
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            4,
+            9
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            4,
+            9
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            4,
+            9
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            6,
+            12
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            7,
+            14
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            7,
+            14
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            7,
+            15
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            8,
+            16
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            8,
+            16
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            8,
+            17
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            12,
+            24
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            13,
+            26
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            14,
+            28
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            14,
+            28
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            12,
+            25
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            5,
+            12
+          ]
+        }
+      },
+      "notes": "Ends 1793 with the Compagnie royale's dissolution, NOT 1798 (a date that circulates but does not match the company's own record). The concession sites changed hands and were sacked more than once; the decade dips (1640s-50s) are those interruptions, not a data gap."
+    },
+    {
+      "id": "tabarka-coral",
+      "name": "The Genoese coral concession at Tabarka",
+      "evidence": "counted",
+      "basis": "The Lomellini family concession at Tabarka (1540-1742), Genoa-facing, worked for coral. Company bookkeeping again, hence counted; the volumes are small and the lane is a single short run. Split out from barbary-concessions rather than folded into it because Tabarka was annexed by Tunis in 1742 and its population deported - a system running to 1793 would have kept a Genoese lane alive on a place that had ceased to exist.",
+      "era": {
+        "from": 1550,
+        "to": 1742
+      },
+      "cargo": [
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "merchantman"
+      ],
+      "lanes": [
+        {
+          "from": "tabarka",
+          "to": "genoa",
+          "share": 0.5
+        },
+        {
+          "from": "genoa",
+          "to": "tabarka",
+          "share": 0.5
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            2,
+            5
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            2,
+            5
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            3,
+            6
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            3,
+            6
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            3,
+            6
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            3,
+            6
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            3,
+            6
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            2,
+            5
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            2,
+            4
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        }
+      },
+      "notes": "Ends 1742 at the Tunisian annexation."
+    },
+    {
+      "id": "barbary-regency-exports",
+      "name": "Regency exports: grain, oil, wool, hides, wax, caps",
+      "evidence": "reconstructed",
+      "basis": "The Regencies of Algiers, Tunis, and Tripoli exported grain, oil, wool, hides, wax, and the Tunisian chechia cap to European and Levantine termini throughout the era; Tripoli was also the maritime terminus of a Saharan caravan trade. No published decade series of SAILINGS exists, so the volumes here are reconstructed from commodity descriptions and the size of the receiving markets, with wide bounds. A circulating figure of ~110,000 dozen chechias a year at Tunis is single-source and was NOT used to set these numbers; it needs Valensi or Boubaker behind it before it can carry any weight.",
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "cargo": [
+        "grain",
+        "textiles",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "lanes": [
+        {
+          "from": "algiers",
+          "to": "marseille",
+          "share": 0.16
+        },
+        {
+          "from": "marseille",
+          "to": "algiers",
+          "share": 0.14
+        },
+        {
+          "from": "tunis",
+          "to": "livorno",
+          "share": 0.16
+        },
+        {
+          "from": "livorno",
+          "to": "tunis",
+          "share": 0.14
+        },
+        {
+          "from": "tunis",
+          "to": "smyrna",
+          "share": 0.08
+        },
+        {
+          "from": "smyrna",
+          "to": "tunis",
+          "share": 0.06
+        },
+        {
+          "from": "tripoli",
+          "to": "istanbul",
+          "share": 0.1
+        },
+        {
+          "from": "istanbul",
+          "to": "tripoli",
+          "share": 0.08
+        },
+        {
+          "from": "algiers",
+          "to": "livorno",
+          "share": 0.05
+        },
+        {
+          "from": "livorno",
+          "to": "algiers",
+          "share": 0.03
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            20,
+            55
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            22,
+            58
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            24,
+            62
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            26,
+            66
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            28,
+            70
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            30,
+            75
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            32,
+            78
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            34,
+            82
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            34,
+            82
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            32,
+            78
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            34,
+            82
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            38,
+            90
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            42,
+            98
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            45,
+            105
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            45,
+            105
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            48,
+            112
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            52,
+            120
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            56,
+            128
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            60,
+            138
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            64,
+            146
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            66,
+            150
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            68,
+            155
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            70,
+            160
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            70,
+            160
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            55,
+            130
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            45,
+            110
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            50,
+            120
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            55,
+            130
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            60,
+            145
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            65,
+            155
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            70,
+            165
+          ]
+        }
+      },
+      "notes": "The name describes the system's origin, not its whole span: Algiers ceased to be a Regency at the French conquest of 1830, and the post-1830 Algiers-Marseille lanes are French-Algerian traffic carrying the same goods. The lane is real across the whole era; only the flag over it changes, which belongs to the port's eraPowers rather than here. Tunis and Tripoli remained Regencies past 1850."
     }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      250,
-      500
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      260,
-      520
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      270,
-      540
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      280,
-      560
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      290,
-      580
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      300,
-      600
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      290,
-      580
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      280,
-      560
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      270,
-      540
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      260,
-      520
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      250,
-      500
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      240,
-      490
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      230,
-      480
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      220,
-      470
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      210,
-      460
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      200,
-      450
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      210,
-      460
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      220,
-      470
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      230,
-      480
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      240,
-      490
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      250,
-      500
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      242,
-      492
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      233,
-      483
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      225,
-      475
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      217,
-      467
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      208,
-      458
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      200,
-      450
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      200,
-      450
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      210,
-      470
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      220,
-      490
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      210,
-      470
-     ]
-    }
-   }
-  },
-  {
-   "id": "venice-adriatic",
-   "name": "Venice and the eastern sea",
-   "evidence": "reconstructed",
-   "basis": "Sella, Rapp, Tenenti: the Serenissima's long decline from spice emporium to regional carrier — visible here as a falling curve, not a disappearance.",
-   "era": {
-    "from": 1550,
-    "to": 1850
-   },
-   "cargo": [
-    "trade-goods",
-    "wine",
-    "silk",
-    "grain"
-   ],
-   "shipTypes": [
-    "merchantman",
-    "brig"
-   ],
-   "lanes": [
-    {
-     "from": "venice",
-     "to": "istanbul",
-     "share": 0.2
-    },
-    {
-     "from": "istanbul",
-     "to": "venice",
-     "share": 0.2
-    },
-    {
-     "from": "venice",
-     "to": "ragusa-port",
-     "share": 0.15
-    },
-    {
-     "from": "ragusa-port",
-     "to": "venice",
-     "share": 0.15
-    },
-    {
-     "from": "venice",
-     "to": "alexandria",
-     "share": 0.15
-    },
-    {
-     "from": "alexandria",
-     "to": "venice",
-     "share": 0.15
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      200,
-      400
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      196,
-      390
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      192,
-      380
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      188,
-      370
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      184,
-      360
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      180,
-      350
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      168,
-      330
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      156,
-      310
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      144,
-      290
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      132,
-      270
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      120,
-      250
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      116,
-      240
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      112,
-      230
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      108,
-      220
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      104,
-      210
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      100,
-      200
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      96,
-      196
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      92,
-      192
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      88,
-      188
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      84,
-      184
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      80,
-      180
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      77,
-      175
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      73,
-      170
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      70,
-      165
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      67,
-      160
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      63,
-      155
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      60,
-      150
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      55,
-      140
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      60,
-      150
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      58,
-      145
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      55,
-      140
-     ]
-    }
-   }
-  },
-  {
-   "id": "ragusa-carrying",
-   "name": "The Ragusan carrying trade",
-   "evidence": "reconstructed",
-   "basis": "Carter; the neutral argosies at their 16th-c peak, broken by the 1667 earthquake, reviving under 18th-c neutrality.",
-   "era": {
-    "from": 1550,
-    "to": 1808
-   },
-   "cargo": [
-    "trade-goods",
-    "grain",
-    "salt",
-    "wine"
-   ],
-   "shipTypes": [
-    "merchantman"
-   ],
-   "lanes": [
-    {
-     "from": "ragusa-port",
-     "to": "messina",
-     "share": 0.15
-    },
-    {
-     "from": "ragusa-port",
-     "to": "barcelona",
-     "share": 0.15
-    },
-    {
-     "from": "ragusa-port",
-     "to": "alexandria",
-     "share": 0.15
-    },
-    {
-     "from": "ragusa-port",
-     "to": "istanbul",
-     "share": 0.15
-    },
-    {
-     "from": "istanbul",
-     "to": "ragusa-port",
-     "share": 0.1
-    },
-    {
-     "from": "barcelona",
-     "to": "ragusa-port",
-     "share": 0.1
-    },
-    {
-     "from": "ragusa-port",
-     "to": "cadiz",
-     "share": 0.1
-    },
-    {
-     "from": "ragusa-port",
-     "to": "livorno",
-     "share": 0.1
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      60,
-      140
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      63,
-      143
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      67,
-      147
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      70,
-      150
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      63,
-      138
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      55,
-      125
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      48,
-      113
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      40,
-      100
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      35,
-      90
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      30,
-      80
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      25,
-      70
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      20,
-      60
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      15,
-      50
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      18,
-      56
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      21,
-      63
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      24,
-      69
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      28,
-      75
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      31,
-      81
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      34,
-      88
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      37,
-      94
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      40,
-      100
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      38,
-      98
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      36,
-      96
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      34,
-      94
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      32,
-      92
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      30,
-      90
-     ]
-    }
-   }
-  },
-  {
-   "id": "marseille-trade",
-   "name": "Marseille and the western basin",
-   "evidence": "proxied",
-   "basis": "Marseille chamber of commerce series: the coasting and Spanish/Italian exchange beneath the Levant headline.",
-   "era": {
-    "from": 1550,
-    "to": 1850
-   },
-   "cargo": [
-    "wine",
-    "salt",
-    "trade-goods",
-    "grain"
-   ],
-   "shipTypes": [
-    "brig",
-    "sloop",
-    "merchantman"
-   ],
-   "lanes": [
-    {
-     "from": "marseille",
-     "to": "genoa",
-     "share": 0.15
-    },
-    {
-     "from": "genoa",
-     "to": "marseille",
-     "share": 0.12
-    },
-    {
-     "from": "marseille",
-     "to": "livorno",
-     "share": 0.13
-    },
-    {
-     "from": "livorno",
-     "to": "marseille",
-     "share": 0.1
-    },
-    {
-     "from": "marseille",
-     "to": "barcelona",
-     "share": 0.13
-    },
-    {
-     "from": "barcelona",
-     "to": "marseille",
-     "share": 0.1
-    },
-    {
-     "from": "marseille",
-     "to": "naples",
-     "share": 0.1
-    },
-    {
-     "from": "naples",
-     "to": "marseille",
-     "share": 0.07
-    },
-    {
-     "from": "marseille",
-     "to": "cadiz",
-     "share": 0.1
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      150,
-      350
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      160,
-      360
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      170,
-      370
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      180,
-      380
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      190,
-      390
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      200,
-      400
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      210,
-      410
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      220,
-      420
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      230,
-      430
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      240,
-      440
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      250,
-      450
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      265,
-      475
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      280,
-      500
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      295,
-      525
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      310,
-      550
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      325,
-      575
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      340,
-      600
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      355,
-      625
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      370,
-      650
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      385,
-      675
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      400,
-      700
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      413,
-      725
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      425,
-      750
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      438,
-      775
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      450,
-      800
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      150,
-      450
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      100,
-      400
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      130,
-      500
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      170,
-      650
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      220,
-      850
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      260,
-      1000
-     ]
-    }
-   }
-  },
-  {
-   "id": "ottoman-provisioning",
-   "name": "The provisioning of Istanbul",
-   "evidence": "reconstructed",
-   "basis": "The capital's grain lifeline — Egyptian wheat and Black Sea grain into the largest city of Europe and the Near East. The system the European commercial record cannot rank (the R1 declared boundary), quantified here from Ottoman provisioning scholarship.",
-   "era": {
-    "from": 1550,
-    "to": 1850
-   },
-   "cargo": [
-    "grain",
-    "salt",
-    "trade-goods"
-   ],
-   "shipTypes": [
-    "merchantman",
-    "dhow",
-    "brig"
-   ],
-   "lanes": [
-    {
-     "from": "alexandria",
-     "to": "istanbul",
-     "share": 0.3
-    },
-    {
-     "from": "kaffa",
-     "to": "istanbul",
-     "share": 0.3
-    },
-    {
-     "from": "istanbul",
-     "to": "kaffa",
-     "share": 0.15
-    },
-    {
-     "from": "istanbul",
-     "to": "alexandria",
-     "share": 0.15
-    },
-    {
-     "from": "smyrna",
-     "to": "istanbul",
-     "share": 0.1
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      300,
-      700
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      305,
-      705
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      310,
-      710
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      315,
-      715
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      320,
-      720
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      325,
-      725
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      330,
-      730
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      335,
-      735
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      340,
-      740
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      345,
-      745
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      350,
-      750
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      350,
-      750
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      350,
-      750
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      350,
-      750
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      350,
-      750
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      350,
-      750
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      350,
-      750
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      350,
-      750
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      350,
-      750
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      350,
-      750
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      350,
-      750
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      342,
-      742
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      333,
-      733
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      325,
-      725
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      317,
-      717
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      308,
-      708
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      300,
-      700
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      300,
-      700
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      310,
-      720
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      330,
-      760
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      350,
-      800
-     ]
-    }
-   }
-  },
-  {
-   "id": "greek-ottoman-coasting",
-   "name": "Greek and Ottoman coasting",
-   "evidence": "asserted",
-   "basis": "ASSERTED — the record's blind spot: the caïques and polaccas of Greek, Armenian, and Turkish shippers who carried the eastern basin's daily exchange under flags no western customs house logged. Central guesses scale with the known ports' consumption; bounds ±60%. By the 1780s the Greek merchant marine is large enough to enter western records — the curve rises accordingly.",
-   "era": {
-    "from": 1550,
-    "to": 1850
-   },
-   "cargo": [
-    "grain",
-    "wine",
-    "salt",
-    "trade-goods",
-    "cotton"
-   ],
-   "shipTypes": [
-    "brig",
-    "sloop",
-    "dhow"
-   ],
-   "lanes": [
-    {
-     "from": "smyrna",
-     "to": "istanbul",
-     "share": 0.2
-    },
-    {
-     "from": "istanbul",
-     "to": "smyrna",
-     "share": 0.15
-    },
-    {
-     "from": "alexandria",
-     "to": "smyrna",
-     "share": 0.15
-    },
-    {
-     "from": "smyrna",
-     "to": "alexandria",
-     "share": 0.1
-    },
-    {
-     "from": "kaffa",
-     "to": "smyrna",
-     "share": 0.1
-    },
-    {
-     "from": "messina",
-     "to": "smyrna",
-     "share": 0.1
-    },
-    {
-     "from": "smyrna",
-     "to": "ragusa-port",
-     "share": 0.1
-    },
-    {
-     "from": "istanbul",
-     "to": "messina",
-     "share": 0.1
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      120,
-      480
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      122,
-      488
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      124,
-      496
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      126,
-      504
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      128,
-      512
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      130,
-      520
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      132,
-      528
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      134,
-      536
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      136,
-      544
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      138,
-      552
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      140,
-      560
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      144,
-      576
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      148,
-      592
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      152,
-      608
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      156,
-      624
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      160,
-      640
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      164,
-      656
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      168,
-      672
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      172,
-      688
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      176,
-      704
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      180,
-      720
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      183,
-      733
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      187,
-      747
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      190,
-      760
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      193,
-      773
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      197,
-      787
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      200,
-      800
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      100,
-      400
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      260,
-      1040
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      360,
-      1440
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      400,
-      1600
-     ]
-    }
-   }
-  },
-  {
-   "id": "habsburg-genoa-route",
-   "name": "The Habsburg silver route (Barcelona–Genoa)",
-   "evidence": "reconstructed",
-   "basis": "Braudel's 'Spanish road' at sea: silver, troops, and credit between Iberia and Habsburg Italy, ending with the dynasty's Mediterranean system.",
-   "era": {
-    "from": 1550,
-    "to": 1714
-   },
-   "cargo": [
-    "specie",
-    "trade-goods",
-    "wine"
-   ],
-   "shipTypes": [
-    "galleon",
-    "merchantman"
-   ],
-   "lanes": [
-    {
-     "from": "barcelona",
-     "to": "genoa",
-     "share": 0.4
-    },
-    {
-     "from": "genoa",
-     "to": "barcelona",
-     "share": 0.3
-    },
-    {
-     "from": "cadiz",
-     "to": "genoa",
-     "share": 0.15
-    },
-    {
-     "from": "genoa",
-     "to": "naples",
-     "share": 0.15
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      50,
-      120
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      52,
-      122
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      54,
-      124
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      56,
-      126
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      58,
-      128
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      60,
-      130
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      56,
-      124
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      52,
-      118
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      48,
-      112
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      44,
-      106
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      40,
-      100
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      37,
-      93
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      33,
-      87
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      30,
-      80
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      27,
-      73
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      23,
-      67
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      20,
-      60
-     ]
-    }
-   }
-  },
-  {
-   "id": "black-sea-slave-trade",
-   "name": "The Black Sea slave trade (Kaffa)",
-   "evidence": "reconstructed",
-   "basis": "The Crimean Khanate's raiding economy shipped captives from Kaffa to Ottoman markets for two centuries — a coerced flow the charter forbids leaving silently zero (R3 decision 4). Volume reconstructions from Ottoman customs studies; declines with the raids and ends with Russian annexation (1783).",
-   "era": {
-    "from": 1550,
-    "to": 1783
-   },
-   "cargo": [
-    "enslaved-people"
-   ],
-   "shipTypes": [
-    "dhow",
-    "merchantman"
-   ],
-   "lanes": [
-    {
-     "from": "kaffa",
-     "to": "istanbul",
-     "share": 1
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      60,
-      140
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      59,
-      138
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      58,
-      136
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      57,
-      134
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      56,
-      132
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      55,
-      130
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      54,
-      128
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      53,
-      126
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      52,
-      124
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      51,
-      122
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      50,
-      120
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      46,
-      114
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      42,
-      108
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      38,
-      102
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      34,
-      96
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      30,
-      90
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      28,
-      86
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      26,
-      81
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      24,
-      77
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      21,
-      73
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      19,
-      69
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      17,
-      64
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      15,
-      60
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      15,
-      60
-     ]
-    }
-   },
-   "framing": {
-    "sober": true,
-    "label": "coerced human movement",
-    "description": "Captive people carried across the Black Sea to Ottoman slave markets — the northern counterpart of the trans-Saharan routes, and for the 16th–17th centuries among the largest coerced flows anywhere.",
-    "rule": "No value framing, no profit framing, never a reward. Sim-side representation waits for S2's generalization of the Middle-Passage invariant; until then these flows exist as historical record only."
-   }
-  }
- ]
+  ]
 }
