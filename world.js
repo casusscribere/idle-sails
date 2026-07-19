@@ -13,8 +13,8 @@
 const SEC_PER_DAY = 86400;
 const DAY_OF_YEAR = 365.25;
 // Flowing historical clock (PLAN-2 Phase A): the sim-clock advances continuously
-// through 1550→1815, then a 5-year "fake" reset ramp (1815→1820) blends the 1810s
-// spawn distribution back to the 1550s, and the whole 270-year cycle loops. Every
+// through 1550→1850, then a designed 10-year epilogue reset ramp (1850→1860) blends the 1840s
+// spawn distribution back to the 1550s, and the whole 310-year cycle loops. Every
 // derived quantity is a pure function of sim-time, so determinism and offline-
 // accrual fast-forward are preserved (a big tick == many small ticks).
 const ERA = { from: 1550, to: 1850 };
@@ -23,7 +23,7 @@ const FLOW_SPAN = ERA.to - ERA.from;            // 300 forward years (1550→185
 const CYCLE_YEARS = FLOW_SPAN + RESET_YEARS;    // 310-year loop period
 const YEAR_SEC = SEC_PER_DAY * DAY_OF_YEAR;
 const CYCLE_SEC = YEAR_SEC * CYCLE_YEARS;
-// Which iteration of the 1550→1820 loop an instant falls in. The chart is
+// Which iteration of the 1550→1860 loop an instant falls in. The chart is
 // "redrawn" at every wrap: displayed histories (statistics, counters, port
 // calls, the log, wrecks, war events) are scoped to the current iteration.
 // Earlier cycles' records are RETAINED in state — a display filter, never a
@@ -104,18 +104,18 @@ function bearing(a, b) {
   return (Math.atan2(y, x) / D2R + 360) % 360;
 }
 
-// ---- calendar (sim-seconds → flowing, looping 1550→1815→reset date + season) --
+// ---- calendar (sim-seconds → flowing, looping 1550→1850→epilogue date + season) --
 const SEASON_OF_MONTH = ['djf', 'djf', 'mam', 'mam', 'mam', 'jja', 'jja', 'jja', 'son', 'son', 'son', 'djf'];
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 // Returns the flowing year (integer + float), the reset-ramp progress (0 during the
-// 1550→1815 forward flow; 0→1 across the 5 fake reset years 1815→1820), and the
+// 1550→1850 forward flow; 0→1 across the 10 epilogue reset years 1850→1860), and the
 // date/season within the current year.
 function calendar(simSec) {
   const totalYears = simSec / (SEC_PER_DAY * DAY_OF_YEAR);
-  const cyc = ((totalYears % CYCLE_YEARS) + CYCLE_YEARS) % CYCLE_YEARS;   // 0..270
+  const cyc = ((totalYears % CYCLE_YEARS) + CYCLE_YEARS) % CYCLE_YEARS;   // 0..310
   let yearFloat, reset;
-  if (cyc <= FLOW_SPAN) { yearFloat = ERA.from + cyc; reset = 0; }        // 1550..1815
-  else { yearFloat = ERA.to + (cyc - FLOW_SPAN); reset = (cyc - FLOW_SPAN) / RESET_YEARS; } // 1815..1820
+  if (cyc <= FLOW_SPAN) { yearFloat = ERA.from + cyc; reset = 0; }        // 1550..1850
+  else { yearFloat = ERA.to + (cyc - FLOW_SPAN); reset = (cyc - FLOW_SPAN) / RESET_YEARS; } // 1850..1860
   const doy = (cyc - Math.floor(cyc)) * DAY_OF_YEAR;    // 0..365 within the current year
   const month = Math.min(11, Math.floor(doy / 30.4));
   return { year: Math.floor(yearFloat), yearFloat, reset, month, day: 1 + Math.floor(doy % 30.4), season: SEASON_OF_MONTH[month] };
@@ -161,7 +161,12 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   // Weights interpolate between decade midpoints (no boundary jump) and blend
   // last→first across the reset ramp, exactly as the clock does.
   const FLOWS = (datasets.flows && datasets.flows.systems) || [];
-  const FLOW_DEC = []; for (let d = 1550; d <= 1810; d += 10) FLOW_DEC.push(d);
+  // Decade midpoints span the whole era to ERA.to (1850, PLAN-6) — NOT 1810: the
+  // late-era systems authored in Phase-1 increment 6 (Singapore, the Gulf cotton
+  // trade, the treaty ports…) carry 1820–1850 byDecade ranges, and clamping the
+  // decade set at 1810 froze the entire late era at 1810 weights.
+  const LAST_DEC = Math.floor(ERA.to / 10) * 10;   // 1850
+  const FLOW_DEC = []; for (let d = 1550; d <= LAST_DEC; d += 10) FLOW_DEC.push(d);
   const flowU = new Map(FLOWS.map(s => [s.id, mulberry32(hashSeed('flow', seed, s.id))()]));
   // per-decade realized lane weights + world totals (computed once; pure in seed)
   const laneFlowByDec = new Map(), totalByDec = new Map();
@@ -177,13 +182,13 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   const meanTotal = [...totalByDec.values()].reduce((a, b) => a + b, 0) / FLOW_DEC.length || 1;
   // interpolate any per-decade quantity between decade midpoints, blending across the reset
   function interpDec(get, cal) {
-    if (cal.reset > 0) { const a = get(1810), b = get(1550); return a + (b - a) * cal.reset; }
+    if (cal.reset > 0) { const a = get(LAST_DEC), b = get(1550); return a + (b - a) * cal.reset; }
     const y = cal.yearFloat;
     if (y <= 1555) return get(1550);
-    if (y >= 1815) return get(1810);
+    if (y >= LAST_DEC + 5) return get(LAST_DEC);
     const dLo = Math.floor((y - 5 - 1550) / 10) * 10 + 1550;
     const t = (y - (dLo + 5)) / 10;
-    return get(dLo) + (get(Math.min(dLo + 10, 1810)) - get(dLo)) * t;
+    return get(dLo) + (get(Math.min(dLo + 10, LAST_DEC)) - get(dLo)) * t;
   }
   const laneFlowAt = (laneId, cal) => interpDec(d => laneFlowByDec.get(d).get(laneId) || 0, cal);
   const totalFlowAt = (cal) => interpDec(d => totalByDec.get(d), cal);
@@ -203,7 +208,7 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   // Lanes fade in/out over ~3 years at their era boundaries instead of popping —
   // the charter's no-sharp-changes rule applied to lane gating (a lane carrying a
   // whole folded trade would otherwise step a port's traffic in one tick). Lanes
-  // touching the sim horizon (1550/1815) don't fade there; the reset blend wraps them.
+  // touching the sim horizon (1550/1850) don't fade there; the reset blend wraps them.
   const ERA_FADE_YEARS = 3;
   function fadeAtYear(r, yF) {
     let f = 1;
@@ -271,7 +276,7 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     // events — recorded at spawn or at resolution, so a big fast-forward tick
     // records the same figures as many small ones. None of it feeds back into
     // spawns/fates/movement, and fingerprint() never reads it.
-    // Statistics are bucketed per 270-year cycle, keyed by each EVENT's own
+    // Statistics are bucketed per 310-year cycle, keyed by each EVENT's own
     // sim-time, so the redrawn chart shows only the current iteration's books
     // while every earlier cycle's stay in the save.
     stats: { byCycle: {} },  // cycle idx → { spawned, arrived, lost, byLane: {laneId → {spawned,arrived,lost}}, byCargo: {cargoId → spawned} }
@@ -729,7 +734,7 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   }
   function snapshot({ density = 1 } = {}) {
     const cal = calendar(state.simClock);
-    // Displayed histories are scoped to the current 270-year iteration: at the
+    // Displayed histories are scoped to the current 310-year iteration: at the
     // 1550 wrap the chart is redrawn, and the counters, the log, and the wreck
     // marks read from this cycle's books only. Ships already at sea sail on
     // across the seam (their arrivals are this iteration's traffic); the full
@@ -798,7 +803,7 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   // it is trivially deterministic and granularity-independent. Clamped to the
   // current iteration: the chart is redrawn at every 1550 wrap and its
   // displayed past starts there, so cycle two's opening years do not read
-  // "…Wars ended" out of the previous cycle. (A war ending in 1815 "ends" at
+  // "…Wars ended" out of the previous cycle. (A war ending in 1850 "ends" at
   // the 1816 boundary, inside the reset ramp — the honest edge of the sim
   // horizon, shown until the wrap.)
   function warEventsSince(simSec, windowYears = 10) {
@@ -863,7 +868,7 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   // era); build-data enforces every lane's era inside both endpoints' windows,
   // so this is presentation truth, not a traffic gate — the traffic is already
   // impossible. Year is clamped exactly as spawning clamps it (reset ramp →
-  // 1815), so the chart doesn't flicker ports during "the chart is redrawn".
+  // 1850), so the chart doesn't flicker ports during "the chart is redrawn".
   const portLifecycleAt = (simSec) => {
     const cal = calendar(simSec);
     const year = cal.reset > 0 ? ERA.to : cal.year;

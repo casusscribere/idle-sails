@@ -468,8 +468,9 @@ export function createRenderer(canvas, assets) {
   // ---- dynamic frame ------------------------------------------------------
   function draw(snapshot, selectedId, selectedPortId, t, activePorts, selectedWreckId, lifecycle) {
     if (base) ctx.drawImage(base, 0, 0, W, H);
-    // display year: clamped through the reset ramp, as everything era-keyed is
-    const dispYear = snapshot.reset > 0 ? 1815 : snapshot.year;
+    // display year: clamped through the epilogue reset ramp (1850→1860), as
+    // everything era-keyed is — port names/lifecycle read the era-end year there.
+    const dispYear = snapshot.reset > 0 ? 1850 : snapshot.year;
     drawPorts(activePorts, lifecycle, selectedPortId, dispYear);
 
     const vessels = snapshot.vessels;

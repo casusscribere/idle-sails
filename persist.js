@@ -12,7 +12,7 @@ const KEY = 'idle-sails-save';
 const SAVE_VERSION = 1;
 
 // Offline catch-up cap (sim-days). Generous enough to feel like an idler,
-// small enough that the flowing 1550–1815 clock keeps narrative continuity.
+// small enough that the flowing 1550–1850 clock keeps narrative continuity.
 export const CATCHUP_CAP_DAYS = 30;
 const SEC_PER_DAY = 86400;
 

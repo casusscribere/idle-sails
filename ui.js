@@ -13,19 +13,22 @@ const SEC_PER_DAY = 86400;
 const eraName = (ctx, port) =>
   ((ctx.portNameAt && ctx.year != null) ? ctx.portNameAt(port, ctx.year) : port.name).replace(/\s*\(.*\)/, '');
 
-// Era label for the flowing 1550–1815 clock: the period the world is sailing
-// through, keyed by first year. During the 5-year reset ramp (year > 1815) the
-// chart is "redrawn" back to the 1550s.
+// Era label for the flowing 1550–1850 clock: the period the world is sailing
+// through, keyed by first year. During the epilogue reset ramp (year > 1850, a
+// designed 10-year decade 1850→1860, PLAN-6) the age of sail winds down and the
+// chart is redrawn back to the 1550s — steam is a DECLARED BOUNDARY surfaced here,
+// never sailed (the wind engine cannot make a steamer; see research/about.html).
 const ERAS = [
   [1550, 'the Iberian age'],
   [1602, 'the Dutch golden age'],
   [1652, 'the contest for trade'],
   [1700, 'the Atlantic system'],
   [1756, 'the wars for empire'],
-  [1793, 'the Napoleonic wars']
+  [1793, 'the Napoleonic wars'],
+  [1815, 'the long peace']
 ];
 function eraLabel(year, reset) {
-  if (reset > 0) return 'the chart is redrawn…';
+  if (reset > 0) return '1850 — the age of sail closes; steam begins beyond this chart';
   let label = ERAS[0][1];
   for (const [from, name] of ERAS) { if (year >= from) label = name; else break; }
   return label;
@@ -173,7 +176,7 @@ export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSele
     // Port lifecycle: a bounded port shows its window; one past its end shows a
     // ruin banner + its note instead of traffic lists (there is no traffic).
     const lifeline = port.active
-      ? `<p class="type">est. ${port.active.from}${port.active.to < 1815 ? ` · until ${port.active.to}` : ''}</p>` : '';
+      ? `<p class="type">est. ${port.active.from}${port.active.to < 1850 ? ` · until ${port.active.to}` : ''}</p>` : '';
     if (port.active && year != null && year > port.active.to) {
       els.ledgerBody.innerHTML = `
         <h2>${escapeHtml(nm(port.id))}</h2>
