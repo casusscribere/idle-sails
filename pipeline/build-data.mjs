@@ -344,6 +344,34 @@ if (errors.length) {
   process.exit(1);
 }
 
+// Port DISPLAY coordinates (Phase-3 tweak): a port's routing coord may sit a few
+// km offshore so it snaps to an ocean cell (Newcastle in the North Sea roads;
+// Portobelo nudged N in Phase 1). Snap the DISPLAY dot to the nearest point on the
+// fine coastline (land.geojson) so the dot sits on the shore — routing is
+// UNCHANGED (the sim still sails to lon/lat). Skip grounds-node stations and snaps
+// beyond 60 km (tiny islands absent from the 50m coastline, e.g. Banda Neira).
+if (existsSync(LAND_SRC)) {
+  const land = JSON.parse(readFileSync(LAND_SRC, 'utf8'));
+  const hkm = (ax, ay, bx, by) => { const Rk = 6371, D = Math.PI / 180, dLa = (by - ay) * D, dLo = (bx - ax) * D; const x = Math.sin(dLa / 2) ** 2 + Math.cos(ay * D) * Math.cos(by * D) * Math.sin(dLo / 2) ** 2; return 2 * Rk * Math.asin(Math.min(1, Math.sqrt(x))); };
+  const nearestCoast = (lon, lat) => {
+    let best = Infinity, bp = null;
+    for (const f of land.features) { const bb = f.bbox; if (bb && (lon < bb[0] - 1.2 || lon > bb[2] + 1.2 || lat < bb[1] - 1.2 || lat > bb[3] + 1.2)) continue;
+      const g = f.geometry, polys = g.type === 'Polygon' ? [g.coordinates] : g.type === 'MultiPolygon' ? g.coordinates : [];
+      for (const poly of polys) for (const ring of poly) for (let i = 1; i < ring.length; i++) {
+        const a = ring[i - 1], b = ring[i], dx = b[0] - a[0], dy = b[1] - a[1], l2 = dx * dx + dy * dy;
+        let t = l2 ? ((lon - a[0]) * dx + (lat - a[1]) * dy) / l2 : 0; t = Math.max(0, Math.min(1, t));
+        const px = a[0] + t * dx, py = a[1] + t * dy, d = hkm(lon, lat, px, py); if (d < best) { best = d; bp = [px, py]; } } }
+    return { d: best, p: bp };
+  };
+  let snapped = 0;
+  for (const p of ports) {
+    if (p.roles && p.roles.includes('station')) continue;
+    const n = nearestCoast(p.lon, p.lat);
+    if (n.p && n.d > 6 && n.d < 60) { p.displayLon = +n.p[0].toFixed(3); p.displayLat = +n.p[1].toFixed(3); snapped++; }
+  }
+  console.log(`  display coords: ${snapped} port dots snapped to the coastline (routing unchanged)`);
+}
+
 if (!existsSync(OUT)) mkdirSync(OUT, { recursive: true });
 const bundle = {
   version: DATASET_VERSION,

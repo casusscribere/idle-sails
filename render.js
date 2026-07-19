@@ -282,7 +282,9 @@ export function createRenderer(canvas, assets) {
     // port in the past sim-year. Placement caches per (resize, name-year):
     // era-named ports (Louisbourg=St John's, Kingston=Port Royal…) change text
     // width when the flowing year crosses a rename, so drawPorts rebuilds then.
-    portScreen = ports.map(p => { const [x, y] = project(p.lon, p.lat); return { id: p.id, x, y }; });
+    // dots use the DISPLAY coord (snapped to the coastline in build-data) so a
+    // port whose routing coord sits offshore still draws on the shore.
+    portScreen = ports.map(p => { const [x, y] = project(p.displayLon ?? p.lon, p.displayLat ?? p.lat); return { id: p.id, x, y }; });
     computePortLabels(c, labelYear);
   }
 
