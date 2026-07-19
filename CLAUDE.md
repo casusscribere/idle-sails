@@ -50,7 +50,34 @@ Every design decision answers to both of these:
      Middle-Passage pattern (no value tier, no profit framing, factual, never
      a reward) extends to any promoted coerced flow (Kaffa, Indian Ocean).
 
-## Current state (as of 2026-07-13)
+## Current state (as of 2026-07-19)
+
+- **PHASE 1 — THE WORLD BUILD IS COMPLETE (2026-07-19, merged to `main`).** The
+  era now flows **1550→1850** (PLAN-4 + PLAN-6, adopted 2026-07-16) with a
+  designed 10-year epilogue decade (1850→1860) and a 310-year loop. The tracker
+  is `planning/PHASE-1-build.md` (increments 1–8 all ✅). The world is **105
+  ports · 414 routes · 82 folded flow systems** (85 in the matrix), 1850s flow
+  coverage **95%**, **55 tests green**. Increments this phase: **1** epilogue
+  spec; **2** the atomic clock-flip (ERA.to→1850, CYCLE_YEARS 310,
+  DATASET_VERSION 5); **3–4** the 1815–50 basin extensions + T8/T12 systems
+  (7 basins); **5** 66→**105 ports** (44→54 powers); **6** the BAKE — baker
+  infra (Panama seal→land-wall, a destination-aware Cape-Horn cap, a sub-66
+  Hudson-Bay `SEASONAL_ICE` seal) + one full authoring increment per orphan port
+  (Singapore, Hong Kong, Sydney, Montevideo, New Orleans, York Factory, the
+  South-Sea whaling grounds, + Basra/Bandar-Abbas de-proxied), each with a
+  dossier in `research/flows/<port>-authoring.md`; **7** surfacing — the critical
+  `interpDec`/`FLOW_DEC` fix (the decade set had stopped at 1810, freezing the
+  whole late era at 1810 weights), era HUD 1550→1850 + the epilogue steam-boundary
+  note, a dynamic `silences.html`, an Australasia region plate, the `about` page,
+  the name-pressure re-gate, and the late era's 10 wars + 2 hazard zones; **8**
+  headless verify (0 console errors, all new ports sail) + merge. **The
+  coerced-flow model is established**: a sober `framing{}` block on the SYSTEM +
+  the volume folds onto a commercial lane (never a baked labelled slaver post-1815
+  — `slave-ship` stays ≤1815); `enslaved-people` for Atlantic slave flows, a
+  distinct `transported-convicts` for convict transportation. **Deferred (noted
+  in the tracker):** `scriptedOnly` ports (Dejima → Pass 4), the `egypt` power +
+  its 2 wars, the designed epilogue spawn-*taper* (§Epilogue fast-follow). Older
+  bullets below describe the pre-Phase-1 state at 1815.
 
 - **Phase: PLAN-1 M1–M6 complete (M7 mostly) + PLAN-2 Phase A, Phase C, and
   Step 2 done.** The three PLAN §0 defaults and the sober slave-trade treatment
