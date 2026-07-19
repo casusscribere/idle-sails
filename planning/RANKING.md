@@ -271,6 +271,22 @@ is live by now — pin the *Surprise* and follow her properly.
   research task **T9** (`research/TASKS.md`, Phase RB) refines the rates and
   windows without gating the build — if Phase RB runs first, build convoys
   after it and inherit the evidence-classed numbers for free.
+- **Seasonal departure windows** (`PLAN-convoys.md` §5b, added 2026-07-18) —
+  the sibling of convoys, and the CHEAP half. The flow matrix carries annual
+  volumes, so a Poisson spawn spreads monsoon and ice traffic evenly over a
+  year in which it did not sail. Unlike convoy grouping this needs **no sim
+  code**: the baker already bakes {lane × routeClass × season} and
+  `world.js buildItinerary` breaks when no leg exists for the departure
+  season, which is exactly how Arkhangelsk has no winter departures. Gating
+  a lane to its real season is therefore a data-and-baker change. Five
+  systems already register the claim in their own `notes` (`bantam-pepper`,
+  `dutch-japan`, `svalbard-whaling` — already gated —, plus the two convoy
+  cases). **Do it during the Phase-1 combined bake (increment 6)** while the
+  baker is being run anyway; it fixes three of the five without touching the
+  sim. Respect the baker's ≥1-season-per-lane safeguard, and verify against
+  the ANNUAL figure — concentrating the same volume into fewer months raises
+  in-flight density in the window, which is correct and will look like an
+  increase.
 - **Steam layer** (queued 2026-07-16 with the PLAN-6 D1 decision) — v1 of
   the era extension is a **sail chart, declared** (steam is a
   silences-register entry + a declared-divergences paragraph), and a steam
