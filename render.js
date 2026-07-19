@@ -179,6 +179,25 @@ export function createRenderer(canvas, assets) {
     return [ox + (L - BOUNDS.lonMin) * k, oy + (BOUNDS.latMax - lat) * k];
   }
 
+  // Regional plates letterbox when their aspect ≠ the viewport's, and content
+  // beyond the crop (a coastline west of the plate, a ship bound for an
+  // out-of-frame port) bled into the parchment mat where the graticule fades —
+  // reading as "faded gridlines with stray land/ships." Clip the land + the
+  // dynamic layer to the plate rectangle so a crop is a TRUE crop, matted on
+  // clean parchment. The world plate is the data-fit crop — nothing to clip.
+  const plateRect = () => ({ x: ox, y: oy, w: (BOUNDS.lonMax - BOUNDS.lonMin) * k, h: (BOUNDS.latMax - BOUNDS.latMin) * k });
+  function beginPlateClip(c) {
+    if (regionId === 'world') return false;
+    const r = plateRect();
+    c.save(); c.beginPath(); c.rect(r.x, r.y, r.w, r.h); c.clip();
+    return true;
+  }
+  function inPlate(x, y, m = 0) {
+    if (regionId === 'world') return true;
+    const r = plateRect();
+    return x >= r.x - m && x <= r.x + r.w + m && y >= r.y - m && y <= r.y + r.h + m;
+  }
+
   function resize() {
     dpr = Math.min(2, window.devicePixelRatio || 1);
     const spanLon = BOUNDS.lonMax - BOUNDS.lonMin, spanLat = BOUNDS.latMax - BOUNDS.latMin;
@@ -246,9 +265,11 @@ export function createRenderer(canvas, assets) {
       gratLine(c, false, y, xL0, xL, xR, xR0);
     }
 
-    // land
+    // land (clipped to the plate rectangle on regional crops — no mat bleed)
     c.lineJoin = 'round';
+    const landClip = beginPlateClip(c);
     for (const f of land.features) drawGeom(c, f.geometry);
+    if (landClip) c.restore();
 
     // ports: compute each label's placement now (collision-avoiding, once per
     // resize) and cache it in portDraw; the dots + labels are drawn per-frame in
@@ -308,6 +329,7 @@ export function createRenderer(canvas, assets) {
     // change label widths); integer-year granularity keeps this rare and cheap
     if (year != null && year !== labelYear) { labelYear = year; computePortLabels(ctx, year); }
     for (const pd of portDraw) {
+      if (!inPlate(pd.x, pd.y, 4)) continue;   // dot outside the regional crop
       if (lifecycle && !lifecycle.existing.has(pd.id)) {
         if (!lifecycle.ruined.has(pd.id)) continue;        // not yet founded
         ctx.save();
@@ -475,6 +497,10 @@ export function createRenderer(canvas, assets) {
     // display year: clamped through the epilogue reset ramp (1850→1860), as
     // everything era-keyed is — port names/lifecycle read the era-end year there.
     const dispYear = snapshot.reset > 0 ? 1850 : snapshot.year;
+    // The dynamic layer (ports, overlay, ships, wrecks) is clipped to the plate
+    // rectangle on regional crops, matching the base land — so nothing renders in
+    // the parchment mat outside the crop.
+    const dynClip = beginPlateClip(ctx);
     drawPorts(activePorts, lifecycle, selectedPortId, dispYear);
 
     const vessels = snapshot.vessels;
@@ -485,6 +511,7 @@ export function createRenderer(canvas, assets) {
 
     drawWrecks(snapshot.wrecks || [], snapshot.simClock, selectedWreckId);
     for (const v of vessels) drawVessel(v, v.id === selectedId, t);
+    if (dynClip) ctx.restore();
 
     // prune wake history for vessels no longer present
     if (wakes.size > vessels.length + 20) {
