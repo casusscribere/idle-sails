@@ -322,15 +322,29 @@ is live by now — pin the *Surprise* and follow her properly.
     island's false-ocean spine cells so routes ROUND it; Cuba's central-western
     spine sealed (7 cells), the Florida/Caribbean/Yucatán passages verified still
     open, 0 lanes unsailable. Central crossing gone; residual is minor tip-graze.
-  - ⏳ **Still queued — coarse-grid residuals:** (a) **Zealand / the Danish
-    straits** — SAME technique BUT risky: the Øresund/Great Belt are the vital
-    sub-cell Baltic entrance (the Sound-Toll trade), so a Zealand seal needs
-    careful strait-preservation analysis before it can ship (a wrong seal breaks
-    hundreds of Baltic routes). (b) Minor Cuba tip-grazes + the **Delmarva** graze
-    on Philadelphia routes (thin peninsula, same seal technique). (c) Port dots
-    offshore on close views (Newcastle, a river port whose routing coord sits
-    seaward — wants a display-coord decoupling). (d) oddly-square / residual-
-    zigzag legs. `pipeline/README.md` first for any bake.
+  - ✅ **Port dots snap to the coastline** — build-data computes a display coord
+    per port (nearest point on the fine coastline); render draws the dot/label/
+    hit-test there while the sim routes to the original lon/lat. 38 dots snapped
+    (Newcastle → the Tyne mouth; Portobelo's dot back to its real 9.6). Routing
+    unchanged.
+  - ✅ **Regional plates fill the viewport** — a plate expands its authored crop to
+    the screen aspect (no letterbox mat; routes run to the edges; gridlines solid
+    edge-to-edge; extra surrounding ocean, authored ports still in view). Replaces
+    the interim matted-crop clip (now a no-op).
+  - ✅ **Great Lakes** on the map (cosmetic; coarse Superior/Michigan/Huron/Erie/
+    Ontario cut as inland water). **Cape Horn** already in frame (Phase-1 Horn
+    routes push the world crop to −56.5°S). **na-northeast** chart view hidden;
+    **"Naval & other voyages"** → "Naval & state voyages".
+  - ⛔ **Zealand / the Danish straits — CANNOT be safely sealed** (verified
+    2026-07-19 by flood-fill + reroute): the southern-isles route is the ONLY 1°
+    connection into the Baltic, so any Zealand-area seal severs the entire
+    Sound-Toll trade (riga→amsterdam went UNREACHABLE). The routes legitimately
+    thread the Great Belt and only *clip* the sub-cell fine islands — an
+    irreducible 1°-grid limit, left as-is. Cuba's central crossing IS fixed; the
+    remaining Cuba tip-grazes are inherent (Havana/Kingston sit ON the islands —
+    a west-tip seal only relocates the graze) so no further seal was worth a
+    re-bake. Delmarva (Philadelphia routes) + oddly-square/zigzag simplification
+    artifacts remain minor residuals of the same 1°-vs-fine-coastline mismatch.
   - ⏳ **Overlay taxonomy** — the layer sub-toggles are per-BASIN + "Naval &
     other voyages"; the user wants NON-regional movement categories (arterials /
     coasting / coerced / fisheries / naval-state). A design change (re-categorize
