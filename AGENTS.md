@@ -52,6 +52,29 @@ Every design decision answers to both of these:
 
 ## Current state (as of 2026-07-19)
 
+- **PHASE 4 — THE PER-PORT DOCUMENTATION SWEEP IS COMPLETE + LIVE (2026-07-19).**
+  Phase RC (T1+T2+T3) done for all **105 ports** via 9 parallel region-batched
+  research subagents. Each port carries its 1550→1850 name/ownership timeline
+  (`ports[].eraNames` + a new `ports[].eraPowers`, 39 multi-window, all tiling the
+  active window — build-data-validated), an era-resolved port-panel **blurb**
+  (`research/port-docs.json` → injected into the datasets), and a documentation
+  entry with real citations on the new **`research/ports.html`** page (105 cards /
+  23 regions). New machinery: `world.js portPowerAt(port, year)` → the port panel
+  shows the **allegiance of the time**; five display-only independence powers
+  (haiti/mexico/brazil/gran-colombia/dahomey) for the honest flag; the
+  name/ownership tweaks fixed (Masulipatnam=Golconda, Jayakarta=Banten,
+  Nagasaki=Japan/separate from Dejima, Bombay/Calcutta, "est." only for real
+  in-sim foundings). Charter held throughout. **55 tests green**, deployed.
+- **BACKLOG SWEEP (2026-07-19).** Re-read `feature-ideas/{ideas,tweaks,
+  research_addenda}.txt` against the shipped state and folded the ~20 items with
+  no plan slot into `planning/RANKING.md`'s new "2026-07-19 backlog sweep"
+  section (batches P/R/S/E/G/Z, feasibility-tagged) + research tasks **T14**
+  (waystops — Cape Town is ABSENT from the roster — & Korea/Russian-Pacific gaps)
+  and **T15** (national port access rules); T6 extended with the wider
+  historical-fiction easter-egg catalog. Confirmed all T12 geographic nodes are
+  built. **Recommended next pull:** Batch-P polish (Pacific plate, full-Med plate,
+  toggle-all-names, cursor lat/long) + Batch-S region-aware sinking — both cheap
+  and unblocked. `procgen_variant` deliberately excluded per its own header.
 - **PHASE 1 — THE WORLD BUILD IS COMPLETE (2026-07-19, merged to `main`).** The
   era now flows **1550→1850** (PLAN-4 + PLAN-6, adopted 2026-07-16) with a
   designed 10-year epilogue decade (1850→1860) and a 310-year loop. The tracker
