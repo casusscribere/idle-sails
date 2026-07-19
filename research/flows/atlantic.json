@@ -255,9 +255,68 @@
       "id": "montevideo",
       "name": "Montevideo",
       "simProxy": "montevideo"
+    },
+    {
+      "id": "new-orleans",
+      "name": "New Orleans",
+      "simProxy": "new-orleans"
     }
   ],
   "systems": [
+    {
+      "id": "cotton-gulf-liverpool",
+      "name": "The Gulf cotton trade (New Orleans → Liverpool, 1815–1850)",
+      "evidence": "counted",
+      "basis": "By ~1840 New Orleans was the second-largest US port (after New York) and the leading export outlet for the Mississippi valley: more than half of all US cotton passed through it (>180M lb ≈ 450k bales by the late 1820s, consistent with Liverpool's ~1.1–1.3M American bales c.1850). Louisiana sugar through the port ran 5,000 hhd (1802) → 449,000 (1853), the backbone until cotton overtook it ~1842. Britain took roughly twice the cotton France did in the early 1850s (Le Havre ~10–15%, folded into the Liverpool trunk — no Le Havre node). The counted spine is the bales series; the voyage ranges bracket it. UP-RIVER western produce is INTERNAL river traffic, out of scope as a sea lane — represented as node prominence, not a baked ocean edge. The New York coastwise cotton triangle is authored as routing texture.",
+      "era": {
+        "from": 1815,
+        "to": 1850
+      },
+      "cargo": ["cotton", "sugar", "trade-goods", "specie", "tobacco"],
+      "shipTypes": ["east-indiaman", "merchantman"],
+      "lanes": [
+        { "from": "new-orleans", "to": "liverpool", "share": 0.34 },
+        { "from": "liverpool", "to": "new-orleans", "share": 0.24 },
+        { "from": "new-orleans", "to": "new-york", "share": 0.16 },
+        { "from": "new-york", "to": "new-orleans", "share": 0.14 },
+        { "from": "new-orleans", "to": "havana", "share": 0.12 }
+      ],
+      "byDecade": {
+        "1810": { "voyagesPerYear": [40, 120] },
+        "1820": { "voyagesPerYear": [150, 350] },
+        "1830": { "voyagesPerYear": [350, 700] },
+        "1840": { "voyagesPerYear": [700, 1400] },
+        "1850": { "voyagesPerYear": [800, 1500] }
+      }
+    },
+    {
+      "id": "neworleans-coastwise",
+      "name": "The coastwise domestic slave trade to New Orleans (1818–1850)",
+      "evidence": "counted",
+      "basis": "New Orleans was the largest slave market in the United States, the terminus of the coastwise 'second Middle Passage.' Counted anchor: Williams, Oceans of Kinfolk — ~4,000 coastwise manifests (NARA RG36, M1895, under the Act of 2 Mar 1807) naming >63,000 enslaved people trafficked to New Orleans by sea, 1818–1860. Origins: the Chesapeake (Virginia + Maryland) ≈70% — Norfolk, Baltimore, Richmond, Alexandria — with Charleston and the wider upper-South Atlantic seaboard bringing it to ~90% (the chesapeake node stands for the Upper-South seaboard). The 1836-peak '120,000 from Virginia' is an interregional total across ALL modes, not the by-sea figure, kept distinct. Carried under the record model (the domestic slave-ship era post-abolition is not baked as a labelled slaver — slave-ship ends 1815 by design): enslaved-people cargo + the sober framing at record level, its volume riding the Chesapeake→New Orleans coastwise lane. Middle-Passage sober pattern; SlaveVoyages Intra-American database anchors the sea legs.",
+      "era": {
+        "from": 1818,
+        "to": 1850
+      },
+      "cargo": ["enslaved-people"],
+      "shipTypes": ["merchantman"],
+      "framing": {
+        "sober": true,
+        "label": "coerced human movement",
+        "description": "These vessels carried enslaved people by sea from the ports of the Upper South — Baltimore, Alexandria, Norfolk, Richmond — to New Orleans, the largest slave market in the United States. Federal manifests recorded more than sixty thousand people on this coastwise passage between 1818 and 1860 — a domestic continuation of the Middle Passage. Many were separated from their families by the voyage.",
+        "rule": "No value framing, no profit framing, never a reward. Sim-side representation waits for S2's generalization of the Middle-Passage invariant; until then these flows exist as historical record only."
+      },
+      "lanes": [
+        { "from": "chesapeake", "to": "new-orleans", "share": 1.0 }
+      ],
+      "byDecade": {
+        "1810": { "voyagesPerYear": [3, 8] },
+        "1820": { "voyagesPerYear": [8, 20] },
+        "1830": { "voyagesPerYear": [15, 35] },
+        "1840": { "voyagesPerYear": [18, 40] },
+        "1850": { "voyagesPerYear": [18, 40] }
+      }
+    },
     {
       "id": "plata-republics-trade",
       "name": "The Río de la Plata trade (hides and salt beef, 1810–1850)",

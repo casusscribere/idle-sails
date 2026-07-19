@@ -4540,6 +4540,78 @@
       "flag": "portugal"
     },
     {
+      "id": "co-neworleans-liverpool",
+      "system": "cotton-gulf-liverpool",
+      "name": "New Orleans to Liverpool (cotton)",
+      "from": "new-orleans",
+      "to": "liverpool",
+      "shipTypes": ["east-indiaman", "merchantman"],
+      "cargo": ["cotton"],
+      "era": { "from": 1815, "to": 1850 },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
+      "id": "co-liverpool-neworleans",
+      "system": "cotton-gulf-liverpool",
+      "name": "Liverpool to New Orleans (manufactures)",
+      "from": "liverpool",
+      "to": "new-orleans",
+      "shipTypes": ["merchantman"],
+      "cargo": ["trade-goods"],
+      "era": { "from": 1815, "to": 1850 },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
+      "id": "co-neworleans-newyork",
+      "system": "cotton-gulf-liverpool",
+      "name": "New Orleans to New York (coastwise cotton)",
+      "from": "new-orleans",
+      "to": "new-york",
+      "shipTypes": ["merchantman"],
+      "cargo": ["cotton"],
+      "era": { "from": 1815, "to": 1850 },
+      "weight": 1,
+      "flag": "usa"
+    },
+    {
+      "id": "co-newyork-neworleans",
+      "system": "cotton-gulf-liverpool",
+      "name": "New York to New Orleans",
+      "from": "new-york",
+      "to": "new-orleans",
+      "shipTypes": ["merchantman"],
+      "cargo": ["trade-goods"],
+      "era": { "from": 1815, "to": 1850 },
+      "weight": 1,
+      "flag": "usa"
+    },
+    {
+      "id": "co-neworleans-havana",
+      "system": "cotton-gulf-liverpool",
+      "name": "New Orleans to Havana",
+      "from": "new-orleans",
+      "to": "havana",
+      "shipTypes": ["merchantman"],
+      "cargo": ["sugar", "trade-goods"],
+      "era": { "from": 1815, "to": 1850 },
+      "weight": 1,
+      "flag": "usa"
+    },
+    {
+      "id": "co-chesapeake-neworleans",
+      "system": "neworleans-coastwise",
+      "name": "Chesapeake to New Orleans (the coastwise coasting trade)",
+      "from": "chesapeake",
+      "to": "new-orleans",
+      "shipTypes": ["merchantman"],
+      "cargo": ["tobacco", "trade-goods"],
+      "era": { "from": 1818, "to": 1850 },
+      "weight": 1,
+      "flag": "usa"
+    },
+    {
       "id": "f-madras-london",
       "system": "eic-india-arterial",
       "name": "Madras to London",
