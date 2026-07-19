@@ -4636,6 +4636,54 @@
       "flag": "hbc"
     },
     {
+      "id": "wg-london-grounds",
+      "system": "south-sea-whaling",
+      "name": "London to the South Sea grounds (British whalers)",
+      "from": "london",
+      "to": "pacific-grounds",
+      "shipTypes": ["merchantman", "east-indiaman"],
+      "cargo": ["trade-goods"],
+      "era": { "from": 1788, "to": 1850 },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
+      "id": "wg-grounds-london",
+      "system": "south-sea-whaling",
+      "name": "The South Sea grounds to London (whale oil)",
+      "from": "pacific-grounds",
+      "to": "london",
+      "shipTypes": ["merchantman", "east-indiaman"],
+      "cargo": ["whale-oil"],
+      "era": { "from": 1788, "to": 1850 },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
+      "id": "wg-boston-grounds",
+      "system": "south-sea-whaling",
+      "name": "Boston to the South Sea grounds (American whalers)",
+      "from": "boston",
+      "to": "pacific-grounds",
+      "shipTypes": ["merchantman", "east-indiaman"],
+      "cargo": ["trade-goods"],
+      "era": { "from": 1788, "to": 1850 },
+      "weight": 1,
+      "flag": "usa"
+    },
+    {
+      "id": "wg-grounds-boston",
+      "system": "south-sea-whaling",
+      "name": "The South Sea grounds to Boston (whale oil)",
+      "from": "pacific-grounds",
+      "to": "boston",
+      "shipTypes": ["merchantman", "east-indiaman"],
+      "cargo": ["whale-oil"],
+      "era": { "from": 1788, "to": 1850 },
+      "weight": 1,
+      "flag": "usa"
+    },
+    {
       "id": "f-madras-london",
       "system": "eic-india-arterial",
       "name": "Madras to London",

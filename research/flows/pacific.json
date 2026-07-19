@@ -51,9 +51,42 @@
       "id": "london",
       "name": "London",
       "simProxy": "london"
+    },
+    {
+      "id": "pacific-grounds",
+      "name": "The South Sea whaling grounds",
+      "simProxy": "pacific-grounds"
     }
   ],
   "systems": [
+    {
+      "id": "south-sea-whaling",
+      "name": "The South Sea sperm fishery (the grounds off Peru and Chile)",
+      "evidence": "counted",
+      "basis": "A grounds node — a station dot standing for a fishery, the Smeerenburg/Davis-Strait pattern applied to the Pacific sperm whale. Opened by the Emilia (round the Horn, 1788) and worked first by the British southern whale fishery, then overwhelmingly by the American: the British fleet peaked at 149 ships (1821), halved by the mid-1830s, fell below 20 in the 1840s; the American fishery grew to its 1846 peak of 735–6 vessels (≈[150,250] departures/yr across all grounds, the Pacific a large share). Counted on the voyage-level databases (American Offshore Whaling Voyages; the British southern-fishery lists). Voyages were multi-year cruises round Cape Horn — the sim abstracts each as an out-and-return pair to the grounds node (the grounds-node convention; the years working the grounds are not ticked). The combined-fleet decade ranges reconstruct the Pacific share between the British and American counted peaks. This node ships the grounds-node pattern; the Svalbard/Davis-Strait Arctic fisheries stay registered until a later wave.",
+      "era": {
+        "from": 1788,
+        "to": 1850
+      },
+      "cargo": ["whale-oil"],
+      "shipTypes": ["merchantman", "east-indiaman"],
+      "lanes": [
+        { "from": "london", "to": "pacific-grounds", "share": 0.22 },
+        { "from": "pacific-grounds", "to": "london", "share": 0.22 },
+        { "from": "boston", "to": "pacific-grounds", "share": 0.28 },
+        { "from": "pacific-grounds", "to": "boston", "share": 0.28 }
+      ],
+      "byDecade": {
+        "1780": { "voyagesPerYear": [2, 8] },
+        "1790": { "voyagesPerYear": [8, 25] },
+        "1800": { "voyagesPerYear": [15, 40] },
+        "1810": { "voyagesPerYear": [30, 70] },
+        "1820": { "voyagesPerYear": [50, 110] },
+        "1830": { "voyagesPerYear": [60, 130] },
+        "1840": { "voyagesPerYear": [90, 190] },
+        "1850": { "voyagesPerYear": [80, 170] }
+      }
+    },
     {
       "id": "sydney-convicts",
       "name": "Convict transportation to New South Wales (1788–1840)",

@@ -66,7 +66,10 @@ const ICE_N = 66, ICE_S = -50;
 // same ports are unaffected — the coastal / mid-latitude path stays the fastest.
 const ICE_S_HORN = -58;
 const HORN_DEST = new Set([
-  'sitka', 'nootka', 'valparaiso', 'callao', 'guayaquil', 'panama', 'acapulco'
+  'sitka', 'nootka', 'valparaiso', 'callao', 'guayaquil', 'panama', 'acapulco',
+  // The South Sea whaling grounds off Peru/Chile — the British and American
+  // sperm fishery rounded the Horn to reach it (increment 6j).
+  'pacific-grounds'
 ]);
 
 // PLAN-3 S2 — seasonal Arctic corridors (user-funded ice exception): the 66°N
