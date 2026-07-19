@@ -115,6 +115,26 @@
       "id": "jedda",
       "name": "Jedda",
       "simProxy": "mocha"
+    },
+    {
+      "id": "bantam",
+      "name": "Bantam (Banten Lama, NW Java)",
+      "simProxy": null
+    },
+    {
+      "id": "lampung",
+      "name": "Lampung (the Sumatran pepper feeder)",
+      "simProxy": null
+    },
+    {
+      "id": "ostend",
+      "name": "Ostend",
+      "simProxy": null
+    },
+    {
+      "id": "canton",
+      "name": "Canton",
+      "simProxy": "canton"
     }
   ],
   "systems": [
@@ -1842,6 +1862,357 @@
         }
       },
       "notes": "Enabled by the new `netherlands` power (the Dutch Republic ends 1795). Dutch bottoms only, by design of the consignment system."
+    },
+    {
+      "id": "bantam-pepper",
+      "name": "The Bantam pepper emporium",
+      "evidence": "reconstructed",
+      "basis": "Banten was the pepper emporium of the archipelago before the VOC took it: sultanate from 1526/1552, the first Dutch ships in 1596, an English factory from 1602 and an EIC presidency 1602-1682. The intended spine is the Bulbeck, Reid, Tan and Wu tonne series (Southeast Asian Exports since the 14th Century, 1998), which is COUNTED-PENDING - the decade tonnages have not yet been pulled from the book, so this system is classed reconstructed until they are, and must not be upgraded on the strength of the citation alone. Early magnitudes rest on Pires. Two conversion traps are deliberately avoided: the ~1,000 bahar/yr of the 1520s is Pires and is NOT the 1522 Portuguese treaty's 1,000 sacks (about 11 tonnes, a sixfold conflation risk), and the Banten bahar is unstable across sources at roughly 70-375 kg, so the tonne series is preferred over any bahar conversion and the upper bound is widened toward the ~5,000 tonnes cited for the 1620s peak rather than capped at a typical-decade band.",
+      "era": {
+        "from": 1550,
+        "to": 1685
+      },
+      "cargo": [
+        "pepper",
+        "spices",
+        "porcelain",
+        "silk",
+        "textiles"
+      ],
+      "shipTypes": [
+        "merchantman",
+        "fluyt",
+        "junk",
+        "galleon"
+      ],
+      "lanes": [
+        {
+          "from": "bantam",
+          "to": "amsterdam",
+          "share": 0.14
+        },
+        {
+          "from": "amsterdam",
+          "to": "bantam",
+          "share": 0.1
+        },
+        {
+          "from": "bantam",
+          "to": "london",
+          "share": 0.1
+        },
+        {
+          "from": "london",
+          "to": "bantam",
+          "share": 0.08
+        },
+        {
+          "from": "bantam",
+          "to": "canton",
+          "share": 0.13
+        },
+        {
+          "from": "canton",
+          "to": "bantam",
+          "share": 0.13
+        },
+        {
+          "from": "lampung",
+          "to": "bantam",
+          "share": 0.16
+        },
+        {
+          "from": "bantam",
+          "to": "lampung",
+          "share": 0.1
+        },
+        {
+          "from": "bantam",
+          "to": "jedda",
+          "share": 0.06
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            10,
+            30
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            13,
+            38
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            17,
+            48
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            22,
+            60
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            28,
+            75
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            36,
+            95
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            42,
+            110
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            48,
+            125
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            46,
+            120
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            44,
+            115
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            42,
+            110
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            38,
+            100
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            32,
+            85
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            14,
+            45
+          ]
+        }
+      },
+      "notes": "A separate place from Batavia, about 70-85 km away, and given its own node rather than an eraName on Batavia's - they coexisted and competed for eighty years. The China lanes are the Fujian junk trade and are SEASONAL in a way the annual rate cannot show: roughly four to eight great junks arrived each December on the northeast monsoon and left in May or June on the southwest, so the yearly figure is right and its bunching is not. The Red Sea share is kept small as a double-count guard against aceh-red-sea. The 1680s collapse is the VOC conquest of 1682-84 - Lampung ceded 12 March 1682, the pepper-monopoly letter 22 August 1682, the English expelled the same year - and the era ends at the emporium's function, not the town, which was not abolished until 1813."
+    },
+    {
+      "id": "ostend-interlude",
+      "name": "The Ostend Company",
+      "evidence": "counted",
+      "basis": "The Austrian Netherlands' East India venture, chartered 1722 after private Ostend voyages from 1715, trading tea at Canton and cloth in Bengal under the imperial flag. Its sailings were individually counted - the company was small enough that its ships are known by name - though the annual RATE across the interlude is reconstructed from them. Suspended 1727 and wound up under British and Dutch pressure by the Treaty of Vienna.",
+      "era": {
+        "from": 1715,
+        "to": 1734
+      },
+      "cargo": [
+        "tea",
+        "textiles",
+        "porcelain",
+        "silk"
+      ],
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "lanes": [
+        {
+          "from": "ostend",
+          "to": "canton",
+          "share": 0.26
+        },
+        {
+          "from": "canton",
+          "to": "ostend",
+          "share": 0.24
+        },
+        {
+          "from": "ostend",
+          "to": "calcutta",
+          "share": 0.16
+        },
+        {
+          "from": "calcutta",
+          "to": "ostend",
+          "share": 0.15
+        },
+        {
+          "from": "ostend",
+          "to": "madras",
+          "share": 0.1
+        },
+        {
+          "from": "madras",
+          "to": "ostend",
+          "share": 0.09
+        }
+      ],
+      "byDecade": {
+        "1710": {
+          "voyagesPerYear": [
+            2,
+            4
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            2,
+            5
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        }
+      },
+      "notes": "HARD-CLAMPED to 1715-1734 on purpose. This is the tightly-scoped pattern used for Dejima rather than a continuous flow: left open-ended, the fold's averaging would leak imperial-flag tea ships onto the Canton and Madras legs for decades after the company had been wound up. Its Bengal afterlife is a separate system for the same reason."
+    },
+    {
+      "id": "ostend-banquibazar-tail",
+      "name": "The Banquibazar afterlife",
+      "evidence": "reconstructed",
+      "basis": "After the company's suspension its Bengal factory at Banquibazar on the Hooghly kept trading under the imperial flag on de Schonamille's account until he was driven out in 1744. A thin, genuinely separate afterlife: a handful of voyages, no Canton leg, and no company behind it.",
+      "era": {
+        "from": 1731,
+        "to": 1744
+      },
+      "cargo": [
+        "textiles",
+        "saltpetre",
+        "silk"
+      ],
+      "shipTypes": [
+        "merchantman",
+        "east-indiaman"
+      ],
+      "lanes": [
+        {
+          "from": "ostend",
+          "to": "calcutta",
+          "share": 0.52
+        },
+        {
+          "from": "calcutta",
+          "to": "ostend",
+          "share": 0.48
+        }
+      ],
+      "byDecade": {
+        "1730": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            1,
+            2
+          ]
+        }
+      },
+      "notes": "Split from ostend-interlude so the Canton lanes die in 1734 with the company while the Bengal lane runs on to 1744, which is what actually happened."
+    },
+    {
+      "id": "armenian-madras-manila",
+      "name": "Julfan Armenian shipping: Madras to Manila",
+      "evidence": "proxied",
+      "basis": "The one leg of the vast Julfan Armenian carrying trade where Armenians were isolable SHIPPING principals rather than merchants freighting on other flags' bottoms: Madras to Manila, on the Acapulco-silver connection, with Coja Petrus Uscan at Madras from 1723 to 1751 the documented exemplar (Bhattacharya 2008; Aslanian). The weight here is derived from the Manila galleon's own cadence rather than from invented annual volumes, hence proxied. Double-count guard: this is NOT the Manila-Acapulco crossing (manila-galleon) and NOT the Coromandel country trade (country-trade-west); it is the Madras-Manila leg alone.",
+      "era": {
+        "from": 1700,
+        "to": 1760
+      },
+      "cargo": [
+        "textiles",
+        "specie",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "merchantman"
+      ],
+      "lanes": [
+        {
+          "from": "madras",
+          "to": "manila",
+          "share": 0.52
+        },
+        {
+          "from": "manila",
+          "to": "madras",
+          "share": 0.48
+        }
+      ],
+      "byDecade": {
+        "1700": {
+          "voyagesPerYear": [
+            1,
+            4
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            2,
+            5
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            2,
+            5
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            1,
+            4
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        }
+      },
+      "notes": "Authored as a thin lane rather than left out. The rest of the Julfan network moved on other flags and by caravan and is gestured in new-julfa-armenian-carriage; suppressing this leg too would be a silent zero on the best-documented Armenian shipping of the era."
     }
   ]
 }

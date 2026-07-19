@@ -143,6 +143,28 @@
       "reason": "unrecorded",
       "treatment": "gestured",
       "note": "Beneath the Armada and the licensed runs there was a continuous small-craft coasting trade along the Pacific littoral - Paita, Arica, Pisco, Realejo, the intermediate roads - carrying wine, wheat, timber, and people between colonial ports. Almost none of it was registered. Paita in particular functioned as a waystage rather than a terminus and is a waypoint here, not a node. pacific-colonial-spanish counts the trunk it can defend; this is the traffic underneath it, gestured. Entered 2026-07-18."
+    },
+    {
+      "id": "bantam-pepper-displaced",
+      "scope": "Bantam & Lampung (pre-VOC Muslim & Chinese-junk pepper carriage)",
+      "reason": "monopoly-displacement",
+      "treatment": "asserted",
+      "pointer": "bantam-pepper",
+      "note": "The independent Muslim and Chinese-junk pepper carriage out of Bantam and Lampung goes dark in the record precisely because the VOC monopoly forced that trade to Batavia and suppressed independent carriage - Lampung ceded 12 March 1682, the monopoly letter 22 August 1682, the conquest 1682-84. A DISPLACEMENT, not a disappearance: the counted post-1684 Batavia series is the same pepper re-routed under monopoly, and reading the two as a fall and a rise would invent a collapse that did not happen. Answered by the bantam-pepper system. Precedent chain: Palembang 1642, Makassar 1669, Banten 1682, Jambi 1683. Entered 2026-07-18."
+    },
+    {
+      "id": "new-julfa-armenian-carriage",
+      "scope": "Persia to the Levant, Mediterranean, India, Russia, and Manila (multi-basin, Armenian account)",
+      "reason": "carriage-under-other-flags",
+      "treatment": "gestured",
+      "note": "The Julfan Armenian carriage (New Julfa, Isfahan, 1605; floruit c.1600-1750, broken by the 1722 Afghan sack) moved Persian raw silk, gems, and indigo across the whole Eurasian arc - to Aleppo, Smyrna, Venice, Livorno, Marseille, Amsterdam; to Surat, Madras, Manila; and north via Astrakhan into Russia - almost entirely on OTHER flags' bottoms and by overland caravan. A flow matrix keyed to lanes and flags cannot hold a trade whose defining feature was that it sailed under everyone else's colours; its shadow is already inside greek-ottoman-coasting, persian-gulf-trade, and country-trade-west. Even its one counted stratum, the Russia-transit silk series (12,032 kg/yr in 1676-85 rising to 79,673 in 1743-47, 60-70% Armenian), is volume rather than voyages and moved overland. The single leg where Julfans were isolable shipping principals IS mapped, as armenian-madras-manila. Entered 2026-07-18."
+    },
+    {
+      "id": "habsburg-asiatic-stations",
+      "scope": "Nicobar Islands (Nancowery) and Delagoa Bay",
+      "reason": "not-yet-reconstructed",
+      "treatment": "gestured",
+      "note": "Bolts's Imperial Asiatic Company of Trieste planted two short-lived stations - Nancowery in the Nicobars (1778-1785) and Delagoa Bay (1777-1781, expelled by a Portuguese frigate out of Goa). Attempted colonial footholds that FAILED, carrying negligible commercial flow; their significance is political rather than a trade the chart omits. The company's real traffic folds into minor-company-arterials. Recorded so the absence of a Nicobar dot is a stated decision rather than an oversight. Entered 2026-07-18."
     }
   ]
 }

@@ -67,7 +67,7 @@ for (const file of basins) {
 
 // ---- silences register ----
 const S = load("research/flows/silences.json");
-const REASON = new Set(["excluded-by-basis", "unrecorded", "evasion", "fishery-not-trade", "not-yet-reconstructed", "no-port-node"]);
+const REASON = new Set(["excluded-by-basis", "unrecorded", "evasion", "fishery-not-trade", "not-yet-reconstructed", "no-port-node", "monopoly-displacement", "carriage-under-other-flags"]);
 const TREAT = new Set(["asserted", "excluded", "gestured"]);
 const allSys = new Set(Object.values(basinData).flatMap(B => B.systems.map(s => s.id)));
 for (const e of S.silences) {
