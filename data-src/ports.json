@@ -1531,6 +1531,115 @@
         "to": 1850
       },
       "note": "The Hijaz port: Mecca's sea gate for the pilgrimage, and the Red Sea terminus of the pepper and spice trade that came direct from Aceh. It had been folding onto Mocha, about 800 km south and a different trade — coffee, not pepper and pilgrims."
+    },
+    {
+      "id": "singapore",
+      "name": "Singapore",
+      "lon": 103.85,
+      "lat": 1.29,
+      "power": "britain",
+      "region": "east-indies",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1819,
+        "to": 1850
+      },
+      "note": "Founded 1819 and a free port from the start; within twenty years the entrepot of the Straits, drawing the archipelago's junk and prahu trade into a British harbour."
+    },
+    {
+      "id": "hong-kong",
+      "name": "Hong Kong",
+      "lon": 114.16,
+      "lat": 22.28,
+      "power": "britain",
+      "region": "china",
+      "roles": [
+        "colonial",
+        "naval"
+      ],
+      "active": {
+        "from": 1841,
+        "to": 1850
+      },
+      "note": "Ceded in 1841 at the end of the first Opium War. A deep-water harbour with no hinterland, which is precisely what it was taken for."
+    },
+    {
+      "id": "sydney",
+      "name": "Sydney",
+      "lon": 151.21,
+      "lat": -33.86,
+      "power": "britain",
+      "region": "south-pacific",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1788,
+        "to": 1850
+      },
+      "note": "Founded 1788 as a penal colony; wool from the 1820s made it a trading port as well. The convict transportation that founded it is carried soberly in its own flow, not as cargo."
+    },
+    {
+      "id": "basra",
+      "name": "Basra (the Shatt bar)",
+      "lon": 48.48,
+      "lat": 29.97,
+      "power": "ottoman",
+      "region": "persian-gulf",
+      "roles": [],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "The head of the Gulf and the Ottoman terminus of the Baghdad caravan route; the dot sits at the Shatt al-Arab bar, since Basra itself lies far up the river."
+    },
+    {
+      "id": "bandar-abbas",
+      "name": "Bandar Abbas",
+      "lon": 56.28,
+      "lat": 27.18,
+      "power": "persia",
+      "region": "persian-gulf",
+      "roles": [],
+      "active": {
+        "from": 1622,
+        "to": 1850
+      },
+      "note": "Safavid Persia's Gulf outlet from 1622, when Abbas took Hormuz from the Portuguese with English help; silk out, and the Gulf's link to the Indian country trade."
+    },
+    {
+      "id": "york-factory",
+      "name": "York Factory",
+      "lon": -92.3,
+      "lat": 57.0,
+      "power": "hbc",
+      "region": "arctic",
+      "roles": [
+        "station"
+      ],
+      "active": {
+        "from": 1684,
+        "to": 1850
+      },
+      "note": "The Hudson's Bay Company's chief post on the Bay, from 1684: furs out, trade goods in, one or two ships a year through an ice-free window of a few weeks."
+    },
+    {
+      "id": "pacific-grounds",
+      "name": "The Pacific whaling grounds",
+      "lon": -82.0,
+      "lat": -15.0,
+      "power": "usa",
+      "region": "south-pacific",
+      "roles": [
+        "station"
+      ],
+      "active": {
+        "from": 1788,
+        "to": 1850
+      },
+      "note": "Not a port but the offshore grounds off Peru and Chile, opened by the Emilia in 1788 and worked by the British and then overwhelmingly American sperm fishery. A grounds node, like the Davis Strait and Smeerenburg."
     }
   ]
 }

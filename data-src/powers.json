@@ -1114,6 +1114,28 @@
       "article": null,
       "rivals": [],
       "note": "Banten: the archipelago's pepper emporium and Batavia's rival until the VOC conquest of 1682-84. Its own sultanate, not Gowa's — the two are a thousand miles and a different people apart."
+    },
+    {
+      "id": "hbc",
+      "name": "Hudson's Bay Company",
+      "kind": "company",
+      "parent": "britain",
+      "color": "#4a6a8c",
+      "homePorts": [
+        "york-factory"
+      ],
+      "era": {
+        "from": 1670,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.05,
+        "merchant": 0.95
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Chartered 1670. One or two ships a year to the Bay and home again inside the ice-free window — a tiny, utterly regular traffic."
     }
   ]
 }
