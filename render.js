@@ -15,6 +15,18 @@ const PAPER_HI = '#efe4cb';
 const SEA_TINT = 'rgba(120,140,150,0.06)'; // barely-cool wash over the sea
 const LAND = '#cdb488';          // warm tan landmass
 const LAND_EDGE = '#5c4630';
+
+// The Great Lakes — a cosmetic user request (so someone feels represented). Coarse
+// outlines cut into the North-American landmass as inland water; no port or route
+// touches them, so recognisable-but-rough is the right fidelity. Superior · Michigan
+// · Huron · Erie · Ontario.
+const GREAT_LAKES = [
+  [[-92.0, 46.7], [-90.0, 46.6], [-87.5, 46.5], [-85.0, 46.7], [-84.4, 47.6], [-85.5, 48.4], [-87.5, 48.6], [-89.5, 48.2], [-91.5, 47.4]],
+  [[-87.9, 42.0], [-86.2, 41.7], [-85.4, 42.5], [-85.3, 43.8], [-85.8, 45.2], [-86.9, 45.9], [-88.0, 45.1], [-88.1, 43.5]],
+  [[-84.6, 43.4], [-83.2, 43.0], [-82.4, 43.9], [-81.7, 44.8], [-80.6, 44.8], [-81.0, 45.9], [-82.4, 46.3], [-83.7, 45.9], [-84.7, 44.5]],
+  [[-83.4, 41.7], [-81.5, 41.5], [-79.5, 42.1], [-78.9, 42.6], [-80.2, 42.9], [-82.5, 42.2]],
+  [[-79.7, 43.3], [-78.0, 43.4], [-76.5, 43.7], [-76.3, 44.1], [-77.8, 44.2], [-79.4, 43.9]]
+];
 const RHUMB_RED = 'rgba(150,70,50,0.16)';
 const WAKE = 'rgba(58,44,28,0.28)';
 
@@ -274,6 +286,16 @@ export function createRenderer(canvas, assets) {
     c.lineJoin = 'round';
     const landClip = beginPlateClip(c);
     for (const f of land.features) drawGeom(c, f.geometry);
+    // the Great Lakes: cut as inland water (sea paper + tint) with a shore stroke
+    c.lineWidth = 0.7;
+    for (const lake of GREAT_LAKES) {
+      c.beginPath();
+      for (let i = 0; i < lake.length; i++) { const [x, y] = project(lake[i][0], lake[i][1]); i ? c.lineTo(x, y) : c.moveTo(x, y); }
+      c.closePath();
+      c.fillStyle = PAPER; c.fill();
+      c.fillStyle = SEA_TINT; c.fill();
+      c.strokeStyle = LAND_EDGE; c.stroke();
+    }
     if (landClip) c.restore();
 
     // ports: compute each label's placement now (collision-avoiding, once per
