@@ -365,6 +365,71 @@ is live by now — pin the *Surprise* and follow her properly.
   goods-thread lens; the Middle-Passage thread needs charter review as
   authored.
 
+## The 2026-07-19 backlog sweep — items folded in from the input files
+
+A full re-read of `feature-ideas/ideas.txt`, `tweaks.txt`, and
+`research_addenda.txt` against the shipped state. Everything geographic in the
+addenda is **built** (the T12 nodes — Callao, Guayaquil, Nootka, Curaçao,
+Algiers/Tunis/Tripoli/Alexandria, Ostend, Bantam — are all in the 105-port
+roster). The items below are the ones that had **no plan slot**; they are folded
+here with feasibility (A trivial / B moderate / C hard) and a target phase.
+`procgen_variant` is deliberately EXCLUDED (its own header forbids adding it to
+the IS backlog — it is a future-version file).
+
+### Batch P — Polish & render  ·  Phase 3, no gate, do first (cheap, visible)
+| Item | Src | Feas | Note |
+|---|---|---|---|
+| Full-Mediterranean `europe-med` plate (N. African coast) | tweaks 21 | A | bounds tweak; Algiers/Tunis/Tripoli/Alexandria now populate it |
+| **Pacific plate** (W NA/SA ↔ E Asia) | ideas 15 | A | one `REGIONS` entry; content now exists (Callao/Guayaquil/Valparaíso/Nootka/Acapulco/Manila/Canton) |
+| **Toggle-all-port-names** button | tweaks 24 | A | settings+render; when ON still respects greyed/ruined/pre-founding |
+| Two-stage dormancy: grey → **name hidden** (icon stays); start all fresh greyed/name-hidden | tweaks 22,23 | B | extend the 3-yr greying display policy with a 2nd threshold + boot state |
+| Cursor **lat/long readout** (toggle) | ideas 16 | A | inverse projection exists; the water-body/continent NAME is a follow-on (needs named-seas polygons) — split |
+| **Co-located ports share one icon**, panel lists both (Dejima/Nagasaki) | ideas 26, tweaks 19 | B | detect coincident display coords; merge dot + pick + panel |
+| **Chart art** top/bottom ("here be dragons", ornament) for tall/wide framings | ideas 20 | B | art asset + render; fills empty sea on unusual aspect ratios |
+| **Overlay taxonomy** — sub-toggles by movement TYPE (arterial/coasting/coerced/fisheries/naval-state), not basin | tweaks 9 | B | design change to layer categories + a build-data lane-type tag |
+| Dutch (& other) name-list QA (`'t Vergulde Draeck`) | tweaks 16 | A | small data review |
+
+### Batch R — Routing/baker residuals  ·  fold into the NEXT re-bake (Phase 2)
+| Item | Src | Feas | Note |
+|---|---|---|---|
+| Residual land-clipping + oddly-square/zigzag legs on close views | tweaks 2,3 | B | 1°-grid vs fine-coast; targeted `ISLAND_SEAL`/de-tack per offender |
+| Closeup routes terminate mid-screen — draw through/past plate edges | tweaks 4 | B | verify vs the fill-viewport change; clip-to-edge for off-plate destinations |
+| Monsoon seasonal-window narrowing (bantam-pepper/dutch-japan + the 2 convoy lanes) | Phase-1 debt | A | baker data change; the ice half already shipped |
+
+### Batch S — Sim refinements  ·  fate-at-spawn-SAFE; with/after Phase 2
+| Item | Src | Feas | Note |
+|---|---|---|---|
+| **Region/route-aware sinking** — losses at plausible points (hazard zones), not random | ideas 24 | B | loss location computed deterministically AT SPAWN from hazard-zone ∩ route; sim-layer, fingerprint-safe. **Standout — cheap, big plausibility win.** |
+| Multi-leg **cargo changes** recorded in histories | ideas 21 | B | cargo per leg on the itinerary + an observation-layer note; rides the Pass-4 itinerary work |
+| National **port access rules** (faction/class/tonnage blocks) | ideas 17 | C | research-gated (new **T15**); partly redundant with the flow matrix, which already sources which lanes exist |
+
+### Batch E — Easter eggs  ·  ride the Pass-4 scripted channel / Pass 6
+| Item | Src | Feas | Note |
+|---|---|---|---|
+| **HMS HMS Bom Jesus** | ideas 22 | A | one scripted spawn once the channel exists (the "HMS HMS" doubling is the joke) |
+| **The cat** — persists across the cycle, hops ships at port, 9-lives fallbacks for port-closure / sinking | ideas 23 | B | a single persistent token riding vessels; needs cross-vessel state, granularity-independent |
+| Historical-fiction easter-egg **catalog beyond Aubrey** | ideas 13 | R | extend **T6** / Pass 6 candidate list (web-sourced age-of-sail fiction, ranked) |
+
+### Batch G — Roster gaps  ·  short candidates sweep (new **T14**) → data increment
+| Item | Src | Feas | Note |
+|---|---|---|---|
+| **Cape Town + critical waystops** | addenda 10 | B | **Cape Town is ABSENT** and is THE Europe↔Asia refreshment call — promote as a waystop node or register as a declared waystop-silence (it is a call, not a trade terminus — a real design question) |
+| Korea / Russian-Pacific / Alaska ports | addenda 11 | R | verdict per port: promote or register a silence |
+
+### Batch Z — Big modes / housekeeping  ·  DEFER (own design)
+| Item | Src | Feas | Note |
+|---|---|---|---|
+| **Fully-ahistorical mode** (random wars/dynamics) | ideas 19 | C | a parallel generative mode; needs its own design doc; philosophically orthogonal to the historical charter (must not muddy the sober register — a clearly-labelled separate mode) |
+| **Prune the archive** from the repo | ideas 25 | B | port `pipeline/router.mjs` + the field `.bin`s FORWARD out of `archive/` first (CLAUDE.md constraint — the baker still depends on them), THEN remove the archive |
+
+**Recommended order for this backlog:** Batch P now (Phase 3, parallel, low-risk
+momentum — the two trivial plates + toggle-all-names + cursor lat/long first);
+Batch R swept into whatever re-bake Phase 2 triggers (never re-bake just for
+them); Batch S's region-aware sinking done with/after **Convoys** (its standout);
+Batch E folded into Pass 4/6 as channel demos + the Aubrey catalog; Batch G's
+**T14** run as a short sweep before/with Phase 2 (Cape Town matters for movement
+realism); Batch Z deferred to its own plans.
+
 ## The interleaved queue — recommended order (live)
 
 > **Maintenance directive.** This queue is the merge of the feature passes
@@ -456,13 +521,22 @@ probabilistic specials [the 28-item catalog] + ambient flows) — HARD GATE T4
 whaling nodes) is built once during Phase 1's E3 bake and reused here. Plus
 **Convoys** (`PLAN-convoys.md`) — fate-at-spawn-safe, so it can run first / in
 parallel as low-risk momentum; inherits T9's rates for free. May touch the
-baker (`pipeline/README.md` first).
+baker (`pipeline/README.md` first). **Folds in from the backlog sweep:**
+Batch S's **region-aware sinking** (do it with Convoys — cheap, fate-safe),
+Batch E's easter eggs (Bom Jesus + the cat as channel demos), Batch R's routing
+residuals (sweep into whatever re-bake this phase triggers — never re-bake just
+for them), and a short **T14** waystop sweep (Cape Town) → a Batch-G data
+increment before the itinerary work.
 
 ### Phase 3 — Threads & polish  ·  [F]  (render/observation; floats anywhere)
 **Trade-goods threads** (T12 lens done → buildable; the Middle-Passage thread
 keeps the exact sober register) + the queued **render tweaks** (port dots in
-the sea, land clipping, residual zigzags — several want a baker review). No
-gate; low risk; slot into whatever pass is in flight.
+the sea, land clipping, residual zigzags — several want a baker review) +
+the **Batch-P polish set** from the backlog sweep above (full-Med plate, the
+Pacific plate, toggle-all-port-names, two-stage dormancy, cursor lat/long,
+co-located port icons, chart art, the overlay-taxonomy re-categorization). No
+gate; low risk; the trivial plates + toggles are the recommended first pull for
+momentum. Slot into whatever pass is in flight.
 
 ### Phase 4 — Per-port documentation  ·  [R]  ·  ✅ **COMPLETE + LIVE 2026-07-19**
 **Phase RC — T1+T2+T3 done for all 105 ports** (9 parallel region-batched research

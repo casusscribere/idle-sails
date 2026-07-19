@@ -88,6 +88,13 @@ Horn / west-coast candidates from T12.*
 **Output:** `research/aubrey-voyages.json` — per commission
 `{vessel, rig, window, itinerary, events, book, notes}`.
 **Feeds:** feature pass 6 (`planning/RANKING.md`).
+*(2026-07-19, `ideas.txt` #13 extension): beyond the Aubrey canon, web-search
+OTHER age-of-sail historical fiction (novels/film/stage) and rank candidates for
+inclusion as scripted easter eggs — same per-commission schema, same per-seed
+firing probability. A ranked candidate list is the deliverable; only the top few
+need a full itinerary. Also carries the two tiny fixed easter eggs from
+`ideas.txt` — **HMS HMS Bom Jesus** (#22) and **the cat** (#23, a persistent
+ship-hopping token, not a commission) — as Pass-4 channel demos.*
 
 ### Phase RB — movement & flows
 
@@ -142,6 +149,41 @@ verification, mappability) over the waters the addenda flag:
 catalog; promotion-queue updates via `CURATION.md`.
 **Feeds:** the promotion queue; Pass 4/6; the trade-goods-threads feature;
 PLAN-4's next wave.
+
+#### T14 — Waystops & remaining roster gaps (backlog sweep, `research_addenda` #10–11)
+*(added 2026-07-19 from the input-file re-read.)* A short candidates sweep in
+the `port-flow-candidates` pattern over the nodes the addenda flag that the T12
+sweep did NOT resolve:
+- **Cape Town** (#10) — the VOC refreshment station (1652–), the single most
+  important **waystop** on the Europe↔Asia route, and currently ABSENT from the
+  roster. The design question is real: it is a refreshment CALL, not a trade
+  terminus the flow matrix ranks, so decide between (a) a waystop node that
+  multi-leg Indiaman itineraries touch, or (b) a declared waystop-silence entry.
+  Sweep other critical waystops the same way (St Helena, Ascension, the Sunda/
+  Malacca choke calls).
+- **Korea / Russian-Pacific / Alaska** (#11) — per port, a promote-or-register
+  verdict (Korean ports under the Joseon maritime-restriction boundary declared
+  honestly; Okhotsk/Kamchatka and the RAC's Alaskan stations beyond the existing
+  Sitka/Kodiak treatment). Evidence-classed; expect silences-register entries.
+**Output:** a dated `research/port-flow-candidates-*.md` extension + register
+entries; promotion-queue updates via `CURATION.md`.
+**Feeds:** a data increment (the Batch-G build in `planning/RANKING.md`); the
+silences register; multi-leg itineraries (Pass 4).
+
+#### T15 — National port access rules (`ideas.txt` #17)
+*(added 2026-07-19 from the input-file re-read.)* Research which ports **refused**
+ships of certain flags in certain periods (e.g. closed-port and monopoly regimes,
+wartime interdiction, the sakoku exclusions already partly modeled) and which
+imposed **class/tonnage** limits (draft-limited roadsteads, galley-only harbours),
+so statistical spawn assignment can be guardrailed. **Scope carefully — much of
+this is already implicit in the flow matrix** (a lane that never existed is
+already absent), so the task is to find the cases where the sim WOULD generate an
+ahistorical port call that the matrix does not already forbid, and express them as
+data rules rather than re-deriving the whole trade geography. Evidence-classed; no
+fabricated precision (a "usually refused" is not a hard block).
+**Output:** `research/port-access-rules.md` — bounds + sources per rule + a
+sim-shape verdict (hard block vs. weight penalty vs. display-only note).
+**Feeds:** a build-data validity layer (Batch S, `planning/RANKING.md`).
 
 #### T10 — The 1815–1850 research campaign (PLAN-6 X-R1)
 *(live 2026-07-16 on PLAN-6 adoption — the plan's X-R1 phase, run as part of
