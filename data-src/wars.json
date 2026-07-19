@@ -1,6 +1,6 @@
 {
   "$schema": "./_schema.md#wars",
-  "note": "Dated conflicts within the flowing 1550-1815 scope. `belligerents` are opposing sets of power ids (cross-checked against powers.json; companies count as their parent nation). `theatres` are region ids where risk is elevated. `riskUplift` multiplies the baseline per-day loss chance for a belligerent flag sailing a theatre. `engagements` are notable actions for log/flavor. Neutrals (sweden, denmark, usa pre-1812) generally keep the baseline unless listed.",
+  "note": "Dated conflicts within the flowing 1550-1850 scope. `belligerents` are opposing sets of power ids (cross-checked against powers.json; companies count as their parent nation). `theatres` are region ids where risk is elevated. `riskUplift` multiplies the baseline per-day loss chance for a belligerent flag sailing a theatre. `engagements` are notable actions for log/flavor. Neutrals (sweden, denmark, usa pre-1812) generally keep the baseline unless listed.",
   "wars": [
     {
       "id": "italian-war-1551",
@@ -560,6 +560,276 @@
         }
       ],
       "note": "S2 (user decision): Île Sainte-Marie modeled as a HAZARD, not a port — a flag-agnostic riskUplift on Indian-Ocean theatres while the pirate republic operated. hazard:true means every flag in the theatre is at risk (world.js)."
+    },
+    {
+      "id": "caribbean-golden-age-piracy",
+      "name": "The golden age of piracy (the Caribbean)",
+      "from": 1716,
+      "to": 1726,
+      "hazard": true,
+      "belligerents": [
+        [],
+        []
+      ],
+      "theatres": [
+        "caribbean"
+      ],
+      "riskUplift": 1.5,
+      "engagements": [
+        {
+          "year": 1718,
+          "name": "Blackbeard killed at Ocracoke"
+        },
+        {
+          "year": 1722,
+          "name": "Roberts killed off Cape Lopez"
+        }
+      ],
+      "note": "HAZARD (flag-agnostic, like the Pirate Round): the post-Utrecht Caribbean pirate surge — Blackbeard, Bellamy, Roberts — menaced every flag until the suppression campaigns broke it by the mid-1720s."
+    },
+    {
+      "id": "barbary-corsair-hazard",
+      "name": "The Barbary corsairs (the western Mediterranean)",
+      "from": 1550,
+      "to": 1830,
+      "hazard": true,
+      "belligerents": [
+        [],
+        []
+      ],
+      "theatres": [
+        "mediterranean"
+      ],
+      "riskUplift": 1.3,
+      "engagements": [
+        {
+          "year": 1816,
+          "name": "Anglo-Dutch bombardment of Algiers"
+        },
+        {
+          "year": 1830,
+          "name": "French capture of Algiers ends the corsair states"
+        }
+      ],
+      "note": "HAZARD: the Barbary regencies' corsairing menaced Christian shipping across the western Mediterranean for the whole era; broken by the 1816 bombardment and ended by the 1830 French conquest of Algiers (a low, flag-agnostic uplift, not the pitched risk of a fleet war)."
+    },
+    {
+      "id": "spanish-american-independence-sea",
+      "name": "The Spanish-American wars of independence (at sea)",
+      "from": 1815,
+      "to": 1826,
+      "belligerents": [
+        [
+          "spain"
+        ],
+        [
+          "chile",
+          "peru"
+        ]
+      ],
+      "theatres": [
+        "iberia",
+        "caribbean",
+        "south-pacific"
+      ],
+      "riskUplift": 1.6,
+      "engagements": [
+        {
+          "year": 1817,
+          "name": "the Tupac Amaru takes the Triton"
+        },
+        {
+          "year": 1826,
+          "name": "the last Pacific squadron surrenders"
+        }
+      ],
+      "note": "Spanish flags at risk as the American republics won their seas; chile and peru stand for the independence forces. Ends stepwise (Atlantic 1821, Caribbean 1825, Pacific Jan 1826)."
+    },
+    {
+      "id": "greek-independence",
+      "name": "The Greek War of Independence",
+      "from": 1821,
+      "to": 1829,
+      "belligerents": [
+        [
+          "ottoman"
+        ],
+        []
+      ],
+      "theatres": [
+        "mediterranean"
+      ],
+      "riskUplift": 1.7,
+      "engagements": [
+        {
+          "year": 1827,
+          "name": "Battle of Navarino"
+        }
+      ],
+      "note": "Ottoman flags at risk in the Aegean; allied British/French/Russian fleets destroyed the Ottoman-Egyptian fleet at Navarino (20 Oct 1827), the trigger for the Russo-Turkish war."
+    },
+    {
+      "id": "russo-turkish-1828",
+      "name": "The Russo-Turkish War of 1828-29",
+      "from": 1828,
+      "to": 1829,
+      "belligerents": [
+        [
+          "russia"
+        ],
+        [
+          "ottoman"
+        ]
+      ],
+      "theatres": [
+        "black-sea",
+        "mediterranean"
+      ],
+      "riskUplift": 1.7,
+      "engagements": [
+        {
+          "year": 1828,
+          "name": "capture of Varna"
+        },
+        {
+          "year": 1829,
+          "name": "Treaty of Adrianople opens the Straits"
+        }
+      ],
+      "note": "Greig's Black-Sea and Heyden's Aegean squadrons; the Treaty of Adrianople (14 Sep 1829) opened the Straits to the Odessa grain trade."
+    },
+    {
+      "id": "french-conquest-algeria",
+      "name": "The French conquest of Algeria",
+      "from": 1830,
+      "to": 1847,
+      "belligerents": [
+        [
+          "france"
+        ],
+        [
+          "algiers"
+        ]
+      ],
+      "theatres": [
+        "mediterranean"
+      ],
+      "riskUplift": 1.4,
+      "engagements": [
+        {
+          "year": 1830,
+          "name": "capture of Algiers"
+        },
+        {
+          "year": 1847,
+          "name": "surrender of Abd el-Kader"
+        }
+      ],
+      "note": "The Regency of Algiers, NOT the Ottoman Porte (which disavowed the Dey), is the belligerent. The sea risk is concentrated at the 1830 landing; the rest is land pacification."
+    },
+    {
+      "id": "opium-war-1",
+      "name": "The First Opium War",
+      "from": 1839,
+      "to": 1842,
+      "belligerents": [
+        [
+          "britain"
+        ],
+        [
+          "qing"
+        ]
+      ],
+      "theatres": [
+        "china"
+      ],
+      "riskUplift": 1.5,
+      "engagements": [
+        {
+          "year": 1841,
+          "name": "capture of the Bogue forts"
+        },
+        {
+          "year": 1842,
+          "name": "Treaty of Nanking"
+        }
+      ],
+      "note": "British and Qing flags at risk on the China coast; neutrals keep the baseline. The treaty opened the five ports and ceded Hong Kong."
+    },
+    {
+      "id": "war-of-the-confederation",
+      "name": "The War of the Confederation",
+      "from": 1836,
+      "to": 1839,
+      "belligerents": [
+        [
+          "chile"
+        ],
+        [
+          "peru"
+        ]
+      ],
+      "theatres": [
+        "south-pacific"
+      ],
+      "riskUplift": 1.4,
+      "engagements": [
+        {
+          "year": 1836,
+          "name": "Chilean seizure of the Confederate squadron at Callao"
+        },
+        {
+          "year": 1839,
+          "name": "Battle of Casma"
+        }
+      ],
+      "note": "peru stands in for the Peru-Bolivian Confederation. Callao blockaded; Valparaiso the Chilean base."
+    },
+    {
+      "id": "anglo-french-blockade-plata",
+      "name": "The Anglo-French blockade of the Rio de la Plata",
+      "from": 1845,
+      "to": 1848,
+      "belligerents": [
+        [
+          "britain",
+          "france"
+        ],
+        []
+      ],
+      "theatres": [
+        "brazil"
+      ],
+      "riskUplift": 1.3,
+      "engagements": [
+        {
+          "year": 1845,
+          "name": "Battle of Vuelta de Obligado (the Parana)"
+        }
+      ],
+      "note": "The Anglo-French blockade of Buenos Aires; the British component ended Jul 1847. Montevideo picked up diverted calls."
+    },
+    {
+      "id": "south-china-sea-piracy",
+      "name": "South China Sea piracy",
+      "from": 1843,
+      "to": 1849,
+      "hazard": true,
+      "belligerents": [
+        [],
+        []
+      ],
+      "theatres": [
+        "china"
+      ],
+      "riskUplift": 1.4,
+      "engagements": [
+        {
+          "year": 1849,
+          "name": "destruction of Shap-ng-tsai's fleet"
+        }
+      ],
+      "note": "HAZARD: the post-Opium-War surge of Cantonese and Fujianese piracy in the delta and along the coast, menacing every flag until the 1849 suppression campaigns."
     }
   ]
 }
