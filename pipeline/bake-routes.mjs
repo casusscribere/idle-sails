@@ -179,7 +179,19 @@ const landMask = Uint8Array.from(baseMask); // coastline + isthmus, NO ice cap
 // for all destinations, and a −58 set that opens the Drake Passage, used ONLY
 // for the fields of Pacific-coast-Americas destinations. Both share the same
 // −66 Arctic seal + seasonal corridors; only the southern latitude differs.
-let iced = 0;
+// Seasonal ice (increment 6i): a sub-Arctic sea that FREEZES in winter but opens
+// for a brief summer navigation season. It sits BELOW the 66°N cap, so the cap
+// does not seal it — instead it is sealed here in its CLOSED seasons, the inverse
+// of the Arctic corridors (which OPEN a 66+ region in its navigation season).
+// Hudson Bay + Strait: HBC ships transited the strait Jun–Oct only, so the bay is
+// sealed in djf + mam — York Factory takes no winter/spring arrivals and the sim
+// reschedules to the open season (the Arkhangelsk precedent, at a sub-66 sea).
+// Bounds lon[-95,-64] × lat[55,66] cover the strait mouth (~−64) and the bay
+// without touching Davis Strait (67°N/−55, whaling) or the Labrador Sea (>−64°).
+const SEASONAL_ICE = [
+  { name: 'Hudson Bay', lon: [-95, -64], lat: [55, 66], closed: ['djf', 'mam'] }
+];
+let iced = 0, seasonIced = 0;
 function buildMaskSet(iceSouth) {
   const bySeason = new Map();
   for (const s of SEASONS) {
@@ -193,6 +205,18 @@ function buildMaskSet(iceSouth) {
         const inCorridor = ICE_CORRIDORS.some(k => k.seasons.includes(s.id) &&
           lon >= k.lon[0] && lon <= k.lon[1] && lat >= k.lat[0] && lat <= k.lat[1]);
         if (!inCorridor) { m[i] = 1; if (iceSouth === ICE_S) iced++; }
+      }
+    }
+    // Seasonal-ice seas: seal them as land in their closed seasons.
+    for (const z of SEASONAL_ICE) {
+      if (!z.closed.includes(s.id)) continue;
+      for (let r = 0; r < rows; r++) {
+        const lat = gi.latOf(r);
+        if (lat < z.lat[0] || lat > z.lat[1]) continue;
+        for (let c = 0; c < cols; c++) {
+          const lon = gi.lonOf(c), i = gi.idx(c, r);
+          if (m[i] === 0 && lon >= z.lon[0] && lon <= z.lon[1]) { m[i] = 1; if (iceSouth === ICE_S) seasonIced++; }
+        }
       }
     }
     bySeason.set(s.id, m);

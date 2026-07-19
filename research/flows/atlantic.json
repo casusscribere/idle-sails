@@ -260,9 +260,50 @@
       "id": "new-orleans",
       "name": "New Orleans",
       "simProxy": "new-orleans"
+    },
+    {
+      "id": "york-factory",
+      "name": "York Factory (Hudson Bay)",
+      "simProxy": "york-factory"
     }
   ],
   "systems": [
+    {
+      "id": "hudson-bay",
+      "name": "The Hudson's Bay Company supply run (London ↔ York Factory)",
+      "evidence": "counted",
+      "basis": "The HBCA ships' histories (Archives of Manitoba) are a per-vessel register — name, rig, HBC service dates, service areas — from the 1668 Eaglet/Nonsuch onward through the era (counted on the bills of health / logs / post journals, not the derived web table). Real volume is small: 1–3 supply ships a year, the Dejima pattern of a low-volume, high-meaning exemplar — the only English presence in Hudson Bay. Season-gated: the HBC ships transited Hudson Strait Jun–Oct only, so the bay is baker-sealed in winter/spring (a new sub-66 seasonal-ice zone; the Arkhangelsk precedent). York Factory the era-name from 1684 (Rupert House earlier). The 1694–1714 French occupation (when the post was French-held and English trade rerouted to Fort Albany) is a known lifecycle gap, not modelled at this 1–3-ship magnitude — a declared simplification; the flat range spans it.",
+      "era": {
+        "from": 1684,
+        "to": 1850
+      },
+      "cargo": ["furs", "trade-goods"],
+      "shipTypes": ["merchantman"],
+      "lanes": [
+        { "from": "london", "to": "york-factory", "share": 0.5 },
+        { "from": "york-factory", "to": "london", "share": 0.5 }
+      ],
+      "byDecade": {
+        "1680": { "voyagesPerYear": [1, 2] },
+        "1690": { "voyagesPerYear": [1, 3] },
+        "1700": { "voyagesPerYear": [1, 3] },
+        "1710": { "voyagesPerYear": [1, 3] },
+        "1720": { "voyagesPerYear": [1, 3] },
+        "1730": { "voyagesPerYear": [1, 3] },
+        "1740": { "voyagesPerYear": [1, 3] },
+        "1750": { "voyagesPerYear": [1, 3] },
+        "1760": { "voyagesPerYear": [1, 3] },
+        "1770": { "voyagesPerYear": [1, 3] },
+        "1780": { "voyagesPerYear": [1, 3] },
+        "1790": { "voyagesPerYear": [1, 3] },
+        "1800": { "voyagesPerYear": [1, 3] },
+        "1810": { "voyagesPerYear": [1, 3] },
+        "1820": { "voyagesPerYear": [1, 3] },
+        "1830": { "voyagesPerYear": [2, 4] },
+        "1840": { "voyagesPerYear": [2, 4] },
+        "1850": { "voyagesPerYear": [2, 4] }
+      }
+    },
     {
       "id": "cotton-gulf-liverpool",
       "name": "The Gulf cotton trade (New Orleans → Liverpool, 1815–1850)",

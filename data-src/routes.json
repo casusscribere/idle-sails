@@ -4612,6 +4612,30 @@
       "flag": "usa"
     },
     {
+      "id": "hb-london-york",
+      "system": "hudson-bay",
+      "name": "London to York Factory (HBC supply)",
+      "from": "london",
+      "to": "york-factory",
+      "shipTypes": ["merchantman"],
+      "cargo": ["trade-goods"],
+      "era": { "from": 1684, "to": 1850 },
+      "weight": 1,
+      "flag": "hbc"
+    },
+    {
+      "id": "hb-york-london",
+      "system": "hudson-bay",
+      "name": "York Factory to London (furs)",
+      "from": "york-factory",
+      "to": "london",
+      "shipTypes": ["merchantman"],
+      "cargo": ["furs"],
+      "era": { "from": 1684, "to": 1850 },
+      "weight": 1,
+      "flag": "hbc"
+    },
+    {
       "id": "f-madras-london",
       "system": "eic-india-arterial",
       "name": "Madras to London",
