@@ -280,7 +280,7 @@
    "basis": "EIC marine records: London against Bombay, Madras, and — increasingly everything — Calcutta.",
    "era": {
     "from": 1600,
-    "to": 1815
+    "to": 1834
    },
    "cargo": [
     "textiles",
@@ -456,8 +456,21 @@
       40,
       80
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      50,
+      100
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      55,
+      110
+     ]
     }
-   }
+   },
+   "notes": "Ends 1834: the Charter Act of 1833 ended ALL EIC trading (verified chunk 7, T-17). The India-Britain trade continued and grew under private British flags - that successor traffic needs britain-flagged lanes (authoring debt)."
   },
   {
    "id": "minor-company-arterials",
@@ -466,7 +479,7 @@
    "basis": "DAC and Compagnie des Indes records: Copenhagen–Tranquebar and Lorient–Pondicherry (Madras as proxy) — the small neutral carriers whose flags mattered most in wartime.",
    "era": {
     "from": 1620,
-    "to": 1815
+    "to": 1845
    },
    "cargo": [
     "textiles",
@@ -619,8 +632,27 @@
       4,
       12
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      3,
+      10
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      3,
+      9
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      2,
+      7
+     ]
     }
-   }
+   },
+   "notes": "Ends 1845: Danish Tranquebar was sold to Britain in 1845, closing the last of the small neutral carriers."
   },
   {
    "id": "coromandel-se-asia",
@@ -1011,7 +1043,8 @@
       40
      ]
     }
-   }
+   },
+   "notes": "Not extended past 1795: every lane is voc-flagged and the VOC ended. The Moluccas spice trade continued under the Netherlands Indies; that carriage rides the new nhm-java trunk and awaits re-flagged lanes."
   },
   {
    "id": "bugis-carrying",
@@ -1020,7 +1053,7 @@
    "basis": "ASSERTED (R3 decision) — Reid's synthesis documents a great indigenous carrying trade (Makassar, the Bugis diaspora after 1669, Riau) that no European series counts as such. Central guesses from port-call fragments and the VOC's own complaints; bounds ±60%.",
    "era": {
     "from": 1550,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "spices",
@@ -1226,6 +1259,30 @@
       100,
       400
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      100,
+      400
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      105,
+      420
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      110,
+      440
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      110,
+      440
+     ]
     }
    },
    "notes": "The archipelago's own metabolism — the counterpart of Europe's coasting trades, and as invisible to the toll series."
@@ -1237,7 +1294,7 @@
    "basis": "The Acapulco registers: one to four ships a year, and half the world's silver output moving through them at the peak.",
    "era": {
     "from": 1571,
-    "to": 1815
+    "to": 1821
    },
    "cargo": [
     "specie",
@@ -1409,9 +1466,15 @@
       1,
       3
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      0,
+      1
+     ]
     }
    },
-   "notes": "Tiny by count, enormous by value — the flow matrix records voyages; the value story lives in the rankings."
+   "notes": "Tiny by count, enormous by value — the flow matrix records voyages; the value story lives in the rankings. Ends 1821, not 1815: the last galleon sailed 1815 and the formal abolition preceded it, but the transpacific circuit was severed by MEXICAN INDEPENDENCE in 1821 (verified chunk 11). The 1820 decade carries the final residual."
   },
   {
    "id": "aceh-red-sea",
@@ -1549,7 +1612,7 @@
    "basis": "Company shipping lists' private-trade margins: Calcutta's intra-Asian carriage — rice, saltpetre, opium late — binding Bengal to the Coromandel, the straits, and Batavia.",
    "era": {
     "from": 1650,
-    "to": 1815
+    "to": 1850
    },
    "cargo": [
     "saltpetre",
@@ -1700,8 +1763,91 @@
       60,
       130
      ]
+    },
+    "1820": {
+     "voyagesPerYear": [
+      80,
+      175
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      100,
+      220
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      130,
+      285
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      150,
+      325
+     ]
     }
    }
+  },
+  {
+   "id": "nhm-java",
+   "name": "The NHM / Cultivation-System trade (Java)",
+   "evidence": "counted",
+   "basis": "Chunk 7 (T-21/22/23): the Nederlandsche Handel-Maatschappij (1824; Batavia branch 1826) carried the Cultivation System's produce on consignment from 1830 and controlled two-thirds of Java's exports by 1840. Java exports 11.3M -> 66.1M guilders 1830->1840 (weight 36.4M -> 161.7M kg) - the sharpest regime change in the region; the Dutch East-Indies fleet grew 9 (1823) -> 49 (1832) -> 92 (1835) ships on ~2x guaranteed freight rates (Broeze). Thick Batavia<->Amsterdam, deliberately THIN Batavia<->Singapore: the system isolated Java from the intra-Asian networks, which is why the Amoy junks deserted Batavia for Singapore.",
+   "era": {
+    "from": 1824,
+    "to": 1850
+   },
+   "cargo": [
+    "coffee",
+    "sugar",
+    "spices",
+    "textiles"
+   ],
+   "shipTypes": [
+    "east-indiaman",
+    "merchantman"
+   ],
+   "lanes": [
+    {
+     "from": "batavia",
+     "to": "amsterdam",
+     "share": 0.5
+    },
+    {
+     "from": "amsterdam",
+     "to": "batavia",
+     "share": 0.5
+    }
+   ],
+   "byDecade": {
+    "1820": {
+     "voyagesPerYear": [
+      10,
+      30
+     ]
+    },
+    "1830": {
+     "voyagesPerYear": [
+      45,
+      95
+     ]
+    },
+    "1840": {
+     "voyagesPerYear": [
+      70,
+      140
+     ]
+    },
+    "1850": {
+     "voyagesPerYear": [
+      75,
+      150
+     ]
+    }
+   },
+   "notes": "Enabled by the new `netherlands` power (the Dutch Republic ends 1795). Dutch bottoms only, by design of the consignment system."
   }
  ]
 }

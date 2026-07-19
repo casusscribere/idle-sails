@@ -241,8 +241,14 @@ let covReport = '';
       for (const l of s.lanes || []) {
         const pf = proxy[l.from], pt = proxy[l.to];
         if (!pf || !pt || pf === pt) continue;
-        const cands = pairIdx.get(`${pf}->${pt}`);
-        if (!cands) continue;
+        // A flow system may only fold onto lanes that were actually sailing while it
+        // ran: endpoint identity is not enough. Batavia->Amsterdam is sailed by the
+        // VOC lane (dead 1795) AND the post-1824 Netherlands lane; without this gate
+        // the NHM's volume pours into a route no ship has taken for thirty years.
+        const se = s.era || ERA;
+        const cands = (pairIdx.get(`${pf}->${pt}`) || [])
+          .filter((r) => r.era.from <= se.to && r.era.to >= se.from);
+        if (!cands.length) continue;
         const wsum = cands.reduce((x, r) => x + (r.weight || 1), 0);
         for (const r of cands) folded[r.id] = (folded[r.id] || 0) + l.share * (r.weight || 1) / wsum;
         foldedShare += l.share;
