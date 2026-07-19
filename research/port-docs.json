@@ -1,0 +1,73 @@
+{
+  "$schema": "./port-docs._schema.md",
+  "note": "Per-port documentation (Phase-4 sweep, T2+T3). `blurb`: the port-panel sentence(s) — a string, or an array of {from,to,text} windows tiling the port's active window when name/ownership changed the port's character. `doc`: documentation-depth paragraphs for research/ports.html. `sources`: citations. build-data injects `blurb` into datasets.ports (era-resolved in the panel); ports.html renders doc + sources. The charter applies: no fabricated precision, and coerced labour named factually and never as value.",
+  "ports": {
+    "madras": {
+      "blurb": [
+        { "from": 1550, "to": 1638, "text": "Masulipatnam, the great cloth port of the Golconda sultanate — printed and painted Coromandel cottons carried west to Persia and the Red Sea and east to the archipelago." },
+        { "from": 1639, "to": 1850, "text": "Madras, the English East India Company's Fort St George — from a strip of sand leased in 1639 to the Company's Coromandel capital and the second city of British India." }
+      ],
+      "doc": [
+        "The Coromandel coast has no natural harbour: ships lay in an open roadstead off a surf-beaten shore, and cargo and passengers came ashore through the breakers in flat-bottomed masula boats and log catamarans. What the coast had instead was cloth — the painted and printed cottons (chintz, longcloth, salempores) that were the currency of the whole Indian Ocean trade, bought for spices in the archipelago and for gold and silver everywhere.",
+        "Before the English fort, the dominant Coromandel port was Masulipatnam, the seaward outlet of the Qutb Shahi sultanate of Golconda, drawing Persian, Armenian, and Golconda merchants and, from the early 1600s, Dutch and English factors. In 1639 the East India Company leased a coastal village and built Fort St George; the town that grew around it — Madras, or Chennapatnam — became the Company's Coromandel headquarters, a fortified 'White Town' beside a weavers' 'Black Town', and after 1746 the object of the Anglo-French wars for the Carnatic."
+      ],
+      "sources": [
+        "Sinnappah Arasaratnam, Merchants, Companies and Commerce on the Coromandel Coast, 1650–1740 (1986).",
+        "Susan Neild, 'Colonial Urbanism: The Development of Madras City in the 18th and 19th Centuries', Modern Asian Studies 13 (1979)."
+      ]
+    },
+    "batavia": {
+      "blurb": [
+        { "from": 1550, "to": 1618, "text": "Jayakarta, a pepper harbour of the Sunda coast under the Sultanate of Banten — a modest roadstead where Chinese junks and local prahus traded before the Dutch came." },
+        { "from": 1619, "to": 1850, "text": "Batavia, the walled headquarters of the Dutch East India Company in Asia — the hub from which the VOC ran the spice monopoly, the intra-Asian country trade, and the archipelago." }
+      ],
+      "doc": [
+        "In 1619 Jan Pieterszoon Coen stormed and burned the town of Jayakarta, a vassal port of the Sultanate of Banten on the Sunda coast, and built in its place a walled Dutch city on the Amsterdam model — canals, a castle, and a grid — named Batavia after the ancestral Batavi of the Netherlands. It became the capital of the VOC's Asian empire and the rendezvous of the retourvloot, the annual fleet home.",
+        "Batavia sat at the centre of two trades: the long-haul spice-and-textile run to Amsterdam, and the far larger intra-Asian 'country trade' the Company ran between India, China, Japan, and the islands. Chinese junks brought tea, silk, and porcelain and a large Chinese population built the city's commerce; the surrounding sugar estates worked by that community, and by enslaved and bonded labour drawn from across the archipelago, fed the port. Its canals also made it one of the unhealthiest cities of the age."
+      ],
+      "sources": [
+        "Leonard Blussé, Strange Company: Chinese Settlers, Mestizo Women and the Dutch in VOC Batavia (1986).",
+        "Femme Gaastra, The Dutch East India Company: Expansion and Decline (2003)."
+      ]
+    },
+    "dejima": {
+      "blurb": "Nagasaki, Japan's single window on the West under sakoku — a Japanese shogunal port whose harbour trade ran through the Chinese quarter and the fan-shaped Dutch factory island of Dejima, the one place a European ship might call.",
+      "doc": [
+        "Nagasaki was founded in 1571 by the Ōmura clan as a harbour for the Portuguese carrack trade, and for a few years in the 1580s was even ceded to the Jesuits. After the Tokugawa closed the country (the sakoku edicts of the 1630s), it became Japan's only authorised point of foreign contact — and the sovereign was always Japanese, the shogunate through the Nagasaki bugyō, never Dutch.",
+        "Two foreign trades were permitted, both tightly policed. Chinese junks from the Fujian and Jiangnan coast came in numbers, housed after 1689 in a walled Chinese compound (the Tōjin yashiki). The Dutch — the only Europeans allowed after the Portuguese expulsion of 1639 — were confined from 1641 to Dejima, a small artificial island in the harbour, permitted one or two ships a year. The chart shows a single dot: the sovereign is Japan; the Dutch flag flew only over the leased island, and the ships that called flew their own colours."
+      ],
+      "sources": [
+        "Marius B. Jansen, The Making of Modern Japan (2000), ch. on the Tokugawa foreign relations.",
+        "Leonard Blussé et al. (eds), The Deshima Dagregisters (Dutch factory registers, NL-HaNA 1.04.21)."
+      ]
+    },
+    "bombay": {
+      "blurb": [
+        { "from": 1550, "to": 1660, "text": "A cluster of Portuguese-held islands (Bombaim) on the Konkan coast — minor beside the Estado da Índia's capital at Goa to the south, which the chart's dot stands in for in this era." },
+        { "from": 1661, "to": 1850, "text": "Bombay, the English East India Company's western presidency — the deep, sheltered harbour that made it the Company's naval base and, by the 1800s, the great cotton and opium port of western India." }
+      ],
+      "doc": [
+        "The seven islands of Bombay were a minor Portuguese holding until they passed to the English Crown in 1661 as part of the dowry of Catherine of Braganza, and to the East India Company on a nominal rent in 1668. Its magnificent natural harbour — deep, sheltered, and defensible — made it the Company's western naval base and the seat of the Bombay Presidency.",
+        "Bombay rose as Surat, the older Mughal port to the north, declined. It became the western terminus of the Company's country trade — cotton and, increasingly, Malwa opium carried to China — and the home of the Bombay Marine and a shipbuilding industry manned by Parsi master-builders. In this chart the dot is era-named Goa before 1661: Goa proper, the Portuguese Estado da Índia's capital, lies some 400 km south, and the roster stages its counted Carreira-da-Índia terminus here until its own promotion."
+      ],
+      "sources": [
+        "Om Prakash, European Commercial Enterprise in Pre-Colonial India (1998).",
+        "Lakshmi Subramanian, Indigenous Capital and Imperial Expansion: Bombay, Surat and the West Coast (1996)."
+      ]
+    },
+    "calcutta": {
+      "blurb": [
+        { "from": 1550, "to": 1689, "text": "Hugli, the Mughal river-port of Bengal — the Ganges delta's outlet for muslins, silk, and saltpetre, worked by Mughal officials and Portuguese, Dutch, and English factors upriver." },
+        { "from": 1690, "to": 1850, "text": "Calcutta, the East India Company's Bengal settlement and, after Plassey, the capital of British India — the great export port of the richest province of the subcontinent." }
+      ],
+      "doc": [
+        "The trade of Bengal — the finest cotton muslins, raw silk, and saltpetre for Europe's gunpowder — ran through river ports on the Hooghly, the westernmost distributary of the Ganges. The Mughal customs port was Hugli; the Portuguese, Dutch, and English all held factories along the river before the Company settled the villages that became Calcutta in 1690.",
+        "After the Company's victory at Plassey (1757) gave it the revenues of Bengal, Calcutta became the capital of British India and one of the great ports of the world, exporting the province's textiles and later its opium, indigo, and jute. The chart stages the dot at the Hooghly mouth for the 1° grid; the real city lies some 130 km upriver, reached by pilots through the treacherous James and Mary shoals."
+      ],
+      "sources": [
+        "Om Prakash, The Dutch East India Company and the Economy of Bengal, 1630–1720 (1985).",
+        "P. J. Marshall, East Indian Fortunes: The British in Bengal in the Eighteenth Century (1976)."
+      ]
+    }
+  }
+}

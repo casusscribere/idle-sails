@@ -17,6 +17,7 @@
   const PAGES = [
     ['index.html', 'Overview'],
     ['about.html', 'About & methods'],
+    ['ports.html', 'The ports'],
     ['silences.html', 'Silences'],
     ['flow-prominence.html', 'Flow prominence'],
     ['ports-1550-1815.html', 'Busiest ports'],

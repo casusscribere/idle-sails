@@ -184,11 +184,17 @@ export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSele
     const est = port.active && port.active.from > 1550 ? `est. ${port.active.from}` : '';
     const until = port.active && port.active.to < 1850 ? `until ${port.active.to}` : '';
     const lifeline = (est || until) ? `<p class="type">${[est, until].filter(Boolean).join(' · ')}</p>` : '';
+    // the port panel's descriptive sentence (Phase-4 T2), era-resolved for ports
+    // whose name/ownership changed their character (Port Royal ≠ Kingston).
+    const bText = !port.blurb ? '' : typeof port.blurb === 'string' ? port.blurb
+      : ((year != null && port.blurb.find(b => year >= b.from && year <= b.to)) || port.blurb[port.blurb.length - 1]).text;
+    const blurb = bText ? `<p class="blurb">${escapeHtml(bText)}</p>` : '';
     if (port.active && year != null && year > port.active.to) {
       els.ledgerBody.innerHTML = `
         <h2>${escapeHtml(nm(port.id))}</h2>
         <p class="type">${escapeHtml(power ? power.name : port.power)} · ${escapeHtml(port.region.replace(/-/g, ' '))}</p>
         ${lifeline}
+        ${blurb}
         <p class="war">In ruin — this harbour's trade ended in ${port.active.to}.</p>
         ${port.note ? `<p class="muted">${escapeHtml(port.note)}</p>` : ''}`;
       els.ledger.hidden = false;
@@ -229,6 +235,7 @@ export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSele
       <h2>${escapeHtml(nm(port.id))}</h2>
       <p class="type">${escapeHtml(power ? power.name : port.power)} · ${escapeHtml(port.region.replace(/-/g, ' '))}</p>
       ${lifeline}
+      ${blurb}
       <p class="section-h">Outbound — lately sailed (${traffic.outbound.length})</p>
       ${list(traffic.outbound, 'out', 'No vessels have lately cleared this port.')}
       <p class="section-h">Inbound — standing in (${traffic.inbound.length})</p>

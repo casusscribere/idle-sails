@@ -1,0 +1,95 @@
+<!doctype html><meta charset="utf-8"><title>The ports — Idle Sails research</title><script defer src="nav.js"></script>
+<style>
+:root{--paper:#e8dcc0;--paper-2:#f1e7d0;--card:#efe4cc;--ink:#3a2c1c;--ink-soft:#6d5837;--faint:#8a7452;--edge:#c3ab82;--rule:#a98f66;--accent:#9e2b25;--grid-line:rgba(90,70,45,.16);--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--sans:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif}
+@media (prefers-color-scheme:dark){:root{--paper:#211711;--paper-2:#2a1f15;--card:#2c2016;--ink:#ecdcbc;--ink-soft:#b39a74;--faint:#8f7a58;--edge:#463527;--rule:#5c472f;--accent:#e0937a;--grid-line:rgba(230,214,180,.12)}}
+:root[data-theme="light"]{--paper:#e8dcc0;--paper-2:#f1e7d0;--card:#efe4cc;--ink:#3a2c1c;--ink-soft:#6d5837;--faint:#8a7452;--edge:#c3ab82;--rule:#a98f66;--accent:#9e2b25;--grid-line:rgba(90,70,45,.16)}
+:root[data-theme="dark"]{--paper:#211711;--paper-2:#2a1f15;--card:#2c2016;--ink:#ecdcbc;--ink-soft:#b39a74;--faint:#8f7a58;--edge:#463527;--rule:#5c472f;--accent:#e0937a;--grid-line:rgba(230,214,180,.12)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:radial-gradient(120% 80% at 50% -10%,var(--paper-2),var(--paper) 70%)}
+.wrap{max-width:960px;margin:0 auto;padding:40px 22px 70px}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+h1{font-family:var(--serif);font-size:clamp(26px,4.6vw,40px);line-height:1.12;margin:8px 0 10px;text-wrap:balance}
+.dek{font-family:var(--serif);font-style:italic;font-size:16.5px;color:var(--ink-soft);max-width:64ch;margin:0 0 8px}
+.rule{height:2px;background:var(--rule);opacity:.5;margin:20px 0}
+.toc{columns:3;column-gap:20px;font-size:13.5px;margin:6px 0 8px}
+.toc a{display:block;color:var(--ink-soft);text-decoration:none;padding:1px 0}
+.toc a:hover{color:var(--accent)}
+@media(max-width:640px){.toc{columns:2}}
+.region-h{font-family:var(--serif);font-size:15px;color:var(--faint);text-transform:capitalize;margin:26px 0 2px;border-bottom:1px solid var(--edge);padding-bottom:3px}
+.card{background:var(--card);border:1px solid var(--edge);border-radius:5px;padding:15px 18px;margin:12px 0;scroll-margin-top:64px}
+.card h2{font-family:var(--serif);font-size:20px;margin:0 0 2px}
+.meta{font-family:var(--serif);font-style:italic;color:var(--ink-soft);font-size:13.5px;margin:0 0 8px}
+.eras{margin:8px 0 4px;border-left:2px solid var(--rule);padding-left:11px}
+.era{margin:0 0 7px;font-size:14px}
+.era .yr{font-variant-numeric:tabular-nums;color:var(--faint);font-size:12px;letter-spacing:.04em;display:block}
+.era .lab{font-family:var(--serif);font-style:italic;color:var(--ink-soft)}
+.card p.para{margin:9px 0 0;font-size:14.5px;max-width:80ch}
+.sources{margin:11px 0 0;font-size:12.5px;color:var(--ink-soft)}
+.sources li{margin:2px 0}
+.foot{margin-top:34px;font-size:12.5px;color:var(--faint)}
+a{color:var(--ink)}
+</style>
+<div class="wrap">
+<p class="eyebrow">Idle Sails · research · the roster</p>
+<h1>The ports</h1>
+<p class="dek">Every dot on the chart, at documentation depth: what the harbour physically was, whose flag flew over it and when, what moved through it and for whom, and how its fortunes ran across 1550&ndash;1850. Where a port changed its name or its master, the entry changes with it &mdash; Port Royal is not Kingston, Golconda&rsquo;s Masulipatnam is not the Company&rsquo;s Madras.</p>
+<p class="dek" style="font-size:14px">The charter applies in full: no fabricated precision, and where a port&rsquo;s wealth rested on coerced labour or the slave trade, the entry says so factually and never as value.</p>
+<div class="rule"></div>
+<div id="toc" class="toc"></div>
+<div id="body"><p class="meta">Loading the roster&hellip;</p></div>
+<p class="foot">Idle Sails · Phase-4 per-port sweep (T1 name/ownership · T2 blurbs · T3 documentation) · data: research/port-docs.json + data/datasets.json (eraNames/eraPowers). Citations name the series and scholarship relied on; the chart&rsquo;s dot is a sober compression of each.</p>
+</div>
+<script>
+(function(){
+  const esc=t=>String(t==null?'':t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const REGION_ORDER=['iberia','france','britain','lowlands','baltic','mediterranean','black-sea','west-africa','east-africa','arabia','persian-gulf','india','indian-ocean','east-indies','china','east-asia','japan','north-pacific','south-pacific','north-america','caribbean','brazil','arctic'];
+  Promise.all([
+    fetch('port-docs.json').then(r=>r.json()),
+    fetch('../data/datasets.json').then(r=>r.json())
+  ]).then(([docsRaw,ds])=>{
+    const docs=docsRaw.ports||{};
+    const portById=Object.fromEntries(ds.ports.map(p=>[p.id,p]));
+    const powerName=Object.fromEntries(ds.powers.map(p=>[p.id,p.name]));
+    // group ports (those with a doc entry) by region, in REGION_ORDER
+    const entries=Object.keys(docs).filter(id=>portById[id]).map(id=>({id,p:portById[id],d:docs[id]}));
+    const byRegion={};
+    for(const e of entries){(byRegion[e.p.region]=byRegion[e.p.region]||[]).push(e);}
+    const regions=Object.keys(byRegion).sort((a,b)=>{const ia=REGION_ORDER.indexOf(a),ib=REGION_ORDER.indexOf(b);return (ia<0?99:ia)-(ib<0?99:ib);});
+    // build a timeline from eraNames + eraPowers (union of boundaries)
+    function timeline(p){
+      const win=p.active||{from:1550,to:1850};
+      const bounds=new Set([win.from,win.to+1]);
+      for(const en of p.eraNames||[])bounds.add(en.from),bounds.add(en.to+1);
+      for(const ep of p.eraPowers||[])bounds.add(ep.from),bounds.add(ep.to+1);
+      const bs=[...bounds].filter(y=>y>=win.from&&y<=win.to+1).sort((a,b)=>a-b);
+      const nameAt=y=>{for(const en of p.eraNames||[])if(y>=en.from&&y<=en.to)return en.name;return p.name.replace(/\s*\(.*\)/,'');};
+      const powAt=y=>{for(const ep of p.eraPowers||[])if(y>=ep.from&&y<=ep.to)return ep.power;return p.power;};
+      const blurbAt=y=>{const b=docs[p.id]&&docs[p.id].blurb;if(!b)return'';if(typeof b==='string')return b;const w=b.find(x=>y>=x.from&&y<=x.to);return w?w.text:'';};
+      const out=[];
+      for(let i=0;i<bs.length-1;i++){const from=bs[i],to=bs[i+1]-1;const nm=nameAt(from),pw=powAt(from);
+        // merge adjacent identical (name+power)
+        const prev=out[out.length-1];
+        if(prev&&prev.nm===nm&&prev.pw===pw){prev.to=to;continue;}
+        out.push({from,to,nm,pw,blurb:blurbAt(from)});}
+      return out;
+    }
+    const toc=document.getElementById('toc'), body=document.getElementById('body');
+    let tocHtml='', bodyHtml='';
+    for(const region of regions){
+      bodyHtml+=`<h2 class="region-h" id="r-${esc(region)}">${esc(region.replace(/-/g,' '))}</h2>`;
+      for(const {id,p,d} of byRegion[region].sort((a,b)=>a.p.name.localeCompare(b.p.name))){
+        const tl=timeline(p);
+        tocHtml+=`<a href="#p-${esc(id)}">${esc(p.name.replace(/\s*\(.*\)/,''))}</a>`;
+        const eras=tl.length>1?`<div class="eras">${tl.map(w=>`<div class="era"><span class="yr">${w.from}–${w.to}</span><span class="lab">${esc(w.nm)} &middot; ${esc(powerName[w.pw]||w.pw)}</span>${w.blurb?` &mdash; ${esc(w.blurb)}`:''}</div>`).join('')}</div>`
+          : `<p class="meta">${esc(powerName[tl[0]?tl[0].pw:p.power]||p.power)}${(p.active&&p.active.from>1550)?` &middot; from ${p.active.from}`:''}${(p.active&&p.active.to<1850)?` &middot; to ${p.active.to}`:''}</p>${(typeof d.blurb==='string')?`<p class="para" style="font-style:italic;color:var(--ink-soft)">${esc(d.blurb)}</p>`:''}`;
+        const doc=(d.doc||[]).map(par=>`<p class="para">${esc(par)}</p>`).join('');
+        const src=(d.sources&&d.sources.length)?`<p class="meta" style="margin:12px 0 2px">Sources</p><ul class="sources">${d.sources.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:'';
+        bodyHtml+=`<div class="card" id="p-${esc(id)}"><h2>${esc(p.name)}</h2>${eras}${doc}${src}</div>`;
+      }
+    }
+    toc.innerHTML=tocHtml||'';
+    body.innerHTML=bodyHtml||'<p class="meta">No port entries yet.</p>';
+    const c=document.getElementById('pcount'); if(c)c.textContent=entries.length;
+  }).catch(e=>{document.getElementById('body').innerHTML='<p class="meta">Could not load the roster ('+esc(e.message)+').</p>';});
+})();
+</script>

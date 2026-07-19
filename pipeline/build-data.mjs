@@ -336,6 +336,32 @@ if (missingFields === 0 && errors.length === 0) {
   }
 }
 
+// ---- port panel blurbs (Phase-4 T2) --------------------------------------
+// research/port-docs.json carries a `blurb` per port — a string, or an array of
+// {from,to,text} windows validated to tile the active window (name/ownership
+// changed the port's character). Injected onto the emitted port so the panel
+// shows the era-appropriate sentence; the fuller `doc` + `sources` stay in
+// port-docs.json for research/ports.html.
+const DOCS_SRC = join(ROOT, 'research', 'port-docs.json');
+if (existsSync(DOCS_SRC)) {
+  const docs = JSON.parse(readFileSync(DOCS_SRC, 'utf8')).ports || {};
+  let blurbed = 0;
+  for (const p of ports) {
+    const d = docs[p.id]; if (!d || d.blurb == null) continue;
+    if (Array.isArray(d.blurb)) {
+      const w = p.active || ERA; let expect = w.from;
+      for (const b of d.blurb) {
+        if (!b.text) err(`port-docs ${p.id}: a blurb window is missing text`);
+        if (b.from !== expect) err(`port-docs ${p.id}: blurb window starts ${b.from}, expected ${expect} (must tile the active window)`);
+        expect = b.to + 1;
+      }
+      if (expect !== w.to + 1) err(`port-docs ${p.id}: blurb windows end ${expect - 1}, must reach the window end ${w.to}`);
+    }
+    p.blurb = d.blurb; blurbed++;
+  }
+  console.log(`  port blurbs: ${blurbed}/${ports.length} ports carry a panel blurb (research/port-docs.json)`);
+}
+
 // ---- report / emit -------------------------------------------------------
 if (errors.length) {
   console.error(`\n✗ build-data: ${errors.length} problem(s):\n`);
