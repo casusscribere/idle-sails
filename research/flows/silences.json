@@ -128,6 +128,21 @@
       "reason": "unrecorded",
       "treatment": "gestured",
       "note": "Tripoli, and to a lesser degree Tunis and Benghazi, were the sea ends of Saharan caravan routes: gold, ivory, hides, ostrich feathers, and enslaved people crossed the desert and some part of that traffic went onward by ship. The maritime re-export leg has no series - the caravan record and the port record were never joined - so barbary-regency-exports carries only the goods it can defend and this share is gestured rather than counted into it. The coerced portion of the caravan traffic is not quantified here and is not made a cargo; it is named because leaving it out would be a silent zero on the trade the Saharan routes are best documented for. Entered 2026-07-18."
+    },
+    {
+      "id": "guayaquil-cacao-contraband",
+      "scope": "Guayaquil cacao to New Spain under the ban, 1631-1774",
+      "reason": "evasion",
+      "treatment": "asserted",
+      "pointer": "guayaquil-cacao",
+      "note": "Cacao moved from Guayaquil to Mexico for the whole century and a half that the crown forbade it. This was not a tolerated exception to the 1631 ban - it was contraband, and the correction matters, because modelling it as a legal flow beginning in 1631 would launder a smuggling trade into a licensed one and would also double the post-1774 series. The guayaquil-cacao system therefore begins at the 1774 reopening and the earlier traffic is asserted here: real, continuous, and unquantified, because a trade conducted to avoid the record did not leave one. Entered 2026-07-18."
+    },
+    {
+      "id": "pacific-colonial-coasting",
+      "scope": "Spanish-American Pacific coastwise traffic before 1818",
+      "reason": "unrecorded",
+      "treatment": "gestured",
+      "note": "Beneath the Armada and the licensed runs there was a continuous small-craft coasting trade along the Pacific littoral - Paita, Arica, Pisco, Realejo, the intermediate roads - carrying wine, wheat, timber, and people between colonial ports. Almost none of it was registered. Paita in particular functioned as a waystage rather than a terminus and is a waypoint here, not a node. pacific-colonial-spanish counts the trunk it can defend; this is the traffic underneath it, gestured. Entered 2026-07-18."
     }
   ]
 }

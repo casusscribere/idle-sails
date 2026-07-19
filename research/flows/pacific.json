@@ -1,0 +1,560 @@
+{
+  "basin": "pacific",
+  "note": "The colonial Spanish-American Pacific and two late circuits that reached it. This basin exists because the eastern Pacific was a genuine hole in the matrix: the chart carried the Manila galleon (authored in bengal-se-asia, where its Asian end lives) and the republican around-the-horn-pacific traffic, but nothing at all for the three centuries of Spanish colonial shipping between Callao, Guayaquil, Panama, and Acapulco. Assembled basin-locally per the charter: no attempt is made to commensurate these volumes with the Atlantic's, and the double-count guards against the Manila galleon, around-the-horn-pacific, and the Carrera's Caribbean Portobelo leg are stated on each system.",
+  "ports": [
+    {
+      "id": "callao",
+      "name": "Callao (the port of Lima)",
+      "simProxy": null
+    },
+    {
+      "id": "guayaquil",
+      "name": "Guayaquil",
+      "simProxy": null
+    },
+    {
+      "id": "panama-perico",
+      "name": "Panama / Perico (the Pacific end of the isthmus)",
+      "simProxy": null
+    },
+    {
+      "id": "nootka",
+      "name": "Nootka Sound (the anchorage)",
+      "simProxy": null
+    },
+    {
+      "id": "acapulco",
+      "name": "Acapulco",
+      "simProxy": "acapulco"
+    },
+    {
+      "id": "canton",
+      "name": "Canton",
+      "simProxy": "canton"
+    },
+    {
+      "id": "boston",
+      "name": "Boston",
+      "simProxy": "boston"
+    },
+    {
+      "id": "cadiz",
+      "name": "Cádiz",
+      "simProxy": "cadiz"
+    }
+  ],
+  "systems": [
+    {
+      "id": "pacific-colonial-spanish",
+      "name": "The colonial Spanish Pacific: the Armada del Mar del Sur and the Peru coast",
+      "evidence": "reconstructed",
+      "basis": "The Armada del Mar del Sur (created 1578-81) carried Peruvian silver north from Callao to Perico for the isthmus crossing and the Portobelo fair, with a coasting trade between Callao, Guayaquil, and the intermediate roads alongside it. The Armada's COMPOSITION is documented; its per-year hulls are not, so the ranges are reconstructed and the per-year figure would be asserted if stated alone. The almojarifazgo customs record survives in the Archivo General de Indias but has no published decade series, so it is counted-PENDING and is deliberately not called counted here. Arica's Potosi silver feeder is folded into Callao rather than given its own node, and silver TONNAGE is never converted into ship counts.",
+      "era": {
+        "from": 1550,
+        "to": 1826
+      },
+      "cargo": [
+        "specie",
+        "trade-goods",
+        "wine"
+      ],
+      "shipTypes": [
+        "galleon",
+        "merchantman",
+        "brig"
+      ],
+      "lanes": [
+        {
+          "from": "callao",
+          "to": "panama-perico",
+          "share": 0.24
+        },
+        {
+          "from": "panama-perico",
+          "to": "callao",
+          "share": 0.2
+        },
+        {
+          "from": "callao",
+          "to": "guayaquil",
+          "share": 0.15
+        },
+        {
+          "from": "guayaquil",
+          "to": "callao",
+          "share": 0.15
+        },
+        {
+          "from": "guayaquil",
+          "to": "panama-perico",
+          "share": 0.14
+        },
+        {
+          "from": "panama-perico",
+          "to": "guayaquil",
+          "share": 0.12
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            8,
+            20
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            9,
+            22
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            11,
+            26
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            14,
+            34
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            17,
+            42
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            20,
+            50
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            21,
+            52
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            22,
+            54
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            22,
+            54
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            20,
+            50
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            19,
+            48
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            20,
+            50
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            21,
+            52
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            22,
+            55
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            23,
+            57
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            25,
+            60
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            26,
+            62
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            28,
+            66
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            30,
+            70
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            32,
+            76
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            34,
+            80
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            35,
+            84
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            35,
+            85
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            34,
+            82
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            32,
+            78
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            28,
+            68
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            25,
+            60
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            12,
+            35
+          ]
+        }
+      },
+      "notes": "The silver run was ONE grouped annual convoy timed to the Portobelo fair, not a handful of independent voyages scattered through the year. The flow model spawns from a Poisson rate and cannot express that grouping; PLAN-convoys is the mechanism that will, and this system is a first-class candidate for it. Until then the annual figure is right and its clustering is not. Ends 1826 with the fall of Callao in January of that year - the last Spanish position in South America. The 1820s dip is the independence blockades. Panama/Perico is a lane endpoint, not a second node, and the isthmus crossing is NOT modelled as shipping: it was mule-back. Double-count guard: the Caribbean side of that silver belongs to carrera-de-indias in the Atlantic basin and is not repeated here."
+    },
+    {
+      "id": "registros-sueltos",
+      "name": "Registros sueltos: Cádiz to Callao round the Horn",
+      "evidence": "reconstructed",
+      "basis": "Individually licensed ships sailing direct from Cadiz to Callao around Cape Horn. The galeones were abandoned in 1740 and the registros ran direct from 1742, so this is a SUBSTITUTION for the shrinking Portobelo trunk rather than an additional flow - the trade did not grow, it changed route. Split out as its own system rather than added as a lane to pacific-colonial-spanish precisely because it starts in the 1740s: a lane inside a system running from 1550 would have sailed the Horn two centuries early.",
+      "era": {
+        "from": 1740,
+        "to": 1820
+      },
+      "cargo": [
+        "trade-goods",
+        "specie",
+        "textiles"
+      ],
+      "shipTypes": [
+        "merchantman",
+        "galleon",
+        "brig"
+      ],
+      "lanes": [
+        {
+          "from": "cadiz",
+          "to": "callao",
+          "share": 0.52
+        },
+        {
+          "from": "callao",
+          "to": "cadiz",
+          "share": 0.48
+        }
+      ],
+      "byDecade": {
+        "1740": {
+          "voyagesPerYear": [
+            3,
+            9
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            5,
+            13
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            6,
+            16
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            7,
+            18
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            8,
+            20
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            7,
+            17
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            6,
+            15
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            5,
+            13
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            3,
+            10
+          ]
+        }
+      },
+      "notes": "Because this substitutes for the Portobelo trunk, carrera-de-indias in the Atlantic basin should be read as declining across the same decades; the two are not additive."
+    },
+    {
+      "id": "guayaquil-cacao",
+      "name": "The Guayaquil cacao boom",
+      "evidence": "proxied",
+      "basis": "Guayaquil cacao to New Spain and Peru, opened by the Real Cedula of 17 January 1774 (NOT 1779; the 1778-79 decree is the general free-trade one) and booming after restrictions were removed in 1789. The commodity series is good - roughly 50,000 cargas in 1770 against about 100,000 in 1801 - but cargas are not sailings, so the voyage ranges are proxied from cargo volumes and classed as such. Guayaquil was also the Armada's shipyard, which is why it appears in both systems.",
+      "era": {
+        "from": 1774,
+        "to": 1850
+      },
+      "cargo": [
+        "trade-goods",
+        "specie"
+      ],
+      "shipTypes": [
+        "merchantman",
+        "brig",
+        "snow"
+      ],
+      "lanes": [
+        {
+          "from": "guayaquil",
+          "to": "acapulco",
+          "share": 0.26
+        },
+        {
+          "from": "acapulco",
+          "to": "guayaquil",
+          "share": 0.2
+        },
+        {
+          "from": "guayaquil",
+          "to": "callao",
+          "share": 0.2
+        },
+        {
+          "from": "callao",
+          "to": "guayaquil",
+          "share": 0.18
+        },
+        {
+          "from": "guayaquil",
+          "to": "panama-perico",
+          "share": 0.09
+        },
+        {
+          "from": "panama-perico",
+          "to": "guayaquil",
+          "share": 0.07
+        }
+      ],
+      "byDecade": {
+        "1770": {
+          "voyagesPerYear": [
+            8,
+            20
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            10,
+            26
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            16,
+            40
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            22,
+            52
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            20,
+            48
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            22,
+            54
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            26,
+            62
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            30,
+            70
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            32,
+            76
+          ]
+        }
+      },
+      "notes": "This system begins at the 1774 reopening BY DESIGN. Cacao went from Guayaquil to Mexico long before that, but under the ban of 1631-1774 it went largely as CONTRABAND - it was not a tolerated exception, and dressing it as a legal flow running from 1631 would launder a smuggling trade into a licensed one. The earlier traffic is in the silences register instead."
+    },
+    {
+      "id": "nootka-fur",
+      "name": "The maritime fur trade: the Northwest Coast to Canton",
+      "evidence": "asserted",
+      "basis": "American and British vessels running Boston - round the Horn - the Northwest Coast - Canton, trading sea-otter pelts into the China market: roughly 12,000 pelts a year reached Canton between 1790 and 1812. The pelt figure is verified; the SHIPPING figure is not. A count of 292 vessels between 1793 and 1815 rests on a single set of Gibson's tables, so this system is classed asserted and carries wide bounds rather than borrowing the pelt series' confidence. Hard-clamped 1785-1841: the trade begins after Cook's third voyage published the market and collapses with the otter population, not with a policy.",
+      "era": {
+        "from": 1785,
+        "to": 1841
+      },
+      "cargo": [
+        "furs",
+        "tea",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "merchantman",
+        "brig",
+        "snow"
+      ],
+      "lanes": [
+        {
+          "from": "boston",
+          "to": "nootka",
+          "share": 0.22
+        },
+        {
+          "from": "nootka",
+          "to": "canton",
+          "share": 0.3
+        },
+        {
+          "from": "canton",
+          "to": "boston",
+          "share": 0.28
+        },
+        {
+          "from": "boston",
+          "to": "canton",
+          "share": 0.1
+        },
+        {
+          "from": "canton",
+          "to": "nootka",
+          "share": 0.1
+        }
+      ],
+      "byDecade": {
+        "1780": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            6,
+            18
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            8,
+            22
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            7,
+            20
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            5,
+            15
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            3,
+            9
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            2,
+            5
+          ]
+        }
+      },
+      "notes": "A three-cornered circuit rather than an out-and-back: the lanes are shares of one loop, and a vessel on it was away for years. Double-count guards: this is distinct from the Manila galleon (a different ocean crossing on a different account) and from around-the-horn-pacific (republican-era, and not fur). The trade's end is ecological - the sea otter was hunted to commercial extinction along the coast - which is why the era clamps at 1841 rather than fading."
+    }
+  ]
+}

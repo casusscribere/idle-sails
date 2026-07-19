@@ -248,11 +248,12 @@ async function boot() {
   // the 5 Hz HUD throttle (weights drift era-slow) and at toggle/filter/view
   // time — per frame it costs one blit.
   const BASIN_ORDER = ['atlantic', 'baltic-north-sea', 'mediterranean',
-    'indian-ocean-west', 'bengal-se-asia', 'east-asia'];
+    'indian-ocean-west', 'bengal-se-asia', 'east-asia', 'pacific'];
   const BASIN_LABEL = {
     'atlantic': 'The Atlantic', 'baltic-north-sea': 'Baltic & North Sea',
     'mediterranean': 'The Mediterranean', 'indian-ocean-west': 'Western Indian Ocean',
     'bengal-se-asia': 'Bengal & Southeast Asia', 'east-asia': 'East Asia',
+    'pacific': 'The Pacific',
     'other': 'Naval & other voyages'
   };
   const basinsPresent = new Set(laneBasin.values());
