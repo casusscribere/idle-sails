@@ -61,12 +61,12 @@
     {
       "id": "bandar-abbas",
       "name": "Bandar Abbas",
-      "simProxy": "muscat"
+      "simProxy": "bandar-abbas"
     },
     {
       "id": "basra",
       "name": "Basra",
-      "simProxy": "muscat"
+      "simProxy": "basra"
     },
     {
       "id": "mombasa",

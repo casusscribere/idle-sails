@@ -1309,6 +1309,128 @@
       "flag": "oman"
     },
     {
+      "id": "q-bandarabbas-surat",
+      "system": "persian-gulf-trade",
+      "name": "Bandar Abbas to Surat (Gulf silk trade)",
+      "from": "bandar-abbas",
+      "to": "surat",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "silk",
+        "pearls",
+        "specie"
+      ],
+      "era": {
+        "from": 1622,
+        "to": 1760
+      },
+      "weight": 1,
+      "flag": "persia"
+    },
+    {
+      "id": "q-surat-bandarabbas",
+      "system": "persian-gulf-trade",
+      "name": "Surat to Bandar Abbas (Gulf silk trade)",
+      "from": "surat",
+      "to": "bandar-abbas",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "textiles",
+        "specie"
+      ],
+      "era": {
+        "from": 1622,
+        "to": 1760
+      },
+      "weight": 1,
+      "flag": "persia"
+    },
+    {
+      "id": "q-basra-surat",
+      "system": "persian-gulf-trade",
+      "name": "Basra to Surat (Gulf trade)",
+      "from": "basra",
+      "to": "surat",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "textiles",
+        "pearls",
+        "specie"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "weight": 1,
+      "flag": "ottoman"
+    },
+    {
+      "id": "q-muscat-bandarabbas",
+      "system": "persian-gulf-trade",
+      "name": "Muscat to Bandar Abbas (Gulf coasting)",
+      "from": "muscat",
+      "to": "bandar-abbas",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "frankincense",
+        "pearls"
+      ],
+      "era": {
+        "from": 1650,
+        "to": 1760
+      },
+      "weight": 1,
+      "flag": "oman"
+    },
+    {
+      "id": "q-muscat-basra",
+      "system": "persian-gulf-trade",
+      "name": "Muscat to Basra (Gulf coasting)",
+      "from": "muscat",
+      "to": "basra",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "frankincense",
+        "pearls"
+      ],
+      "era": {
+        "from": 1650,
+        "to": 1850
+      },
+      "weight": 1,
+      "flag": "oman"
+    },
+    {
+      "id": "q-bombay-basra",
+      "system": "persian-gulf-trade",
+      "name": "Bombay to Basra (Gulf country trade)",
+      "from": "bombay",
+      "to": "basra",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "textiles",
+        "specie"
+      ],
+      "era": {
+        "from": 1650,
+        "to": 1850
+      },
+      "weight": 1,
+      "flag": "oman"
+    },
+    {
       "id": "q-banda-neira-batavia",
       "system": "q-banda-neira",
       "name": "Banda Neira to Batavia (Banda Neira trade)",
