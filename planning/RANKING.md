@@ -315,14 +315,22 @@ is live by now — pin the *Surprise* and follow her properly.
     (`world.serialize()` includes the retained per-cycle records — the displayed
     counters are cycle-scoped, the export is not); the ruined-port dashed marker
     exists (`drawPorts`); the tracker menu row is disabled until Pass 5.
-  - ⏳ **Still queued — the coarse-grid render-fidelity cluster** (one root cause:
-    the 1° routing grid vs the fine display coastline): ships/routes clipping
-    small islands WITHIN a crop (Cuba, Zealand — the baked polylines are ocean-
-    valid at 1° but cross the fine coastline), port dots offshore on close views
-    (Newcastle, a river port whose routing coord sits seaward), and the oddly-
-    square / residual-zigzag legs. These want a dedicated approach — targeted
-    baker keep-clear cells and/or a display-coord decoupling — not piecemeal
-    nudges. `pipeline/README.md` first for any bake.
+  - ✅ **Boats no longer sail across Cuba.** Root cause confirmed (1° routing grid
+    vs the 50m display coastline): 37 baked routes had genuine mid-route island
+    crossings, worst on central Cuba (Kingston routes cut clean across at
+    −78.7/22.3). A new `ISLAND_SEAL` construct in `bake-routes.mjs` seals an
+    island's false-ocean spine cells so routes ROUND it; Cuba's central-western
+    spine sealed (7 cells), the Florida/Caribbean/Yucatán passages verified still
+    open, 0 lanes unsailable. Central crossing gone; residual is minor tip-graze.
+  - ⏳ **Still queued — coarse-grid residuals:** (a) **Zealand / the Danish
+    straits** — SAME technique BUT risky: the Øresund/Great Belt are the vital
+    sub-cell Baltic entrance (the Sound-Toll trade), so a Zealand seal needs
+    careful strait-preservation analysis before it can ship (a wrong seal breaks
+    hundreds of Baltic routes). (b) Minor Cuba tip-grazes + the **Delmarva** graze
+    on Philadelphia routes (thin peninsula, same seal technique). (c) Port dots
+    offshore on close views (Newcastle, a river port whose routing coord sits
+    seaward — wants a display-coord decoupling). (d) oddly-square / residual-
+    zigzag legs. `pipeline/README.md` first for any bake.
   - ⏳ **Overlay taxonomy** — the layer sub-toggles are per-BASIN + "Naval &
     other voyages"; the user wants NON-regional movement categories (arterials /
     coasting / coerced / fisheries / naval-state). A design change (re-categorize
