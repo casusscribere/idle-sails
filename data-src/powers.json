@@ -653,7 +653,7 @@
       "homePorts": [],
       "era": {
         "from": 1607,
-        "to": 1815
+        "to": 1850
       },
       "propensity": {
         "naval": 0.0,
@@ -662,7 +662,7 @@
       "navalPrefix": null,
       "article": null,
       "rivals": [],
-      "note": "S2 flag (user-funded): the licensed carrier of the Korea trade — ready for Busan's promotion (tranche 2)."
+      "note": "S2 flag (user-funded): the licensed carrier of the Korea trade — ready for Busan's promotion (tranche 2). Era extended to 1850: the 1815 end was the old chart horizon. The So domain held its Korea trade to the Meiji restoration, and the Maldive sultanate ran to 1953."
     },
     {
       "id": "bugis",
@@ -818,7 +818,7 @@
       "homePorts": [],
       "era": {
         "from": 1550,
-        "to": 1815
+        "to": 1850
       },
       "propensity": {
         "naval": 0.0,
@@ -827,7 +827,7 @@
       "navalPrefix": null,
       "article": null,
       "rivals": [],
-      "note": "Diversity layer, not a spawning flag: Busan's Japan House (Waegwan) — trade conducted by licensed Tsushima vessels."
+      "note": "Diversity layer, not a spawning flag: Busan's Japan House (Waegwan) — trade conducted by licensed Tsushima vessels. Era extended to 1850 with the chart: Joseon lasted to 1897 and the Qing to 1912 — the 1815 end was the old horizon, not history."
     },
     {
       "id": "zamorin",
@@ -858,7 +858,7 @@
       "homePorts": [],
       "era": {
         "from": 1550,
-        "to": 1815
+        "to": 1850
       },
       "propensity": {
         "naval": 0.0,
@@ -867,7 +867,7 @@
       "navalPrefix": null,
       "article": null,
       "rivals": [],
-      "note": "Diversity layer, not a spawning flag: Malé's cowrie-money fishery, carried to Bengal in local and Indian bottoms."
+      "note": "Diversity layer, not a spawning flag: Malé's cowrie-money fishery, carried to Bengal in local and Indian bottoms. Era extended to 1850: the 1815 end was the old chart horizon. The So domain held its Korea trade to the Meiji restoration, and the Maldive sultanate ran to 1953."
     },
     {
       "id": "crimea",
@@ -917,7 +917,7 @@
       ],
       "era": {
         "from": 1600,
-        "to": 1815
+        "to": 1850
       },
       "propensity": {
         "naval": 0.0,
@@ -926,7 +926,7 @@
       "navalPrefix": null,
       "article": null,
       "rivals": [],
-      "note": "Not a spawning flag — controls Canton, where Western company ships were confined to the Thirteen Factories."
+      "note": "Not a spawning flag — controls Canton, where Western company ships were confined to the Thirteen Factories. Era extended to 1850 with the chart: Joseon lasted to 1897 and the Qing to 1912 — the 1815 end was the old horizon, not history."
     },
     {
       "id": "algiers",
@@ -1051,6 +1051,69 @@
       "article": null,
       "rivals": [],
       "note": "Independent from 1818. Valparaiso became the first Pacific call for shipping round the Horn and a rising entrepot through the 1830s and 40s."
+    },
+    {
+      "id": "austria",
+      "name": "Austrian Netherlands (Imperial)",
+      "kind": "nation",
+      "color": "#c8a63c",
+      "homePorts": [
+        "ostend"
+      ],
+      "era": {
+        "from": 1715,
+        "to": 1744
+      },
+      "propensity": {
+        "naval": 0.05,
+        "merchant": 0.95
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "The double-headed eagle at sea: private Ostend voyages from 1715, the chartered Ostend Company 1722-27, wound up by the Treaty of Vienna, with a Bengal afterlife at Banquibazar to 1744. Deliberately clamped to that span."
+    },
+    {
+      "id": "aceh",
+      "name": "Sultanate of Aceh",
+      "kind": "nation",
+      "color": "#4f7a63",
+      "homePorts": [
+        "aceh"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.1,
+        "merchant": 0.9
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "The pepper sultanate at Sumatra's northern tip, shipping direct to the Red Sea and outflanking the Portuguese Cape route. Its own polity and its own shipping — it was filed under the Zamorin here by mistake, which put an Acehnese fleet under a Malabar flag."
+    },
+    {
+      "id": "banten",
+      "name": "Sultanate of Banten",
+      "kind": "nation",
+      "color": "#6a7a4f",
+      "homePorts": [
+        "bantam"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1685
+      },
+      "propensity": {
+        "naval": 0.1,
+        "merchant": 0.9
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Banten: the archipelago's pepper emporium and Batavia's rival until the VOC conquest of 1682-84. Its own sultanate, not Gowa's — the two are a thousand miles and a different people apart."
     }
   ]
 }

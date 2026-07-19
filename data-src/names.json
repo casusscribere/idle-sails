@@ -884,6 +884,60 @@
       "Copiapó",
       "Andes",
       "Blanco"
+    ],
+    "austria": [
+      "Keyserinne Elisabeth",
+      "Sint Elisabeth",
+      "Arent",
+      "Karel VI",
+      "Marquis de Prié",
+      "Concordia",
+      "Leeuw van Oostende",
+      "Sint Theresia",
+      "Hope",
+      "Tijger",
+      "Vlaanderen",
+      "Sint Carolus",
+      "Aigle Impérial",
+      "Prins Eugenius",
+      "Antwerpen",
+      "Gent"
+    ],
+    "aceh": [
+      "Bungong Jeumpa",
+      "Seulawah",
+      "Iskandar Muda",
+      "Darussalam",
+      "Peusangan",
+      "Meulaboh",
+      "Samudera",
+      "Lada Aceh",
+      "Krueng Raya",
+      "Sabang",
+      "Pasai",
+      "Meurah",
+      "Ulee Lheue",
+      "Tgk Chik",
+      "Nagan",
+      "Rencong"
+    ],
+    "banten": [
+      "Surosowan",
+      "Karangantu",
+      "Cilegon",
+      "Lada Banten",
+      "Pulosari",
+      "Sunda Kelapa",
+      "Pontang",
+      "Tirtayasa",
+      "Anyer",
+      "Ki Mas Jong",
+      "Panimbang",
+      "Cikoneng",
+      "Labuan",
+      "Serang",
+      "Bojonegara",
+      "Merak"
     ]
   },
   "captains": {
@@ -1637,6 +1691,76 @@
         "Latorre",
         "Simpson"
       ]
+    },
+    "austria": {
+      "given": [
+        "Jan",
+        "Pieter",
+        "Guillaume",
+        "Jacques",
+        "Cornelis",
+        "Frans",
+        "Michiel",
+        "Alexander",
+        "Karel",
+        "Nicolaas",
+        "Gerard",
+        "Lodewijk"
+      ],
+      "surname": [
+        "Cayphas",
+        "de Schonamille",
+        "Larrieu",
+        "Van Cauwenberghe",
+        "Maelcamp",
+        "de Brouwer",
+        "Ray",
+        "Cloots",
+        "Vandersmissen",
+        "Soenens",
+        "de Pret",
+        "Van Schoor"
+      ]
+    },
+    "aceh": {
+      "full": [
+        "Nakhoda Meurah",
+        "Nakhoda Ismail",
+        "Nakhoda Abdullah",
+        "Nakhoda Usman",
+        "Nakhoda Hasyim",
+        "Nakhoda Daud",
+        "Nakhoda Sulaiman",
+        "Nakhoda Yusuf",
+        "Nakhoda Ibrahim",
+        "Nakhoda Mahmud",
+        "Nakhoda Zainal",
+        "Nakhoda Harun",
+        "Nakhoda Salleh",
+        "Nakhoda Umar",
+        "Nakhoda Idris",
+        "Nakhoda Bakar"
+      ]
+    },
+    "banten": {
+      "full": [
+        "Nakhoda Wangsa",
+        "Nakhoda Jaya",
+        "Nakhoda Sura",
+        "Nakhoda Anom",
+        "Nakhoda Arya",
+        "Nakhoda Cakra",
+        "Nakhoda Prana",
+        "Nakhoda Sastra",
+        "Nakhoda Bagus",
+        "Nakhoda Tirta",
+        "Nakhoda Lurah",
+        "Nakhoda Demang",
+        "Nakhoda Wira",
+        "Nakhoda Ranggasari",
+        "Nakhoda Setia",
+        "Nakhoda Purba"
+      ]
     }
   },
   "themesByPower": {
@@ -1920,6 +2044,30 @@
       ]
     },
     "chile": {
+      "naval": [
+        "places"
+      ],
+      "merchant": [
+        "byPower"
+      ]
+    },
+    "austria": {
+      "naval": [
+        "places"
+      ],
+      "merchant": [
+        "byPower"
+      ]
+    },
+    "aceh": {
+      "naval": [
+        "places"
+      ],
+      "merchant": [
+        "byPower"
+      ]
+    },
+    "banten": {
       "naval": [
         "places"
       ],

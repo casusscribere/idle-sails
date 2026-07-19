@@ -224,7 +224,7 @@
     {
       "id": "davis-strait",
       "name": "Davis Strait (the whaling grounds)",
-      "simProxy": null
+      "simProxy": "davis-strait"
     },
     {
       "id": "nantucket",

@@ -84,7 +84,7 @@
     {
       "id": "aceh",
       "name": "Aceh",
-      "simProxy": null
+      "simProxy": "aceh"
     },
     {
       "id": "malacca",
@@ -114,12 +114,12 @@
     {
       "id": "jedda",
       "name": "Jedda",
-      "simProxy": "mocha"
+      "simProxy": "jedda"
     },
     {
       "id": "bantam",
       "name": "Bantam (Banten Lama, NW Java)",
-      "simProxy": null
+      "simProxy": "bantam"
     },
     {
       "id": "lampung",
@@ -129,7 +129,7 @@
     {
       "id": "ostend",
       "name": "Ostend",
-      "simProxy": null
+      "simProxy": "ostend"
     },
     {
       "id": "canton",

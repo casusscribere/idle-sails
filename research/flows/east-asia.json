@@ -1,1905 +1,1905 @@
 {
- "basin": "east-asia",
- "note": "PLAN-3 R3. The basin where the Euro-centrism corrective bites hardest: the Nagasaki registers COUNT the Chinese junk trade outnumbering the Dutch ten to one, and the Nanyang system carried tonnage rivalling all European shipping in Asian waters. China coastal grain is asserted (R3 decision) for the same reason the English colliers are.",
- "anchors": [
-  "The Nagasaki tōsen registers (Chinese arrivals, counted by the shogunate)",
-  "L. Blussé; Ng Chin-keong (Amoy and the Nanyang)",
-  "A. Reid; K. Sugihara (the junk trade's scale)",
-  "EIC Canton factory records; H. B. Morse"
- ],
- "crossChecks": [
-  {
-   "id": "nagasaki-registers",
-   "source": "Nagasaki tōsen counts (pre-cap peak, then the 1715 limit)",
-   "systems": {
-    "china-japan-junks": 1
-   },
-   "decades": {
-    "1690": [
-     50,
-     100
-    ],
-    "1720": [
-     20,
-     45
-    ]
-   }
-  },
-  {
-   "id": "canton-fleet",
-   "source": "EIC/Morse: European+US ships at Canton per season",
-   "systems": {
-    "canton-arterial": 1
-   },
-   "decades": {
-    "1760": [
-     15,
-     40
-    ],
-    "1800": [
-     35,
-     85
-    ]
-   }
-  }
- ],
- "ports": [
-  {
-   "id": "canton",
-   "name": "Canton (Guangzhou)",
-   "simProxy": "canton"
-  },
-  {
-   "id": "macau",
-   "name": "Macau",
-   "simProxy": "macau"
-  },
-  {
-   "id": "amoy",
-   "name": "Amoy (Xiamen)",
-   "simProxy": "amoy"
-  },
-  {
-   "id": "ningbo",
-   "name": "Ningbo",
-   "simProxy": "amoy"
-  },
-  {
-   "id": "shanghai",
-   "name": "Shanghai",
-   "simProxy": null
-  },
-  {
-   "id": "tianjin",
-   "name": "Tianjin",
-   "simProxy": null
-  },
-  {
-   "id": "dejima",
-   "name": "Dejima (the Dutch factory island, Nagasaki harbour)",
-   "simProxy": "dejima"
-  },
-  {
-   "id": "nagasaki",
-   "name": "Nagasaki (the port & the Tojin-yashiki, Chinese quarter)",
-   "simProxy": "dejima"
-  },
-  {
-   "id": "naha",
-   "name": "Naha (Ryukyu)",
-   "simProxy": "naha"
-  },
-  {
-   "id": "fuzhou",
-   "name": "Fuzhou",
-   "simProxy": "amoy"
-  },
-  {
-   "id": "busan",
-   "name": "Busan (Waegwan)",
-   "simProxy": null
-  },
-  {
-   "id": "tsushima",
-   "name": "Tsushima",
-   "simProxy": null
-  },
-  {
-   "id": "ayutthaya",
-   "name": "Ayutthaya",
-   "simProxy": null
-  },
-  {
-   "id": "malacca",
-   "name": "Malacca",
-   "simProxy": "batavia"
-  },
-  {
-   "id": "manila",
-   "name": "Manila",
-   "simProxy": "manila"
-  },
-  {
-   "id": "batavia",
-   "name": "Batavia",
-   "simProxy": "batavia"
-  },
-  {
-   "id": "london",
-   "name": "London",
-   "simProxy": "london"
-  },
-  {
-   "id": "gothenburg",
-   "name": "Gothenburg",
-   "simProxy": "gothenburg"
-  },
-  {
-   "id": "boston",
-   "name": "Boston",
-   "simProxy": "boston"
-  }
- ],
- "systems": [
-  {
-   "id": "canton-arterial",
-   "name": "The Canton arterial",
-   "evidence": "counted",
-   "basis": "EIC factory records and Morse's chronicles: all Europe's — and after 1784 America's — tea fleet at the single legal port. US lanes smeared across the era by constant shares; the cross-check anchors the totals.",
-   "era": {
-    "from": 1700,
-    "to": 1850
-   },
-   "cargo": [
-    "tea",
-    "silk",
-    "porcelain",
-    "specie",
-    "trade-goods"
-   ],
-   "shipTypes": [
-    "east-indiaman",
-    "merchantman"
-   ],
-   "lanes": [
+  "basin": "east-asia",
+  "note": "PLAN-3 R3. The basin where the Euro-centrism corrective bites hardest: the Nagasaki registers COUNT the Chinese junk trade outnumbering the Dutch ten to one, and the Nanyang system carried tonnage rivalling all European shipping in Asian waters. China coastal grain is asserted (R3 decision) for the same reason the English colliers are.",
+  "anchors": [
+    "The Nagasaki tōsen registers (Chinese arrivals, counted by the shogunate)",
+    "L. Blussé; Ng Chin-keong (Amoy and the Nanyang)",
+    "A. Reid; K. Sugihara (the junk trade's scale)",
+    "EIC Canton factory records; H. B. Morse"
+  ],
+  "crossChecks": [
     {
-     "from": "london",
-     "to": "canton",
-     "share": 0.25
+      "id": "nagasaki-registers",
+      "source": "Nagasaki tōsen counts (pre-cap peak, then the 1715 limit)",
+      "systems": {
+        "china-japan-junks": 1
+      },
+      "decades": {
+        "1690": [
+          50,
+          100
+        ],
+        "1720": [
+          20,
+          45
+        ]
+      }
     },
     {
-     "from": "canton",
-     "to": "london",
-     "share": 0.25
-    },
-    {
-     "from": "gothenburg",
-     "to": "canton",
-     "share": 0.08
-    },
-    {
-     "from": "canton",
-     "to": "gothenburg",
-     "share": 0.08
-    },
-    {
-     "from": "boston",
-     "to": "canton",
-     "share": 0.12
-    },
-    {
-     "from": "canton",
-     "to": "boston",
-     "share": 0.12
-    },
-    {
-     "from": "batavia",
-     "to": "canton",
-     "share": 0.05
-    },
-    {
-     "from": "canton",
-     "to": "batavia",
-     "share": 0.05
+      "id": "canton-fleet",
+      "source": "EIC/Morse: European+US ships at Canton per season",
+      "systems": {
+        "canton-arterial": 1
+      },
+      "decades": {
+        "1760": [
+          15,
+          40
+        ],
+        "1800": [
+          35,
+          85
+        ]
+      }
     }
-   ],
-   "byDecade": {
-    "1700": {
-     "voyagesPerYear": [
-      8,
-      15
-     ]
+  ],
+  "ports": [
+    {
+      "id": "canton",
+      "name": "Canton (Guangzhou)",
+      "simProxy": "canton"
     },
-    "1710": {
-     "voyagesPerYear": [
-      9,
-      17
-     ]
+    {
+      "id": "macau",
+      "name": "Macau",
+      "simProxy": "macau"
     },
-    "1720": {
-     "voyagesPerYear": [
-      9,
-      18
-     ]
+    {
+      "id": "amoy",
+      "name": "Amoy (Xiamen)",
+      "simProxy": "amoy"
     },
-    "1730": {
-     "voyagesPerYear": [
-      10,
-      20
-     ]
+    {
+      "id": "ningbo",
+      "name": "Ningbo",
+      "simProxy": "amoy"
     },
-    "1740": {
-     "voyagesPerYear": [
-      13,
-      25
-     ]
+    {
+      "id": "shanghai",
+      "name": "Shanghai",
+      "simProxy": "shanghai"
     },
-    "1750": {
-     "voyagesPerYear": [
-      17,
-      30
-     ]
+    {
+      "id": "tianjin",
+      "name": "Tianjin",
+      "simProxy": "tianjin"
     },
-    "1760": {
-     "voyagesPerYear": [
-      20,
-      35
-     ]
+    {
+      "id": "dejima",
+      "name": "Dejima (the Dutch factory island, Nagasaki harbour)",
+      "simProxy": "dejima"
     },
-    "1770": {
-     "voyagesPerYear": [
-      25,
-      48
-     ]
+    {
+      "id": "nagasaki",
+      "name": "Nagasaki (the port & the Tojin-yashiki, Chinese quarter)",
+      "simProxy": "dejima"
     },
-    "1780": {
-     "voyagesPerYear": [
-      30,
-      60
-     ]
+    {
+      "id": "naha",
+      "name": "Naha (Ryukyu)",
+      "simProxy": "naha"
     },
-    "1790": {
-     "voyagesPerYear": [
-      35,
-      70
-     ]
+    {
+      "id": "fuzhou",
+      "name": "Fuzhou",
+      "simProxy": "amoy"
     },
-    "1800": {
-     "voyagesPerYear": [
-      40,
-      80
-     ]
+    {
+      "id": "busan",
+      "name": "Busan (Waegwan)",
+      "simProxy": "busan"
     },
-    "1810": {
-     "voyagesPerYear": [
-      40,
-      85
-     ]
+    {
+      "id": "tsushima",
+      "name": "Tsushima",
+      "simProxy": "tsushima"
     },
-    "1820": {
-     "voyagesPerYear": [
-      50,
-      95
-     ]
+    {
+      "id": "ayutthaya",
+      "name": "Ayutthaya",
+      "simProxy": "ayutthaya"
     },
-    "1830": {
-     "voyagesPerYear": [
-      60,
-      150
-     ]
+    {
+      "id": "malacca",
+      "name": "Malacca",
+      "simProxy": "batavia"
     },
-    "1840": {
-     "voyagesPerYear": [
-      40,
-      100
-     ]
+    {
+      "id": "manila",
+      "name": "Manila",
+      "simProxy": "manila"
     },
-    "1850": {
-     "voyagesPerYear": [
-      50,
-      100
-     ]
+    {
+      "id": "batavia",
+      "name": "Batavia",
+      "simProxy": "batavia"
+    },
+    {
+      "id": "london",
+      "name": "London",
+      "simProxy": "london"
+    },
+    {
+      "id": "gothenburg",
+      "name": "Gothenburg",
+      "simProxy": "gothenburg"
+    },
+    {
+      "id": "boston",
+      "name": "Boston",
+      "simProxy": "boston"
     }
-   }
-  },
-  {
-   "id": "nanyang-junk-trade",
-   "name": "The Nanyang junk trade",
-   "evidence": "reconstructed",
-   "basis": "Blussé, Ng Chin-keong, Reid, Sugihara: the Fujian and Canton ocean junks to Siam, Batavia, Manila, and the straits — tonnage rivalling ALL European shipping in Asian waters into the 18th c. THE structural corrective this basin exists for; collapsed by the 1660s haijin (coastal evacuation), roaring back after 1684.",
-   "era": {
-    "from": 1550,
-    "to": 1850
-   },
-   "cargo": [
-    "silk",
-    "porcelain",
-    "tea",
-    "trade-goods",
-    "deerskins"
-   ],
-   "shipTypes": [
-    "junk"
-   ],
-   "lanes": [
+  ],
+  "systems": [
     {
-     "from": "amoy",
-     "to": "batavia",
-     "share": 0.15
+      "id": "canton-arterial",
+      "name": "The Canton arterial",
+      "evidence": "counted",
+      "basis": "EIC factory records and Morse's chronicles: all Europe's — and after 1784 America's — tea fleet at the single legal port. US lanes smeared across the era by constant shares; the cross-check anchors the totals.",
+      "era": {
+        "from": 1700,
+        "to": 1850
+      },
+      "cargo": [
+        "tea",
+        "silk",
+        "porcelain",
+        "specie",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "lanes": [
+        {
+          "from": "london",
+          "to": "canton",
+          "share": 0.25
+        },
+        {
+          "from": "canton",
+          "to": "london",
+          "share": 0.25
+        },
+        {
+          "from": "gothenburg",
+          "to": "canton",
+          "share": 0.08
+        },
+        {
+          "from": "canton",
+          "to": "gothenburg",
+          "share": 0.08
+        },
+        {
+          "from": "boston",
+          "to": "canton",
+          "share": 0.12
+        },
+        {
+          "from": "canton",
+          "to": "boston",
+          "share": 0.12
+        },
+        {
+          "from": "batavia",
+          "to": "canton",
+          "share": 0.05
+        },
+        {
+          "from": "canton",
+          "to": "batavia",
+          "share": 0.05
+        }
+      ],
+      "byDecade": {
+        "1700": {
+          "voyagesPerYear": [
+            8,
+            15
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            9,
+            17
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            9,
+            18
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            10,
+            20
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            13,
+            25
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            17,
+            30
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            20,
+            35
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            25,
+            48
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            30,
+            60
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            35,
+            70
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            40,
+            80
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            40,
+            85
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            50,
+            95
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            60,
+            150
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            40,
+            100
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            50,
+            100
+          ]
+        }
+      }
     },
     {
-     "from": "batavia",
-     "to": "amoy",
-     "share": 0.15
+      "id": "nanyang-junk-trade",
+      "name": "The Nanyang junk trade",
+      "evidence": "reconstructed",
+      "basis": "Blussé, Ng Chin-keong, Reid, Sugihara: the Fujian and Canton ocean junks to Siam, Batavia, Manila, and the straits — tonnage rivalling ALL European shipping in Asian waters into the 18th c. THE structural corrective this basin exists for; collapsed by the 1660s haijin (coastal evacuation), roaring back after 1684.",
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "cargo": [
+        "silk",
+        "porcelain",
+        "tea",
+        "trade-goods",
+        "deerskins"
+      ],
+      "shipTypes": [
+        "junk"
+      ],
+      "lanes": [
+        {
+          "from": "amoy",
+          "to": "batavia",
+          "share": 0.15
+        },
+        {
+          "from": "batavia",
+          "to": "amoy",
+          "share": 0.15
+        },
+        {
+          "from": "amoy",
+          "to": "manila",
+          "share": 0.13
+        },
+        {
+          "from": "manila",
+          "to": "amoy",
+          "share": 0.12
+        },
+        {
+          "from": "amoy",
+          "to": "ayutthaya",
+          "share": 0.1
+        },
+        {
+          "from": "ayutthaya",
+          "to": "canton",
+          "share": 0.1
+        },
+        {
+          "from": "canton",
+          "to": "ayutthaya",
+          "share": 0.1
+        },
+        {
+          "from": "amoy",
+          "to": "malacca",
+          "share": 0.08
+        },
+        {
+          "from": "malacca",
+          "to": "amoy",
+          "share": 0.07
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            80,
+            200
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            84,
+            210
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            88,
+            220
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            92,
+            230
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            96,
+            240
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            100,
+            250
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            90,
+            228
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            80,
+            207
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            70,
+            185
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            60,
+            163
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            50,
+            142
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            40,
+            120
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            68,
+            170
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            95,
+            220
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            123,
+            270
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            150,
+            320
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            156,
+            332
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            162,
+            344
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            168,
+            356
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            174,
+            368
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            180,
+            380
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            175,
+            375
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            170,
+            370
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            165,
+            365
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            160,
+            360
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            155,
+            355
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            150,
+            350
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            150,
+            350
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            160,
+            370
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            170,
+            390
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            170,
+            390
+          ]
+        }
+      }
     },
     {
-     "from": "amoy",
-     "to": "manila",
-     "share": 0.13
+      "id": "china-japan-junks",
+      "name": "The China–Japan junk trade (Nagasaki)",
+      "evidence": "counted",
+      "basis": "The Nagasaki tōsen registers — the shogunate counted every Chinese arrival: ~190 in the peak year 1688, capped at 70 (1689) then 30 (the 1715 Shōtoku regulations). The counted proof that European ships were a minority presence in East Asian waters.",
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "cargo": [
+        "silk",
+        "porcelain",
+        "copper",
+        "specie",
+        "ginseng"
+      ],
+      "shipTypes": [
+        "junk"
+      ],
+      "lanes": [
+        {
+          "from": "ningbo",
+          "to": "nagasaki",
+          "share": 0.4
+        },
+        {
+          "from": "nagasaki",
+          "to": "ningbo",
+          "share": 0.3
+        },
+        {
+          "from": "amoy",
+          "to": "nagasaki",
+          "share": 0.15
+        },
+        {
+          "from": "nagasaki",
+          "to": "amoy",
+          "share": 0.15
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            20,
+            60
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            22,
+            63
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            24,
+            67
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            27,
+            70
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            29,
+            73
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            31,
+            77
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            33,
+            80
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            36,
+            83
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            38,
+            87
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            40,
+            90
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            44,
+            90
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            48,
+            90
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            52,
+            90
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            56,
+            90
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            60,
+            90
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            48,
+            73
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            37,
+            57
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            25,
+            40
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            23,
+            38
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            20,
+            35
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            18,
+            33
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            15,
+            30
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            13,
+            28
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            10,
+            25
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            10,
+            25
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            10,
+            25
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            10,
+            25
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            10,
+            25
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            6,
+            12
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            4,
+            8
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            4,
+            8
+          ]
+        }
+      }
     },
     {
-     "from": "manila",
-     "to": "amoy",
-     "share": 0.12
+      "id": "macau-nagasaki",
+      "name": "The great ship of Macau",
+      "evidence": "counted",
+      "basis": "The nau do trato: one to three carracks a year carrying Chinese silk against Japanese silver, 1557 until the 1639 expulsion — for decades the most valuable single voyage afloat.",
+      "era": {
+        "from": 1557,
+        "to": 1639
+      },
+      "cargo": [
+        "silk",
+        "porcelain",
+        "specie"
+      ],
+      "shipTypes": [
+        "carrack"
+      ],
+      "lanes": [
+        {
+          "from": "macau",
+          "to": "nagasaki",
+          "share": 0.55
+        },
+        {
+          "from": "nagasaki",
+          "to": "macau",
+          "share": 0.45
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            1,
+            2
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            1,
+            2
+          ]
+        }
+      }
     },
     {
-     "from": "amoy",
-     "to": "ayutthaya",
-     "share": 0.1
+      "id": "voc-japan",
+      "name": "The VOC Japan trade (Dejima)",
+      "evidence": "counted",
+      "basis": "Company records: Batavia to the fan-shaped island — Japanese copper and silver against textiles and sugar, one to seven ships a year.",
+      "era": {
+        "from": 1609,
+        "to": 1795
+      },
+      "cargo": [
+        "copper",
+        "specie",
+        "textiles",
+        "sugar"
+      ],
+      "shipTypes": [
+        "east-indiaman"
+      ],
+      "lanes": [
+        {
+          "from": "batavia",
+          "to": "dejima",
+          "share": 0.55
+        },
+        {
+          "from": "dejima",
+          "to": "batavia",
+          "share": 0.45
+        }
+      ],
+      "byDecade": {
+        "1600": {
+          "voyagesPerYear": [
+            3,
+            8
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            3,
+            8
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            3,
+            8
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            3,
+            8
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            4,
+            9
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            4,
+            9
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            4,
+            8
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            4,
+            8
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            3,
+            7
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            3,
+            6
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            3,
+            5
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            2,
+            5
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            2,
+            4
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            1,
+            4
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            1,
+            3
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            1,
+            2
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            1,
+            2
+          ]
+        }
+      },
+      "notes": "Ends 1795 with the VOC itself (management dissolved 1 Mar 1796; charter lapsed 31 Dec 1799). The disrupted 1795-1816 trade - 13 arrivals on chartered AMERICAN hulls under Dutch colours, and eight shipless years - is carried in the silences register, not smoothed into this system."
     },
     {
-     "from": "ayutthaya",
-     "to": "canton",
-     "share": 0.1
+      "id": "ryukyu-tribute",
+      "name": "The Ryukyu tribute circuit",
+      "evidence": "counted",
+      "basis": "Tribute-mission records: Naha's licensed junks to Fuzhou, and the Satsuma-managed Japan connection (Nagasaki as proxy) — the small kingdom that laundered the China–Japan exchange.",
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "cargo": [
+        "copper",
+        "pepper",
+        "silk",
+        "porcelain"
+      ],
+      "shipTypes": [
+        "junk"
+      ],
+      "lanes": [
+        {
+          "from": "naha",
+          "to": "fuzhou",
+          "share": 0.3
+        },
+        {
+          "from": "fuzhou",
+          "to": "naha",
+          "share": 0.25
+        },
+        {
+          "from": "naha",
+          "to": "nagasaki",
+          "share": 0.25
+        },
+        {
+          "from": "nagasaki",
+          "to": "naha",
+          "share": 0.2
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        }
+      }
     },
     {
-     "from": "canton",
-     "to": "ayutthaya",
-     "share": 0.1
+      "id": "korea-tsushima",
+      "name": "The Korea–Tsushima trade (the Waegwan)",
+      "evidence": "reconstructed",
+      "basis": "Records of the Japan House at Busan: the Sō domain's licensed vessels — ginseng and Chinese silk against Japanese silver and copper; Korea's single sanctioned sea door.",
+      "era": {
+        "from": 1607,
+        "to": 1850
+      },
+      "cargo": [
+        "ginseng",
+        "silk",
+        "specie",
+        "copper"
+      ],
+      "shipTypes": [
+        "junk"
+      ],
+      "lanes": [
+        {
+          "from": "busan",
+          "to": "tsushima",
+          "share": 0.55
+        },
+        {
+          "from": "tsushima",
+          "to": "busan",
+          "share": 0.45
+        }
+      ],
+      "byDecade": {
+        "1600": {
+          "voyagesPerYear": [
+            15,
+            45
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            15,
+            45
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            16,
+            46
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            16,
+            47
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            17,
+            48
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            17,
+            49
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            18,
+            51
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            18,
+            52
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            19,
+            53
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            19,
+            54
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            20,
+            55
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            20,
+            54
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            19,
+            53
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            19,
+            52
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            18,
+            51
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            18,
+            50
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            17,
+            50
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            17,
+            49
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            16,
+            48
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            16,
+            47
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            15,
+            46
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            15,
+            45
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            14,
+            42
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            13,
+            39
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            12,
+            36
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            12,
+            36
+          ]
+        }
+      }
     },
     {
-     "from": "amoy",
-     "to": "malacca",
-     "share": 0.08
+      "id": "redseal-siam-japan",
+      "name": "Red-seal ships and the Siam trade",
+      "evidence": "counted",
+      "basis": "The shuin-sen licenses (1592–1635) and Ayutthaya's crown-junk records: Japanese silver south, deerskins and sappanwood north; after sakoku the Siamese and Chinese hulls carry it alone, until Ayutthaya falls (1767).",
+      "era": {
+        "from": 1592,
+        "to": 1767
+      },
+      "cargo": [
+        "deerskins",
+        "silk",
+        "specie",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "junk"
+      ],
+      "lanes": [
+        {
+          "from": "ayutthaya",
+          "to": "nagasaki",
+          "share": 0.3
+        },
+        {
+          "from": "nagasaki",
+          "to": "ayutthaya",
+          "share": 0.2
+        },
+        {
+          "from": "ayutthaya",
+          "to": "canton",
+          "share": 0.3
+        },
+        {
+          "from": "canton",
+          "to": "ayutthaya",
+          "share": 0.2
+        }
+      ],
+      "byDecade": {
+        "1590": {
+          "voyagesPerYear": [
+            8,
+            18
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            8,
+            18
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            7,
+            16
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            5,
+            13
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            4,
+            11
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            2,
+            8
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            2,
+            8
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            2,
+            8
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            3,
+            9
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            3,
+            9
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            3,
+            9
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            3,
+            9
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            3,
+            9
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            3,
+            8
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            3,
+            8
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            2,
+            7
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            2,
+            7
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            2,
+            6
+          ]
+        }
+      }
     },
     {
-     "from": "malacca",
-     "to": "amoy",
-     "share": 0.07
+      "id": "china-coastal-grain",
+      "name": "The Chinese coastal grain and sugar fleet",
+      "evidence": "asserted",
+      "basis": "ASSERTED (R3 decision) — the coastal junk metabolism: the northern bean-and-grain fleets (Shanghai–Tianjin), Fujian sugar north, thousands of hulls provisioning the littoral of the world's largest economy. Qing-era studies (the Shanghai shachuan fleet alone counted in the thousands) support central guesses far above any European coasting trade; bounds ±60%. Included on the same consistency grounds as the English colliers.",
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "cargo": [
+        "grain",
+        "sugar",
+        "salt",
+        "trade-goods"
+      ],
+      "shipTypes": [
+        "junk"
+      ],
+      "lanes": [
+        {
+          "from": "shanghai",
+          "to": "tianjin",
+          "share": 0.3
+        },
+        {
+          "from": "tianjin",
+          "to": "shanghai",
+          "share": 0.2
+        },
+        {
+          "from": "amoy",
+          "to": "shanghai",
+          "share": 0.15
+        },
+        {
+          "from": "canton",
+          "to": "amoy",
+          "share": 0.15
+        },
+        {
+          "from": "ningbo",
+          "to": "tianjin",
+          "share": 0.1
+        },
+        {
+          "from": "shanghai",
+          "to": "ningbo",
+          "share": 0.1
+        }
+      ],
+      "byDecade": {
+        "1550": {
+          "voyagesPerYear": [
+            320,
+            1280
+          ]
+        },
+        "1560": {
+          "voyagesPerYear": [
+            325,
+            1301
+          ]
+        },
+        "1570": {
+          "voyagesPerYear": [
+            331,
+            1323
+          ]
+        },
+        "1580": {
+          "voyagesPerYear": [
+            336,
+            1344
+          ]
+        },
+        "1590": {
+          "voyagesPerYear": [
+            341,
+            1365
+          ]
+        },
+        "1600": {
+          "voyagesPerYear": [
+            347,
+            1387
+          ]
+        },
+        "1610": {
+          "voyagesPerYear": [
+            352,
+            1408
+          ]
+        },
+        "1620": {
+          "voyagesPerYear": [
+            357,
+            1429
+          ]
+        },
+        "1630": {
+          "voyagesPerYear": [
+            363,
+            1451
+          ]
+        },
+        "1640": {
+          "voyagesPerYear": [
+            368,
+            1472
+          ]
+        },
+        "1650": {
+          "voyagesPerYear": [
+            373,
+            1493
+          ]
+        },
+        "1660": {
+          "voyagesPerYear": [
+            379,
+            1515
+          ]
+        },
+        "1670": {
+          "voyagesPerYear": [
+            384,
+            1536
+          ]
+        },
+        "1680": {
+          "voyagesPerYear": [
+            389,
+            1557
+          ]
+        },
+        "1690": {
+          "voyagesPerYear": [
+            395,
+            1579
+          ]
+        },
+        "1700": {
+          "voyagesPerYear": [
+            400,
+            1600
+          ]
+        },
+        "1710": {
+          "voyagesPerYear": [
+            407,
+            1629
+          ]
+        },
+        "1720": {
+          "voyagesPerYear": [
+            415,
+            1658
+          ]
+        },
+        "1730": {
+          "voyagesPerYear": [
+            422,
+            1687
+          ]
+        },
+        "1740": {
+          "voyagesPerYear": [
+            429,
+            1716
+          ]
+        },
+        "1750": {
+          "voyagesPerYear": [
+            436,
+            1745
+          ]
+        },
+        "1760": {
+          "voyagesPerYear": [
+            444,
+            1775
+          ]
+        },
+        "1770": {
+          "voyagesPerYear": [
+            451,
+            1804
+          ]
+        },
+        "1780": {
+          "voyagesPerYear": [
+            458,
+            1833
+          ]
+        },
+        "1790": {
+          "voyagesPerYear": [
+            465,
+            1862
+          ]
+        },
+        "1800": {
+          "voyagesPerYear": [
+            473,
+            1891
+          ]
+        },
+        "1810": {
+          "voyagesPerYear": [
+            480,
+            1920
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            500,
+            2000
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            520,
+            2080
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            540,
+            2160
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            560,
+            2240
+          ]
+        }
+      },
+      "notes": "Coastal, like the colliers: enters the sailing world only when its ports exist (S2+), and its on-screen share is governed by the evidence-band visibility decision."
+    },
+    {
+      "id": "dutch-japan",
+      "name": "The resumed Dutch-Japan trade (Dejima)",
+      "evidence": "reconstructed",
+      "basis": "Resumed 1817 (NOT 1815 - the 1815 date is the political restoration of the Indies, not shipping): two ships brought Blomhoff to a factory of six remaining Dutchmen. Carried 1817-1858 on the NETHERLANDS INDIES COLONIAL GOVERNMENT's account from Batavia in chartered private hulls - the NHM took over only in 1859. Shogunal ceiling 1-2/yr (the 1790 Kansei retrenchment cut the Dutch to one; whether 1799 restored two is contested - Cullen reads it as unchanged to 1859). A COUNTED series is recoverable from the Dejima archive NL-HaNA 1.04.21; reconstructed here pending that reading.",
+      "era": {
+        "from": 1817,
+        "to": 1850
+      },
+      "cargo": [
+        "copper",
+        "specie",
+        "textiles",
+        "sugar"
+      ],
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "lanes": [
+        {
+          "from": "batavia",
+          "to": "dejima",
+          "share": 0.55
+        },
+        {
+          "from": "dejima",
+          "to": "batavia",
+          "share": 0.45
+        }
+      ],
+      "byDecade": {
+        "1810": {
+          "voyagesPerYear": [
+            1,
+            2
+          ]
+        },
+        "1820": {
+          "voyagesPerYear": [
+            1,
+            2
+          ]
+        },
+        "1830": {
+          "voyagesPerYear": [
+            1,
+            2
+          ]
+        },
+        "1840": {
+          "voyagesPerYear": [
+            1,
+            2
+          ]
+        },
+        "1850": {
+          "voyagesPerYear": [
+            1,
+            2
+          ]
+        }
+      },
+      "notes": "Arrivals are monsoon-gated June-September from Batavia. SCRIPTED-ONLY candidate (Pass 4): with a 1-2 ceiling and hard zero years this is a scheduled node, not a rate - a Poisson draw would smooth away the shipless years that are the point."
     }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      80,
-      200
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      84,
-      210
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      88,
-      220
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      92,
-      230
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      96,
-      240
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      100,
-      250
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      90,
-      228
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      80,
-      207
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      70,
-      185
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      60,
-      163
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      50,
-      142
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      40,
-      120
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      68,
-      170
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      95,
-      220
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      123,
-      270
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      150,
-      320
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      156,
-      332
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      162,
-      344
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      168,
-      356
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      174,
-      368
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      180,
-      380
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      175,
-      375
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      170,
-      370
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      165,
-      365
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      160,
-      360
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      155,
-      355
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      150,
-      350
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      150,
-      350
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      160,
-      370
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      170,
-      390
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      170,
-      390
-     ]
-    }
-   }
-  },
-  {
-   "id": "china-japan-junks",
-   "name": "The China–Japan junk trade (Nagasaki)",
-   "evidence": "counted",
-   "basis": "The Nagasaki tōsen registers — the shogunate counted every Chinese arrival: ~190 in the peak year 1688, capped at 70 (1689) then 30 (the 1715 Shōtoku regulations). The counted proof that European ships were a minority presence in East Asian waters.",
-   "era": {
-    "from": 1550,
-    "to": 1850
-   },
-   "cargo": [
-    "silk",
-    "porcelain",
-    "copper",
-    "specie",
-    "ginseng"
-   ],
-   "shipTypes": [
-    "junk"
-   ],
-   "lanes": [
-    {
-     "from": "ningbo",
-     "to": "nagasaki",
-     "share": 0.4
-    },
-    {
-     "from": "nagasaki",
-     "to": "ningbo",
-     "share": 0.3
-    },
-    {
-     "from": "amoy",
-     "to": "nagasaki",
-     "share": 0.15
-    },
-    {
-     "from": "nagasaki",
-     "to": "amoy",
-     "share": 0.15
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      20,
-      60
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      22,
-      63
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      24,
-      67
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      27,
-      70
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      29,
-      73
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      31,
-      77
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      33,
-      80
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      36,
-      83
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      38,
-      87
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      40,
-      90
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      44,
-      90
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      48,
-      90
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      52,
-      90
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      56,
-      90
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      60,
-      90
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      48,
-      73
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      37,
-      57
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      25,
-      40
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      23,
-      38
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      20,
-      35
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      18,
-      33
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      15,
-      30
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      13,
-      28
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      10,
-      25
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      10,
-      25
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      10,
-      25
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      10,
-      25
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      10,
-      25
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      6,
-      12
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      4,
-      8
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      4,
-      8
-     ]
-    }
-   }
-  },
-  {
-   "id": "macau-nagasaki",
-   "name": "The great ship of Macau",
-   "evidence": "counted",
-   "basis": "The nau do trato: one to three carracks a year carrying Chinese silk against Japanese silver, 1557 until the 1639 expulsion — for decades the most valuable single voyage afloat.",
-   "era": {
-    "from": 1557,
-    "to": 1639
-   },
-   "cargo": [
-    "silk",
-    "porcelain",
-    "specie"
-   ],
-   "shipTypes": [
-    "carrack"
-   ],
-   "lanes": [
-    {
-     "from": "macau",
-     "to": "nagasaki",
-     "share": 0.55
-    },
-    {
-     "from": "nagasaki",
-     "to": "macau",
-     "share": 0.45
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      1,
-      2
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      1,
-      2
-     ]
-    }
-   }
-  },
-  {
-   "id": "voc-japan",
-   "name": "The VOC Japan trade (Dejima)",
-   "evidence": "counted",
-   "basis": "Company records: Batavia to the fan-shaped island — Japanese copper and silver against textiles and sugar, one to seven ships a year.",
-   "era": {
-    "from": 1609,
-    "to": 1795
-   },
-   "cargo": [
-    "copper",
-    "specie",
-    "textiles",
-    "sugar"
-   ],
-   "shipTypes": [
-    "east-indiaman"
-   ],
-   "lanes": [
-    {
-     "from": "batavia",
-     "to": "dejima",
-     "share": 0.55
-    },
-    {
-     "from": "dejima",
-     "to": "batavia",
-     "share": 0.45
-    }
-   ],
-   "byDecade": {
-    "1600": {
-     "voyagesPerYear": [
-      3,
-      8
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      3,
-      8
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      3,
-      8
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      3,
-      8
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      4,
-      9
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      4,
-      9
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      4,
-      8
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      4,
-      8
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      3,
-      7
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      3,
-      7
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      3,
-      6
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      3,
-      5
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      2,
-      5
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      2,
-      4
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      1,
-      4
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      1,
-      3
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      1,
-      2
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      1,
-      2
-     ]
-    }
-   },
-   "notes": "Ends 1795 with the VOC itself (management dissolved 1 Mar 1796; charter lapsed 31 Dec 1799). The disrupted 1795-1816 trade - 13 arrivals on chartered AMERICAN hulls under Dutch colours, and eight shipless years - is carried in the silences register, not smoothed into this system."
-  },
-  {
-   "id": "ryukyu-tribute",
-   "name": "The Ryukyu tribute circuit",
-   "evidence": "counted",
-   "basis": "Tribute-mission records: Naha's licensed junks to Fuzhou, and the Satsuma-managed Japan connection (Nagasaki as proxy) — the small kingdom that laundered the China–Japan exchange.",
-   "era": {
-    "from": 1550,
-    "to": 1850
-   },
-   "cargo": [
-    "copper",
-    "pepper",
-    "silk",
-    "porcelain"
-   ],
-   "shipTypes": [
-    "junk"
-   ],
-   "lanes": [
-    {
-     "from": "naha",
-     "to": "fuzhou",
-     "share": 0.3
-    },
-    {
-     "from": "fuzhou",
-     "to": "naha",
-     "share": 0.25
-    },
-    {
-     "from": "naha",
-     "to": "nagasaki",
-     "share": 0.25
-    },
-    {
-     "from": "nagasaki",
-     "to": "naha",
-     "share": 0.2
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    }
-   }
-  },
-  {
-   "id": "korea-tsushima",
-   "name": "The Korea–Tsushima trade (the Waegwan)",
-   "evidence": "reconstructed",
-   "basis": "Records of the Japan House at Busan: the Sō domain's licensed vessels — ginseng and Chinese silk against Japanese silver and copper; Korea's single sanctioned sea door.",
-   "era": {
-    "from": 1607,
-    "to": 1850
-   },
-   "cargo": [
-    "ginseng",
-    "silk",
-    "specie",
-    "copper"
-   ],
-   "shipTypes": [
-    "junk"
-   ],
-   "lanes": [
-    {
-     "from": "busan",
-     "to": "tsushima",
-     "share": 0.55
-    },
-    {
-     "from": "tsushima",
-     "to": "busan",
-     "share": 0.45
-    }
-   ],
-   "byDecade": {
-    "1600": {
-     "voyagesPerYear": [
-      15,
-      45
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      15,
-      45
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      16,
-      46
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      16,
-      47
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      17,
-      48
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      17,
-      49
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      18,
-      51
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      18,
-      52
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      19,
-      53
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      19,
-      54
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      20,
-      55
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      20,
-      54
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      19,
-      53
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      19,
-      52
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      18,
-      51
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      18,
-      50
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      17,
-      50
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      17,
-      49
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      16,
-      48
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      16,
-      47
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      15,
-      46
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      15,
-      45
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      14,
-      42
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      13,
-      39
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      12,
-      36
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      12,
-      36
-     ]
-    }
-   }
-  },
-  {
-   "id": "redseal-siam-japan",
-   "name": "Red-seal ships and the Siam trade",
-   "evidence": "counted",
-   "basis": "The shuin-sen licenses (1592–1635) and Ayutthaya's crown-junk records: Japanese silver south, deerskins and sappanwood north; after sakoku the Siamese and Chinese hulls carry it alone, until Ayutthaya falls (1767).",
-   "era": {
-    "from": 1592,
-    "to": 1767
-   },
-   "cargo": [
-    "deerskins",
-    "silk",
-    "specie",
-    "trade-goods"
-   ],
-   "shipTypes": [
-    "junk"
-   ],
-   "lanes": [
-    {
-     "from": "ayutthaya",
-     "to": "nagasaki",
-     "share": 0.3
-    },
-    {
-     "from": "nagasaki",
-     "to": "ayutthaya",
-     "share": 0.2
-    },
-    {
-     "from": "ayutthaya",
-     "to": "canton",
-     "share": 0.3
-    },
-    {
-     "from": "canton",
-     "to": "ayutthaya",
-     "share": 0.2
-    }
-   ],
-   "byDecade": {
-    "1590": {
-     "voyagesPerYear": [
-      8,
-      18
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      8,
-      18
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      7,
-      16
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      5,
-      13
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      4,
-      11
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      2,
-      8
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      2,
-      8
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      2,
-      8
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      3,
-      9
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      3,
-      9
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      3,
-      9
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      3,
-      9
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      3,
-      9
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      3,
-      8
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      3,
-      8
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      2,
-      7
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      2,
-      7
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      2,
-      6
-     ]
-    }
-   }
-  },
-  {
-   "id": "china-coastal-grain",
-   "name": "The Chinese coastal grain and sugar fleet",
-   "evidence": "asserted",
-   "basis": "ASSERTED (R3 decision) — the coastal junk metabolism: the northern bean-and-grain fleets (Shanghai–Tianjin), Fujian sugar north, thousands of hulls provisioning the littoral of the world's largest economy. Qing-era studies (the Shanghai shachuan fleet alone counted in the thousands) support central guesses far above any European coasting trade; bounds ±60%. Included on the same consistency grounds as the English colliers.",
-   "era": {
-    "from": 1550,
-    "to": 1850
-   },
-   "cargo": [
-    "grain",
-    "sugar",
-    "salt",
-    "trade-goods"
-   ],
-   "shipTypes": [
-    "junk"
-   ],
-   "lanes": [
-    {
-     "from": "shanghai",
-     "to": "tianjin",
-     "share": 0.3
-    },
-    {
-     "from": "tianjin",
-     "to": "shanghai",
-     "share": 0.2
-    },
-    {
-     "from": "amoy",
-     "to": "shanghai",
-     "share": 0.15
-    },
-    {
-     "from": "canton",
-     "to": "amoy",
-     "share": 0.15
-    },
-    {
-     "from": "ningbo",
-     "to": "tianjin",
-     "share": 0.1
-    },
-    {
-     "from": "shanghai",
-     "to": "ningbo",
-     "share": 0.1
-    }
-   ],
-   "byDecade": {
-    "1550": {
-     "voyagesPerYear": [
-      320,
-      1280
-     ]
-    },
-    "1560": {
-     "voyagesPerYear": [
-      325,
-      1301
-     ]
-    },
-    "1570": {
-     "voyagesPerYear": [
-      331,
-      1323
-     ]
-    },
-    "1580": {
-     "voyagesPerYear": [
-      336,
-      1344
-     ]
-    },
-    "1590": {
-     "voyagesPerYear": [
-      341,
-      1365
-     ]
-    },
-    "1600": {
-     "voyagesPerYear": [
-      347,
-      1387
-     ]
-    },
-    "1610": {
-     "voyagesPerYear": [
-      352,
-      1408
-     ]
-    },
-    "1620": {
-     "voyagesPerYear": [
-      357,
-      1429
-     ]
-    },
-    "1630": {
-     "voyagesPerYear": [
-      363,
-      1451
-     ]
-    },
-    "1640": {
-     "voyagesPerYear": [
-      368,
-      1472
-     ]
-    },
-    "1650": {
-     "voyagesPerYear": [
-      373,
-      1493
-     ]
-    },
-    "1660": {
-     "voyagesPerYear": [
-      379,
-      1515
-     ]
-    },
-    "1670": {
-     "voyagesPerYear": [
-      384,
-      1536
-     ]
-    },
-    "1680": {
-     "voyagesPerYear": [
-      389,
-      1557
-     ]
-    },
-    "1690": {
-     "voyagesPerYear": [
-      395,
-      1579
-     ]
-    },
-    "1700": {
-     "voyagesPerYear": [
-      400,
-      1600
-     ]
-    },
-    "1710": {
-     "voyagesPerYear": [
-      407,
-      1629
-     ]
-    },
-    "1720": {
-     "voyagesPerYear": [
-      415,
-      1658
-     ]
-    },
-    "1730": {
-     "voyagesPerYear": [
-      422,
-      1687
-     ]
-    },
-    "1740": {
-     "voyagesPerYear": [
-      429,
-      1716
-     ]
-    },
-    "1750": {
-     "voyagesPerYear": [
-      436,
-      1745
-     ]
-    },
-    "1760": {
-     "voyagesPerYear": [
-      444,
-      1775
-     ]
-    },
-    "1770": {
-     "voyagesPerYear": [
-      451,
-      1804
-     ]
-    },
-    "1780": {
-     "voyagesPerYear": [
-      458,
-      1833
-     ]
-    },
-    "1790": {
-     "voyagesPerYear": [
-      465,
-      1862
-     ]
-    },
-    "1800": {
-     "voyagesPerYear": [
-      473,
-      1891
-     ]
-    },
-    "1810": {
-     "voyagesPerYear": [
-      480,
-      1920
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      500,
-      2000
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      520,
-      2080
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      540,
-      2160
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      560,
-      2240
-     ]
-    }
-   },
-   "notes": "Coastal, like the colliers: enters the sailing world only when its ports exist (S2+), and its on-screen share is governed by the evidence-band visibility decision."
-  },
-  {
-   "id": "dutch-japan",
-   "name": "The resumed Dutch-Japan trade (Dejima)",
-   "evidence": "reconstructed",
-   "basis": "Resumed 1817 (NOT 1815 - the 1815 date is the political restoration of the Indies, not shipping): two ships brought Blomhoff to a factory of six remaining Dutchmen. Carried 1817-1858 on the NETHERLANDS INDIES COLONIAL GOVERNMENT's account from Batavia in chartered private hulls - the NHM took over only in 1859. Shogunal ceiling 1-2/yr (the 1790 Kansei retrenchment cut the Dutch to one; whether 1799 restored two is contested - Cullen reads it as unchanged to 1859). A COUNTED series is recoverable from the Dejima archive NL-HaNA 1.04.21; reconstructed here pending that reading.",
-   "era": {
-    "from": 1817,
-    "to": 1850
-   },
-   "cargo": [
-    "copper",
-    "specie",
-    "textiles",
-    "sugar"
-   ],
-   "shipTypes": [
-    "east-indiaman",
-    "merchantman"
-   ],
-   "lanes": [
-    {
-     "from": "batavia",
-     "to": "dejima",
-     "share": 0.55
-    },
-    {
-     "from": "dejima",
-     "to": "batavia",
-     "share": 0.45
-    }
-   ],
-   "byDecade": {
-    "1810": {
-     "voyagesPerYear": [
-      1,
-      2
-     ]
-    },
-    "1820": {
-     "voyagesPerYear": [
-      1,
-      2
-     ]
-    },
-    "1830": {
-     "voyagesPerYear": [
-      1,
-      2
-     ]
-    },
-    "1840": {
-     "voyagesPerYear": [
-      1,
-      2
-     ]
-    },
-    "1850": {
-     "voyagesPerYear": [
-      1,
-      2
-     ]
-    }
-   },
-   "notes": "Arrivals are monsoon-gated June-September from Batavia. SCRIPTED-ONLY candidate (Pass 4): with a 1-2 ceiling and hard zero years this is a scheduled node, not a rate - a Poisson draw would smooth away the shipless years that are the point."
-  }
- ]
+  ]
 }

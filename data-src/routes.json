@@ -7131,6 +7131,810 @@
       },
       "weight": 2,
       "flag": "netherlands"
+    },
+    {
+      "id": "i-zanzibar-muscat",
+      "system": "swahili-coast",
+      "name": "Zanzibar to Muscat",
+      "from": "zanzibar",
+      "to": "muscat",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "ivory",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1699,
+        "to": 1850
+      },
+      "weight": 4,
+      "flag": "oman"
+    },
+    {
+      "id": "i-muscat-zanzibar",
+      "system": "swahili-coast",
+      "name": "Muscat to Zanzibar",
+      "from": "muscat",
+      "to": "zanzibar",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "textiles",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1699,
+        "to": 1850
+      },
+      "weight": 4,
+      "flag": "oman"
+    },
+    {
+      "id": "i-zanzibar-mombasa",
+      "system": "swahili-coast",
+      "name": "Zanzibar to Mombasa",
+      "from": "zanzibar",
+      "to": "mombasa",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1699,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "oman"
+    },
+    {
+      "id": "i-mombasa-zanzibar",
+      "system": "swahili-coast",
+      "name": "Mombasa to Zanzibar",
+      "from": "mombasa",
+      "to": "zanzibar",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "ivory",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1699,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "oman"
+    },
+    {
+      "id": "i-mombasa-surat",
+      "system": "swahili-coast",
+      "name": "Mombasa to Surat",
+      "from": "mombasa",
+      "to": "surat",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "ivory",
+        "gold-dust"
+      ],
+      "era": {
+        "from": 1699,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "oman"
+    },
+    {
+      "id": "i-surat-mombasa",
+      "system": "surat",
+      "name": "Surat to Mombasa",
+      "from": "surat",
+      "to": "mombasa",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "textiles"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1760
+      },
+      "weight": 2,
+      "flag": "mughal"
+    },
+    {
+      "id": "i-mozambique-goa",
+      "system": "carreira",
+      "name": "Ilha de Moçambique to Goa",
+      "from": "mozambique",
+      "to": "bombay",
+      "shipTypes": [
+        "merchantman",
+        "carrack"
+      ],
+      "cargo": [
+        "ivory",
+        "gold-dust"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1660
+      },
+      "weight": 2,
+      "flag": "portugal"
+    },
+    {
+      "id": "i-lisbon-mozambique",
+      "system": "carreira",
+      "name": "Lisbon to Ilha de Moçambique",
+      "from": "lisbon",
+      "to": "mozambique",
+      "shipTypes": [
+        "merchantman",
+        "carrack"
+      ],
+      "cargo": [
+        "textiles",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1660
+      },
+      "weight": 2,
+      "flag": "portugal"
+    },
+    {
+      "id": "i-mozambique-lisbon",
+      "system": "carreira",
+      "name": "Ilha de Moçambique to Lisbon",
+      "from": "mozambique",
+      "to": "lisbon",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "ivory",
+        "gold-dust"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "portugal"
+    },
+    {
+      "id": "i-male-calcutta",
+      "system": "cowrie-maldives",
+      "name": "Malé to Bengal (cowries)",
+      "from": "male",
+      "to": "calcutta",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "cowries"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "maldives"
+    },
+    {
+      "id": "i-calcutta-male",
+      "system": "cowrie-maldives",
+      "name": "Bengal to Malé",
+      "from": "calcutta",
+      "to": "male",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "grain",
+        "textiles"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "maldives"
+    },
+    {
+      "id": "i-portlouis-lorient",
+      "system": "mascarenes-french",
+      "name": "Port Louis to Nantes",
+      "from": "port-louis",
+      "to": "nantes",
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "coffee",
+        "sugar"
+      ],
+      "era": {
+        "from": 1735,
+        "to": 1810
+      },
+      "weight": 3,
+      "flag": "france"
+    },
+    {
+      "id": "i-lorient-portlouis",
+      "system": "mascarenes-french",
+      "name": "Nantes to Port Louis",
+      "from": "nantes",
+      "to": "port-louis",
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1735,
+        "to": 1810
+      },
+      "weight": 3,
+      "flag": "france"
+    },
+    {
+      "id": "i-portlouis-london",
+      "system": "mascarenes-french",
+      "name": "Port Louis to London (British Mauritius)",
+      "from": "port-louis",
+      "to": "london",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "sugar"
+      ],
+      "era": {
+        "from": 1811,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "britain"
+    },
+    {
+      "id": "i-london-portlouis",
+      "system": "mascarenes-french",
+      "name": "London to Port Louis",
+      "from": "london",
+      "to": "port-louis",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1811,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "britain"
+    },
+    {
+      "id": "e-shanghai-tianjin",
+      "system": "china-coastal-grain",
+      "name": "Shanghai to Tianjin (the grain fleets)",
+      "from": "shanghai",
+      "to": "tianjin",
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "grain"
+      ],
+      "era": {
+        "from": 1600,
+        "to": 1850
+      },
+      "weight": 8,
+      "flag": "china-junk-trade"
+    },
+    {
+      "id": "e-tianjin-shanghai",
+      "system": "china-coastal-grain",
+      "name": "Tianjin to Shanghai",
+      "from": "tianjin",
+      "to": "shanghai",
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "ballast",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1600,
+        "to": 1850
+      },
+      "weight": 7,
+      "flag": "china-junk-trade"
+    },
+    {
+      "id": "e-shanghai-amoy",
+      "system": "china-coastal-grain",
+      "name": "Shanghai to Amoy",
+      "from": "shanghai",
+      "to": "amoy",
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "cotton",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1600,
+        "to": 1850
+      },
+      "weight": 5,
+      "flag": "china-junk-trade"
+    },
+    {
+      "id": "e-amoy-shanghai",
+      "system": "china-coastal-grain",
+      "name": "Amoy to Shanghai",
+      "from": "amoy",
+      "to": "shanghai",
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "sugar",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1600,
+        "to": 1850
+      },
+      "weight": 5,
+      "flag": "china-junk-trade"
+    },
+    {
+      "id": "e-busan-tsushima",
+      "system": "korea-japan-trade",
+      "name": "Busan to Tsushima",
+      "from": "busan",
+      "to": "tsushima",
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "ginseng",
+        "textiles"
+      ],
+      "era": {
+        "from": 1607,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "tsushima"
+    },
+    {
+      "id": "e-tsushima-busan",
+      "system": "korea-japan-trade",
+      "name": "Tsushima to Busan",
+      "from": "tsushima",
+      "to": "busan",
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "specie",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1607,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "tsushima"
+    },
+    {
+      "id": "e-tsushima-nagasaki",
+      "system": "korea-japan-trade",
+      "name": "Tsushima to Nagasaki",
+      "from": "tsushima",
+      "to": "dejima",
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "ginseng",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1607,
+        "to": 1850
+      },
+      "weight": 1,
+      "flag": "tsushima"
+    },
+    {
+      "id": "e-ayutthaya-canton",
+      "system": "siam-china-junks",
+      "name": "Ayutthaya to Canton",
+      "from": "ayutthaya",
+      "to": "canton",
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "deerskins",
+        "timber"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1767
+      },
+      "weight": 2,
+      "flag": "siam"
+    },
+    {
+      "id": "e-canton-ayutthaya",
+      "system": "siam-china-junks",
+      "name": "Canton to Ayutthaya",
+      "from": "canton",
+      "to": "ayutthaya",
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "porcelain",
+        "silk"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1767
+      },
+      "weight": 2,
+      "flag": "china-junk-trade"
+    },
+    {
+      "id": "b-aceh-jedda",
+      "system": "aceh-red-sea",
+      "name": "Aceh to Jedda (pepper, direct)",
+      "from": "aceh",
+      "to": "jedda",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "pepper"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "aceh"
+    },
+    {
+      "id": "b-jedda-aceh",
+      "system": "aceh-red-sea",
+      "name": "Jedda to Aceh",
+      "from": "jedda",
+      "to": "aceh",
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "specie",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "aceh"
+    },
+    {
+      "id": "b-bantam-amsterdam",
+      "system": "bantam-pepper",
+      "name": "Bantam to Amsterdam (pepper)",
+      "from": "bantam",
+      "to": "amsterdam",
+      "shipTypes": [
+        "fluyt",
+        "merchantman"
+      ],
+      "cargo": [
+        "pepper",
+        "spices"
+      ],
+      "era": {
+        "from": 1596,
+        "to": 1685
+      },
+      "weight": 4,
+      "flag": "dutch"
+    },
+    {
+      "id": "b-amsterdam-bantam",
+      "system": "bantam-pepper",
+      "name": "Amsterdam to Bantam",
+      "from": "amsterdam",
+      "to": "bantam",
+      "shipTypes": [
+        "fluyt",
+        "merchantman"
+      ],
+      "cargo": [
+        "trade-goods",
+        "specie"
+      ],
+      "era": {
+        "from": 1596,
+        "to": 1685
+      },
+      "weight": 3,
+      "flag": "dutch"
+    },
+    {
+      "id": "b-bantam-london",
+      "system": "bantam-pepper",
+      "name": "Bantam to London",
+      "from": "bantam",
+      "to": "london",
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "pepper",
+        "spices"
+      ],
+      "era": {
+        "from": 1602,
+        "to": 1682
+      },
+      "weight": 3,
+      "flag": "britain"
+    },
+    {
+      "id": "b-london-bantam",
+      "system": "bantam-pepper",
+      "name": "London to Bantam",
+      "from": "london",
+      "to": "bantam",
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "trade-goods",
+        "specie"
+      ],
+      "era": {
+        "from": 1602,
+        "to": 1682
+      },
+      "weight": 2,
+      "flag": "britain"
+    },
+    {
+      "id": "b-bantam-canton",
+      "system": "bantam-pepper",
+      "name": "Bantam to Canton (the junk trade)",
+      "from": "bantam",
+      "to": "canton",
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "pepper"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1685
+      },
+      "weight": 3,
+      "flag": "china-junk-trade"
+    },
+    {
+      "id": "b-canton-bantam",
+      "system": "bantam-pepper",
+      "name": "Canton to Bantam",
+      "from": "canton",
+      "to": "bantam",
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "porcelain",
+        "silk"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1685
+      },
+      "weight": 3,
+      "flag": "china-junk-trade"
+    },
+    {
+      "id": "b-ostend-canton",
+      "system": "ostend-interlude",
+      "name": "Ostend to Canton (tea)",
+      "from": "ostend",
+      "to": "canton",
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "specie",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1715,
+        "to": 1734
+      },
+      "weight": 2,
+      "flag": "austria"
+    },
+    {
+      "id": "b-canton-ostend",
+      "system": "ostend-interlude",
+      "name": "Canton to Ostend",
+      "from": "canton",
+      "to": "ostend",
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "tea",
+        "porcelain"
+      ],
+      "era": {
+        "from": 1715,
+        "to": 1734
+      },
+      "weight": 2,
+      "flag": "austria"
+    },
+    {
+      "id": "b-ostend-calcutta",
+      "system": "ostend-interlude",
+      "name": "Ostend to Bengal (Banquibazar)",
+      "from": "ostend",
+      "to": "calcutta",
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "specie",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1715,
+        "to": 1744
+      },
+      "weight": 1,
+      "flag": "austria"
+    },
+    {
+      "id": "b-calcutta-ostend",
+      "system": "ostend-interlude",
+      "name": "Bengal to Ostend",
+      "from": "calcutta",
+      "to": "ostend",
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "textiles",
+        "saltpetre"
+      ],
+      "era": {
+        "from": 1715,
+        "to": 1744
+      },
+      "weight": 1,
+      "flag": "austria"
+    },
+    {
+      "id": "a-hull-davis",
+      "system": "davis-strait-whaling",
+      "name": "Newcastle to the Davis Strait",
+      "from": "newcastle",
+      "to": "davis-strait",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "ballast"
+      ],
+      "era": {
+        "from": 1720,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "britain"
+    },
+    {
+      "id": "a-davis-hull",
+      "system": "davis-strait-whaling",
+      "name": "The Davis Strait to Newcastle (whale oil)",
+      "from": "davis-strait",
+      "to": "newcastle",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "whale-oil"
+      ],
+      "era": {
+        "from": 1720,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "britain"
+    },
+    {
+      "id": "a-london-davis",
+      "system": "davis-strait-whaling",
+      "name": "London to the Davis Strait",
+      "from": "london",
+      "to": "davis-strait",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "ballast"
+      ],
+      "era": {
+        "from": 1720,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "britain"
+    },
+    {
+      "id": "a-davis-london",
+      "system": "davis-strait-whaling",
+      "name": "The Davis Strait to London",
+      "from": "davis-strait",
+      "to": "london",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "whale-oil"
+      ],
+      "era": {
+        "from": 1720,
+        "to": 1850
+      },
+      "weight": 2,
+      "flag": "britain"
     }
   ]
 }

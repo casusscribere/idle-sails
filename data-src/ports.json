@@ -223,7 +223,7 @@
     },
     {
       "id": "dejima",
-      "name": "Dejima (Nagasaki)",
+      "name": "Nagasaki (Dejima)",
       "lon": 129.6,
       "lat": 32.7,
       "power": "dutch",
@@ -231,7 +231,7 @@
       "roles": [
         "factory"
       ],
-      "note": "Dutch factory in Japan; ~1-2 ships/yr — the low-volume exemplar."
+      "note": "The harbour and its factory island together: at roughly a kilometre apart they are one dot at chart scale, so the SEPARATION between Dejima (the Dutch factory) and Nagasaki (the port and its Chinese quarter) is carried in the flow matrix and the vessel's ledger rather than by two overlapping marks."
     },
     {
       "id": "hamburg",
@@ -1272,6 +1272,265 @@
         "to": 1850
       },
       "note": "Founded 1724 to hold the Rio de la Plata against Portuguese Colonia; the estuary's deep-water port, and the Plata's Atlantic gate for hides, tallow, and salt beef."
+    },
+    {
+      "id": "mombasa",
+      "name": "Mombasa",
+      "lon": 39.67,
+      "lat": -4.06,
+      "power": "portugal",
+      "region": "east-africa",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "A Swahili-coast port, Portuguese at Fort Jesus and then Omani from 1698; Mazrui governors held it semi-independently for much of the eighteenth century.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1698,
+          "power": "portugal"
+        },
+        {
+          "from": 1699,
+          "to": 1850,
+          "power": "oman"
+        }
+      ]
+    },
+    {
+      "id": "zanzibar",
+      "name": "Zanzibar",
+      "lon": 39.19,
+      "lat": -6.16,
+      "power": "portugal",
+      "region": "east-africa",
+      "roles": [
+        "home"
+      ],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "The Omani sultanate's African seat - Sayyid Said moved his court here in 1840 - and the hub of the clove boom, the ivory caravans, and the East African slave trade that grew while the Atlantic one was suppressed.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1698,
+          "power": "portugal"
+        },
+        {
+          "from": 1699,
+          "to": 1850,
+          "power": "oman"
+        }
+      ]
+    },
+    {
+      "id": "mozambique",
+      "name": "Ilha de Moçambique",
+      "lon": 40.73,
+      "lat": -15.03,
+      "power": "portugal",
+      "region": "east-africa",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "Portuguese from 1507: the Carreira's East African call and the administrative seat of Portuguese East Africa."
+    },
+    {
+      "id": "male",
+      "name": "Malé",
+      "lon": 73.51,
+      "lat": 4.18,
+      "power": "maldives",
+      "region": "indian-ocean",
+      "roles": [],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "The Maldive sultanate's seat, and the source of the cowrie shells that were counted out as currency across the Bay of Bengal and, by way of Europe, on the West African coast."
+    },
+    {
+      "id": "port-louis",
+      "name": "Port Louis (Île de France)",
+      "lon": 57.5,
+      "lat": -20.16,
+      "power": "france",
+      "region": "indian-ocean",
+      "roles": [
+        "colonial",
+        "naval"
+      ],
+      "active": {
+        "from": 1735,
+        "to": 1850
+      },
+      "eraNames": [
+        {
+          "from": 1735,
+          "to": 1810,
+          "name": "Port Louis (Île de France)"
+        },
+        {
+          "from": 1811,
+          "to": 1850,
+          "name": "Port Louis (Mauritius)"
+        }
+      ],
+      "note": "The French Indian Ocean base from 1735 and the corsair harbour of the revolutionary wars; British from 1810, when it became Mauritius. Sugar and, later, indentured labour."
+    },
+    {
+      "id": "shanghai",
+      "name": "Shanghai",
+      "lon": 121.5,
+      "lat": 31.23,
+      "power": "qing",
+      "region": "china",
+      "roles": [],
+      "active": {
+        "from": 1600,
+        "to": 1850
+      },
+      "note": "A great Yangtze-delta junk port long before the treaty of 1842 made it a foreign one: the coastal grain and cotton trade ran through here on a scale the European record barely registers."
+    },
+    {
+      "id": "tianjin",
+      "name": "Tianjin (Dagu)",
+      "lon": 117.71,
+      "lat": 38.98,
+      "power": "qing",
+      "region": "china",
+      "roles": [],
+      "active": {
+        "from": 1600,
+        "to": 1850
+      },
+      "note": "The dot sits at Dagu, the Hai river bar. The northern terminus of the coastal grain fleets that fed Peking - a Chinese domestic trade, and one of the largest movements of shipping anywhere in the era."
+    },
+    {
+      "id": "busan",
+      "name": "Busan (the Waegwan)",
+      "lon": 129.04,
+      "lat": 35.1,
+      "power": "joseon",
+      "region": "east-asia",
+      "roles": [],
+      "active": {
+        "from": 1600,
+        "to": 1850
+      },
+      "note": "The Japan House at Busan, where the Tsushima So handled all licensed Korea-Japan trade under Joseon supervision."
+    },
+    {
+      "id": "tsushima",
+      "name": "Tsushima",
+      "lon": 129.3,
+      "lat": 34.2,
+      "power": "tsushima",
+      "region": "east-asia",
+      "roles": [],
+      "active": {
+        "from": 1600,
+        "to": 1850
+      },
+      "note": "The So domain's island, the licensed intermediary of the Korea-Japan trade in both directions."
+    },
+    {
+      "id": "ayutthaya",
+      "name": "Ayutthaya (the Chao Phraya bar)",
+      "lon": 100.58,
+      "lat": 13.5,
+      "power": "siam",
+      "region": "east-asia",
+      "roles": [],
+      "active": {
+        "from": 1550,
+        "to": 1767
+      },
+      "note": "The Siamese capital lay some eighty km up the Chao Phraya; sea-going ships anchored at the bar and lightered up, so the dot sits at the river mouth rather than on the city. Sacked in 1767, which ends the window."
+    },
+    {
+      "id": "aceh",
+      "name": "Aceh",
+      "lon": 95.32,
+      "lat": 5.55,
+      "power": "aceh",
+      "region": "east-indies",
+      "roles": [],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "The sultanate at Sumatra's northern tip: the pepper port that shipped direct to the Red Sea and Jedda, outflanking the Portuguese route round the Cape."
+    },
+    {
+      "id": "bantam",
+      "name": "Bantam",
+      "lon": 106.16,
+      "lat": -6.04,
+      "power": "banten",
+      "region": "east-indies",
+      "roles": [],
+      "active": {
+        "from": 1550,
+        "to": 1685
+      },
+      "note": "Banten Lama, the pepper emporium of the archipelago and the first Dutch and English factory in Java - a separate place from Batavia, about eighty km away, and its rival for eighty years until the VOC took it in 1682-84."
+    },
+    {
+      "id": "ostend",
+      "name": "Ostend",
+      "lon": 2.93,
+      "lat": 51.23,
+      "power": "austria",
+      "region": "lowlands",
+      "roles": [
+        "home"
+      ],
+      "active": {
+        "from": 1715,
+        "to": 1744
+      },
+      "note": "The Austrian Netherlands' Indies port: private voyages from 1715, the Ostend Company 1722-27, and a Bengal afterlife to 1744."
+    },
+    {
+      "id": "davis-strait",
+      "name": "Davis Strait",
+      "lon": -55.0,
+      "lat": 67.0,
+      "power": "dutch",
+      "region": "arctic",
+      "roles": [
+        "station"
+      ],
+      "active": {
+        "from": 1720,
+        "to": 1850
+      },
+      "note": "Not a port but a whaling ground, between Greenland and Baffin Island: the bowhead fishery the Dutch, British, and Nantucket fleets worked from the 1720s. A grounds node, following Smeerenburg's precedent."
+    },
+    {
+      "id": "jedda",
+      "name": "Jedda",
+      "lon": 39.17,
+      "lat": 21.54,
+      "power": "ottoman",
+      "region": "arabia",
+      "roles": [],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "The Hijaz port: Mecca's sea gate for the pilgrimage, and the Red Sea terminus of the pepper and spice trade that came direct from Aceh. It had been folding onto Mocha, about 800 km south and a different trade — coffee, not pepper and pilgrims."
     }
   ]
 }
