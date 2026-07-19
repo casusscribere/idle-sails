@@ -552,7 +552,7 @@
       "id": "portobelo",
       "name": "Portobelo",
       "lon": -79.6,
-      "lat": 9.6,
+      "lat": 10.0,
       "power": "spain",
       "region": "caribbean",
       "roles": [
@@ -562,7 +562,7 @@
         "from": 1597,
         "to": 1815
       },
-      "note": "Founded 1597. The isthmus fair; the galeones' terminus to 1739."
+      "note": "Founded 1597. The isthmus fair; the galeones' terminus to 1739. Displayed lat nudged 9.6→10.0 (~45 km N) so it snaps to a Caribbean-side ocean cell now that the Panama seal is a lat-9 land wall (see bake-routes.mjs) rather than a lat-6..10 box — the wall keeps the Pacific port of Panama snapping to the Gulf of Panama on its own side."
     },
     {
       "id": "bridgetown",

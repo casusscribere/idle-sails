@@ -75,9 +75,22 @@ const ICE_CORRIDORS = [
 //           trans-basin lane between Pacific and Atlantic ports is authored
 //           (none is historical at this scale except the galleon's overland
 //           transshipment, which is Acapulco's POINT).
+//           **A WALL, not a box (S3 / increment 6):** the earlier lon[-82,-76]×
+//           lat[6,10] box separated the basins but also swallowed the Gulf of
+//           Panama, so the Pacific port of Panama snapped ~500 km SW and its
+//           Callao/Guayaquil coastal legs cut across the Azuero Peninsula. The
+//           seal is now the single land ROW at lat 9 (cell centre 9.5) spanning
+//           the isthmus longitudes — a continuous barrier from the Central-
+//           American land (−83/−84) to the Colombian land (−76/−75). Because the
+//           8-neighbour router cannot jump lat 10→8 without stepping on a lat-9
+//           cell, one solid row blocks all Caribbean↔Pacific passage while
+//           leaving the Gulf of Panama (row 98, lat 8.5) open: Panama now snaps
+//           46 km from its real position, Portobelo (nudged to 10.0°N, its own
+//           cell being on the wall) snaps to the Caribbean side. Flood-fill and
+//           snap verified; the Canton↔London Cape route is unaffected.
 //   Suez:   opened 1869; would shortcut the Mediterranean into the Indian Ocean.
 const ISTHMUS_CLOSE = [
-  { name: 'Panama', lon: [-82, -76], lat: [6, 10] },
+  { name: 'Panama', lon: [-82, -77], lat: [9, 9] },
   { name: 'Suez', lon: [31, 34], lat: [27, 31] }
 ];
 
