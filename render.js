@@ -49,7 +49,12 @@ export const REGIONS = [
   // loitering fishery traffic if Pass 4 (T4) ships it.
   { id: 'arabia-india', name: 'Arabia & India',
     bounds: { lonMin: 36, lonMax: 92, latMin: -2, latMax: 31 } },
-  { id: 'na-northeast', name: 'Newfoundland to the Chesapeake',
+  // Hidden from the menu until its Grand-Banks fishery traffic ships (Pass 4) —
+  // 5 ports read as sparse (user tweak). The plate + its test pin stay defined
+  // so unhiding is deleting one flag. (arabia-india was on the same tweak but
+  // Phase 1 populated it with Basra/Bandar Abbas/Jedda + the India ports, so it
+  // now reads as fleshed out and stays visible.)
+  { id: 'na-northeast', name: 'Newfoundland to the Chesapeake', hidden: true,
     bounds: { lonMin: -82, lonMax: -49, latMin: 34.5, latMax: 52.5 } },
   // Phase-1 addition (increment 7): the SW Pacific / Tasman, framing Sydney
   // (151E/−34S) and its Batavia/Pacific reaches — the basin PLAN-4 E3 opened.

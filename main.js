@@ -113,7 +113,7 @@ async function boot() {
   const renderer = createRenderer(canvas, { land, ports: datasets.ports, legById, reducedMotion, routeLines, portNameAt });
   renderer.setPerf({ wakeLength: perf.wakeLength });
   // the saved chart view, validated against the presets (a stale id → world)
-  if (!REGIONS.some(r => r.id === settings.region)) settings.region = 'world';
+  if (!REGIONS.some(r => r.id === settings.region && !r.hidden)) settings.region = 'world';
   renderer.setRegion(settings.region);      // sizes the canvas (includes resize)
   addEventListener('resize', renderer.resize);
 
@@ -254,7 +254,7 @@ async function boot() {
     'mediterranean': 'The Mediterranean', 'indian-ocean-west': 'Western Indian Ocean',
     'bengal-se-asia': 'Bengal & Southeast Asia', 'east-asia': 'East Asia',
     'pacific': 'The Pacific',
-    'other': 'Naval & other voyages'
+    'other': 'Naval & state voyages'
   };
   const basinsPresent = new Set(laneBasin.values());
   const basinIds = BASIN_ORDER.filter(b => basinsPresent.has(b))
@@ -306,6 +306,7 @@ async function boot() {
   // chart views: preset regional plates from render.js REGIONS
   const viewBox = document.getElementById('view-radios');
   for (const r of REGIONS) {
+    if (r.hidden) continue;                    // sparse plates hidden until fleshed out
     const lab = document.createElement('label');
     lab.className = 'menu-item';
     const radio = document.createElement('input');
