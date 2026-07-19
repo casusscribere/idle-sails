@@ -18,6 +18,7 @@
     { "id": "cotton",        "name": "raw cotton",         "origins": ["india", "caribbean", "north-america"], "valueTier": 3, "class": "colonial" },
     { "id": "indigo",        "name": "indigo",             "origins": ["india", "caribbean"],         "valueTier": 4, "class": "colonial" },
     { "id": "tea",           "name": "tea",                "origins": ["china"],                      "valueTier": 4, "class": "illicit", "note": "The bulk of the China trade; heavily smuggled before the 1784 Commutation Act." },
+    { "id": "opium",         "name": "opium",              "origins": ["india"],                      "valueTier": 4, "class": "illicit", "note": "Bengal and Malwa opium, carried to China against Qing prohibition. The financial keystone of the country trade and the cause of the Opium Wars — named plainly, not hidden inside trade-goods." },
     { "id": "silk",          "name": "silk",               "origins": ["china"],                      "valueTier": 5, "class": "goods" },
     { "id": "porcelain",     "name": "porcelain",          "origins": ["china"],                      "valueTier": 4, "class": "goods",   "note": "Also 'chinaware'; often shipped as profitable ballast under tea." },
     { "id": "spices",        "name": "spices",             "origins": ["east-indies"],                "valueTier": 5, "class": "goods",   "note": "Nutmeg, mace, cloves, pepper — the VOC monopoly staples." },

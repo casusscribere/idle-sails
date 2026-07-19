@@ -135,9 +135,50 @@
       "id": "canton",
       "name": "Canton",
       "simProxy": "canton"
+    },
+    {
+      "id": "singapore",
+      "name": "Singapore",
+      "simProxy": "singapore"
+    },
+    {
+      "id": "amoy",
+      "name": "Amoy",
+      "simProxy": "amoy"
     }
   ],
   "systems": [
+    {
+      "id": "singapore-entrepot",
+      "name": "The Singapore entrepôt (the free port, 1819–1850)",
+      "evidence": "counted",
+      "basis": "Raffles founded the free port 6 Feb 1819; it became the hinge of the eastern-archipelago trade where three rhythms met — year-round European square-rig on the Calcutta↔Singapore↔Canton arterial (opium out, tea/goods home), Amoy China junks on the NE monsoon (arrive Jan–Mar, first Amoy junk 19 Feb 1821), and Bugis prahus arriving Sept–Oct. The counted backbone is Wong Lin Ken's Master-Attendant returns — square-rig entries 139 (1822) → 517 (1834) → ~1028 (1854); native craft 2310 (1854); trade value $0.4M (1819) → $17.8M (1830) → $14.2M (1835 dip) → $25.2M (1850). It rests on ONE compiler (counted/medium), and the decade voyage RANGES here are reconstructed BETWEEN the three counted vessel-count years and stated as bounds — no fabricated annual precision. Foreign-going basis (R1): square-rig + long-haul junks + the larger Bugis prahus; the mass of tiny intra-archipelago native craft sits below the threshold and is excluded (a declared boundary, not a silent zero). The ~5,000–7,000 Chinese labourers/yr from ~1830 ride the Amoy-junk lane under the sober pattern (asserted-with-bounds), not a separate system.",
+      "era": {
+        "from": 1819,
+        "to": 1850
+      },
+      "cargo": ["opium", "tea", "textiles", "specie", "spices", "pepper", "trade-goods"],
+      "shipTypes": ["east-indiaman", "merchantman", "junk", "dhow"],
+      "lanes": [
+        { "from": "calcutta", "to": "singapore", "share": 0.15 },
+        { "from": "singapore", "to": "canton", "share": 0.15 },
+        { "from": "canton", "to": "singapore", "share": 0.09 },
+        { "from": "singapore", "to": "calcutta", "share": 0.09 },
+        { "from": "london", "to": "singapore", "share": 0.08 },
+        { "from": "singapore", "to": "london", "share": 0.06 },
+        { "from": "bombay", "to": "singapore", "share": 0.10 },
+        { "from": "singapore", "to": "batavia", "share": 0.05 },
+        { "from": "amoy", "to": "singapore", "share": 0.13 },
+        { "from": "makassar", "to": "singapore", "share": 0.10 }
+      ],
+      "byDecade": {
+        "1810": { "voyagesPerYear": [30, 100] },
+        "1820": { "voyagesPerYear": [130, 340] },
+        "1830": { "voyagesPerYear": [340, 640] },
+        "1840": { "voyagesPerYear": [560, 1040] },
+        "1850": { "voyagesPerYear": [720, 1320] }
+      }
+    },
     {
       "id": "voc-arterial",
       "name": "The VOC arterial (Amsterdam–Batavia)",
