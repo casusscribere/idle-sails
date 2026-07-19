@@ -225,6 +225,57 @@ no-undeclared-estimates rule applied to sim rules), and it asserts the
 exclusion — no rule may match a middlePassage/framing lane. First matching
 rule wins; no match ⇒ never convoys.
 
+## 5b. Seasonal grouping — the sibling problem (added 2026-07-18)
+
+Convoy grouping is one of TWO ways the flow matrix's annual rate misstates
+when ships actually left. They are separate problems with separate fixes, and
+conflating them would build the wrong machinery:
+
+| | What the record says | What the sim does | Fix |
+|---|---|---|---|
+| **Seasonal window** | departures only happen in certain months (monsoon, ice, hurricane) | Poisson spreads them evenly over the year | **already expressible** — see below |
+| **Convoy grouping** | N ships leave *together, on one date* | N independent draws scattered across the year | this plan |
+
+**Seasonal windows need no new sim code.** The machinery exists and is
+already load-bearing: the baker bakes every lane as {routeClass × season},
+and `world.js buildItinerary` looks up `` `${lane}__${class}__${season}` ``
+and **breaks if no leg exists for the departure season** (`world.js:422`).
+A lane with no winter leg therefore cannot be departed in winter. This is
+exactly how the Arctic corridors already work — Arkhangelsk has no winter
+departures because `bake-routes.mjs` ICE_CORRIDORS opens the White Sea and
+Spitsbergen in `jja`/`son` only, so the winter legs are never baked.
+
+So a seasonal claim is a **data-and-baker decision**, not an architecture
+change: declare the lane's open seasons, and the gate follows. The baker's
+existing safeguard (≥1 season per lane) must be respected — a lane can be
+narrowed to its real season but never to none.
+
+**Registered seasonal/convoy claims as of 2026-07-18** — each of these is
+authored with the correct ANNUAL volume and the wrong intra-year shape, and
+each says so in its own `notes`:
+
+| System | Basin | Claim | Which fix |
+|---|---|---|---|
+| `bantam-pepper` | bengal-se-asia | 4–8 great junks arrive each December on the NE monsoon, out May–June on the SW | seasonal |
+| `dutch-japan` | east-asia | the Dejima run rode the monsoon | seasonal |
+| `svalbard-whaling` | baltic-north-sea | the Arctic navigation season | **already gated** (ICE_CORRIDORS) |
+| `pacific-colonial-spanish` | pacific | ONE grouped annual convoy timed to the Portobelo fair | convoy |
+| `carrera-de-indias` | atlantic | the flota system | convoy |
+
+**Order of work implication.** The seasonal half can ship independently of
+this plan, and should — it is a bake-time change that costs no sim risk, and
+it fixes three of the five rows above. Do it as part of, or right after, the
+Phase-1 combined bake (increment 6), while the baker is already being run.
+The convoy half stays here, where it needs the spawn-event grouping this
+plan designs.
+
+**One honesty check before narrowing any lane's seasons.** Gating a lane to
+its real season concentrates the same annual volume into fewer months — the
+ships-in-flight count in that window goes UP, not down. That is correct, and
+it will look like a traffic increase on the chart. Verify against the annual
+figure, not against the visual density, or the seasonal fix will invite an
+unwarranted downward revision of a volume that was right all along.
+
 ## 6. Tests (`test/convoys.test.mjs`) + verification
 
 1. **Determinism:** same seed, two worlds ⇒ identical fingerprints, identical

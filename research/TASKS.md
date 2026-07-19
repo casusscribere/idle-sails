@@ -50,9 +50,11 @@ the tasks share a source campaign and should run together.
   1850, five new ports) are both adopted — the sweep waits for their E-S/X-S
   builds so it runs once over the final roster, with windows tiling
   1550–1850.
-- **Phase RD — deferred design research.** T7 feeds the eventual PLAN-5
-  design doc (vessel persistence / capture); T11 feeds the future
-  steam-layer plan (PLAN-6 D1 queued it). Each starts only when its plan is
+- **Phase RD — deferred design research.** T7 **+ T13 run together as one
+  source campaign** (prize courts, Lloyd's Register, and registry records
+  serve both — a re-flagged, renamed prize is one event on both lists) and
+  feed the eventual PLAN-5 design doc (vessel persistence / capture /
+  identity); T11 feeds the future steam-layer plan (PLAN-6 D1 queued it). Each starts only when its plan is
   being drafted; listed now so neither design is done from nothing.
 
 ## Open
@@ -223,6 +225,62 @@ sketch of captured ships joining the captor's pool under a new name.
 sim-shape recommendation per mechanism, and explicit flags where sources
 support only qualitative statements (no fabricated precision).
 **Feeds:** the PLAN-5 design doc (feature pass 5, `planning/RANKING.md`).
+
+#### T13 — Imbricate vessel identity: hull, flag, owner, master, crew
+*(added 2026-07-18 at user request. Deferred; run TOGETHER with T7 as one
+source campaign when PLAN-5 is drafted — see the efficiency note below.)*
+The sim currently models a vessel as a single fused identity: one name, one
+captain, one hull, one nation. History routinely separated those. A ship
+could be **American-built, Dutch-owned, sailing under a British flag, with a
+Scandinavian master and a mixed crew** — and each of those facets moved
+independently, for reasons the chart could show.
+
+What to establish, evidence-classed like everything else:
+- **Build origin vs. ownership.** Where hulls were actually built vs. where
+  they were owned and registered — New England yards building for British
+  and continental owners; Indian-built (Bombay/Surat) teak tonnage in
+  European service; prize hulls entering the captor's merchant fleet.
+- **Registry and flag law.** What made a ship "British" (Navigation Acts
+  registry), "Dutch", "American"; colonial registries; naturalization of
+  foreign-built hulls; how, and how often, a ship legitimately changed flag.
+- **Neutral flags in wartime.** The big one for this chart, since 16 wars
+  already run: flag transfer to neutrals to keep trading through blockade
+  and belligerent capture (the American neutral carrying trade in the 1790s
+  and 1800s; the Danish, Hamburg, and Ragusan neutral flags; the licence and
+  simulated-sale practices). Bound the SCALE — what share of tonnage in a
+  given trade sailed under a flag not its owner's — or state plainly that
+  the sources support only a qualitative claim.
+- **Master and crew nationality.** How often the master's nationality
+  differed from the flag; crew composition and its mixedness (including
+  lascar, African, and Asian mariners in European-flagged crews, whose
+  presence the single-nation model erases entirely).
+- **Where the archive cannot say.** Registry records overstate tidiness;
+  flags of convenience exist precisely to defeat the record. Expect this
+  task to generate **silences-register entries**, not just fields.
+
+**Output:** `research/vessel-identity.md` — bounds + sources per claim, plus
+a sim-shape recommendation: which facets deserve to be modeled state (a
+`builtIn` distinct from `flag`? an owner power? a master nationality drawn
+from a different pool than the flag?), which are display-only, and which the
+evidence cannot support at all. Must say explicitly where modeling a facet
+would be **fabricated precision** — a per-vessel crew composition the
+archive cannot ground is worse than not modeling it.
+
+**Feeds:** the PLAN-5 design doc, alongside T7. Also affects the ledger and
+the legend (a vessel's line would gain facets), `data-src/powers.json`
+(build vs. flag are different attributes of a power), and the captain-naming
+draw in `world.js` (today the master's culture is a function of the flag —
+this task is exactly the evidence for whether that should remain true).
+
+**Efficiency note — why RD, paired with T7.** T7 already reads prize courts,
+Lloyd's Register, and registry records for capture volumes and prize
+renaming. T13 reads the SAME body for build origin, flag transfer, and
+naturalization: a captured ship re-flagged and renamed under its captor is
+literally one event on both task lists. Running them as one campaign reads
+those archives once — the same argument that groups T1+T2+T3 in Phase RC.
+Both land in PLAN-5, which is where a change to the vessel identity model
+belongs anyway; doing T13 earlier would produce a schema recommendation with
+no plan ready to receive it.
 
 #### T11 — Steam under sail: the evidence base for a future steam layer
 *(added 2026-07-16 with the PLAN-6 D1 decision: v1 of the era extension is a

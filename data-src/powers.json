@@ -2,52 +2,1140 @@
   "$schema": "./_schema.md#powers",
   "note": "Flags/allegiances the generator draws from. `kind:nation` are sovereign flags; `kind:company` are chartered-monopoly flags that fly under a parent nation. `color` is an sRGB hex used later for allegiance tinting. `rivals` drives wartime hostility (cross-checked against wars.json). `article`/`navalPrefix` feed the naming construction rules in names.json.",
   "powers": [
-    { "id": "britain",  "name": "Great Britain",        "kind": "nation",  "color": "#9e2b25", "homePorts": ["london", "liverpool", "kingston"], "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.28, "merchant": 0.72 }, "navalPrefix": "HMS", "article": null,     "rivals": ["france", "spain", "usa"], "note": "Dominant naval and mercantile power across the era." },
-    { "id": "france",   "name": "France",               "kind": "nation",  "color": "#2b4b9e", "homePorts": ["bordeaux", "nantes"],              "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.22, "merchant": 0.78 }, "navalPrefix": null,  "article": "romance", "rivals": ["britain"],                "note": "Britain's chief rival; Atlantic colonial and slaving trade." },
-    { "id": "dutch",    "name": "Dutch Republic",       "kind": "nation",  "color": "#d98a1f", "homePorts": ["amsterdam"],                       "era": { "from": 1581, "to": 1795 }, "propensity": { "naval": 0.18, "merchant": 0.82 }, "navalPrefix": null,  "article": "dutch",   "rivals": ["britain", "france"],       "note": "Fades after 1795 (Batavian Republic / French client)." },
-    { "id": "spain",    "name": "Spain",                "kind": "nation",  "color": "#c9a227", "homePorts": ["cadiz"],                           "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.30, "merchant": 0.70 }, "navalPrefix": null,  "article": "romance", "rivals": ["britain"],                "note": "Carrera de Indias; frequently allied to France." },
-    { "id": "portugal", "name": "Portugal",             "kind": "nation",  "color": "#3f7d52", "homePorts": ["lisbon", "bahia"],                 "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.20, "merchant": 0.80 }, "navalPrefix": null,  "article": "romance", "rivals": [],                          "note": "Brazil & Estado da India; usually British-aligned." },
-    { "id": "sweden",   "name": "Sweden",               "kind": "nation",  "color": "#2f6f9e", "homePorts": ["gothenburg"],                      "era": { "from": 1600, "to": 1815 }, "propensity": { "naval": 0.15, "merchant": 0.85 }, "navalPrefix": null,  "article": null,      "rivals": [],                          "note": "Neutral carrier; Baltic iron/timber and SOIC China trade." },
-    { "id": "denmark",  "name": "Denmark-Norway",       "kind": "nation",  "color": "#b23b4a", "homePorts": ["tranquebar"],                      "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.15, "merchant": 0.85 }, "navalPrefix": null,  "article": null,      "rivals": [],                          "note": "Neutral carrier; Danish Asiatic Co." },
-    { "id": "usa",      "name": "United States",        "kind": "nation",  "color": "#3a5a8c", "homePorts": [],                                  "era": { "from": 1783, "to": 1815 }, "propensity": { "naval": 0.10, "merchant": 0.90 }, "navalPrefix": "USS", "article": null,      "rivals": ["britain"],                 "note": "Post-1783 only; neutral-trade carrier and China trade." },
-    { "id": "eic",      "name": "East India Company",   "kind": "company", "color": "#7a1f2b", "parent": "britain",  "homePorts": ["london"],     "era": { "from": 1600, "to": 1815 }, "propensity": { "naval": 0.05, "merchant": 0.95 }, "navalPrefix": null,  "article": null,      "rivals": ["france"],                  "note": "British monopoly on the India & China trade." },
-    { "id": "voc",      "name": "V.O.C. (Dutch East India Co.)", "kind": "company", "color": "#b8781a", "parent": "dutch", "homePorts": ["amsterdam"], "era": { "from": 1602, "to": 1799 }, "propensity": { "naval": 0.05, "merchant": 0.95 }, "navalPrefix": null, "article": "dutch", "rivals": ["britain"], "note": "Dissolved 1799; Batavia & Dejima trade." },
-    { "id": "soic",     "name": "Swedish East India Co.", "kind": "company", "color": "#276f8c", "parent": "sweden",  "homePorts": ["gothenburg"], "era": { "from": 1731, "to": 1813 }, "propensity": { "naval": 0.02, "merchant": 0.98 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Gothenburg-Canton tea trade." },
-    { "id": "dac",      "name": "Danish Asiatic Co.",   "kind": "company", "color": "#9e3543", "parent": "denmark",  "homePorts": ["tranquebar"], "era": { "from": 1732, "to": 1815 }, "propensity": { "naval": 0.02, "merchant": 0.98 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Tranquebar & Canton trade under Danish neutral flag." },
-    { "id": "russia",     "name": "Russia",                 "kind": "nation", "color": "#22665a", "homePorts": [], "era": { "from": 1584, "to": 1815 }, "propensity": { "naval": 0.15, "merchant": 0.85 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer (PLAN-2 §5): Arkhangelsk furs & naval stores; the Russian-American Co. after 1799. Spawns once its ports are baked (Phase B)." },
-    { "id": "ottoman",    "name": "Ottoman Empire",         "kind": "nation", "color": "#8c4a5e", "homePorts": [], "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.15, "merchant": 0.85 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer: Smyrna's Levant trade, Kaffa, Ottoman Yemen (Mocha). Carriage largely Greek- and Armenian-crewed under the Ottoman flag." },
-    { "id": "oman",       "name": "Omani Empire",           "kind": "nation", "color": "#7a5230", "homePorts": [], "era": { "from": 1650, "to": 1815 }, "propensity": { "naval": 0.10, "merchant": 0.90 }, "navalPrefix": null, "article": null, "rivals": ["portugal"], "note": "Diversity layer: Muscat's dhow trade; took the Swahili coast from Portugal (Mombasa 1698)." },
-    { "id": "persia",     "name": "Safavid Persia",         "kind": "nation", "color": "#5a8c8c", "homePorts": [], "era": { "from": 1550, "to": 1760 }, "propensity": { "naval": 0.05, "merchant": 0.95 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer: Bandar Abbas silk & cotton after Hormuz falls (1622); fades with the Safavid collapse." },
-    { "id": "ryukyu",     "name": "Ryukyu Kingdom",         "kind": "nation", "color": "#8c6b4a", "homePorts": [], "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.0, "merchant": 1.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer: Naha's licensed tribute trade — the tiny kingdom that laundered the China–Japan exchange." },
-    { "id": "gowa",       "name": "Sultanate of Gowa",      "kind": "nation", "color": "#4a7a5e", "homePorts": [], "era": { "from": 1550, "to": 1669 }, "propensity": { "naval": 0.0, "merchant": 1.0 }, "navalPrefix": null, "article": null, "rivals": ["dutch"], "note": "Diversity layer: Makassar's free-trade spice smuggling against the VOC monopoly, until the city falls in 1669." },
-    { "id": "siam",       "name": "Kingdom of Siam",        "kind": "nation", "color": "#9e7a3a", "homePorts": [], "era": { "from": 1550, "to": 1767 }, "propensity": { "naval": 0.0, "merchant": 1.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer: Ayutthaya's crown junks in the Japan and China trade, until the city's destruction in 1767." },
-    { "id": "ragusa",     "name": "Republic of Ragusa",     "kind": "nation", "color": "#6b5a8c", "homePorts": [], "era": { "from": 1550, "to": 1808 }, "propensity": { "naval": 0.0, "merchant": 1.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer: the neutral Adriatic carrier — 'argosy' is her word — under Ottoman protection." },
-    { "id": "courland",   "name": "Duchy of Courland",      "kind": "nation", "color": "#3a6b7a", "homePorts": [], "era": { "from": 1642, "to": 1698 }, "propensity": { "naval": 0.0, "merchant": 1.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer: Duke Jacob's improbable colonial fleet out of Windau (Tobago, the Gambia)." },
-    { "id": "brandenburg", "name": "Brandenburg-Prussia",   "kind": "nation", "color": "#8c3a3a", "homePorts": [], "era": { "from": 1682, "to": 1721 }, "propensity": { "naval": 0.05, "merchant": 0.95 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer: the Brandenburg African Company's brief Gold Coast venture out of Emden." },
-
-    { "id": "hansa",      "name": "The Hanse towns",        "kind": "nation", "color": "#7a3b2e", "homePorts": ["hamburg", "danzig"], "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.05, "merchant": 0.95 }, "navalPrefix": null, "article": null, "rivals": [], "note": "S2 backbone flag: Hamburg, Danzig, Riga — the Hanseatic and post-Hanseatic German-Baltic carriers. Riga's sovereignty changes (Swedish 1621, Russian 1710) are smeared under this flag, noted." },
-    { "id": "venice",     "name": "Republic of Venice",     "kind": "nation", "color": "#8c1f3f", "homePorts": ["venice"], "era": { "from": 1550, "to": 1797 }, "propensity": { "naval": 0.20, "merchant": 0.80 }, "navalPrefix": null, "article": null, "rivals": ["ottoman"], "note": "S2 backbone flag: the Serenissima, to its fall in 1797." },
-    { "id": "genoa",      "name": "Republic of Genoa",      "kind": "nation", "color": "#3f5f8c", "homePorts": ["genoa"], "era": { "from": 1550, "to": 1797 }, "propensity": { "naval": 0.10, "merchant": 0.90 }, "navalPrefix": null, "article": null, "rivals": [], "note": "S2 backbone flag: banker and carrier of Habsburg silver." },
-    { "id": "tuscany",    "name": "Tuscany (Livorno)",      "kind": "nation", "color": "#8c6b1f", "homePorts": ["livorno"], "era": { "from": 1574, "to": 1815 }, "propensity": { "naval": 0.02, "merchant": 0.98 }, "navalPrefix": null, "article": null, "rivals": [], "note": "S2 backbone flag: the free port's own small marine; most Livorno traffic flies other flags, as it did." },
-    { "id": "naples",     "name": "Kingdom of Naples",      "kind": "nation", "color": "#6b8c3a", "homePorts": ["naples"], "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.10, "merchant": 0.90 }, "navalPrefix": null, "article": null, "rivals": [], "note": "S2 backbone flag: the Mezzogiorno's grain and consumption trade." },
-    { "id": "mughal",     "name": "Mughal India (Gujarati marine)", "kind": "nation", "color": "#3a8c6b", "homePorts": ["surat"], "era": { "from": 1550, "to": 1760 }, "propensity": { "naval": 0.05, "merchant": 0.95 }, "navalPrefix": null, "article": null, "rivals": [], "note": "S2 flag: Surat's own merchant fleet — India's ships in India's trade (Das Gupta). Fades with Mughal authority after 1700; ends as a spawning flag c.1760." },
-    { "id": "china-junk-trade", "name": "The Nanyang junk trade", "kind": "nation", "color": "#a03a1f", "homePorts": ["amoy"], "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.0, "merchant": 1.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "S2 flag (user-funded): the private Fujian/Canton junk diaspora — distinct from the Qing state (a non-spawning shore power). THE Euro-centrism corrective made sailable." },
-    { "id": "tsushima",   "name": "Tsushima (Sō domain)",   "kind": "nation", "color": "#5e6b8c", "homePorts": [], "era": { "from": 1607, "to": 1815 }, "propensity": { "naval": 0.0, "merchant": 1.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "S2 flag (user-funded): the licensed carrier of the Korea trade — ready for Busan's promotion (tranche 2)." },
-    { "id": "bugis",      "name": "The Bugis network",      "kind": "nation", "color": "#8c5e3a", "homePorts": ["makassar"], "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.0, "merchant": 1.0 }, "navalPrefix": null, "article": null, "rivals": ["dutch"], "note": "S2 flag: the archipelago's own carriers — Makassar under Gowa, then the diaspora after 1669 (Reid). Carries the asserted bugis-carrying system." },
-
-    { "id": "golconda",   "name": "Golconda (Qutb Shahi)",  "kind": "shore", "color": "#7a6b8c", "homePorts": [], "era": { "from": 1550, "to": 1687 }, "propensity": { "naval": 0.0, "merchant": 0.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "S2 flag bundle: Masulipatnam's sovereign — non-spawning shore power, ready for the port's promotion (tranche 2)." },
-    { "id": "patani",     "name": "Sultanate of Patani",    "kind": "shore", "color": "#3a7a8c", "homePorts": [], "era": { "from": 1550, "to": 1688 }, "propensity": { "naval": 0.0, "merchant": 0.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "S2 flag bundle: the queens of Patani — non-spawning shore power, ready for the port's promotion (tranche 3)." },
-
-    { "id": "wic",        "name": "W.I.C. (Dutch West India Co.)", "kind": "company", "color": "#c47a2a", "parent": "dutch", "homePorts": ["amsterdam"], "era": { "from": 1621, "to": 1792 }, "propensity": { "naval": 0.10, "merchant": 0.90 }, "navalPrefix": null, "article": "dutch", "rivals": ["spain", "portugal"], "note": "Diversity layer: the Atlantic counterpart of the VOC — Brazil, Elmina, St Eustatius, and the treasure-fleet war." },
-    { "id": "rac",        "name": "Russian-American Company", "kind": "company", "color": "#1f5b4a", "parent": "russia", "homePorts": [], "era": { "from": 1799, "to": 1815 }, "propensity": { "naval": 0.0, "merchant": 1.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer: Sitka sea-otter furs for the Canton market." },
-
-    { "id": "african",  "name": "African polities (embarkation)", "kind": "shore", "color": "#6b5b3e", "homePorts": ["whydah"], "era": { "from": 1600, "to": 1815 }, "propensity": { "naval": 0.0, "merchant": 0.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Not a spawning flag — the coastal polities (Hueda, later Dahomey) that controlled embarkation at Whydah. Present so the African side of the Atlantic trade is named, not effaced." },
-    { "id": "efik",       "name": "Efik city-states",       "kind": "shore", "color": "#5e4a32", "homePorts": [], "era": { "from": 1600, "to": 1815 }, "propensity": { "naval": 0.0, "merchant": 0.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer, not a spawning flag: Old Calabar's merchant houses (Duke Town, Creek Town), who controlled the Bight of Biafra trade on their own terms." },
-    { "id": "joseon",     "name": "Joseon Korea",           "kind": "shore", "color": "#6b7a8c", "homePorts": [], "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.0, "merchant": 0.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer, not a spawning flag: Busan's Japan House (Waegwan) — trade conducted by licensed Tsushima vessels." },
-    { "id": "zamorin",    "name": "Zamorin of Calicut",     "kind": "shore", "color": "#7a6b3a", "homePorts": [], "era": { "from": 1550, "to": 1766 }, "propensity": { "naval": 0.0, "merchant": 0.0 }, "navalPrefix": null, "article": null, "rivals": ["portugal"], "note": "Diversity layer, not a spawning flag: the Malabar pepper sovereign who resisted the Portuguese monopoly for two centuries." },
-    { "id": "maldives",   "name": "Maldive Sultanate",      "kind": "shore", "color": "#4a7a8c", "homePorts": [], "era": { "from": 1550, "to": 1815 }, "propensity": { "naval": 0.0, "merchant": 0.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer, not a spawning flag: Malé's cowrie-money fishery, carried to Bengal in local and Indian bottoms." },
-    { "id": "crimea",     "name": "Crimean Khanate",        "kind": "shore", "color": "#8c7a5e", "homePorts": [], "era": { "from": 1550, "to": 1783 }, "propensity": { "naval": 0.0, "merchant": 0.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer, not a spawning flag: Kaffa's Black Sea trade — including its slave market, to be treated with the same sober factual framing as the Atlantic trade." },
-    { "id": "nguyen",     "name": "Nguyễn lords (Đàng Trong)", "kind": "shore", "color": "#5e8c6b", "homePorts": [], "era": { "from": 1558, "to": 1777 }, "propensity": { "naval": 0.0, "merchant": 0.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Diversity layer, not a spawning flag: Hội An's licensed junk fair — silk, ceramics, aloeswood." },
-    { "id": "qing",     "name": "Qing China",           "kind": "shore",   "color": "#8c6b1f", "homePorts": ["canton"], "era": { "from": 1600, "to": 1815 }, "propensity": { "naval": 0.0, "merchant": 0.0 }, "navalPrefix": null, "article": null, "rivals": [], "note": "Not a spawning flag — controls Canton, where Western company ships were confined to the Thirteen Factories." }
+    {
+      "id": "britain",
+      "name": "Great Britain",
+      "kind": "nation",
+      "color": "#9e2b25",
+      "homePorts": [
+        "london",
+        "liverpool",
+        "kingston"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.28,
+        "merchant": 0.72
+      },
+      "navalPrefix": "HMS",
+      "article": null,
+      "rivals": [
+        "france",
+        "spain",
+        "usa"
+      ],
+      "note": "Dominant naval and mercantile power across the era."
+    },
+    {
+      "id": "france",
+      "name": "France",
+      "kind": "nation",
+      "color": "#2b4b9e",
+      "homePorts": [
+        "bordeaux",
+        "nantes"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.22,
+        "merchant": 0.78
+      },
+      "navalPrefix": null,
+      "article": "romance",
+      "rivals": [
+        "britain"
+      ],
+      "note": "Britain's chief rival; Atlantic colonial and slaving trade."
+    },
+    {
+      "id": "dutch",
+      "name": "Dutch Republic",
+      "kind": "nation",
+      "color": "#d98a1f",
+      "homePorts": [
+        "amsterdam"
+      ],
+      "era": {
+        "from": 1581,
+        "to": 1795
+      },
+      "propensity": {
+        "naval": 0.18,
+        "merchant": 0.82
+      },
+      "navalPrefix": null,
+      "article": "dutch",
+      "rivals": [
+        "britain",
+        "france"
+      ],
+      "note": "Fades after 1795 (Batavian Republic / French client)."
+    },
+    {
+      "id": "netherlands",
+      "name": "Kingdom of the Netherlands",
+      "kind": "nation",
+      "color": "#e0a03a",
+      "homePorts": [
+        "amsterdam",
+        "rotterdam"
+      ],
+      "era": {
+        "from": 1815,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.18,
+        "merchant": 0.82
+      },
+      "navalPrefix": null,
+      "article": "dutch",
+      "rivals": [
+        "britain"
+      ],
+      "note": "Succeeds the Dutch Republic (which ends 1795). The Japan trade 1817-1858 ran on the Netherlands Indies colonial government's account from Batavia in chartered private hulls - NOT the NHM, which took over only in 1859 (verified 2026-07-18)."
+    },
+    {
+      "id": "spain",
+      "name": "Spain",
+      "kind": "nation",
+      "color": "#c9a227",
+      "homePorts": [
+        "cadiz"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.3,
+        "merchant": 0.7
+      },
+      "navalPrefix": null,
+      "article": "romance",
+      "rivals": [
+        "britain"
+      ],
+      "note": "Carrera de Indias; frequently allied to France."
+    },
+    {
+      "id": "portugal",
+      "name": "Portugal",
+      "kind": "nation",
+      "color": "#3f7d52",
+      "homePorts": [
+        "lisbon",
+        "bahia"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.2,
+        "merchant": 0.8
+      },
+      "navalPrefix": null,
+      "article": "romance",
+      "rivals": [],
+      "note": "Brazil & Estado da India; usually British-aligned."
+    },
+    {
+      "id": "sweden",
+      "name": "Sweden",
+      "kind": "nation",
+      "color": "#2f6f9e",
+      "homePorts": [
+        "gothenburg"
+      ],
+      "era": {
+        "from": 1600,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.15,
+        "merchant": 0.85
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Neutral carrier; Baltic iron/timber and SOIC China trade."
+    },
+    {
+      "id": "denmark",
+      "name": "Denmark-Norway",
+      "kind": "nation",
+      "color": "#b23b4a",
+      "homePorts": [
+        "tranquebar"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.15,
+        "merchant": 0.85
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Neutral carrier; Danish Asiatic Co."
+    },
+    {
+      "id": "usa",
+      "name": "United States",
+      "kind": "nation",
+      "color": "#3a5a8c",
+      "homePorts": [],
+      "era": {
+        "from": 1783,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.1,
+        "merchant": 0.9
+      },
+      "navalPrefix": "USS",
+      "article": null,
+      "rivals": [
+        "britain"
+      ],
+      "note": "Post-1783 only; neutral-trade carrier and China trade."
+    },
+    {
+      "id": "eic",
+      "name": "East India Company",
+      "kind": "company",
+      "color": "#7a1f2b",
+      "parent": "britain",
+      "homePorts": [
+        "london"
+      ],
+      "era": {
+        "from": 1600,
+        "to": 1834
+      },
+      "propensity": {
+        "naval": 0.05,
+        "merchant": 0.95
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [
+        "france"
+      ],
+      "note": "British monopoly on the India & China trade."
+    },
+    {
+      "id": "voc",
+      "name": "V.O.C. (Dutch East India Co.)",
+      "kind": "company",
+      "color": "#b8781a",
+      "parent": "dutch",
+      "homePorts": [
+        "amsterdam"
+      ],
+      "era": {
+        "from": 1602,
+        "to": 1799
+      },
+      "propensity": {
+        "naval": 0.05,
+        "merchant": 0.95
+      },
+      "navalPrefix": null,
+      "article": "dutch",
+      "rivals": [
+        "britain"
+      ],
+      "note": "Dissolved 1799; Batavia & Dejima trade."
+    },
+    {
+      "id": "soic",
+      "name": "Swedish East India Co.",
+      "kind": "company",
+      "color": "#276f8c",
+      "parent": "sweden",
+      "homePorts": [
+        "gothenburg"
+      ],
+      "era": {
+        "from": 1731,
+        "to": 1813
+      },
+      "propensity": {
+        "naval": 0.02,
+        "merchant": 0.98
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Gothenburg-Canton tea trade."
+    },
+    {
+      "id": "dac",
+      "name": "Danish Asiatic Co.",
+      "kind": "company",
+      "color": "#9e3543",
+      "parent": "denmark",
+      "homePorts": [
+        "tranquebar"
+      ],
+      "era": {
+        "from": 1732,
+        "to": 1815
+      },
+      "propensity": {
+        "naval": 0.02,
+        "merchant": 0.98
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Tranquebar & Canton trade under Danish neutral flag."
+    },
+    {
+      "id": "russia",
+      "name": "Russia",
+      "kind": "nation",
+      "color": "#22665a",
+      "homePorts": [],
+      "era": {
+        "from": 1584,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.15,
+        "merchant": 0.85
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer (PLAN-2 §5): Arkhangelsk furs & naval stores; the Russian-American Co. after 1799. Spawns once its ports are baked (Phase B)."
+    },
+    {
+      "id": "ottoman",
+      "name": "Ottoman Empire",
+      "kind": "nation",
+      "color": "#8c4a5e",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.15,
+        "merchant": 0.85
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer: Smyrna's Levant trade, Kaffa, Ottoman Yemen (Mocha). Carriage largely Greek- and Armenian-crewed under the Ottoman flag."
+    },
+    {
+      "id": "oman",
+      "name": "Omani Empire",
+      "kind": "nation",
+      "color": "#7a5230",
+      "homePorts": [],
+      "era": {
+        "from": 1650,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.1,
+        "merchant": 0.9
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [
+        "portugal"
+      ],
+      "note": "Diversity layer: Muscat's dhow trade; took the Swahili coast from Portugal (Mombasa 1698)."
+    },
+    {
+      "id": "persia",
+      "name": "Safavid Persia",
+      "kind": "nation",
+      "color": "#5a8c8c",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1760
+      },
+      "propensity": {
+        "naval": 0.05,
+        "merchant": 0.95
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer: Bandar Abbas silk & cotton after Hormuz falls (1622); fades with the Safavid collapse."
+    },
+    {
+      "id": "ryukyu",
+      "name": "Ryukyu Kingdom",
+      "kind": "nation",
+      "color": "#8c6b4a",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 1.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer: Naha's licensed tribute trade — the tiny kingdom that laundered the China–Japan exchange."
+    },
+    {
+      "id": "gowa",
+      "name": "Sultanate of Gowa",
+      "kind": "nation",
+      "color": "#4a7a5e",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1669
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 1.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [
+        "dutch"
+      ],
+      "note": "Diversity layer: Makassar's free-trade spice smuggling against the VOC monopoly, until the city falls in 1669."
+    },
+    {
+      "id": "siam",
+      "name": "Kingdom of Siam",
+      "kind": "nation",
+      "color": "#9e7a3a",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1767
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 1.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer: Ayutthaya's crown junks in the Japan and China trade, until the city's destruction in 1767."
+    },
+    {
+      "id": "ragusa",
+      "name": "Republic of Ragusa",
+      "kind": "nation",
+      "color": "#6b5a8c",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1808
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 1.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer: the neutral Adriatic carrier — 'argosy' is her word — under Ottoman protection."
+    },
+    {
+      "id": "courland",
+      "name": "Duchy of Courland",
+      "kind": "nation",
+      "color": "#3a6b7a",
+      "homePorts": [],
+      "era": {
+        "from": 1642,
+        "to": 1698
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 1.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer: Duke Jacob's improbable colonial fleet out of Windau (Tobago, the Gambia)."
+    },
+    {
+      "id": "brandenburg",
+      "name": "Brandenburg-Prussia",
+      "kind": "nation",
+      "color": "#8c3a3a",
+      "homePorts": [],
+      "era": {
+        "from": 1682,
+        "to": 1721
+      },
+      "propensity": {
+        "naval": 0.05,
+        "merchant": 0.95
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer: the Brandenburg African Company's brief Gold Coast venture out of Emden."
+    },
+    {
+      "id": "hansa",
+      "name": "The Hanse towns",
+      "kind": "nation",
+      "color": "#7a3b2e",
+      "homePorts": [
+        "hamburg",
+        "danzig"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.05,
+        "merchant": 0.95
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "S2 backbone flag: Hamburg, Danzig, Riga — the Hanseatic and post-Hanseatic German-Baltic carriers. Riga's sovereignty changes (Swedish 1621, Russian 1710) are smeared under this flag, noted."
+    },
+    {
+      "id": "venice",
+      "name": "Republic of Venice",
+      "kind": "nation",
+      "color": "#8c1f3f",
+      "homePorts": [
+        "venice"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1797
+      },
+      "propensity": {
+        "naval": 0.2,
+        "merchant": 0.8
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [
+        "ottoman"
+      ],
+      "note": "S2 backbone flag: the Serenissima, to its fall in 1797."
+    },
+    {
+      "id": "genoa",
+      "name": "Republic of Genoa",
+      "kind": "nation",
+      "color": "#3f5f8c",
+      "homePorts": [
+        "genoa"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1797
+      },
+      "propensity": {
+        "naval": 0.1,
+        "merchant": 0.9
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "S2 backbone flag: banker and carrier of Habsburg silver."
+    },
+    {
+      "id": "tuscany",
+      "name": "Tuscany (Livorno)",
+      "kind": "nation",
+      "color": "#8c6b1f",
+      "homePorts": [
+        "livorno"
+      ],
+      "era": {
+        "from": 1574,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.02,
+        "merchant": 0.98
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "S2 backbone flag: the free port's own small marine; most Livorno traffic flies other flags, as it did. Extended to 1850 with the era: the Grand Duchy of Tuscany lasted until 1859, and Livorno's free port went on trading through the Napoleonic interruption and the 1815 restoration."
+    },
+    {
+      "id": "naples",
+      "name": "Kingdom of Naples",
+      "kind": "nation",
+      "color": "#6b8c3a",
+      "homePorts": [
+        "naples"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.1,
+        "merchant": 0.9
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "S2 backbone flag: the Mezzogiorno's grain and consumption trade."
+    },
+    {
+      "id": "mughal",
+      "name": "Mughal India (Gujarati marine)",
+      "kind": "nation",
+      "color": "#3a8c6b",
+      "homePorts": [
+        "surat"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1760
+      },
+      "propensity": {
+        "naval": 0.05,
+        "merchant": 0.95
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "S2 flag: Surat's own merchant fleet — India's ships in India's trade (Das Gupta). Fades with Mughal authority after 1700; ends as a spawning flag c.1760."
+    },
+    {
+      "id": "china-junk-trade",
+      "name": "The Nanyang junk trade",
+      "kind": "nation",
+      "color": "#a03a1f",
+      "homePorts": [
+        "amoy"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 1.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "S2 flag (user-funded): the private Fujian/Canton junk diaspora — distinct from the Qing state (a non-spawning shore power). THE Euro-centrism corrective made sailable."
+    },
+    {
+      "id": "tsushima",
+      "name": "Tsushima (Sō domain)",
+      "kind": "nation",
+      "color": "#5e6b8c",
+      "homePorts": [],
+      "era": {
+        "from": 1607,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 1.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "S2 flag (user-funded): the licensed carrier of the Korea trade — ready for Busan's promotion (tranche 2). Era extended to 1850: the 1815 end was the old chart horizon. The So domain held its Korea trade to the Meiji restoration, and the Maldive sultanate ran to 1953."
+    },
+    {
+      "id": "bugis",
+      "name": "The Bugis network",
+      "kind": "nation",
+      "color": "#8c5e3a",
+      "homePorts": [
+        "makassar"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 1.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [
+        "dutch"
+      ],
+      "note": "S2 flag: the archipelago's own carriers — Makassar under Gowa, then the diaspora after 1669 (Reid). Carries the asserted bugis-carrying system."
+    },
+    {
+      "id": "golconda",
+      "name": "Golconda (Qutb Shahi)",
+      "kind": "shore",
+      "color": "#7a6b8c",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1687
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "S2 flag bundle: Masulipatnam's sovereign — non-spawning shore power, ready for the port's promotion (tranche 2)."
+    },
+    {
+      "id": "patani",
+      "name": "Sultanate of Patani",
+      "kind": "shore",
+      "color": "#3a7a8c",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1688
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "S2 flag bundle: the queens of Patani — non-spawning shore power, ready for the port's promotion (tranche 3)."
+    },
+    {
+      "id": "wic",
+      "name": "W.I.C. (Dutch West India Co.)",
+      "kind": "company",
+      "color": "#c47a2a",
+      "parent": "dutch",
+      "homePorts": [
+        "amsterdam"
+      ],
+      "era": {
+        "from": 1621,
+        "to": 1792
+      },
+      "propensity": {
+        "naval": 0.1,
+        "merchant": 0.9
+      },
+      "navalPrefix": null,
+      "article": "dutch",
+      "rivals": [
+        "spain",
+        "portugal"
+      ],
+      "note": "Diversity layer: the Atlantic counterpart of the VOC — Brazil, Elmina, St Eustatius, and the treasure-fleet war."
+    },
+    {
+      "id": "rac",
+      "name": "Russian-American Company",
+      "kind": "company",
+      "color": "#1f5b4a",
+      "parent": "russia",
+      "homePorts": [],
+      "era": {
+        "from": 1799,
+        "to": 1815
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 1.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer: Sitka sea-otter furs for the Canton market."
+    },
+    {
+      "id": "african",
+      "name": "African polities (embarkation)",
+      "kind": "shore",
+      "color": "#6b5b3e",
+      "homePorts": [
+        "whydah"
+      ],
+      "era": {
+        "from": 1600,
+        "to": 1815
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Not a spawning flag — the coastal polities (Hueda, later Dahomey) that controlled embarkation at Whydah. Present so the African side of the Atlantic trade is named, not effaced."
+    },
+    {
+      "id": "efik",
+      "name": "Efik city-states",
+      "kind": "shore",
+      "color": "#5e4a32",
+      "homePorts": [],
+      "era": {
+        "from": 1600,
+        "to": 1815
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer, not a spawning flag: Old Calabar's merchant houses (Duke Town, Creek Town), who controlled the Bight of Biafra trade on their own terms."
+    },
+    {
+      "id": "joseon",
+      "name": "Joseon Korea",
+      "kind": "shore",
+      "color": "#6b7a8c",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer, not a spawning flag: Busan's Japan House (Waegwan) — trade conducted by licensed Tsushima vessels. Era extended to 1850 with the chart: Joseon lasted to 1897 and the Qing to 1912 — the 1815 end was the old horizon, not history."
+    },
+    {
+      "id": "zamorin",
+      "name": "Zamorin of Calicut",
+      "kind": "shore",
+      "color": "#7a6b3a",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1766
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [
+        "portugal"
+      ],
+      "note": "Diversity layer, not a spawning flag: the Malabar pepper sovereign who resisted the Portuguese monopoly for two centuries."
+    },
+    {
+      "id": "maldives",
+      "name": "Maldive Sultanate",
+      "kind": "shore",
+      "color": "#4a7a8c",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer, not a spawning flag: Malé's cowrie-money fishery, carried to Bengal in local and Indian bottoms. Era extended to 1850: the 1815 end was the old chart horizon. The So domain held its Korea trade to the Meiji restoration, and the Maldive sultanate ran to 1953."
+    },
+    {
+      "id": "crimea",
+      "name": "Crimean Khanate",
+      "kind": "shore",
+      "color": "#8c7a5e",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1783
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer, not a spawning flag: Kaffa's Black Sea trade — including its slave market, to be treated with the same sober factual framing as the Atlantic trade."
+    },
+    {
+      "id": "nguyen",
+      "name": "Nguyễn lords (Đàng Trong)",
+      "kind": "shore",
+      "color": "#5e8c6b",
+      "homePorts": [],
+      "era": {
+        "from": 1558,
+        "to": 1777
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Diversity layer, not a spawning flag: Hội An's licensed junk fair — silk, ceramics, aloeswood."
+    },
+    {
+      "id": "qing",
+      "name": "Qing China",
+      "kind": "shore",
+      "color": "#8c6b1f",
+      "homePorts": [
+        "canton"
+      ],
+      "era": {
+        "from": 1600,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Not a spawning flag — controls Canton, where Western company ships were confined to the Thirteen Factories. Era extended to 1850 with the chart: Joseon lasted to 1897 and the Qing to 1912 — the 1815 end was the old horizon, not history."
+    },
+    {
+      "id": "algiers",
+      "name": "Regency of Algiers",
+      "kind": "nation",
+      "color": "#7a6a3c",
+      "homePorts": [
+        "algiers"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1830
+      },
+      "propensity": {
+        "naval": 0.2,
+        "merchant": 0.8
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "The Regency of Algiers, conventionally dated from 1516 (NOT 'Ottoman from 1525'). Ends 1830 at the French conquest; the port itself continues under france from that year via eraPowers."
+    },
+    {
+      "id": "tunis",
+      "name": "Regency of Tunis",
+      "kind": "nation",
+      "color": "#9a7b4f",
+      "homePorts": [
+        "tunis"
+      ],
+      "era": {
+        "from": 1574,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.2,
+        "merchant": 0.8
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "The Regency of Tunis: Ottoman from 1574, Husainid from 1705, still a Regency past 1850."
+    },
+    {
+      "id": "tripoli",
+      "name": "Regency of Tripoli",
+      "kind": "nation",
+      "color": "#8a6b55",
+      "homePorts": [
+        "tripoli"
+      ],
+      "era": {
+        "from": 1551,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.2,
+        "merchant": 0.8
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "The Regency of Tripoli: Ottoman from 1551, Karamanli 1711-1835, then Ottoman again. The maritime terminus of a Saharan caravan trade."
+    },
+    {
+      "id": "mowachaht",
+      "name": "Mowachaht (Nuu-chah-nulth)",
+      "kind": "shore",
+      "color": "#5f7a5a",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0,
+        "merchant": 1
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Nootka Sound was Mowachaht territory, and Maquinna's people controlled who traded there - the American and British fur ships anchored at their sufferance, not in a vacant harbour. A SHORE power (it spawns no vessels, like african and qing): the ships on the nootka-fur lanes fly American and British colours, which is the honest division. Flagging the anchorage itself American would have written the owners out of their own harbour."
+    },
+    {
+      "id": "peru",
+      "name": "Peru",
+      "kind": "nation",
+      "color": "#b06a3c",
+      "homePorts": [
+        "callao"
+      ],
+      "era": {
+        "from": 1821,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.12,
+        "merchant": 0.88
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Independent from 1821; Callao fell in January 1826, the last Spanish position in South America."
+    },
+    {
+      "id": "chile",
+      "name": "Chile",
+      "kind": "nation",
+      "color": "#3c6ab0",
+      "homePorts": [
+        "valparaiso"
+      ],
+      "era": {
+        "from": 1818,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.12,
+        "merchant": 0.88
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Independent from 1818. Valparaiso became the first Pacific call for shipping round the Horn and a rising entrepot through the 1830s and 40s."
+    },
+    {
+      "id": "austria",
+      "name": "Austrian Netherlands (Imperial)",
+      "kind": "nation",
+      "color": "#c8a63c",
+      "homePorts": [
+        "ostend"
+      ],
+      "era": {
+        "from": 1715,
+        "to": 1744
+      },
+      "propensity": {
+        "naval": 0.05,
+        "merchant": 0.95
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "The double-headed eagle at sea: private Ostend voyages from 1715, the chartered Ostend Company 1722-27, wound up by the Treaty of Vienna, with a Bengal afterlife at Banquibazar to 1744. Deliberately clamped to that span."
+    },
+    {
+      "id": "aceh",
+      "name": "Sultanate of Aceh",
+      "kind": "nation",
+      "color": "#4f7a63",
+      "homePorts": [
+        "aceh"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.1,
+        "merchant": 0.9
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "The pepper sultanate at Sumatra's northern tip, shipping direct to the Red Sea and outflanking the Portuguese Cape route. Its own polity and its own shipping — it was filed under the Zamorin here by mistake, which put an Acehnese fleet under a Malabar flag."
+    },
+    {
+      "id": "banten",
+      "name": "Sultanate of Banten",
+      "kind": "nation",
+      "color": "#6a7a4f",
+      "homePorts": [
+        "bantam"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1685
+      },
+      "propensity": {
+        "naval": 0.1,
+        "merchant": 0.9
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Banten: the archipelago's pepper emporium and Batavia's rival until the VOC conquest of 1682-84. Its own sultanate, not Gowa's — the two are a thousand miles and a different people apart."
+    },
+    {
+      "id": "hbc",
+      "name": "Hudson's Bay Company",
+      "kind": "company",
+      "parent": "britain",
+      "color": "#4a6a8c",
+      "homePorts": [
+        "york-factory"
+      ],
+      "era": {
+        "from": 1670,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.05,
+        "merchant": 0.95
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Chartered 1670. One or two ships a year to the Bay and home again inside the ice-free window — a tiny, utterly regular traffic."
+    }
   ]
 }

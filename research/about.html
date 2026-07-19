@@ -61,8 +61,9 @@ public <a href="silences.html">silences register</a>, and sober treatment of coe
 it appears.</p>
 
 <h2>How the world sails itself</h2>
-<p>The simulation is a seeded, deterministic world running a flowing clock from <b>1550 to 1815</b>, after
-which the chart is &ldquo;redrawn&rdquo; over a five-year ramp and the cycle begins again. Every vessel is
+<p>The simulation is a seeded, deterministic world running a flowing clock from <b>1550 to 1850</b>, after
+which the chart is &ldquo;redrawn&rdquo; over a designed ten-year epilogue decade (1850&ndash;1860) &mdash; the age
+of sail winding down &mdash; and the cycle begins again. Every vessel is
 generated the moment she puts to sea: her lane is drawn from the era&rsquo;s trade-flow weights, then her
 type, flag, tonnage, cargo, name, and master follow from period-specific vocabularies, and her entire
 fate — every leg, every port call, whether and when she is lost — is rolled at spawn from her own random
@@ -106,13 +107,16 @@ trade her voyage samples. There are five:</p>
 </dl>
 
 <h2>How the ports were chosen</h2>
-<p>The world sails <b>66 ports</b>, chosen in three layers. The backbone is the flow matrix itself: the ports
-the sixty systems need (Hamburg, Danzig, Riga, St Petersburg, Venice, Genoa, Marseille, Boston, New York,
+<p>The world sails <b>105 ports</b>, chosen in three layers. The backbone is the flow matrix itself: the ports
+the flow systems need (Hamburg, Danzig, Riga, St Petersburg, Venice, Genoa, Marseille, Boston, New York,
 Havana, Surat, Calcutta, Amoy…). On top of that sits a curated diversity tranche — minor ports that never
 troubled a ranking but carry a monopoly, a chokepoint, a single precious cargo, or the flag of an otherwise
-excluded people (Dejima, Tranquebar, Banda Neira, Naha). Last come six declared exceptions kept for what
+excluded people (Dejima, Tranquebar, Banda Neira, Naha). Last come declared exceptions kept for what
 they say about the record itself — Istanbul above all, present <i>without a rank</i> for decades because the
-sources support presence but not ranking; that state is data, not a defect.</p>
+sources support presence but not ranking; that state is data, not a defect. The 1815&ndash;1850 extension
+added the ports of the later age of sail (Singapore, Hong Kong, Sydney, Montevideo, New Orleans) alongside a
+whaling-grounds node off Peru, the Hudson&rsquo;s Bay supply post at York Factory, and the Persian Gulf pair
+Basra and Bandar Abbas &mdash; each with its founding window and, where it changed hands, the flag of the time.</p>
 <p>Ports also live and die: founding and destruction windows are enforced against every lane
 (no Kingston before 1655; Smeerenburg&rsquo;s blubber town burns out by 1660; Kaffa closes in 1783), a
 destroyed harbour keeps a faint ruin mark because the chart remembers, and the dot speaks <b>the dominant
@@ -152,11 +156,12 @@ Indian Ocean slave trades sail under validator-enforced sober framing of their o
 <ul>
   <li><b>Vessels are statistical samples, not registered hulls.</b> Each ship stands for the traffic of her lane in her decade; names, masters, and tonnages are plausible vocabulary, not archival entries.</li>
   <li><b>One seed, one reading.</b> Each world realizes a single value from every trade&rsquo;s [low, high] evidence range. Uncertainty lives <i>between</i> worlds, not within one.</li>
-  <li><b>Coverage is partial and declared.</b> The folded flow systems account for roughly 76–89% of recorded world voyage volume depending on the decade; the remainder is either unsailable at this port roster or lives in the <a href="silences.html">silences register</a>.</li>
+  <li><b>Coverage is partial and declared.</b> The folded flow systems account for roughly 85–95% of recorded world voyage volume depending on the decade; the remainder is either unsailable at this port roster or lives in the <a href="silences.html">silences register</a>.</li>
+  <li><b>Steam is a declared boundary.</b> This chart follows sail. The age of steam opens in exactly the decades the world sails into last — the P&amp;O mail to Hong Kong from 1845, the first ocean steamers on the Atlantic — but the wind-and-current engine that shapes every route here cannot produce a steamer&rsquo;s track, so steam is surfaced (the epilogue era note, this paragraph) and never sailed. A steam layer is deferred, on record.</li>
   <li><b>Spawn pacing is clamped.</b> Traffic follows the realized totals but is held within 0.5–1.6× the era mean, so the 1550s never feel empty and the 1810s never swamp the renderer — a spectator concession, on record.</li>
   <li><b>A residual floor keeps authored lanes alive.</b> About 3% of volume is spread across era-active lanes so no authored trade fully vanishes between decades; naval movements are a fixed ~6% pool outside the commercial matrix.</li>
   <li><b>Weather is climatology, not events.</b> Routes are seasonal averages; the one era-climate signal is a bounded +7% passage-time factor on North Atlantic legs during the Maunder Minimum (1645–1715). Hurricane and wartime risk raise <i>loss odds</i>, not individual storms.</li>
-  <li><b>The loop is a fiction.</b> History does not restart in 1550; the five-year &ldquo;redrawing&rdquo; ramp exists so an idler can run forever, and the era label says so while it happens.</li>
+  <li><b>The loop is a fiction.</b> History does not restart in 1550; the ten-year epilogue &ldquo;redrawing&rdquo; decade (1850&ndash;1860) exists so an idler can run forever, and the era label says so while it happens.</li>
 </ul>
 
 <h2>Sources &amp; further reading</h2>

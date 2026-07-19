@@ -53,9 +53,22 @@ superseded by this synthesis.*
   eight vessels) → [4,8] 1840s (counted 4–6/yr 1846–51). Quiet
   contraction; no pre-1853 change.
 - **voc-japan → dutch-japan** (resume): extend past the current 1795 cut —
-  regular Batavia–Nagasaki sailings resume 1815 at [1,2]/yr and hold to
-  1850 (the 1791 one-Dutch-ship ceiling formally unchanged to 1859);
-  re-flag post-1815 carriage (Netherlands Trading Society, not VOC).
+  Batavia–Dejima sailings hold at [1,2]/yr to 1850 (the 1791 one-Dutch-ship
+  ceiling formally unchanged to 1859 — this part held up).
+  **⚠ CORRECTED 2026-07-18 by a dedicated source verification at authoring —
+  two claims in this bullet were WRONG:** (1) the resumption is **1817, not
+  1815** — 1815 is the political restoration of the Indies, not shipping; the
+  first ships (two, bringing Blomhoff) arrived 1817 to a factory of six
+  remaining Dutchmen. (2) the carrier was **NOT** the Netherlands Trading
+  Society — 1817–1858 the trade ran on the **Netherlands Indies colonial
+  government's** account from Batavia in chartered private hulls; the **NHM
+  took over only in 1859**. Also established: ~13 arrivals 1797–1809 on
+  chartered **American** hulls under Dutch colours, and **eight shipless years**
+  (1804, 1805, 1808, 1810–12, 1815–16) — 1810–12 a hard stop, the Nagasaki
+  kaisho feeding the factory monthly by shogunal order. A counted series is
+  recoverable from the Dejima archive **NL-HaNA 1.04.21**. Authored as:
+  `voc-japan` ends 1795, `dutch-japan` runs 1817–1850, and the gap is the
+  silences entry `dejima-disrupted-1795-1816`.
   Deliberately boring — the honest closed-Japan signal at era end.
 
 ## 2. Indian Ocean W — per-decade guidance

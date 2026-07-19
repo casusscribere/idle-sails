@@ -19,8 +19,8 @@ const OUT = join(ROOT, 'data');
 const ARCHIVE_FIELDS = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'data', 'fields');
 const LAND_SRC = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'assets', 'land.geojson');
 
-const DATASET_VERSION = 4;              // v4: era-named ports + reopened Banks-fishery lanes — invalidates v3 saves
-const ERA = { from: 1550, to: 1815 };   // flowing-clock scope
+const DATASET_VERSION = 5;              // v5: era extended 1550→1850 (PLAN-6); 310-yr cycle — invalidates v4 saves
+const ERA = { from: 1550, to: 1850 };   // flowing-clock scope (Phase-1 X-S1: 1815→1850)
 const ROUTE_CLASSES = ['frigate', 'indiaman', 'brig', 'slaver', 'junk', 'dhow'];   // junk/dhow: own polars since S2
 const SEASONS = ['djf', 'mam', 'jja', 'son'];
 const REGIONS = new Set(['britain', 'lowlands', 'france', 'iberia', 'baltic', 'caribbean',
@@ -28,7 +28,7 @@ const REGIONS = new Set(['britain', 'lowlands', 'france', 'iberia', 'baltic', 'c
   // diversity-layer regions (PLAN-2 §5): in the cargo/power vocabulary now,
   // gaining ports when Phase B bakes the minor-port routes.
   'east-asia', 'indian-ocean', 'arabia', 'persian-gulf', 'east-africa',
-  'arctic', 'mediterranean', 'black-sea', 'north-pacific']);
+  'arctic', 'mediterranean', 'black-sea', 'north-pacific', 'south-pacific']);
 const SELFCHECK_N = 2000;
 
 const errors = [];
@@ -83,6 +83,23 @@ for (const p of ports) {
       expect = en.to + 1;
     }
     if (expect !== w.to + 1) err(`port ${p.id}: eraNames end ${expect - 1}, must reach the window end ${w.to}`);
+  }
+  // era powers (optional): when the flag over a dot changes mid-era (Algiers to
+  // France in 1830, Callao to Peru, Valparaíso to Chile). Validated on the same
+  // terms as eraNames — known power, in era, tiling the active window exactly —
+  // because nothing CONSUMES this field yet, and an unvalidated field is one
+  // that rots silently until the day something finally reads it.
+  if (p.eraPowers !== undefined) {
+    const w = p.active || ERA;
+    if (!Array.isArray(p.eraPowers) || !p.eraPowers.length) err(`port ${p.id}: eraPowers must be a non-empty array`);
+    let expect = w.from;
+    for (const ep of p.eraPowers || []) {
+      if (!powerById.has(ep.power)) err(`port ${p.id}: eraPowers unknown power '${ep.power}'`);
+      inEra({ from: ep.from, to: ep.to }, `port ${p.id} eraPowers '${ep.power}'`);
+      if (ep.from !== expect) err(`port ${p.id}: eraPowers '${ep.power}' starts ${ep.from}, expected ${expect} (must tile the window)`);
+      expect = ep.to + 1;
+    }
+    if (expect !== w.to + 1) err(`port ${p.id}: eraPowers end ${expect - 1}, must reach the window end ${w.to}`);
   }
 }
 // The port-lifecycle window a lane must respect (default: the whole era).
@@ -241,8 +258,14 @@ let covReport = '';
       for (const l of s.lanes || []) {
         const pf = proxy[l.from], pt = proxy[l.to];
         if (!pf || !pt || pf === pt) continue;
-        const cands = pairIdx.get(`${pf}->${pt}`);
-        if (!cands) continue;
+        // A flow system may only fold onto lanes that were actually sailing while it
+        // ran: endpoint identity is not enough. Batavia->Amsterdam is sailed by the
+        // VOC lane (dead 1795) AND the post-1824 Netherlands lane; without this gate
+        // the NHM's volume pours into a route no ship has taken for thirty years.
+        const se = s.era || ERA;
+        const cands = (pairIdx.get(`${pf}->${pt}`) || [])
+          .filter((r) => r.era.from <= se.to && r.era.to >= se.from);
+        if (!cands.length) continue;
         const wsum = cands.reduce((x, r) => x + (r.weight || 1), 0);
         for (const r of cands) folded[r.id] = (folded[r.id] || 0) + l.share * (r.weight || 1) / wsum;
         foldedShare += l.share;
@@ -266,7 +289,7 @@ let covReport = '';
       }
     }
     for (const [lid] of pairIdx) void lid;
-    covReport = [1550, 1650, 1750, 1810].map(d => `${d}s ${covByDec[d] ? Math.round(100 * covByDec[d].folded / covByDec[d].total) : 0}%`).join(' · ');
+    covReport = [1550, 1650, 1750, 1810, 1850].map(d => `${d}s ${covByDec[d] ? Math.round(100 * covByDec[d].folded / covByDec[d].total) : 0}%`).join(' · ');
     if (!flowSystems.length) err('flows: no system folds onto any baked lane');
   }
 }

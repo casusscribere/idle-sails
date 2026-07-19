@@ -41,7 +41,9 @@ const MUST_CONTAIN = {
   'arabia-india': ['mocha', 'muscat', 'surat', 'bombay', 'madras',
     'tranquebar', 'calcutta'],
   'na-northeast': ['louisbourg', 'boston', 'new-york', 'philadelphia',
-    'chesapeake']
+    'chesapeake'],
+  // the Phase-1 (increment 7) SW Pacific / Tasman plate frames Sydney
+  'australasia': ['sydney']
 };
 
 test('every regional plate contains the ports it exists for', () => {
@@ -59,8 +61,10 @@ test('every regional plate contains the ports it exists for', () => {
 });
 
 test('flows bundle: every system carries a basin; the fold covers most lanes', () => {
+  // must stay in step with BASIN_ORDER/BASIN_LABEL in main.js — a basin the UI
+  // does not know renders its raw id as a layer-toggle label
   const KNOWN = new Set(['atlantic', 'baltic-north-sea', 'mediterranean',
-    'indian-ocean-west', 'bengal-se-asia', 'east-asia']);
+    'indian-ocean-west', 'bengal-se-asia', 'east-asia', 'pacific']);
   const systems = datasets.flows.systems;
   assert.ok(systems.length > 0, 'flow systems present');
   for (const s of systems)

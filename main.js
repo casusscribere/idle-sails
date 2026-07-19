@@ -142,7 +142,7 @@ async function boot() {
   const ledgerCtx = () => ({
     portById, cargoById, powerById, portNameAt, simClock: latestSnap.simClock,
     // the flowing year, clamped through the reset ramp exactly as spawning is
-    year: latestSnap.reset > 0 ? 1815 : latestSnap.year
+    year: latestSnap.reset > 0 ? 1850 : latestSnap.year
   });
 
   // ships whose CURRENT leg leaves this port (outbound) or is bound for it
@@ -248,11 +248,12 @@ async function boot() {
   // the 5 Hz HUD throttle (weights drift era-slow) and at toggle/filter/view
   // time — per frame it costs one blit.
   const BASIN_ORDER = ['atlantic', 'baltic-north-sea', 'mediterranean',
-    'indian-ocean-west', 'bengal-se-asia', 'east-asia'];
+    'indian-ocean-west', 'bengal-se-asia', 'east-asia', 'pacific'];
   const BASIN_LABEL = {
     'atlantic': 'The Atlantic', 'baltic-north-sea': 'Baltic & North Sea',
     'mediterranean': 'The Mediterranean', 'indian-ocean-west': 'Western Indian Ocean',
     'bengal-se-asia': 'Bengal & Southeast Asia', 'east-asia': 'East Asia',
+    'pacific': 'The Pacific',
     'other': 'Naval & other voyages'
   };
   const basinsPresent = new Set(laneBasin.values());
@@ -523,7 +524,7 @@ async function boot() {
   // tracker panel: the followed fleet, re-rendered when membership or a
   // status changes (or a live destination leg advances)
   function renderTrackerPanel(force = false) {
-    const year = latestSnap.reset > 0 ? 1815 : latestSnap.year;
+    const year = latestSnap.reset > 0 ? 1850 : latestSnap.year;
     const rows = world.trackedVessels().map(r => ({
       id: r.id, name: r.name, prefix: r.prefix, typeName: r.typeName, flagColor: r.flagColor,
       status: r.status,

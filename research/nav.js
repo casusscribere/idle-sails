@@ -6,6 +6,14 @@
 // current page, and carries the return link to the running chart.
 // To add a page: add it to PAGES and include <script defer src="nav.js">.
 (function () {
+  // Give the research pages the chart's ⚓ favicon (inline SVG) so they don't
+  // each 404 on /favicon.ico — matches index.html's inline icon.
+  if (!document.querySelector('link[rel="icon"]')) {
+    const link = document.createElement('link');
+    link.rel = 'icon';
+    link.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>%E2%9A%93</text></svg>";
+    document.head.appendChild(link);
+  }
   const PAGES = [
     ['index.html', 'Overview'],
     ['about.html', 'About & methods'],

@@ -5,7 +5,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 const ROOT = "/home/kirk/REPOS_LINUX/idle_sails";
 const load = (p) => JSON.parse(readFileSync(`${ROOT}/${p}`, "utf8"));
-const DEC = []; for (let d = 1550; d <= 1810; d += 10) DEC.push(d);
+const DEC = []; for (let d = 1550; d <= 1850; d += 10) DEC.push(d);
 
 const cargoIds = new Set(load("data-src/cargo.json").cargo.map(c => c.id));
 const shipIds = new Set(load("data-src/ship-types.json").shipTypes.map(s => s.id));
@@ -67,7 +67,7 @@ for (const file of basins) {
 
 // ---- silences register ----
 const S = load("research/flows/silences.json");
-const REASON = new Set(["excluded-by-basis", "unrecorded", "evasion", "fishery-not-trade", "not-yet-reconstructed"]);
+const REASON = new Set(["excluded-by-basis", "unrecorded", "evasion", "fishery-not-trade", "not-yet-reconstructed", "no-port-node", "monopoly-displacement", "carriage-under-other-flags"]);
 const TREAT = new Set(["asserted", "excluded", "gestured"]);
 const allSys = new Set(Object.values(basinData).flatMap(B => B.systems.map(s => s.id)));
 for (const e of S.silences) {
