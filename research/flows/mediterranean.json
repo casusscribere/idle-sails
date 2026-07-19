@@ -80,7 +80,7 @@
     {
       "id": "smyrna",
       "name": "Smyrna (İzmir)",
-      "simProxy": "istanbul"
+      "simProxy": "smyrna"
     },
     {
       "id": "istanbul",
@@ -90,12 +90,12 @@
     {
       "id": "alexandria",
       "name": "Alexandria",
-      "simProxy": null
+      "simProxy": "alexandria"
     },
     {
       "id": "scanderoon",
       "name": "Scanderoon (İskenderun, for Aleppo)",
-      "simProxy": null
+      "simProxy": "scanderoon"
     },
     {
       "id": "kaffa",
@@ -115,17 +115,17 @@
     {
       "id": "algiers",
       "name": "Algiers",
-      "simProxy": null
+      "simProxy": "algiers"
     },
     {
       "id": "tunis",
       "name": "Tunis (the dot at La Goulette)",
-      "simProxy": null
+      "simProxy": "tunis"
     },
     {
       "id": "tripoli",
       "name": "Tripoli",
-      "simProxy": null
+      "simProxy": "tripoli"
     },
     {
       "id": "la-calle",

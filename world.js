@@ -596,7 +596,20 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     return { lon, lat, heading: bearing(seg0, seg1), legIndex, fraction: f, from: seg.from, to: seg.to };
   }
 
-  function log(entry) { state.log.unshift(entry); if (state.log.length > tune.logCap) state.log.length = tune.logCap; }
+  // Events that resolve inside ONE tick are appended in vessel order, not in
+  // time order — so a single big offline step and the same span in many small
+  // steps would leave the log differently ordered, and (since it is capped)
+  // even holding different entries. Insert in canonical (time desc, id) order
+  // instead of unshifting, so the accrual granularity cannot show. The cap
+  // then always drops the genuinely oldest entry.
+  const logCmp = (a, b) => b.t - a.t ||
+    (String(b.vesselId) < String(a.vesselId) ? -1 : String(b.vesselId) > String(a.vesselId) ? 1 : 0);
+  function log(entry) {
+    let i = 0;
+    while (i < state.log.length && logCmp(state.log[i], entry) <= 0) i++;
+    state.log.splice(i, 0, entry);
+    if (state.log.length > tune.logCap) state.log.length = tune.logCap;
+  }
   // era-honest port name for a log line (reset ramp clamps the year, as spawning does)
   const nameAt = (pid, cal) => portNameAt(portById.get(pid), cal.reset > 0 ? ERA.to : cal.year);
 
@@ -692,6 +705,9 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     const wreckBefore = end - tune.wreckLingerDays * SEC_PER_DAY;
     if (state.wrecks.some(w => w.at <= wreckBefore))
       state.wrecks = state.wrecks.filter(w => w.at > wreckBefore);
+    // …and for the same reason as the log: several losses inside one big step
+    // are pushed in vessel order, so the array is canonicalised on (time, id).
+    state.wrecks.sort((a, b) => a.at - b.at || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
 
     state.simClock = end;
   }

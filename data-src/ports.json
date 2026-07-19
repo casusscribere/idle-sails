@@ -2,72 +2,1059 @@
   "$schema": "./_schema.md#ports",
   "note": "The original 15 ports (coordinates matching the archive exactly) plus the PLAN-3 S2 expansion (2026-07-13, user-approved ~55-port option + the six ports the funded engine exceptions unlock = 66 total). The baker computes fields per destination at bake time, so new ports need only a coordinate that snaps to an ocean cell. Backbone ports carry the flow matrix's folded systems; tranche-1 promotion-queue ports carry the diversity layer.",
   "ports": [
-    { "id": "london",     "name": "London",             "lon": 1.2,   "lat": 51.4,  "power": "britain",  "region": "britain",     "roles": ["home", "naval"],        "note": "Busiest port in the world by the late 18th c." },
-    { "id": "liverpool",  "name": "Liverpool",          "lon": -3.1,  "lat": 53.5,  "power": "britain",  "region": "britain",     "roles": ["home", "slaving"],      "note": "Rising Atlantic & dominant British slave-trade port." },
-    { "id": "amsterdam",  "name": "Amsterdam",          "lon": 4.9,   "lat": 52.5,  "power": "dutch",    "region": "lowlands",    "roles": ["home"],                 "note": "VOC/WIC entrepot; Europe's former financial hub." },
-    { "id": "bordeaux",   "name": "Bordeaux",           "lon": -1.1,  "lat": 45.6,  "power": "france",   "region": "france",      "roles": ["home"],                 "note": "France's leading colonial/Atlantic port; wine." },
-    { "id": "nantes",     "name": "Nantes",             "lon": -2.2,  "lat": 47.2,  "power": "france",   "region": "france",      "roles": ["home", "slaving"],      "note": "France's chief slave-trading port." },
-    { "id": "cadiz",      "name": "Cadiz",              "lon": -6.4,  "lat": 36.5,  "power": "spain",    "region": "iberia",      "roles": ["home"],                 "note": "Carrera de Indias monopoly hub." },
-    { "id": "lisbon",     "name": "Lisbon",             "lon": -9.4,  "lat": 38.7,  "power": "portugal", "region": "iberia",      "roles": ["home"],                 "note": "Brazil & Estado da India trade." },
-    { "id": "gothenburg", "name": "Gothenburg",         "lon": 11.6,  "lat": 57.6,  "power": "sweden",   "region": "baltic",      "roles": ["home"],                 "eraNames": [ { "from": 1550, "to": 1620, "name": "Älvsborg" }, { "from": 1621, "to": 1850, "name": "Gothenburg" } ], "note": "Chartered 1621; before that the dot is era-named Älvsborg, the Göta estuary's harbour. Swedish East India Co. (SOIC); 132 documented expeditions." },
-    { "id": "kingston",   "name": "Kingston",           "lon": -76.8, "lat": 17.9,  "power": "britain",  "region": "caribbean",   "roles": ["colonial", "naval"],    "active": { "from": 1655, "to": 1850 }, "eraNames": [ { "from": 1655, "to": 1692, "name": "Port Royal" }, { "from": 1693, "to": 1850, "name": "Kingston" } ], "note": "Great Caribbean sugar entrepot; Jamaica station. Jamaica's harbour from the English capture of 1655 — era-named Port Royal until the 1692 earthquake, Kingston after." },
-    { "id": "bahia",      "name": "Salvador da Bahia",  "lon": -38.5, "lat": -13.0, "power": "portugal", "region": "brazil",      "roles": ["colonial", "slaving"],  "note": "Direct South-Atlantic Brazil-Mina trade." },
-    { "id": "whydah",     "name": "Whydah (Ouidah)",    "lon": 2.1,   "lat": 6.2,   "power": "african",  "region": "west-africa", "roles": ["embarkation"],          "note": "Major slave-embarkation port; the African side of the Atlantic trade." },
-    { "id": "batavia",    "name": "Batavia (Jakarta)",  "lon": 106.9, "lat": -5.9,  "power": "dutch",    "region": "east-indies", "roles": ["colonial", "factory"],  "eraNames": [ { "from": 1550, "to": 1618, "name": "Jayakarta" }, { "from": 1619, "to": 1850, "name": "Batavia" } ], "note": "VOC Asian headquarters from 1619; before that the dot is era-named Jayakarta (Sunda Kelapa), the same harbour — the junk and Bugis trades sail it all era." },
-    { "id": "canton",     "name": "Canton (Guangzhou)", "lon": 114.2, "lat": 22.2,  "power": "qing",     "region": "china",       "roles": ["factory"],              "note": "Sole legal Western-trade port in Qing China." },
-    { "id": "tranquebar", "name": "Tranquebar",         "lon": 79.9,  "lat": 11.0,  "power": "denmark",  "region": "india",       "roles": ["colonial", "factory"],  "active": { "from": 1620, "to": 1850 }, "note": "Danish Asiatic Co. factory, Coromandel coast; Fort Dansborg from 1620." },
-    { "id": "dejima",     "name": "Dejima (Nagasaki)",  "lon": 129.6, "lat": 32.7,  "power": "dutch",    "region": "japan",       "roles": ["factory"],              "note": "Dutch factory in Japan; ~1-2 ships/yr — the low-volume exemplar." },
-
-    { "id": "hamburg",       "name": "Hamburg",             "lon": 8.5,    "lat": 53.9,  "power": "hansa",    "region": "lowlands",      "roles": ["home"] },
-    { "id": "danzig",        "name": "Danzig (Gdańsk)",     "lon": 18.7,   "lat": 54.5,  "power": "hansa",    "region": "baltic",        "roles": ["home"], "note": "The grain staple of the 'mother trade'; Hanseatic, under the Polish crown." },
-    { "id": "riga",          "name": "Riga",                "lon": 24.1,   "lat": 57.1,  "power": "hansa",    "region": "baltic",        "roles": ["home"], "note": "Masts and naval stores. Hanseatic → Swedish (1621) → Russian (1710); the Hanse flag smears this, noted." },
-    { "id": "stockholm",     "name": "Stockholm",           "lon": 18.4,   "lat": 59.3,  "power": "sweden",   "region": "baltic",        "roles": ["home", "naval"] },
-    { "id": "copenhagen",    "name": "Copenhagen",          "lon": 12.7,   "lat": 55.7,  "power": "denmark",  "region": "baltic",        "roles": ["home", "naval"] },
-    { "id": "st-petersburg", "name": "St Petersburg",       "lon": 29.5,   "lat": 60.0,  "power": "russia",   "region": "baltic",        "roles": ["home", "naval"], "active": { "from": 1703, "to": 1850 }, "note": "Peter's window, from 1703; lanes era-gated accordingly." },
-    { "id": "newcastle",     "name": "Newcastle-upon-Tyne", "lon": -1.2,   "lat": 55.1,  "power": "britain",  "region": "britain",       "roles": ["home"], "note": "The coal trade — Europe's largest generator of ship movements, invisible to the foreign-going rankings by declared basis." },
-    { "id": "bristol",       "name": "Bristol",             "lon": -3.1,   "lat": 51.4,  "power": "britain",  "region": "britain",       "roles": ["home", "slaving"] },
-    { "id": "rotterdam",     "name": "Rotterdam",           "lon": 3.9,    "lat": 51.9,  "power": "dutch",    "region": "lowlands",      "roles": ["home"] },
-    { "id": "venice",        "name": "Venice",              "lon": 12.5,   "lat": 45.2,  "power": "venice",   "region": "mediterranean", "roles": ["home", "naval"] },
-    { "id": "genoa",         "name": "Genoa",               "lon": 8.9,    "lat": 44.3,  "power": "genoa",    "region": "mediterranean", "roles": ["home"] },
-    { "id": "livorno",       "name": "Livorno",             "lon": 10.2,   "lat": 43.4,  "power": "tuscany",  "region": "mediterranean", "roles": ["home"], "note": "The free port — every flag welcome, which was the business model." },
-    { "id": "marseille",     "name": "Marseille",           "lon": 5.3,    "lat": 43.2,  "power": "france",   "region": "mediterranean", "roles": ["home"] },
-    { "id": "naples",        "name": "Naples",              "lon": 14.2,   "lat": 40.7,  "power": "naples",   "region": "mediterranean", "roles": ["home"] },
-    { "id": "barcelona",     "name": "Barcelona",           "lon": 2.3,    "lat": 41.3,  "power": "spain",    "region": "mediterranean", "roles": ["home"] },
-    { "id": "porto",         "name": "Porto",               "lon": -8.8,   "lat": 41.1,  "power": "portugal", "region": "iberia",        "roles": ["home"] },
-    { "id": "boston",        "name": "Boston",              "lon": -70.8,  "lat": 42.3,  "power": "britain",  "region": "north-america", "roles": ["colonial"], "active": { "from": 1630, "to": 1850 }, "note": "Founded 1630. British colonial to 1783; later lanes fly the US flag." },
-    { "id": "new-york",      "name": "New York",            "lon": -73.9,  "lat": 40.5,  "power": "britain",  "region": "north-america", "roles": ["colonial"], "active": { "from": 1625, "to": 1850 }, "note": "New Amsterdam from 1625; English New York from 1664." },
-    { "id": "philadelphia",  "name": "Philadelphia",        "lon": -75.0,  "lat": 39.0,  "power": "britain",  "region": "north-america", "roles": ["colonial"], "active": { "from": 1682, "to": 1850 }, "note": "Founded 1682. Staged at the Delaware capes for the 1° grid." },
-    { "id": "chesapeake",    "name": "The Chesapeake",      "lon": -76.0,  "lat": 37.0,  "power": "britain",  "region": "north-america", "roles": ["colonial"], "note": "The tobacco coast — Norfolk/Annapolis, staged at the capes." },
-    { "id": "louisbourg",    "name": "Louisbourg",          "lon": -59.9,  "lat": 45.9,  "power": "france",   "region": "north-america", "roles": ["colonial", "naval"], "eraNames": [ { "from": 1550, "to": 1712, "name": "St John's" }, { "from": 1713, "to": 1758, "name": "Louisbourg" }, { "from": 1759, "to": 1850, "name": "St John's" } ], "note": "The Newfoundland Banks fishery harbour, era-named: St John's carries the cod trade before 1713 and after 1758; between, France's fortress Louisbourg — founded 1713, fallen and demolished after the siege of 1758. One node stands for the fishery coast; St John's proper lies ~500 km east (roster-scale staging)." },
-    { "id": "havana",        "name": "Havana",              "lon": -82.2,  "lat": 23.1,  "power": "spain",    "region": "caribbean",     "roles": ["colonial", "naval"] },
-    { "id": "veracruz",      "name": "Veracruz",            "lon": -96.0,  "lat": 19.2,  "power": "spain",    "region": "caribbean",     "roles": ["colonial"] },
-    { "id": "cartagena",     "name": "Cartagena de Indias", "lon": -75.5,  "lat": 10.4,  "power": "spain",    "region": "caribbean",     "roles": ["colonial", "naval"] },
-    { "id": "portobelo",     "name": "Portobelo",           "lon": -79.6,  "lat": 9.6,   "power": "spain",    "region": "caribbean",     "roles": ["colonial"], "active": { "from": 1597, "to": 1815 }, "note": "Founded 1597. The isthmus fair; the galeones' terminus to 1739." },
-    { "id": "bridgetown",    "name": "Bridgetown (Barbados)","lon": -59.6,  "lat": 13.1,  "power": "britain",  "region": "caribbean",     "roles": ["colonial"], "active": { "from": 1628, "to": 1850 }, "note": "English settlement from 1628." },
-    { "id": "cap-francais",  "name": "Cap-Français",        "lon": -72.2,  "lat": 19.8,  "power": "france",   "region": "caribbean",     "roles": ["colonial"], "active": { "from": 1670, "to": 1815 }, "note": "Saint-Domingue's great port, founded c.1670; its lanes end with the revolution of 1791." },
-    { "id": "st-eustatius",  "name": "St Eustatius",        "lon": -63.0,  "lat": 17.5,  "power": "dutch",    "region": "caribbean",     "roles": ["colonial"], "active": { "from": 1636, "to": 1850 }, "note": "The Golden Rock — the free-port contraband entrepôt. Dutch from 1636." },
-    { "id": "pernambuco",    "name": "Pernambuco (Recife)", "lon": -34.8,  "lat": -8.1,  "power": "portugal", "region": "brazil",        "roles": ["colonial"] },
-    { "id": "rio",           "name": "Rio de Janeiro",      "lon": -43.2,  "lat": -23.0, "power": "portugal", "region": "brazil",        "roles": ["colonial"], "note": "The gold fleets; the court itself after 1808." },
-    { "id": "luanda",        "name": "Luanda",              "lon": 13.2,   "lat": -8.8,  "power": "portugal", "region": "west-africa",   "roles": ["colonial", "embarkation"], "note": "The largest single embarkation point of the Atlantic slave trade. Sober framing applies to every human-cargo lane." },
-    { "id": "elmina",        "name": "Elmina",              "lon": -1.3,   "lat": 5.1,   "power": "dutch",    "region": "west-africa",   "roles": ["factory"], "note": "'The mine' — Portuguese to 1637, then the WIC's Gold Coast castle." },
-    { "id": "saint-louis",   "name": "Saint-Louis (Senegal)","lon": -16.5,  "lat": 16.0,  "power": "france",   "region": "west-africa",   "roles": ["factory"], "active": { "from": 1659, "to": 1850 }, "note": "French factory at the Senegal mouth from 1659." },
-    { "id": "surat",         "name": "Surat",               "lon": 72.6,   "lat": 21.0,  "power": "mughal",   "region": "india",         "roles": ["home"], "note": "India's greatest port for a century and a half — the Gujarati merchant fleet under the Mughal peace." },
-    { "id": "bombay",        "name": "Bombay",              "lon": 72.8,   "lat": 18.9,  "power": "britain",  "region": "india",         "roles": ["colonial", "naval"], "eraNames": [ { "from": 1550, "to": 1660, "name": "Goa" }, { "from": 1661, "to": 1850, "name": "Bombay" } ], "note": "English from 1661 (EIC 1668). Before that the dot is era-named Goa — the Carreira da Índia's counted terminus (the flow matrix's declared simProxy; Goa proper lies ~400 km south, roster-scale staging) — until Goa's own promotion." },
-    { "id": "madras",        "name": "Madras",              "lon": 80.4,   "lat": 13.1,  "power": "britain",  "region": "india",         "roles": ["colonial", "factory"], "eraNames": [ { "from": 1550, "to": 1638, "name": "Masulipatnam" }, { "from": 1639, "to": 1850, "name": "Madras" } ], "note": "Fort St George from 1639; before that the dot is era-named Masulipatnam, the Coromandel coast's dominant port — continuity proxy for a coast whose trade long predates the fort." },
-    { "id": "calcutta",      "name": "Calcutta",            "lon": 88.1,   "lat": 21.5,  "power": "britain",  "region": "india",         "roles": ["colonial"], "eraNames": [ { "from": 1550, "to": 1689, "name": "Hugli" }, { "from": 1690, "to": 1850, "name": "Calcutta" } ], "note": "EIC settlement from 1690; before that the dot is era-named Hugli, Bengal's river port on the same Hooghly. Staged at the Hooghly mouth for the 1° grid." },
-    { "id": "mocha",         "name": "Mocha",               "lon": 43.3,   "lat": 13.3,  "power": "ottoman",  "region": "arabia",        "roles": ["factory"], "note": "The coffee staple that supplied Europe before Java." },
-    { "id": "muscat",        "name": "Muscat",              "lon": 58.6,   "lat": 23.6,  "power": "oman",     "region": "arabia",        "roles": ["home", "naval"] },
-    { "id": "amoy",          "name": "Amoy (Xiamen)",       "lon": 118.2,  "lat": 24.3,  "power": "china-junk-trade", "region": "china", "roles": ["home"], "note": "The Nanyang junk trade's great Fujian port — the private diaspora, not the Qing state." },
-    { "id": "macau",         "name": "Macau",               "lon": 113.5,  "lat": 22.2,  "power": "portugal", "region": "china",         "roles": ["factory"] },
-    { "id": "manila",        "name": "Manila",              "lon": 121.0,  "lat": 14.6,  "power": "spain",    "region": "east-indies",   "roles": ["colonial"], "note": "Where American silver met Chinese silk." },
-    { "id": "banda-neira",   "name": "Banda Neira",         "lon": 129.9,  "lat": -4.5,  "power": "dutch",    "region": "east-indies",   "roles": ["factory"], "active": { "from": 1621, "to": 1850 }, "note": "The world's only nutmeg source until the 1770s; the VOC monopoly dates from the conquest of 1621 — at its most absolute, and most brutal." },
-    { "id": "makassar",      "name": "Makassar",            "lon": 119.4,  "lat": -5.1,  "power": "gowa",     "region": "east-indies",   "roles": ["home"], "note": "Gowa's free-trade entrepôt to 1669; the Bugis network's hearth after." },
-    { "id": "naha",          "name": "Naha (Ryukyu)",       "lon": 127.7,  "lat": 26.2,  "power": "ryukyu",   "region": "east-asia",     "roles": ["home"], "note": "The licensed tribute conduit between China and Japan." },
-    { "id": "istanbul",      "name": "Istanbul",            "lon": 29.0,   "lat": 41.0,  "power": "ottoman",  "region": "mediterranean", "roles": ["home", "naval"], "note": "The largest city of Europe and the Near East — present here because the flow matrix can carry what the rankings could not (the declared-boundary exemplar). Reached through the carved Bosporus." },
-    { "id": "kaffa",         "name": "Kaffa (Feodosia)",    "lon": 35.4,   "lat": 45.0,  "power": "crimea",   "region": "black-sea",     "roles": ["home"], "active": { "from": 1550, "to": 1783 }, "note": "The Crimean Khanate's port; its trade as represented here ends with the Russian annexation of 1783. The slave trade is under the sober human-trafficking framing, never ordinary cargo." },
-    { "id": "arkhangelsk",   "name": "Arkhangelsk",         "lon": 40.5,   "lat": 64.5,  "power": "russia",   "region": "arctic",        "roles": ["home"], "active": { "from": 1584, "to": 1850 }, "note": "Russia's White Sea door, founded 1584 — reachable only in the summer/autumn ice season (the corridor is seasonal in the baked fields)." },
-    { "id": "smeerenburg",   "name": "Smeerenburg (Spitsbergen)", "lon": 11.0, "lat": 79.7, "power": "dutch", "region": "arctic",        "roles": ["station"], "active": { "from": 1614, "to": 1660 }, "note": "'Blubber town', c.1614–1660 — abandoned when the bay whaling gave out and the fishery moved offshore. The whaling season only; no winter field reaches it, which is the history." },
-    { "id": "sitka",         "name": "Sitka (Novo-Arkhangelsk)", "lon": -135.3, "lat": 57.1, "power": "rac",  "region": "north-pacific", "roles": ["colonial"], "active": { "from": 1799, "to": 1850 }, "note": "Russian America, from 1799 — sea-otter furs for the Canton market." },
-    { "id": "acapulco",      "name": "Acapulco",            "lon": -99.9,  "lat": 16.8,  "power": "spain",    "region": "north-america", "roles": ["colonial"], "active": { "from": 1571, "to": 1850 }, "note": "The Manila galleon's eastern terminus from 1571; the silver crosses to Veracruz overland, which is the point." }
+    {
+      "id": "london",
+      "name": "London",
+      "lon": 1.2,
+      "lat": 51.4,
+      "power": "britain",
+      "region": "britain",
+      "roles": [
+        "home",
+        "naval"
+      ],
+      "note": "Busiest port in the world by the late 18th c."
+    },
+    {
+      "id": "liverpool",
+      "name": "Liverpool",
+      "lon": -3.1,
+      "lat": 53.5,
+      "power": "britain",
+      "region": "britain",
+      "roles": [
+        "home",
+        "slaving"
+      ],
+      "note": "Rising Atlantic & dominant British slave-trade port."
+    },
+    {
+      "id": "amsterdam",
+      "name": "Amsterdam",
+      "lon": 4.9,
+      "lat": 52.5,
+      "power": "dutch",
+      "region": "lowlands",
+      "roles": [
+        "home"
+      ],
+      "note": "VOC/WIC entrepot; Europe's former financial hub."
+    },
+    {
+      "id": "bordeaux",
+      "name": "Bordeaux",
+      "lon": -1.1,
+      "lat": 45.6,
+      "power": "france",
+      "region": "france",
+      "roles": [
+        "home"
+      ],
+      "note": "France's leading colonial/Atlantic port; wine."
+    },
+    {
+      "id": "nantes",
+      "name": "Nantes",
+      "lon": -2.2,
+      "lat": 47.2,
+      "power": "france",
+      "region": "france",
+      "roles": [
+        "home",
+        "slaving"
+      ],
+      "note": "France's chief slave-trading port."
+    },
+    {
+      "id": "cadiz",
+      "name": "Cadiz",
+      "lon": -6.4,
+      "lat": 36.5,
+      "power": "spain",
+      "region": "iberia",
+      "roles": [
+        "home"
+      ],
+      "note": "Carrera de Indias monopoly hub."
+    },
+    {
+      "id": "lisbon",
+      "name": "Lisbon",
+      "lon": -9.4,
+      "lat": 38.7,
+      "power": "portugal",
+      "region": "iberia",
+      "roles": [
+        "home"
+      ],
+      "note": "Brazil & Estado da India trade."
+    },
+    {
+      "id": "gothenburg",
+      "name": "Gothenburg",
+      "lon": 11.6,
+      "lat": 57.6,
+      "power": "sweden",
+      "region": "baltic",
+      "roles": [
+        "home"
+      ],
+      "eraNames": [
+        {
+          "from": 1550,
+          "to": 1620,
+          "name": "Älvsborg"
+        },
+        {
+          "from": 1621,
+          "to": 1850,
+          "name": "Gothenburg"
+        }
+      ],
+      "note": "Chartered 1621; before that the dot is era-named Älvsborg, the Göta estuary's harbour. Swedish East India Co. (SOIC); 132 documented expeditions."
+    },
+    {
+      "id": "kingston",
+      "name": "Kingston",
+      "lon": -76.8,
+      "lat": 17.9,
+      "power": "britain",
+      "region": "caribbean",
+      "roles": [
+        "colonial",
+        "naval"
+      ],
+      "active": {
+        "from": 1655,
+        "to": 1850
+      },
+      "eraNames": [
+        {
+          "from": 1655,
+          "to": 1692,
+          "name": "Port Royal"
+        },
+        {
+          "from": 1693,
+          "to": 1850,
+          "name": "Kingston"
+        }
+      ],
+      "note": "Great Caribbean sugar entrepot; Jamaica station. Jamaica's harbour from the English capture of 1655 — era-named Port Royal until the 1692 earthquake, Kingston after."
+    },
+    {
+      "id": "bahia",
+      "name": "Salvador da Bahia",
+      "lon": -38.5,
+      "lat": -13.0,
+      "power": "portugal",
+      "region": "brazil",
+      "roles": [
+        "colonial",
+        "slaving"
+      ],
+      "note": "Direct South-Atlantic Brazil-Mina trade."
+    },
+    {
+      "id": "whydah",
+      "name": "Whydah (Ouidah)",
+      "lon": 2.1,
+      "lat": 6.2,
+      "power": "african",
+      "region": "west-africa",
+      "roles": [
+        "embarkation"
+      ],
+      "note": "Major slave-embarkation port; the African side of the Atlantic trade."
+    },
+    {
+      "id": "batavia",
+      "name": "Batavia (Jakarta)",
+      "lon": 106.9,
+      "lat": -5.9,
+      "power": "dutch",
+      "region": "east-indies",
+      "roles": [
+        "colonial",
+        "factory"
+      ],
+      "eraNames": [
+        {
+          "from": 1550,
+          "to": 1618,
+          "name": "Jayakarta"
+        },
+        {
+          "from": 1619,
+          "to": 1850,
+          "name": "Batavia"
+        }
+      ],
+      "note": "VOC Asian headquarters from 1619; before that the dot is era-named Jayakarta (Sunda Kelapa), the same harbour — the junk and Bugis trades sail it all era."
+    },
+    {
+      "id": "canton",
+      "name": "Canton (Guangzhou)",
+      "lon": 114.2,
+      "lat": 22.2,
+      "power": "qing",
+      "region": "china",
+      "roles": [
+        "factory"
+      ],
+      "note": "Sole legal Western-trade port in Qing China."
+    },
+    {
+      "id": "tranquebar",
+      "name": "Tranquebar",
+      "lon": 79.9,
+      "lat": 11.0,
+      "power": "denmark",
+      "region": "india",
+      "roles": [
+        "colonial",
+        "factory"
+      ],
+      "active": {
+        "from": 1620,
+        "to": 1850
+      },
+      "note": "Danish Asiatic Co. factory, Coromandel coast; Fort Dansborg from 1620."
+    },
+    {
+      "id": "dejima",
+      "name": "Dejima (Nagasaki)",
+      "lon": 129.6,
+      "lat": 32.7,
+      "power": "dutch",
+      "region": "japan",
+      "roles": [
+        "factory"
+      ],
+      "note": "Dutch factory in Japan; ~1-2 ships/yr — the low-volume exemplar."
+    },
+    {
+      "id": "hamburg",
+      "name": "Hamburg",
+      "lon": 8.5,
+      "lat": 53.9,
+      "power": "hansa",
+      "region": "lowlands",
+      "roles": [
+        "home"
+      ]
+    },
+    {
+      "id": "danzig",
+      "name": "Danzig (Gdańsk)",
+      "lon": 18.7,
+      "lat": 54.5,
+      "power": "hansa",
+      "region": "baltic",
+      "roles": [
+        "home"
+      ],
+      "note": "The grain staple of the 'mother trade'; Hanseatic, under the Polish crown."
+    },
+    {
+      "id": "riga",
+      "name": "Riga",
+      "lon": 24.1,
+      "lat": 57.1,
+      "power": "hansa",
+      "region": "baltic",
+      "roles": [
+        "home"
+      ],
+      "note": "Masts and naval stores. Hanseatic → Swedish (1621) → Russian (1710); the Hanse flag smears this, noted."
+    },
+    {
+      "id": "stockholm",
+      "name": "Stockholm",
+      "lon": 18.4,
+      "lat": 59.3,
+      "power": "sweden",
+      "region": "baltic",
+      "roles": [
+        "home",
+        "naval"
+      ]
+    },
+    {
+      "id": "copenhagen",
+      "name": "Copenhagen",
+      "lon": 12.7,
+      "lat": 55.7,
+      "power": "denmark",
+      "region": "baltic",
+      "roles": [
+        "home",
+        "naval"
+      ]
+    },
+    {
+      "id": "st-petersburg",
+      "name": "St Petersburg",
+      "lon": 29.5,
+      "lat": 60.0,
+      "power": "russia",
+      "region": "baltic",
+      "roles": [
+        "home",
+        "naval"
+      ],
+      "active": {
+        "from": 1703,
+        "to": 1850
+      },
+      "note": "Peter's window, from 1703; lanes era-gated accordingly."
+    },
+    {
+      "id": "newcastle",
+      "name": "Newcastle-upon-Tyne",
+      "lon": -1.2,
+      "lat": 55.1,
+      "power": "britain",
+      "region": "britain",
+      "roles": [
+        "home"
+      ],
+      "note": "The coal trade — Europe's largest generator of ship movements, invisible to the foreign-going rankings by declared basis."
+    },
+    {
+      "id": "bristol",
+      "name": "Bristol",
+      "lon": -3.1,
+      "lat": 51.4,
+      "power": "britain",
+      "region": "britain",
+      "roles": [
+        "home",
+        "slaving"
+      ]
+    },
+    {
+      "id": "rotterdam",
+      "name": "Rotterdam",
+      "lon": 3.9,
+      "lat": 51.9,
+      "power": "dutch",
+      "region": "lowlands",
+      "roles": [
+        "home"
+      ]
+    },
+    {
+      "id": "venice",
+      "name": "Venice",
+      "lon": 12.5,
+      "lat": 45.2,
+      "power": "venice",
+      "region": "mediterranean",
+      "roles": [
+        "home",
+        "naval"
+      ]
+    },
+    {
+      "id": "genoa",
+      "name": "Genoa",
+      "lon": 8.9,
+      "lat": 44.3,
+      "power": "genoa",
+      "region": "mediterranean",
+      "roles": [
+        "home"
+      ]
+    },
+    {
+      "id": "livorno",
+      "name": "Livorno",
+      "lon": 10.2,
+      "lat": 43.4,
+      "power": "tuscany",
+      "region": "mediterranean",
+      "roles": [
+        "home"
+      ],
+      "note": "The free port — every flag welcome, which was the business model."
+    },
+    {
+      "id": "marseille",
+      "name": "Marseille",
+      "lon": 5.3,
+      "lat": 43.2,
+      "power": "france",
+      "region": "mediterranean",
+      "roles": [
+        "home"
+      ]
+    },
+    {
+      "id": "naples",
+      "name": "Naples",
+      "lon": 14.2,
+      "lat": 40.7,
+      "power": "naples",
+      "region": "mediterranean",
+      "roles": [
+        "home"
+      ]
+    },
+    {
+      "id": "barcelona",
+      "name": "Barcelona",
+      "lon": 2.3,
+      "lat": 41.3,
+      "power": "spain",
+      "region": "mediterranean",
+      "roles": [
+        "home"
+      ]
+    },
+    {
+      "id": "porto",
+      "name": "Porto",
+      "lon": -8.8,
+      "lat": 41.1,
+      "power": "portugal",
+      "region": "iberia",
+      "roles": [
+        "home"
+      ]
+    },
+    {
+      "id": "boston",
+      "name": "Boston",
+      "lon": -70.8,
+      "lat": 42.3,
+      "power": "britain",
+      "region": "north-america",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1630,
+        "to": 1850
+      },
+      "note": "Founded 1630. British colonial to 1783; later lanes fly the US flag."
+    },
+    {
+      "id": "new-york",
+      "name": "New York",
+      "lon": -73.9,
+      "lat": 40.5,
+      "power": "britain",
+      "region": "north-america",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1625,
+        "to": 1850
+      },
+      "note": "New Amsterdam from 1625; English New York from 1664."
+    },
+    {
+      "id": "philadelphia",
+      "name": "Philadelphia",
+      "lon": -75.0,
+      "lat": 39.0,
+      "power": "britain",
+      "region": "north-america",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1682,
+        "to": 1850
+      },
+      "note": "Founded 1682. Staged at the Delaware capes for the 1° grid."
+    },
+    {
+      "id": "chesapeake",
+      "name": "The Chesapeake",
+      "lon": -76.0,
+      "lat": 37.0,
+      "power": "britain",
+      "region": "north-america",
+      "roles": [
+        "colonial"
+      ],
+      "note": "The tobacco coast — Norfolk/Annapolis, staged at the capes."
+    },
+    {
+      "id": "louisbourg",
+      "name": "Louisbourg",
+      "lon": -59.9,
+      "lat": 45.9,
+      "power": "france",
+      "region": "north-america",
+      "roles": [
+        "colonial",
+        "naval"
+      ],
+      "eraNames": [
+        {
+          "from": 1550,
+          "to": 1712,
+          "name": "St John's"
+        },
+        {
+          "from": 1713,
+          "to": 1758,
+          "name": "Louisbourg"
+        },
+        {
+          "from": 1759,
+          "to": 1850,
+          "name": "St John's"
+        }
+      ],
+      "note": "The Newfoundland Banks fishery harbour, era-named: St John's carries the cod trade before 1713 and after 1758; between, France's fortress Louisbourg — founded 1713, fallen and demolished after the siege of 1758. One node stands for the fishery coast; St John's proper lies ~500 km east (roster-scale staging)."
+    },
+    {
+      "id": "havana",
+      "name": "Havana",
+      "lon": -82.2,
+      "lat": 23.1,
+      "power": "spain",
+      "region": "caribbean",
+      "roles": [
+        "colonial",
+        "naval"
+      ]
+    },
+    {
+      "id": "veracruz",
+      "name": "Veracruz",
+      "lon": -96.0,
+      "lat": 19.2,
+      "power": "spain",
+      "region": "caribbean",
+      "roles": [
+        "colonial"
+      ]
+    },
+    {
+      "id": "cartagena",
+      "name": "Cartagena de Indias",
+      "lon": -75.5,
+      "lat": 10.4,
+      "power": "spain",
+      "region": "caribbean",
+      "roles": [
+        "colonial",
+        "naval"
+      ]
+    },
+    {
+      "id": "portobelo",
+      "name": "Portobelo",
+      "lon": -79.6,
+      "lat": 9.6,
+      "power": "spain",
+      "region": "caribbean",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1597,
+        "to": 1815
+      },
+      "note": "Founded 1597. The isthmus fair; the galeones' terminus to 1739."
+    },
+    {
+      "id": "bridgetown",
+      "name": "Bridgetown (Barbados)",
+      "lon": -59.6,
+      "lat": 13.1,
+      "power": "britain",
+      "region": "caribbean",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1628,
+        "to": 1850
+      },
+      "note": "English settlement from 1628."
+    },
+    {
+      "id": "cap-francais",
+      "name": "Cap-Français",
+      "lon": -72.2,
+      "lat": 19.8,
+      "power": "france",
+      "region": "caribbean",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1670,
+        "to": 1815
+      },
+      "note": "Saint-Domingue's great port, founded c.1670; its lanes end with the revolution of 1791."
+    },
+    {
+      "id": "st-eustatius",
+      "name": "St Eustatius",
+      "lon": -63.0,
+      "lat": 17.5,
+      "power": "dutch",
+      "region": "caribbean",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1636,
+        "to": 1850
+      },
+      "note": "The Golden Rock — the free-port contraband entrepôt. Dutch from 1636."
+    },
+    {
+      "id": "pernambuco",
+      "name": "Pernambuco (Recife)",
+      "lon": -34.8,
+      "lat": -8.1,
+      "power": "portugal",
+      "region": "brazil",
+      "roles": [
+        "colonial"
+      ]
+    },
+    {
+      "id": "rio",
+      "name": "Rio de Janeiro",
+      "lon": -43.2,
+      "lat": -23.0,
+      "power": "portugal",
+      "region": "brazil",
+      "roles": [
+        "colonial"
+      ],
+      "note": "The gold fleets; the court itself after 1808."
+    },
+    {
+      "id": "luanda",
+      "name": "Luanda",
+      "lon": 13.2,
+      "lat": -8.8,
+      "power": "portugal",
+      "region": "west-africa",
+      "roles": [
+        "colonial",
+        "embarkation"
+      ],
+      "note": "The largest single embarkation point of the Atlantic slave trade. Sober framing applies to every human-cargo lane."
+    },
+    {
+      "id": "elmina",
+      "name": "Elmina",
+      "lon": -1.3,
+      "lat": 5.1,
+      "power": "dutch",
+      "region": "west-africa",
+      "roles": [
+        "factory"
+      ],
+      "note": "'The mine' — Portuguese to 1637, then the WIC's Gold Coast castle."
+    },
+    {
+      "id": "saint-louis",
+      "name": "Saint-Louis (Senegal)",
+      "lon": -16.5,
+      "lat": 16.0,
+      "power": "france",
+      "region": "west-africa",
+      "roles": [
+        "factory"
+      ],
+      "active": {
+        "from": 1659,
+        "to": 1850
+      },
+      "note": "French factory at the Senegal mouth from 1659."
+    },
+    {
+      "id": "surat",
+      "name": "Surat",
+      "lon": 72.6,
+      "lat": 21.0,
+      "power": "mughal",
+      "region": "india",
+      "roles": [
+        "home"
+      ],
+      "note": "India's greatest port for a century and a half — the Gujarati merchant fleet under the Mughal peace."
+    },
+    {
+      "id": "bombay",
+      "name": "Bombay",
+      "lon": 72.8,
+      "lat": 18.9,
+      "power": "britain",
+      "region": "india",
+      "roles": [
+        "colonial",
+        "naval"
+      ],
+      "eraNames": [
+        {
+          "from": 1550,
+          "to": 1660,
+          "name": "Goa"
+        },
+        {
+          "from": 1661,
+          "to": 1850,
+          "name": "Bombay"
+        }
+      ],
+      "note": "English from 1661 (EIC 1668). Before that the dot is era-named Goa — the Carreira da Índia's counted terminus (the flow matrix's declared simProxy; Goa proper lies ~400 km south, roster-scale staging) — until Goa's own promotion."
+    },
+    {
+      "id": "madras",
+      "name": "Madras",
+      "lon": 80.4,
+      "lat": 13.1,
+      "power": "britain",
+      "region": "india",
+      "roles": [
+        "colonial",
+        "factory"
+      ],
+      "eraNames": [
+        {
+          "from": 1550,
+          "to": 1638,
+          "name": "Masulipatnam"
+        },
+        {
+          "from": 1639,
+          "to": 1850,
+          "name": "Madras"
+        }
+      ],
+      "note": "Fort St George from 1639; before that the dot is era-named Masulipatnam, the Coromandel coast's dominant port — continuity proxy for a coast whose trade long predates the fort."
+    },
+    {
+      "id": "calcutta",
+      "name": "Calcutta",
+      "lon": 88.1,
+      "lat": 21.5,
+      "power": "britain",
+      "region": "india",
+      "roles": [
+        "colonial"
+      ],
+      "eraNames": [
+        {
+          "from": 1550,
+          "to": 1689,
+          "name": "Hugli"
+        },
+        {
+          "from": 1690,
+          "to": 1850,
+          "name": "Calcutta"
+        }
+      ],
+      "note": "EIC settlement from 1690; before that the dot is era-named Hugli, Bengal's river port on the same Hooghly. Staged at the Hooghly mouth for the 1° grid."
+    },
+    {
+      "id": "mocha",
+      "name": "Mocha",
+      "lon": 43.3,
+      "lat": 13.3,
+      "power": "ottoman",
+      "region": "arabia",
+      "roles": [
+        "factory"
+      ],
+      "note": "The coffee staple that supplied Europe before Java."
+    },
+    {
+      "id": "muscat",
+      "name": "Muscat",
+      "lon": 58.6,
+      "lat": 23.6,
+      "power": "oman",
+      "region": "arabia",
+      "roles": [
+        "home",
+        "naval"
+      ]
+    },
+    {
+      "id": "amoy",
+      "name": "Amoy (Xiamen)",
+      "lon": 118.2,
+      "lat": 24.3,
+      "power": "china-junk-trade",
+      "region": "china",
+      "roles": [
+        "home"
+      ],
+      "note": "The Nanyang junk trade's great Fujian port — the private diaspora, not the Qing state."
+    },
+    {
+      "id": "macau",
+      "name": "Macau",
+      "lon": 113.5,
+      "lat": 22.2,
+      "power": "portugal",
+      "region": "china",
+      "roles": [
+        "factory"
+      ]
+    },
+    {
+      "id": "manila",
+      "name": "Manila",
+      "lon": 121.0,
+      "lat": 14.6,
+      "power": "spain",
+      "region": "east-indies",
+      "roles": [
+        "colonial"
+      ],
+      "note": "Where American silver met Chinese silk."
+    },
+    {
+      "id": "banda-neira",
+      "name": "Banda Neira",
+      "lon": 129.9,
+      "lat": -4.5,
+      "power": "dutch",
+      "region": "east-indies",
+      "roles": [
+        "factory"
+      ],
+      "active": {
+        "from": 1621,
+        "to": 1850
+      },
+      "note": "The world's only nutmeg source until the 1770s; the VOC monopoly dates from the conquest of 1621 — at its most absolute, and most brutal."
+    },
+    {
+      "id": "makassar",
+      "name": "Makassar",
+      "lon": 119.4,
+      "lat": -5.1,
+      "power": "gowa",
+      "region": "east-indies",
+      "roles": [
+        "home"
+      ],
+      "note": "Gowa's free-trade entrepôt to 1669; the Bugis network's hearth after."
+    },
+    {
+      "id": "naha",
+      "name": "Naha (Ryukyu)",
+      "lon": 127.7,
+      "lat": 26.2,
+      "power": "ryukyu",
+      "region": "east-asia",
+      "roles": [
+        "home"
+      ],
+      "note": "The licensed tribute conduit between China and Japan."
+    },
+    {
+      "id": "istanbul",
+      "name": "Istanbul",
+      "lon": 29.0,
+      "lat": 41.0,
+      "power": "ottoman",
+      "region": "mediterranean",
+      "roles": [
+        "home",
+        "naval"
+      ],
+      "note": "The largest city of Europe and the Near East — present here because the flow matrix can carry what the rankings could not (the declared-boundary exemplar). Reached through the carved Bosporus."
+    },
+    {
+      "id": "kaffa",
+      "name": "Kaffa (Feodosia)",
+      "lon": 35.4,
+      "lat": 45.0,
+      "power": "crimea",
+      "region": "black-sea",
+      "roles": [
+        "home"
+      ],
+      "active": {
+        "from": 1550,
+        "to": 1783
+      },
+      "note": "The Crimean Khanate's port; its trade as represented here ends with the Russian annexation of 1783. The slave trade is under the sober human-trafficking framing, never ordinary cargo."
+    },
+    {
+      "id": "arkhangelsk",
+      "name": "Arkhangelsk",
+      "lon": 40.5,
+      "lat": 64.5,
+      "power": "russia",
+      "region": "arctic",
+      "roles": [
+        "home"
+      ],
+      "active": {
+        "from": 1584,
+        "to": 1850
+      },
+      "note": "Russia's White Sea door, founded 1584 — reachable only in the summer/autumn ice season (the corridor is seasonal in the baked fields)."
+    },
+    {
+      "id": "smeerenburg",
+      "name": "Smeerenburg (Spitsbergen)",
+      "lon": 11.0,
+      "lat": 79.7,
+      "power": "dutch",
+      "region": "arctic",
+      "roles": [
+        "station"
+      ],
+      "active": {
+        "from": 1614,
+        "to": 1660
+      },
+      "note": "'Blubber town', c.1614–1660 — abandoned when the bay whaling gave out and the fishery moved offshore. The whaling season only; no winter field reaches it, which is the history."
+    },
+    {
+      "id": "sitka",
+      "name": "Sitka (Novo-Arkhangelsk)",
+      "lon": -135.3,
+      "lat": 57.1,
+      "power": "rac",
+      "region": "north-pacific",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1799,
+        "to": 1850
+      },
+      "note": "Russian America, from 1799 — sea-otter furs for the Canton market."
+    },
+    {
+      "id": "acapulco",
+      "name": "Acapulco",
+      "lon": -99.9,
+      "lat": 16.8,
+      "power": "spain",
+      "region": "north-america",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1571,
+        "to": 1850
+      },
+      "note": "The Manila galleon's eastern terminus from 1571; the silver crosses to Veracruz overland, which is the point."
+    },
+    {
+      "id": "algiers",
+      "name": "Algiers",
+      "lon": 3.06,
+      "lat": 36.79,
+      "power": "algiers",
+      "region": "mediterranean",
+      "roles": [
+        "home"
+      ],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1830,
+          "power": "algiers"
+        },
+        {
+          "from": 1831,
+          "to": 1850,
+          "power": "france"
+        }
+      ],
+      "note": "The Regency's capital and the best-known corsair base; from 1830 the seat of French Algeria. Its trade in this chart is the Regency export flow, not the corsairing, which was predation rather than a trade lane and is in the silences register."
+    },
+    {
+      "id": "tunis",
+      "name": "Tunis",
+      "lon": 10.3,
+      "lat": 36.82,
+      "power": "tunis",
+      "region": "mediterranean",
+      "roles": [
+        "home"
+      ],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "The dot sits at La Goulette, the sea gate of Tunis proper, which lies inland of the lake. Ottoman from 1574, Husainid from 1705."
+    },
+    {
+      "id": "tripoli",
+      "name": "Tripoli",
+      "lon": 13.18,
+      "lat": 32.9,
+      "power": "tripoli",
+      "region": "mediterranean",
+      "roles": [
+        "home"
+      ],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "The Regency capital and the Mediterranean terminus of the Saharan caravan routes; Karamanli 1711-1835. The caravan traffic itself is overland and is registered as a silence, not sailed."
+    },
+    {
+      "id": "alexandria",
+      "name": "Alexandria",
+      "lon": 29.87,
+      "lat": 31.21,
+      "power": "ottoman",
+      "region": "mediterranean",
+      "roles": [],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "Ottoman Egypt's Mediterranean port and one of the Levant trade's principal echelles. Long carried in the flow matrix without a dot; sailable from this build."
+    },
+    {
+      "id": "scanderoon",
+      "name": "Scanderoon",
+      "lon": 36.17,
+      "lat": 36.6,
+      "power": "ottoman",
+      "region": "mediterranean",
+      "roles": [],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "Iskenderun (Alexandretta), the sea gate of Aleppo and the Levant Company's chief unloading place. Its levant-trade lanes existed in the matrix but could not fold without a dot."
+    },
+    {
+      "id": "smyrna",
+      "name": "Smyrna",
+      "lon": 27.14,
+      "lat": 38.42,
+      "power": "ottoman",
+      "region": "mediterranean",
+      "roles": [],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "Izmir, the principal echelle of the Levant trade and by the 18th century the busiest of them. It had been folding onto Istanbul - about 330 km away, and the wrong kind of place: the empire's capital standing in for its chief commercial outlet."
+    }
   ]
 }

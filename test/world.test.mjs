@@ -315,6 +315,25 @@ test('wrecks + port calls: granularity-independent (offline accrual)', () => {
   assert.deepEqual([...big.activePortsSince(big.simClock)].sort(), [...small.activePortsSince(small.simClock)].sort());
 });
 
+test('display arrays are ordered by EVENT time, not by tick granularity', () => {
+  // Regression (2026-07-18): losses that resolve inside ONE tick were appended
+  // in vessel order, so a big offline step and the same span in small steps
+  // ordered state.wrecks and state.log differently — and since the log is
+  // capped, a big step could even KEEP different entries. The sets always
+  // matched; only the order did not, which is why it hid until a data change
+  // first put two losses inside one big step.
+  const total = 200 * DAY;
+  const big = mk(11); big.tick(total);
+  const small = mk(11); for (let i = 0; i < 400; i++) small.tick(total / 400);
+  const byTime = (arr, k) => arr.every((e, i) => i === 0 || arr[i - 1][k] <= e[k]);
+  assert.ok(byTime(big.state.wrecks, 'at'), 'wrecks ascend by loss time after a big step');
+  assert.deepEqual(big.state.wrecks.map(w => w.id), small.state.wrecks.map(w => w.id));
+  assert.deepEqual(big.state.log.map(e => e.t), small.state.log.map(e => e.t));
+  // the log is newest-first
+  assert.ok(big.state.log.every((e, i) => i === 0 || big.state.log[i - 1].t >= e.t),
+    'log descends by event time');
+});
+
 test('port greying keys on ACTUAL calls: the 1550s slave factories stay grey until a ship truly sails', () => {
   // At the 1550 start the middle-passage flow is [15,30] voyages per DECADE
   // split across ~6 lanes — era-active (nonzero weight) but with no actual
