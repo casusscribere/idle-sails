@@ -190,7 +190,19 @@
           "name": "Batavia"
         }
       ],
-      "note": "VOC Asian headquarters from 1619; before that the dot is era-named Jayakarta (Sunda Kelapa), the same harbour — the junk and Bugis trades sail it all era."
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1618,
+          "power": "banten"
+        },
+        {
+          "from": 1619,
+          "to": 1850,
+          "power": "dutch"
+        }
+      ],
+      "note": "VOC Asian headquarters from 1619; before that the dot is era-named Jayakarta (Sunda Kelapa), a vassal of the Sultanate of Banten until Coen stormed it in 1619 — the junk and Bugis trades sail it all era."
     },
     {
       "id": "canton",
@@ -226,12 +238,16 @@
       "name": "Nagasaki (Dejima)",
       "lon": 129.6,
       "lat": 32.7,
-      "power": "dutch",
+      "power": "japan",
       "region": "japan",
       "roles": [
         "factory"
       ],
-      "note": "The harbour and its factory island together: at roughly a kilometre apart they are one dot at chart scale, so the SEPARATION between Dejima (the Dutch factory) and Nagasaki (the port and its Chinese quarter) is carried in the flow matrix and the vessel's ledger rather than by two overlapping marks."
+      "active": {
+        "from": 1571,
+        "to": 1850
+      },
+      "note": "The harbour and its factory island together: at roughly a kilometre apart they are one dot at chart scale, so the SEPARATION between Dejima (the Dutch factory) and Nagasaki (the port and its Chinese quarter) is carried in the flow matrix and the vessel's ledger rather than by two overlapping marks. The SOVEREIGN was Japanese throughout (Nagasaki founded 1571; the shogunate under sakoku) — the Dutch flag never flew over the port, only over the leased factory island, and the ships that called flew their own colours. So the dot is japan, not dutch (a corrected tweak)."
     },
     {
       "id": "hamburg",
@@ -711,6 +727,18 @@
           "name": "Bombay"
         }
       ],
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1660,
+          "power": "portugal"
+        },
+        {
+          "from": 1661,
+          "to": 1850,
+          "power": "britain"
+        }
+      ],
       "note": "English from 1661 (EIC 1668). Before that the dot is era-named Goa — the Carreira da Índia's counted terminus (the flow matrix's declared simProxy; Goa proper lies ~400 km south, roster-scale staging) — until Goa's own promotion."
     },
     {
@@ -736,6 +764,18 @@
           "name": "Madras"
         }
       ],
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1638,
+          "power": "golconda"
+        },
+        {
+          "from": 1639,
+          "to": 1850,
+          "power": "britain"
+        }
+      ],
       "note": "Fort St George from 1639; before that the dot is era-named Masulipatnam, the Coromandel coast's dominant port — continuity proxy for a coast whose trade long predates the fort."
     },
     {
@@ -758,6 +798,18 @@
           "from": 1690,
           "to": 1850,
           "name": "Calcutta"
+        }
+      ],
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1689,
+          "power": "mughal"
+        },
+        {
+          "from": 1690,
+          "to": 1850,
+          "power": "britain"
         }
       ],
       "note": "EIC settlement from 1690; before that the dot is era-named Hugli, Bengal's river port on the same Hooghly. Staged at the Hooghly mouth for the 1° grid."

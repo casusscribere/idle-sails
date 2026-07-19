@@ -707,6 +707,44 @@
       "note": "S2 flag bundle: Masulipatnam's sovereign — non-spawning shore power, ready for the port's promotion (tranche 2)."
     },
     {
+      "id": "ming",
+      "name": "Ming China",
+      "kind": "shore",
+      "color": "#9c4a3a",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1644
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Phase-4 flag bundle: China's sovereign before the Qing conquest (Beijing fell 1644; the south held to the 1660s). Non-spawning shore power — the flag over Canton/Amoy/Shanghai etc. in the early era, where qing is anachronistic. The Chinese junk trade itself sails under china-junk-trade throughout."
+    },
+    {
+      "id": "japan",
+      "name": "Japan (Tokugawa)",
+      "kind": "shore",
+      "color": "#b0503c",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Phase-4 flag bundle: the shogunate under sakoku — the sovereign of Nagasaki and the host of the Dutch factory at Dejima (which flies dutch, being Dutch-run). Non-spawning shore power."
+    },
+    {
       "id": "patani",
       "name": "Sultanate of Patani",
       "kind": "shore",

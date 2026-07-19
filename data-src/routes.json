@@ -1041,7 +1041,7 @@
         "porcelain"
       ],
       "era": {
-        "from": 1557,
+        "from": 1571,
         "to": 1639
       },
       "weight": 1,
@@ -1061,7 +1061,7 @@
         "specie"
       ],
       "era": {
-        "from": 1557,
+        "from": 1571,
         "to": 1639
       },
       "weight": 1,
@@ -4197,9 +4197,19 @@
       "name": "Calcutta to Singapore (opium out)",
       "from": "calcutta",
       "to": "singapore",
-      "shipTypes": ["east-indiaman", "merchantman"],
-      "cargo": ["opium", "textiles", "specie"],
-      "era": { "from": 1819, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "opium",
+        "textiles",
+        "specie"
+      ],
+      "era": {
+        "from": 1819,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4209,9 +4219,18 @@
       "name": "Singapore to Canton (opium to China)",
       "from": "singapore",
       "to": "canton",
-      "shipTypes": ["east-indiaman", "merchantman"],
-      "cargo": ["opium", "specie"],
-      "era": { "from": 1819, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "opium",
+        "specie"
+      ],
+      "era": {
+        "from": 1819,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4221,9 +4240,18 @@
       "name": "Canton to Singapore (tea home)",
       "from": "canton",
       "to": "singapore",
-      "shipTypes": ["east-indiaman", "merchantman"],
-      "cargo": ["tea", "specie"],
-      "era": { "from": 1819, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "tea",
+        "specie"
+      ],
+      "era": {
+        "from": 1819,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4233,9 +4261,19 @@
       "name": "Singapore to Calcutta",
       "from": "singapore",
       "to": "calcutta",
-      "shipTypes": ["east-indiaman", "merchantman"],
-      "cargo": ["tea", "specie", "trade-goods"],
-      "era": { "from": 1819, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "tea",
+        "specie",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1819,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4245,9 +4283,17 @@
       "name": "London to Singapore",
       "from": "london",
       "to": "singapore",
-      "shipTypes": ["east-indiaman"],
-      "cargo": ["trade-goods", "specie"],
-      "era": { "from": 1819, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman"
+      ],
+      "cargo": [
+        "trade-goods",
+        "specie"
+      ],
+      "era": {
+        "from": 1819,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4257,9 +4303,18 @@
       "name": "Singapore to London",
       "from": "singapore",
       "to": "london",
-      "shipTypes": ["east-indiaman"],
-      "cargo": ["tea", "spices", "pepper"],
-      "era": { "from": 1819, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman"
+      ],
+      "cargo": [
+        "tea",
+        "spices",
+        "pepper"
+      ],
+      "era": {
+        "from": 1819,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4269,9 +4324,18 @@
       "name": "Bombay to Singapore (Malwa opium)",
       "from": "bombay",
       "to": "singapore",
-      "shipTypes": ["east-indiaman", "merchantman"],
-      "cargo": ["opium", "textiles"],
-      "era": { "from": 1819, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "opium",
+        "textiles"
+      ],
+      "era": {
+        "from": 1819,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4281,9 +4345,17 @@
       "name": "Singapore to Batavia",
       "from": "singapore",
       "to": "batavia",
-      "shipTypes": ["merchantman"],
-      "cargo": ["trade-goods", "textiles"],
-      "era": { "from": 1819, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "trade-goods",
+        "textiles"
+      ],
+      "era": {
+        "from": 1819,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4293,9 +4365,18 @@
       "name": "Amoy to Singapore (the China junks)",
       "from": "amoy",
       "to": "singapore",
-      "shipTypes": ["junk"],
-      "cargo": ["tea", "specie", "trade-goods"],
-      "era": { "from": 1819, "to": 1850 },
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "tea",
+        "specie",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1819,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "china-junk-trade"
     },
@@ -4305,9 +4386,18 @@
       "name": "Makassar to Singapore (Bugis prahus)",
       "from": "makassar",
       "to": "singapore",
-      "shipTypes": ["dhow"],
-      "cargo": ["spices", "pepper", "trade-goods"],
-      "era": { "from": 1819, "to": 1850 },
+      "shipTypes": [
+        "dhow"
+      ],
+      "cargo": [
+        "spices",
+        "pepper",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1819,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "bugis"
     },
@@ -4317,9 +4407,18 @@
       "name": "Calcutta to Hong Kong (Bengal opium)",
       "from": "calcutta",
       "to": "hong-kong",
-      "shipTypes": ["east-indiaman", "merchantman"],
-      "cargo": ["opium", "textiles"],
-      "era": { "from": 1843, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "opium",
+        "textiles"
+      ],
+      "era": {
+        "from": 1843,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4329,9 +4428,18 @@
       "name": "Bombay to Hong Kong (Malwa opium)",
       "from": "bombay",
       "to": "hong-kong",
-      "shipTypes": ["east-indiaman", "merchantman"],
-      "cargo": ["opium", "textiles"],
-      "era": { "from": 1843, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "opium",
+        "textiles"
+      ],
+      "era": {
+        "from": 1843,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4341,9 +4449,17 @@
       "name": "London to Hong Kong",
       "from": "london",
       "to": "hong-kong",
-      "shipTypes": ["east-indiaman"],
-      "cargo": ["trade-goods", "specie"],
-      "era": { "from": 1843, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman"
+      ],
+      "cargo": [
+        "trade-goods",
+        "specie"
+      ],
+      "era": {
+        "from": 1843,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4353,9 +4469,17 @@
       "name": "Hong Kong to London (tea home)",
       "from": "hong-kong",
       "to": "london",
-      "shipTypes": ["east-indiaman"],
-      "cargo": ["tea", "silk"],
-      "era": { "from": 1843, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman"
+      ],
+      "cargo": [
+        "tea",
+        "silk"
+      ],
+      "era": {
+        "from": 1843,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4365,9 +4489,18 @@
       "name": "Singapore to Hong Kong",
       "from": "singapore",
       "to": "hong-kong",
-      "shipTypes": ["merchantman", "east-indiaman"],
-      "cargo": ["opium", "trade-goods"],
-      "era": { "from": 1843, "to": 1850 },
+      "shipTypes": [
+        "merchantman",
+        "east-indiaman"
+      ],
+      "cargo": [
+        "opium",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1843,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4377,9 +4510,17 @@
       "name": "Hong Kong to Singapore",
       "from": "hong-kong",
       "to": "singapore",
-      "shipTypes": ["merchantman"],
-      "cargo": ["tea", "specie"],
-      "era": { "from": 1843, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "tea",
+        "specie"
+      ],
+      "era": {
+        "from": 1843,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4389,9 +4530,17 @@
       "name": "Macau to Hong Kong",
       "from": "macau",
       "to": "hong-kong",
-      "shipTypes": ["merchantman"],
-      "cargo": ["trade-goods", "specie"],
-      "era": { "from": 1843, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "trade-goods",
+        "specie"
+      ],
+      "era": {
+        "from": 1843,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "portugal"
     },
@@ -4401,9 +4550,18 @@
       "name": "Amoy to Hong Kong (coastal junks)",
       "from": "amoy",
       "to": "hong-kong",
-      "shipTypes": ["junk"],
-      "cargo": ["tea", "silk", "trade-goods"],
-      "era": { "from": 1843, "to": 1850 },
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "tea",
+        "silk",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1843,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "china-junk-trade"
     },
@@ -4413,9 +4571,18 @@
       "name": "Shanghai to Hong Kong (coastal junks)",
       "from": "shanghai",
       "to": "hong-kong",
-      "shipTypes": ["junk"],
-      "cargo": ["silk", "tea", "trade-goods"],
-      "era": { "from": 1843, "to": 1850 },
+      "shipTypes": [
+        "junk"
+      ],
+      "cargo": [
+        "silk",
+        "tea",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1843,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "china-junk-trade"
     },
@@ -4425,9 +4592,17 @@
       "name": "Manila to Hong Kong",
       "from": "manila",
       "to": "hong-kong",
-      "shipTypes": ["merchantman"],
-      "cargo": ["specie", "trade-goods"],
-      "era": { "from": 1843, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "specie",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1843,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "spain"
     },
@@ -4437,9 +4612,18 @@
       "name": "London to Sydney (convicts, emigrants, goods)",
       "from": "london",
       "to": "sydney",
-      "shipTypes": ["east-indiaman", "merchantman"],
-      "cargo": ["trade-goods", "specie"],
-      "era": { "from": 1788, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "trade-goods",
+        "specie"
+      ],
+      "era": {
+        "from": 1788,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4449,9 +4633,18 @@
       "name": "Sydney to London (wool and whale oil)",
       "from": "sydney",
       "to": "london",
-      "shipTypes": ["east-indiaman", "merchantman"],
-      "cargo": ["wool", "whale-oil"],
-      "era": { "from": 1788, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "wool",
+        "whale-oil"
+      ],
+      "era": {
+        "from": 1788,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4461,9 +4654,17 @@
       "name": "Sydney to Canton (the sandalwood–tea triangle)",
       "from": "sydney",
       "to": "canton",
-      "shipTypes": ["merchantman"],
-      "cargo": ["whale-oil", "trade-goods"],
-      "era": { "from": 1805, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "whale-oil",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1805,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4473,9 +4674,17 @@
       "name": "Canton to Sydney (tea)",
       "from": "canton",
       "to": "sydney",
-      "shipTypes": ["merchantman"],
-      "cargo": ["tea", "trade-goods"],
-      "era": { "from": 1805, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "tea",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1805,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4485,9 +4694,17 @@
       "name": "Montevideo to Liverpool (hides)",
       "from": "montevideo",
       "to": "liverpool",
-      "shipTypes": ["merchantman", "east-indiaman"],
-      "cargo": ["hides"],
-      "era": { "from": 1810, "to": 1850 },
+      "shipTypes": [
+        "merchantman",
+        "east-indiaman"
+      ],
+      "cargo": [
+        "hides"
+      ],
+      "era": {
+        "from": 1810,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4497,9 +4714,16 @@
       "name": "Liverpool to Montevideo (manufactures)",
       "from": "liverpool",
       "to": "montevideo",
-      "shipTypes": ["merchantman"],
-      "cargo": ["trade-goods"],
-      "era": { "from": 1810, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1810,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4509,9 +4733,16 @@
       "name": "Montevideo to Havana (tasajo)",
       "from": "montevideo",
       "to": "havana",
-      "shipTypes": ["merchantman"],
-      "cargo": ["tasajo"],
-      "era": { "from": 1780, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "tasajo"
+      ],
+      "era": {
+        "from": 1780,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "spain"
     },
@@ -4521,9 +4752,17 @@
       "name": "Rio de Janeiro to Montevideo",
       "from": "rio",
       "to": "montevideo",
-      "shipTypes": ["merchantman"],
-      "cargo": ["sugar", "trade-goods"],
-      "era": { "from": 1780, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "sugar",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1780,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "portugal"
     },
@@ -4533,9 +4772,17 @@
       "name": "Montevideo to Rio de Janeiro (tasajo)",
       "from": "montevideo",
       "to": "rio",
-      "shipTypes": ["merchantman"],
-      "cargo": ["tasajo", "hides"],
-      "era": { "from": 1780, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "tasajo",
+        "hides"
+      ],
+      "era": {
+        "from": 1780,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "portugal"
     },
@@ -4545,9 +4792,17 @@
       "name": "New Orleans to Liverpool (cotton)",
       "from": "new-orleans",
       "to": "liverpool",
-      "shipTypes": ["east-indiaman", "merchantman"],
-      "cargo": ["cotton"],
-      "era": { "from": 1815, "to": 1850 },
+      "shipTypes": [
+        "east-indiaman",
+        "merchantman"
+      ],
+      "cargo": [
+        "cotton"
+      ],
+      "era": {
+        "from": 1815,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4557,9 +4812,16 @@
       "name": "Liverpool to New Orleans (manufactures)",
       "from": "liverpool",
       "to": "new-orleans",
-      "shipTypes": ["merchantman"],
-      "cargo": ["trade-goods"],
-      "era": { "from": 1815, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1815,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4569,9 +4831,16 @@
       "name": "New Orleans to New York (coastwise cotton)",
       "from": "new-orleans",
       "to": "new-york",
-      "shipTypes": ["merchantman"],
-      "cargo": ["cotton"],
-      "era": { "from": 1815, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "cotton"
+      ],
+      "era": {
+        "from": 1815,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "usa"
     },
@@ -4581,9 +4850,16 @@
       "name": "New York to New Orleans",
       "from": "new-york",
       "to": "new-orleans",
-      "shipTypes": ["merchantman"],
-      "cargo": ["trade-goods"],
-      "era": { "from": 1815, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1815,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "usa"
     },
@@ -4593,9 +4869,17 @@
       "name": "New Orleans to Havana",
       "from": "new-orleans",
       "to": "havana",
-      "shipTypes": ["merchantman"],
-      "cargo": ["sugar", "trade-goods"],
-      "era": { "from": 1815, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "sugar",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1815,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "usa"
     },
@@ -4605,9 +4889,17 @@
       "name": "Chesapeake to New Orleans (the coastwise coasting trade)",
       "from": "chesapeake",
       "to": "new-orleans",
-      "shipTypes": ["merchantman"],
-      "cargo": ["tobacco", "trade-goods"],
-      "era": { "from": 1818, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "tobacco",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1818,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "usa"
     },
@@ -4617,9 +4909,16 @@
       "name": "London to York Factory (HBC supply)",
       "from": "london",
       "to": "york-factory",
-      "shipTypes": ["merchantman"],
-      "cargo": ["trade-goods"],
-      "era": { "from": 1684, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1684,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "hbc"
     },
@@ -4629,9 +4928,16 @@
       "name": "York Factory to London (furs)",
       "from": "york-factory",
       "to": "london",
-      "shipTypes": ["merchantman"],
-      "cargo": ["furs"],
-      "era": { "from": 1684, "to": 1850 },
+      "shipTypes": [
+        "merchantman"
+      ],
+      "cargo": [
+        "furs"
+      ],
+      "era": {
+        "from": 1684,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "hbc"
     },
@@ -4641,9 +4947,17 @@
       "name": "London to the South Sea grounds (British whalers)",
       "from": "london",
       "to": "pacific-grounds",
-      "shipTypes": ["merchantman", "east-indiaman"],
-      "cargo": ["trade-goods"],
-      "era": { "from": 1788, "to": 1850 },
+      "shipTypes": [
+        "merchantman",
+        "east-indiaman"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1788,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4653,9 +4967,17 @@
       "name": "The South Sea grounds to London (whale oil)",
       "from": "pacific-grounds",
       "to": "london",
-      "shipTypes": ["merchantman", "east-indiaman"],
-      "cargo": ["whale-oil"],
-      "era": { "from": 1788, "to": 1850 },
+      "shipTypes": [
+        "merchantman",
+        "east-indiaman"
+      ],
+      "cargo": [
+        "whale-oil"
+      ],
+      "era": {
+        "from": 1788,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "britain"
     },
@@ -4665,9 +4987,17 @@
       "name": "Boston to the South Sea grounds (American whalers)",
       "from": "boston",
       "to": "pacific-grounds",
-      "shipTypes": ["merchantman", "east-indiaman"],
-      "cargo": ["trade-goods"],
-      "era": { "from": 1788, "to": 1850 },
+      "shipTypes": [
+        "merchantman",
+        "east-indiaman"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1788,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "usa"
     },
@@ -4677,9 +5007,17 @@
       "name": "The South Sea grounds to Boston (whale oil)",
       "from": "pacific-grounds",
       "to": "boston",
-      "shipTypes": ["merchantman", "east-indiaman"],
-      "cargo": ["whale-oil"],
-      "era": { "from": 1788, "to": 1850 },
+      "shipTypes": [
+        "merchantman",
+        "east-indiaman"
+      ],
+      "cargo": [
+        "whale-oil"
+      ],
+      "era": {
+        "from": 1788,
+        "to": 1850
+      },
       "weight": 1,
       "flag": "usa"
     },
@@ -5285,7 +5623,7 @@
         "specie"
       ],
       "era": {
-        "from": 1550,
+        "from": 1571,
         "to": 1850
       },
       "weight": 1,
@@ -5307,7 +5645,7 @@
         "specie"
       ],
       "era": {
-        "from": 1550,
+        "from": 1571,
         "to": 1850
       },
       "weight": 1,
@@ -5373,7 +5711,7 @@
         "porcelain"
       ],
       "era": {
-        "from": 1550,
+        "from": 1571,
         "to": 1850
       },
       "weight": 1,
@@ -5395,7 +5733,7 @@
         "porcelain"
       ],
       "era": {
-        "from": 1550,
+        "from": 1571,
         "to": 1850
       },
       "weight": 1,

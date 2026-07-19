@@ -171,12 +171,19 @@ export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSele
   function showPort(port, traffic, ctx) {
     const { portById, powerById, simClock, year } = ctx;
     const nm = (id) => eraName(ctx, portById.get(id));
-    const power = powerById.get(port.power);
+    // the ALLEGIANCE of the time (Masulipatnam under Golconda, Jayakarta under
+    // Banten) — the flag over the dot this flowing year, not the static power.
+    const powerId = (ctx.portPowerAt && year != null) ? ctx.portPowerAt(port, year) : port.power;
+    const power = powerById.get(powerId);
 
     // Port lifecycle: a bounded port shows its window; one past its end shows a
     // ruin banner + its note instead of traffic lists (there is no traffic).
-    const lifeline = port.active
-      ? `<p class="type">est. ${port.active.from}${port.active.to < 1850 ? ` · until ${port.active.to}` : ''}</p>` : '';
+    // "est." only for a REAL in-sim founding (after the 1550 start) — a port that
+    // predates the era shows no founding date (it was always there); "until" only
+    // for a port that ends before the era's 1850 close.
+    const est = port.active && port.active.from > 1550 ? `est. ${port.active.from}` : '';
+    const until = port.active && port.active.to < 1850 ? `until ${port.active.to}` : '';
+    const lifeline = (est || until) ? `<p class="type">${[est, until].filter(Boolean).join(' · ')}</p>` : '';
     if (port.active && year != null && year > port.active.to) {
       els.ledgerBody.innerHTML = `
         <h2>${escapeHtml(nm(port.id))}</h2>

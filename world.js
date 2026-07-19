@@ -134,6 +134,17 @@ export function portNameAt(port, year) {
   return port.name;
 }
 
+// The port's ruling power for a given flowing year — the flag of the time over
+// the dot (Masulipatnam under Golconda before Fort St George, Jayakarta under
+// Banten before the VOC, Nagasaki always Japanese). Pure; falls back to the
+// canonical power. See ports[].eraPowers (Phase-4 name/ownership sweep).
+export function portPowerAt(port, year) {
+  if (port.eraPowers && year != null) {
+    for (const ep of port.eraPowers) if (year >= ep.from && year <= ep.to) return ep.power;
+  }
+  return port.power;
+}
+
 // ===========================================================================
 // `restore`: a previously serialize()d state (persist.js). When given, the world
 // resumes from it exactly — same vessels, clock, counters, and spawn-RNG word —

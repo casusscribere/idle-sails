@@ -2,7 +2,7 @@
 // the renderer and UI, and runs the animation loop. This is the only file that
 // touches the network, the clock, and the DOM event wiring.
 
-import { createWorld, portNameAt } from './world.js';
+import { createWorld, portNameAt, portPowerAt } from './world.js';
 import { createRenderer, REGIONS } from './render.js';
 import { createUI, buildLegend, speedFromSlider } from './ui.js';
 import { loadSave, autoSave, accrualSeconds } from './persist.js';
@@ -140,7 +140,7 @@ async function boot() {
   let portLife = world.portLifecycleAt(latestSnap.simClock);
 
   const ledgerCtx = () => ({
-    portById, cargoById, powerById, portNameAt, simClock: latestSnap.simClock,
+    portById, cargoById, powerById, portNameAt, portPowerAt, simClock: latestSnap.simClock,
     // the flowing year, clamped through the reset ramp exactly as spawning is
     year: latestSnap.reset > 0 ? 1850 : latestSnap.year
   });
