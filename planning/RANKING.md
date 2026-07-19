@@ -304,11 +304,33 @@ is live by now — pin the *Surprise* and follow her properly.
   in flight. ✅ Dormant-port greying threshold extended 2026-07-16: the
   window is now DISPLAY policy in main.js (3 sim-years, up from the world
   default of 1 — `world.activePortsSince` keeps its contract); sparse-but-
-  real flows read as quiet, not abandoned. Currently queued (2026-07-17):
-  port icon positions off on close views (Newcastle renders in the sea);
-  regional plates reveal ships clipping over land and residual zigzag
-  legs; some oddly-square routing worth a baker review
-  (`pipeline/README.md` first for anything touching the bake).
+  real flows read as quiet, not abandoned. **Phase 3 progress (2026-07-19):**
+  - ✅ **Regional plates are true matted crops** — the base land + the whole
+    dynamic layer (ports, routes overlay, ships, wrecks) now clip to the plate
+    rectangle on regional crops (`render.js` `beginPlateClip`/`inPlate`), so the
+    letterbox mat no longer shows stray coastline/ships under faded gridlines
+    (the "closeups fade gridlines through which vessels travel" tweak). World
+    plate untouched. Headless-verified; 0 console errors.
+  - ✅ **Verified already-done:** the run-log export gives the WHOLE history
+    (`world.serialize()` includes the retained per-cycle records — the displayed
+    counters are cycle-scoped, the export is not); the ruined-port dashed marker
+    exists (`drawPorts`); the tracker menu row is disabled until Pass 5.
+  - ⏳ **Still queued — the coarse-grid render-fidelity cluster** (one root cause:
+    the 1° routing grid vs the fine display coastline): ships/routes clipping
+    small islands WITHIN a crop (Cuba, Zealand — the baked polylines are ocean-
+    valid at 1° but cross the fine coastline), port dots offshore on close views
+    (Newcastle, a river port whose routing coord sits seaward), and the oddly-
+    square / residual-zigzag legs. These want a dedicated approach — targeted
+    baker keep-clear cells and/or a display-coord decoupling — not piecemeal
+    nudges. `pipeline/README.md` first for any bake.
+  - ⏳ **Overlay taxonomy** — the layer sub-toggles are per-BASIN + "Naval &
+    other voyages"; the user wants NON-regional movement categories (arterials /
+    coasting / coerced / fisheries / naval-state). A design change (re-categorize
+    lanes by movement TYPE), not a rename.
+  - ⏳ **Chart-view hides** — Phase 1 populated `arabia-india` (Basra/Bandar
+    Abbas/Jedda + the India ports), so it reads as fleshed out now;
+    `na-northeast` is still sparse (5 ports, its Grand-Banks fishery traffic
+    waits on Pass 4). Decision pending: keep both, or hide na-northeast.
 - **Trade-goods threads** (queued 2026-07-17, `research_addenda.txt` #8) —
   a display/docs feature, sim untouched: follow a COMMODITY across the
   world as one thread — the global silver circuit (Potosí→Carrera,
