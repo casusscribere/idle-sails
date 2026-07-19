@@ -211,7 +211,7 @@ Two requirements from `feature-ideas/research_addenda.txt` (2026-07-17):
   texture. Applies to Pass-6 easter eggs too (see T6).
 
 **Pass 5 — deferred sim redesign: persistence / name retirement / capture
-(#11 hard) + chases (#12 hard).** Ship–ship interaction breaks
+(#11 hard) + chases (#12 hard) + imbricate vessel identity (T13).** Ship–ship interaction breaks
 fate-rolled-at-spawn — a real architecture change needing its own design doc
 (PLAN-5 material), a `datasetVersion` bump, and a save reset. Nothing above
 depends on it; it must never block the rest — only Pass 6 below deliberately
@@ -401,10 +401,18 @@ gate; low risk; slot into whatever pass is in flight.
 (Phase 1 done) or the sweep runs twice.
 
 ### Phase 5 — The sim redesign  ·  [R]+[F]  (was steps 10–11)
-**T7** (vessel lifecycle & prize practice) → draft **PLAN-5** → **Pass 5**
-(persistence / capture / chases). Breaks fate-at-spawn — a real architecture
-change; `datasetVersion` bump + save reset; **unlocks the tracker panel**.
-HARD GATE: PLAN-5 adopted. Highest-risk; kept late so nothing waits on it.
+**T7 + T13 as ONE research campaign** (vessel lifecycle & prize practice;
+imbricate vessel identity — hull/flag/owner/master/crew) → draft **PLAN-5**
+→ **Pass 5** (persistence / capture / chases). The two tasks share their
+sources — prize courts, Lloyd's Register, registry law — and a re-flagged,
+renamed prize is one event on both lists, so they are read once together
+(the T1+T2+T3 argument from Phase RC). T13 also decides whether a vessel's
+identity stays one fused name-captain-hull-nation or gains facets (an
+American-built, Dutch-owned, British-flagged hull under a Scandinavian
+master), which is a schema question PLAN-5 is the right place to receive.
+Breaks fate-at-spawn — a real architecture change; `datasetVersion` bump +
+save reset; **unlocks the tracker panel**. HARD GATE: PLAN-5 adopted.
+Highest-risk; kept late so nothing waits on it.
 
 ### Phase 6 — The Aubrey capstone  ·  [R]+[F]  (was steps 12–13)
 **T6** (the Aubrey canon catalog: convoy legs, prizes, engagements, chases) →
