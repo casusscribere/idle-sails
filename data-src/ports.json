@@ -153,7 +153,19 @@
         "colonial",
         "slaving"
       ],
-      "note": "Direct South-Atlantic Brazil-Mina trade."
+      "note": "Direct South-Atlantic Brazil-Mina trade.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1821,
+          "power": "portugal"
+        },
+        {
+          "from": 1822,
+          "to": 1850,
+          "power": "brazil"
+        }
+      ]
     },
     {
       "id": "whydah",
@@ -165,7 +177,19 @@
       "roles": [
         "embarkation"
       ],
-      "note": "Major slave-embarkation port; the African side of the Atlantic trade."
+      "note": "Major slave-embarkation port; the African side of the Atlantic trade.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1726,
+          "power": "african"
+        },
+        {
+          "from": 1727,
+          "to": 1850,
+          "power": "dahomey"
+        }
+      ]
     },
     {
       "id": "batavia",
@@ -214,7 +238,19 @@
       "roles": [
         "factory"
       ],
-      "note": "Sole legal Western-trade port in Qing China."
+      "note": "Sole legal Western-trade port in Qing China.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1644,
+          "power": "ming"
+        },
+        {
+          "from": 1645,
+          "to": 1850,
+          "power": "qing"
+        }
+      ]
     },
     {
       "id": "tranquebar",
@@ -231,7 +267,19 @@
         "from": 1620,
         "to": 1850
       },
-      "note": "Danish Asiatic Co. factory, Coromandel coast; Fort Dansborg from 1620."
+      "note": "Danish Asiatic Co. factory, Coromandel coast; Fort Dansborg from 1620.",
+      "eraPowers": [
+        {
+          "from": 1620,
+          "to": 1844,
+          "power": "denmark"
+        },
+        {
+          "from": 1845,
+          "to": 1850,
+          "power": "britain"
+        }
+      ]
     },
     {
       "id": "dejima",
@@ -282,7 +330,24 @@
       "roles": [
         "home"
       ],
-      "note": "Masts and naval stores. Hanseatic → Swedish (1621) → Russian (1710); the Hanse flag smears this, noted."
+      "note": "Masts and naval stores. Hanseatic → Swedish (1621) → Russian (1710); the Hanse flag smears this, noted.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1620,
+          "power": "hansa"
+        },
+        {
+          "from": 1621,
+          "to": 1709,
+          "power": "sweden"
+        },
+        {
+          "from": 1710,
+          "to": 1850,
+          "power": "russia"
+        }
+      ]
     },
     {
       "id": "stockholm",
@@ -453,7 +518,19 @@
         "from": 1630,
         "to": 1850
       },
-      "note": "Founded 1630. British colonial to 1783; later lanes fly the US flag."
+      "note": "Founded 1630. British colonial to 1783; later lanes fly the US flag.",
+      "eraPowers": [
+        {
+          "from": 1630,
+          "to": 1782,
+          "power": "britain"
+        },
+        {
+          "from": 1783,
+          "to": 1850,
+          "power": "usa"
+        }
+      ]
     },
     {
       "id": "new-york",
@@ -469,7 +546,36 @@
         "from": 1625,
         "to": 1850
       },
-      "note": "New Amsterdam from 1625; English New York from 1664."
+      "note": "New Amsterdam from 1625; English New York from 1664.",
+      "eraNames": [
+        {
+          "from": 1625,
+          "to": 1663,
+          "name": "New Amsterdam"
+        },
+        {
+          "from": 1664,
+          "to": 1850,
+          "name": "New York"
+        }
+      ],
+      "eraPowers": [
+        {
+          "from": 1625,
+          "to": 1663,
+          "power": "dutch"
+        },
+        {
+          "from": 1664,
+          "to": 1782,
+          "power": "britain"
+        },
+        {
+          "from": 1783,
+          "to": 1850,
+          "power": "usa"
+        }
+      ]
     },
     {
       "id": "philadelphia",
@@ -485,7 +591,19 @@
         "from": 1682,
         "to": 1850
       },
-      "note": "Founded 1682. Staged at the Delaware capes for the 1° grid."
+      "note": "Founded 1682. Staged at the Delaware capes for the 1° grid.",
+      "eraPowers": [
+        {
+          "from": 1682,
+          "to": 1782,
+          "power": "britain"
+        },
+        {
+          "from": 1783,
+          "to": 1850,
+          "power": "usa"
+        }
+      ]
     },
     {
       "id": "chesapeake",
@@ -497,7 +615,19 @@
       "roles": [
         "colonial"
       ],
-      "note": "The tobacco coast — Norfolk/Annapolis, staged at the capes."
+      "note": "The tobacco coast — Norfolk/Annapolis, staged at the capes.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1782,
+          "power": "britain"
+        },
+        {
+          "from": 1783,
+          "to": 1850,
+          "power": "usa"
+        }
+      ]
     },
     {
       "id": "louisbourg",
@@ -527,7 +657,24 @@
           "name": "St John's"
         }
       ],
-      "note": "The Newfoundland Banks fishery harbour, era-named: St John's carries the cod trade before 1713 and after 1758; between, France's fortress Louisbourg — founded 1713, fallen and demolished after the siege of 1758. One node stands for the fishery coast; St John's proper lies ~500 km east (roster-scale staging)."
+      "note": "The Newfoundland Banks fishery harbour, era-named: St John's carries the cod trade before 1713 and after 1758; between, France's fortress Louisbourg — founded 1713, fallen and demolished after the siege of 1758. One node stands for the fishery coast; St John's proper lies ~500 km east (roster-scale staging).",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1712,
+          "power": "britain"
+        },
+        {
+          "from": 1713,
+          "to": 1758,
+          "power": "france"
+        },
+        {
+          "from": 1759,
+          "to": 1850,
+          "power": "britain"
+        }
+      ]
     },
     {
       "id": "havana",
@@ -550,6 +697,18 @@
       "region": "caribbean",
       "roles": [
         "colonial"
+      ],
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1820,
+          "power": "spain"
+        },
+        {
+          "from": 1821,
+          "to": 1850,
+          "power": "mexico"
+        }
       ]
     },
     {
@@ -562,6 +721,18 @@
       "roles": [
         "colonial",
         "naval"
+      ],
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1820,
+          "power": "spain"
+        },
+        {
+          "from": 1821,
+          "to": 1850,
+          "power": "gran-colombia"
+        }
       ]
     },
     {
@@ -610,7 +781,31 @@
         "from": 1670,
         "to": 1815
       },
-      "note": "Saint-Domingue's great port, founded c.1670; its lanes end with the revolution of 1791."
+      "note": "Saint-Domingue's great port, founded c.1670; its lanes end with the revolution of 1791.",
+      "eraNames": [
+        {
+          "from": 1670,
+          "to": 1803,
+          "name": "Cap-Français"
+        },
+        {
+          "from": 1804,
+          "to": 1815,
+          "name": "Cap-Haïtien"
+        }
+      ],
+      "eraPowers": [
+        {
+          "from": 1670,
+          "to": 1803,
+          "power": "france"
+        },
+        {
+          "from": 1804,
+          "to": 1815,
+          "power": "haiti"
+        }
+      ]
     },
     {
       "id": "st-eustatius",
@@ -637,6 +832,28 @@
       "region": "brazil",
       "roles": [
         "colonial"
+      ],
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1629,
+          "power": "portugal"
+        },
+        {
+          "from": 1630,
+          "to": 1654,
+          "power": "dutch"
+        },
+        {
+          "from": 1655,
+          "to": 1821,
+          "power": "portugal"
+        },
+        {
+          "from": 1822,
+          "to": 1850,
+          "power": "brazil"
+        }
       ]
     },
     {
@@ -649,7 +866,19 @@
       "roles": [
         "colonial"
       ],
-      "note": "The gold fleets; the court itself after 1808."
+      "note": "The gold fleets; the court itself after 1808.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1821,
+          "power": "portugal"
+        },
+        {
+          "from": 1822,
+          "to": 1850,
+          "power": "brazil"
+        }
+      ]
     },
     {
       "id": "luanda",
@@ -662,7 +891,24 @@
         "colonial",
         "embarkation"
       ],
-      "note": "The largest single embarkation point of the Atlantic slave trade. Sober framing applies to every human-cargo lane."
+      "note": "The largest single embarkation point of the Atlantic slave trade. Sober framing applies to every human-cargo lane.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1640,
+          "power": "portugal"
+        },
+        {
+          "from": 1641,
+          "to": 1648,
+          "power": "dutch"
+        },
+        {
+          "from": 1649,
+          "to": 1850,
+          "power": "portugal"
+        }
+      ]
     },
     {
       "id": "elmina",
@@ -674,7 +920,19 @@
       "roles": [
         "factory"
       ],
-      "note": "'The mine' — Portuguese to 1637, then the WIC's Gold Coast castle."
+      "note": "'The mine' — Portuguese to 1637, then the WIC's Gold Coast castle.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1636,
+          "power": "portugal"
+        },
+        {
+          "from": 1637,
+          "to": 1850,
+          "power": "dutch"
+        }
+      ]
     },
     {
       "id": "saint-louis",
@@ -702,7 +960,19 @@
       "roles": [
         "home"
       ],
-      "note": "India's greatest port for a century and a half — the Gujarati merchant fleet under the Mughal peace."
+      "note": "India's greatest port for a century and a half — the Gujarati merchant fleet under the Mughal peace.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1758,
+          "power": "mughal"
+        },
+        {
+          "from": 1759,
+          "to": 1850,
+          "power": "britain"
+        }
+      ]
     },
     {
       "id": "bombay",
@@ -899,7 +1169,19 @@
       "roles": [
         "home"
       ],
-      "note": "Gowa's free-trade entrepôt to 1669; the Bugis network's hearth after."
+      "note": "Gowa's free-trade entrepôt to 1669; the Bugis network's hearth after.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1669,
+          "power": "gowa"
+        },
+        {
+          "from": 1670,
+          "to": 1850,
+          "power": "dutch"
+        }
+      ]
     },
     {
       "id": "naha",
@@ -940,7 +1222,19 @@
         "from": 1550,
         "to": 1783
       },
-      "note": "The Crimean Khanate's port; its trade as represented here ends with the Russian annexation of 1783. The slave trade is under the sober human-trafficking framing, never ordinary cargo."
+      "note": "The Crimean Khanate's port; its trade as represented here ends with the Russian annexation of 1783. The slave trade is under the sober human-trafficking framing, never ordinary cargo.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1782,
+          "power": "crimea"
+        },
+        {
+          "from": 1783,
+          "to": 1783,
+          "power": "russia"
+        }
+      ]
     },
     {
       "id": "arkhangelsk",
@@ -1004,7 +1298,19 @@
         "from": 1571,
         "to": 1850
       },
-      "note": "The Manila galleon's eastern terminus from 1571; the silver crosses to Veracruz overland, which is the point."
+      "note": "The Manila galleon's eastern terminus from 1571; the silver crosses to Veracruz overland, which is the point.",
+      "eraPowers": [
+        {
+          "from": 1571,
+          "to": 1820,
+          "power": "spain"
+        },
+        {
+          "from": 1821,
+          "to": 1850,
+          "power": "mexico"
+        }
+      ]
     },
     {
       "id": "algiers",
@@ -1150,7 +1456,19 @@
         "from": 1550,
         "to": 1850
       },
-      "note": "The Armada's shipyard and, after the reopening of 1774, a cacao port booming into the nineteenth century."
+      "note": "The Armada's shipyard and, after the reopening of 1774, a cacao port booming into the nineteenth century.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1821,
+          "power": "spain"
+        },
+        {
+          "from": 1822,
+          "to": 1850,
+          "power": "gran-colombia"
+        }
+      ]
     },
     {
       "id": "panama-perico",
@@ -1166,7 +1484,19 @@
         "from": 1550,
         "to": 1850
       },
-      "note": "The Pacific end of the isthmus. A lane endpoint rather than a trading node in its own right: the silver crossed to Portobelo overland, by mule, and that crossing is not modelled as shipping."
+      "note": "The Pacific end of the isthmus. A lane endpoint rather than a trading node in its own right: the silver crossed to Portobelo overland, by mule, and that crossing is not modelled as shipping.",
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1820,
+          "power": "spain"
+        },
+        {
+          "from": 1821,
+          "to": 1850,
+          "power": "gran-colombia"
+        }
+      ]
     },
     {
       "id": "valparaiso",
@@ -1307,7 +1637,24 @@
           "name": "New Orleans"
         }
       ],
-      "note": "Founded 1718; French, then Spanish from 1763, then French again and American with the Louisiana Purchase of 1803. The Mississippi's outlet and, by the 1830s and 40s, the great cotton port - and the largest slave market in the United States, whose coastwise traffic is carried soberly in neworleans-coastwise."
+      "note": "Founded 1718; French, then Spanish from 1763, then French again and American with the Louisiana Purchase of 1803. The Mississippi's outlet and, by the 1830s and 40s, the great cotton port - and the largest slave market in the United States, whose coastwise traffic is carried soberly in neworleans-coastwise.",
+      "eraPowers": [
+        {
+          "from": 1718,
+          "to": 1762,
+          "power": "france"
+        },
+        {
+          "from": 1763,
+          "to": 1802,
+          "power": "spain"
+        },
+        {
+          "from": 1803,
+          "to": 1850,
+          "power": "usa"
+        }
+      ]
     },
     {
       "id": "montevideo",
@@ -1438,7 +1785,19 @@
           "name": "Port Louis (Mauritius)"
         }
       ],
-      "note": "The French Indian Ocean base from 1735 and the corsair harbour of the revolutionary wars; British from 1810, when it became Mauritius. Sugar and, later, indentured labour."
+      "note": "The French Indian Ocean base from 1735 and the corsair harbour of the revolutionary wars; British from 1810, when it became Mauritius. Sugar and, later, indentured labour.",
+      "eraPowers": [
+        {
+          "from": 1735,
+          "to": 1810,
+          "power": "france"
+        },
+        {
+          "from": 1811,
+          "to": 1850,
+          "power": "britain"
+        }
+      ]
     },
     {
       "id": "shanghai",
@@ -1452,7 +1811,19 @@
         "from": 1600,
         "to": 1850
       },
-      "note": "A great Yangtze-delta junk port long before the treaty of 1842 made it a foreign one: the coastal grain and cotton trade ran through here on a scale the European record barely registers."
+      "note": "A great Yangtze-delta junk port long before the treaty of 1842 made it a foreign one: the coastal grain and cotton trade ran through here on a scale the European record barely registers.",
+      "eraPowers": [
+        {
+          "from": 1600,
+          "to": 1644,
+          "power": "ming"
+        },
+        {
+          "from": 1645,
+          "to": 1850,
+          "power": "qing"
+        }
+      ]
     },
     {
       "id": "tianjin",
@@ -1466,7 +1837,19 @@
         "from": 1600,
         "to": 1850
       },
-      "note": "The dot sits at Dagu, the Hai river bar. The northern terminus of the coastal grain fleets that fed Peking - a Chinese domestic trade, and one of the largest movements of shipping anywhere in the era."
+      "note": "The dot sits at Dagu, the Hai river bar. The northern terminus of the coastal grain fleets that fed Peking - a Chinese domestic trade, and one of the largest movements of shipping anywhere in the era.",
+      "eraPowers": [
+        {
+          "from": 1600,
+          "to": 1644,
+          "power": "ming"
+        },
+        {
+          "from": 1645,
+          "to": 1850,
+          "power": "qing"
+        }
+      ]
     },
     {
       "id": "busan",
@@ -1568,7 +1951,19 @@
         "from": 1720,
         "to": 1850
       },
-      "note": "Not a port but a whaling ground, between Greenland and Baffin Island: the bowhead fishery the Dutch, British, and Nantucket fleets worked from the 1720s. A grounds node, following Smeerenburg's precedent."
+      "note": "Not a port but a whaling ground, between Greenland and Baffin Island: the bowhead fishery the Dutch, British, and Nantucket fleets worked from the 1720s. A grounds node, following Smeerenburg's precedent.",
+      "eraPowers": [
+        {
+          "from": 1720,
+          "to": 1800,
+          "power": "dutch"
+        },
+        {
+          "from": 1801,
+          "to": 1850,
+          "power": "britain"
+        }
+      ]
     },
     {
       "id": "jedda",

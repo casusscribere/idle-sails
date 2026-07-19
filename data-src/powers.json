@@ -745,6 +745,101 @@
       "note": "Phase-4 flag bundle: the shogunate under sakoku — the sovereign of Nagasaki and the host of the Dutch factory at Dejima (which flies dutch, being Dutch-run). Non-spawning shore power."
     },
     {
+      "id": "haiti",
+      "name": "Haiti",
+      "kind": "shore",
+      "color": "#1c3f6e",
+      "homePorts": [],
+      "era": {
+        "from": 1804,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Phase-4 flag: the first independent state born of a successful slave revolution (1804), formerly French Saint-Domingue — Cap-Français becomes Cap-Haïtien. Non-spawning shore power (the flag over the dot; the chart authors no late-era Haitian trade lanes)."
+    },
+    {
+      "id": "mexico",
+      "name": "Mexico",
+      "kind": "shore",
+      "color": "#3f7a4d",
+      "homePorts": [],
+      "era": {
+        "from": 1821,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Phase-4 flag: independent Mexico from 1821 (formerly New Spain) — the sovereign over Veracruz and Acapulco after independence. Non-spawning shore power."
+    },
+    {
+      "id": "brazil",
+      "name": "Brazil (Empire)",
+      "kind": "shore",
+      "color": "#2e7d4f",
+      "homePorts": [],
+      "era": {
+        "from": 1822,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Phase-4 flag: the independent Empire of Brazil from 1822 (formerly Portuguese America) — the sovereign over Rio, Bahia, and Pernambuco after independence. Non-spawning shore power."
+    },
+    {
+      "id": "gran-colombia",
+      "name": "Gran Colombia",
+      "kind": "shore",
+      "color": "#c9a227",
+      "homePorts": [],
+      "era": {
+        "from": 1819,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Phase-4 flag: the Bolívarian republic of the northern Andes (1819–1831) and its successor states — a roster-scale stand-in for independent Colombia/New Granada (Cartagena, Panama) and Ecuador (Guayaquil) after the wars of independence. Non-spawning shore power."
+    },
+    {
+      "id": "dahomey",
+      "name": "Dahomey",
+      "kind": "shore",
+      "color": "#8c5a2b",
+      "homePorts": [],
+      "era": {
+        "from": 1727,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.0,
+        "merchant": 0.0
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Phase-4 flag: the West-African kingdom of Dahomey, which conquered the coastal kingdom of Hueda (Whydah) in 1727 and controlled Ouidah's slave-trade forts thereafter. Non-spawning shore power (the sovereign over the coast the European factories leased)."
+    },
+    {
       "id": "patani",
       "name": "Sultanate of Patani",
       "kind": "shore",

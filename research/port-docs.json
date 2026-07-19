@@ -4,8 +4,16 @@
   "ports": {
     "madras": {
       "blurb": [
-        { "from": 1550, "to": 1638, "text": "Masulipatnam, the great cloth port of the Golconda sultanate — printed and painted Coromandel cottons carried west to Persia and the Red Sea and east to the archipelago." },
-        { "from": 1639, "to": 1850, "text": "Madras, the English East India Company's Fort St George — from a strip of sand leased in 1639 to the Company's Coromandel capital and the second city of British India." }
+        {
+          "from": 1550,
+          "to": 1638,
+          "text": "Masulipatnam, the great cloth port of the Golconda sultanate — printed and painted Coromandel cottons carried west to Persia and the Red Sea and east to the archipelago."
+        },
+        {
+          "from": 1639,
+          "to": 1850,
+          "text": "Madras, the English East India Company's Fort St George — from a strip of sand leased in 1639 to the Company's Coromandel capital and the second city of British India."
+        }
       ],
       "doc": [
         "The Coromandel coast has no natural harbour: ships lay in an open roadstead off a surf-beaten shore, and cargo and passengers came ashore through the breakers in flat-bottomed masula boats and log catamarans. What the coast had instead was cloth — the painted and printed cottons (chintz, longcloth, salempores) that were the currency of the whole Indian Ocean trade, bought for spices in the archipelago and for gold and silver everywhere.",
@@ -18,8 +26,16 @@
     },
     "batavia": {
       "blurb": [
-        { "from": 1550, "to": 1618, "text": "Jayakarta, a pepper harbour of the Sunda coast under the Sultanate of Banten — a modest roadstead where Chinese junks and local prahus traded before the Dutch came." },
-        { "from": 1619, "to": 1850, "text": "Batavia, the walled headquarters of the Dutch East India Company in Asia — the hub from which the VOC ran the spice monopoly, the intra-Asian country trade, and the archipelago." }
+        {
+          "from": 1550,
+          "to": 1618,
+          "text": "Jayakarta, a pepper harbour of the Sunda coast under the Sultanate of Banten — a modest roadstead where Chinese junks and local prahus traded before the Dutch came."
+        },
+        {
+          "from": 1619,
+          "to": 1850,
+          "text": "Batavia, the walled headquarters of the Dutch East India Company in Asia — the hub from which the VOC ran the spice monopoly, the intra-Asian country trade, and the archipelago."
+        }
       ],
       "doc": [
         "In 1619 Jan Pieterszoon Coen stormed and burned the town of Jayakarta, a vassal port of the Sultanate of Banten on the Sunda coast, and built in its place a walled Dutch city on the Amsterdam model — canals, a castle, and a grid — named Batavia after the ancestral Batavi of the Netherlands. It became the capital of the VOC's Asian empire and the rendezvous of the retourvloot, the annual fleet home.",
@@ -43,8 +59,16 @@
     },
     "bombay": {
       "blurb": [
-        { "from": 1550, "to": 1660, "text": "A cluster of Portuguese-held islands (Bombaim) on the Konkan coast — minor beside the Estado da Índia's capital at Goa to the south, which the chart's dot stands in for in this era." },
-        { "from": 1661, "to": 1850, "text": "Bombay, the English East India Company's western presidency — the deep, sheltered harbour that made it the Company's naval base and, by the 1800s, the great cotton and opium port of western India." }
+        {
+          "from": 1550,
+          "to": 1660,
+          "text": "A cluster of Portuguese-held islands (Bombaim) on the Konkan coast — minor beside the Estado da Índia's capital at Goa to the south, which the chart's dot stands in for in this era."
+        },
+        {
+          "from": 1661,
+          "to": 1850,
+          "text": "Bombay, the English East India Company's western presidency — the deep, sheltered harbour that made it the Company's naval base and, by the 1800s, the great cotton and opium port of western India."
+        }
       ],
       "doc": [
         "The seven islands of Bombay were a minor Portuguese holding until they passed to the English Crown in 1661 as part of the dowry of Catherine of Braganza, and to the East India Company on a nominal rent in 1668. Its magnificent natural harbour — deep, sheltered, and defensible — made it the Company's western naval base and the seat of the Bombay Presidency.",
@@ -57,8 +81,16 @@
     },
     "calcutta": {
       "blurb": [
-        { "from": 1550, "to": 1689, "text": "Hugli, the Mughal river-port of Bengal — the Ganges delta's outlet for muslins, silk, and saltpetre, worked by Mughal officials and Portuguese, Dutch, and English factors upriver." },
-        { "from": 1690, "to": 1850, "text": "Calcutta, the East India Company's Bengal settlement and, after Plassey, the capital of British India — the great export port of the richest province of the subcontinent." }
+        {
+          "from": 1550,
+          "to": 1689,
+          "text": "Hugli, the Mughal river-port of Bengal — the Ganges delta's outlet for muslins, silk, and saltpetre, worked by Mughal officials and Portuguese, Dutch, and English factors upriver."
+        },
+        {
+          "from": 1690,
+          "to": 1850,
+          "text": "Calcutta, the East India Company's Bengal settlement and, after Plassey, the capital of British India — the great export port of the richest province of the subcontinent."
+        }
       ],
       "doc": [
         "The trade of Bengal — the finest cotton muslins, raw silk, and saltpetre for Europe's gunpowder — ran through river ports on the Hooghly, the westernmost distributary of the Ganges. The Mughal customs port was Hugli; the Portuguese, Dutch, and English all held factories along the river before the Company settled the villages that became Calcutta in 1690.",
@@ -67,6 +99,1419 @@
       "sources": [
         "Om Prakash, The Dutch East India Company and the Economy of Bengal, 1630–1720 (1985).",
         "P. J. Marshall, East Indian Fortunes: The British in Bengal in the Eighteenth Century (1976)."
+      ]
+    },
+    "mocha": {
+      "blurb": "The Red Sea coffee port whose beans supplied Europe before the plantations of Java and the Antilles, shipped under an Ottoman flag that the Zaydi imams of Yemen contested through much of the era.",
+      "doc": [
+        "Mocha (al-Mukha), on Yemen's Red Sea coast, was an open roadstead rather than a true harbour: ships anchored offshore and lightered their goods over the shoals to the town. It was the great emporium of Yemeni coffee, grown in the highland terraces inland and brought down to the coast for export. Ottoman and Egyptian merchants carried it up the Red Sea to Suez and Cairo for the Middle Eastern market; from the mid-seventeenth century the English, Dutch, and French East India companies opened factories at Mocha to buy coffee directly for Europe, alongside the Gujarati and other Indian Ocean traders who had long frequented the port.",
+        "Ottoman from 1538, Mocha's coffee monopoly reached its height between about 1650 and 1720, even though the Zaydi imams of Yemen expelled the Ottoman garrisons in 1636 and governed the country thereafter (a change of ruling power this chart cannot flag for want of a Zaydi polity id). The port declined once coffee cultivation spread to Dutch Java, French Bourbon, and the Caribbean in the eighteenth century and undercut the Yemeni monopoly; by the early nineteenth century the trade had thinned and shifted north toward Hodeida and Aden, though 'Mocha' survived as a name for the coffee itself."
+      ],
+      "sources": [
+        "Nancy Um, The Merchant Houses of Mocha: Trade and Architecture in an Indian Ocean Port (2009)",
+        "C. G. Brouwer, Cauwa ende Comptanten: The Dutch East India Company in Yemen, 1614-1655 (1988)"
+      ]
+    },
+    "muscat": {
+      "blurb": "The fortified harbour of the Ya'rubid and then Al Bu Sa'idi sultans of Oman - the base from which an Arab sea power drove the Portuguese from the Gulf and the Swahili coast and built a commercial empire of dhows.",
+      "doc": [
+        "Muscat is a deep natural harbour ringed by bare mountains on the Gulf of Oman, its entrance guarded by the twin forts Jalali and Mirani (built by the Portuguese, taken by the Omanis in 1650). It commanded the mouth of the Persian Gulf and the trade linking Arabia, Persia, India, and East Africa. Omani seafarers and resident Indian merchants, chiefly Gujarati Banians, handled dates, dried fish, Gulf pearls, and the carrying trade in Indian textiles - and, named soberly, the traffic in enslaved East Africans carried from the Swahili coast into Arabia and the Gulf.",
+        "The Ya'rubid imams expelled the Portuguese from Muscat in 1650 and carried the war to them in East Africa, taking Mombasa in 1698. Under the Al Bu Sa'idi dynasty from 1749 Oman became the dominant Arab maritime power of the western Indian Ocean; Sayyid Said (r. 1804-56) ruled a commercial empire that spanned Muscat and Zanzibar, and in 1840 he moved his court to Zanzibar as the clove-and-ivory economy of the African side came to eclipse Muscat itself."
+      ],
+      "sources": [
+        "Patricia Risso, Oman and Muscat: An Early Modern History (1986)",
+        "Abdul Sheriff, Slaves, Spices and Ivory in Zanzibar (1987)"
+      ]
+    },
+    "jedda": {
+      "blurb": "Mecca's sea gate on the Red Sea - the port of the pilgrimage and the terminus of the spice and coffee trade from the Indian Ocean, held for the Ottoman sultan as protector of the Holy Cities.",
+      "doc": [
+        "Jeddah (Jidda), the port of the Hijaz, lay behind a coral reef whose difficult approach local pilots knew intimately. It served Mecca, some seventy kilometres inland, and every year received by sea the pilgrims of the hajj from Egypt, India, and the Malay world; its customs were among the richest in the Ottoman Red Sea. Ottoman, Egyptian, Hadhrami, Indian, and Southeast Asian merchants traded the coffee coming up from Mocha, Indian textiles, and the pepper and spices that Aceh and other Indian Ocean ports shipped direct to the Red Sea, outflanking the Cape route.",
+        "Ottoman from 1517, when Selim I took Egypt and with it the guardianship of the Holy Cities, Jeddah was governed under Ottoman suzerainty by the Sharifs of Mecca, who shared its customs revenue. It prospered as long as the Red Sea route drew a share of the Indian trade, and it kept its essential function - the harbour of the pilgrimage - throughout the era, even as the Wahhabi-Saudi expansion and Muhammad Ali of Egypt's intervention convulsed the Hijaz in the early nineteenth century."
+      ],
+      "sources": [
+        "Suraiya Faroqhi, Pilgrims and Sultans: The Hajj under the Ottomans, 1517-1683 (1994)",
+        "William Facey (ed.), Jeddah: Port of Mecca, Gateway of the Indian Ocean Trade (2005)"
+      ]
+    },
+    "mombasa": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1698,
+          "text": "A Swahili city-state on the East African coast held by Portugal from Fort Jesus - a link in the Estado da India's chain guarding the sea road to India and the gold of Sofala."
+        },
+        {
+          "from": 1699,
+          "to": 1850,
+          "text": "The Swahili port after the Omani conquest of 1698, held for much of the eighteenth century by the semi-independent Mazrui governors - a station of the ivory caravans and of the East African trade in enslaved people carried into Arabia."
+        }
+      ],
+      "doc": [
+        "Mombasa sits on an island with two deep harbours and was one of the leading Swahili city-states of the East African coast: Muslim, Swahili-speaking, and tied by dhow to Arabia, the Gulf, and India on the monsoon. Its trade was ivory and other goods brought from the interior, mangrove poles, and grain, exchanged for Indian cloth and Gulf dates. The Portuguese raised Fort Jesus in 1593 to command the town and the route to India. Throughout the era, and increasingly under Omani rule, the coast also trafficked enslaved East Africans - men, women, and children taken from the interior and carried against their will into Arabia, the Gulf, and the islands.",
+        "Portugal's hold on Mombasa was contested through the sixteenth and seventeenth centuries; the Omani Arabs, having recovered Muscat, besieged and finally took Fort Jesus in 1698, ending the main Portuguese presence north of Mozambique. Under Oman the Mazrui family governed the town semi-independently for much of the eighteenth century, resisting the Busaidi sultans until Zanzibar's Sayyid Said subdued them in 1837. As the nineteenth-century clove and ivory boom centred on Zanzibar, and as the Atlantic slave trade was suppressed, the East African trade in captives grew - a fact named here plainly, never as commerce."
+      ],
+      "sources": [
+        "Justus Strandes, The Portuguese Period in East Africa (trans. 1961)",
+        "Abdul Sheriff, Slaves, Spices and Ivory in Zanzibar (1987)"
+      ]
+    },
+    "zanzibar": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1698,
+          "text": "A Swahili island off the East African coast within the Portuguese sphere of the Estado da India - a watering and trading call on the monsoon route to Goa."
+        },
+        {
+          "from": 1699,
+          "to": 1850,
+          "text": "The African seat of the Omani sultanate - Sayyid Said moved his court here in 1840 - and the hub of the clove plantations, the ivory caravans, and the East African trade in enslaved people that grew as the Atlantic one was suppressed."
+        }
+      ],
+      "doc": [
+        "Zanzibar is a low coral island with a sheltered anchorage on its western side, and it lay at the heart of the Swahili world, its stone town trading by dhow with Arabia, the Gulf, and India on the monsoon. Under the Omani Busaidi sultans, and especially after Sayyid Said transferred his capital there in 1840, it became the commercial capital of the western Indian Ocean: clove plantations, ivory brought down by caravan from the interior lakes, and gum copal and other African produce, all exchanged for American cloth ('merikani'), Indian textiles, and Gulf goods, with Indian Banian and Bohra financiers underwriting the trade.",
+        "That nineteenth-century clove and ivory boom rested on the coerced movement of enslaved East Africans - captured in the interior, marched to the coast, held and sold in Zanzibar's market, and set to labour on the island's plantations or carried on to Arabia, the Gulf, and India. As the Atlantic trade was suppressed after 1807, this East African traffic in human beings expanded through the first half of the century. It is named here as what it was: people trafficked and held against their will, never a commodity and never a source of profit to be tallied."
+      ],
+      "sources": [
+        "Abdul Sheriff, Slaves, Spices and Ivory in Zanzibar: Integration of an East African Commercial Empire into the World Economy, 1770-1873 (1987)",
+        "M. Reda Bhacker, Trade and Empire in Muscat and Zanzibar (1992)"
+      ]
+    },
+    "mozambique": {
+      "blurb": "Ilha de Mocambique - Portugal's fortified island call on the East African coast, the administrative seat of the Estado da India south of the line and the Carreira's watering place on the run to Goa.",
+      "doc": [
+        "Mozambique Island, a small coral island in a good harbour, was the Portuguese Crown's chief base on the East African coast, dominated by the great fortress of Sao Sebastiao (from 1558). Outward and homeward Indiamen on the Carreira da India called here to water, refit, and wait out the monsoon, and it was the residence of the captain-general of Portuguese East Africa. Its own trade was the gold and ivory brought down from the Zambezi hinterland through the prazo estates, exchanged for the Indian cloth that Gujarati merchants carried.",
+        "Portuguese from 1507, the island withstood a Dutch siege in 1607-08 and remained the colonial capital until 1898. Its Zambezi gold trade declined over the era, but from the later eighteenth century Mozambique and the neighbouring coast became a major source in the slave trade - enslaved Africans shipped to the Mascarenes, to Brazil, and to the Rio de la Plata - a coerced traffic named here soberly, while ivory remained a staple export to India."
+      ],
+      "sources": [
+        "Malyn Newitt, A History of Mozambique (1995)",
+        "M. D. D. Newitt, Portuguese Settlement on the Zambesi (1973)"
+      ]
+    },
+    "male": {
+      "blurb": "The Maldive sultanate's island capital and the source of the cowrie shells that served as small change across the Bay of Bengal and, carried by way of Europe, on the slave coasts of West Africa.",
+      "doc": [
+        "Male, the seat of the Maldive sultans, was the political and trading centre of the low coral atolls strung across the equatorial Indian Ocean. The islands' great export was the cowrie shell (Cypraea moneta), gathered in the lagoons and shipped in bulk to Bengal, where it circulated as low-denomination currency, together with coir rope twisted from the coconut husk and prized for rigging, and dried 'Maldive fish' sent to Ceylon and India. The trade was carried in Maldivian, Bengali, and Gujarati bottoms on the monsoon.",
+        "The sultanate kept its independence through most of the era, apart from a brief Portuguese domination in the mid-sixteenth century (ended in 1573 by Muhammad Thakurufaanu) and later spells of nominal Dutch and then British protection exercised from Ceylon. The cowrie trade took on a grimmer dimension when European traders bought Maldive shells in Bengal and re-exported them to West Africa, where cowries served as currency in the purchase of enslaved people - a connection named here plainly. The traffic in shells persisted into the nineteenth century."
+      ],
+      "sources": [
+        "Jan Hogendorn and Marion Johnson, The Shell Money of the Slave Trade (1986)",
+        "Clarence Maloney, People of the Maldive Islands (1980)"
+      ]
+    },
+    "port-louis": {
+      "blurb": [
+        {
+          "from": 1735,
+          "to": 1810,
+          "text": "The French Indian Ocean naval base and entrepot on Ile de France, developed by Mahe de La Bourdonnais and, in the revolutionary wars, the corsair harbour that preyed on British India shipping."
+        },
+        {
+          "from": 1811,
+          "to": 1850,
+          "text": "Port Louis of British Mauritius after the capture of 1810 - a sugar colony and a call on the Cape route, worked latterly by indentured labour from India."
+        }
+      ],
+      "doc": [
+        "Port Louis, on the sheltered northwest coast of the volcanic island the French called Ile de France (Mauritius), was the great harbour of the Mascarenes. From 1735 the French East India Company governor Mahe de La Bourdonnais built it into the naval and commercial base of French power in the Indian Ocean, with dockyards, warehouses, and fortifications; it provisioned Indiamen, served as a naval station, and grew sugar, coffee, and cotton on estates worked by enslaved Africans and Malagasy carried to the island - a coerced traffic named here soberly.",
+        "During the revolutionary and Napoleonic wars Port Louis was the base of the French frigates and privateers that raided British East India Company shipping, until a British expedition captured the island in December 1810; it became the colony of Mauritius, Port Louis its capital, confirmed to Britain in 1814. After the abolition of slavery in 1835 the sugar planters imported large numbers of indentured labourers from India, who arrived through Port Louis - the beginning of the indenture migration - and the port kept its importance as a strategic call on the route round the Cape."
+      ],
+      "sources": [
+        "Auguste Toussaint, History of Mauritius (trans. 1977)",
+        "Richard B. Allen, Slaves, Freedmen and Indentured Laborers in Colonial Mauritius (1999)"
+      ]
+    },
+    "basra": {
+      "blurb": "The head of the Persian Gulf and the Ottoman terminus of the Baghdad caravan route - the Gulf's link to Aleppo and the Mediterranean, and a rival to Persian Bandar Abbas for the India trade.",
+      "doc": [
+        "Basra lay far up the Shatt al-Arab, the confluence of the Tigris and Euphrates; sea-going ships anchored at the bar and worked up the river to the town. It was the Ottoman Empire's port at the head of the Gulf and the maritime end of the great caravan route to Baghdad and Aleppo, by which Indian and Gulf goods reached the Mediterranean. The English and Dutch East India companies kept factories there, and the trade - dates, Persian and Indian textiles, horses, and pearls from the Gulf fisheries - passed largely through Armenian, Jewish, Indian, and Arab merchant houses.",
+        "Ottoman from 1546, Basra's fortunes rose and fell with the security of the caravan roads and the rivalry with Safavid, then Qajar, Persia across the Gulf; it was briefly held by the Persians (1697-1701) and besieged and taken by Karim Khan Zand in 1775-79. It gained trade whenever war closed the alternatives - the overland Aleppo road or Persian Bandar Abbas - and the East India Company made it an important station on the Gulf and on the packet route carrying mail overland to Europe."
+      ],
+      "sources": [
+        "Thabit A. J. Abdullah, Merchants, Mamluks, and Murder: The Political Economy of Trade in Eighteenth-Century Basra (2001)",
+        "Rudi Matthee, The Politics of Trade in Safavid Iran: Silk for Silver, 1600-1730 (1999)"
+      ]
+    },
+    "bandar-abbas": {
+      "blurb": "Safavid Persia's Gulf outlet from 1622, when Shah Abbas took Hormuz from the Portuguese with English help - the port through which Persian silk went to sea, declining after the Safavid collapse.",
+      "doc": [
+        "Bandar Abbas (Gombroon to the Europeans), on the Persian shore opposite the island of Hormuz, became Safavid Persia's principal Gulf port after Shah Abbas I, with English East India Company naval help, expelled the Portuguese from Hormuz in 1622. Both the English and the Dutch companies kept substantial factories there. Its trade was Persian silk - the shah's monopoly export - together with Kerman wool and carpets and dried fruit, exchanged for Indian textiles, spices, and specie; it was also a hub of the Indian 'country trade' within the Gulf and to the Malabar and Gujarat coasts.",
+        "The port flourished under the later Safavids as the outlet for the royal silk trade, but it declined sharply after the Afghan invasion and the fall of the Safavid dynasty in 1722 threw Persia into disorder. The European companies ran down their Gombroon factories, and by the mid-eighteenth century much of the Gulf trade had shifted to Ottoman Basra and to Bushire under the Zands; Bandar Abbas never recovered its former importance."
+      ],
+      "sources": [
+        "Rudi Matthee, The Politics of Trade in Safavid Iran: Silk for Silver, 1600-1730 (1999)",
+        "Willem Floor, The Persian Gulf: A Political and Economic History of Five Port Cities, 1500-1730 (2006)"
+      ]
+    },
+    "kaffa": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1782,
+          "text": "The Crimean Khanate's chief Black Sea port under Ottoman protection - a great emporium of the northern trade and one of the largest slave markets of the early-modern world, where captives seized in raids on Slavic and Caucasian lands were held and sold."
+        },
+        {
+          "from": 1783,
+          "to": 1783,
+          "text": "Renamed Feodosia on Russia's annexation of the Crimea in 1783, which ended the khanate and the trade in captives it had run."
+        }
+      ],
+      "doc": [
+        "Kaffa (Caffa; later Feodosia), on the southeastern coast of the Crimean peninsula, had a fine harbour and had been the great Genoese trading colony of the Black Sea before the Ottomans took it in 1475. Under the Crimean Khanate - a Tatar state that was an Ottoman vassal - it was the chief port of the northern Black Sea, shipping grain, salt, hides, and wax up to Istanbul. It was also one of the principal slave markets of the early-modern world: the Crimean Tatars raided the Slavic lands of Poland-Lithuania and Muscovy and the peoples of the Caucasus, and the captives they seized - men, women, and children - were driven to Kaffa, held there, and sold on into the Ottoman lands. This traffic in human beings is named here as what it was, never as trade and never as profit.",
+        "The scale of the raiding was immense: over the sixteenth and seventeenth centuries it carried away very large numbers of people from Ukraine, Poland, and Russia, and Kaffa was its main outlet, remembered in a Ukrainian lament as the place where the captives were sold. Russian and Ottoman wars broke the khanate's power in the eighteenth century, and Catherine II annexed the Crimea in 1783, ending the khanate, the raids, and the slave market; the port continued under Russia as Feodosia - the point at which its trade as represented on this chart closes."
+      ],
+      "sources": [
+        "Alan W. Fisher, 'Muscovy and the Black Sea Slave Trade', Canadian-American Slavic Studies 6 (1972)",
+        "Mikhail Kizilov, 'Slave Trade in the Early Modern Crimea from the Perspective of Christian, Muslim, and Jewish Sources', Journal of Early Modern History 11 (2007)"
+      ]
+    },
+    "arkhangelsk": {
+      "blurb": "Russia's ice-bound White Sea door, the tsars' one seagoing outlet for furs, tallow, hemp and naval stores until St Petersburg supplanted it after 1703.",
+      "doc": [
+        "Arkhangelsk stood at the mouth of the Northern Dvina, sixty-odd kilometres up a marshy delta on the shore of the White Sea, and was founded in 1584 as Russia's first true maritime port. Its harbour was open water for only the short summer-and-autumn ice season; for the rest of the year the Dvina and the Gorlo throat of the White Sea were frozen, so the whole of the town's foreign trade compressed into a single annual fair when the English Muscovy Company, the Dutch, and later Hamburg and other carriers came up on the summer wind. The approach itself was a feat of pilotage through shoal and ice, and no vessel dared a winter departure — a seasonality the chart preserves.",
+        "For more than a century Arkhangelsk was the sole channel of Muscovy's seaborne commerce with western Europe: outward went furs, hides, tallow, wax, potash, hemp, flax, cordage and ship's timber — the naval stores on which the western fleets depended — and inward came silver, cloth, metals and manufactures. Its fortunes turned on a decision of state rather than of the sea. When Peter I took the Baltic coast and built St Petersburg, he deliberately diverted the trade south to his new capital, restricting Arkhangelsk's commerce by decree from 1722; the port declined into a regional and Arctic role, reviving only partially in the later eighteenth century. It remained active as a working harbour throughout the chart's window, but never again as Russia's chief gate to Europe."
+      ],
+      "sources": [
+        "Jarmo T. Kotilaine, Russia's Foreign Trade and Economic Expansion in the Seventeenth Century (Brill, 2005)",
+        "T. S. Willan, The Early History of the Russia Company, 1553-1603 (Manchester University Press, 1956)"
+      ]
+    },
+    "smeerenburg": {
+      "blurb": "'Blubber Town', the Dutch shore whaling settlement on Spitsbergen's Amsterdam Island (c.1614-1660), where bowhead blubber was flensed and boiled before the bay whales gave out and the fishery moved offshore.",
+      "doc": [
+        "Smeerenburg — Dutch for 'Blubber Town' — was not a sovereign port but a seasonal shore station on the low spit of Amsterdam Island at the north-west corner of Spitsbergen, near 80 degrees north, established around 1614 and worked chiefly by the Noordsche Compagnie. It was a summer settlement of try-works, coopers' sheds, warehouses and dwellings occupied only during the whaling season; no ship reached it in winter, and the popular later legend of a bustling town of thousands with bakeries and a fort is an exaggeration corrected by twentieth-century archaeology, which found a modest cluster of blubber-boiling ovens and cabins for a few hundred men at its height.",
+        "The station existed to exploit the Greenland right whale (bowhead) that gathered in the bays along the Spitsbergen coast, where they could be killed from small boats close inshore, towed to the beach, flensed, and their blubber rendered to oil in the great copper kettles for the European lighting and soap markets. That bay-whaling model was Smeerenburg's making and its undoing: as the near-shore whales were hunted out over the 1630s and 1640s the catch moved into the open pack ice, where oil was increasingly boiled at sea or brought home raw, and the fixed shore station lost its purpose. Smeerenburg was abandoned by about 1660, ending as a site of early Arctic industrial over-exploitation rather than a lasting town."
+      ],
+      "sources": [
+        "Louwrens Hacquebord, Smeerenburg: het verblijf van Nederlandse walvisvaarders op de westkust van Spitsbergen in de zeventiende eeuw (Rijksmuseum, dissertation, 1984)",
+        "Chr. de Jong, Geschiedenis van de oude Nederlandse walvisvaart, 3 vols (1972-1979)"
+      ]
+    },
+    "davis-strait": {
+      "blurb": {
+        "text": [
+          {
+            "from": 1720,
+            "to": 1800,
+            "text": "The bowhead whaling grounds between Greenland and Baffin Island, worked from the 1720s chiefly by the Dutch Greenland fleet as the near-Spitsbergen fishery gave out."
+          },
+          {
+            "from": 1800,
+            "to": 1850,
+            "text": "The same Davis Strait bowhead grounds, dominated after the Dutch collapse by the British and Scottish fleet out of Hull, Peterhead and Dundee."
+          }
+        ]
+      },
+      "doc": [
+        "Davis Strait is not a port but a whaling ground — the stretch of ice-strewn water between the west coast of Greenland and Baffin Island, named for the Elizabethan navigator John Davis, where the Greenland right whale (bowhead) could be hunted along the floe edge and in the open bights of the pack. As the whales near Spitsbergen were thinned out in the later seventeenth century, the fleets followed them west, and from the 1720s the strait became the principal Arctic fishery. It is entered here as a grounds node, on the precedent of Smeerenburg: ships did not call at a town but worked a season on the ice and sailed home, which is why the chart treats it as a destination without a harbour.",
+        "The fishery changed hands over the chart's window, which is why the grounds carry a shift of dominant flag rather than a sovereignty. Through much of the eighteenth century the Dutch Greenland and Straat Davis fleet was the largest presence; the Dutch effort was broken by the Fourth Anglo-Dutch War (1780-84) and the wars that followed, and had all but collapsed by 1800. The British fishery rose to take its place, first from Hull and the English east-coast ports and then overwhelmingly from the Scottish ports of Peterhead, Aberdeen and Dundee, which worked the strait deep into the nineteenth century and pushed north into Baffin Bay as the accessible whales were killed off. The trade produced oil and whalebone for European industry and left the bowhead stock severely depleted by the end of the period."
+      ],
+      "sources": [
+        "Gordon Jackson, The British Whaling Trade (A. & C. Black, 1978)",
+        "W. Gillies Ross, Arctic Whalers, Icy Seas: Narratives of the Davis Strait Whale Fishery (Irwin, 1985)"
+      ]
+    },
+    "york-factory": {
+      "blurb": "The Hudson's Bay Company's chief entrepot on the Bay, at the mouth of the Hayes River from 1684 — furs out and trade goods in on one or two ships a year through a few ice-free weeks, and the head of the York-boat inland transport system.",
+      "doc": [
+        "York Factory stood on the low, boggy point between the Hayes and Nelson rivers on the south-western shore of Hudson Bay, established by the Hudson's Bay Company in 1684. It was a fur-trade entrepot rather than a settlement town: a palisaded post whose whole seaborne life turned on the annual arrival of the Company's one or two ships, which had to reach the Bay, unload English trade goods, load the season's furs and clear the ice before freeze-up, a window of only a few weeks. From York the goods moved inland by river, and in the eighteenth and nineteenth centuries by the purpose-built York boat — a heavy inland freighter, rowed and portaged, that replaced the canoe on the routes to the interior posts and gave the fur brigades their reach across the Northwest.",
+        "The furs — prime beaver above all, with marten, fox and other pelts — came down to the Bay through Indigenous middlemen, chiefly Cree and Assiniboine, whose trade the post depended on entirely; York Factory was a European foothold on the edge of Indigenous country, not a colony over it. Its early decades were contested with France: in the wars of the 1680s-1710s the Bay posts changed hands repeatedly, and York itself was taken by Pierre Le Moyne d'Iberville in 1694, retaken, seized again, and held by France for much of 1697-1714 until the Treaty of Utrecht restored the whole Bay to Britain and the Company. Thereafter York Factory was the Company's principal depot and administrative headquarters on the Bay for well over a century, declining only as inland routes and rival transport supplanted the Hayes River road in the mid-nineteenth century."
+      ],
+      "sources": [
+        "E. E. Rich, The History of the Hudson's Bay Company, 1670-1870, 2 vols (Hudson's Bay Record Society, 1958-1959)",
+        "Michael Payne, The Most Respectable Place in the Territory: Everyday Life in Hudson's Bay Company Service, York Factory, 1788-1870 (Canadian Parks Service, 1989)"
+      ]
+    },
+    "sitka": {
+      "blurb": "New Archangel (Novo-Arkhangelsk), the Russian-American Company's colonial capital on Tlingit land from 1799/1804, the depot of the North Pacific sea-otter fur trade for the Canton market.",
+      "doc": [
+        "Sitka, called Novo-Arkhangelsk (New Archangel) by the Russians, sits on Baranof Island in the Alexander Archipelago of south-east Alaska, on the country of the Sitka Tlingit (Kiks.adi), who were and remained the sovereign people of the place. This must be named plainly: the Russian-American Company did not settle empty land. Aleksandr Baranov built the first fort near the site in 1799, and in 1802 the Sitka Tlingit destroyed it and killed or drove off its occupants; the Company returned in force in 1804, took the position after the battle at Indianski/Shis'ki Noow, and made New Archangel the capital of Russian America. Tlingit presence and pressure on the post never ceased. The harbour was a deep-water sound that let ocean-going ships lie close under the fort, and the town grew into the administrative and shipbuilding centre of the whole colony.",
+        "The colony existed for one commodity above all: the pelt of the sea otter, the most valuable fur in the world, sold through Kyakhta and increasingly shipped direct to Canton for the China market. That trade rested on coercion. The Russian-American Company compelled Aleut (Unangax) and Alutiiq hunters, whose skill with the kayak the Russians could not match, to hunt otter for the Company under a system of hostage-taking, forced labour and reprisal that killed many and broke whole communities. The hunt exterminated the sea otter across most of its range within a few decades, so that by the mid-nineteenth century the fur economy that built Sitka had collapsed for want of animals — an early and near-total commercial extinction. Sitka remained the colonial capital until Russia sold Alaska to the United States in 1867, past the chart's horizon."
+      ],
+      "sources": [
+        "Lydia T. Black, Russians in Alaska, 1732-1867 (University of Alaska Press, 2004)",
+        "Ilya Vinkovetsky, Russian America: An Overseas Colony of a Continental Empire, 1804-1867 (Oxford University Press, 2011)"
+      ]
+    },
+    "nootka": {
+      "blurb": "Nootka Sound on Vancouver Island, in Mowachaht/Nuu-chah-nulth country under the chief Maquinna — the anchorage where American, British and Spanish maritime fur traders watered and bought sea-otter pelts for Canton, and the flashpoint of the 1789-94 Nootka Crisis.",
+      "doc": [
+        "Nootka Sound is an inlet on the west coast of Vancouver Island, and it was and is Mowachaht territory, part of the Nuu-chah-nulth world; in the late eighteenth century the summer village of Yuquot at its mouth was the seat of the chief Maquinna, whose people controlled who might anchor and trade there. The maritime fur traders who crowded in after James Cook's crews found the value of sea-otter pelts in 1778 — Americans out of Boston, British private ships, and others — came at Maquinna's sufferance, watering, refitting and bartering iron, copper and cloth for otter skins to sell in Canton. The harbour was theirs to use only on Mowachaht terms, and the chart flags the anchorage to the Mowachaht as a shore power for exactly that reason: the trading ships fly American and British colours, but the ground beneath them does not become theirs.",
+        "The sound gave its name to the Nootka Crisis of 1789-94, when Spain, asserting an old claim to the whole Pacific coast, seized British trading vessels there and briefly built a garrison at Yuquot; the affair brought Britain and Spain to the edge of war before the Nootka Conventions settled it in Britain's favour and Spain withdrew, an episode that mattered chiefly to the two European empires and left Mowachaht sovereignty over the place formally untouched. The fur trade itself faded not by any treaty but with its quarry: as the sea otter was hunted toward extinction along the coast the ships stopped coming, and Nootka's role as the great rendezvous of the trade ended in the 1810s-1840s, the anchorage falling quiet as the animal that drew the world to it disappeared."
+      ],
+      "sources": [
+        "Robin Fisher, Contact and Conflict: Indian-European Relations in British Columbia, 1774-1890 (University of British Columbia Press, 1977)",
+        "Warren L. Cook, Flood Tide of Empire: Spain and the Pacific Northwest, 1543-1819 (Yale University Press, 1973)"
+      ]
+    },
+    "gothenburg": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1620,
+          "text": "Älvsborg, the fortified Swedish harbour at the mouth of the Göta, was the kingdom's one narrow outlet to the western sea between the Danish-held provinces."
+        },
+        {
+          "from": 1621,
+          "to": 1850,
+          "text": "Chartered in 1621, Gothenburg became Sweden's Atlantic gateway and home port of the Swedish East India Company's Canton tea voyages."
+        }
+      ],
+      "doc": [
+        "Gothenburg stands at the mouth of the Göta älv on the Kattegat, the single point where the Swedish crown could reach the western sea when Halland, Bohuslän and Skåne were still Danish or Norwegian ground; the older harbour clustered under the guns of Älvsborg fortress, which guarded the estuary and was twice ransomed from Denmark. The city proper was chartered by Gustavus Adolphus in 1621 and laid out on a Dutch plan of straight canals by Dutch engineers, and it is from that founding that the chart's dot changes name from Älvsborg to Gothenburg.",
+        "Its early exports were the staples of the Swedish economy — bar iron, timber and tar carried to the Dutch and the British — later joined by a great herring boom in the last third of the eighteenth century. Its distinctive fortune, however, was the Swedish East India Company, chartered in 1731 and sailing from Gothenburg to Canton for tea, porcelain and silk, much of the tea re-exported (and smuggled) into Britain; the neutral Swedish flag let the port prosper as a carrier through the wars that idled its rivals."
+      ],
+      "sources": [
+        "Christian Koninckx, The First and Second Charters of the Swedish East India Company (1731–1766) (1980)",
+        "David Kirby, The Baltic World 1492–1772 (1990)"
+      ]
+    },
+    "danzig": {
+      "blurb": "Danzig, the self-governing Hanseatic city at the Vistula mouth, was the grain staple of the 'mother trade' — the outlet through which the Polish-Lithuanian breadbasket fed Amsterdam and the west.",
+      "doc": [
+        "Danzig (Gdańsk) lies at the mouth of the Vistula, and its wealth was the river: the grain of the vast Polish-Lithuanian interior was floated down to its granaries and shipped out through the Sound to Amsterdam, making it the pivot of what contemporaries and historians alike called the 'mother trade' in Baltic corn. Beside rye and wheat it exported timber, potash, pitch, tar and other naval stores, and it did so as a largely self-governing city that flew its own colours while acknowledging the suzerainty of the Polish crown — the reason the chart files it under the Hanse carrier flag rather than a sovereign one.",
+        "Danzig's zenith was roughly 1590 to 1650, when it was among the busiest ports of northern Europe; the mid-seventeenth-century wars, the Swedish 'deluge' in Poland, and the long decline of Polish grain exports gradually eroded its primacy, and in the Second Partition of 1793 the city was annexed by Prussia. Because the dataset offers no Polish-Lithuanian or Prussian sovereign flag, that constitutional history is smeared under the Hanse flag here and its true suzerain is logged as a declared silence."
+      ],
+      "sources": [
+        "Maria Bogucka, Baltic Commerce and Urban Society, 1500–1700: Gdańsk/Danzig and its Polish Context (2003)",
+        "Milja van Tielhof, The Mother of All Trades: The Baltic Grain Trade in Amsterdam from the Late Sixteenth to the Early Nineteenth Century (2002)"
+      ]
+    },
+    "riga": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1620,
+          "text": "Riga, the Hanseatic mast and naval-stores port on the Düna, shipped the tall timber, hemp and flax that rigged the fleets of western Europe."
+        },
+        {
+          "from": 1621,
+          "to": 1709,
+          "text": "Under the Swedish crown after 1621, Riga was the largest city of the Swedish empire and its chief exporter of masts, hemp and flax."
+        },
+        {
+          "from": 1710,
+          "to": 1850,
+          "text": "Taken by Russia in 1710, Riga remained the tsar's principal Baltic outlet for timber, hemp and flax."
+        }
+      ],
+      "doc": [
+        "Riga sits where the Düna (Daugava) empties into the gulf that bears the city's name, and its trade was floated to it: hemp, flax and above all the tall mast-timber of the Russian and Lithuanian interior came down the river to be sold to the naval powers of the west, for whom Riga masts and Riga hemp were strategic materials. The harbour lay a little upriver of the exposed gulf, and its exports of cordage stock and ship-timber made it one of the indispensable naval-stores ports of the Baltic.",
+        "Its sovereignty changed hands three times across the era: a Hanseatic city under a fading order and then Polish-Lithuanian suzerainty in the sixteenth century, conquered by Sweden in 1621 (whereupon it became the largest city of the Swedish empire), and taken by Russia in 1710 during the Great Northern War, a possession confirmed in 1721. The chart tiles those rulers as far as its power set allows — the Hanse flag for the pre-Swedish period, then Sweden, then Russia — and logs the missing Polish-Lithuanian sovereign as a declared silence."
+      ],
+      "sources": [
+        "David Kirby, The Baltic World 1492–1772 (1990)"
+      ]
+    },
+    "stockholm": {
+      "blurb": "Stockholm, at the outlet of Lake Mälaren, was the Swedish crown's naval base and iron staple, exporting the bar iron that dominated Europe's markets.",
+      "doc": [
+        "Stockholm guards the narrow passage between Lake Mälaren and the Baltic, a naval and mercantile capital hemmed in by its archipelago. By the 'Bothnian trade compulsion' the crown forced the exports of northern Sweden and Finland to pass through the capital (and a few privileged staple towns), and the great commodity that passed was iron — osmund and, increasingly, high-quality bar iron — together with tar, pitch and timber. The city was also the base of the Swedish battle fleet.",
+        "Swedish bar iron was the premium grade on the European market through the seventeenth and much of the eighteenth century, and Stockholm's merchant houses and the crown's fiscal and naval apparatus rose and fell with it; British demand for Swedish iron, and later competition from Russian and British iron, shaped the port's fortunes across the era."
+      ],
+      "sources": [
+        "David Kirby, The Baltic World 1492–1772 (1990)"
+      ]
+    },
+    "copenhagen": {
+      "blurb": "Copenhagen, commanding the Øresund where Denmark levied the Sound Toll on all Baltic traffic, was a royal capital, naval base and neutral entrepot.",
+      "doc": [
+        "Copenhagen lies on the Øresund, the narrow strait that is the main gate between the Baltic and the North Sea, and Danish power over that gate was the Sound Toll — levied a little to the north at Elsinore under the guns of Kronborg on every ship that passed, the registers of which are among the great serial records of European trade. The city itself was the Danish-Norwegian capital, the base of the royal fleet, and a well-sheltered staple harbour.",
+        "Copenhagen was the entrepot of the Danish colonial ventures — the Asiatic Company's Canton and Tranquebar trade and the Danish West Indies — and, above all, a neutral carrier: its 'flourishing period' in the late eighteenth century turned on Danish neutrality while the great powers fought. That prosperity ended abruptly with the British bombardment of the city and seizure of the fleet in 1807."
+      ],
+      "sources": [
+        "David Kirby, The Baltic World 1492–1772 (1990)",
+        "Nina Ellinger Bang, Tabeller over Skibsfart og Varetransport gennem Øresund 1497–1660 (1906–1922)"
+      ]
+    },
+    "st-petersburg": {
+      "blurb": "St Petersburg, founded by Peter the Great in 1703 at the Neva mouth, became Russia's 'window on the West' and its chief exporter of hemp, flax, iron and naval stores.",
+      "doc": [
+        "St Petersburg was willed into being by Peter the Great in 1703 on the marshy delta of the Neva at the head of the Gulf of Finland, at once a new capital, a naval arsenal and Russia's deliberate 'window on the West'; the naval station of Kronstadt on its island guarded the shallow approach, over whose bar large ships had to be lightened. Because the port did not exist before 1703, the chart holds its dot absent until that year.",
+        "It grew with remarkable speed into Russia's principal export harbour, shipping the hemp, flax, bar iron, timber and other naval stores on which the British and Dutch navies depended — a trade the state channelled to the new city partly by restricting the older northern outlet at Arkhangelsk. Through the eighteenth and early nineteenth centuries its foreign-going traffic, much of it in British bottoms, made it one of the busiest ports of the Baltic."
+      ],
+      "sources": [
+        "Arcadius Kahan, The Plow, the Hammer, and the Knout: An Economic History of Eighteenth-Century Russia (1985)",
+        "David Kirby, The Baltic World 1492–1772 (1990)"
+      ]
+    },
+    "amsterdam": {
+      "blurb": "Amsterdam was the staple market of Europe — the entrepot where Baltic grain and the returns of the VOC and WIC were warehoused and redistributed, and the continent's leading capital market.",
+      "doc": [
+        "Amsterdam stands on the Amstel and the IJ, sheltered deep behind the Zuiderzee, its one weakness the shallow Pampus bar across the approach, over which deep-laden ships had to be lightened or floated across on 'camels'. It was the staple market of Europe: the great warehouse into which flowed Baltic grain and timber, the spices and textiles of the VOC's Asian trade, the sugar and enslaved-labour produce carried by the WIC's Atlantic system, and the goods of every European coast, to be graded, stored and re-exported. It was also the money market of the continent, home of the Wisselbank and the bourse.",
+        "The city's rise was sealed when the fall of Antwerp in 1585 drove capital, skills and merchants north; the seventeenth century was its golden age as the hub of world commerce and finance, and the eighteenth a long relative decline as English and other competitors grew, though it remained enormously rich as a capital market. The collapse of the Dutch Republic under French pressure in 1795 broke the old order, and the port revived more modestly under the Kingdom of the Netherlands after 1815."
+      ],
+      "sources": [
+        "Jonathan I. Israel, Dutch Primacy in World Trade, 1585–1740 (1989)",
+        "Jan de Vries and Ad van der Woude, The First Modern Economy: Success, Failure, and Perseverance of the Dutch Economy, 1500–1815 (1997)"
+      ]
+    },
+    "hamburg": {
+      "blurb": "Hamburg, a neutral free imperial city on the lower Elbe, was the entrepot linking the German interior with the Atlantic and Baltic and a great wartime carrier.",
+      "doc": [
+        "Hamburg lies on the lower Elbe about a hundred kilometres from the open sea, a tidal river port and a self-governing free imperial city that guarded its neutrality jealously. Its position made it the natural entrepot between central Germany, reached up the Elbe, and the sea lanes of the Atlantic, the North Sea and the Baltic, handling grain, textiles, and the colonial goods — sugar, coffee, tobacco — that its merchants drew from Iberia, France and the wider Atlantic.",
+        "The city's fortune was neutrality and connection: German merchant houses at Cadiz, Bordeaux and elsewhere fed a large Hamburg re-export trade, and the port grew fastest precisely when the maritime powers were at war and needed a neutral carrier. Its one great interruption was the French annexation and Continental-System blockade of 1806–1814, after which it recovered strongly and became one of the leading ports of nineteenth-century Europe."
+      ],
+      "sources": [
+        "Klaus Weber, Deutsche Kaufleute im Atlantikhandel 1680–1830: Unternehmen und Familien in Hamburg, Cádiz und Bordeaux (2004)"
+      ]
+    },
+    "rotterdam": {
+      "blurb": "Rotterdam, on the Nieuwe Maas in the Rhine–Meuse delta, was the Dutch Republic's second port, its advantage the transit trade up the Rhine into Germany.",
+      "doc": [
+        "Rotterdam sits on the Nieuwe Maas in the Rhine–Meuse delta, with more direct access to both the North Sea and the Rhine hinterland than Amsterdam. It was the second port of the Dutch Republic, seat of a chamber of both the VOC and the WIC, and its particular strength was the transit trade: goods landed at Rotterdam moved up the Rhine into the German interior, and German produce came down to be shipped out.",
+        "In the golden age Rotterdam lived in Amsterdam's shadow, but its river position left it well placed as the Rhine transit trade grew, and after the disruptions of the Revolutionary and Napoleonic years it rose steadily toward the great transit port it would become in the industrial nineteenth century. Its English and Scottish merchant connections were an old and important part of its business."
+      ],
+      "sources": [
+        "Jonathan I. Israel, Dutch Primacy in World Trade, 1585–1740 (1989)"
+      ]
+    },
+    "ostend": {
+      "blurb": "Ostend, a modest Flemish harbour in the Austrian Netherlands, was for a few decades the base of private East India voyages and the chartered Ostend Company's Canton and Bengal trade.",
+      "doc": [
+        "Ostend is a small harbour on the Flemish coast which, after the Peace of Utrecht handed the southern Netherlands to Austria, briefly became the one Habsburg deep-sea outlet on the North Sea. From 1715 private merchants fitted out voyages from it to Canton and to Bengal, and in 1722 these were gathered into a chartered body, the Generale Keizerlijke Indische Compagnie — the Ostend Company — which for a few years carried a genuinely competitive share of the European tea and Bengal-textile trade.",
+        "The Company's success alarmed the British and Dutch East India Companies, and under their diplomatic pressure the Emperor suspended and then, by the Treaty of Vienna, wound it up; a Bengal afterlife at the factory of Banquibazar lingered to 1744, which is why the chart clamps Ostend's active window to 1715–1744. Outside that episode Ostend was a minor fishing and privateering port, not a first-rank entrepot."
+      ],
+      "sources": [
+        "Gerald B. Hertz, 'England and the Ostend Company', English Historical Review 22 (1907)"
+      ]
+    },
+    "bordeaux": {
+      "blurb": "Bordeaux, the deep tidal wine port on the Garonne, was eighteenth-century France's leading colonial entrepot and, among its trades, an outfitter of slaving voyages.",
+      "doc": [
+        "Bordeaux lies on the Garonne above its junction with the Dordogne in the Gironde estuary, a deep tidal river port whose ancient staple was wine — the claret shipped for centuries to England, the Hanse towns and the Dutch. In the eighteenth century it became France's leading colonial port, the great entrepot for the sugar, coffee and indigo of Saint-Domingue and the other French islands, much of it refined or re-exported onward to northern Europe by a wealthy merchant community that included many foreign houses.",
+        "Bordeaux merchants also armed vessels for the traite négrière, the trade in enslaved Africans carried from the West African coast to the French Antilles; it fitted out fewer such expeditions than Nantes, but the traffic — the forced transport of people against their will — was part of its colonial commerce and is recorded here plainly, not as an item of profit. The port's prosperity peaked in the decades before 1789 and was broken by the Revolution, the maritime wars, and the loss of Saint-Domingue in the Haitian Revolution, recovering only partially in the nineteenth century."
+      ],
+      "sources": [
+        "Paul Butel, Les négociants bordelais, l'Europe et les îles au XVIIIe siècle (1974)",
+        "Robert Louis Stein, The French Slave Trade in the Eighteenth Century: An Old Regime Business (1979)"
+      ]
+    },
+    "nantes": {
+      "blurb": "Nantes, on the Loire estuary, was France's chief slave-trading port — outfitting the largest share of the traite négrière, the forced transport of enslaved Africans to the French Antilles.",
+      "doc": [
+        "Nantes lies on the tidal Loire a little above its estuary, and in the eighteenth century it was the principal slave-trading port of France: its merchants outfitted the largest share of French expeditions of the traite négrière, carrying enslaved Africans from the Bight of Benin, the Bight of Biafra and Angola to the French sugar islands, above all Saint-Domingue, and returning with colonial produce. This was the forced transport of people against their will, and it is recorded here as fact, without any framing of value or gain. The estuary's shifting shoals meant much of the largest shipping used the outports downriver, Paimbœuf and later Saint-Nazaire.",
+        "Around the slaving voyages grew a colonial economy of sugar refining and re-export that made Nantes rich in the decades from the 1760s to 1792. The Revolution and the loss of Saint-Domingue broke the legal trade, though clandestine slaving voyages from the port continued into the 1820s and 1830s in defiance of abolition; thereafter Nantes turned to other colonial and industrial commerce as its river increasingly favoured the newer port downstream."
+      ],
+      "sources": [
+        "Jean Meyer, L'armement nantais dans la deuxième moitié du XVIIIe siècle (1969)",
+        "Robert Louis Stein, The French Slave Trade in the Eighteenth Century: An Old Regime Business (1979)"
+      ]
+    },
+    "kingston": {
+      "blurb": [
+        {
+          "from": 1655,
+          "to": 1692,
+          "text": "Built on the sand spit at the mouth of Jamaica's finest harbour, Port Royal was England's Caribbean stronghold, privateer base, and slave mart until an earthquake dropped much of it into the sea in 1692."
+        },
+        {
+          "from": 1693,
+          "to": 1850,
+          "text": "Laid out across the bay after the earthquake, Kingston became the British West Indies' greatest entrepot — sugar and rum outward, enslaved Africans landed and sold onward to the Spanish Main — and the base of the Royal Navy's Jamaica Station."
+        }
+      ],
+      "doc": [
+        "Jamaica's south coast offers one of the finest harbours in the Caribbean: a wide sheltered basin behind the Palisadoes, a long sand spit whose tip carried the town of Port Royal and whose landward shore, across the bay, later carried Kingston. The English took the island from Spain in 1655, and Port Royal became their commercial and naval stronghold — a market for sugar and rum, a base for privateers, and, through the asiento and the open slave trade, a place where enslaved Africans were landed and sold on to the Spanish Main. When a 1692 earthquake dropped much of Port Royal into the sea, the merchants moved across the water to the new grid-planned town of Kingston.",
+        "Through the eighteenth century Kingston grew into the largest British port in the Caribbean and one of the busiest slave markets in the Americas, re-exporting captives across the region while shipping the sugar and rum of Jamaica's plantations home to Britain. It was also the headquarters of the Royal Navy's Jamaica Station, guarding the trade and the approaches to the Spanish colonies. The town remained the island's commercial heart across the era, outlasting the abolition of the slave trade in 1807 and emancipation in 1834, though the plantation economy that had built it declined thereafter."
+      ],
+      "sources": [
+        "Nuala Zahedieh, 'The Merchants of Port Royal, Jamaica, and the Spanish Contraband Trade, 1655–1692,' William and Mary Quarterly (1986).",
+        "Trevor Burnard, Mastery, Tyranny, and Desire: Thomas Thistlewood and His Slaves in the Anglo-Jamaican World (2004)."
+      ]
+    },
+    "havana": {
+      "blurb": "Reached through a narrow channel under the guns of El Morro, Havana was the rendezvous of the Spanish treasure fleets and a royal shipyard; after the British occupation of 1762 its sugar economy — and the enslaved labour it rested on — expanded steeply.",
+      "doc": [
+        "Havana's harbour is a deep landlocked pouch entered through a single narrow channel, guarded by the castles of El Morro and La Punta — one of the most defensible and capacious anchorages in the Americas. That geography made it the assembly point of the Spanish Indies: the treasure fleets from Veracruz and the Tierra Firme galleons rendezvoused here to form the annual convoy home, and a royal shipyard grew up to build and repair the fleet, in time launching ships of the line from Cuban hardwoods.",
+        "For most of the era Havana lived by the fleets, by fortification, and by tobacco, with sugar a secondary concern. The British captured the city in 1762 and held it for eleven months, opening it to a flood of trade and enslaved Africans before it was returned to Spain in 1763 in exchange for Florida. That opening, and the collapse of French Saint-Domingue after 1791, launched a sugar boom that made Cuba the leading producer in the world by the nineteenth century — an expansion built on a steeply rising traffic in enslaved people, which continued at Havana long after other powers had suppressed it."
+      ],
+      "sources": [
+        "Alejandro de la Fuente, Havana and the Atlantic in the Sixteenth Century (2008).",
+        "John Robert McNeill, Atlantic Empires of France and Spain: Louisbourg and Havana, 1700–1763 (1985)."
+      ]
+    },
+    "veracruz": {
+      "blurb": "New Spain's one legal Atlantic port, an unhealthy roadstead sheltered behind the island fortress of San Juan de Ulúa: silver and cochineal went out to Spain, European goods came in, and yellow fever thinned every crew that lingered.",
+      "doc": [
+        "Veracruz was less a harbour than an open roadstead on a low, sandy, fever-ridden coast, where ships moored behind the island fortress of San Juan de Ulúa — made fast to bronze rings set in its wall — for what shelter the reef and the fort could give against the fierce winter northers. It was nonetheless the sole legal Atlantic port of New Spain: the terminus of the annual flota, through which the silver of the Mexican mines and the cochineal of Oaxaca went out to Spain and European manufactures came in, distributed inland from the great fair later held up-country at Jalapa. The eastern end of the overland link from Acapulco, it was also where the Pacific silver of the Manila trade met the Atlantic.",
+        "The port's history across the era is one of strategic importance shadowed by disease: the vómito negro made it deadly to newcomers, and its trade waxed and waned with the fleet system and the eighteenth-century reforms that loosened it. After Mexico's independence, proclaimed in 1821, Veracruz passed to the new nation, though a Spanish garrison held out in San Juan de Ulúa until 1825 as the last royalist foothold on the mainland; in this chart the flag over the port is carried unchanged, as it is for the other ports of New Spain. It remained Mexico's principal Gulf gateway thereafter."
+      ],
+      "sources": [
+        "Antonio García de León, Tierra adentro, mar en fuera: El puerto de Veracruz y su litoral a sotavento, 1519–1821 (2011).",
+        "John Robert McNeill, Mosquito Empires: Ecology and War in the Greater Caribbean, 1620–1914 (2010)."
+      ]
+    },
+    "cartagena": {
+      "blurb": "The most heavily fortified harbour in Spanish America and one of the three licensed slave ports of the Indies, Cartagena landed thousands of enslaved Africans for sale into the interior and sheltered the Tierra Firme galleons bound for the Portobelo fair.",
+      "doc": [
+        "Cartagena de Indias sits behind a large bay screened from the open sea by islands and spits, its entrances narrowed and its landward side walled and bastioned into the strongest fortress-port in Spanish America. It was the Caribbean terminus of the Tierra Firme galleons and, with Veracruz and Portobelo, one of only three ports licensed to land enslaved Africans in the Spanish Indies — the principal legal disembarkation point for the whole of Spanish South America, from which captives were sold on into New Granada, Peru, and beyond. Hides, tobacco, and the emeralds and gold of the interior went out in return.",
+        "Its wealth and strategic weight made it a target: Francis Drake sacked the city in 1586, and a great British expedition under Admiral Vernon failed against its defences in 1741. As the fair-and-galleon system decayed through the eighteenth century the port's commercial role narrowed, though its fortifications kept it central to Spanish imperial defence. Cartagena declared its independence in 1811 and endured a punishing royalist siege under Morillo in 1815, passing with the rest of New Granada out of Spanish rule."
+      ],
+      "sources": [
+        "David Wheat, Atlantic Africa and the Spanish Caribbean, 1570–1640 (2016).",
+        "Lance R. Grahn, The Political Economy of Smuggling: Regional Informal Economies in Early Bourbon New Granada (1997)."
+      ]
+    },
+    "portobelo": {
+      "blurb": "A pestilential little bay on the isthmus that woke once or twice a decade for the great fair, when the Tierra Firme galleons met the mule trains bringing Peruvian silver over from Panama; Admiral Vernon's raid of 1739 helped finish both the fair and the fleet system.",
+      "doc": [
+        "Portobelo is a small, deep, well-sheltered bay on the Caribbean side of the Panama isthmus, ringed by forts but pestilential and nearly empty for most of the year. Its purpose was the fair: when the Tierra Firme galleons arrived, the silver of Peru — carried by sea up to Panama on the Pacific side and then over the isthmus by mule train — was exchanged there for European manufactures in one of the great commercial gatherings of the Spanish empire. Like Cartagena, it was also a licensed port for landing enslaved Africans.",
+        "The fair made Portobelo the Caribbean hinge of a Pacific empire, but it was a fragile role: disease, the difficulty of the crossing, and the growth of contraband steadily undermined it. Admiral Vernon captured and demolished the forts in 1739, and the galleon-and-fair system was abandoned soon after in favour of individual register ships sailing round Cape Horn. The town dwindled to a decayed garrison, its great fortifications standing over an all-but-empty bay for the remainder of the era."
+      ],
+      "sources": [
+        "Christopher Ward, Imperial Panama: Commerce and Conflict in Isthmian America, 1550–1800 (1993).",
+        "Geoffrey J. Walker, Spanish Politics and Imperial Trade, 1700–1789 (1979)."
+      ]
+    },
+    "bridgetown": {
+      "blurb": "The windward landfall of the Atlantic crossing and England's first great sugar island: from the 1640s Bridgetown shipped sugar from plantations worked by enslaved Africans, and Carlisle Bay's open roadstead was crowded with the ships that carried both.",
+      "doc": [
+        "Barbados is the most windward of the Antilles, the first land a ship reached running before the Atlantic trade winds, and Bridgetown grew at Carlisle Bay — an open roadstead rather than an enclosed harbour, with a small careening creek at its heart. English settlers arrived in 1627, and within two decades the island underwent the 'sugar revolution' that made it the earliest and, for a time, the richest of the English plantation colonies. Sugar went out to Britain; enslaved Africans were landed in large numbers to work the estates, and Barbados became both a model of the plantation-slave society and a redistribution point for enslaved people across the eastern Caribbean.",
+        "Through the later seventeenth century Bridgetown was the busiest English port in the Americas, its roadstead crowded with the ships of the sugar and slave trades and its wharves the commercial heart of the English West Indies. As Jamaica and the Leeward Islands developed, the island lost its primacy, but it remained a major commercial and naval station and the administrative centre of the eastern Caribbean. Its plantation economy persisted to emancipation in 1834 and beyond, long after the early wealth had passed its peak."
+      ],
+      "sources": [
+        "Richard S. Dunn, Sugar and Slaves: The Rise of the Planter Class in the English West Indies, 1624–1713 (1972).",
+        "Hilary McD. Beckles, A History of Barbados: From Amerindian Settlement to Nation-State (1990)."
+      ]
+    },
+    "cap-francais": {
+      "blurb": [
+        {
+          "from": 1670,
+          "to": 1803,
+          "text": "The commercial capital of Saint-Domingue, the wealthiest of all the plantation colonies, resting on the sugar and coffee of the northern plain and on the enslaved Africans landed here in greater numbers than at any other French port; the general uprising of 1791 began the revolution that would end it."
+        },
+        {
+          "from": 1804,
+          "to": 1815,
+          "text": "After the enslaved population overthrew the plantation regime and declared independent Haiti in 1804, the burned town was rebuilt as Cap-Haïtien — for a time Cap-Henri, capital of Henri Christophe's northern kingdom."
+        }
+      ],
+      "doc": [
+        "Cap-Français lay on a reef-sheltered bay on the north coast of Saint-Domingue, a planned grid-town so prosperous it was called the Paris of the Antilles. It was the commercial capital of what became, in the eighteenth century, the single most valuable colony in the world: the sugar, coffee, and indigo of the northern plain flowed out through it, and enslaved Africans were landed here in greater numbers than at any other French colonial port, to be worked — and worked to death — on the surrounding plantations.",
+        "That wealth rested entirely on the labour of an enslaved majority, and in August 1791 the enslaved population of the northern plain rose in a revolt that opened the Haitian Revolution. The town was burned in 1793, fought over through the years of French, British, and Spanish intervention, and finally passed, with the declaration of Haitian independence on 1 January 1804, out of French hands altogether. Rebuilt as Cap-Haïtien — and for a decade as Cap-Henri, capital of Henri Christophe's kingdom — it remained the chief town of Haiti's north. (This chart has no separate flag for independent Haiti; the post-1804 window is carried under France as the nearest available marker, which the note records rather than endorses.)"
+      ],
+      "sources": [
+        "C. L. R. James, The Black Jacobins: Toussaint L'Ouverture and the San Domingo Revolution (1938).",
+        "John D. Garrigus, Before Haiti: Race and Citizenship in French Saint-Domingue (2006)."
+      ]
+    },
+    "st-eustatius": {
+      "blurb": "A tiny volcanic island with no harbour but a warehouse-lined road, St Eustatius was the 'Golden Rock' — a neutral Dutch free port where every nation's goods, contraband, and enslaved people in transit changed hands, until Admiral Rodney sacked it in 1781 for arming the American rebels.",
+      "doc": [
+        "St Eustatius is a tiny volcanic island with no harbour at all — only an open roadstead on its leeward side, where a mile-long strand below the cliff at Oranjestad was packed with warehouses and ships anchored in the road. Holding almost no plantation land of its own, the island lived entirely as a free port: a neutral Dutch trans-shipment market where the goods of every nation — sugar, tobacco, manufactures, contraband, arms, and enslaved people held for re-export — were bought and sold outside the mercantilist rules of the surrounding empires.",
+        "Dutch from 1636 and changing hands more than twenty times, 'the Golden Rock' reached its height in the mid-eighteenth century, and above all as a conduit of munitions to the rebelling North American colonies. For that trade a British fleet under Admiral Rodney seized and plundered the island in 1781, an act from which its commerce never fully recovered. It reverted to the Dutch but declined through the remaining decades of the era as the free-port trade drifted to neutral rivals."
+      ],
+      "sources": [
+        "Wim Klooster, Illicit Riches: Dutch Trade in the Caribbean, 1648–1795 (1998).",
+        "J. Franklin Jameson, 'St. Eustatius in the American Revolution,' American Historical Review (1903)."
+      ]
+    },
+    "curacao": {
+      "blurb": "Willemstad's enclosed harbour made Curaçao the Dutch West India Company's Caribbean base and, under the asiento, a depot where enslaved Africans were landed and held for re-export to the Spanish Main, alongside a heavy contraband trade with the surrounding coasts.",
+      "doc": [
+        "Curaçao possesses one of the best harbours in the Caribbean — the Schottegat, a large enclosed lagoon reached through the narrow Sint Anna Bay channel at Willemstad — on an island too dry for plantation agriculture. That combination made it a commercial rather than a planting colony: the Dutch West India Company's Caribbean headquarters and entrepôt, and, under the asiento contracts, a depot where enslaved Africans were landed and held before being re-exported to the Spanish Main at Cartagena and along the Venezuelan coast.",
+        "Through the seventeenth and eighteenth centuries Willemstad thrived on this trans-shipment trade and on a large contraband commerce with the surrounding Spanish colonies, dealing in salt, dyewood, and manufactures as well as in human beings. Fortified and repeatedly threatened but seldom taken, it remained the principal Dutch base in the region across the era, its fortunes shifting with the asiento and with the wider wars but never displaced from its role as the Dutch commercial hinge of the southern Caribbean."
+      ],
+      "sources": [
+        "Linda M. Rupert, Creolization and Contraband: Curaçao in the Early Modern Atlantic World (2012).",
+        "Wim Klooster, Illicit Riches: Dutch Trade in the Caribbean, 1648–1795 (1998)."
+      ]
+    },
+    "st-thomas": {
+      "blurb": "A deep sheltered harbour on a dry Danish island, thin until the free-port declaration of 1764 turned Charlotte Amalie into a neutral entrepôt that traded — goods, contraband, and enslaved people in transit — straight through the wars of its larger neighbours.",
+      "doc": [
+        "St Thomas has a deep, hill-ringed, sheltered harbour — among the finest in the Lesser Antilles — on an island too dry and broken for much sugar. Danish from 1672, it was at first a thin plantation venture, its harbour leased for a time to the Brandenburg slave-trading company, and it never became a major producer in its own right. Its fortune lay instead in its position and its neutrality.",
+        "The free-port declaration of 1764 turned Charlotte Amalie into a neutral entrepôt that could trade through the wars of its larger neighbours, dealing in trans-shipped produce, contraband, provisions, and enslaved people carried on for sale elsewhere. Through the revolutionary and Napoleonic wars — interrupted by British occupations in 1801 and 1807–15 — it boomed as one of the busiest commercial harbours in the Caribbean, a Danish neutral port living off everyone else's belligerence."
+      ],
+      "sources": [
+        "Neville A. T. Hall, Slave Society in the Danish West Indies: St. Thomas, St. John, and St. Croix (1992).",
+        "Waldemar Westergaard, The Danish West Indies under Company Rule, 1671–1754 (1917)."
+      ]
+    },
+    "paramaribo": {
+      "blurb": "The capital of Dutch Suriname, a river port fifteen miles up from the sea serving a plantation colony of sugar, coffee, and cotton worked — under a regime notorious for its severity — by enslaved Africans, whose flight into the forest built the maroon communities of the interior.",
+      "doc": [
+        "Paramaribo stands on the Suriname River some fifteen miles above its mouth, deep enough for ocean-going ships, with the plantation districts spreading up the rivers behind it. It was the capital of Dutch Suriname, a plantation colony of sugar and, increasingly, coffee, cacao, and cotton, whose produce came down the rivers to be shipped from the town. The estates were worked by enslaved Africans under a regime remembered for its exceptional severity and mortality, which required constant new importation and drove a steady flight of the enslaved into the forest.",
+        "The Dutch took the colony from the English in 1667 and kept it — confirmed at the Treaty of Breda, where England retained New Netherland in exchange — and it was administered for much of the era by the chartered Society of Suriname. The eighteenth century saw the plantation economy expand and, with it, sustained warfare against the maroon communities of the interior, who eventually won treaties recognising their freedom. Paramaribo remained the Dutch capital and sole significant port of the colony throughout, its river frontage the outlet for a plantation world built on coerced labour."
+      ],
+      "sources": [
+        "Richard Price, The Guiana Maroons: A Historical and Bibliographical Introduction (1976).",
+        "Alex van Stipriaan, Surinaams contrast: Roofbouw en overleven in een Caraïbische plantagekolonie, 1750–1863 (1993)."
+      ]
+    },
+    "belize": {
+      "blurb": "A cutting settlement, not a plantation colony: from the 1660s English-speaking 'Baymen' worked the Bay of Honduras behind its reef for logwood and, from the 1770s, mahogany — felled by enslaved gangs far up the rivers and rafted down to the Belize River mouth for shipping.",
+      "doc": [
+        "The Bay of Honduras is a low, swampy coast behind a long barrier reef, and the settlement grew at the mouth of the Belize River, where shallow reef-threaded approaches led to an anchorage among the cays. This was never a plantation colony but an extractive one: English-speaking 'Baymen' cut logwood — valued for its dye — from the seventeenth century, and from the 1770s turned to mahogany, felled by enslaved gangs far up the rivers and rafted down to the river mouth to be loaded for export.",
+        "Spain claimed the coast and never recognised the cutters' presence, so the settlement lived for most of the era without formal colonial standing, its right to cut wood grudgingly conceded by treaty while its sovereignty stayed contested. A Spanish attempt to clear it was repulsed at the Battle of St George's Caye in 1798. The mahogany trade sustained the settlement into the nineteenth century, and out of the Baymen's foothold grew the colony of British Honduras."
+      ],
+      "sources": [
+        "O. Nigel Bolland, The Formation of a Colonial Society: Belize, from Conquest to Crown Colony (1977).",
+        "Narda Dobson, A History of Belize (1973)."
+      ]
+    },
+    "canton": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1644,
+          "text": "One of Ming China's great southern ports, trading with Portuguese Macau and the Fujian junk networks."
+        },
+        {
+          "from": 1645,
+          "to": 1850,
+          "text": "The sole port open to European trade after 1757, where the hong merchants handled the tea and silk the Canton System channelled through the Thirteen Factories."
+        }
+      ],
+      "doc": [
+        "Canton (Guangzhou) sat on the Pearl River, its harbour reached from the sea by an ascent past the Bogue forts to the Whampoa anchorage some twelve miles below the city, where the deep-sea ships lay while their business was done at the row of foreign factories crowded onto the waterfront outside the walls. Trade with foreigners was conducted only through a licensed guild of Chinese merchants, the Cohong or hong merchants, who were made personally answerable to the Qing state for the conduct and debts of the barbarian traders; the East India Company, and later Continental companies and the Americans, dealt with these houses and were confined to the factory strip and the trading season.",
+        "The dominant export was tea, bought for silver and, increasingly, for the goods of the country trade — Indian raw cotton and, from the later eighteenth century, opium carried from Bengal by private British and other traders to be sold clandestinely for the silver that financed the tea. In 1757 the Qianlong emperor confined all Western maritime trade to Canton alone, making it the single legal gateway between China and the maritime West; the arrangement, the 'Canton System', channelled a vast and lucrative commerce for eight decades until the crisis over the opium traffic brought the war of 1839–42 and the Treaty of Nanjing, which abolished the hong monopoly and opened the treaty ports."
+      ],
+      "sources": [
+        "Paul A. Van Dyke, The Canton Trade: Life and Enterprise on the China Coast, 1700-1845 (2005)",
+        "Weng Eang Cheong, The Hong Merchants of Canton: Chinese Merchants in Sino-Western Trade (1997)"
+      ]
+    },
+    "amoy": {
+      "blurb": "The great Fujian junk port of the Nanyang trade, whose ships carried Hokkien emigrants and Chinese goods across maritime Southeast Asia.",
+      "doc": [
+        "Amoy (Xiamen) lay on an island in a deep, sheltered channel on the southern Fujian coast, facing Taiwan across the strait. Poor in farmland but rich in seafaring, its hinterland sent men to sea rather than to the fields, and the port became the hearth of the private Chinese junk trade to the Nanyang — the Southeast Asian world of Manila, Batavia, Siam, and the Malay ports — where the Hokkien merchant diaspora settled and prospered. In the seventeenth century it was the base of the Zheng maritime power under Koxinga, which held the coast against the new Qing dynasty until 1683.",
+        "After the Qing conquest of Taiwan the coast was reopened, and from 1685 Amoy was one of the customs ports where European ships might call, though the confinement of Western trade to Canton in 1757 left it to the junk trade it had always served. Its business was the carrying trade of the South China Sea: Chinese silks, porcelain, and manufactures out; pepper, tin, rice, and tropical produce home; and above all the movement of people, the Fujianese emigration that seeded Chinese communities across the archipelago. This traffic — a Chinese-owned and Chinese-crewed commerce sailing under no European flag — is carried here under the junk-trade allegiance rather than the Qing state, which taxed it but did not sail it."
+      ],
+      "sources": [
+        "Ng Chin-keong, Trade and Society: The Amoy Network on the China Coast, 1683-1735 (1983)"
+      ]
+    },
+    "macau": {
+      "blurb": "The Portuguese enclave at the mouth of the Pearl River, Europe's oldest foothold on the China coast from 1557.",
+      "doc": [
+        "Macau occupied a small peninsula on the western side of the Pearl River estuary, where from about 1557 the Portuguese were permitted to settle and trade on Chinese sufferance, paying ground rent to the Ming authorities and remaining always under ultimate Chinese jurisdiction. Its inner harbour and roadstead made it the one place Europeans could reside on the China coast, and for its first century it grew rich as the indispensable middleman of a trade Chinese law otherwise forbade: the Portuguese 'Great Ship' carried Chinese silk to Nagasaki and returned with Japanese silver, taking a share of the exchange that neither side would conduct directly.",
+        "The closing of Japan to the Portuguese in 1639 cut away that trade and began a long decline into dependence on the Canton commerce, where Macau's chief remaining value was as the place the foreign traders and their families wintered when the Canton factories closed for the off-season, and where the Catholic missions to China were based. Never more than a leased enclave, it kept its Portuguese flag and its usefulness through the whole age of sail while the great volume of the China trade passed it by for Whampoa and Canton upriver, and later for Hong Kong across the estuary."
+      ],
+      "sources": [
+        "George Bryan Souza, The Survival of Empire: Portuguese Trade and Society in China and the South China Sea, 1630-1754 (1986)"
+      ]
+    },
+    "shanghai": {
+      "blurb": [
+        {
+          "from": 1600,
+          "to": 1644,
+          "text": "A busy port of the Ming cotton country in the Yangtze delta, at the heart of the coastal junk trade."
+        },
+        {
+          "from": 1645,
+          "to": 1850,
+          "text": "The great junk port of the Jiangnan coastal trade, made a treaty port open to foreign commerce in 1842."
+        }
+      ],
+      "doc": [
+        "Shanghai stood on the Huangpu a little above its junction with the Yangtze estuary, giving it a sheltered river anchorage with access both to the ocean and, up the great river, to the interior of China. It was the maritime outlet of Jiangnan, the richest and most productive region of the empire, and the fleets of flat-bottomed sand-junks (sha-chuan) that worked from it carried the raw cotton, cloth, and grain of the delta north along the coast to the Shandong and Bohai ports and south to Fujian and Canton. This was a Chinese domestic commerce of a scale the European trading record scarcely registered, since almost none of it passed through foreign hands.",
+        "Because the volume of this coastal traffic is poorly counted in the surviving Western sources, its representation here is a reconstruction of a trade known to have been very large rather than a figure read from a ledger — an entry against the silent zero that the Euro-centric record would otherwise leave. The Treaty of Nanjing opened Shanghai to foreign residence and trade in 1842, and within a generation the foreign settlements on the Huangpu made it China's greatest treaty port; but for most of the period charted here it was already a major harbour, its importance domestic and its shipping Chinese."
+      ],
+      "sources": [
+        "Linda Cooke Johnson, Shanghai: From Market Town to Treaty Port, 1074-1858 (1995)"
+      ]
+    },
+    "tianjin": {
+      "blurb": [
+        {
+          "from": 1600,
+          "to": 1644,
+          "text": "The port at the Hai river bar serving the grain supply of the Ming northern capital."
+        },
+        {
+          "from": 1645,
+          "to": 1850,
+          "text": "The northern terminus of the coastal grain fleets that fed Peking, at the Dagu bar on the Hai river."
+        }
+      ],
+      "doc": [
+        "The seaward approach to Tianjin lay across the bar of the Hai river at Dagu, guarded by forts, where sea-going junks discharged for the passage up to the city and on toward the imperial capital at Peking a hundred kilometres inland. Tianjin's significance was as the maritime doorway to the capital region: the point at which the sea-transport of tribute grain (haiyun) from the productive Yangtze delta reached the north, feeding the enormous non-producing population of Peking and the court. Alongside the Grand Canal, on which the empire chiefly relied, this coastal grain fleet was periodically revived — notably in the 1820s when the canal silted — and at such times it was among the largest single movements of shipping anywhere in the era.",
+        "Like the wider Chinese coastal trade, this was a domestic commerce carried in Chinese bottoms and administered by the Chinese state, and it is entered here as a large flow reconstructed from the administrative record of the grain transport rather than counted in any foreign source — a deliberate refusal of the silent zero, since a movement of this scale left almost no trace in the European archive. Tianjin did not open to foreign trade within the period charted here; its treaty-port career began only in 1858, and the port on this chart is the grain harbour of Qing China, not a Western one."
+      ],
+      "sources": [
+        "Jane Kate Leonard, Controlling from Afar: The Daoguang Emperor's Management of the Grand Canal Crisis, 1824-1826 (1996)"
+      ]
+    },
+    "hong-kong": {
+      "blurb": "Ceded to Britain in 1841 during the first Opium War; a deep-water harbour founded from the start as a free port and colony.",
+      "doc": [
+        "Hong Kong was taken for its harbour and for nothing else. The deep, sheltered anchorage between the mountainous island and the Kowloon peninsula could hold a fleet in any weather, and it had almost no hinterland and no existing trade — which was precisely the point, for the British occupied it in 1841, and held it by the cession of the first Opium War, as a secure base beyond Qing jurisdiction from which the China trade could be conducted on their own terms. The opium traders who had worked from the Lintin anchorage and from Macau moved their business there, and it became a free port from the outset.",
+        "The commerce that founded the colony was in large part the opium traffic that the war had been fought to protect — the drug carried from British India to be sold along the China coast — and the honest record names it as such rather than as an unnamed 'country trade'. Within a few years of its founding Hong Kong was drawing the shipping of the coast into its harbour and beginning the growth that would make it one of the great entrepôts of Asia, but in the years covered by this chart it is a very new place: a naval and mercantile base at the mouth of the Pearl River, a decade old."
+      ],
+      "sources": [
+        "John M. Carroll, A Concise History of Hong Kong (2007)",
+        "Steve Tsang, A Modern History of Hong Kong (2004)"
+      ]
+    },
+    "naha": {
+      "blurb": "The port of the Ryukyu Kingdom, the licensed conduit for tribute trade between China and Japan.",
+      "doc": [
+        "Naha was the harbour of the Ryukyu Kingdom, on the western shore of Okinawa, and the point of departure for the tribute missions that were the kingdom's reason for existing as a trading state. Ryukyu held a formal tributary relationship with Ming and then Qing China, and its licensed ships sailed to Fuzhou to exchange embassies and goods; from this position the tiny kingdom made itself the indispensable middleman of an East Asian trade its neighbours would not conduct openly, moving Chinese silks, medicines, and porcelain against Japanese silver, copper, and marine products, and re-exporting the goods of Southeast Asia it had gathered in its fifteenth- and sixteenth-century heyday as an entrepôt.",
+        "After the Satsuma domain of southern Japan invaded and subjugated the kingdom in 1609, Ryukyu was held in a double subordination — tributary to China, controlled by Satsuma — and its China trade was quietly turned to Japanese profit, the Ryukyu conduit laundering an exchange that Japan's own seclusion policy otherwise forbade. The kingdom kept its own flag and its own court through the whole period, and Naha's licensed tribute trade continued, though the great entrepôt days were long past as Chinese junks and European shipping carried directly the trade Ryukyu had once brokered."
+      ],
+      "sources": [
+        "Gregory Smits, Visions of Ryukyu: Identity and Ideology in Early-Modern Thought and Politics (1999)",
+        "George H. Kerr, Okinawa: The History of an Island People (1958)"
+      ]
+    },
+    "busan": {
+      "blurb": "The Japan House (Waegwan) at Busan, the single licensed gateway for Korea's trade with Tokugawa Japan.",
+      "doc": [
+        "Busan, on Korea's south-eastern coast facing the strait toward Japan, was the site of the Waegwan — the Japan House — a walled compound at Choryang where all licensed trade between Joseon Korea and Tokugawa Japan was conducted under close Korean supervision. Japanese residence and commerce in Korea were confined to this enclave, which was staffed and run by the men of the Tsushima domain acting as the Tokugawa shogunate's authorised intermediary; Korean officials controlled access, fixed the terms, and permitted the exchange to proceed within strict bounds, so that the two secluded states could trade without direct contact.",
+        "Through the Waegwan passed Korean ginseng and ramie cloth and, above all, the Chinese raw silk that Korea re-exported, going out to Japan; Japanese silver and copper came in, the silver in particular financing Korea's own purchases from Qing China in a triangular exchange. The trade was at its height in the later seventeenth century and declined through the eighteenth as Japan restricted its silver exports and the Chinese silk trade found other channels, but the Japan House remained the fixed, ceremonious point of contact between the two kingdoms until the opening of Korea in the later nineteenth century."
+      ],
+      "sources": [
+        "James B. Lewis, Frontier Contact Between Choson Korea and Tokugawa Japan (2003)"
+      ]
+    },
+    "tsushima": {
+      "blurb": "The Sō domain's island, the licensed intermediary of the Korea-Japan trade in both directions.",
+      "doc": [
+        "Tsushima is a mountainous island set in the strait between Korea and Kyushu, nearer to Busan than to the Japanese mainland and too poor in arable land to feed itself. Its rulers, the Sō daimyō, lived by the trade the island's position commanded: the Tokugawa shogunate granted the Sō a monopoly over all relations with Joseon Korea, and from this the domain drew its living, running the Japan House at Busan, forwarding Korean and Chinese goods to Japan, and carrying Japanese silver and copper the other way. It was, in effect, a small state whose economy was a trading privilege.",
+        "The Sō also managed the diplomatic side of the relationship — arranging and escorting the grand Korean embassies to the shogun's court, and, when it suited both governments, quietly adjusting the documents that passed between two rulers who would not otherwise deal with each other. The domain's fortunes rose and fell with the trade it brokered, flourishing while Japanese silver flowed and Chinese silk moved through Busan, and straitening as those exports were cut back in the eighteenth century; but the licensed intermediary role, and with it Tsushima's peculiar importance, lasted until the Meiji Restoration remade Japan's foreign relations."
+      ],
+      "sources": [
+        "James B. Lewis, Frontier Contact Between Choson Korea and Tokugawa Japan (2003)",
+        "Robert I. Hellyer, Defining Engagement: Japan and Global Contexts, 1640-1868 (2009)"
+      ]
+    },
+    "ayutthaya": {
+      "blurb": "The cosmopolitan capital of Siam, whose crown junks and foreign factories traded across the China and Japan seas until the city's fall in 1767.",
+      "doc": [
+        "Ayutthaya, the capital of the Siamese kingdom, stood on an island in the Chao Phraya some eighty kilometres from the sea; ocean-going ships anchored at the river bar and their cargoes were lightered up to the city, which lay inland yet functioned as one of the great ports of Southeast Asia. It was strikingly cosmopolitan: separate quarters housed Chinese, Japanese, Malay, Cham, Persian, Portuguese, Dutch, and French communities, and the court drew on foreign expertise and foreign merchants alike. Much of the overseas trade was a royal monopoly, the crown operating its own junks to China and Japan and requiring foreign traders to deal through its warehouses; the exports were deerskins and sappanwood to Japan, tin, rice, and forest produce, and the manufactures and silver of the wider trade in return.",
+        "The port reached its height under King Narai in the later seventeenth century, when Persian and then French influence at court was strong; the French bid for position ended abruptly in the revolution of 1688 that expelled them, after which Siam turned somewhat inward while its China trade, increasingly carried by resident Chinese, continued to grow. Ayutthaya's long history as a trading capital was ended in 1767, when a Burmese army took and destroyed the city — the event that closes its window on this chart, the Siamese state afterward rebuilding its port downriver toward Bangkok."
+      ],
+      "sources": [
+        "Chris Baker and Pasuk Phongpaichit, A History of Ayutthaya: Siam in the Early Modern World (2017)"
+      ]
+    },
+    "tranquebar": {
+      "blurb": [
+        {
+          "from": 1620,
+          "to": 1844,
+          "text": "The Danish factory on the Coromandel coast, Fort Dansborg, trading Indian textiles under a neutral flag."
+        },
+        {
+          "from": 1845,
+          "to": 1850,
+          "text": "Sold to Britain in 1845, ending two and a quarter centuries of Danish India."
+        }
+      ],
+      "doc": [
+        "Tranquebar (Tharangambadi) was a small Danish enclave on the Coromandel coast of south-eastern India, established in 1620 when the first Danish East India Company obtained a grant from the Nayak of Tanjore and built Fort Dansborg on the open, surf-beaten shore. It was never large — a fort, a town, and a strip of territory — but it gave Denmark a foothold in the Indian trade, and its chief business was the printed and plain cotton textiles of the Coromandel weavers, the staple return cargo of the Asian trade, alongside a share of the pepper and later the China tea that the Danish companies carried home.",
+        "The enduring value of the Danish flag lay in its neutrality: in the recurrent wars between Britain, France, and the Dutch, Danish ships from Tranquebar could trade and carry where the belligerents could not, and the reconstituted Danish Asiatic Company profited from this niche, particularly in the tea trade to Canton. The settlement passed its whole life as a modest but persistent enterprise on a coast dominated by greater European powers, until in 1845 the Danish crown sold Tranquebar and its other Indian possessions to the British East India Company, ending the Danish presence in India."
+      ],
+      "sources": [
+        "Ole Feldbaek, India Trade Under the Danish Flag, 1772-1808 (1969)"
+      ]
+    },
+    "surat": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1758,
+          "text": "Mughal India's greatest port, home of the Gujarati merchant fleet and the pilgrim and trading ships to the Red Sea."
+        },
+        {
+          "from": 1759,
+          "to": 1850,
+          "text": "Under East India Company control after 1759, declining as its trade drained away to Bombay."
+        }
+      ],
+      "doc": [
+        "Surat lay on the Tapti a short way above its mouth in Gujarat, the sea-going ships anchoring in the Swally roadstead a few miles off while their goods went up to the city; for a century and a half it was the greatest port of Mughal India. Its wealth was Indian: the Gujarati and Muslim merchant houses of Surat owned a great fleet of their own, and the port's largest ships were the pilgrim and trading vessels that sailed each season to Mocha and Jedda in the Red Sea, carrying Indian cotton textiles to be exchanged for the silver and gold of the Ottoman lands and for the returning pilgrims of the hajj. It was also the point of entry for the European companies — the English established their factory there in 1613, the Dutch soon after — who traded alongside, and in the shadow of, the far larger Indian commerce.",
+        "Surat's prosperity rested on the Mughal peace that kept its hinterland and its trade routes secure, and it declined as that peace failed: Maratha raids from the 1660s, the weakening of central authority after 1700, and disorder in its own government eroded the port through the first half of the eighteenth century. The English East India Company took control of the castle and the port's affairs in 1759, but by then the trade was already draining south to the Company's own harbour at Bombay, and Surat subsided into a provincial town, its Mughal sovereign long since nominal and its great merchant fleet dispersed."
+      ],
+      "sources": [
+        "Ashin Das Gupta, Indian Merchants and the Decline of Surat, c.1700-1750 (1979)"
+      ]
+    },
+    "manila": {
+      "blurb": "Spain's Asian capital, where the silver of the Americas was exchanged for the silks and porcelain of China.",
+      "doc": "Manila stood on the east bank of the Pasig where the river meets its great bay, a sheltered basin screened from the South China Sea by the island of Corregidor. The Spanish town proper was Intramuros, a walled quadrilateral of stone begun after 1571; across the river and outside the walls lay the parián, the Chinese quarter, where the Sangley merchants who supplied the trade were confined and taxed. Once a year the Manila galleon crossed to Acapulco and back, the single legal artery of a monopoly that tied the Philippines to the Viceroyalty of New Spain rather than to Madrid.\n\nThe business of the port was the exchange of Mexican and Peruvian silver, carried west in the galleon, for Chinese silk, porcelain, and lacquer brought down in junks from Fujian and Canton — a trade so lucrative that Manila lived by it and grew little else. The Sangley community that made it possible was also periodically its victim: mass killings of the Chinese in 1603, 1639, 1662, 1686, and 1762 punctuate the era. The city was held for two years by a British expedition after 1762, saw the galleon line dwindle and finally end in 1815, and was opened to foreign merchant shipping in the decades that followed as the old monopoly gave way.",
+      "sources": [
+        "William Lytle Schurz, The Manila Galleon (1939)",
+        "Katharine Bjork, \"The Link That Kept the Philippines Spanish: Mexican Merchant Interests and the Manila Trade, 1571-1815,\" Journal of World History (1998)"
+      ]
+    },
+    "banda-neira": {
+      "blurb": "The world's sole source of nutmeg and mace, held under a Dutch monopoly imposed by the conquest and near-destruction of the Bandanese in 1621.",
+      "doc": "The Banda Islands are a cluster of small volcanic specks in the eastern Indonesian sea — Neira, the larger Lonthor (Banda Besar), and the smoking cone of Gunung Api among them — and for most of the era they were the only place on earth where the nutmeg tree grew and bore. Banda Neira's harbour, a narrow strait between two of the islands, was commanded by the Dutch forts Nassau and Belgica; the nutmeg groves behind them, the perken, were the whole economy. There was no hinterland and no other reason for ships to come: the islands mattered because of a single tree.\n\nBefore 1621 the islands were governed by their own orang kaya, councils of Bandanese notables who sold nutmeg to Javanese, Malay, Chinese, and eventually English and Dutch buyers as they chose. To convert that open trade into an absolute monopoly, the Dutch East India Company under Jan Pieterszoon Coen conquered Banda in 1621 and destroyed the society that lived there: of a population estimated at around fifteen thousand, the great majority were killed, starved during the fighting, deported, or enslaved, and the islands were repopulated with enslaved and bonded labourers set to work the confiscated groves for the Company. This is recorded here as fact, not as a commercial success. The monopoly held for a century and a half until nutmeg seedlings were smuggled out — to the French Mascarenes in the mid-eighteenth century and by the British to Penang and Ceylon during their wartime occupations — after which Banda's singular value drained away.",
+      "sources": [
+        "Willard A. Hanna, Indonesian Banda: Colonialism and its Aftermath in the Nutmeg Islands (1978)",
+        "Vincent C. Loth, \"Armed Incidents and Unpaid Bills: Anglo-Dutch Rivalry in the Banda Islands in the Seventeenth Century,\" Modern Asian Studies 29 (1995)"
+      ]
+    },
+    "makassar": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1669,
+          "text": "Gowa's great free port, where any nation's ship could buy the spices the Dutch were trying to monopolise."
+        },
+        {
+          "from": 1670,
+          "to": 1850,
+          "text": "After the VOC's conquest of 1669 a garrisoned Dutch town, its free trade scattered into the Bugis diaspora."
+        }
+      ],
+      "doc": "Makassar sits on the south-western foot of Sulawesi, on a shallow, reef-fringed roadstead where the twin sultanates of Gowa and Tallo built their port. Through the first half of the era it was the archipelago's great open market: a cosmopolitan town of Malays, Bugis, Javanese, Chinese, and resident Portuguese, Danish, and English traders, where the cloves and nutmeg that the Dutch were struggling to monopolise in Maluku could be bought freely by anyone. Its rulers made a deliberate principle of that openness, holding that God had made the sea free to all.\n\nThat policy made Makassar the chief obstacle to the VOC's spice monopoly, and in 1666-69 the Company, allied with the Bugis prince Arung Palakka of Bone, made war on Gowa and took the city; the Treaty of Bungaya and the fall of the fortress in 1669 ended its independence and its free trade. The Dutch garrisoned the rebuilt fort, renamed Fort Rotterdam, and Makassar became a controlled colonial town. Its dispersed traders — above all the Bugis — carried the archipelago's own carrying trade outward from here for the next century and a half, so that the port's commercial energy survived the loss of its sovereignty.",
+      "sources": [
+        "Leonard Y. Andaya, The Heritage of Arung Palakka: A History of South Sulawesi (Celebes) in the Seventeenth Century (1981)",
+        "Anthony Reid, Southeast Asia in the Age of Commerce, 1450-1680 (1988-1993)"
+      ]
+    },
+    "aceh": {
+      "blurb": "The pepper sultanate at Sumatra's northern tip, shipping direct to the Red Sea and outflanking the Portuguese Cape route.",
+      "doc": "Aceh occupies the northern point of Sumatra, commanding the western approach to the Strait of Malacca, and its harbour at the mouth of the Aceh river was the seat of a Muslim sultanate that rose in the sixteenth century as a rival to Portuguese Melaka. The port drew pepper from its own territories and from the ports it subdued along both Sumatran coasts, and gathered it for shipment across the Bay of Bengal and the Indian Ocean. At its height under Iskandar Muda in the early seventeenth century the sultanate was one of the strongest naval powers in the region.\n\nAceh's importance lay in the route it kept open: it sold pepper direct to Muslim shipping bound for the Red Sea, Jedda, and the Ottoman Mediterranean, sustaining the older spice road at exactly the moment the Portuguese and then the Dutch were trying to close it and force the trade around the Cape of Good Hope. English and Dutch factors called here early in the seventeenth century for the same pepper. The sultanate's power waned after Iskandar Muda, and though it remained independent — the Dutch would not conquer it until the wars that began in the 1870s, long after this chart's horizon — its commanding role in the pepper trade had passed to others well before 1700.",
+      "sources": [
+        "Anthony Reid, An Indonesian Frontier: Acehnese and Other Histories of Sumatra (2005)",
+        "Denys Lombard, Le sultanat d'Atjeh au temps d'Iskandar Muda, 1607-1636 (1967)"
+      ]
+    },
+    "bantam": {
+      "blurb": "The archipelago's great pepper emporium and Batavia's rival, until the VOC conquest of 1682-84 ended its independence.",
+      "doc": "Bantam (Banten Lama) lay on the north-western shoulder of Java, on a low, silting bay guarding the Sunda Strait between Java and Sumatra. It was the pepper emporium of the western archipelago, a large and genuinely international market town where Chinese, Gujarati, Arab, and Malay merchants gathered the pepper of Sumatra and west Java; the first Dutch fleet reached it in 1596 and both the Dutch and the English planted their earliest Java factories here before either had a capital of its own.\n\nThat made Bantam the direct commercial rival of the VOC's new headquarters at Batavia, only some eighty kilometres east along the coast, and the two competed for the archipelago's trade for the better part of a century. The rivalry ended by force: the Company intervened in a Bantenese succession dispute and in 1682-84 stormed the town, reducing the sultanate to a Dutch protectorate and diverting its trade to Batavia. The port declined quickly thereafter, its independent commerce extinguished and its harbour left to silt, so that within a generation the once-great emporium had faded from the sea lanes.",
+      "sources": [
+        "Claude Guillot, The Sultanate of Banten (1990)",
+        "M. C. Ricklefs, A History of Modern Indonesia since c.1200 (2001)"
+      ]
+    },
+    "singapore": {
+      "blurb": "A free port from its founding in 1819, within twenty years the entrepot of the Straits.",
+      "doc": "Singapore occupies a low island at the southern tip of the Malay Peninsula, on the strait between the peninsula and the Riau archipelago, with a sheltered anchorage at the mouth of the Singapore river. When Stamford Raffles established a British post here in 1819 the island held only a small Malay and Orang Laut settlement under a Temenggong; the site was chosen for its position astride the passage between the Indian Ocean and the South China Sea rather than for any existing town or hinterland.\n\nRaffles declared it a free port from the outset, levying no duties, and that policy drew trade with remarkable speed. The junks of the China trade, the prahus of the archipelago, and the country ships of India converged on it, and within two decades Singapore had displaced older Dutch and Malay ports as the entrepot of the whole Straits region, its population and shipping swelling with Chinese, Malay, Bugis, and Indian merchants. By the 1840s it was the commercial hinge of British Southeast Asia, a role it would only consolidate in the era of steam that followed this chart's close.",
+      "sources": [
+        "C. M. Turnbull, A History of Modern Singapore, 1819-2005 (2009)",
+        "Wong Lin Ken, \"The Trade of Singapore, 1819-69,\" Journal of the Malayan Branch of the Royal Asiatic Society 33 (1960)"
+      ]
+    },
+    "callao": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1826,
+          "text": "The port of Lima and base of the South Sea fleet, through which Peruvian silver left for Panama and Spain."
+        },
+        {
+          "from": 1827,
+          "to": 1850,
+          "text": "After its fall in 1826, the Pacific port of independent Peru, opening to the world's shipping."
+        }
+      ],
+      "doc": "Callao is the port of Lima, a few miles from the viceregal capital on a low, sheltered stretch of the central Peruvian coast protected by the island of San Lorenzo. For two and a half centuries it was the principal Spanish naval and commercial base on the Pacific coast of South America and the home of the Armada del Mar del Sur, the South Sea fleet. Its whole reason for being was the silver of the Andes: bullion from Potosi and the other mountain mines was carried down to Lima and shipped north from Callao to Panama, there to cross the isthmus for the Atlantic convoys and Spain.\n\nThe wealth that passed through the port rested on coerced labour, and this is recorded plainly: the silver was dug under the mita, the rotational forced-labour draft that sent Andean communities into the mines, while Lima and its port were also worked in part by enslaved Africans brought across the Pacific and up from the Atlantic ports. Callao was fortified against Dutch and English raiders, wrecked by the great earthquake and tsunami of 1746, and rebuilt as the fortress of Real Felipe. It was the last royalist position to hold out in South America, surrendering in January 1826, after which it became the seaward gate of the independent Peruvian republic and opened to the merchant flags of the world.",
+      "sources": [
+        "Kenneth J. Andrien, Crisis and Decline: The Viceroyalty of Peru in the Seventeenth Century (1985)",
+        "Peter Bakewell, Miners of the Red Mountain: Indian Labor in Potosi, 1545-1650 (1984)"
+      ]
+    },
+    "guayaquil": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1820,
+          "text": "The South Sea fleet's shipyard and, after the trade reopened in 1774, a booming cacao port."
+        },
+        {
+          "from": 1821,
+          "to": 1850,
+          "text": "After independence a cacao port of Gran Colombia and then Ecuador, shipping to the wider Pacific."
+        }
+      ],
+      "doc": "Guayaquil lies up the Guayas river estuary on the Pacific coast of what is now Ecuador, in a hot, timber-rich lowland behind a broad tidal delta. Its abundant hardwoods and its sheltered river berths made it the great shipyard of the Spanish Pacific: through the seventeenth and eighteenth centuries much of the tonnage that sailed the South Sea fleet and the coasting trade was built and careened here, the caulkers and carpenters of colonial Guayaquil supplying hulls that Spanish shipwrights on the drier coasts could not.\n\nThe town's other staple was cacao, grown in the estuary lowlands, and when the crown relaxed the old restrictions on colonial trade in 1774 the cacao boom carried Guayaquil into a long rise that ran on across the turn of the century. It declared independence in 1820, joined Gran Colombia in 1822, and passed to the new republic of Ecuador when that state formed in 1830 — a lineage for which this chart has no separate flag, so the post-independence period is marked with the nearest roster power and noted as a proxy. Through those changes of sovereignty the cacao trade held, and by the 1840s Guayaquil was among the busier commercial ports of the eastern Pacific.",
+      "sources": [
+        "Lawrence A. Clayton, Caulkers and Carpenters in a New World: The Shipyards of Colonial Guayaquil (1980)",
+        "Maria Luisa Laviana Cuetos, Guayaquil en el siglo XVIII: recursos naturales y desarrollo economico (1987)"
+      ]
+    },
+    "panama-perico": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1821,
+          "text": "The Pacific mouth of the isthmus, where Peruvian silver was landed for the mule road to Portobelo."
+        },
+        {
+          "from": 1822,
+          "to": 1850,
+          "text": "After independence a quiet isthmian port of New Granada, its old fair long gone."
+        }
+      ],
+      "doc": "The anchorage of Perico lay among the small islands off Panama City in the Gulf of Panama, at the Pacific end of the narrow isthmus that Spanish America crossed by mule. It was less a trading town in its own right than the seaward hinge of a portage: the silver of Peru, shipped up from Callao, was landed on the Pacific side and carried overland to Portobelo on the Caribbean, there to meet the Atlantic galleons at the great isthmus fair. That overland crossing is not modelled here as shipping, which is why the port stands in the chart as a lane endpoint rather than a busy node.\n\nThe old Panama City was sacked by Henry Morgan in 1671 and rebuilt on a new site nearby; the Portobelo fair that gave the crossing its purpose ended in 1739, when Spain shifted the South American trade to the Cape Horn route, and the isthmus traffic dwindled thereafter. Panama joined the independence movement in 1821 and became part of Gran Colombia and then New Granada — again a sovereignty for which this chart carries no dedicated flag, so the period is marked with the nearest roster power and noted as a proxy. Through the first half of the nineteenth century it remained a minor port, its great age of transit still awaiting the railway and canal that lay beyond this chart's horizon.",
+      "sources": [
+        "Christopher Ward, Imperial Panama: Commerce and Conflict in Isthmian America, 1550-1800 (1993)",
+        "Alfredo Castillero Calvo, Los negros y mulatos libres en la historia social panamena (1969)"
+      ]
+    },
+    "valparaiso": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1818,
+          "text": "Chile's modest Pacific outlet under Spanish rule, an open roadstead below the coastal hills."
+        },
+        {
+          "from": 1819,
+          "to": 1850,
+          "text": "After independence the first port of call round the Horn and the rising commercial entrepot of the South Pacific."
+        }
+      ],
+      "doc": "Valparaiso is an open bay on the central Chilean coast, exposed to the northerly gales but otherwise the natural seaward outlet of Santiago, which lies inland behind the coastal range. Under Spanish rule it was a slight place — a roadstead with a few warehouses serving the colony of Chile, at the far end of the Pacific trade and subordinate to Callao and the isthmus route north. The Horn traffic largely passed it by while the old convoy system endured.\n\nIndependence in 1818 transformed it. As the first sheltered anchorage a ship reached after rounding Cape Horn into the Pacific, and as the port of a republic that threw open its trade, Valparaiso drew British, North American, and other merchant houses through the 1820s. By the 1830s and 1840s it had become the commercial and financial entrepot of the whole South American Pacific coast, a warehousing and banking centre where cargoes were broken up and redistributed along the coast and across to the wider ocean — the rising port of the region as this chart draws to its close.",
+      "sources": [
+        "Benjamin Vicuna Mackenna, Historia de Valparaiso (1869)",
+        "Eduardo Cavieres, Comercio chileno y comerciantes ingleses, 1820-1880 (1988)"
+      ]
+    },
+    "sydney": {
+      "blurb": "Founded in 1788 as a penal colony on Gadigal land at Sydney Cove, and a wool-exporting port from the 1820s.",
+      "doc": "Sydney stands on Port Jackson, one of the world's great natural harbours: a deep, branching drowned valley on the south-eastern coast of Australia, its coves sheltered and its water deep to the shore. The first British settlement was made in 1788 at Sydney Cove, which the Gadigal people whose country this was knew as Warrane; the land belonged to the Gadigal and the neighbouring clans of the Eora, and the colony was planted on it without treaty or purchase. The dispossession of those inhabitants — dulled in colonial language by the fiction of an empty land — was the founding fact of the port, and the smallpox epidemic of 1789 that followed the newcomers killed a great part of the Eora within a year.\n\nThe colony was established to receive convicts — men and women transported under sentence from Britain and Ireland, prisoners serving punishment, not goods in a hold — and for its first decades that penal traffic and the government store were its economy. From the 1820s a genuine export trade grew up: fine wool from the flocks of the interior, together with whale and seal oil from the southern fisheries, gave the settlement a return cargo and drew merchant shipping in its own right. By the 1830s and 1840s Sydney had become the principal commercial port of the Australian colonies, still receiving convicts to mid-century but increasingly a trading town on the strength of its wool.",
+      "sources": [
+        "Grace Karskens, The Colony: A History of Early Sydney (2009)",
+        "Inga Clendinnen, Dancing with Strangers: Europeans and Australians at First Contact (2003)"
+      ]
+    },
+    "pacific-grounds": {
+      "blurb": "The offshore sperm-whale grounds off Peru and Chile, opened in 1788 and worked by British and then overwhelmingly American whalers.",
+      "doc": "This node marks not a port but a region of open sea: the sperm-whale grounds off the Pacific coast of South America, off Peru and Chile and stretching out into the ocean to the west. They were opened to the European fishery in 1788, when the British whaler Emilia became the first to round Cape Horn and take sperm whales in the South Pacific, and further \"offshore grounds\" further out to sea were worked in the decades that followed. The whalers themselves carried no home here; they cruised for months and provisioned at the coastal ports and islands — Callao, Paita, Talcahuano, and above all the Galapagos — before returning to the hunt.\n\nBritish ships led the early fishery, but after 1815 it became overwhelmingly American, prosecuted by the sperm-whaling fleets of Nantucket and New Bedford whose voyages ran three and four years around the world. The grounds fed the demand for spermaceti and whale oil that lit and lubricated the industrialising Atlantic world, and their working built toward the mid-nineteenth-century peak of the American whale fishery. The node is entered here in the manner of the Davis Strait and Smeerenburg grounds — a place ships went to work rather than a harbour anyone held.",
+      "sources": [
+        "Briton Cooper Busch, Whaling Will Never Do for Me: The American Whaleman in the Nineteenth Century (1994)",
+        "Edouard A. Stackpole, The Sea-Hunters: The New England Whalemen during Two Centuries, 1635-1835 (1953)"
+      ]
+    },
+    "venice": {
+      "blurb": "The Serenissima's lagoon capital, its Arsenal-built galleys and round ships carrying Levant spice, glass, and salt long after Atlantic routes had begun to eclipse the old Mediterranean carrying trade.",
+      "doc": [
+        "Venice sat on the mud islands of a shallow lagoon, its deep-water shipping working from the Bacino di San Marco and the state Arsenal, the largest industrial complex in Europe, where galleys were built and armed on a near-assembly-line system. There was no river and no open roadstead: vessels threaded the lagoon channels past the Lido, and the whole city was its own fortified basin. Through it moved the eastern goods of the Republic's maritime empire, the Stato da Mar, together with the glass of Murano, Istrian and Dalmatian salt, and the woollens that Venice re-exported into the Ottoman lands.",
+        "Across 1550 to 1850 the port's fortunes ran steadily downward from a high that was already past. The spice trade had been diverted round the Cape, Ottoman wars stripped away Cyprus (1571) and eventually Crete (1669) and the Morea, and northern carriers took over even the Mediterranean freights. Venice remained a working port and naval power into the eighteenth century, but the Republic fell to Bonaparte in 1797, passing to Austria and then, briefly, to the Napoleonic Kingdom of Italy. The city itself was called Venezia, La Serenissima, or simply the Dominante."
+      ],
+      "sources": [
+        "Frederic C. Lane, Venice: A Maritime Republic (1973)",
+        "Fernand Braudel, The Mediterranean and the Mediterranean World in the Age of Philip II (1949; trans. 1972)"
+      ]
+    },
+    "genoa": {
+      "blurb": "The Ligurian republic of merchant-bankers whose capital, more than its own thinning merchant marine, financed Habsburg Spain and moved American silver through the Mediterranean.",
+      "doc": [
+        "Genoa lay against a steep coast with an artificial harbour sheltered by moles, its old and new piers curving out to enclose a crowded basin below the amphitheatre of the city. It had little hinterland and depended wholly on the sea. In the sixteenth and seventeenth centuries its distinctive business was less the carriage of goods than of money: the Genoese asientos financed the Spanish crown, and the Besançon exchange fairs made the city a clearing house for the silver of the Indies. Alongside the finance ran a real trade in silk, paper, olive oil, coral, and Corsican and Levantine goods.",
+        "The republic's commercial marine declined through the period even as its banking endured, and Genoa increasingly saw its freights carried in Dutch, English, and later Ragusan and Tuscan bottoms. War with Savoy, the French bombardment of 1684, and shifting silver flows all pressed on it; the republic ended with the Napoleonic Ligurian Republic (1797) and annexation to France, before passing to Piedmont-Sardinia in 1815. The city was La Superba, Genova, its people the Genoese whose name traders across Europe knew from their bills of exchange."
+      ],
+      "sources": [
+        "Thomas A. Kirk, Genoa and the Sea: Policy and Power in an Early Modern Maritime Republic, 1559-1684 (2005)",
+        "Fernand Braudel, Civilization and Capitalism, 15th-18th Century (1979; trans. 1981-84)"
+      ]
+    },
+    "livorno": {
+      "blurb": "The Grand Duke of Tuscany's free port, its neutral roadstead open to every flag, which was the whole design: a warehouse for the Mediterranean where Jews, Greeks, Armenians, and northern factors traded goods that mostly arrived and left under other colours.",
+      "doc": [
+        "Livorno (Leghorn to the English) was a made port, laid out on marshy coast by the Medici from the 1570s with a new mole, a fortified pentagon, and a planned town behind it. It had no natural depth of hinterland and no great river; its cargoes were drawn instead by the Livornina charters, which granted freedom of religion and of trade to newcomers and made the town a duty-light entrepot. Grain in dearth years, coral, silk, wax, sugar, and above all a vast re-export traffic passed across its quays, and its resident Sephardi, Greek, and Armenian communities, alongside Dutch and English factors, handled much of it.",
+        "The town's business model was neutrality and openness, and it prospered as long as its harbour stayed a safe common ground, filling with foreign shipping through the seventeenth and eighteenth centuries. Its own Tuscan flag covered only a small marine; most Livorno freights flew Dutch, English, French, or Ragusan colours, exactly as intended. The French occupation and the Continental blockade of the Napoleonic years hit it hard, but the free port revived after 1815 under the restored Grand Duchy, which endured to 1859. The place was known simply as the porto franco, Livorno, or Leghorn."
+      ],
+      "sources": [
+        "Corey Tazzara, The Free Port of Livorno and the Transformation of the Mediterranean World, 1574-1790 (2017)",
+        "Fernand Braudel, The Mediterranean and the Mediterranean World in the Age of Philip II (1949; trans. 1972)"
+      ]
+    },
+    "marseille": {
+      "blurb": "France's Mediterranean gateway, its old harbour privileged by crown edict as the kingdom's channel for the Levant trade, importing Ottoman cotton, silk, hides, and drugs and shipping out the woollens of Languedoc.",
+      "doc": [
+        "Marseille worked from the Vieux-Port, a long, narrow, well-sheltered inlet flanked by forts, effectively a fortified basin without a river to silt it. From the mid-seventeenth century royal policy made it the mandatory transit point for French commerce with the Ottoman Levant: goods for the echelles had by edict to pass through Marseille's lazaret and customs, and its Chamber of Commerce and consuls organised the trade. Inbound came Levantine cotton and cotton yarn, raw silk, mohair, hides, wax, coffee from Egypt, and drugs; outbound went the light woollen cloths (draps) of Languedoc, along with sugar, coffee, and colonial goods once the Antilles trade grew.",
+        "The port rose strongly across the seventeenth and eighteenth centuries as the dominant Christian carrier in the Levant, its quarantine station guarding against the plague that nonetheless struck catastrophically in 1720. The Revolution and the wars with Britain badly disrupted its shipping, but Marseille recovered in the nineteenth century as France's chief Mediterranean and, increasingly, colonial port. It was always simply Marseille, the cite phoceenne to the learned, its merchants the negociants who ran the Levant houses."
+      ],
+      "sources": [
+        "Junko Therese Takeda, Between Crown and Commerce: Marseille and the Early Modern Mediterranean (2011)",
+        "Charles Carriere, Negociants marseillais au XVIIIe siecle (1973)"
+      ]
+    },
+    "naples": {
+      "blurb": "The teeming capital of its kingdom and one of the largest cities in Europe, its bay crowded with the coasting craft that fed it grain, oil, and silk while its own deep-sea marine stayed modest.",
+      "doc": [
+        "Naples lay on a magnificent bay under Vesuvius, with an open roadstead improved by the mole that reached out below the Castel Nuovo and the Castel dell'Ovo. It was above all a consuming city, one of Europe's largest, and its harbour traffic was dominated by the coastwise and short-sea trades that provisioned it: grain from Apulia and Sicily, oil, wine, cheese, and the raw and worked silk of the Mezzogiorno. Spanish, Genoese, Ragusan, and later English and Dutch vessels carried much of the long-distance business; the kingdom's own flag covered a smaller marine.",
+        "As a Spanish viceroyalty to 1707, then briefly Austrian, and from 1734 the seat of an independent Bourbon monarchy, Naples remained a great political capital whose port served consumption more than entrepot commerce. Grain shortages, the revolt of 1647, and the plague of 1656 marked its worst years; the eighteenth century brought reform and modest commercial growth under the Bourbons, interrupted by the Napoleonic decade of 1806-15. The city was Napoli, capital of the Regno, its harbour the mole beneath the fortresses."
+      ],
+      "sources": [
+        "John A. Marino, Pastoral Economics in the Kingdom of Naples (1988)",
+        "Fernand Braudel, The Mediterranean and the Mediterranean World in the Age of Philip II (1949; trans. 1972)"
+      ]
+    },
+    "barcelona": {
+      "blurb": "Catalonia's harbour under the Spanish crown, long shut out of the Seville-Cadiz monopoly on the Indies and thrown back on Mediterranean and coasting trades until the eighteenth century reopened Atlantic and colonial commerce to it.",
+      "doc": [
+        "Barcelona's shipping worked from a shallow shore improved over centuries by an artificial mole and quays, the harbour repeatedly dredged and extended against silting. Through the sixteenth and seventeenth centuries the city was excluded from the legal trade of the Carrera de Indias, which was reserved to Andalusian ports, and its commerce was chiefly Mediterranean: wine and brandy, salt, wool and woollen cloth, dried fruit, and the coasting exchange with the Balearics, Valencia, Italy, and the Levant. It also built and manned galleys for the crown.",
+        "The city suffered heavily in the Catalan revolt (1640-52) and again in the War of the Spanish Succession, falling to the Bourbons in 1714. But the later eighteenth century transformed it: Catalan trade with America was legalised (fully by the 1778 comercio libre decrees), and Barcelona boomed on colonial re-export, brandy, and the printed-cotton (indianes) industry, becoming the industrial heart of Spain in the nineteenth century. It was always Barcelona, chief city of the Principat de Catalunya under the crown of Spain."
+      ],
+      "sources": [
+        "J. K. J. Thomson, A Distinctive Industrialization: Cotton in Barcelona, 1728-1832 (1992)",
+        "Fernand Braudel, The Mediterranean and the Mediterranean World in the Age of Philip II (1949; trans. 1972)"
+      ]
+    },
+    "istanbul": {
+      "blurb": "The Ottoman capital astride the Bosporus and one of the largest cities on earth, its provisioning drew grain, timber, and goods from the whole Black Sea and eastern Mediterranean; among the human beings trafficked into it were captives sold in its slave market, recorded here soberly, never as trade.",
+      "doc": [
+        "Istanbul commanded the Golden Horn, a deep, sheltered natural harbour, and the Bosporus channel between the Black Sea and the Sea of Marmara, with quays, custom houses (the gumruk), and shipyards at Kasimpasa lining the inlet. As the seat of the sultan and one of the largest cities in the world, it was an immense consumer, and the machinery of the state bent trade toward feeding it: Egyptian and Black Sea grain, timber and naval stores, wool, hides, and slaves were drawn in, much of the carriage in Greek- and Armenian-crewed bottoms under the Ottoman flag. Its own manufactures, spices trans-shipped from the Red Sea, and the goods of the caravan routes moved outward.",
+        "The city's history across the period is one of a great capital rather than a competitive trading port: its commerce served empire and provisioning, and it stood outside the European rankings that could not represent so state-directed a metabolism, which is why the chart carries it as its declared-boundary exemplar. Among the flows converging on it was the traffic in enslaved people brought from the Black Sea, the Caucasus, and Africa and sold in the city's markets: this is set down as the coerced movement of human beings, not as a commodity trade. The city was Konstantiniyye in the chancery, Istanbul in speech, and Tsargrad or simply the City to its neighbours."
+      ],
+      "sources": [
+        "Halil Inalcik, The Ottoman Empire: The Classical Age, 1300-1600 (1973)",
+        "Halil Inalcik and Donald Quataert (eds.), An Economic and Social History of the Ottoman Empire, 1300-1914 (1994)"
+      ]
+    },
+    "algiers": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1830,
+          "text": "Capital of the Ottoman Regency and the most feared corsairing base of the western Mediterranean; its licit exports were grain, wool, hides, wax, and coral, while its corsairs seized ships and captives, and the Christians held for ransom or forced labour in the city are recorded here soberly, as people taken against their will, never as cargo."
+        },
+        {
+          "from": 1831,
+          "to": 1850,
+          "text": "The seat of French Algeria after the conquest of 1830, its harbour reworked into a colonial and military port as the old Regency and its corsairing were extinguished."
+        }
+      ],
+      "doc": [
+        "Algiers rose in tiers up a hillside above a harbour that the corsairs had made by joining offshore islets to the shore with a mole (the name al-Jaza'ir, 'the islands', records them), enclosing a basin under the guns of the Penon and the casbah. Its licit seaborne trade, the flow this chart sails, was in grain, wool, hides, wax, dates, and coral shipped to Marseille, Livorno, and the Levant. But the Regency's notoriety, and much of its treasury, came from privateering: its galleys and later sailing corsairs took merchant ships and coastal captives across the Mediterranean and into the Atlantic. The people so seized were held in the bagnios for ransom or set to forced labour, and are set down here as human beings taken by force, not as a trade good or a spectacle.",
+        "As an Ottoman Regency governed by pashas, then aghas, and from 1671 by deys, Algiers was effectively autonomous, its power resting on the corsair captains (the reis) and the janissary militia. European states paid tribute and negotiated redemption of captives through religious orders and consuls. The corsairing waned in the eighteenth century and was pressed hard after 1815, and in 1830 a French expedition took the city, ending the Regency; from 1830 Algiers became the capital of French Algeria. Under the Ottomans it was Cezayir or al-Jaza'ir; the Europeans called it Algiers or Alger."
+      ],
+      "sources": [
+        "Robert C. Davis, Christian Slaves, Muslim Masters: White Slavery in the Mediterranean, the Barbary Coast, and Italy, 1500-1800 (2003)",
+        "Fernand Braudel, The Mediterranean and the Mediterranean World in the Age of Philip II (1949; trans. 1972)"
+      ]
+    },
+    "tunis": {
+      "blurb": "The Regency capital behind its lagoon, an Ottoman then Husainid state that exported grain, oil, wool, and the red caps of its own manufacture, and whose corsairs also took ships and captives, the enslaved held in the city recorded here soberly rather than as trade.",
+      "doc": [
+        "Tunis proper lies inland behind the shallow Lake of Tunis; its sea gate was La Goulette (Halq al-Wadi), the fortified channel where the chart's dot sits and where sea-going ships anchored and lightered their cargoes up to the city. Its licit exports were wheat and barley, olive oil, wool, hides, wax, dates, and the woollen skullcaps (chechias) for which Tunis was famous across the Ottoman world. Marseillais, Livornese, and other Christian factors traded there under capitulations. Like its Barbary neighbours the Regency also fitted out corsairs, and the captives they seized were held for ransom or forced labour in the city; those people are recorded here as human beings taken by force, not as merchandise.",
+        "Ottoman from the final conquest of 1574, Tunis passed under the effective rule of its own beys, and from 1705 the Husainid dynasty governed it as a hereditary, largely autonomous regency that outlasted the period covered here. Its corsairing declined through the eighteenth century and was suppressed under European pressure after 1815, while the grain and oil trade and the cap manufacture continued. The state was the Iyala or Regency of Tunis; the port was La Goulette, the city Tunis."
+      ],
+      "sources": [
+        "Robert C. Davis, Christian Slaves, Muslim Masters: White Slavery in the Mediterranean, the Barbary Coast, and Italy, 1500-1800 (2003)",
+        "Fernand Braudel, The Mediterranean and the Mediterranean World in the Age of Philip II (1949; trans. 1972)"
+      ]
+    },
+    "tripoli": {
+      "blurb": "The westernmost Barbary regency and the Mediterranean sea gate of the Saharan caravan routes, exporting the goods those caravans brought north; like its neighbours it fitted out corsairs, and the captives they seized are recorded here soberly, as people held by force.",
+      "doc": [
+        "Tripoli of Barbary (Tarabulus al-Gharb) stood on a low, exposed shore, its harbour sheltered by reefs and an old Spanish-built castle and mole, an open roadstead more than a deep basin. Its distinctive role was as the maritime terminus of the trans-Saharan caravan trade from Fezzan and the Sudan: gold, ivory, ostrich feathers, senna, and enslaved Africans were carried across the desert to Tripoli, and from the coast went the wool, hides, dates, and barilla of the region. The overland caravan itself is registered in this chart as a silence rather than sailed. The Regency also armed corsairs, and the Christian captives they took were held for ransom or forced labour; they are set down here as human beings taken against their will, never as cargo.",
+        "Ottoman from 1551, Tripoli was governed for the eighteenth century (1711-1835) by the semi-independent Karamanli dynasty, whose corsairing drew it into conflict with European powers and the young United States in the wars of 1801-05 and 1815. Ottoman direct rule was restored in 1835. Its caravan trade persisted longest of all the Barbary specialities. The state was the Regency of Tripoli; the town Tarabulus, Tripoli to the Europeans."
+      ],
+      "sources": [
+        "Robert C. Davis, Christian Slaves, Muslim Masters: White Slavery in the Mediterranean, the Barbary Coast, and Italy, 1500-1800 (2003)",
+        "Ralph A. Austen, Trans-Saharan Africa in World History (2010)"
+      ]
+    },
+    "alexandria": {
+      "blurb": "Ottoman Egypt's Mediterranean port and a principal echelle of the Levant trade, funnelling Egyptian grain, rice, flax, and the coffee and spices trans-shipped up from the Red Sea into European bottoms.",
+      "doc": [
+        "Alexandria occupied the isthmus between two harbours, the western (Eunostos) open to Christian shipping and the eastern reserved to Ottoman and Muslim vessels, both remnants of the ancient Ptolemaic port and by this period much decayed and silted. The city itself had shrunk to a fraction of its classical size, linked to the Nile by a canal that determined whether goods could reach it. Through it passed Egyptian wheat and rice, flax and linen, natron, sal ammoniac, and the coffee of Mocha and the spices of the Red Sea trans-shipped down from Cairo, exchanged for the woollens, metals, and silver the European consuls' nations brought. French, Venetian, and English factors kept houses under the capitulations.",
+        "For most of the period Alexandria was a modest secondary port of Ottoman Egypt, overshadowed by Cairo and dependent on the fluctuating Nile canal; the French expedition of 1798-1801 and, decisively, the reign of Muhammad Ali (from 1805), who cut the new Mahmudiyya canal in 1820 and made the port his naval and commercial base, began its nineteenth-century revival. Nominally Ottoman throughout, Egypt under Muhammad Ali grew all but independent. The city was al-Iskandariyya, Alexandria to the Europeans, one of the echelles du Levant."
+      ],
+      "sources": [
+        "Michael J. Reimer, Colonial Bridgehead: Government and Society in Alexandria, 1807-1882 (1997)",
+        "Bruce Masters, The Origins of Western Economic Dominance in the Middle East (1988)"
+      ]
+    },
+    "scanderoon": {
+      "blurb": "Iskenderun, the malarial but deep roadstead that served as the sea gate of Aleppo and the chief unloading place of the English Levant Company, where the caravan goods of inland Syria met European shipping.",
+      "doc": [
+        "Scanderoon (Iskenderun, the Europeans' Alexandretta) was less a town than an anchorage: a deep bay at the head of the Gulf of Alexandretta, backed by fever-ridden marshes, chosen because it was the nearest safe roadstead to Aleppo, some three days' caravan inland over the Belen pass. It had no proper harbour works, and ships lay in the open bay while their cargoes were carried up to Aleppo by muleteer caravan. Through it moved the Persian and Syrian raw silk, cotton, galls, and spices that Aleppo gathered, exchanged for the broadcloth, tin, and silver of the English and the woollens of the French and Venetians.",
+        "The port lived and died by the fortunes of Aleppo's caravan trade. It was the principal factory station of the English Levant Company in the seventeenth century, its unhealthiness notorious in the consuls' letters, and it declined in the eighteenth as the Persian silk trade faltered, wars disrupted the caravans, and Smyrna drew the Levant business westward. Nominally Ottoman throughout, it was Iskenderun in Turkish, Scanderoon or Alexandretta to the English and Italians, the scala of Aleppo."
+      ],
+      "sources": [
+        "Bruce Masters, The Origins of Western Economic Dominance in the Middle East: Mercantilism and the Islamic Economy in Aleppo, 1600-1750 (1988)",
+        "Alfred C. Wood, A History of the Levant Company (1935)"
+      ]
+    },
+    "smyrna": {
+      "blurb": "Izmir, the great cosmopolitan echelle that overtook all its rivals to become the busiest of the Levant ports, its bay drawing the caravans of Anatolia and Persia down to the quays of its French, English, Dutch, and Venetian factors.",
+      "doc": [
+        "Smyrna (Izmir) commanded a long, deep, well-sheltered gulf on the Aegean coast of Anatolia, with a working waterfront of quays, khans, and consular houses (the 'Frank street') strung along the shore below the old castle. From a modest town in 1550 it grew across the seventeenth century into the pre-eminent echelle of the Levant, as the caravan routes of western Anatolia and, through them, of Persia were pulled toward its bay. Raw cotton and cotton yarn, silk, mohair yarn from Angora, wax, dried fruit (raisins and figs), galls, and opium went out; woollen cloth, tin, colonial goods, and silver came in. Its trade was famously polyglot, handled by Greek, Armenian, Jewish, and 'Frankish' merchant communities under the capitulations.",
+        "By the eighteenth century Smyrna was the busiest port of the Ottoman Levant, outstripping Aleppo's Scanderoon as the silk trade shifted and the Aegean fruit and cotton trades grew. Earthquakes, fires, and plague periodically devastated it, but it always rebuilt and remained the region's chief commercial outlet into the nineteenth century, its Christian and Jewish quarters giving it the byname gavur Izmir, 'infidel Smyrna'. Ottoman throughout the period, it was Izmir in Turkish, Smyrna to the Europeans."
+      ],
+      "sources": [
+        "Daniel Goffman, Izmir and the Levantine World, 1550-1650 (1990)",
+        "Elena Frangakis-Syrett, The Commerce of Smyrna in the Eighteenth Century, 1700-1820 (1992)"
+      ]
+    },
+    "boston": {
+      "blurb": [
+        {
+          "from": 1630,
+          "to": 1782,
+          "text": "A British colonial port on Massachusetts Bay, provisioning the West Indies with fish, timber, and livestock and building ships on its own account."
+        },
+        {
+          "from": 1783,
+          "to": 1850,
+          "text": "A leading United States port, its merchants sending vessels to China, the Baltic, and the Mediterranean."
+        }
+      ],
+      "doc": [
+        "Boston sits on a hilly peninsula reaching into a deep, island-sheltered harbour at the mouth of the Charles and Mystic rivers, an anchorage that made it the principal shipping town of colonial New England from its founding in 1630. It lacked a great cash staple of its own; instead its merchants grew wealthy as intermediaries, carrying dried cod, timber, barrel-staves, horses, and provisions to the sugar islands of the West Indies and returning with molasses, which local distilleries turned into rum. Shipbuilding flourished along the waterfront, and by the early eighteenth century Boston-built and Boston-owned tonnage plied routes to Britain, southern Europe, the wine islands, and the Caribbean.",
+        "New England capital was entangled in the Atlantic slave economy: Boston houses fitted out slaving voyages, distilled the rum that was exchanged for captive people on the African coast, and profited from provisioning the plantation islands worked by enslaved labour; some Africans were also held in bondage within the town itself. Boston's commercial primacy slipped behind New York and Philadelphia in the later eighteenth century, and the port suffered acutely under the Revolutionary blockade and the punitive Port Act of 1774. After independence its merchants recovered by pioneering long-distance routes — to Canton, the Pacific Northwest fur coast, the Baltic, and the Mediterranean — that carried the town's shipping through the first half of the nineteenth century."
+      ],
+      "sources": [
+        "Bernard Bailyn, The New England Merchants in the Seventeenth Century (1955)",
+        "W. Jeffrey Bolster, The Mortal Sea: Fishing the Atlantic in the Age of Sail (2012)"
+      ]
+    },
+    "new-york": {
+      "blurb": [
+        {
+          "from": 1625,
+          "to": 1663,
+          "text": "New Amsterdam, the Dutch West India Company's fur and provisioning post at the mouth of the Hudson."
+        },
+        {
+          "from": 1664,
+          "to": 1782,
+          "text": "British New York, exporting flour, provisions, and furs and carrying a busy West India trade."
+        },
+        {
+          "from": 1783,
+          "to": 1850,
+          "text": "The rising commercial capital of the United States, its harbour the busiest in the country by the 1820s."
+        }
+      ],
+      "doc": [
+        "New York commands one of the world's finest natural harbours — a broad, deep, ice-rarely bay where the Hudson meets the sea, sheltered by Long Island and reached through the Narrows. The Dutch West India Company founded New Amsterdam on the tip of Manhattan in 1625 as a fur-trading and provisioning post; the town passed to English hands in 1664 and was renamed for the Duke of York. Under British rule it exported wheat flour, bread, and provisions to the West Indies and southern Europe, dealt in furs drawn down the Hudson, and grew steadily as a distribution centre for the middle colonies.",
+        "New York's colonial economy was bound up with slavery: the town held one of the largest urban enslaved populations in British North America, and its merchants trafficked in enslaved people and provisioned the plantation colonies. After the Revolution the port's advantages — a superb harbour, the Hudson corridor into the interior, and after 1825 the Erie Canal — carried it past its rivals to become the leading commercial city of the United States. By the 1820s its wharves handled the greatest share of the nation's foreign trade, the packet lines to Liverpool and Le Havre sailed on fixed schedules from its piers, and cotton from the southern ports was funnelled through New York factors on its way to Europe."
+      ],
+      "sources": [
+        "Cathy Matson, Merchants and Empire: Trading in Colonial New York (1998)",
+        "Robert G. Albion, The Rise of New York Port, 1815–1860 (1939)"
+      ]
+    },
+    "philadelphia": {
+      "blurb": [
+        {
+          "from": 1682,
+          "to": 1782,
+          "text": "William Penn's Quaker city on the Delaware, the great grain and flour port of British North America."
+        },
+        {
+          "from": 1783,
+          "to": 1850,
+          "text": "A principal United States port, exporting flour and provisions and pioneering the early China trade."
+        }
+      ],
+      "doc": [
+        "Philadelphia lies well up the Delaware River, on the neck between the Delaware and the Schuylkill, a freshwater port reached by a long buoyed passage from the capes of the bay. Founded by William Penn in 1682, it drew on the exceptionally productive farmland of Pennsylvania and its neighbouring colonies and became the pre-eminent grain port of British America, shipping wheat, flour, bread, and provisions to the West Indies, southern Europe, and the wine islands. By the eve of the Revolution it was the largest city in the colonies and one of the busiest ports in the British Atlantic, its merchant houses handling a diverse re-export and provisioning trade.",
+        "Pennsylvania's commerce, though shaped by a large Quaker mercantile community that turned early against slaveholding, was not separate from the Atlantic slave economy: the provisions Philadelphia shipped fed the enslaved-worked plantations of the Caribbean, and enslaved people were bought and sold in the town before gradual abolition began in 1780. The port's river approach could freeze in hard winters, a standing disadvantage against ice-free rivals. After independence Philadelphia remained a major exporter of flour and a centre of the early United States trade to Canton, though over the first half of the nineteenth century its share of national commerce was overtaken by New York's superior harbour and canal connections."
+      ],
+      "sources": [
+        "Thomas M. Doerflinger, A Vigorous Spirit of Enterprise: Merchants and Economic Development in Revolutionary Philadelphia (1986)",
+        "Gary B. Nash, The Urban Crucible: Social Change, Political Consciousness, and the Origins of the American Revolution (1979)"
+      ]
+    },
+    "chesapeake": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1782,
+          "text": "The tobacco coast of British Virginia and Maryland, its crop grown by enslaved labour and shipped direct from a thousand private landings."
+        },
+        {
+          "from": 1783,
+          "to": 1850,
+          "text": "The tobacco and grain shores of Virginia and Maryland, worked by enslaved people, with Norfolk and Baltimore as their outlets."
+        }
+      ],
+      "doc": [
+        "The Chesapeake is not a single harbour but a vast drowned river valley, its long tidal estuaries — the James, York, Rappahannock, Potomac, and Patuxent — reaching deep into Virginia and Maryland and allowing ocean-going ships to load almost at the planters' own wharves. English settlement began at Jamestown in 1607, and the bay's economy soon rested on a single export: tobacco, grown for the British and re-export markets and shipped in bulk from innumerable small private landings rather than concentrated at one town. This node stands at the capes for the whole tobacco coast, of which Norfolk and Annapolis were the nearest real ports.",
+        "The Chesapeake economy was built on the labour of enslaved people. Through the seventeenth century tobacco was worked increasingly by Africans held in bondage, and by the eighteenth century a large enslaved population — trafficked across the Atlantic and then held and sold within the region — sustained the plantations; the sober fact of that coerced labour underlies every hogshead the bay shipped. As tobacco soils exhausted, planters shifted toward wheat, and after independence Baltimore rose rapidly as a flour and general port at the head of the bay. In the nineteenth century the upper Chesapeake also became a source region for the domestic slave trade, from which enslaved people were carried southwest to the cotton frontier."
+      ],
+      "sources": [
+        "Allan Kulikoff, Tobacco and Slaves: The Development of Southern Cultures in the Chesapeake, 1680–1800 (1986)",
+        "Lorena S. Walsh, Motives of Honor, Pleasure, and Profit: Plantation Management in the Colonial Chesapeake, 1607–1763 (2010)"
+      ]
+    },
+    "louisbourg": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1712,
+          "text": "St John's and the Newfoundland shore fishery, drawing English, French, and other ships to the cod grounds of the Grand Banks."
+        },
+        {
+          "from": 1713,
+          "to": 1758,
+          "text": "Louisbourg, France's fortified fishery base and naval station on Île Royale, guarding the approaches to the St Lawrence."
+        },
+        {
+          "from": 1759,
+          "to": 1850,
+          "text": "St John's again, the British Newfoundland cod fishery and its Banks traffic, after Louisbourg's fall and demolition."
+        }
+      ],
+      "doc": [
+        "This node stands for the cod coast of the northwest Atlantic, where the shallow Grand Banks off Newfoundland held the richest fishery in the early-modern world and drew fishing fleets across the ocean each season. For most of the era the traffic is that of St John's — a small, superbly sheltered harbour entered through a narrow rock gut — and the migratory and resident English fishery that dried salt cod on the Newfoundland shore for the Catholic markets of southern Europe. The chart's single node stands in for that whole coast; the real St John's lies some 500 km to the east of the plotted point.",
+        "Between 1713 and 1758 the node instead carries Louisbourg, the fortress town France raised on Île Royale (Cape Breton) after the Treaty of Utrecht ceded Newfoundland and Acadia to Britain. Louisbourg was at once a fishing base, a trans-shipment port linking France, Canada, and the West Indies, and a naval station commanding the Gulf of St Lawrence. It was besieged and taken by a New England expedition in 1745, returned by treaty, taken again by the British in 1758, and then systematically demolished so it could never again shelter a French fleet. Thereafter the cod fishery reverted to its British Newfoundland channels, and the node reads St John's once more."
+      ],
+      "sources": [
+        "A. J. B. Johnston, Endgame 1758: The Promise, the Glory, and the Despair of Louisbourg's Last Decade (2007)",
+        "Peter E. Pope, Fish into Wine: The Newfoundland Plantation in the Seventeenth Century (2004)"
+      ]
+    },
+    "acapulco": {
+      "blurb": [
+        {
+          "from": 1571,
+          "to": 1820,
+          "text": "The eastern terminus of the Manila galleon, where Asian silks and porcelain were exchanged for New World silver on the Pacific coast of New Spain."
+        },
+        {
+          "from": 1821,
+          "to": 1850,
+          "text": "A quiet harbour of independent Mexico after the galleon trade ended, its great annual fair gone."
+        }
+      ],
+      "doc": [
+        "Acapulco possesses one of the finest deep-water bays on the Pacific coast of the Americas — an almost landlocked circular harbour ringed by hills, safe in any weather. From 1571 it was the American terminus of the Manila galleon, the single annual (sometimes twice-yearly) trans-Pacific voyage that linked Spanish Manila to New Spain. Each arrival triggered a great trade fair at which the galleon's cargo of Chinese silks, porcelain, spices, and Asian manufactures was exchanged for the silver of the Mexican and Peruvian mines. For most of the year the town was small and sleepy; the silver that crossed the Pacific was carried overland from Acapulco to Veracruz for onward shipment to Spain, which is the point of the connection.",
+        "The galleon line ran under the Spanish crown for nearly two and a half centuries, tying the economy of a small Mexican port to Canton and the China trade far more than to the Atlantic. The trade was disrupted by the Napoleonic wars and the Mexican War of Independence, and the last galleon sailed in 1815. With independence in 1821 Acapulco passed to Mexico (for which the chart has no distinct flag, so the Spanish colonial power is carried forward as the nearest available), and without the galleon the harbour lapsed into a long quiet before its later revival as a coastal and, much later, resort port."
+      ],
+      "sources": [
+        "William Lytle Schurz, The Manila Galleon (1939)",
+        "Arturo Giráldez, The Age of Trade: The Manila Galleons and the Dawn of the Global Economy (2015)"
+      ]
+    },
+    "new-orleans": {
+      "blurb": [
+        {
+          "from": 1718,
+          "to": 1762,
+          "text": "La Nouvelle-Orléans, France's struggling entrepot near the mouth of the Mississippi, outlet for the Louisiana colony."
+        },
+        {
+          "from": 1763,
+          "to": 1802,
+          "text": "Nueva Orleans under Spanish rule, its Mississippi trade increasingly fed by the American interior upriver."
+        },
+        {
+          "from": 1803,
+          "to": 1850,
+          "text": "The great American cotton and sugar port at the mouth of the Mississippi — and the largest slave market in the United States."
+        }
+      ],
+      "doc": [
+        "New Orleans stands on the low, flood-prone crescent of the lower Mississippi, roughly 150 km above the river's mouth, on ground so waterlogged that it had to be diked and drained. The French founded it in 1718 as the outlet of their Louisiana colony; it passed to Spain in 1763, briefly back to France, and to the United States with the Louisiana Purchase of 1803. Its whole reason for being was the river: everything grown or made in the vast Mississippi–Ohio–Missouri basin could float down to its levee, and by the 1830s and 40s a solid mile of flatboats, keelboats, and steamboats crowded its front, discharging cotton, sugar, tobacco, flour, and western produce for trans-shipment to the Atlantic and Europe.",
+        "New Orleans was also the largest slave market in the United States. It was the principal receiving point of the domestic, coastwise slave trade — the 'second Middle Passage' — by which enslaved people were carried from the Chesapeake and the upper South to the cotton and sugar frontier, trafficked against their will and sold in the city's markets and pens; the chart carries that coastwise movement soberly as its own flow, without value or profit framing. The sugar plantations below the city and the cotton lands upriver on which the port's commerce rested were worked by enslaved labour. Behind its levees the city grew into one of the wealthiest and most cosmopolitan in the antebellum United States, and by the 1840s it ranked among the busiest ports in the country by the value of goods crossing its wharves."
+      ],
+      "sources": [
+        "Lawrence N. Powell, The Accidental City: Improvising New Orleans (2012)",
+        "Walter Johnson, Soul by Soul: Life Inside the Antebellum Slave Market (1999)"
+      ]
+    },
+    "london": {
+      "blurb": "The metropolis of English trade and by the late eighteenth century the busiest port in the world, its Thames-side legal quays and later wet docks handling colonial re-exports, coal, and the traffic of a global empire.",
+      "doc": [
+        "London lies far up the tidal Thames, some sixty miles from the open sea, on a reach where the river was wide and deep enough for ocean shipping yet sheltered from weather and enemy fleets. For most of the era ships discharged at the crowded 'legal quays' below London Bridge or lay at moorings in the Pool of London, lightered ashore; the congestion grew so severe that from 1799 great enclosed wet docks — the West India, London, and East India Docks — were dug to hold the traffic. London dominated English overseas commerce: it was the seat of the East India Company and the great chartered trades, the entrepot through which colonial sugar, tobacco, tea, coffee, and textiles were imported and re-exported across Europe, and the chief market and financial centre of the kingdom.",
+        "London's commerce was thoroughly enmeshed in the Atlantic slave economy — its merchants financed slaving voyages, its refineries and warehouses handled the sugar and tobacco produced by enslaved labour, and its insurance and credit underwrote the whole plantation system — even as much of the direct slave-trade fitting-out shifted to Bristol and then Liverpool. The port also drew in the enormous coastwise coal trade from the northeast of England, whose colliers made the Thames one of the most heavily trafficked waterways anywhere. By the later eighteenth century London was reckoned the busiest port in the world, and through the Napoleonic wars and after it remained the commercial heart of Britain's expanding global reach."
+      ],
+      "sources": [
+        "Ralph Davis, The Rise of the English Shipping Industry in the Seventeenth and Eighteenth Centuries (1962)",
+        "Sarah Palmer, Politics, Shipping and the Repeal of the Navigation Laws (1990)"
+      ]
+    },
+    "liverpool": {
+      "blurb": "The rising Atlantic port of northwest England that, by the mid-eighteenth century, became the dominant British slave-trading port, its ships carrying trafficked Africans to the Americas.",
+      "doc": [
+        "Liverpool grew on the Mersey estuary, a tidal river with a fierce range whose exposed anchorage was tamed by the world's first commercial enclosed wet dock, opened in 1715, and the basins that followed along the waterfront. Well placed for the Atlantic and backed by the manufacturing districts of Lancashire and the West Midlands, it rose from a minor creek in 1550 to one of Britain's greatest ports. Its merchants dealt in salt, coal, and colonial produce, and increasingly in the manufactured goods — Manchester textiles, Birmingham metalwares, guns — that fed the African and American trades.",
+        "From the 1740s Liverpool became the leading British slave-trading port, overtaking London and Bristol; by the later eighteenth century the majority of British slaving voyages cleared from the Mersey. Its ships carried manufactured goods to the West African coast, where they were exchanged for captive people who were then trafficked across the Atlantic to the plantation colonies against their will, before the vessels returned with sugar, cotton, and other slave-grown produce. After Britain abolished the slave trade in 1807 Liverpool's merchants turned to the raw-cotton trade that supplied the Lancashire mills, and the port continued to expand through the first half of the nineteenth century as the great import gateway of industrial Britain."
+      ],
+      "sources": [
+        "David Richardson, Suzanne Schwarz and Anthony Tibbles (eds.), Liverpool and Transatlantic Slavery (2007)",
+        "Ralph Davis, The Rise of the English Shipping Industry in the Seventeenth and Eighteenth Centuries (1962)"
+      ]
+    },
+    "newcastle": {
+      "blurb": "The Tyneside coal port that shipped 'sea-coal' to London and the Continent — the single largest generator of ship movements in Europe, yet nearly invisible to rankings built on foreign-going tonnage.",
+      "doc": [
+        "Newcastle stands on the Tyne, a few miles up a river lined with coal staithes and keels, at the heart of the great northeast England coalfield. From the sixteenth century onward the collieries of the Tyne and neighbouring Wear shipped 'sea-coal' south to London — whose fires and, later, industries ran on it — and to the ports of eastern England and the near Continent. The coal was loaded into flat-bottomed keels, carried downriver, and trans-shipped into a numerous fleet of colliers that ran a ceaseless coastwise shuttle to the Thames and beyond.",
+        "This coasting coal trade was the largest single generator of ship movements in Europe: hundreds of colliers made repeated short voyages every year, far outnumbering the long-distance sailings that fill the trade statistics, and the collier fleet was also a famous nursery of English seamen (James Cook learned his trade in Whitby colliers on this run). Because the chart's rankings rest on a declared basis of foreign-going tonnage, this immense but largely domestic traffic is almost invisible to them — which is precisely why Newcastle is named here. The coal trade grew steadily across the whole era and became one of the foundations of Britain's industrialisation."
+      ],
+      "sources": [
+        "John U. Nef, The Rise of the British Coal Industry (1932)",
+        "Ralph Davis, The Rise of the English Shipping Industry in the Seventeenth and Eighteenth Centuries (1962)"
+      ]
+    },
+    "bristol": {
+      "blurb": "The great western outport of England, long its second city, deeply engaged in the Atlantic and West India trades and, in the earlier eighteenth century, a leading British slave-trading port.",
+      "doc": [
+        "Bristol lies several miles up the winding, muddy Avon from the Severn estuary, on a river with one of the largest tidal ranges in the world; ships worked up to the city quays on the flood and lay aground in the mud at low water until the Floating Harbour was built in 1809 to keep them afloat. For much of the era Bristol was England's second city and its principal Atlantic port outside London, gathering the trade of the west of England and south Wales and sending out ships to the West Indies, the North American colonies, and the wine islands, returning with sugar, tobacco, rum, and other colonial produce.",
+        "Bristol was, in the first half of the eighteenth century, one of Britain's leading slave-trading ports: its merchants fitted out voyages that carried manufactured goods to the African coast, trafficked captive people across the Atlantic to the plantation colonies against their will, and brought home the sugar and tobacco produced by enslaved labour. From about the 1740s Liverpool overtook it in the slave trade, and Bristol's relative commercial standing slipped as newer ports rose; but it remained a substantial regional port through the era, its West India and general Atlantic trades continuing after the slave trade was abolished in 1807."
+      ],
+      "sources": [
+        "Kenneth Morgan, Bristol and the Atlantic Trade in the Eighteenth Century (1993)",
+        "David Richardson, The Bristol Slave Traders: A Collective Portrait (1985)"
+      ]
+    },
+    "whydah": {
+      "blurb": "One of the greatest embarkation points of the trans-Atlantic slave trade, where over the era on the order of a million enslaved Africans were forced through the surf onto slave ships on the Bight of Benin's Slave Coast.",
+      "doc": [
+        "Ouidah lay a few miles behind a dangerous, surf-beaten open beach on the Bight of Benin, with no true harbour: ships stood off in the roads while canoes ferried people and goods through the breakers across a treacherous bar. The European powers each kept a fort or factory at the town on sufferance of the African kingdom that ruled the coast — Portugal's Forte São João Baptista, France's Fort Saint-Louis de Grégoy, and England's William's Fort. Sovereignty over the coast belonged to the kingdom of Hueda (Whydah) until the Dahomean conquest of 1727, and to the kingdom of Dahomey thereafter; the forts traded only by leave of these rulers.",
+        "For much of the seventeenth and eighteenth centuries Ouidah was among the largest single points of departure of the Middle Passage. Enslaved men, women, and children — on the order of a million over the era, though the figures are estimates and much contested — were marched to the coast, held in barracoons, and carried through the surf to slave ships bound for Brazil, the Caribbean, and the mainland Americas; many died before ever reaching the beach, and many more in the crossing, chained below decks. The trade was run by African rulers and merchants selling to European and, above all after 1700, Brazilian captains from Bahia, who dominated it with rolls of tobacco. Whatever wealth it brought to Dahomey, to the forts' home nations, and to the Bahian traders rested entirely on that coerced and deadly movement of human beings."
+      ],
+      "sources": [
+        "Robin Law, Ouidah: The Social History of a West African Slaving Port, 1727–1892 (2004)",
+        "Robin Law, The Slave Coast of West Africa, 1550–1750 (1991)"
+      ]
+    },
+    "luanda": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1640,
+          "text": "The Portuguese seat in Angola, founded in 1576, and for much of the era the single largest embarkation point of the entire trans-Atlantic slave trade."
+        },
+        {
+          "from": 1641,
+          "to": 1648,
+          "text": "Seized by the Dutch West India Company, which held Luanda to ship enslaved Angolans to the sugar plantations it had won in Brazil."
+        },
+        {
+          "from": 1649,
+          "to": 1850,
+          "text": "Recovered for Portugal from Brazil in 1648, and once more the chief Angolan port from which enslaved people were carried across the South Atlantic, overwhelmingly to Brazil."
+        }
+      ],
+      "doc": [
+        "Luanda has one of the few genuinely good natural harbours on the Angolan coast — a sheltered deep bay behind the long low sandy island of Ilha do Cabo. The Portuguese founded the city there in 1576 as São Paulo da Assunção de Loanda, the capital of the colony of Angola; its low-lying, fever-ridden site was notoriously deadly to Europeans. The Dutch West India Company took and held the port from 1641 to 1648, until an expedition sent from Brazil under Salvador de Sá restored it to Portugal — a telling measure of how tightly Angola was bound to the Brazilian economy.",
+        "Across the whole era Luanda was the largest single point of departure of the trans-Atlantic slave trade — more enslaved Africans embarked here than at any other port. On the order of two to three million people (the estimates vary and are contested) were carried from Luanda into slavery, the great majority to Brazil, with which Angola formed a direct South-Atlantic circuit that the Brazilian planter economy depended upon. Captives were marched to the coast from deep in the interior, held in the city, and shipped in appalling and often lethal conditions across the ocean. The Portuguese and Luso-African merchant houses and the colony itself lived off this traffic in human beings, which continued, increasingly in defiance of treaty and law, into the 1840s and beyond."
+      ],
+      "sources": [
+        "Joseph C. Miller, Way of Death: Merchant Capitalism and the Angolan Slave Trade, 1730–1830 (1988)",
+        "Roquinaldo Ferreira, Cross-Cultural Exchange in the Atlantic World: Angola and Brazil during the Era of the Slave Trade (2012)"
+      ]
+    },
+    "elmina": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1636,
+          "text": "São Jorge da Mina, Portugal's great Gold Coast castle, raised in 1482 for the West African gold trade and used also as a holding place for enslaved Africans awaiting shipment."
+        },
+        {
+          "from": 1637,
+          "to": 1850,
+          "text": "Stormed by the Dutch West India Company in 1637 and made the capital of the Dutch Gold Coast, dealing in gold and, increasingly, in enslaved people carried across the Atlantic."
+        }
+      ],
+      "doc": [
+        "Elmina — from the Portuguese 'a Mina', the mine — stands on a rocky promontory at the mouth of the Benya lagoon on the Gold Coast, in modern Ghana. São Jorge da Mina castle, built in 1482, was the oldest and largest European fortification in sub-Saharan Africa; the coast has no sheltered harbour, so ships anchored in the open roads while canoes worked the surf. The Dutch West India Company stormed the castle from the Portuguese in 1637 and held it, with the neighbouring Fort Coenraadsburg on the hill above, as the headquarters of the Dutch Gold Coast until it passed to Britain in 1872.",
+        "For its first century and a half Elmina was above all a gold entrepôt — the metal that gave the coast its name — traded by the Portuguese and then the Dutch with the Akan states of the interior. But the castle was throughout also a slaving station: its dungeons held enslaved Africans awaiting the Middle Passage, and as Atlantic demand for enslaved labour rose the human trade came to rival the gold. The prosperity Elmina brought the Portuguese crown and then the Dutch company was built on both the gold and the people carried away from this coast; captives held in its cells were shipped across the ocean in conditions that killed many on the passage."
+      ],
+      "sources": [
+        "Harvey M. Feinberg, Africans and Europeans in West Africa: Elminans and Dutchmen on the Gold Coast during the Eighteenth Century (1989)",
+        "A. van Dantzig, Forts and Castles of Ghana (1980)"
+      ]
+    },
+    "saint-louis": {
+      "blurb": "France's oldest West African settlement, at the mouth of the Senegal — a trading base for gum arabic and gold, and a principal point from which enslaved Senegambians were shipped across the Atlantic.",
+      "doc": [
+        "Saint-Louis occupies a narrow, low sandy island in the Senegal River just above its mouth, sheltered from the Atlantic surf by the river spit but guarded by a dangerous bar at the entrance that only small craft could cross safely. French merchants founded it in 1659 as the seat of the French concession in Senegal, worked in turn by the Compagnie du Sénégal, the Compagnie des Indes, and the crown. The British captured and held it during the Seven Years' War, from 1758 to 1779, and again in 1809–1817, before it returned to France on each occasion; France remained the dominant power across the era.",
+        "The Senegal gave French traders access to the gum arabic of the river valley — a commodity much in demand for European textile finishing — and to gold and hides. But Saint-Louis was also, through the seventeenth and eighteenth centuries, a principal Atlantic embarkation point: enslaved Senegambians, bought from and traded through African middlemen up the river, were held on the island and shipped across the ocean, most to the French Caribbean, many dying in the crossing. The town's distinctive community of signares — African and mixed-race women traders — and its merchant houses lived off both the gum and the trade in human beings. After France abolished the slave trade, gum and later groundnuts sustained the town."
+      ],
+      "sources": [
+        "James F. Searing, West African Slavery and Atlantic Commerce: The Senegal River Valley, 1700–1860 (1993)",
+        "Boubacar Barry, Senegambia and the Atlantic Slave Trade (1998)"
+      ]
+    },
+    "bahia": {
+      "blurb": "Brazil's first capital and its great sugar port — a wealth built on the forced labour of enslaved Africans, and itself one of the largest disembarkation markets of the trans-Atlantic slave trade.",
+      "doc": [
+        "Salvador stands on a steep bluff above the Baía de Todos os Santos (All Saints' Bay), one of the largest and best natural harbours in the Atlantic — a vast sheltered bay with an upper and a lower town linked by steep roads. Founded in 1549 as the capital of Portuguese Brazil, which it remained until the seat moved to Rio in 1763, it commanded the sugar-planting Recôncavo around the bay. The Dutch briefly seized the city in 1624–1625 before a Spanish-Portuguese fleet recovered it.",
+        "The wealth of Bahia — sugar in the sixteenth and seventeenth centuries, then tobacco and gold — rested on the forced labour of enslaved Africans on the plantations of the Recôncavo, and Salvador was itself one of the greatest disembarkation markets of the entire trans-Atlantic slave trade. Brazil received more enslaved Africans than anywhere else in the Americas, and Bahia took a large share: over the era on the order of a million and a half or more people (estimates vary and are contested) were landed here, many already dead or dying from the crossing. Bahian tobacco traders in turn dominated the slave trade at Ouidah on the African coast, running a direct South-Atlantic circuit. Brazil became independent in 1822, and the traffic in people continued illegally for decades after."
+      ],
+      "sources": [
+        "Stuart B. Schwartz, Sugar Plantations in the Formation of Brazilian Society: Bahia, 1550–1835 (1985)",
+        "Pierre Verger, Trade Relations between the Bight of Benin and Bahia from the 17th to the 19th Century (1976)"
+      ]
+    },
+    "pernambuco": {
+      "blurb": [
+        {
+          "from": 1550,
+          "to": 1629,
+          "text": "Portugal's richest sugar captaincy, its wealth produced by the forced labour of enslaved Africans on the coastal engenhos."
+        },
+        {
+          "from": 1630,
+          "to": 1654,
+          "text": "Seized by the Dutch West India Company as the heart of Dutch Brazil, ruled from Mauritsstad under Johan Maurits — the sugar and the slaving carried on under the Company's flag."
+        },
+        {
+          "from": 1655,
+          "to": 1850,
+          "text": "Recovered by Portugal after the Pernambucan revolt; Recife remained a great sugar and slave-trading port of the Brazilian northeast."
+        }
+      ],
+      "doc": [
+        "The port of Pernambuco is Recife — the name means 'reef' — sheltered behind the long line of sandstone reef that gives the town its natural breakwater, at the easternmost point of the Americas. Olinda on its hill was the old captaincy capital; Recife the port below grew into the city, above all under Dutch rule as Mauritsstad in 1630–1654, when Johan Maurits van Nassau laid out its canals and bridges. The Dutch West India Company held it as the capital of Dutch Brazil until a Portuguese-Brazilian revolt drove them out in 1654.",
+        "Pernambuco was, in the sixteenth and early seventeenth centuries, the richest sugar-producing region of the Atlantic world, and its wealth was produced by the forced labour of enslaved Africans on the engenhos of the coastal plain. Recife was accordingly a major disembarkation point of the trans-Atlantic slave trade throughout the era, landing many hundreds of thousands of enslaved people carried across the ocean, chiefly from Angola and the Bight of Benin, in conditions that killed many on the passage. Sugar, and later cotton, built the fortunes of the captaincy's planters and Recife's merchants on that coerced labour. Brazil became independent in 1822."
+      ],
+      "sources": [
+        "C. R. Boxer, The Dutch in Brazil, 1624–1654 (1957)",
+        "Stuart B. Schwartz, Sugar Plantations in the Formation of Brazilian Society: Bahia, 1550–1835 (1985)"
+      ]
+    },
+    "rio": {
+      "blurb": "The outlet of the Minas Gerais gold fields and, in the eighteenth century, the largest disembarkation port of the entire trans-Atlantic slave trade — the enslaved labour on which both the mining and the port depended.",
+      "doc": [
+        "Rio de Janeiro sits on the vast, mountain-ringed Guanabara Bay — one of the world's great natural harbours, a deep sheltered anchorage entered past the Sugarloaf. Founded in 1565, it grew modestly until the discovery of gold in the interior of Minas Gerais around 1700 turned it into the shipping point for the gold fleets, and it replaced Salvador as the capital of Brazil in 1763. In 1808 the Portuguese court itself, fleeing Napoleon, removed to Rio, which became the seat of the Portuguese monarchy and then, from 1822, the capital of independent Brazil.",
+        "Rio's eighteenth-century boom rested on two things bound together: the gold and diamonds of Minas Gerais, and the enslaved Africans whose forced labour dug them and worked the port and the surrounding plantations. Rio became the single largest disembarkation point of the entire trans-Atlantic slave trade — over the era well over a million and a half enslaved people (the estimates vary and are contested) were landed on its shores, above all at the Valongo market, carried across the South Atlantic mainly from Angola, many dying on the passage or soon after landing. The merchant houses of Rio, deeply invested in the Angola trade, grew rich on it; the traffic continued, increasingly in defiance of treaty and law, into the 1830s and 1840s."
+      ],
+      "sources": [
+        "Mary C. Karasch, Slave Life in Rio de Janeiro, 1808–1850 (1987)",
+        "Manolo Florentino, Em Costas Negras: uma história do tráfico de escravos entre a África e o Rio de Janeiro (1997)"
+      ]
+    },
+    "montevideo": {
+      "blurb": "The deep-water gate of the Río de la Plata — a Spanish naval and hide-trading port, and the estuary's licensed landing station for enslaved Africans in the late eighteenth century.",
+      "doc": [
+        "Montevideo has the best natural harbour on the Río de la Plata: a genuine sheltered deep-water bay on the north (Banda Oriental) shore, superior to the shallow open roadstead of Buenos Aires across the estuary. The Spanish founded it in 1724 expressly to hold the region against the Portuguese stronghold of Colónia do Sacramento, and it grew into a fortified naval base — the Apostadero — and the estuary's principal deep-water port.",
+        "Montevideo shipped the pastoral produce of the Banda Oriental — salted hides, tallow, and dried salt beef (charque), the last of it feeding enslaved plantation workforces elsewhere — and, as the Plata's authorized port of entry, received the enslaved Africans imported into the region in the late eighteenth and early nineteenth centuries: a smaller traffic than Brazil's, but carried in the same coerced and deadly conditions. Britain briefly held the town in 1807; Spanish rule ended in the revolutionary wars from 1814; the region was annexed as the Cisplatine province of Brazil in 1817–1828, and Montevideo became the capital of independent Uruguay in 1828."
+      ],
+      "sources": [
+        "Alex Borucki, From Shipmates to Soldiers: Emancipation and Slavery in the Río de la Plata (2015)",
+        "John Lynch, The Spanish American Revolutions, 1808–1826 (1973)"
+      ]
+    },
+    "cadiz": {
+      "blurb": "The monopoly gateway of Spain's American trade after 1717 — the Carrera de Indias hub through which the silver of the Indies flowed into Europe.",
+      "doc": [
+        "Cádiz occupies the tip of a long, narrow spit enclosing a large sheltered bay on Spain's Atlantic coast near the mouth of the Guadalquivir — a superb deep-water harbour, all but surrounded by sea and easily fortified. It supplanted upriver Seville as the seat of the Casa de Contratación and the head of the Carrera de Indias in 1717, once the silting Guadalquivir could no longer take the growing ships of the American trade.",
+        "For the eighteenth century Cádiz was the sole legal gateway of Spain's monopoly trade with its American empire — the point through which the silver of Mexico and Peru entered Europe and European manufactures were shipped to the Indies. It grew into one of the wealthiest and most cosmopolitan cities in Spain, home to foreign merchant colonies — Genoese, Irish, French — who handled much of the commerce. The comercio libre reforms after 1778 opened the American trade to other Spanish ports, and the loss of the mainland American colonies in the 1810s and 1820s broke the city's monopoly prosperity."
+      ],
+      "sources": [
+        "Antonio García-Baquero González, Cádiz y el Atlántico, 1717–1778 (1976)",
+        "Stanley J. Stein and Barbara H. Stein, Silver, Trade, and War: Spain and America in the Making of Early Modern Europe (2000)"
+      ]
+    },
+    "lisbon": {
+      "blurb": "Portugal's capital and great ocean port — the European terminus of the carreira da Índia and of the Brazil fleets that brought Brazilian gold and sugar home.",
+      "doc": [
+        "Lisbon lies on the north bank of the broad Tagus estuary, a few miles above its Atlantic mouth — one of Europe's finest natural harbours, a deep sheltered basin (the Mar da Palha) capable of holding whole fleets, guarded by the Torre de Belém. From here the carreira da Índia sailed for Goa and the Brazil fleets for Salvador and Rio. The great earthquake and tsunami of 1 November 1755 destroyed much of the lower city and killed tens of thousands; it was rebuilt on Pombal's grid plan, the Baixa Pombalina.",
+        "Lisbon was the metropolitan hub of the Portuguese seaborne empire — the entrepôt through which Asian spices came in the sixteenth century and, above all, the wealth of Brazil in the seventeenth and eighteenth: Brazilian sugar and tobacco, and then the gold and diamonds of Minas Gerais, much of it flowing on to Britain under the Methuen treaty in exchange for manufactures. That Brazilian wealth rested on the enslaved African labour of the plantations and mines. In 1807–1808 the court fled the French invasion for Rio, an extraordinary reversal that made a colony the seat of empire; Lisbon recovered as capital after 1821."
+      ],
+      "sources": [
+        "A. R. Disney, A History of Portugal and the Portuguese Empire, vol. 2 (2009)",
+        "C. R. Boxer, The Portuguese Seaborne Empire, 1415–1825 (1969)"
+      ]
+    },
+    "porto": {
+      "blurb": "Portugal's second city and the port of the Douro — the shipping point of port wine, above all to England.",
+      "doc": [
+        "Porto (Oporto) stands on the steep north bank of the Douro a little above its mouth; the river bar was notoriously dangerous, and the wine lodges and quays clustered across the water at Vila Nova de Gaia. It is Portugal's second city and the commercial capital of the north.",
+        "Porto's fortunes were built on the wine of the Douro valley upstream — fortified 'port' wine, whose trade was dominated by an English and Scottish merchant community established in the city and shipping it above all to Britain under the preferential tariffs of the 1703 Methuen treaty; the British Factory House in Porto was the institutional heart of the trade. The town also handled the region's textiles and provisions and northern Portugal's heavy emigrant traffic to Brazil. It was a centre of liberal resistance, famously enduring the Siege of Porto in 1832–1833 during the Portuguese civil war."
+      ],
+      "sources": [
+        "A. D. Francis, The Wine Trade (1972)",
+        "Sarah Bradford, The Englishman's Wine: The Story of Port (1969)"
       ]
     }
   }
