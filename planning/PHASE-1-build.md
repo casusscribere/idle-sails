@@ -62,7 +62,7 @@ already-open clock, filling an initially-empty late era). All of this on the
   - **⚠ SEAM FINDING (the reason 2 & 3 are ONE landing):** the reset ramp clamps the spawn year to **`ERA.to`** (`world.js:452`, by design — "so lanes stay active while the *weights* blend back"). That assumes lanes REACH `ERA.to`. With the late era empty, at year 1850–1860 **no lane is active** (all end 1815) → the reset seam spawns **zero** vessels. Verified by debug (year 1859, reset 1.0, 0 vessels). So the `cycle wrap` seam test is **`test.skip`**'d (`observation.test.mjs`) with a re-enable note. **The flip is only fully green once increment 3 authors lanes reaching 1850** — flip + first-basin-authoring land together. **v4→v5, saves reset.** `main` stays green at 1815.
 - [~] **3 — Author the 1815–50 basin extensions.** **⚠ MORE COUPLED THAN IT LOOKS — probed 2026-07-18, the late-era build is a coordinated migration across FIVE data layers, discovered in order:** (1) era constants [done], (2) `eraNames` tiling [done, 6 ports], (3) **port lifecycle `active` windows** — extending a surviving system is BLOCKED if any of its lane ports has an `active` window ending 1815 (boston, kingston, cap-francais, portobelo, bridgetown, st-eustatius, tranquebar, st-petersburg, nantucket, curacao…); those windows are increment 5, so only systems on all-default-window ports extend now, (4) **flow-system weights** (`research/flows/*.json`) — extend `era.to`+`byDecade`, (5) **`data-src/routes.json` eras — THE SEAM GATE:** the sim spawns on `datasets.routes` (line 456), not the flow systems; a lane is only active at 1850 if its ROUTE's `era.to` is 1850. Extending flow systems alone gives weights but no active lanes (1850 flow-coverage went 0→100% yet the seam still spawned 0). **The route extension is charter-critical curation:** of 121 routes ending 1815 on default-window ports, many are DYING/slave trades (`slave-bah-why`, carrera) that must NEVER revive to 1850 — extend only the continuing trades, per-basin, by route id. **3a DONE:** `validate-flows.mjs` DEC ceiling 1810→1850; 4 safe Atlantic flow systems extended (1850 flow-coverage 100%). **3b DONE (2026-07-18) — THE FLIP IS NOW COHERENT, 53/53 GREEN:** curated extensions to 1850 across the remaining layers — 24 routes (`data-src/routes.json`), 4 ship types (merchantman/brig/snow/east-indiaman), 4 flags (britain/france/portugal/spain). **Charter-critical exclusions, reviewed before editing:** the `slave-*` namespace (`slave-bah-lis`, the Brazil triangle's return leg — the legitimate trade already runs on `brazil-bah-lis`; extending it would revive the triangle past abolition AND double the lane), anything with `middlePassage`/`enslaved-people`, the `slave-ship` type, `caravel`/`carrack` (died 1620/1640), and routes that died HISTORICALLY rather than at the horizon (`wine-bor-lon` 1793, `q-louisbourg-bordeaux` 1758 — only `era.to==1815` qualified). **Result:** the seam spawns again (year 1859: 0→49 vessels, log 40; ~1830: 328), the `cycle wrap` test is UN-SKIPPED and green. **Still to author (needs increment-5 ports):** the new systems (illegal-era Brazil/Cuba, cotton-gulf-liverpool, emigrant-packets, brazil-coffee, plata, around-the-horn-pacific, treaty-port-trade, opium-carriage, zanzibar, indenture, black-sea-grain, alexandria-cotton, singapore-entrepot, nhm-java…) + the blocked surviving systems (caribbean-sugar, middle-passage's successors, new-england-caribbean, caribbean-smuggling, davis-strait-whaling) whose lane ports have `active` windows ending 1815.
 - [x] **4 — Author the T8/T12 new SYSTEMS — DONE 2026-07-18 (4a-4d).** (barbary-concessions, barbary-regency-exports, guianas-plantations, logwood-mahogany, pacific-colonial-spanish, guayaquil-cacao, nootka-fur, bantam-pepper, ostend-interlude/fold) into their basins, from `port-flow-candidates-2026-07-18.md` + `-T12-addenda.md`. Same validation. Commit per basin/group.
-- [ ] **5 — New PORTS + powers/vocab** (no bake yet): the PLAN-4/6 five + Montevideo/Basra/York-Factory/Port-Louis/whaling-grounds + the T8/T12 promotions (Ostend, Bantam, Callao, Guayaquil, Nootka, Algiers, Tunis, Tripoli, Alexandria, Curaçao, St Thomas, Paramaribo, Belize). Coords, `active{from,to}`, `eraNames`/`eraPowers` where flagged, `simProxy: null`. **Extend the late-era windows** of existing ports that need it (kingston etc.). New powers (`algiers/tunis/tripoli/morocco`) + name/captain pools. `npm run build:data` + `npm test`. Commit in logical groups.
+- [x] **5 — New PORTS + powers/vocab — DONE 2026-07-19 (5a-5e).** 66 -> **105 ports**, 44 -> **54 powers**, 265 -> **367 routes**; the fold rises 54 -> **72 systems** and coverage 76/81/87/89/90% -> **85/89/93/94/95%**. Groups: 5a Mediterranean (+ the granularity bug, below), 5b Pacific, 5c Atlantic/Caribbean, 5d Indian Ocean + East Asia, 5e the PLAN-4/6 ports. *(Original scope note:* the PLAN-4/6 five + Montevideo/Basra/York-Factory/Port-Louis/whaling-grounds + the T8/T12 promotions (Ostend, Bantam, Callao, Guayaquil, Nootka, Algiers, Tunis, Tripoli, Alexandria, Curaçao, St Thomas, Paramaribo, Belize). Coords, `active{from,to}`, `eraNames`/`eraPowers` where flagged, `simProxy: null`. **Extend the late-era windows** of existing ports that need it (kingston etc.). New powers (`algiers/tunis/tripoli/morocco`) + name/captain pools. `npm run build:data` + `npm test`. Commit in logical groups.
 - [ ] **6 — BAKE routes for the new ports/lanes** (+ **seasonal departure windows**, `PLAN-convoys.md` §5b — narrow the monsoon/ice lanes to their real seasons while the baker is running; no sim change, the Arctic precedent already does this)**.** `pipeline/README.md` FIRST. Ocean-cell snap per port; routing-field-coverage check (Cape Horn ~56°S, Tasman ~48°S, NW coast ~50°N); `npm run build:routes`. Commit. *One combined bake beats several.*
 - [ ] **7 — Surfacing (X-S3/E-S2).** Era HUD speaks 1550–1850; the designed epilogue taper/HUD (§Epilogue); silences page absorbs the ~11 new entries; about + declared-divergences (incl. steam); hazard zones (caribbean-golden-age-piracy, W-Med corsair) + `scriptedOnly` ports (Dejima); ledger evidence lines; the Mascarene `notes`. `name-pressure.mjs` re-gate over the 310-yr cycle. Commit.
 - [ ] **8 — Verify + MERGE to `main`.** Headless end-to-end (flows 1550→1850, epilogue reads right, new ports sail, coerced ledgers show the approved framing, no console errors). Update `rb-campaign.md` cross-refs, CLAUDE.md/AGENTS.md, SOURCES.md. **Merge `phase-1-world-build` → `main` only now** — the late era is populated and green. Final commit.
@@ -189,7 +189,44 @@ grouping land.
 negative-verified). It had been a manual tool sitting red with three
 undetected errors; the data fails the build like the code does now.
 
-**Next:** the NEW ports + NEW systems (illegal-era, cotton-gulf, packets,
+**Increment 5 DONE 2026-07-19 (5a-5e), 55 tests green.** The chart went from
+66 to 105 ports. Four themes worth carrying forward:
+
+**Four proxy errors corrected.** Ports had been folding onto distant
+stand-ins: **smyrna->istanbul** (~330 km, and the empire's capital standing
+in for its chief commercial outlet), **curacao->st-eustatius** (~700 km, two
+different Dutch islands), **jedda->mocha** (~800 km, the Hijaz pilgrim and
+pepper port standing in for the Yemeni coffee port), and Nagasaki folded
+into Dejima. hull->newcastle and lorient->nantes were KEPT — close, and on
+the same coast.
+
+**Polities restored to themselves.** Nootka Sound is Mowachaht (a shore
+power — the fur ships fly American colours, but the anchorage is not
+theirs); Aceh and Banten became their own powers after I had mistakenly
+filed them under the Zamorin and Gowa; peru and chile replaced a `usa`
+placeholder on the post-independence eraPowers.
+
+**A REAL BUG in world.js** (5a): display arrays were granularity-DEPENDENT.
+Losses resolving inside one big tick appended in vessel order, not time
+order, and since `state.log` is CAPPED a big offline step could keep
+genuinely different entries — a session restored after two days away could
+show a different log than one left open. Both arrays now canonicalise on
+(event time, id); verified sim-inert across four seeds; regression test
+added. This was latent for the whole project and only surfaced when new data
+first put two losses in one step.
+
+**A third silent-rot trap closed** (5b): `eraPowers` was implemented and
+validated NOWHERE, so every block written into it — including my own `usa`
+error — was unchecked. build-data now validates it like eraNames. Same
+failure mode as the unwired flow validator and the unknown `no-port-node`
+reason.
+
+Also swept up: five powers whose eras still ended at the OLD 1815 horizon
+(tuscany, joseon, qing, tsushima, maldives) now run to 1850, and lanes are
+clamped to their flags' real windows (Oman on the Swahili coast only from
+1698, the Dutch Republic ending 1795 with the Kingdom resuming 1816).
+
+**Next:** the NEW SYSTEMS for the ports just promoted (illegal-era, cotton-gulf, packets,
 Singapore/HK/Valparaíso/Sydney/New Orleans…). Unlike the basin work, these
 need a **bake** — every new port and lane must go through `bake-routes.mjs`
 before it can sail. Then surfacing (era HUD, silences page, hazard zones,
