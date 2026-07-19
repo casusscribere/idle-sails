@@ -164,6 +164,7 @@ export function createRenderer(canvas, assets) {
   }
   const WORLD_BOUNDS = computeBounds();
   let BOUNDS = WORLD_BOUNDS;
+  let designedBounds = WORLD_BOUNDS;   // a regional plate's authored crop, before aspect-fill
   let regionId = 'world';
 
   // Switch the chart to a preset regional plate (or back to the world). The
@@ -173,7 +174,8 @@ export function createRenderer(canvas, assets) {
   function setRegion(id) {
     const r = REGIONS.find(r => r.id === id);
     regionId = r ? r.id : 'world';
-    BOUNDS = (r && r.bounds) ? r.bounds : WORLD_BOUNDS;
+    designedBounds = (r && r.bounds) ? r.bounds : WORLD_BOUNDS;
+    BOUNDS = designedBounds;
     wakes.clear();
     resize();
   }
@@ -217,19 +219,29 @@ export function createRenderer(canvas, assets) {
 
   function resize() {
     dpr = Math.min(2, window.devicePixelRatio || 1);
-    const spanLon = BOUNDS.lonMax - BOUNDS.lonMin, spanLat = BOUNDS.latMax - BOUNDS.latMin;
     const vw = document.documentElement.clientWidth || window.innerWidth;
     const vh = window.innerHeight;
-    // CONTAIN, not cover: the whole world fits the viewport width, so Japan and
-    // Sitka stay on screen without scrolling; the parchment letterboxes above
-    // and below. Regional plates contain on BOTH axes (their aspect is close to
-    // the screen's, so they fill it). Only when that would shrink the map below
-    // a readable height (narrow/mobile screens) does the canvas hold a minimum
-    // scale and the page scroll left/right instead.
+    // Regional plates EXPAND their authored crop to the viewport aspect so the
+    // plate FILLS the screen — no letterbox mat, and routes run out through the
+    // edges instead of terminating at a mid-screen plate edge (user tweak). The
+    // crop only GROWS (extra surrounding ocean), so the authored ports/framing
+    // stay in view. The equirectangular projection makes pixel-aspect = spanLon/
+    // spanLat, so match that to vw/vh.
+    if (regionId !== 'world') {
+      let { lonMin, lonMax, latMin, latMax } = designedBounds;
+      const sLon = lonMax - lonMin, sLat = latMax - latMin, target = vw / vh, cur = sLon / sLat;
+      if (cur < target) { const add = (sLat * target - sLon) / 2; lonMin -= add; lonMax += add; }
+      else if (cur > target) { const add = (sLon / target - sLat) / 2; latMin -= add; latMax += add; }
+      BOUNDS = { lonMin, lonMax, latMin, latMax };
+    } else BOUNDS = WORLD_BOUNDS;
+    const spanLon = BOUNDS.lonMax - BOUNDS.lonMin, spanLat = BOUNDS.latMax - BOUNDS.latMin;
+    // The world plate CONTAINs on width (Japan and Sitka stay on screen; parchment
+    // letterboxes top/bottom), with a readability floor on narrow screens. Regional
+    // plates are aspect-matched above, so width-fit fills both axes.
     const MIN_MAP_H = 460;                           // px readability floor
-    const kContain = regionId === 'world' ? vw / spanLon
-      : Math.min(vw / spanLon, vh / spanLat);
-    if (kContain * spanLat >= MIN_MAP_H) { k = kContain; W = vw; }
+    const kContain = vw / spanLon;
+    if (regionId !== 'world') { k = kContain; W = vw; }
+    else if (kContain * spanLat >= MIN_MAP_H) { k = kContain; W = vw; }
     else { k = MIN_MAP_H / spanLat; W = Math.max(vw, Math.ceil(spanLon * k)); }
     H = vh;
     canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
