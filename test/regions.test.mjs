@@ -41,7 +41,9 @@ const MUST_CONTAIN = {
   'arabia-india': ['mocha', 'muscat', 'surat', 'bombay', 'madras',
     'tranquebar', 'calcutta'],
   'na-northeast': ['louisbourg', 'boston', 'new-york', 'philadelphia',
-    'chesapeake']
+    'chesapeake'],
+  // the Phase-1 (increment 7) SW Pacific / Tasman plate frames Sydney
+  'australasia': ['sydney']
 };
 
 test('every regional plate contains the ports it exists for', () => {

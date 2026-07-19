@@ -50,7 +50,11 @@ export const REGIONS = [
   { id: 'arabia-india', name: 'Arabia & India',
     bounds: { lonMin: 36, lonMax: 92, latMin: -2, latMax: 31 } },
   { id: 'na-northeast', name: 'Newfoundland to the Chesapeake',
-    bounds: { lonMin: -82, lonMax: -49, latMin: 34.5, latMax: 52.5 } }
+    bounds: { lonMin: -82, lonMax: -49, latMin: 34.5, latMax: 52.5 } },
+  // Phase-1 addition (increment 7): the SW Pacific / Tasman, framing Sydney
+  // (151E/−34S) and its Batavia/Pacific reaches — the basin PLAN-4 E3 opened.
+  { id: 'australasia', name: 'Australasia & the Tasman',
+    bounds: { lonMin: 110, lonMax: 180, latMin: -48, latMax: -8 } }
 ];
 
 // Colour is spent on allegiance (the flag), so ship CATEGORY is carried by the
