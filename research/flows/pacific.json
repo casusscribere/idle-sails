@@ -5,22 +5,22 @@
     {
       "id": "callao",
       "name": "Callao (the port of Lima)",
-      "simProxy": null
+      "simProxy": "callao"
     },
     {
       "id": "guayaquil",
       "name": "Guayaquil",
-      "simProxy": null
+      "simProxy": "guayaquil"
     },
     {
       "id": "panama-perico",
       "name": "Panama / Perico (the Pacific end of the isthmus)",
-      "simProxy": null
+      "simProxy": "panama-perico"
     },
     {
       "id": "nootka",
       "name": "Nootka Sound (the anchorage)",
-      "simProxy": null
+      "simProxy": "nootka"
     },
     {
       "id": "acapulco",

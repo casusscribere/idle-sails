@@ -990,6 +990,67 @@
       "article": null,
       "rivals": [],
       "note": "The Regency of Tripoli: Ottoman from 1551, Karamanli 1711-1835, then Ottoman again. The maritime terminus of a Saharan caravan trade."
+    },
+    {
+      "id": "mowachaht",
+      "name": "Mowachaht (Nuu-chah-nulth)",
+      "kind": "shore",
+      "color": "#5f7a5a",
+      "homePorts": [],
+      "era": {
+        "from": 1550,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0,
+        "merchant": 1
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Nootka Sound was Mowachaht territory, and Maquinna's people controlled who traded there - the American and British fur ships anchored at their sufferance, not in a vacant harbour. A SHORE power (it spawns no vessels, like african and qing): the ships on the nootka-fur lanes fly American and British colours, which is the honest division. Flagging the anchorage itself American would have written the owners out of their own harbour."
+    },
+    {
+      "id": "peru",
+      "name": "Peru",
+      "kind": "nation",
+      "color": "#b06a3c",
+      "homePorts": [
+        "callao"
+      ],
+      "era": {
+        "from": 1821,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.12,
+        "merchant": 0.88
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Independent from 1821; Callao fell in January 1826, the last Spanish position in South America."
+    },
+    {
+      "id": "chile",
+      "name": "Chile",
+      "kind": "nation",
+      "color": "#3c6ab0",
+      "homePorts": [
+        "valparaiso"
+      ],
+      "era": {
+        "from": 1818,
+        "to": 1850
+      },
+      "propensity": {
+        "naval": 0.12,
+        "merchant": 0.88
+      },
+      "navalPrefix": null,
+      "article": null,
+      "rivals": [],
+      "note": "Independent from 1818. Valparaiso became the first Pacific call for shipping round the Horn and a rising entrepot through the 1830s and 40s."
     }
   ]
 }

@@ -1055,6 +1055,110 @@
         "to": 1850
       },
       "note": "Izmir, the principal echelle of the Levant trade and by the 18th century the busiest of them. It had been folding onto Istanbul - about 330 km away, and the wrong kind of place: the empire's capital standing in for its chief commercial outlet."
+    },
+    {
+      "id": "callao",
+      "name": "Callao",
+      "lon": -77.15,
+      "lat": -12.05,
+      "power": "spain",
+      "region": "south-pacific",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1826,
+          "power": "spain"
+        },
+        {
+          "from": 1827,
+          "to": 1850,
+          "power": "peru"
+        }
+      ],
+      "note": "The port of Lima and the Armada del Mar del Sur's base: Peruvian silver went north from here to Perico for the isthmus crossing and the Portobelo fair. Its fall in January 1826 was the last Spanish position in South America."
+    },
+    {
+      "id": "guayaquil",
+      "name": "Guayaquil",
+      "lon": -79.9,
+      "lat": -2.19,
+      "power": "spain",
+      "region": "south-pacific",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "The Armada's shipyard and, after the reopening of 1774, a cacao port booming into the nineteenth century."
+    },
+    {
+      "id": "panama-perico",
+      "name": "Panamá (Perico)",
+      "lon": -79.53,
+      "lat": 8.91,
+      "power": "spain",
+      "region": "south-pacific",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "note": "The Pacific end of the isthmus. A lane endpoint rather than a trading node in its own right: the silver crossed to Portobelo overland, by mule, and that crossing is not modelled as shipping."
+    },
+    {
+      "id": "valparaiso",
+      "name": "Valparaíso",
+      "lon": -71.63,
+      "lat": -33.04,
+      "power": "spain",
+      "region": "south-pacific",
+      "roles": [
+        "colonial"
+      ],
+      "active": {
+        "from": 1550,
+        "to": 1850
+      },
+      "eraPowers": [
+        {
+          "from": 1550,
+          "to": 1818,
+          "power": "spain"
+        },
+        {
+          "from": 1819,
+          "to": 1850,
+          "power": "chile"
+        }
+      ],
+      "note": "Chile's Pacific outlet; after independence (1818) the first port of call for shipping round the Horn and a rising entrepôt through the 1830s and 40s."
+    },
+    {
+      "id": "nootka",
+      "name": "Nootka Sound",
+      "lon": -126.6,
+      "lat": 49.6,
+      "power": "mowachaht",
+      "region": "north-pacific",
+      "roles": [
+        "station"
+      ],
+      "active": {
+        "from": 1785,
+        "to": 1841
+      },
+      "note": "The anchorage of the maritime fur trade, in Mowachaht territory: American and British ships watered and traded here for sea-otter pelts bound for Canton, and did so on Maquinna's terms. Active 1785-1841, when the trade ended with the otter rather than with any policy."
     }
   ]
 }

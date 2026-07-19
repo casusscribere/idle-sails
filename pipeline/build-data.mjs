@@ -28,7 +28,7 @@ const REGIONS = new Set(['britain', 'lowlands', 'france', 'iberia', 'baltic', 'c
   // diversity-layer regions (PLAN-2 §5): in the cargo/power vocabulary now,
   // gaining ports when Phase B bakes the minor-port routes.
   'east-asia', 'indian-ocean', 'arabia', 'persian-gulf', 'east-africa',
-  'arctic', 'mediterranean', 'black-sea', 'north-pacific']);
+  'arctic', 'mediterranean', 'black-sea', 'north-pacific', 'south-pacific']);
 const SELFCHECK_N = 2000;
 
 const errors = [];
@@ -83,6 +83,23 @@ for (const p of ports) {
       expect = en.to + 1;
     }
     if (expect !== w.to + 1) err(`port ${p.id}: eraNames end ${expect - 1}, must reach the window end ${w.to}`);
+  }
+  // era powers (optional): when the flag over a dot changes mid-era (Algiers to
+  // France in 1830, Callao to Peru, Valparaíso to Chile). Validated on the same
+  // terms as eraNames — known power, in era, tiling the active window exactly —
+  // because nothing CONSUMES this field yet, and an unvalidated field is one
+  // that rots silently until the day something finally reads it.
+  if (p.eraPowers !== undefined) {
+    const w = p.active || ERA;
+    if (!Array.isArray(p.eraPowers) || !p.eraPowers.length) err(`port ${p.id}: eraPowers must be a non-empty array`);
+    let expect = w.from;
+    for (const ep of p.eraPowers || []) {
+      if (!powerById.has(ep.power)) err(`port ${p.id}: eraPowers unknown power '${ep.power}'`);
+      inEra({ from: ep.from, to: ep.to }, `port ${p.id} eraPowers '${ep.power}'`);
+      if (ep.from !== expect) err(`port ${p.id}: eraPowers '${ep.power}' starts ${ep.from}, expected ${expect} (must tile the window)`);
+      expect = ep.to + 1;
+    }
+    if (expect !== w.to + 1) err(`port ${p.id}: eraPowers end ${expect - 1}, must reach the window end ${w.to}`);
   }
 }
 // The port-lifecycle window a lane must respect (default: the whole era).

@@ -6301,6 +6301,335 @@
       },
       "weight": 4,
       "flag": "ottoman"
+    },
+    {
+      "id": "p-callao-panama",
+      "system": "pacific-colonial-spanish",
+      "name": "Callao to Perico (the silver run)",
+      "from": "callao",
+      "to": "panama-perico",
+      "shipTypes": [
+        "galleon",
+        "merchantman"
+      ],
+      "cargo": [
+        "specie"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1826
+      },
+      "weight": 4,
+      "flag": "spain"
+    },
+    {
+      "id": "p-panama-callao",
+      "system": "pacific-colonial-spanish",
+      "name": "Perico to Callao",
+      "from": "panama-perico",
+      "to": "callao",
+      "shipTypes": [
+        "galleon",
+        "merchantman"
+      ],
+      "cargo": [
+        "trade-goods",
+        "textiles"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1826
+      },
+      "weight": 3,
+      "flag": "spain"
+    },
+    {
+      "id": "p-callao-guayaquil",
+      "system": "pacific-colonial-spanish",
+      "name": "Callao to Guayaquil",
+      "from": "callao",
+      "to": "guayaquil",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "wine",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1826
+      },
+      "weight": 3,
+      "flag": "spain"
+    },
+    {
+      "id": "p-guayaquil-callao",
+      "system": "pacific-colonial-spanish",
+      "name": "Guayaquil to Callao",
+      "from": "guayaquil",
+      "to": "callao",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "timber",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1826
+      },
+      "weight": 3,
+      "flag": "spain"
+    },
+    {
+      "id": "p-guayaquil-panama",
+      "system": "pacific-colonial-spanish",
+      "name": "Guayaquil to Perico",
+      "from": "guayaquil",
+      "to": "panama-perico",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "timber",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1826
+      },
+      "weight": 2,
+      "flag": "spain"
+    },
+    {
+      "id": "p-panama-guayaquil",
+      "system": "pacific-colonial-spanish",
+      "name": "Perico to Guayaquil",
+      "from": "panama-perico",
+      "to": "guayaquil",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1826
+      },
+      "weight": 2,
+      "flag": "spain"
+    },
+    {
+      "id": "p-cadiz-callao",
+      "system": "registros-sueltos",
+      "name": "Cádiz to Callao (round the Horn)",
+      "from": "cadiz",
+      "to": "callao",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "textiles",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1740,
+        "to": 1820
+      },
+      "weight": 3,
+      "flag": "spain"
+    },
+    {
+      "id": "p-callao-cadiz",
+      "system": "registros-sueltos",
+      "name": "Callao to Cádiz",
+      "from": "callao",
+      "to": "cadiz",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "specie",
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1740,
+        "to": 1820
+      },
+      "weight": 3,
+      "flag": "spain"
+    },
+    {
+      "id": "p-guayaquil-acapulco",
+      "system": "guayaquil-cacao",
+      "name": "Guayaquil to Acapulco (cacao)",
+      "from": "guayaquil",
+      "to": "acapulco",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1774,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "spain"
+    },
+    {
+      "id": "p-acapulco-guayaquil",
+      "system": "guayaquil-cacao",
+      "name": "Acapulco to Guayaquil",
+      "from": "acapulco",
+      "to": "guayaquil",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "specie"
+      ],
+      "era": {
+        "from": 1774,
+        "to": 1850
+      },
+      "weight": 3,
+      "flag": "spain"
+    },
+    {
+      "id": "p-boston-nootka",
+      "system": "nootka-fur",
+      "name": "Boston to Nootka Sound (round the Horn)",
+      "from": "boston",
+      "to": "nootka",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1785,
+        "to": 1841
+      },
+      "weight": 2,
+      "flag": "usa"
+    },
+    {
+      "id": "p-nootka-canton",
+      "system": "nootka-fur",
+      "name": "Nootka Sound to Canton (sea-otter pelts)",
+      "from": "nootka",
+      "to": "canton",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "furs"
+      ],
+      "era": {
+        "from": 1785,
+        "to": 1841
+      },
+      "weight": 3,
+      "flag": "usa"
+    },
+    {
+      "id": "p-canton-boston",
+      "system": "nootka-fur",
+      "name": "Canton to Boston (tea, homeward)",
+      "from": "canton",
+      "to": "boston",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "tea",
+        "porcelain"
+      ],
+      "era": {
+        "from": 1785,
+        "to": 1841
+      },
+      "weight": 3,
+      "flag": "usa"
+    },
+    {
+      "id": "p-canton-nootka",
+      "system": "nootka-fur",
+      "name": "Canton to Nootka Sound",
+      "from": "canton",
+      "to": "nootka",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "trade-goods"
+      ],
+      "era": {
+        "from": 1785,
+        "to": 1841
+      },
+      "weight": 1,
+      "flag": "usa"
+    },
+    {
+      "id": "p-valparaiso-callao",
+      "system": "pacific-colonial-spanish",
+      "name": "Valparaíso to Callao",
+      "from": "valparaiso",
+      "to": "callao",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "grain",
+        "wine"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1826
+      },
+      "weight": 2,
+      "flag": "spain"
+    },
+    {
+      "id": "p-callao-valparaiso",
+      "system": "pacific-colonial-spanish",
+      "name": "Callao to Valparaíso",
+      "from": "callao",
+      "to": "valparaiso",
+      "shipTypes": [
+        "merchantman",
+        "brig"
+      ],
+      "cargo": [
+        "trade-goods",
+        "specie"
+      ],
+      "era": {
+        "from": 1550,
+        "to": 1826
+      },
+      "weight": 2,
+      "flag": "spain"
     }
   ]
 }

@@ -848,6 +848,42 @@
       "Derna",
       "Ras Lanuf",
       "El Marj"
+    ],
+    "peru": [
+      "Limeña",
+      "Rímac",
+      "Santa Rosa de Lima",
+      "El Callao",
+      "Pichincha",
+      "Cóndor",
+      "Ayacucho",
+      "Junín",
+      "La Libertad",
+      "Arequipeña",
+      "Chorrillos",
+      "Sol del Perú",
+      "Independencia",
+      "Trujillana",
+      "Pacocha",
+      "Mercedes"
+    ],
+    "chile": [
+      "Valparaíso",
+      "Araucana",
+      "Maipú",
+      "Chacabuco",
+      "O'Higgins",
+      "Aconcagua",
+      "Cóndor de los Andes",
+      "Esmeralda",
+      "La Chilena",
+      "Coquimbo",
+      "Talcahuano",
+      "Bío-Bío",
+      "Libertad",
+      "Copiapó",
+      "Andes",
+      "Blanco"
     ]
   },
   "captains": {
@@ -1541,6 +1577,66 @@
         "Ahmed Reis",
         "Suleyman Reis"
       ]
+    },
+    "peru": {
+      "given": [
+        "José",
+        "Manuel",
+        "Francisco",
+        "Juan",
+        "Ramón",
+        "Mariano",
+        "Pedro",
+        "Andrés",
+        "Toribio",
+        "Ignacio",
+        "Bernardo",
+        "Fermín"
+      ],
+      "surname": [
+        "Boqui",
+        "Salcedo",
+        "Rivadeneyra",
+        "Málaga",
+        "Aliaga",
+        "Ugarte",
+        "Tristán",
+        "Valle-Riestra",
+        "Quesada",
+        "Pardo",
+        "Elguera",
+        "Osma"
+      ]
+    },
+    "chile": {
+      "given": [
+        "Manuel",
+        "José",
+        "Juan",
+        "Ramón",
+        "Diego",
+        "Bernardo",
+        "Ambrosio",
+        "Tomás",
+        "Vicente",
+        "Nicolás",
+        "Santiago",
+        "Blas"
+      ],
+      "surname": [
+        "Blanco Encalada",
+        "Riquelme",
+        "Prat",
+        "Errázuriz",
+        "Vicuña",
+        "Larraín",
+        "Carrera",
+        "Zenteno",
+        "Uribe",
+        "Goñi",
+        "Latorre",
+        "Simpson"
+      ]
     }
   },
   "themesByPower": {
@@ -1808,6 +1904,22 @@
       ]
     },
     "tripoli": {
+      "naval": [
+        "places"
+      ],
+      "merchant": [
+        "byPower"
+      ]
+    },
+    "peru": {
+      "naval": [
+        "places"
+      ],
+      "merchant": [
+        "byPower"
+      ]
+    },
+    "chile": {
       "naval": [
         "places"
       ],
