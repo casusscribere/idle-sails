@@ -4432,6 +4432,54 @@
       "flag": "spain"
     },
     {
+      "id": "sy-london-sydney",
+      "system": "sydney-colonial-trade",
+      "name": "London to Sydney (convicts, emigrants, goods)",
+      "from": "london",
+      "to": "sydney",
+      "shipTypes": ["east-indiaman", "merchantman"],
+      "cargo": ["trade-goods", "specie"],
+      "era": { "from": 1788, "to": 1850 },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
+      "id": "sy-sydney-london",
+      "system": "sydney-colonial-trade",
+      "name": "Sydney to London (wool and whale oil)",
+      "from": "sydney",
+      "to": "london",
+      "shipTypes": ["east-indiaman", "merchantman"],
+      "cargo": ["wool", "whale-oil"],
+      "era": { "from": 1788, "to": 1850 },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
+      "id": "sy-sydney-canton",
+      "system": "sydney-colonial-trade",
+      "name": "Sydney to Canton (the sandalwood–tea triangle)",
+      "from": "sydney",
+      "to": "canton",
+      "shipTypes": ["merchantman"],
+      "cargo": ["whale-oil", "trade-goods"],
+      "era": { "from": 1805, "to": 1850 },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
+      "id": "sy-canton-sydney",
+      "system": "sydney-colonial-trade",
+      "name": "Canton to Sydney (tea)",
+      "from": "canton",
+      "to": "sydney",
+      "shipTypes": ["merchantman"],
+      "cargo": ["tea", "trade-goods"],
+      "era": { "from": 1805, "to": 1850 },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
       "id": "f-madras-london",
       "system": "eic-india-arterial",
       "name": "Madras to London",

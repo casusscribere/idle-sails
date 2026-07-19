@@ -165,6 +165,14 @@
       "reason": "not-yet-reconstructed",
       "treatment": "gestured",
       "note": "Bolts's Imperial Asiatic Company of Trieste planted two short-lived stations - Nancowery in the Nicobars (1778-1785) and Delagoa Bay (1777-1781, expelled by a Portuguese frigate out of Goa). Attempted colonial footholds that FAILED, carrying negligible commercial flow; their significance is political rather than a trade the chart omits. The company's real traffic folds into minor-company-arterials. Recorded so the absence of a Nicobar dot is a stated decision rather than an oversight. Entered 2026-07-18."
+    },
+    {
+      "id": "sydney-warrane-gadigal",
+      "scope": "Sydney Cove (Warrane), Gadigal country of the Eora nation",
+      "reason": "unrecorded",
+      "treatment": "gestured",
+      "pointer": "sydney-convicts",
+      "note": "The 1788 founding of Sydney was the dispossession of inhabited land. Sydney Cove is Warrane, in the Gadigal country of the Eora nation, whose maritime and coastal presence long predates and is unrecorded by the European trade archive the matrix is built from. The chart's dot marks a British penal colony from 1788; this entry records that the site was not empty water and the founding not terra nullius, under the same sober logic the charter applies to coerced human movement. The convict flow itself is carried in sydney-convicts. Entered 2026-07-19."
     }
   ]
 }

@@ -41,9 +41,77 @@
       "id": "cadiz",
       "name": "Cádiz",
       "simProxy": "cadiz"
+    },
+    {
+      "id": "sydney",
+      "name": "Sydney",
+      "simProxy": "sydney"
+    },
+    {
+      "id": "london",
+      "name": "London",
+      "simProxy": "london"
     }
   ],
   "systems": [
+    {
+      "id": "sydney-convicts",
+      "name": "Convict transportation to New South Wales (1788–1840)",
+      "evidence": "counted",
+      "basis": "The indent records are among the best-quantified coerced flows in the whole dataset. ~162,000 convicts were transported to Australia 1788–1868; ~80,000 to New South Wales 1788–1842 (the ~80,000 round estimate and the 97,797 indexed indent RECORDS cover the same window measured two ways — not two periods). Transportation to NSW ended 1840 (Order-in-Council 22 May 1840; last old-system ship Eden arrived 18 Nov 1840), so this lane terminates 1840 even though Australian transportation continues (Van Diemen's Land/Hobart to 1853 — a different flow). Per-ship loads 150–300. Mortality shifted from ~5–10% early (the Second Fleet of 1790 lost ~26% at sea) to ~2–3% after naval surgeon-superintendents were placed on every ship from 1815. This is convict transportation, NOT slavery — a distinct coerced flow, carried under the sober pattern: cargo transported-convicts, record-level; its volume rides the Britain→Sydney sea lane, and the sober truth lives here and in the silences register, never as value or reward. The site is Gadigal country of the Eora nation — Sydney Cove is Warrane; the founding was dispossession of inhabited land, recorded in the silences register.",
+      "era": {
+        "from": 1788,
+        "to": 1840
+      },
+      "cargo": ["transported-convicts"],
+      "shipTypes": ["east-indiaman", "merchantman"],
+      "framing": {
+        "sober": true,
+        "label": "coerced human movement",
+        "description": "These ships carried men and women transported under sentence from Britain and Ireland to a penal colony on Gadigal land. Transportation to New South Wales ran from 1788 until 1840. Mortality on the early passage was severe — on the Second Fleet of 1790, roughly a quarter died at sea — and fell only after naval surgeons were placed aboard every ship from 1815. The people aboard are shown as what they were: prisoners under sentence, not cargo.",
+        "rule": "No value framing, no profit framing, never a reward. Sim-side representation waits for S2's generalization of the Middle-Passage invariant; until then these flows exist as historical record only."
+      },
+      "lanes": [
+        { "from": "london", "to": "sydney", "share": 1.0 }
+      ],
+      "byDecade": {
+        "1780": { "voyagesPerYear": [2, 5] },
+        "1790": { "voyagesPerYear": [2, 6] },
+        "1800": { "voyagesPerYear": [3, 8] },
+        "1810": { "voyagesPerYear": [5, 14] },
+        "1820": { "voyagesPerYear": [10, 24] },
+        "1830": { "voyagesPerYear": [12, 28] },
+        "1840": { "voyagesPerYear": [6, 16] }
+      }
+    },
+    {
+      "id": "sydney-colonial-trade",
+      "name": "The New South Wales colonial trade (wool, emigrants, whaling)",
+      "evidence": "reconstructed",
+      "basis": "The free commercial arc of the penal colony, reconstructed from the counted wool series (175,000 lb 1821 → 400,000 1823 → 1,100,000 1830 → 3,693,000 1836; the Macarthur merino clip surpasses whale oil as the premier export by the 1830s) and the emigration record (bounty scheme 1835–41, mass assisted emigration post-1840). The Britain↔Sydney lane REVERSES: convicts/emigrants and manufactures in, wool and whale oil out (outbound via the Cape of Good Hope, homeward via the Cape or round Cape Horn). Sydney whaling from 1805 (first Sydney-owned whaler King George, June 1805; exports £3.3M 1831–45) and the sandalwood→Canton→tea colonial triangle (Simeon Lord) reach Canton. Voyage ranges reconstructed; the wool and emigration spines are counted.",
+      "era": {
+        "from": 1788,
+        "to": 1850
+      },
+      "cargo": ["wool", "whale-oil", "trade-goods", "tea", "specie"],
+      "shipTypes": ["east-indiaman", "merchantman"],
+      "lanes": [
+        { "from": "sydney", "to": "london", "share": 0.35 },
+        { "from": "london", "to": "sydney", "share": 0.35 },
+        { "from": "sydney", "to": "canton", "share": 0.15 },
+        { "from": "canton", "to": "sydney", "share": 0.15 }
+      ],
+      "byDecade": {
+        "1780": { "voyagesPerYear": [1, 3] },
+        "1790": { "voyagesPerYear": [2, 6] },
+        "1800": { "voyagesPerYear": [4, 10] },
+        "1810": { "voyagesPerYear": [6, 15] },
+        "1820": { "voyagesPerYear": [12, 28] },
+        "1830": { "voyagesPerYear": [20, 45] },
+        "1840": { "voyagesPerYear": [30, 70] },
+        "1850": { "voyagesPerYear": [35, 80] }
+      }
+    },
     {
       "id": "pacific-colonial-spanish",
       "name": "The colonial Spanish Pacific: the Armada del Mar del Sur and the Peru coast",
