@@ -63,7 +63,11 @@ already-open clock, filling an initially-empty late era). All of this on the
 - [~] **3 — Author the 1815–50 basin extensions.** **⚠ MORE COUPLED THAN IT LOOKS — probed 2026-07-18, the late-era build is a coordinated migration across FIVE data layers, discovered in order:** (1) era constants [done], (2) `eraNames` tiling [done, 6 ports], (3) **port lifecycle `active` windows** — extending a surviving system is BLOCKED if any of its lane ports has an `active` window ending 1815 (boston, kingston, cap-francais, portobelo, bridgetown, st-eustatius, tranquebar, st-petersburg, nantucket, curacao…); those windows are increment 5, so only systems on all-default-window ports extend now, (4) **flow-system weights** (`research/flows/*.json`) — extend `era.to`+`byDecade`, (5) **`data-src/routes.json` eras — THE SEAM GATE:** the sim spawns on `datasets.routes` (line 456), not the flow systems; a lane is only active at 1850 if its ROUTE's `era.to` is 1850. Extending flow systems alone gives weights but no active lanes (1850 flow-coverage went 0→100% yet the seam still spawned 0). **The route extension is charter-critical curation:** of 121 routes ending 1815 on default-window ports, many are DYING/slave trades (`slave-bah-why`, carrera) that must NEVER revive to 1850 — extend only the continuing trades, per-basin, by route id. **3a DONE:** `validate-flows.mjs` DEC ceiling 1810→1850; 4 safe Atlantic flow systems extended (1850 flow-coverage 100%). **3b DONE (2026-07-18) — THE FLIP IS NOW COHERENT, 53/53 GREEN:** curated extensions to 1850 across the remaining layers — 24 routes (`data-src/routes.json`), 4 ship types (merchantman/brig/snow/east-indiaman), 4 flags (britain/france/portugal/spain). **Charter-critical exclusions, reviewed before editing:** the `slave-*` namespace (`slave-bah-lis`, the Brazil triangle's return leg — the legitimate trade already runs on `brazil-bah-lis`; extending it would revive the triangle past abolition AND double the lane), anything with `middlePassage`/`enslaved-people`, the `slave-ship` type, `caravel`/`carrack` (died 1620/1640), and routes that died HISTORICALLY rather than at the horizon (`wine-bor-lon` 1793, `q-louisbourg-bordeaux` 1758 — only `era.to==1815` qualified). **Result:** the seam spawns again (year 1859: 0→49 vessels, log 40; ~1830: 328), the `cycle wrap` test is UN-SKIPPED and green. **Still to author (needs increment-5 ports):** the new systems (illegal-era Brazil/Cuba, cotton-gulf-liverpool, emigrant-packets, brazil-coffee, plata, around-the-horn-pacific, treaty-port-trade, opium-carriage, zanzibar, indenture, black-sea-grain, alexandria-cotton, singapore-entrepot, nhm-java…) + the blocked surviving systems (caribbean-sugar, middle-passage's successors, new-england-caribbean, caribbean-smuggling, davis-strait-whaling) whose lane ports have `active` windows ending 1815.
 - [x] **4 — Author the T8/T12 new SYSTEMS — DONE 2026-07-18 (4a-4d).** (barbary-concessions, barbary-regency-exports, guianas-plantations, logwood-mahogany, pacific-colonial-spanish, guayaquil-cacao, nootka-fur, bantam-pepper, ostend-interlude/fold) into their basins, from `port-flow-candidates-2026-07-18.md` + `-T12-addenda.md`. Same validation. Commit per basin/group.
 - [x] **5 — New PORTS + powers/vocab — DONE 2026-07-19 (5a-5e).** 66 -> **105 ports**, 44 -> **54 powers**, 265 -> **367 routes**; the fold rises 54 -> **72 systems** and coverage 76/81/87/89/90% -> **85/89/93/94/95%**. Groups: 5a Mediterranean (+ the granularity bug, below), 5b Pacific, 5c Atlantic/Caribbean, 5d Indian Ocean + East Asia, 5e the PLAN-4/6 ports. *(Original scope note:* the PLAN-4/6 five + Montevideo/Basra/York-Factory/Port-Louis/whaling-grounds + the T8/T12 promotions (Ostend, Bantam, Callao, Guayaquil, Nootka, Algiers, Tunis, Tripoli, Alexandria, Curaçao, St Thomas, Paramaribo, Belize). Coords, `active{from,to}`, `eraNames`/`eraPowers` where flagged, `simProxy: null`. **Extend the late-era windows** of existing ports that need it (kingston etc.). New powers (`algiers/tunis/tripoli/morocco`) + name/captain pools. `npm run build:data` + `npm test`. Commit in logical groups.
-- [ ] **6 — BAKE routes for the new ports/lanes** (+ **seasonal departure windows**, `PLAN-convoys.md` §5b — narrow the monsoon/ice lanes to their real seasons while the baker is running; no sim change, the Arctic precedent already does this)**.** `pipeline/README.md` FIRST. Ocean-cell snap per port; routing-field-coverage check (Cape Horn ~56°S, Tasman ~48°S, NW coast ~50°N); `npm run build:routes`. Commit. *One combined bake beats several.*
+- [~] **6 — BAKE routes for the new ports/lanes** (+ **seasonal departure windows**, `PLAN-convoys.md` §5b). **The BAKER-INFRASTRUCTURE half is DONE (6a–6c, 2026-07-19, 55 green); the per-port NEW-SYSTEM authoring is the open half (see the orphan-port map below).**
+  - **6a — Panama seal is now a land WALL.** The bake was HARD-FAILING (24 sanity problems): the isthmus seal was a lon[-82,-76]×lat[6,10] box that swallowed the Gulf of Panama, so the Pacific port of Panama snapped ~500 km SW and its Callao/Guayaquil legs cut the Azuero Peninsula. Replaced with a single lat-9 land ROW (the 8-neighbour router can't jump lat 10→8 without stepping on a lat-9 cell). Flood-fill + snap verified: basins stay separated (Canton↔London Cape route unaffected), Panama snaps 46 km from the real city, Portobelo nudged 9.6→10.0°N to snap Caribbean-side. `data-src/ports.json` + `bake-routes.mjs`.
+  - **6b — Cape Horn is a DESTINATION-AWARE cap.** The −50° Drake cap walled off the Horn, so boston→nootka baked the wrong way round Good Hope. A swept 5×4 grid of Drake corridors proved no geographic corridor separates a legit Horn-rounder from a Europe→Asia abuser (the Horn is one gate). Fix: cap −58° ONLY in the fields of the seven Pacific-coast-Americas destinations (`HORN_DEST` in `bake-routes.mjs`), −50° elsewhere. boston→nootka now rounds the Horn (−56.5°, 133 d); london→canton/amsterdam→batavia stay Good Hope. Readies the future Plata/around-the-horn systems for a correct bake.
+  - **6c — Basra & Bandar Abbas sail as themselves.** Increment 5 promoted them but the flow basin still `simProxy`'d both onto Muscat, so `persian-gulf-trade`'s two muscat→basra/muscat→bandar-abbas lanes (0.30 of the system) collapsed to self-pairs and folded onto nothing. De-proxied + authored the six Gulf lanes (persia 1622-1760 for the Bandar-Abbas silk legs — its real heyday, port greys after; ottoman basra-surat; oman muscat/bombay legs). All six bake through the Gulf. Continues the increment-5 de-proxy pattern.
+  - **⚠ STILL OPEN — the 7 orphan ports need NEW flow systems authored (this is the bulk of the phase):** `new-orleans` (cotton-gulf-liverpool + the COERCED neworleans-coastwise — **blocked on adding Chesapeake origin ports Norfolk/Baltimore/Charleston; shipping the cotton boom without the coastwise slave trade would be a silent zero**), `montevideo` (plata-republics-trade + the coerced plata component), `singapore` (singapore-entrepot), `hong-kong` (treaty-port-trade + opium), `sydney` (COERCED sydney-convicts + wool; goes in the existing `pacific` basin; needs an Australasia `render.js` REGIONS plate), `york-factory` (hudson-bay — routing VERIFIED through Hudson Strait, London→York Factory 63 d, but needs a NEW summer-only **seasonal ice seal** for Hudson Bay [lat 55-66 is below the 66° cap so it's open year-round today] AND its magnitude/lane data is not in the guides I read — check `port-flow-candidates-2026-07.md` / PLAN-4 E4), `pacific-grounds` (whaling-grounds / E3 grounds-node pattern). The three basin guides (`atlantic-/east-asia-io-/baltic-med-bengal-1815-1850.md`) + `new-ports-wars-1815-1850.md` carry transcription-ready decade series, lanes, and the eight user-approved coerced framing texts. Each system = flow JSON (`research/flows/*.json` system + basin `ports[].simProxy`) + baked lanes (`data-src/routes.json`) + framing where coerced + any new powers/regions/ports + a bake + build + test. `pipeline/README.md` FIRST for any baker work.
 - [ ] **7 — Surfacing (X-S3/E-S2).** Era HUD speaks 1550–1850; the designed epilogue taper/HUD (§Epilogue); silences page absorbs the ~11 new entries; about + declared-divergences (incl. steam); hazard zones (caribbean-golden-age-piracy, W-Med corsair) + `scriptedOnly` ports (Dejima); ledger evidence lines; the Mascarene `notes`. `name-pressure.mjs` re-gate over the 310-yr cycle. Commit.
 - [ ] **8 — Verify + MERGE to `main`.** Headless end-to-end (flows 1550→1850, epilogue reads right, new ports sail, coerced ledgers show the approved framing, no console errors). Update `rb-campaign.md` cross-refs, CLAUDE.md/AGENTS.md, SOURCES.md. **Merge `phase-1-world-build` → `main` only now** — the late era is populated and green. Final commit.
 
@@ -226,10 +230,44 @@ Also swept up: five powers whose eras still ended at the OLD 1815 horizon
 clamped to their flags' real windows (Oman on the Swahili coast only from
 1698, the Dutch Republic ending 1795 with the Kingdom resuming 1816).
 
-**Next:** the NEW SYSTEMS for the ports just promoted (illegal-era, cotton-gulf, packets,
-Singapore/HK/Valparaíso/Sydney/New Orleans…). Unlike the basin work, these
-need a **bake** — every new port and lane must go through `bake-routes.mjs`
-before it can sail. Then surfacing (era HUD, silences page, hazard zones,
-`scriptedOnly`, the name-pressure re-gate), then merge to `main`. Queued authoring debts: US-flagged late-era lanes
+**Increment 6 baker-infrastructure DONE 2026-07-19 (6a-6c), 55 tests green,
+`main` still at 1815.** Running the baker over increment 5's 105 ports revealed
+it was HARD-FAILING (24 sanity problems) on the Pacific-coast ports, and that
+the −50° Drake cap mis-routed the fur trade. Three findings worth carrying:
+
+**The Panama seal had to become a WALL, not a box** (6a). A lon×lat box big
+enough to separate the Pacific and Caribbean basins also swallowed the Gulf of
+Panama, throwing the Pacific port of Panama's snap ~500 km out to sea. A single
+lat-9 land ROW does the separation exactly (the 8-neighbour router can't jump a
+solid row) while leaving both ports on their own coasts. The general lesson: a
+raster basin-seal should be the thinnest continuous barrier, not a filled box —
+a box collides with any port that lives inside it.
+
+**Cape Horn can't be opened geographically — only per-destination** (6b). A
+5×4 sweep of Drake-Passage corridors proved every corridor that lets Boston
+round the Horn also lets London→Canton cheat through it in an adverse-monsoon
+season: the Horn is a single gate Dijkstra threads for anyone once it is open.
+The discriminator is the DESTINATION — the baker computes one field per
+destination, so the −58° cap lives only in the seven Pacific-coast-Americas
+ports' fields. This is the same "the field is keyed by destination" structure
+the nhm-java era-overlap fix used.
+
+**The de-proxy pattern keeps paying** (6c). Basra/Bandar Abbas were promoted to
+real ports in increment 5 but still `simProxy`'d onto Muscat, so a third of
+`persian-gulf-trade` folded onto nothing (self-pairs). The same class as
+increment 5's smyrna/curacao/jedda/nagasaki corrections — worth a sweep of every
+`simProxy` that now points away from a real promoted port.
+
+**Next — the open half of increment 6: author the 7 orphan ports' NEW flow
+systems** (see the increment-6 checklist for the full map + entanglements). The
+transcription-ready material is in the three `*-1815-1850.md` basin guides +
+`new-ports-wars-1815-1850.md` (decade series, lanes, evidence classes, the eight
+user-approved coerced framing texts). Charter-critical order note: **do not ship
+a port's commercial flow without its coerced flow** — New Orleans' cotton boom
+without neworleans-coastwise, or Montevideo's hides without its slave imports,
+would each be a silent zero. New Orleans needs Chesapeake origin ports first;
+Sydney needs an Australasia render plate; York Factory needs a summer-only
+Hudson Bay seasonal seal (routing already verified). Then increment 7
+(surfacing) and 8 (merge). Queued authoring debts: US-flagged late-era lanes
 (new-england-caribbean), the Haiti/Cap-Haïtien pair, caribbean-sugar's late-era
 British-only geography.
