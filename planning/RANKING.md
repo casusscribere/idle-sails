@@ -464,11 +464,20 @@ keeps the exact sober register) + the queued **render tweaks** (port dots in
 the sea, land clipping, residual zigzags — several want a baker review). No
 gate; low risk; slot into whatever pass is in flight.
 
-### Phase 4 — Per-port documentation  ·  [R]  (was step 9)
-**Phase RC — T1+T2+T3 together, one port at a time** → `port-eras.json`
-(eraNames + a new eraPowers), per-window blurbs, `port-docs.json` +
-`research/ports.html`. HARD GATE: the roster + era span must be FINAL
-(Phase 1 done) or the sweep runs twice.
+### Phase 4 — Per-port documentation  ·  [R]  ·  ✅ **COMPLETE + LIVE 2026-07-19**
+**Phase RC — T1+T2+T3 done for all 105 ports** (9 parallel region-batched research
+subagents, assembled + validated). Each port carries its 1550→1850 name/ownership
+timeline (`ports[].eraNames` + `ports[].eraPowers`, 39 with multi-window
+timelines, all tiling their active window — build-data-validated), a port-panel
+blurb (era-resolved, `research/port-docs.json` → injected into datasets), and a
+documentation entry with real citations on the new **`research/ports.html`** page
+(105 cards / 23 regions, headless-verified). New: `world.js portPowerAt`, the port
+panel shows the ALLEGIANCE OF THE TIME, five display-only independence powers
+(haiti/mexico/brazil/gran-colombia/dahomey) for the honest flag, and the
+name/ownership tweaks fixed (Masulipatnam=Golconda, Jayakarta=Banten,
+Nagasaki=Japan, Bombay/Calcutta, "est." only for real in-sim foundings). Charter
+held (slave-trade/coerced-labour ports named soberly; Indigenous sovereignty at
+Sydney/Sitka/Nootka/Banda named honestly). 55 tests green.
 
 ### Phase 5 — The sim redesign  ·  [R]+[F]  (was steps 10–11)
 **T7 + T13 as ONE research campaign** (vessel lifecycle & prize practice;
