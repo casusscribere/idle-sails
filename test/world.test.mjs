@@ -413,10 +413,19 @@ test('port lifecycle behavior: a full 310-year cycle schedules zero calls outsid
     w.tick(WEEK);
     for (const v of w.state.vessels) {
       if (seen.has(v.id)) continue; seen.add(v.id);
+      // A voyage that BEGINS in the epilogue reset ramp is a 1850-era voyage:
+      // spawning there clamps to the 1850 weights, so it only draws lanes valid at
+      // 1850. If it crosses the 1860→1550 seam, its later legs land in the next
+      // cycle's early years — an in-flight ship spawned when the port was valid, the
+      // seam counterpart of the to+3 late-arrival tolerance. (A genuine 1550 spawn
+      // on a 1600+ lane is impossible — spawn is era-gated — so any such call can
+      // only be a ramp voyage.) Anchor all its calls to 1850. Surfaced once a junk
+      // lane first sailed the ramp — junk era 1815→1850, increment 6d.
+      const rampVoyage = v.schedule.length && w.calendar(v.schedule[0].depart).reset > 0;
       for (const seg of v.schedule) {
         const check = (pid, t) => {
           if (v.fate.lost && v.fate.atSec < t) return;   // never happens — she was lost
-          const y = yearAt(t), win = windowOf.get(pid);
+          const y = rampVoyage ? 1850 : yearAt(t), win = windowOf.get(pid);
           assert.ok(y >= win.from && y <= win.to + 3,
             `${pid} called in ${y}, outside its lifecycle ${win.from}-${win.to} (vessel ${v.id}, lane ${seg.laneId})`);
           checked++;

@@ -4480,6 +4480,66 @@
       "flag": "britain"
     },
     {
+      "id": "pl-montevideo-liverpool",
+      "system": "plata-republics-trade",
+      "name": "Montevideo to Liverpool (hides)",
+      "from": "montevideo",
+      "to": "liverpool",
+      "shipTypes": ["merchantman", "east-indiaman"],
+      "cargo": ["hides"],
+      "era": { "from": 1810, "to": 1850 },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
+      "id": "pl-liverpool-montevideo",
+      "system": "plata-republics-trade",
+      "name": "Liverpool to Montevideo (manufactures)",
+      "from": "liverpool",
+      "to": "montevideo",
+      "shipTypes": ["merchantman"],
+      "cargo": ["trade-goods"],
+      "era": { "from": 1810, "to": 1850 },
+      "weight": 1,
+      "flag": "britain"
+    },
+    {
+      "id": "pl-montevideo-havana",
+      "system": "plata-republics-trade",
+      "name": "Montevideo to Havana (tasajo)",
+      "from": "montevideo",
+      "to": "havana",
+      "shipTypes": ["merchantman"],
+      "cargo": ["tasajo"],
+      "era": { "from": 1780, "to": 1850 },
+      "weight": 1,
+      "flag": "spain"
+    },
+    {
+      "id": "pl-rio-montevideo",
+      "system": "plata-republics-trade",
+      "name": "Rio de Janeiro to Montevideo",
+      "from": "rio",
+      "to": "montevideo",
+      "shipTypes": ["merchantman"],
+      "cargo": ["sugar", "trade-goods"],
+      "era": { "from": 1780, "to": 1850 },
+      "weight": 1,
+      "flag": "portugal"
+    },
+    {
+      "id": "pl-montevideo-rio",
+      "system": "plata-republics-trade",
+      "name": "Montevideo to Rio de Janeiro (tasajo)",
+      "from": "montevideo",
+      "to": "rio",
+      "shipTypes": ["merchantman"],
+      "cargo": ["tasajo", "hides"],
+      "era": { "from": 1780, "to": 1850 },
+      "weight": 1,
+      "flag": "portugal"
+    },
+    {
       "id": "f-madras-london",
       "system": "eic-india-arterial",
       "name": "Madras to London",

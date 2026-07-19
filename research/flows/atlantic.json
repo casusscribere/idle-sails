@@ -250,9 +250,66 @@
       "id": "belize",
       "name": "Belize (the Bay settlement)",
       "simProxy": "belize"
+    },
+    {
+      "id": "montevideo",
+      "name": "Montevideo",
+      "simProxy": "montevideo"
     }
   ],
   "systems": [
+    {
+      "id": "plata-republics-trade",
+      "name": "The Río de la Plata trade (hides and salt beef, 1810–1850)",
+      "evidence": "reconstructed",
+      "basis": "The commercial trade of the Plata estuary after independence opened it to all flags: hides and tallow out (>1M hides/yr by the early 1820s), tasajo (salt beef) from the saladeros to Cuba and Brazil, manufactures in — carried mainly by Britain, with US and France. THREE blockade dents interrupt it: the Cisplatine War 1826–28, the French blockade 1838–40, and the Anglo-French blockade 1845–48 (British component ending Jul 1847); Montevideo picks up diverted calls each time. Voyage ranges reconstructed from the flag-by-flag descriptions (tens/flag in the 1820s → ~[100,250] all-flags by the 1840s); the hides magnitude is counted, the voyage counts are not. Buenos Aires is folded into Montevideo (the estuary's deep-water port, no separate node).",
+      "era": {
+        "from": 1810,
+        "to": 1850
+      },
+      "cargo": ["hides", "tasajo", "trade-goods", "specie", "sugar"],
+      "shipTypes": ["merchantman", "east-indiaman"],
+      "lanes": [
+        { "from": "montevideo", "to": "liverpool", "share": 0.25 },
+        { "from": "liverpool", "to": "montevideo", "share": 0.20 },
+        { "from": "montevideo", "to": "havana", "share": 0.15 },
+        { "from": "montevideo", "to": "rio", "share": 0.15 },
+        { "from": "rio", "to": "montevideo", "share": 0.25 }
+      ],
+      "byDecade": {
+        "1810": { "voyagesPerYear": [25, 60] },
+        "1820": { "voyagesPerYear": [40, 120] },
+        "1830": { "voyagesPerYear": [70, 180] },
+        "1840": { "voyagesPerYear": [100, 250] },
+        "1850": { "voyagesPerYear": [110, 260] }
+      }
+    },
+    {
+      "id": "plata-montevideo",
+      "name": "Slave imports to the Río de la Plata (Montevideo, 1791–1812)",
+      "evidence": "counted",
+      "basis": "Montevideo was made the sole authorized port of entry for enslaved people to the Río de la Plata in 1791. Most were brought by way of Brazil, others direct from Mozambique and the Angolan coast; the trade wound down with the independence-era abolitions (Argentine free-womb law 1813). A counted flow whose volume rides the Brazil→Plata sea lane; the enslaved-people cargo and the sober framing live at the record level, and the estuary's tasajo exports in turn provisioned enslaved plantations elsewhere — the commercial and coerced flows are two faces of one economy. Middle-Passage sober pattern.",
+      "era": {
+        "from": 1791,
+        "to": 1812
+      },
+      "cargo": ["enslaved-people"],
+      "shipTypes": ["merchantman", "east-indiaman"],
+      "framing": {
+        "sober": true,
+        "label": "coerced human movement",
+        "description": "These vessels carried enslaved people to the Río de la Plata, where Montevideo was made the sole authorized port of entry in 1791 — most brought by way of Brazil, others direct from Mozambique and the Angolan coast. Many died on the passage. The estuary's salt-beef exports in turn provisioned enslaved plantations elsewhere.",
+        "rule": "No value framing, no profit framing, never a reward. Sim-side representation waits for S2's generalization of the Middle-Passage invariant; until then these flows exist as historical record only."
+      },
+      "lanes": [
+        { "from": "rio", "to": "montevideo", "share": 1.0 }
+      ],
+      "byDecade": {
+        "1790": { "voyagesPerYear": [8, 20] },
+        "1800": { "voyagesPerYear": [10, 25] },
+        "1810": { "voyagesPerYear": [4, 12] }
+      }
+    },
     {
       "id": "carrera-de-indias",
       "name": "The Carrera de Indias",
