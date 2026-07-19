@@ -138,9 +138,57 @@
       "id": "boston",
       "name": "Boston",
       "simProxy": "boston"
+    },
+    {
+      "id": "hong-kong",
+      "name": "Hong Kong",
+      "simProxy": "hong-kong"
+    },
+    {
+      "id": "calcutta",
+      "name": "Calcutta",
+      "simProxy": "calcutta"
+    },
+    {
+      "id": "bombay",
+      "name": "Bombay",
+      "simProxy": "bombay"
+    },
+    {
+      "id": "singapore",
+      "name": "Singapore",
+      "simProxy": "singapore"
     }
   ],
   "systems": [
+    {
+      "id": "treaty-port-trade",
+      "name": "The treaty ports and Hong Kong (1843–1850)",
+      "evidence": "counted",
+      "basis": "The Treaty of Nanking (29 Aug 1842) opened the five treaty ports and ceded Hong Kong (Crown colony 1843), which became the deep-water anchorage and the opium receiving-ship depot after the Lintin→HK shift. Counted anchor: 538 vessels / 189,257 tons entered Hong Kong in 1844 — the first year any shipping record was kept, 'almost without exception sailing ships.' This is a SINGLE recorded year (no HK series exists before 1844), so the decade ranges bracket it and the ledger's 'counted' rests on that one anchor. CONTAMINATION HAZARD (refuter-caught): the 538/189,257 figure is repeatedly misattributed to Shanghai online — it is Hong Kong's, confirmed against the primary; Shanghai opened Nov 1843 and had no 1844 series. Canton REMAINS the larger port to era end — HK is the entrepôt-in-formation. Their dominant relationship (the ~110 km Canton↔HK transshipment) falls WITHIN one 1° grid cell and cannot be sailed as a distinct leg — a declared resolution boundary, not a silent zero; HK's Canton-facing trade is represented by its through-lanes (Bengal/Malwa opium and the London tea leg, both of which passed through Canton's roads). P&O's monthly London–HK steam mail (from Sept 1845) stays behind the declared steam boundary, surfaced not sailed. The nascent coolie/emigration trade (chiefly Amoy) has its volume anchor after 1850 and is carried on the nanyang/Amoy lanes under the sober pattern, not here.",
+      "era": {
+        "from": 1843,
+        "to": 1850
+      },
+      "cargo": ["opium", "tea", "textiles", "specie", "trade-goods", "silk"],
+      "shipTypes": ["east-indiaman", "merchantman", "junk"],
+      "lanes": [
+        { "from": "calcutta", "to": "hong-kong", "share": 0.19 },
+        { "from": "bombay", "to": "hong-kong", "share": 0.13 },
+        { "from": "london", "to": "hong-kong", "share": 0.11 },
+        { "from": "hong-kong", "to": "london", "share": 0.11 },
+        { "from": "singapore", "to": "hong-kong", "share": 0.095 },
+        { "from": "hong-kong", "to": "singapore", "share": 0.08 },
+        { "from": "macau", "to": "hong-kong", "share": 0.095 },
+        { "from": "amoy", "to": "hong-kong", "share": 0.08 },
+        { "from": "shanghai", "to": "hong-kong", "share": 0.065 },
+        { "from": "manila", "to": "hong-kong", "share": 0.045 }
+      ],
+      "byDecade": {
+        "1840": { "voyagesPerYear": [400, 700] },
+        "1850": { "voyagesPerYear": [500, 800] }
+      }
+    },
     {
       "id": "canton-arterial",
       "name": "The Canton arterial",
