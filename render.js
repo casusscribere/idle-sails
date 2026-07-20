@@ -74,7 +74,15 @@ export const REGIONS = [
   // Phase-1 addition (increment 7): the SW Pacific / Tasman, framing Sydney
   // (151E/−34S) and its Batavia/Pacific reaches — the basin PLAN-4 E3 opened.
   { id: 'australasia', name: 'Australasia & the Tasman',
-    bounds: { lonMin: 110, lonMax: 180, latMin: -48, latMax: -8 } }
+    bounds: { lonMin: 110, lonMax: 180, latMin: -48, latMax: -8 } },
+  // The Pacific window (ideas #15) — the ONE plate that crosses the antimeridian,
+  // framing the East-Asian rim (Batavia/Canton/Manila/Nagasaki) THROUGH the open
+  // Pacific to the American rim (Sitka/Acapulco/Callao/Valparaíso). lonMax > 180
+  // is the signal that flips project()/drawGeom() into the Pacific-centred frame;
+  // the Americas ports normalize to 225–290. Needs the trans-Pacific content the
+  // Manila galleon + the Nootka/Sitka fur trade + the whaling grounds now supply.
+  { id: 'pacific', name: 'The Pacific',
+    bounds: { lonMin: 105, lonMax: 292, latMin: -38, latMax: 60 } }
 ];
 
 // Colour is spent on allegiance (the flag), so ship CATEGORY is carried by the
@@ -197,9 +205,19 @@ export function createRenderer(canvas, assets) {
   // drawRouteOverlay) — lanes brighten and fade as their origin's era-prominence
   // shifts, so national dominance visibly rotates across the centuries.
 
+  // Longitude → the active plate's frame. A plate that spans PAST the
+  // antimeridian (lonMax > 180 — the Pacific plate, centred on ±180) normalizes
+  // into [lonMin, lonMin+360) so both Pacific rims land on the correct sides;
+  // every other plate keeps the Atlantic-centred [−180,180] frame, which yields
+  // identical output for their in-range content (so world/europe/&c. are
+  // untouched).
+  function normLon(lon) {
+    return BOUNDS.lonMax > 180
+      ? BOUNDS.lonMin + ((lon - BOUNDS.lonMin) % 360 + 360) % 360
+      : ((lon + 180) % 360 + 360) % 360 - 180;
+  }
   function project(lon, lat) {
-    let L = ((lon + 180) % 360 + 360) % 360 - 180;
-    return [ox + (L - BOUNDS.lonMin) * k, oy + (BOUNDS.latMax - lat) * k];
+    return [ox + (normLon(lon) - BOUNDS.lonMin) * k, oy + (BOUNDS.latMax - lat) * k];
   }
   // Screen → geographic (the cursor readout). Inverse of project; longitude is
   // normalized back into [−180,180] for display. Returns null off the plate.
@@ -486,7 +504,7 @@ export function createRenderer(canvas, assets) {
         // i.e. Antarctica, sits below the viewport).
         let prevLon = null;
         for (let i = 0; i < ring.length; i++) {
-          let lon = ((ring[i][0] + 180) % 360 + 360) % 360 - 180;
+          let lon = normLon(ring[i][0]);
           if (prevLon !== null) { while (lon - prevLon > 180) lon -= 360; while (lon - prevLon < -180) lon += 360; }
           prevLon = lon;
           const x = ox + (lon - BOUNDS.lonMin) * k, y = oy + (BOUNDS.latMax - ring[i][1]) * k;

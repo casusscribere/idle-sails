@@ -45,7 +45,11 @@ const MUST_CONTAIN = {
   'na-northeast': ['louisbourg', 'boston', 'new-york', 'philadelphia',
     'chesapeake'],
   // the Phase-1 (increment 7) SW Pacific / Tasman plate frames Sydney
-  'australasia': ['sydney']
+  'australasia': ['sydney'],
+  // the antimeridian-crossing Pacific plate: both rims — East Asia THROUGH the
+  // open ocean to the Americas (whose lon normalizes to 225–290 in-frame)
+  'pacific': ['batavia', 'canton', 'manila', 'dejima', 'naha',
+    'sitka', 'nootka', 'acapulco', 'guayaquil', 'callao', 'valparaiso', 'pacific-grounds']
 };
 
 test('every regional plate contains the ports it exists for', () => {
@@ -53,11 +57,16 @@ test('every regional plate contains the ports it exists for', () => {
     const region = REGIONS.find(r => r.id === rid);
     assert.ok(region, `region ${rid} exists`);
     const b = region.bounds;
+    // a plate spanning past the antimeridian (lonMax > 180) normalizes longitude
+    // into [lonMin, lonMin+360) — mirror render.js normLon so the American rim,
+    // at negative raw longitudes, tests inside the Pacific frame.
+    const nlon = lon => b.lonMax > 180 ? b.lonMin + ((lon - b.lonMin) % 360 + 360) % 360 : lon;
     for (const pid of portIds) {
       const p = portById.get(pid);
       assert.ok(p, `port ${pid} exists in the dataset`);
-      assert.ok(p.lon > b.lonMin && p.lon < b.lonMax && p.lat > b.latMin && p.lat < b.latMax,
-        `${rid} contains ${pid} (${p.lon}, ${p.lat})`);
+      const L = nlon(p.lon);
+      assert.ok(L > b.lonMin && L < b.lonMax && p.lat > b.latMin && p.lat < b.latMax,
+        `${rid} contains ${pid} (${p.lon}→${L.toFixed(0)}, ${p.lat})`);
     }
   }
 });
