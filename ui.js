@@ -290,9 +290,9 @@ export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSele
     const body = $('events-body');
     if (!body) return;
     body.innerHTML = entries.length
-      ? entries.map(e => `<li class="${e.kind === 'war-begin' || e.kind === 'loss' ? 'ev-bad' : ''}">
+      ? entries.map(e => `<li class="${e.kind === 'war-begin' || e.kind === 'loss' || e.kind === 'port-abandoned' ? 'ev-bad' : ''}">
           <span class="ev-date">${escapeHtml(e.date)}</span><span>${escapeHtml(e.text)}</span></li>`).join('')
-      : '<li class="ev-empty">The sea is quiet — no losses, no wars.</li>';
+      : '<li class="ev-empty">The sea is quiet — no events yet.</li>';
   }
 
   // Statistics: fleet totals, the hardest passages (losses by route), and the

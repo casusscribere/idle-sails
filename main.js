@@ -325,6 +325,16 @@ async function boot() {
   });
   applyLayerSubs(); refreshOverlay();      // honour #routes=1 at boot
 
+  // sunken-ship markers: a chart-adornment toggle (display only)
+  const wrecksBox = document.getElementById('ov-wrecks');
+  wrecksBox.checked = settings.wrecks;
+  renderer.setWrecks(settings.wrecks);
+  wrecksBox.addEventListener('change', () => {
+    settings.wrecks = wrecksBox.checked;
+    renderer.setWrecks(settings.wrecks);
+    saveSettings(settings);
+  });
+
   // chart views: preset regional plates from render.js REGIONS
   const viewBox = document.getElementById('view-radios');
   for (const r of REGIONS) {
@@ -424,6 +434,7 @@ async function boot() {
     // the hint shares the legend's bottom-right corner — yield when it's on
     hintEl.hidden = settings.furled || settings.panels.legend;
     applyLegendSections();
+    applyEventSections();
     applyCollapsed();
   }
 
@@ -468,6 +479,26 @@ async function boot() {
     box.addEventListener('change', () => {
       settings.legend[key] = box.checked;
       applyLegendSections(); saveSettings(settings);
+    });
+  }
+  // the events-log category tree: ship losses / wars / port foundings & captures,
+  // each independently, under the parent panel toggle (the legend-tree idiom)
+  const EV_SECTIONS = { losses: 'ev-opt-losses', wars: 'ev-opt-wars', ports: 'ev-opt-ports' };
+  function applyEventSections() {
+    for (const key of Object.keys(EV_SECTIONS)) {
+      const box = document.getElementById(EV_SECTIONS[key]);
+      box.disabled = !settings.panels.events;
+      box.closest('.menu-item').classList.toggle('is-disabled', box.disabled);
+    }
+  }
+  for (const key of Object.keys(EV_SECTIONS)) {
+    const box = document.getElementById(EV_SECTIONS[key]);
+    box.checked = settings.events[key];
+    box.addEventListener('change', () => {
+      settings.events[key] = box.checked;
+      applyEventSections();
+      if (settings.panels.events) renderEventsPanel(true);
+      saveSettings(settings);
     });
   }
   function toggleFurl() {
@@ -532,10 +563,14 @@ async function boot() {
   // from the flowing clock, merged newest-first. Re-rendered on the HUD
   // throttle, gated by a cheap signature so a quiet sea costs no DOM work.
   function renderEventsPanel(force = false) {
-    const losses = latestSnap.log.filter(e => e.kind === 'loss');
-    const wars = world.warEventsSince(latestSnap.simClock);
-    const entries = losses.concat(wars).sort((a, b) => b.t - a.t).slice(0, 40);
-    const sig = entries.length + ':' + (entries.length ? entries[0].t : 0);
+    const ev = settings.events;
+    let entries = [];
+    if (ev.losses) entries = entries.concat(latestSnap.log.filter(e => e.kind === 'loss'));
+    if (ev.wars) entries = entries.concat(world.warEventsSince(latestSnap.simClock));
+    if (ev.ports) entries = entries.concat(world.portEventsSince(latestSnap.simClock));
+    entries = entries.sort((a, b) => b.t - a.t).slice(0, 40);
+    // sig folds in the active categories so toggling one re-renders immediately
+    const sig = `${ev.losses}${ev.wars}${ev.ports}:${entries.length}:${entries.length ? entries[0].t : 0}`;
     if (!force && sig === lastEventsSig) return;
     lastEventsSig = sig;
     ui.renderEvents(entries);

@@ -134,3 +134,21 @@ test('settings: port-names policy round-trips and rejects junk', () => {
   storage.setItem('idle-sails-settings', JSON.stringify({ portNames: 'wat' }));
   assert.equal(loadSettings(storage).portNames, 'default', 'an unknown policy falls back to default');
 });
+
+test('settings: events tree + sunken-ships toggle round-trip and reject junk', () => {
+  const store = new Map();
+  const storage = { getItem: k => (store.has(k) ? store.get(k) : null), setItem: (k, v) => store.set(k, v) };
+  const d = loadSettings(storage);
+  assert.deepEqual(d.events, { losses: true, wars: true, ports: true }, 'all event categories default on');
+  assert.equal(d.wrecks, true, 'sunken ships shown by default');
+  d.events.wars = false; d.events.ports = false; d.wrecks = false;
+  saveSettings(d, storage);
+  const back = loadSettings(storage);
+  assert.deepEqual(back.events, { losses: true, wars: false, ports: false }, 'category toggles persist');
+  assert.equal(back.wrecks, false, 'the sunken-ships toggle persists');
+  // junk shapes are dropped, defaults kept, never throw
+  storage.setItem('idle-sails-settings', JSON.stringify({ events: { wars: 'no', ports: false, evil: true }, wrecks: 'nope' }));
+  const junk = loadSettings(storage);
+  assert.deepEqual(junk.events, { losses: true, wars: true, ports: false }, 'only well-formed boolean categories survive');
+  assert.equal(junk.wrecks, true, 'a non-boolean wrecks flag falls back to on');
+});

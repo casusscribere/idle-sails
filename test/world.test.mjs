@@ -307,6 +307,30 @@ test('small-trade visibility floor: a tiny real trade is not a silent zero', () 
   assert.ok(sailed >= 12, `York Factory sails at its historical order of magnitude (${sailed} in 40 yr)`);
 });
 
+test('port events: foundings, captures, and abandonments derive from the flowing clock', () => {
+  const w = mk(42), YR = 365.25 * DAY;
+  for (let t = 0; t < 160 * YR; t += 30 * DAY) w.tick(Math.min(30 * DAY, 160 * YR - t));   // → ~1710
+  const ev = w.portEventsSince(w.simClock, 120);   // wide window to sweep the 17th c.
+  const kinds = new Set(ev.map(e => e.kind));
+  assert.ok(kinds.has('port-founded'), 'foundings appear');
+  assert.ok(kinds.has('port-captured'), 'changes of allegiance appear');
+  assert.ok(kinds.has('port-abandoned'), 'abandonments appear');
+  // every entry is a complete, dated, past event within the window
+  const cyc = _internals.CYCLE_YEARS;
+  for (const e of ev) {
+    assert.ok(e.t <= w.simClock, 'no future-dated port event');
+    assert.ok(e.text && e.date && e.kind.startsWith('port-'), 'complete record');
+  }
+  // known truth: St Petersburg was founded (1703) and York Factory (1684) in-sim
+  assert.ok(ev.some(e => e.kind === 'port-founded' && /St Petersburg/.test(e.text)), 'St Petersburg founded');
+  assert.ok(ev.some(e => e.kind === 'port-founded' && /York Factory/.test(e.text)), 'York Factory founded');
+  // pure + granularity-independent: one big jump == the same events as small ticks
+  const a = mk(7), b = mk(7);
+  a.tick(200 * YR);
+  for (let i = 0; i < 200; i++) b.tick(YR);
+  assert.deepEqual(a.portEventsSince(a.simClock, cyc), b.portEventsSince(b.simClock, cyc), 'derivation is granularity-independent');
+});
+
 test('wrecks: a loss marks the chart for a sim-year, then fades from the record', () => {
   // sail long enough to accumulate losses (base loss ~2.5%/30-day leg)
   const w = mk(3);

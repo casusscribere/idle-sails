@@ -34,6 +34,7 @@
              from the flow matrix's basins; disabled while the parent is off -->
         <div class="menu-sub" id="layer-subs"></div>
         <p class="menu-note">Line weight ∝ traffic · colour = flag</p>
+        <label class="menu-item"><input type="checkbox" id="ov-wrecks" checked><span>Sunken ships</span></label>
         <p class="menu-h" style="margin-top:14px">Chart view</p>
         <!-- regional plates (feature pass 2) — rows built by main.js from
              render.js REGIONS -->
@@ -53,6 +54,11 @@
         <label class="menu-item is-disabled" title="Awaits vessel persistence"><input type="checkbox" id="pn-tracker" disabled><span>Tracked vessels</span></label>
         <p class="menu-note">— awaits vessel persistence</p>
         <label class="menu-item"><input type="checkbox" id="pn-events"><span>Events log</span></label>
+        <div class="menu-sub">
+          <label class="menu-item"><input type="checkbox" id="ev-opt-losses" checked><span>Ship losses</span></label>
+          <label class="menu-item"><input type="checkbox" id="ev-opt-wars" checked><span>Wars</span></label>
+          <label class="menu-item"><input type="checkbox" id="ev-opt-ports" checked><span>Port foundings &amp; captures</span></label>
+        </div>
         <label class="menu-item"><input type="checkbox" id="pn-helm" checked><span>Speed instrument</span></label>
         <label class="menu-item"><input type="checkbox" id="pn-legend"><span>Legend</span></label>
         <div class="menu-sub">

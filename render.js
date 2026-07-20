@@ -189,6 +189,7 @@ export function createRenderer(canvas, assets) {
   let portScreen = [];                   // [{id, x, y}] for hit-testing the fixed ports
   let portDraw = [];                     // [{id, x, y, name, label:{ax,ay,align}|null}] cached placement
   let labelYear = null;                  // the year the cached labels were placed for
+  let showWrecks = true;                 // draw + pick sunken-ship markers (menu toggle)
   // Popular-routes overlay: weighted per-frame by the flowing clock (see
   // drawRouteOverlay) — lanes brighten and fade as their origin's era-prominence
   // shifts, so national dominance visibly rotates across the centuries.
@@ -567,7 +568,7 @@ export function createRenderer(canvas, assets) {
     const selected = vessels.find(v => v.id === selectedId);
     if (selected) drawSelectedRoute(selected, t);
 
-    drawWrecks(snapshot.wrecks || [], snapshot.simClock, selectedWreckId);
+    if (showWrecks) drawWrecks(snapshot.wrecks || [], snapshot.simClock, selectedWreckId);
     for (const v of vessels) drawVessel(v, v.id === selectedId, t);
     if (dynClip) ctx.restore();
 
@@ -708,7 +709,7 @@ export function createRenderer(canvas, assets) {
       if (d < vd) { vd = d; vBest = v.id; }
     }
     let wBest = null, wd = 12 * 12;
-    for (const w of snapshot.wrecks || []) {
+    for (const w of (showWrecks ? snapshot.wrecks || [] : [])) {
       const [x, y] = project(w.lon, w.lat);
       const d = (x - px) ** 2 + (y - py) ** 2;
       if (d < wd) { wd = d; wBest = w.id; }
@@ -735,5 +736,6 @@ export function createRenderer(canvas, assets) {
     return { type: cands[0].type, id: cands[0].id };
   }
 
-  return { resize, draw, pickAt, project, setPerf, setRegion, setOverlay };
+  function setWrecks(v) { showWrecks = !!v; }
+  return { resize, draw, pickAt, project, setPerf, setRegion, setOverlay, setWrecks };
 }

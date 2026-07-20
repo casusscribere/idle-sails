@@ -301,7 +301,12 @@ is live by now — pin the *Surprise* and follow her properly.
   taken up. Until then the declared boundary stands.
 - **Tweaks** (`ideas.txt`'s sibling `tweaks.txt`) — small render/UX
   adjustments, no research, no pass machinery; fold into whatever pass is
-  in flight. ✅ Dormant-port greying threshold extended 2026-07-16: the
+  in flight. **✅ 2026-07-20:** the events log gained a category tree (ship
+  losses / wars / **port foundings-captures-abandonment**, the last a new
+  `world.portEventsSince` deriving foundings from `active.from`, abandonments
+  from `active.to`, and changes of allegiance from `eraPowers` transitions —
+  cycle-clamped + granularity-independent like `warEventsSince`), and a
+  **Sunken ships** chart toggle (`renderer.setWrecks`, gates draw + pick). ✅ Dormant-port greying threshold extended 2026-07-16: the
   window is now DISPLAY policy in main.js (3 sim-years, up from the world
   default of 1 — `world.activePortsSince` keeps its contract); sparse-but-
   real flows read as quiet, not abandoned. **Phase 3 progress (2026-07-19):**

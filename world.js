@@ -851,6 +851,38 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     return out;
   }
 
+  // Port events (the events log's third category): foundings, abandonments, and
+  // changes of allegiance (captures/cessions). Derived at DISPLAY time from the
+  // static ports data (active windows + eraPowers transitions) + the flowing
+  // clock — pure and cycle-clamped exactly like warEventsSince. A port present at
+  // the era's start was not "founded" in-sim (skip active.from == 1550), and a
+  // handover at the 1550 seam is not an event; the first eraPowers window is the
+  // starting flag, so only transitions (i ≥ 1) read as a change of hands.
+  function portEventsSince(simSec, windowYears = 10) {
+    const since = simSec - windowYears * YEAR_SEC;
+    const cycleStart = cycleIndexOf(simSec) * CYCLE_SEC;
+    const powName = id => (powerById.get(id) || {}).name || id;
+    const out = [];
+    const push = (year, kind, text) => {
+      const t = cycleStart + (year - ERA.from) * YEAR_SEC;
+      if (t >= cycleStart && t > since && t <= simSec)
+        out.push({ t, kind, text, date: fmtDate(calendar(t)) });
+    };
+    for (const p of datasets.ports) {
+      if (p.active && p.active.from > ERA.from)
+        push(p.active.from, 'port-founded', `${portNameAt(p, p.active.from)} founded`);
+      if (p.active && p.active.to < ERA.to)
+        push(p.active.to + 1, 'port-abandoned', `${portNameAt(p, p.active.to)} abandoned`);
+      for (let i = 1; p.eraPowers && i < p.eraPowers.length; i++) {
+        const ep = p.eraPowers[i];
+        if (ep.from <= ERA.from) continue;
+        push(ep.from, 'port-captured', `${portNameAt(p, ep.from)} passed to ${powName(ep.power)}`);
+      }
+    }
+    out.sort((a, b) => b.t - a.t);
+    return out;
+  }
+
   // ---- tracker (feature pass 1): pin a vessel and keep her story ------------
   // Pins and the archive live in serialized state (they are about THIS world's
   // vessels), but none of it feeds the sim: pinning only decides whether a
@@ -915,7 +947,7 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   return {
     state, tick, snapshot, activeVessels, positionOf, fingerprint, calendar,
     laneWeightsAt, weightsAt, activePortsSince, portLifecycleAt, serialize,
-    warEventsSince, tuning: tune,
+    warEventsSince, portEventsSince, tuning: tune,
     isPinned, canPin, pinVessel, unpinVessel, trackedVessels, portHistoryOf,
     // the CURRENT iteration's statistics — the display contract. The full
     // per-cycle record is retained in state.stats.byCycle.

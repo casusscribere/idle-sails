@@ -45,6 +45,10 @@ export function defaultSettings() {
   // while its port has seen traffic within the past decade, so quiet ports go
   // nameless but keep their dot), 'none' (no names), 'active' (only the most
   // active ports this cycle). Display-only; never touches the sim.
+  // events: the events-log category tree — ship losses, wars, and port
+  //   foundings/captures/abandonment, each independently toggleable under the
+  //   panel. wrecks: whether sunken-ship markers are drawn on the chart. Both
+  //   display-only.
   return {
     perfTier: 'medium',
     panels: { ...DEFAULT_PANELS },
@@ -52,6 +56,8 @@ export function defaultSettings() {
     region: 'world',
     layers: {},
     portNames: 'default',
+    events: { losses: true, wars: true, ports: true },
+    wrecks: true,
     legend: { ships: true, flags: true },
     collapsed: { legend: false, events: false, stats: false, tracker: false }
   };
@@ -71,6 +77,10 @@ export function loadSettings(storage = defaultStorage()) {
     if (s && typeof s.furled === 'boolean') out.furled = s.furled;
     if (s && typeof s.region === 'string' && /^[a-z0-9-]{1,40}$/.test(s.region)) out.region = s.region;
     if (s && (s.portNames === 'default' || s.portNames === 'none' || s.portNames === 'active')) out.portNames = s.portNames;
+    if (s && s.events && typeof s.events === 'object')
+      for (const k of Object.keys(out.events))
+        if (typeof s.events[k] === 'boolean') out.events[k] = s.events[k];
+    if (s && typeof s.wrecks === 'boolean') out.wrecks = s.wrecks;
     if (s && s.layers && typeof s.layers === 'object')
       for (const k of Object.keys(s.layers).slice(0, 64))
         if (typeof s.layers[k] === 'boolean' && /^[a-z0-9-]{1,40}$/.test(k)) out.layers[k] = s.layers[k];
