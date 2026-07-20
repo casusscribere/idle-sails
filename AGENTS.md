@@ -52,6 +52,14 @@ Every design decision answers to both of these:
 
 ## Current state (as of 2026-07-20)
 
+> ⚠️ **BRANCH: you may be on `movement-realism`.** Check `git branch --show-current`.
+> This branch is the experimental **"complex realism" fork** (region-aware sinking,
+> convoys, then vessel persistence/capture/chases which BREAK fate-at-spawn
+> determinism). `main` is the **classic deterministic idler** and is the only branch
+> that deploys to the live site. See **`planning/PLAN-5-realism.md`** for the charter,
+> divergence contract, and increment plan. Everything below describes the shared
+> state at the fork point; realism-branch progress is logged in PLAN-5-realism.md.
+
 - **UX + ACCURACY PASS (2026-07-20, all live).** A run of direct-request fixes on
   top of the finished world, each committed + deployed:
   - **Port names** — a 3-way menu radio (Default / None / Most active,
