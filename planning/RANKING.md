@@ -415,15 +415,19 @@ plate, Pacific plate, cursor lat/long, co-located icons, chart art, overlay
 taxonomy, name-list QA.
 | Item | Src | Feas | Note |
 |---|---|---|---|
-| Full-Mediterranean `europe-med` plate (N. African coast) | tweaks 21 | A | bounds tweak; Algiers/Tunis/Tripoli/Alexandria now populate it |
-| **Pacific plate** (W NA/SA ↔ E Asia) | ideas 15 | A | one `REGIONS` entry; content now exists (Callao/Guayaquil/Valparaíso/Nootka/Acapulco/Manila/Canton) |
+| ~~Full-Mediterranean `europe-med` plate (N. African coast)~~ | tweaks 21 | A | ✅ **DONE 2026-07-20** — latMin 33→29; Algiers/Tunis/Tripoli/Alexandria in frame |
+| ~~Pacific plate (W NA/SA ↔ E Asia)~~ | ideas 15 | A→B | ✅ **DONE 2026-07-20** — new `pacific` plate; needed antimeridian-aware projection (`normLon`), both rims + the whaling-ground zone render |
 | ~~Toggle-all-port-names button~~ | tweaks 24 | A | ✅ **DONE 2026-07-20** — shipped as the 3-way **Port names** radio (Default/None/Most active) |
 | ~~Two-stage dormancy (grey → name hidden; start fresh greyed)~~ | tweaks 22,23 | B | ✅ **DONE 2026-07-20** — 10-yr name window separate from the 3-yr grey, both cycle-clamped (fresh at 1550) |
-| Cursor **lat/long readout** (toggle) | ideas 16 | A | inverse projection exists; the water-body/continent NAME is a follow-on (needs named-seas polygons) — split |
+| ~~Cursor lat/long readout (toggle)~~ | ideas 16 | A | ✅ **DONE 2026-07-20** — a trailing readout plate (`renderer.unproject`); the water-body/continent NAME stays a deferred follow-on (needs named-seas polygons) |
 | **Co-located ports share one icon**, panel lists both (Dejima/Nagasaki) | ideas 26, tweaks 19 | B | detect coincident display coords; merge dot + pick + panel (Nagasaki/Dejima are already SEPARATE + correctly flagged since Phase 4 — this is the shared-icon DISPLAY only) |
 | **Chart art** top/bottom ("here be dragons", ornament) for tall/wide framings | ideas 20 | B | art asset + render; fills empty sea on unusual aspect ratios |
 | **Overlay taxonomy** — sub-toggles by movement TYPE (arterial/coasting/coerced/fisheries/naval-state), not basin | tweaks 9 | B | design change to layer categories + a build-data lane-type tag |
 | Dutch (& other) name-list QA (`'t Vergulde Draeck`) | tweaks 16 | A | small data review |
+
+**Batch P remaining after 2026-07-20:** co-located Dejima/Nagasaki icon, chart art,
+the overlay-taxonomy re-categorization, and the Dutch name-list QA. The five cheap
+render/UX wins (both plates, the port-names radio, dormancy, cursor readout) are done.
 
 ### Batch R — Routing/baker residuals  ·  fold into the NEXT re-bake (Phase 2)
 **✅ Shipped 2026-07-20: the Cape Horn wrong-way wrap.** Pacific→Atlantic eastbound
