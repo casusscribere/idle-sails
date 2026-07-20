@@ -459,6 +459,26 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     return war.belligerents.some(side => side.includes(nid));
   }
 
+  // ---- convoys (movement-realism branch, PLAN-convoys.md) ------------------
+  // Rules come from datasets.convoys (absent on classic main → CONVOYS null →
+  // every path below no-ops, so the branch code merges harmlessly). First
+  // matching rule wins; coerced-flow lanes never convoy (charter).
+  const CONVOYS = datasets.convoys || null;
+  function convoyRuleFor(lane, year, belligWar) {
+    if (!CONVOYS || lane.middlePassage || lane.framing) return null;
+    for (const rule of CONVOYS.rules) {
+      if (rule.era && (year < rule.era.from || year > rule.era.to)) continue;
+      if (rule.match.system !== undefined) {
+        if (lane.system !== rule.match.system) continue;
+        if (rule.match.flags && !rule.match.flags.includes(lane.flag)) continue;
+        return rule;
+      } else if (rule.match.war === true && belligWar) return rule;
+    }
+    return null;
+  }
+  const NUM_WORDS = ['', 'a lone', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+  const numberWord = (n) => NUM_WORDS[n] || String(n);
+
   // ---- itinerary construction (chain baked legs of one route class) ----
   function buildItinerary(rng, startLane, routeClass, seasonAtStart, year) {
     const legs = [];
@@ -492,7 +512,12 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   }
 
   // ---- vessel generation (PLAN §4), fully deterministic given (id, seed) ----
-  function generateVessel(spawnSimClock) {
+  // `opts` (movement-realism) marks a CONVOY MEMBER: it copies the leader's lane
+  // and shifted schedule instead of picking/routing its own, but its id, name,
+  // type, tonnage, cargo, and fate still come from hashSeed('vessel', seed, id).
+  // opts.escort → a naval escort (naval type, ballast). Absent ⇒ a normal spawn,
+  // whose draw sequence is byte-identical to the pre-convoy code.
+  function generateVessel(spawnSimClock, opts) {
     const id = state.nextId++;
     const rng = mulberry32(hashSeed('vessel', seed, id));
     const cal0 = calendar(spawnSimClock);
@@ -500,18 +525,25 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     // 1. historical year = the flowing clock's year at spawn (during the reset ramp
     //    it clamps to ERA.to so lanes stay active while the *weights* blend back).
     const year = cal0.reset > 0 ? ERA.to : cal0.year;
-    // 2. route lane, weighted by this world's REALIZED flow (PLAN-3 S1): the trade
-    //    systems' per-decade voyage ranges, drawn once per seed, folded onto the
-    //    baked lanes — plus the residual floor and the naval pool.
-    const activeLanes = datasets.routes.filter(r => year >= r.era.from && year <= r.era.to);
-    if (!activeLanes.length) return null; // no lane active this year — caller reschedules
-    const lw = spawnLaneWeights(cal0, activeLanes);
-    const lane = weightedPick(rng, activeLanes, r => lw.get(r.id) || 0);
+    // 2. route lane, weighted by this world's REALIZED flow (PLAN-3 S1) — or, for a
+    //    convoy member, the leader's lane (copied).
+    let lane;
+    if (opts) lane = opts.lane;
+    else {
+      const activeLanes = datasets.routes.filter(r => year >= r.era.from && year <= r.era.to);
+      if (!activeLanes.length) return null; // no lane active this year — caller reschedules
+      const lw = spawnLaneWeights(cal0, activeLanes);
+      lane = weightedPick(rng, activeLanes, r => lw.get(r.id) || 0);
+    }
     // 3. flag / allegiance from the lane
     const power = powerById.get(lane.flag);
-    // 4. ship-type compatible with {lane, year}
-    const typeCands = lane.shipTypes.map(id => shipById.get(id)).filter(s => s && year >= s.era.from && year <= s.era.to);
-    if (!typeCands.length) return null; // no era-valid ship-type for this lane/year — reschedule
+    // 4. ship-type compatible with {lane, year} — a convoy escort takes an era-valid
+    //    naval type (galleon early, frigate/sloop-of-war later) from the whole roster.
+    const isEscort = !!(opts && opts.escort);
+    const typeCands = isEscort
+      ? datasets.shipTypes.filter(s => s.roles.includes('naval') && year >= s.era.from && year <= s.era.to)
+      : lane.shipTypes.map(id => shipById.get(id)).filter(s => s && year >= s.era.from && year <= s.era.to);
+    if (!typeCands.length) return null; // no era-valid ship-type — reschedule
     const type = pick(rng, typeCands);
     const routeClass = type.routeClass;
     // 5. tonnage / guns / crew (mode-weighted tonnage)
@@ -521,40 +553,44 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     // 6. name — dual-role types (the galleon) take their character from the LANE:
     //    a Carrera galleon is a merchant (religious Iberian names), an escort on a
     //    naval lane is a warship. Pure-naval types are naval everywhere.
-    const isNaval = lane.naval === true || (type.roles.includes('naval') && !type.roles.includes('merchant'));
+    const isNaval = isEscort || lane.naval === true || (type.roles.includes('naval') && !type.roles.includes('merchant'));
     // candidate #0 from the vessel stream — burning exactly the draws makeName
     // always burned here, so every later draw (cargo, itinerary, fate) is
     // untouched by pass 3.5; the uniqueness redraw happens at the end, on the
     // vessel's own dedicated name stream.
     let name = makeName(rng, power, isNaval);
-    // 7. cargo (Middle-Passage lanes carry only enslaved-people)
-    const cargoId = lane.middlePassage ? 'enslaved-people'
+    // 7. cargo (an escort sails in ballast; Middle-Passage lanes carry only enslaved-people)
+    const cargoId = isEscort ? 'ballast'
+      : lane.middlePassage ? 'enslaved-people'
       : weightedPick(rng, lane.cargo, c => (c === 'ballast' ? 0.6 : 1));
     const cargo = cargoById.get(cargoId);
-    // 8. itinerary from baked legs
-    const legSpecs = buildItinerary(rng, lane, routeClass, cal0.season, year);
-    if (!legSpecs.length) return null; // no baked leg — skip (caller reschedules)
-
-    // schedule legs in absolute sim-time, with port dwell between them.
-    // LIA modifier (PLAN-3 S2, the bounded era-climate signal): North Atlantic
-    // legs during the Maunder Minimum (1645–1715) run ~7% longer — a documented
-    // storminess proxy, applied to duration rather than to wind fields (per-era
-    // reanalysis does not exist; declared boundary).
-    const liaFactor = (year >= 1645 && year <= 1715) ? 1.07 : 1.0;
-    let t = spawnSimClock;
-    const schedule = [];
-    for (let i = 0; i < legSpecs.length; i++) {
-      const { laneId, leg } = legSpecs[i];
-      const depart = t;
-      const g0 = legGeom.get(leg.id);
-      const northAtlantic = g0.maxLat > 40 && leg.coords[0][0] < 40;   // rough N-Atlantic/N-Sea gate
-      const durSec = (leg.hours || (g0.total / 1.852 / 6)) * 3600 * (northAtlantic ? liaFactor : 1);
-      const arrive = depart + durSec;
-      schedule.push({ laneId, legId: leg.id, from: leg.from, to: leg.to, depart, arrive });
-      t = arrive;
-      if (i < legSpecs.length - 1) t += rrange(rng, PORT_DWELL_DAYS[0], PORT_DWELL_DAYS[1]) * SEC_PER_DAY;
+    // 8. itinerary — a member copies the leader's shifted schedule; a normal
+    //    vessel builds her own from the baked legs.
+    let schedule, voyageEnd;
+    if (opts) { schedule = opts.schedule; voyageEnd = opts.voyageEnd; }
+    else {
+      const legSpecs = buildItinerary(rng, lane, routeClass, cal0.season, year);
+      if (!legSpecs.length) return null; // no baked leg — skip (caller reschedules)
+      // LIA modifier (PLAN-3 S2, the bounded era-climate signal): North Atlantic
+      // legs during the Maunder Minimum (1645–1715) run ~7% longer — a documented
+      // storminess proxy, applied to duration rather than to wind fields (per-era
+      // reanalysis does not exist; declared boundary).
+      const liaFactor = (year >= 1645 && year <= 1715) ? 1.07 : 1.0;
+      let t = spawnSimClock;
+      schedule = [];
+      for (let i = 0; i < legSpecs.length; i++) {
+        const { laneId, leg } = legSpecs[i];
+        const depart = t;
+        const g0 = legGeom.get(leg.id);
+        const northAtlantic = g0.maxLat > 40 && leg.coords[0][0] < 40;   // rough N-Atlantic/N-Sea gate
+        const durSec = (leg.hours || (g0.total / 1.852 / 6)) * 3600 * (northAtlantic ? liaFactor : 1);
+        const arrive = depart + durSec;
+        schedule.push({ laneId, legId: leg.id, from: leg.from, to: leg.to, depart, arrive });
+        t = arrive;
+        if (i < legSpecs.length - 1) t += rrange(rng, PORT_DWELL_DAYS[0], PORT_DWELL_DAYS[1]) * SEC_PER_DAY;
+      }
+      voyageEnd = t;
     }
-    const voyageEnd = t;
 
     // 9. fate: roll per-day loss across the whole voyage at spawn (deterministic)
     const activeWars = warsActive(year).filter(w => isBelligerent(w, lane.flag));
@@ -583,6 +619,32 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
           break outer;
         }
       }
+    }
+
+    // 9b. convoy decision (a leader only) + the escorted reprieve. The convoy
+    //     roll is pure in the leader's id (its own sub-stream); the reprieve is
+    //     pure in each member's id. Neither touches the vessel rng, so the ships
+    //     themselves are unchanged — only whether more spawn alongside.
+    // a mandatory-convoy trigger is a NATION-vs-nation war, not a standing hazard
+    // (the Barbary corsairs, the Pirate Round): those already raise the loss roll,
+    // but they don't put a Convoy Act in force.
+    const realWar = activeWars.some(w => !w.hazard);
+    let convoyPlan = null;
+    if (!opts) {
+      const rule = convoyRuleFor(lane, year, realWar);
+      if (rule) {
+        const crng = mulberry32(hashSeed('convoy', seed, id));
+        if (crng() < rule.rate) {
+          const N = rint(crng, rule.size[0], rule.size[1]);
+          const escorted = rule.escort === 'always' || (rule.escort === 'war' && realWar);
+          convoyPlan = { N, escorted, staggerHours: rrange(crng, 3, 10), lane, rule };
+        }
+      }
+    }
+    const escorted = opts ? opts.escorted : (convoyPlan ? convoyPlan.escorted : false);
+    // an escort spares a prize-taking (weather spares no one): clear the fate
+    if (escorted && CONVOYS && fate.lost && CONVOYS.reprieve.causes.includes(fate.cause)) {
+      if (mulberry32(hashSeed('reprieve', seed, id))() < CONVOYS.reprieve.q) fate = { lost: false };
     }
 
     // 10. unique active name (pass 3.5). The ledger is written in spawn order,
@@ -622,8 +684,32 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
       laneName: lane.name, system: lane.system,
       schedule, spawnAt: spawnSimClock, voyageEnd,
       fate,
-      status: 'sailing', retiredAt: null
+      status: 'sailing', retiredAt: null,
+      // convoy fields are sparse — a singleton carries none (saves stay lean)
+      ...(opts ? { convoyId: opts.convoyId } : convoyPlan ? { convoyId: id } : {}),
+      ...(isEscort ? { convoyEscort: true } : {}),
+      // transient (never serialized): the spawn loop consumes + deletes it
+      ...(convoyPlan ? { _convoyPlan: convoyPlan } : {})
     };
+  }
+
+  // Build a convoy around a generated leader: N−1 trade members copying her
+  // shifted schedule (line-astern by the stagger), plus one naval escort when the
+  // rule granted it. Members get fresh contiguous ids and their own vessel streams.
+  function buildConvoy(lead, plan) {
+    const group = [lead];
+    const staggerSec = plan.staggerHours * 3600;
+    const shift = (off) => lead.schedule.map(s => ({ ...s, depart: s.depart + off, arrive: s.arrive + off }));
+    for (let i = 1; i < plan.N; i++) {
+      const off = i * staggerSec;
+      const m = generateVessel(lead.spawnAt + off, { convoyId: lead.id, lane: plan.lane, schedule: shift(off), voyageEnd: lead.voyageEnd + off, escorted: plan.escorted });
+      if (m) group.push(m);
+    }
+    if (plan.escorted) {
+      const esc = generateVessel(lead.spawnAt, { convoyId: lead.id, lane: plan.lane, schedule: shift(0), voyageEnd: lead.voyageEnd, escorted: true, escort: true });
+      if (esc) group.push(esc);
+    }
+    return group;
   }
 
   // Interpolate a point [lon,lat] at fraction `frac` along a baked leg — used by
@@ -699,6 +785,36 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   // era-honest port name for a log line (reset ramp clamps the year, as spawning does)
   const nameAt = (pid, cal) => portNameAt(portById.get(pid), cal.reset > 0 ? ERA.to : cal.year);
 
+  // Register a spawned vessel's observation-layer record (port calls, statistics,
+  // port history) — recorded at spawn from her known schedule + fate, so a big
+  // fast-forward tick records the same as many small ones. Factored out so every
+  // convoy member registers identically; the LOG line is emitted separately (one
+  // per convoy, not one per member).
+  function registerVessel(v) {
+    for (const seg of v.schedule) {
+      if (!v.fate.lost || v.fate.atSec >= seg.depart)
+        state.portCalls[seg.from] = Math.max(state.portCalls[seg.from] || -Infinity, seg.depart);
+      if (!v.fate.lost || v.fate.atSec >= seg.arrive)
+        state.portCalls[seg.to] = Math.max(state.portCalls[seg.to] || -Infinity, seg.arrive);
+    }
+    const sb = statsBucketAt(v.spawnAt);
+    sb.spawned++;
+    laneStats(sb, v.schedule[0].laneId).spawned++;
+    sb.byCargo[v.cargoId] = (sb.byCargo[v.cargoId] || 0) + 1;
+    if (tune.portHistoryDepth > 0) {
+      const nm = (v.prefix ? v.prefix + ' ' : '') + v.name;
+      const call = (pid, t, dir) => {
+        const h = state.portHistory[pid] || (state.portHistory[pid] = []);
+        h.push({ t, dir, name: nm, type: v.typeName });
+        if (h.length > tune.portHistoryDepth) h.splice(0, h.length - tune.portHistoryDepth);
+      };
+      for (const seg of v.schedule) {
+        if (!v.fate.lost || v.fate.atSec >= seg.depart) call(seg.from, seg.depart, 'out');
+        if (!v.fate.lost || v.fate.atSec >= seg.arrive) call(seg.to, seg.arrive, 'in');
+      }
+    }
+  }
+
   // ---- the tick ----
   function tick(dtSimSeconds) {
     if (!(dtSimSeconds > 0)) return;
@@ -708,42 +824,30 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     while (state.nextSpawnAt <= end) {
       const at = Math.max(state.nextSpawnAt, state.simClock);
       const v = generateVessel(at);
+      let tradeCount = 1;   // trade voyages spawned this event (drives interval scaling)
       if (v) {
-        state.vessels.push(v);
-        state.counters.spawned++;
-        // Register the voyage's port calls (departures + arrivals, truncated at
-        // the pre-rolled fate) — the ACTUAL traffic record behind port greying.
-        // Known at spawn, so a big fast-forward tick records the same calls as
-        // many small ones.
-        for (const seg of v.schedule) {
-          if (!v.fate.lost || v.fate.atSec >= seg.depart)
-            state.portCalls[seg.from] = Math.max(state.portCalls[seg.from] || -Infinity, seg.depart);
-          if (!v.fate.lost || v.fate.atSec >= seg.arrive)
-            state.portCalls[seg.to] = Math.max(state.portCalls[seg.to] || -Infinity, seg.arrive);
-        }
-        // observation layer: statistics + port histories, recorded at spawn
-        // (schedule and fate are already known — granularity-independent).
-        const sb = statsBucketAt(at);
-        sb.spawned++;
-        laneStats(sb, v.schedule[0].laneId).spawned++;
-        sb.byCargo[v.cargoId] = (sb.byCargo[v.cargoId] || 0) + 1;
-        if (tune.portHistoryDepth > 0) {
-          const nm = (v.prefix ? v.prefix + ' ' : '') + v.name;
-          const call = (pid, t, dir) => {
-            const h = state.portHistory[pid] || (state.portHistory[pid] = []);
-            h.push({ t, dir, name: nm, type: v.typeName });
-            if (h.length > tune.portHistoryDepth) h.splice(0, h.length - tune.portHistoryDepth);
-          };
-          for (const seg of v.schedule) {
-            if (!v.fate.lost || v.fate.atSec >= seg.depart) call(seg.from, seg.depart, 'out');
-            if (!v.fate.lost || v.fate.atSec >= seg.arrive) call(seg.to, seg.arrive, 'in');
-          }
-        }
+        const plan = v._convoyPlan;
+        if (plan) delete v._convoyPlan;   // transient — never pushed/serialized
         const c = calendar(at);
-        log({ t: at, kind: 'depart', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} (${v.typeName}, ${v.powerName}) cleared ${nameAt(v.schedule[0].from, c)} for ${nameAt(v.schedule[0].to, c)}`, date: fmtDate(c), vesselId: v.id, from: v.schedule[0].from, year: v.year });
+        if (plan) {
+          const group = buildConvoy(v, plan);
+          for (const m of group) { state.vessels.push(m); state.counters.spawned++; registerVessel(m); }
+          tradeCount = group.filter(m => !m.convoyEscort).length;
+          // one departure line for the whole body of sail (losses/arrivals stay per-vessel)
+          const escorted = group.some(m => m.convoyEscort);
+          const isFlota = /^(carrera|carreira)/.test(v.system || '');
+          const head = isFlota ? `The ${v.powerName} flota — ${numberWord(tradeCount)} sail`
+            : `A convoy of ${numberWord(tradeCount)} sail (${v.powerName})`;
+          log({ t: at, kind: 'depart', text: `${head}${escorted ? ' under escort' : ''} cleared ${nameAt(v.schedule[0].from, c)} for ${nameAt(v.schedule[0].to, c)}`, date: fmtDate(c), vesselId: v.id, convoyId: v.id, from: v.schedule[0].from, year: v.year });
+        } else {
+          state.vessels.push(v); state.counters.spawned++; registerVessel(v);
+          log({ t: at, kind: 'depart', text: `${v.prefix ? v.prefix + ' ' : ''}${v.name} (${v.typeName}, ${v.powerName}) cleared ${nameAt(v.schedule[0].from, c)} for ${nameAt(v.schedule[0].to, c)}`, date: fmtDate(c), vesselId: v.id, from: v.schedule[0].from, year: v.year });
+        }
       }
       const u = spawnRng();
-      state.nextSpawnAt = at + SEC_PER_DAY * (-MEAN_SPAWN_INTERVAL_DAYS / spawnActivity(calendar(at))) * Math.log(1 - u);
+      // a convoy counts as its trade-voyage count against the flow matrix: the
+      // next interval scales by N so mean voyages/yr per lane stays the matrix's.
+      state.nextSpawnAt = at + tradeCount * SEC_PER_DAY * (-MEAN_SPAWN_INTERVAL_DAYS / spawnActivity(calendar(at))) * Math.log(1 - u);
     }
 
     // advance / resolve events for each live vessel
@@ -766,7 +870,8 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
           middlePassage: v.middlePassage, laneFraming: v.laneFraming, system: v.system,
           lon: wp.lon, lat: wp.lat, at: v.fate.atSec, date: fmtDate(c),
           cause: v.fate.cause, war: v.fate.war ? v.fate.war.name : null,
-          nearPortId, nearPortName: nameAt(nearPortId, c)   // named as of the loss
+          nearPortId, nearPortName: nameAt(nearPortId, c),   // named as of the loss
+          ...(v.convoyId ? { convoyId: v.convoyId } : {})
         });
       } else if (!v.fate.lost && end >= v.voyageEnd && v.status === 'sailing') {
         v.status = 'arrived'; v.retiredAt = v.voyageEnd; state.counters.arrived++;
@@ -807,7 +912,9 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   function activeVessels(density = 1) {
     const out = [];
     for (const v of state.vessels) {
-      if (density < 1 && hashSeed('draw', v.id) / 4294967296 >= density) continue;
+      // thin by CONVOY, not by member, so a convoy shows or hides whole at Low
+      // tier (still a stable subset; the sim underneath is identical)
+      if (density < 1 && hashSeed('draw', v.convoyId ?? v.id) / 4294967296 >= density) continue;
       const pos = positionOf(v, state.simClock);
       out.push({ ...v, pos });
     }

@@ -54,6 +54,26 @@ model stays granularity-independent.
 spawn-event grouping of merchantmen under escort, an escorted-reprieve on the loss
 roll, and a convoy ledger. Does not break fate-at-spawn (grouping + a shared risk
 modifier decided at spawn). Inherits T9's evidence-classed rates.
+- **2a — sim core (2026-07-20, DONE).** `data-src/convoys.json` (9 rules, folded
+  additively to `datasets.convoys`, build-data-validated: systems exist, no
+  coerced-flow lane, rates/sizes/class/note enforced). `world.js`: a convoy roll
+  pure in the leader's id (`hashSeed('convoy',…)`), members copying the leader's
+  lane + shifted schedule from their own vessel streams, a naval escort when the
+  rule grants one, the escorted reprieve (`hashSeed('reprieve',…)`, prize-takings
+  only), interval scaling by N (flow honesty), and one group departure log line.
+  Trigger is REAL wars only (hazard/corsair standing risk doesn't put a Convoy Act
+  in force). Measured: ~19% of traffic convoyed in peace, ~50–64% in wartime — the
+  historical surge. Group-thinning by convoy (Low tier shows a convoy whole). 68
+  tests green (+7 `convoys.test.mjs`: determinism, granularity, structure,
+  charter-exclusion, reprieve contract, flow honesty/population, save-restore).
+  **Known tradeoff:** convoys cluster same-culture ships, so the pass-3.5
+  name-uniqueness tail fattens (duplicate-moment ~55%, refractory violations
+  ~5.9%, up from ~1.6%/~0.1%) — the small Iberian religious-name sub-pool exhausts
+  under a flota. Historically defensible ("several *Rosários* at once"); the two
+  pass-3.5 tests were relaxed to convoy-aware bounds. **A future increment should
+  expand the convoy-heavy culture pools to restore the tighter guarantee.**
+- **2b — render + UI (PENDING).** Formation offset, the convoy selection ring, and
+  the convoy ledger (`vesselCardHtml` refactor + `showConvoy` + main.js routing).
 
 **Increment 3+ — Pass 5: persistence / capture / chases** *(BREAKS fate-safe)*.
 The real architecture change: a vessel is a persistent entity with a lifespan,

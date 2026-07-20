@@ -1,0 +1,33 @@
+{
+  "_doc": "Convoy rules (movement-realism branch, PLAN-convoys.md §5). Folded additively into datasets.convoys by build-data. First matching rule wins; a lane matched by no rule never convoys. match.system tests the lane's folded flow system; match.war fires only when a belligerent war covers the lane's theatre. match.flags (optional) restricts a rule to those allegiances. size is [min,max] TOTAL sail in the sim-scale group (the historical sizes are far larger — see research/ambient-flows.md §1 / PLAN-convoys.md §1). escort: 'always' | 'war' (only in an active belligerent war) | 'never'. Every rule carries an evidence class + note (the charter's no-undeclared-estimates rule applied to sim rules). Middle-Passage and framing (coerced-flow) lanes are excluded in the sim, never here.",
+  "reprieve": { "q": 0.5, "causes": ["taken as a prize"] },
+  "rules": [
+    { "match": { "system": "carrera-de-indias" }, "era": { "from": 1564, "to": 1778 },
+      "rate": 0.6, "size": [4, 7], "escort": "always", "class": "asserted",
+      "note": "The Carrera flota, compulsory by ordinance 1564 to the free-trade decree; a capitana/almiranta galleon pair escorts. Historical fleets ran 17–50+ sail; the sim draws a spectator-scale group." },
+    { "match": { "system": "carrera" }, "era": { "from": 1564, "to": 1778 },
+      "rate": 0.6, "size": [4, 7], "escort": "always", "class": "asserted",
+      "note": "The Carrera flota (older lane id); as carrera-de-indias." },
+    { "match": { "system": "pacific-colonial-spanish" },
+      "rate": 0.6, "size": [3, 6], "escort": "always", "class": "asserted",
+      "note": "The one grouped annual Pacific convoy timed to the Portobelo fair (the Armada del Mar del Sur bringing Potosí silver up to Panama)." },
+    { "match": { "system": "brazil-fleets" }, "era": { "from": 1649, "to": 1765 },
+      "rate": 0.55, "size": [4, 7], "escort": "always", "class": "asserted",
+      "note": "The Brazil frotas, compulsory 1649 to Sept 1765, under 1–2 crown warships; historical sizes 20–100 sail (asserted)." },
+    { "match": { "system": "carreira-da-india" }, "era": { "from": 1550, "to": 1700 },
+      "rate": 0.4, "size": [3, 6], "escort": "war", "class": "asserted",
+      "note": "The Portuguese Carreira da Índia sailed in annual armadas from Lisbon round the Cape; grouping strongest in the 16th–early 17th c." },
+    { "match": { "system": "carreira" }, "era": { "from": 1550, "to": 1700 },
+      "rate": 0.4, "size": [3, 6], "escort": "war", "class": "asserted",
+      "note": "The Carreira da Índia (older lane id); as carreira-da-india." },
+    { "match": { "system": "voc-indies" },
+      "rate": 0.3, "size": [3, 5], "escort": "war", "class": "asserted",
+      "note": "VOC return-fleet cohorts on the Cape route; 2–3 outward and 1–3 homeward fleets a year, escorted on the European legs in wartime." },
+    { "match": { "system": "levant-trade", "flags": ["britain"] },
+      "rate": 0.3, "size": [3, 4], "escort": "war", "class": "asserted",
+      "note": "The English Levant Company's Smyrna convoy. French échelles shipping (individual tramping, the caravane maritime) and Venetian trade stay single-ship." },
+    { "match": { "war": true },
+      "rate": 0.35, "size": [3, 6], "escort": "war", "class": "asserted",
+      "note": "Wartime trade convoy on a belligerent's lanes; the British Convoy Acts (1793/1798/1803) made it mandatory. Post-1793 British convoyed share is asserted 0.75–0.95 (wide — verify vs Knight)." }
+  ]
+}
