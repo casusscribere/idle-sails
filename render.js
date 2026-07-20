@@ -319,7 +319,7 @@ export function createRenderer(canvas, assets) {
     // width when the flowing year crosses a rename, so drawPorts rebuilds then.
     // dots use the DISPLAY coord (snapped to the coastline in build-data) so a
     // port whose routing coord sits offshore still draws on the shore.
-    portScreen = ports.map(p => { const [x, y] = project(p.displayLon ?? p.lon, p.displayLat ?? p.lat); return { id: p.id, x, y }; });
+    portScreen = ports.map(p => { const [x, y] = project(p.displayLon ?? p.lon, p.displayLat ?? p.lat); return { id: p.id, x, y, kind: p.kind, zone: p.zone }; });
     computePortLabels(c, labelYear);
   }
 
@@ -334,7 +334,7 @@ export function createRenderer(canvas, assets) {
     c.font = `11px "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif`;
     const placed = [];   // committed label rects
     const dots = portScreen.map(ps => ({ x0: ps.x - 5, y0: ps.y - 5, x1: ps.x + 5, y1: ps.y + 5 }));
-    portDraw = ports.map((p, i) => ({ id: p.id, x: portScreen[i].x, y: portScreen[i].y, name: displayName(p, year), label: null }));
+    portDraw = ports.map((p, i) => ({ id: p.id, x: portScreen[i].x, y: portScreen[i].y, name: displayName(p, year), label: null, kind: p.kind, zone: p.zone }));
     for (let i = 0; i < portDraw.length; i++) {
       const { x, y, name } = portDraw[i];
       const w = c.measureText(name).width;
@@ -386,6 +386,15 @@ export function createRenderer(canvas, assets) {
       }
       const on = !active || active.has(pd.id);
       const col = on ? INK : INK_DIM;
+      // a whaling ground is an AREA, not a harbour: draw it as a soft dashed
+      // zone with a fluke at its heart, and hang the name above the oval.
+      if (pd.kind === 'grounds') {
+        const [rx, ry] = zoneRadii(pd);
+        drawGroundsZone(pd.x, pd.y, rx, ry, col, on);
+        if (pd.id === selectedPortId || !named || named.has(pd.id))
+          label(ctx, pd.name, pd.x, pd.y - ry - 5, 11, col, 'center');
+        continue;
+      }
       ctx.save();
       ctx.fillStyle = col; ctx.strokeStyle = col;
       ctx.beginPath(); ctx.arc(pd.x, pd.y, 2.6, 0, Math.PI * 2); ctx.fill();
@@ -394,6 +403,32 @@ export function createRenderer(canvas, assets) {
       ctx.restore();
       if (showName(pd)) label(ctx, pd.name, pd.label.ax, pd.label.ay, 11, col, pd.label.align);
     }
+  }
+
+  // Zone extent in px: the grounds' geographic size (degrees) times the current
+  // projection scale, so the oval grows on regional crops and shrinks on the
+  // world plate — a real area, not a fixed blob. Floored so it stays legible.
+  function zoneRadii(pd) {
+    const z = pd.zone || { rx: 6, ry: 4 };
+    return [Math.max(11, z.rx * k), Math.max(8, z.ry * k)];
+  }
+  // A whaling-ground zone: faint fill, a dashed rim, and a small whale-fluke at
+  // the nominal centre.
+  function drawGroundsZone(x, y, rx, ry, col, on) {
+    ctx.save();
+    ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(90,70,45,0.06)'; ctx.fill();
+    ctx.setLineDash([4, 3.5]); ctx.lineWidth = 1; ctx.strokeStyle = col;
+    ctx.globalAlpha = on ? 0.55 : 0.4; ctx.stroke();
+    ctx.setLineDash([]); ctx.globalAlpha = on ? 0.7 : 0.45; ctx.lineWidth = 1.1;
+    // a minimal fluke: two shallow lobes dipping from a central notch
+    const f = 4.2;
+    ctx.beginPath();
+    ctx.moveTo(x - f, y - f * 0.5);
+    ctx.quadraticCurveTo(x - f * 0.3, y + f * 0.2, x, y - f * 0.15);
+    ctx.quadraticCurveTo(x + f * 0.3, y + f * 0.2, x + f, y - f * 0.5);
+    ctx.stroke();
+    ctx.restore();
   }
 
   // A destroyed / abandoned port: the chart remembers where it stood but marks it
@@ -719,6 +754,13 @@ export function createRenderer(canvas, assets) {
       // a not-yet-founded port isn't on the chart and can't be clicked; a
       // ruined one keeps its mark and stays inspectable
       if (lifecycle && !lifecycle.existing.has(ps.id) && !lifecycle.ruined.has(ps.id)) continue;
+      if (ps.kind === 'grounds') {
+        // a zone picks anywhere inside its oval (mapped into the point metric)
+        const [rx, ry] = zoneRadii(ps);
+        const nd = ((px - ps.x) / rx) ** 2 + ((py - ps.y) / ry) ** 2;
+        if (nd <= 1) { const d = nd * 100; if (d < pd) { pd = d; pBest = ps.id; } }
+        continue;
+      }
       const d = (ps.x - px) ** 2 + (ps.y - py) ** 2;
       if (d < pd) { pd = d; pBest = ps.id; }
     }

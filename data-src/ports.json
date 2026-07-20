@@ -518,15 +518,15 @@
         "from": 1630,
         "to": 1850
       },
-      "note": "Founded 1630. British colonial to 1783; later lanes fly the US flag.",
+      "note": "Founded 1630. British colonial until the British evacuation of March 1776; American thereafter.",
       "eraPowers": [
         {
           "from": 1630,
-          "to": 1782,
+          "to": 1775,
           "power": "britain"
         },
         {
-          "from": 1783,
+          "from": 1776,
           "to": 1850,
           "power": "usa"
         }
@@ -591,15 +591,15 @@
         "from": 1682,
         "to": 1850
       },
-      "note": "Founded 1682. Staged at the Delaware capes for the 1° grid.",
+      "note": "Founded 1682. Staged at the Delaware capes for the 1° grid. Seat of the Continental Congress; American from 1776 (a brief British occupation 1777–78 aside).",
       "eraPowers": [
         {
           "from": 1682,
-          "to": 1782,
+          "to": 1775,
           "power": "britain"
         },
         {
-          "from": 1783,
+          "from": 1776,
           "to": 1850,
           "power": "usa"
         }
@@ -615,15 +615,15 @@
       "roles": [
         "colonial"
       ],
-      "note": "The tobacco coast — Norfolk/Annapolis, staged at the capes.",
+      "note": "The tobacco coast — Norfolk/Annapolis, staged at the capes. Under Patriot control from 1776 (Yorktown, 1781, sealed it).",
       "eraPowers": [
         {
           "from": 1550,
-          "to": 1782,
+          "to": 1775,
           "power": "britain"
         },
         {
-          "from": 1783,
+          "from": 1776,
           "to": 1850,
           "power": "usa"
         }
@@ -1944,6 +1944,8 @@
       "lat": 67.0,
       "power": "dutch",
       "region": "arctic",
+      "kind": "grounds",
+      "zone": { "rx": 6, "ry": 4 },
       "roles": [
         "station"
       ],
@@ -2079,6 +2081,8 @@
       "lat": -15.0,
       "power": "usa",
       "region": "south-pacific",
+      "kind": "grounds",
+      "zone": { "rx": 9, "ry": 7 },
       "roles": [
         "station"
       ],

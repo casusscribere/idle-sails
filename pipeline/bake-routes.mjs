@@ -251,8 +251,14 @@ function buildMaskSet(iceSouth) {
 }
 const maskBySeason = buildMaskSet(ICE_S);
 const maskBySeasonHorn = buildMaskSet(ICE_S_HORN);
-// Per-destination mask set: Pacific-coast-Americas ports get the Horn-open set.
-const masksFor = destPort => HORN_DEST.has(destPort.id) ? maskBySeasonHorn : maskBySeason;
+// The Drake Passage opens (−58 cap) when EITHER endpoint is a Pacific-coast-
+// Americas port — the Horn is rounded in BOTH directions. Keying only on the
+// destination broke the eastbound legs: Callao→Cadiz (Atlantic destination, so
+// the −50 cap) could not round the Horn and the router fled the wrong way around
+// the globe (a Pacific→antimeridian wrap). London→Canton stays capped: Canton is
+// not an American Pacific port, so neither endpoint opens the Horn.
+const hornOpen = (a, b) => HORN_DEST.has(a.id) || HORN_DEST.has(b.id);
+const masksForHorn = horn => horn ? maskBySeasonHorn : maskBySeason;
 const mask = maskBySeason.get('jja'); // default mask for port snapping
 
 // ---- calibrated vessels (mirror build-all.mjs) ----------------------------
@@ -278,10 +284,10 @@ const classOf = new Map(shipTypes.map(s => [s.id, s.routeClass]));
 
 // ---- field (Dijkstra) cache: destination × routeClass × season ------------
 const fieldCache = new Map();
-function fieldFor(destPort, routeClass, seasonId) {
-  const key = `${destPort.id}_${routeClass}_${seasonId}`;
+function fieldFor(destPort, routeClass, seasonId, horn) {
+  const key = `${destPort.id}_${routeClass}_${seasonId}_${horn ? 'H' : 'n'}`;
   if (fieldCache.has(key)) return fieldCache.get(key);
-  const m = masksFor(destPort).get(seasonId);
+  const m = masksForHorn(horn).get(seasonId);
   const [sc, sr] = snapToOcean(m, destPort.lon, destPort.lat);
   const { time, prev } = dijkstra(m, vesselByClass.get(routeClass), SEASON_IDX.get(seasonId), sc, sr);
   const f = { time, prev, srcIdx: gi.idx(sc, sr) };
@@ -416,9 +422,10 @@ for (const route of routes) {
   for (const routeClass of classes) {
     // Pass 1 — reconstruct every season's raw least-time path + its tack score.
     const perSeason = [];
-    const destMasks = masksFor(to);   // origin must snap in the SAME mask the field used
+    const horn = hornOpen(from, to);
+    const destMasks = masksForHorn(horn);   // origin must snap in the SAME mask the field used
     for (const s of SEASONS) {
-      const field = fieldFor(to, routeClass, s.id);
+      const field = fieldFor(to, routeClass, s.id, horn);
       const [oc, or] = snapToOcean(destMasks.get(s.id), from.lon, from.lat);
       const originIdx = gi.idx(oc, or);
       const raw = reconstruct(field, originIdx);
@@ -489,9 +496,9 @@ function landCrossings(a, b) {
 const problems = [];
 for (const b of baked) {
   if (b.coords.length < 2) problems.push(`${b.id}: <2 coords`);
-  // Pacific-coast-Americas destinations legitimately round Cape Horn to −58; every
-  // other lane stays north of the −50 cap.
-  const southFloor = HORN_DEST.has(b.to) ? ICE_S_HORN : ICE_S;
+  // A lane with a Pacific-coast-Americas port at EITHER end legitimately rounds
+  // Cape Horn to −58 (in both directions); every other lane stays north of −50.
+  const southFloor = (HORN_DEST.has(b.from) || HORN_DEST.has(b.to)) ? ICE_S_HORN : ICE_S;
   for (const c of b.coords) {
     if (c[1] < southFloor - 1) { problems.push(`${b.id}: point beyond southern ice cap (lat ${c[1]})`); continue; }
     if (c[1] > ICE_N + 1) {
