@@ -55,8 +55,28 @@ const LOG_CAP = 200;
 const NAME_REFRACTORY_YEARS = 5;
 const NAME_REDRAWS = 8;
 const BASE_DAILY_LOSS = 0.0009;    // ~2.5% over a 30-day leg in peacetime
-const HURRICANE_UPLIFT = 2.0;      // Caribbean, jun–nov
-const CAPE_UPLIFT = 1.6;           // leg passing south of 30°S (Cape of Good Hope)
+const HURRICANE_UPLIFT = 2.0;      // the Caribbean/Gulf hurricane belt, jun–nov
+const CAPE_UPLIFT = 1.6;           // the deep Southern Ocean easting (Roaring Forties)
+
+// Region-aware sinking (movement-realism increment 1, ideas #24). The daily loss
+// roll reads the ship's ACTUAL position each day, so wrecks cluster at the real
+// graveyards of the age of sail instead of spreading evenly along a leg. Boxes in
+// [lon,lat]; `mult` stacks on the base daily rate; `cause` names the graveyard in
+// the wreck ledger; optional `era` gates a hazard to its years. Longitudes are
+// normalized to [−180,180] before the test (leg coords may be unwrapped for the
+// trans-Pacific galleon).
+const HAZARD_ZONES = [
+  { name: 'Cape Horn',            cause: 'wrecked rounding Cape Horn',            lon: [-70, -63], lat: [-58, -54], mult: 3.0 },
+  { name: 'Cape of Good Hope',    cause: 'foundered off the Cape of Good Hope',  lon: [16, 28],   lat: [-37, -34], mult: 2.2 },
+  { name: 'Sable Island',         cause: 'lost on Sable Island',                 lon: [-61, -59], lat: [43.4, 44.6], mult: 2.6 },
+  { name: 'the Goodwin Sands',    cause: 'wrecked on the Goodwin Sands',         lon: [1, 2.2],   lat: [50.8, 51.6], mult: 2.2 },
+  { name: 'the Scilly Isles',     cause: 'lost off the Scillies',                lon: [-7, -5.6], lat: [49.5, 50.3], mult: 2.0 },
+  { name: 'the Florida Straits',  cause: 'wrecked in the Florida Straits',       lon: [-81, -74], lat: [23, 28],   mult: 2.0 },
+  { name: 'the Skagerrak',        cause: 'foundered in the Skagerrak',           lon: [7, 11],    lat: [56.5, 58.5], mult: 1.8 },
+  { name: 'the South China Sea reefs', cause: 'wrecked on the South China Sea reefs', lon: [110, 118], lat: [7, 17], mult: 1.8 },
+  { name: 'the Mozambique Channel', cause: 'wrecked in the Mozambique Channel',  lon: [39, 44],   lat: [-23, -20], mult: 1.7 },
+  { name: 'the Torres Strait',    cause: 'wrecked in the Torres Strait',         lon: [142, 148], lat: [-12, -9],  mult: 2.0, era: [1788, 1850] }
+];
 
 // ---- deterministic PRNG ---------------------------------------------------
 function mulberry32(a) {
@@ -541,21 +561,24 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     let fate = { lost: false };
     outer:
     for (const seg of schedule) {
-      const g = legGeom.get(seg.legId);
       const days = Math.max(1, Math.round((seg.arrive - seg.depart) / SEC_PER_DAY));
+      const legSpan = seg.arrive - seg.depart || 1;
       const fromP = portById.get(seg.from), toP = portById.get(seg.to);
-      // per-leg risk multiplier
-      let mult = 1;
-      for (const w of activeWars) if (w.theatres.includes(fromP.region) || w.theatres.includes(toP.region)) mult = Math.max(mult, w.riskUplift);
-      if (g.minLat < -30) mult *= CAPE_UPLIFT;
+      // war/capture risk is theatre-based (belligerents, not geography)
+      let warMult = 1, warRef = null;
+      for (const w of activeWars) if (w.theatres.includes(fromP.region) || w.theatres.includes(toP.region)) { warRef = w; if (w.riskUplift > warMult) warMult = w.riskUplift; }
       for (let d = 0; d < days; d++) {
         const dateSec = seg.depart + d * SEC_PER_DAY;
         const cal = calendar(dateSec);
-        let dm = mult;
-        if ((toP.region === 'caribbean' || fromP.region === 'caribbean') && (cal.season === 'jja' || cal.season === 'son')) dm *= HURRICANE_UPLIFT;
+        // where the ship IS this day → the geographic hazard there
+        const pos = legPointAt(seg.legId, (dateSec - seg.depart) / legSpan);
+        const hz = pos ? hazardAt(pos[0], pos[1], cal, year) : { mult: 1, cause: null };
+        const dm = warMult * hz.mult;
         if (rng() < BASE_DAILY_LOSS * dm) {
-          const war = activeWars.find(w => w.theatres.includes(fromP.region) || w.theatres.includes(toP.region)) || null;
-          const cause = war ? 'taken as a prize' : (dm > 1.5 ? 'foundered in heavy weather' : 'lost at sea');
+          // capture frames the loss only when the war risk dominated the geography
+          let cause, war = null;
+          if (warRef && warMult >= hz.mult) { cause = 'taken as a prize'; war = warRef; }
+          else cause = hz.cause || (dm > 1.5 ? 'foundered in heavy weather' : 'lost at sea');
           fate = { lost: true, atSec: dateSec, legId: seg.legId, cause, war };
           break outer;
         }
@@ -601,6 +624,39 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
       fate,
       status: 'sailing', retiredAt: null
     };
+  }
+
+  // Interpolate a point [lon,lat] at fraction `frac` along a baked leg — used by
+  // the fate roll to know where a ship is on each day of a voyage.
+  function legPointAt(legId, frac) {
+    const leg = legByKey.get(legId), g = legGeom.get(legId);
+    if (!leg || !g) return null;
+    const dist = Math.max(0, Math.min(1, frac)) * g.total;
+    let i = 1; while (i < g.cum.length - 1 && g.cum[i] < dist) i++;
+    const a = leg.coords[i - 1], b = leg.coords[i];
+    const segLen = g.cum[i] - g.cum[i - 1] || 1;
+    const t = Math.max(0, Math.min(1, (dist - g.cum[i - 1]) / segLen));
+    return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+  }
+  // The GEOGRAPHIC risk at a point on a given day: the deep Southern Ocean, the
+  // named hazard zones, and the tropical-cyclone season in the hurricane belt.
+  // Returns the combined multiplier and the dominant hazard's cause. (War/capture
+  // risk is separate — it keys off belligerent theatres, not geography.)
+  function hazardAt(lon, lat, cal, year) {
+    const L = ((lon + 180) % 360 + 360) % 360 - 180;
+    let mult = 1, cause = null, best = 1;
+    if (lat < -40) { mult *= CAPE_UPLIFT; if (CAPE_UPLIFT > best) { best = CAPE_UPLIFT; cause = 'foundered in the Southern Ocean'; } }
+    for (const z of HAZARD_ZONES) {
+      if (z.era && (year < z.era[0] || year > z.era[1])) continue;
+      if (L >= z.lon[0] && L <= z.lon[1] && lat >= z.lat[0] && lat <= z.lat[1]) {
+        mult *= z.mult;
+        if (z.mult > best) { best = z.mult; cause = z.cause; }
+      }
+    }
+    if ((cal.season === 'jja' || cal.season === 'son') && L >= -98 && L <= -58 && lat >= 10 && lat <= 32) {
+      mult *= HURRICANE_UPLIFT; if (HURRICANE_UPLIFT > best) { best = HURRICANE_UPLIFT; cause = 'lost in a hurricane'; }
+    }
+    return { mult, cause };
   }
 
   // ---- position of a vessel at a given sim-time ----
@@ -960,4 +1016,4 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   };
 }
 
-export const _internals = { calendar, mulberry32, hashSeed, triangular, havKm, portNameAt, cycleIndexOf, SEC_PER_DAY, DAY_OF_YEAR, ERA, RESET_YEARS, FLOW_SPAN, CYCLE_YEARS, CYCLE_SEC };
+export const _internals = { calendar, mulberry32, hashSeed, triangular, havKm, portNameAt, cycleIndexOf, HAZARD_ZONES, SEC_PER_DAY, DAY_OF_YEAR, ERA, RESET_YEARS, FLOW_SPAN, CYCLE_YEARS, CYCLE_SEC };

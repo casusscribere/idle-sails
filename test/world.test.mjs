@@ -331,6 +331,28 @@ test('port events: foundings, captures, and abandonments derive from the flowing
   assert.deepEqual(a.portEventsSince(a.simClock, cyc), b.portEventsSince(b.simClock, cyc), 'derivation is granularity-independent');
 });
 
+test('region-aware sinking: hazard-cause wrecks fall inside their named zone', () => {
+  // The fate roll reads the ship's position each day, so a wreck blamed on a
+  // named graveyard must actually lie in that graveyard's box.
+  const byCause = new Map(_internals.HAZARD_ZONES.map(z => [z.cause, z]));
+  const w = mk(42), YR = 365.25 * DAY;
+  const seen = new Set();
+  let checked = 0;
+  for (let i = 0; i < Math.round(80 * YR / (20 * DAY)); i++) {
+    w.tick(20 * DAY);
+    for (const wr of w.state.wrecks) {
+      if (seen.has(wr.id)) continue; seen.add(wr.id);
+      const z = byCause.get(wr.cause);
+      if (!z) continue;                        // generic 'lost at sea' / capture / storm / southern-ocean
+      checked++;
+      const L = ((wr.lon + 180) % 360 + 360) % 360 - 180;
+      assert.ok(L >= z.lon[0] && L <= z.lon[1] && wr.lat >= z.lat[0] && wr.lat <= z.lat[1],
+        `a "${wr.cause}" wreck lies in ${z.name} (${L.toFixed(1)}, ${wr.lat.toFixed(1)})`);
+    }
+  }
+  assert.ok(checked >= 5, `some wrecks carry a named-graveyard cause (${checked})`);
+});
+
 test('wrecks: a loss marks the chart for a sim-year, then fades from the record', () => {
   // sail long enough to accumulate losses (base loss ~2.5%/30-day leg)
   const w = mk(3);

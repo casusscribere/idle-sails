@@ -74,3 +74,16 @@ chases, so they may live on this branch rather than `main`.
 
 - **Setup (2026-07-20).** Branched `movement-realism` from `main`; this charter
   written.
+- **Increment 1 — region-aware sinking (2026-07-20, fate-safe).** The per-day
+  loss roll now reads the ship's actual position (`legPointAt` interpolates the
+  baked leg) and applies `hazardAt(lon,lat,cal,year)`: the deep Southern Ocean
+  (lat < −40), ten named graveyard zones (Cape Horn, the Cape of Good Hope, Sable
+  Island, the Goodwin Sands, the Scillies, the Florida Straits, the Skagerrak, the
+  South-China-Sea reefs, the Mozambique Channel, the Torres Strait), and the
+  Caribbean/Gulf hurricane belt in season — replacing the old whole-leg Cape/
+  hurricane flags. War/capture risk stays theatre-based; the wreck's cause names
+  the graveyard when geography dominated. Measured (seeds 42/7/23, 60 yr): 4.16%
+  of voyages lost; ~11% of losses now carry a named-graveyard cause, and all
+  hazard-cause wrecks fall exactly inside their zone box (verified 51/51, and a
+  test pins it). Still one deterministic roll at spawn — 61 tests green,
+  granularity-independence holds, 0 console errors headless.
