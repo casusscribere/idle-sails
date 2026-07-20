@@ -30,7 +30,9 @@ test('region presets: world first, ids unique, boxes well-formed', () => {
 // data (a port moved, renamed, or added) must fail here, not on the chart.
 const MUST_CONTAIN = {
   'europe': ['london', 'amsterdam', 'nantes', 'lisbon', 'cadiz', 'venice', 'istanbul',
-    'kaffa', 'stockholm', 'st-petersburg', 'danzig', 'arkhangelsk'],
+    'kaffa', 'stockholm', 'st-petersburg', 'danzig', 'arkhangelsk',
+    // the full-Med extension (2026-07-20): the North African shore is in frame
+    'algiers', 'tunis', 'tripoli', 'alexandria'],
   'caribbean': ['havana', 'veracruz', 'kingston', 'bridgetown', 'cartagena',
     'portobelo', 'st-eustatius', 'cap-francais'],
   'east-indies': ['batavia', 'manila', 'makassar', 'banda-neira', 'canton',

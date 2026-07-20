@@ -258,6 +258,17 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
   transition: opacity .6s; }
 .hint.gone { opacity: 0; }
 
+/* cursor lat/long readout (ideas #16) — a small serif plate trailing the pointer */
+.coord-readout {
+  position: fixed; z-index: 40; pointer-events: none;
+  font-family: var(--serif); font-size: 12px; letter-spacing: .04em;
+  font-variant-numeric: tabular-nums; color: var(--ink);
+  background: var(--paper-90, rgba(231, 218, 189, 0.9));
+  border: 1px solid var(--rule); border-radius: 3px;
+  padding: 2px 7px; white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(40, 30, 15, 0.18); }
+@media (pointer: coarse) { .coord-readout { display: none !important; } }
+
 /* ---- touch & tap behaviour --------------------------------------------- */
 html { -webkit-tap-highlight-color: transparent; }
 button, input[type=range] { touch-action: manipulation; }

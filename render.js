@@ -46,8 +46,11 @@ const WAKE = 'rgba(58,44,28,0.28)';
 // active region; the sim underneath never knows a region exists.
 export const REGIONS = [
   { id: 'world', name: 'The whole world' },
+  // latMin reaches to 29 so the WHOLE Mediterranean is in frame — the North
+  // African shore (Algiers, Tunis, Tripoli, Alexandria) and the Barbary coast,
+  // not just the European rim (user tweak: "the full med — inc north african coast").
   { id: 'europe', name: 'Europe & the Mediterranean',
-    bounds: { lonMin: -13, lonMax: 46, latMin: 33, latMax: 67.5 } },
+    bounds: { lonMin: -13, lonMax: 46, latMin: 29, latMax: 67.5 } },
   { id: 'caribbean', name: 'The Caribbean',
     bounds: { lonMin: -100, lonMax: -54, latMin: 5, latMax: 30 } },
   { id: 'east-indies', name: 'The East Indies & China',
@@ -197,6 +200,16 @@ export function createRenderer(canvas, assets) {
   function project(lon, lat) {
     let L = ((lon + 180) % 360 + 360) % 360 - 180;
     return [ox + (L - BOUNDS.lonMin) * k, oy + (BOUNDS.latMax - lat) * k];
+  }
+  // Screen → geographic (the cursor readout). Inverse of project; longitude is
+  // normalized back into [−180,180] for display. Returns null off the plate.
+  function unproject(px, py) {
+    if (!k) return null;
+    if (!inPlate(px, py)) return null;
+    const lon = ((BOUNDS.lonMin + (px - ox) / k + 180) % 360 + 360) % 360 - 180;
+    const lat = BOUNDS.latMax - (py - oy) / k;
+    if (lat < -90 || lat > 90) return null;
+    return [lon, lat];
   }
 
   // Regional plates letterbox when their aspect ≠ the viewport's, and content
@@ -779,5 +792,5 @@ export function createRenderer(canvas, assets) {
   }
 
   function setWrecks(v) { showWrecks = !!v; }
-  return { resize, draw, pickAt, project, setPerf, setRegion, setOverlay, setWrecks };
+  return { resize, draw, pickAt, project, unproject, setPerf, setRegion, setOverlay, setWrecks };
 }

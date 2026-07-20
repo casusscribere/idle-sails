@@ -58,6 +58,7 @@ export function defaultSettings() {
     portNames: 'default',
     events: { losses: true, wars: true, ports: true },
     wrecks: true,
+    cursor: false,
     legend: { ships: true, flags: true },
     collapsed: { legend: false, events: false, stats: false, tracker: false }
   };
@@ -81,6 +82,7 @@ export function loadSettings(storage = defaultStorage()) {
       for (const k of Object.keys(out.events))
         if (typeof s.events[k] === 'boolean') out.events[k] = s.events[k];
     if (s && typeof s.wrecks === 'boolean') out.wrecks = s.wrecks;
+    if (s && typeof s.cursor === 'boolean') out.cursor = s.cursor;
     if (s && s.layers && typeof s.layers === 'object')
       for (const k of Object.keys(s.layers).slice(0, 64))
         if (typeof s.layers[k] === 'boolean' && /^[a-z0-9-]{1,40}$/.test(k)) out.layers[k] = s.layers[k];

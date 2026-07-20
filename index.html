@@ -35,6 +35,7 @@
         <div class="menu-sub" id="layer-subs"></div>
         <p class="menu-note">Line weight ∝ traffic · colour = flag</p>
         <label class="menu-item"><input type="checkbox" id="ov-wrecks" checked><span>Sunken ships</span></label>
+        <label class="menu-item"><input type="checkbox" id="ov-coords"><span>Cursor position</span></label>
         <p class="menu-h" style="margin-top:14px">Chart view</p>
         <!-- regional plates (feature pass 2) — rows built by main.js from
              render.js REGIONS -->
@@ -153,6 +154,10 @@
 
     <p class="hint" id="hint">Click a vessel to inspect her. Everything else runs itself.</p>
   </div>
+
+  <!-- cursor lat/long readout (ideas #16) — a small plate that trails the pointer
+       over the chart when "Cursor position" is on; display-only. -->
+  <div class="coord-readout" id="coord-readout" hidden aria-hidden="true"></div>
 
   <script type="module" src="main.js"></script>
 </body>

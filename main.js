@@ -252,9 +252,34 @@ async function boot() {
     else if (hit.type === 'wreck') selectWreck(hit.id);
     else selectPort(hit.id);
   });
+  // cursor lat/long readout (ideas #16): a small plate trailing the pointer,
+  // toggled by settings.cursor. The water-body/continent NAME is a deferred
+  // follow-on (it needs a named-seas polygon set) — this is the coordinate half.
+  const coordEl = document.getElementById('coord-readout');
+  const fmtCoord = (lon, lat) => {
+    const la = `${Math.abs(lat).toFixed(1)}°${lat >= 0 ? 'N' : 'S'}`;
+    const lo = `${Math.abs(((lon + 180) % 360 + 360) % 360 - 180).toFixed(1)}°${lon >= 0 ? 'E' : 'W'}`;
+    return `${la}  ${lo}`;
+  };
   canvas.addEventListener('mousemove', (e) => {
     const r = canvas.getBoundingClientRect();
-    canvas.style.cursor = renderer.pickAt(e.clientX - r.left, e.clientY - r.top, latestSnap, portLife) ? 'pointer' : 'crosshair';
+    const cx = e.clientX - r.left, cy = e.clientY - r.top;
+    canvas.style.cursor = renderer.pickAt(cx, cy, latestSnap, portLife) ? 'pointer' : 'crosshair';
+    if (!settings.cursor) return;
+    const ll = renderer.unproject(cx, cy);
+    if (!ll) { coordEl.hidden = true; return; }
+    coordEl.textContent = fmtCoord(ll[0], ll[1]);
+    coordEl.style.left = (e.clientX + 14) + 'px';
+    coordEl.style.top = (e.clientY + 16) + 'px';
+    coordEl.hidden = false;
+  });
+  canvas.addEventListener('mouseleave', () => { coordEl.hidden = true; });
+  const coordsBox = document.getElementById('ov-coords');
+  coordsBox.checked = settings.cursor;
+  coordsBox.addEventListener('change', () => {
+    settings.cursor = coordsBox.checked;
+    if (!settings.cursor) coordEl.hidden = true;
+    saveSettings(settings);
   });
 
   // hamburger menu + overlays

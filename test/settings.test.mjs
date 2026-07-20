@@ -152,3 +152,13 @@ test('settings: events tree + sunken-ships toggle round-trip and reject junk', (
   assert.deepEqual(junk.events, { losses: true, wars: true, ports: false }, 'only well-formed boolean categories survive');
   assert.equal(junk.wrecks, true, 'a non-boolean wrecks flag falls back to on');
 });
+
+test('settings: cursor-position toggle round-trips', () => {
+  const store = new Map();
+  const storage = { getItem: k => (store.has(k) ? store.get(k) : null), setItem: (k, v) => store.set(k, v) };
+  assert.equal(loadSettings(storage).cursor, false, 'cursor readout off by default');
+  const s = loadSettings(storage); s.cursor = true; saveSettings(s, storage);
+  assert.equal(loadSettings(storage).cursor, true, 'the cursor toggle persists');
+  storage.setItem('idle-sails-settings', JSON.stringify({ cursor: 'yes' }));
+  assert.equal(loadSettings(storage).cursor, false, 'a non-boolean cursor flag falls back to off');
+});
