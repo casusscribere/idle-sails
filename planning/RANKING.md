@@ -377,6 +377,13 @@ here with feasibility (A trivial / B moderate / C hard) and a target phase.
 the IS backlog — it is a future-version file).
 
 ### Batch P — Polish & render  ·  Phase 3, no gate, do first (cheap, visible)
+**✅ Partly shipped 2026-07-20:** the **port-names control** landed as a richer
+3-way radio (Default / None / Most active) instead of a single toggle, and the
+**two-stage dormancy** (name fades on a 10-yr window separate from the 3-yr
+greying; both cycle-clamped so 1550 starts fresh) + the **ruins icon** (a broken
+dashed ring struck by a cross) shipped with it. Remaining Batch-P: full-Med
+plate, Pacific plate, cursor lat/long, co-located icons, chart art, overlay
+taxonomy, name-list QA.
 | Item | Src | Feas | Note |
 |---|---|---|---|
 | Full-Mediterranean `europe-med` plate (N. African coast) | tweaks 21 | A | bounds tweak; Algiers/Tunis/Tripoli/Alexandria now populate it |
@@ -397,6 +404,13 @@ the IS backlog — it is a future-version file).
 | Monsoon seasonal-window narrowing (bantam-pepper/dutch-japan + the 2 convoy lanes) | Phase-1 debt | A | baker data change; the ice half already shipped |
 
 ### Batch S — Sim refinements  ·  fate-at-spawn-SAFE; with/after Phase 2
+**✅ Shipped 2026-07-20 (not previously batched): the small-trade visibility
+floor.** York Factory and every 1–2-ship-a-year post were drawn ~once a decade —
+a tiny realized flow drowned by proportional sampling against a ~16,000-ship
+world total (a false zero). `spawnLaneWeights` now floors each active trade lane
+to a minimum share of the spawn budget (rides eraFade). Measured: York 0.06 →
+~1.1 ships/yr; busiest lane −15%, still dominant. Charter-aligned (no silent
+zeros; incommensurable basins not forced onto one scale).
 | Item | Src | Feas | Note |
 |---|---|---|---|
 | **Region/route-aware sinking** — losses at plausible points (hazard zones), not random | ideas 24 | B | loss location computed deterministically AT SPAWN from hazard-zone ∩ route; sim-layer, fingerprint-safe. **Standout — cheap, big plausibility win.** |
