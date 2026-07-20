@@ -358,6 +358,30 @@ is live by now — pin the *Surprise* and follow her properly.
     Abbas/Jedda + the India ports), so it reads as fleshed out now;
     `na-northeast` is still sparse (5 ports, its Grand-Banks fishery traffic
     waits on Pass 4). Decision pending: keep both, or hide na-northeast.
+  - **Phase 3 progress (2026-07-20):**
+  - ✅ **Port-names policy** — a 3-way **Port names** radio (Default / None /
+    Most active; `settings.portNames`). Default shows a name only while the port
+    saw traffic within the past DECADE (a 10-yr window separate from the 3-yr
+    greying), both cycle-clamped so each 1550 iteration starts fresh — all ports
+    greyed + nameless until they see a call (tweaks 22/23/24 answered together).
+  - ✅ **Ruins icon** upgraded to a proper mark — a broken dashed ring struck by
+    a small cross — for destroyed/discontinued ports (tweaks 15).
+  - ✅ **Small-trade visibility floor** (sim) — York Factory &c. rose from ~1
+    ship a DECADE to its historical ~1–2 a year; see Batch S above.
+  - ✅ **Events-log category tree** + **Sunken ships** toggle (see the intro of
+    this bullet).
+  - ✅ **Cape Horn wrong-way wrap FIXED** (baker, re-baked) — Callao↔Cadiz &c.
+    round the Horn instead of fleeing west across the Pacific; see Batch R above
+    (tweaks 13/14).
+  - ✅ **Independence dates** — Boston/Philadelphia/Chesapeake flip to the US flag
+    in **1776** (was 1783); New York stays 1783 (British-occupied). The events log
+    now reads the handover at 1776.
+  - ✅ **Whaling grounds as zones** — `davis-strait` + `pacific-grounds` draw as a
+    dashed oval (fluke at centre, ellipse-picked), not a harbour dot; Smeerenburg
+    (a real settlement) stays a dot.
+  - Remaining tweaks: the Batch-P/-R residuals above (full-Med + Pacific plates,
+    cursor lat/long, co-located icons, chart art, overlay taxonomy, name-list QA;
+    land-clipping/zigzag/edge-draw residuals).
 - **Trade-goods threads** (queued 2026-07-17, `research_addenda.txt` #8) —
   a display/docs feature, sim untouched: follow a COMMODITY across the
   world as one thread — the global silver circuit (Potosí→Carrera,
@@ -393,15 +417,22 @@ taxonomy, name-list QA.
 |---|---|---|---|
 | Full-Mediterranean `europe-med` plate (N. African coast) | tweaks 21 | A | bounds tweak; Algiers/Tunis/Tripoli/Alexandria now populate it |
 | **Pacific plate** (W NA/SA ↔ E Asia) | ideas 15 | A | one `REGIONS` entry; content now exists (Callao/Guayaquil/Valparaíso/Nootka/Acapulco/Manila/Canton) |
-| **Toggle-all-port-names** button | tweaks 24 | A | settings+render; when ON still respects greyed/ruined/pre-founding |
-| Two-stage dormancy: grey → **name hidden** (icon stays); start all fresh greyed/name-hidden | tweaks 22,23 | B | extend the 3-yr greying display policy with a 2nd threshold + boot state |
+| ~~Toggle-all-port-names button~~ | tweaks 24 | A | ✅ **DONE 2026-07-20** — shipped as the 3-way **Port names** radio (Default/None/Most active) |
+| ~~Two-stage dormancy (grey → name hidden; start fresh greyed)~~ | tweaks 22,23 | B | ✅ **DONE 2026-07-20** — 10-yr name window separate from the 3-yr grey, both cycle-clamped (fresh at 1550) |
 | Cursor **lat/long readout** (toggle) | ideas 16 | A | inverse projection exists; the water-body/continent NAME is a follow-on (needs named-seas polygons) — split |
-| **Co-located ports share one icon**, panel lists both (Dejima/Nagasaki) | ideas 26, tweaks 19 | B | detect coincident display coords; merge dot + pick + panel |
+| **Co-located ports share one icon**, panel lists both (Dejima/Nagasaki) | ideas 26, tweaks 19 | B | detect coincident display coords; merge dot + pick + panel (Nagasaki/Dejima are already SEPARATE + correctly flagged since Phase 4 — this is the shared-icon DISPLAY only) |
 | **Chart art** top/bottom ("here be dragons", ornament) for tall/wide framings | ideas 20 | B | art asset + render; fills empty sea on unusual aspect ratios |
 | **Overlay taxonomy** — sub-toggles by movement TYPE (arterial/coasting/coerced/fisheries/naval-state), not basin | tweaks 9 | B | design change to layer categories + a build-data lane-type tag |
 | Dutch (& other) name-list QA (`'t Vergulde Draeck`) | tweaks 16 | A | small data review |
 
 ### Batch R — Routing/baker residuals  ·  fold into the NEXT re-bake (Phase 2)
+**✅ Shipped 2026-07-20: the Cape Horn wrong-way wrap.** Pacific→Atlantic eastbound
+legs (Callao→Cadiz &c.) had the Horn-open (−58) mask keyed only on the DESTINATION,
+so an Atlantic-bound leg got the −50 cap that walls off the Horn and the router
+fled the wrong way around the globe (lon −400). The mask now opens when EITHER
+endpoint is a Pacific-coast-Americas port (post-bake validation too); re-baked, all
+such legs round the Horn (minLat −57, no wrap), London→Canton stays capped. This is
+tweaks 13/14 answered at the routing level (the map crop already reached the Horn).
 | Item | Src | Feas | Note |
 |---|---|---|---|
 | Residual land-clipping + oddly-square/zigzag legs on close views | tweaks 2,3 | B | 1°-grid vs fine-coast; targeted `ISLAND_SEAL`/de-tack per offender |
@@ -441,13 +472,25 @@ zeros; incommensurable basins not forced onto one scale).
 | **Fully-ahistorical mode** (random wars/dynamics) | ideas 19 | C | a parallel generative mode; needs its own design doc; philosophically orthogonal to the historical charter (must not muddy the sober register — a clearly-labelled separate mode) |
 | **Prune the archive** from the repo | ideas 25 | B | port `pipeline/router.mjs` + the field `.bin`s FORWARD out of `archive/` first (CLAUDE.md constraint — the baker still depends on them), THEN remove the archive |
 
-**Recommended order for this backlog:** Batch P now (Phase 3, parallel, low-risk
-momentum — the two trivial plates + toggle-all-names + cursor lat/long first);
-Batch R swept into whatever re-bake Phase 2 triggers (never re-bake just for
-them); Batch S's region-aware sinking done with/after **Convoys** (its standout);
-Batch E folded into Pass 4/6 as channel demos + the Aubrey catalog; Batch G's
-**T14** run as a short sweep before/with Phase 2 (Cape Town matters for movement
-realism); Batch Z deferred to its own plans.
+**Recommended order for this backlog:** Batch P remaining (Phase 3, parallel,
+low-risk momentum — the **two trivial plates** [full-Med, Pacific] + **cursor
+lat/long** are the cheapest unstarted wins now); Batch R's residuals swept into
+whatever re-bake Phase 2 triggers (the Horn wrap is already fixed — never re-bake
+JUST for the rest); Batch S's **region-aware sinking** done with/after **Convoys**
+(its standout, and now the top unstarted sim refinement since the visibility floor
+shipped); Batch E folded into Pass 4/6 as channel demos + the Aubrey catalog;
+Batch G's **T14** run as a short sweep before/with Phase 2 (Cape Town matters for
+movement realism); Batch Z deferred to its own plans.
+
+**Shipped since the sweep (2026-07-20), beyond the batches above** — three
+direct-request fixes not in the input files' batches: the **events-log category
+tree** (losses / wars / **port foundings-captures-abandonment** via a new
+`world.portEventsSince`) + a **Sunken ships** chart toggle; **Boston/Philadelphia/
+Chesapeake independence corrected to 1776** (British evacuation / Patriot control;
+New York stays 1783, occupied); and the **whaling grounds rendered as zones** —
+`davis-strait` + `pacific-grounds` (both self-described "not a port but a whaling
+ground") now draw as a dashed oval with a fluke, ellipse-picked, instead of a dot
+(Smeerenburg, an actual settlement, stays a dot). All live.
 
 ## The interleaved queue — recommended order (live)
 
@@ -541,21 +584,24 @@ whaling nodes) is built once during Phase 1's E3 bake and reused here. Plus
 **Convoys** (`PLAN-convoys.md`) — fate-at-spawn-safe, so it can run first / in
 parallel as low-risk momentum; inherits T9's rates for free. May touch the
 baker (`pipeline/README.md` first). **Folds in from the backlog sweep:**
-Batch S's **region-aware sinking** (do it with Convoys — cheap, fate-safe),
-Batch E's easter eggs (Bom Jesus + the cat as channel demos), Batch R's routing
-residuals (sweep into whatever re-bake this phase triggers — never re-bake just
-for them), and a short **T14** waystop sweep (Cape Town) → a Batch-G data
-increment before the itinerary work.
+Batch S's **region-aware sinking** (do it with Convoys — cheap, fate-safe; the
+visibility floor already shipped), Batch E's easter eggs (Bom Jesus + the cat as
+channel demos), Batch R's REMAINING routing residuals (land-clipping/zigzag/
+edge-draw — the Cape Horn wrong-way wrap is already FIXED 2026-07-20; sweep the
+rest into whatever re-bake this phase triggers — never re-bake just for them),
+and a short **T14** waystop sweep (Cape Town) → a Batch-G data increment before
+the itinerary work.
 
 ### Phase 3 — Threads & polish  ·  [F]  (render/observation; floats anywhere)
 **Trade-goods threads** (T12 lens done → buildable; the Middle-Passage thread
-keeps the exact sober register) + the queued **render tweaks** (port dots in
-the sea, land clipping, residual zigzags — several want a baker review) +
-the **Batch-P polish set** from the backlog sweep above (full-Med plate, the
-Pacific plate, toggle-all-port-names, two-stage dormancy, cursor lat/long,
-co-located port icons, chart art, the overlay-taxonomy re-categorization). No
-gate; low risk; the trivial plates + toggles are the recommended first pull for
-momentum. Slot into whatever pass is in flight.
+keeps the exact sober register) + the queued **render tweaks** (residual land
+clipping, zigzags — several want a baker review) + the **Batch-P polish set** from
+the backlog sweep above. Batch-P shipped so far (2026-07-20): the port-names radio,
+two-stage dormancy, and the ruins icon; **remaining Batch-P**: full-Med plate, the
+Pacific plate, cursor lat/long, co-located port icons, chart art, the
+overlay-taxonomy re-categorization, name-list QA. No gate; low risk; the two
+trivial plates + cursor lat/long are the recommended first pull for momentum. Slot
+into whatever pass is in flight.
 
 ### Phase 4 — Per-port documentation  ·  [R]  ·  ✅ **COMPLETE + LIVE 2026-07-19**
 **Phase RC — T1+T2+T3 done for all 105 ports** (9 parallel region-batched research

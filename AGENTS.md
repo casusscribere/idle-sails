@@ -50,8 +50,39 @@ Every design decision answers to both of these:
      Middle-Passage pattern (no value tier, no profit framing, factual, never
      a reward) extends to any promoted coerced flow (Kaffa, Indian Ocean).
 
-## Current state (as of 2026-07-19)
+## Current state (as of 2026-07-20)
 
+- **UX + ACCURACY PASS (2026-07-20, all live).** A run of direct-request fixes on
+  top of the finished world, each committed + deployed:
+  - **Port names** — a 3-way menu radio (Default / None / Most active,
+    `settings.portNames`). Default shows a name only while the port saw traffic in
+    the past DECADE (a 10-yr window distinct from the 3-yr greying), both
+    cycle-clamped so each 1550 iteration starts fresh (all ports greyed +
+    nameless until called). A proper **ruins icon** (broken dashed ring + cross)
+    for discontinued ports.
+  - **Small-trade visibility floor** (`world.js spawnLaneWeights`) — York Factory
+    &c. were drawn ~once a DECADE (a tiny realized flow drowned by proportional
+    sampling of a ~16,000-ship world total); each active trade lane is now floored
+    to a minimum share of the spawn budget. York 0.06→~1.1 ships/yr (its
+    historical 1–2); busiest lane −15%, still dominant. Charter-aligned.
+  - **Events-log category tree** — losses / wars / **port foundings-captures-
+    abandonment** (a new `world.portEventsSince` deriving foundings from
+    `active.from`, abandonments from `active.to`, allegiance changes from
+    `eraPowers` transitions; cycle-clamped, granularity-independent) + a **Sunken
+    ships** chart toggle (`renderer.setWrecks`, gates draw + pick).
+  - **Cape Horn wrong-way wrap FIXED** (baker + re-bake) — the Horn-open (−58)
+    mask was keyed only on the DESTINATION, so Pacific→Atlantic eastbound legs
+    (Callao→Cadiz) fled the wrong way around the globe (lon −400); it now opens
+    when EITHER endpoint is a Pacific-coast-Americas port. All such legs round the
+    Horn (minLat −57, no wrap); London→Canton stays capped.
+  - **Independence dates** — Boston/Philadelphia/Chesapeake flip to the US flag in
+    **1776** (British evacuation / Patriot control), not 1783; New York stays 1783
+    (occupied).
+  - **Whaling grounds as zones** — `davis-strait` + `pacific-grounds` (both "not a
+    port but a whaling ground") render as a dashed oval with a fluke, ellipse-
+    picked, instead of a dot; Smeerenburg (a real settlement) stays a dot.
+  - **59 tests green.** `planning/RANKING.md`'s backlog sweep updated: Batch-P
+    toggle-names + dormancy done, Batch-R Horn done, Batch-S floor done.
 - **PHASE 4 — THE PER-PORT DOCUMENTATION SWEEP IS COMPLETE + LIVE (2026-07-19).**
   Phase RC (T1+T2+T3) done for all **105 ports** via 9 parallel region-batched
   research subagents. Each port carries its 1550→1850 name/ownership timeline
