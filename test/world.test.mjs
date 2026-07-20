@@ -272,17 +272,39 @@ test('spawn mix flows with history: origins shift across the cycle', () => {
     const tot = [...m.values()].reduce((s, n) => s + n, 0);
     return tot ? (m.get(port) || 0) / tot : 0;
   };
-  // early period: the OLD WORLD dominates — Mediterranean, Baltic, Iberian —
-  // and the Atlantic-colonial ports do not yet exist as origins
+  // early period: the OLD WORLD leads — Mediterranean, Baltic, Iberian — and the
+  // Atlantic-colonial ports do not yet exist as origins. (The small-trade
+  // visibility floor deliberately surfaces real early non-European trades too —
+  // the Canton junk trade, the Newfoundland cod fishery, Batavia pepper — so the
+  // old-world bloc leads at ~half rather than outright; that diversity is the
+  // charter's no-silent-zeros rule, not a regression. The colonial-absence check
+  // below is the load-bearing "before the Atlantic rise" claim.)
   const oldWorld1560 = ['istanbul', 'venice', 'naples', 'genoa', 'livorno', 'cadiz', 'lisbon', 'danzig', 'amsterdam', 'hamburg', 'marseille', 'kaffa']
     .reduce((s, p) => s + share(1560, p), 0);
-  assert.ok(oldWorld1560 > 0.5, `1560s dominated by old-world origins (${oldWorld1560.toFixed(2)})`);
+  assert.ok(oldWorld1560 > 0.45, `1560s led by old-world origins (${oldWorld1560.toFixed(2)})`);
   const colonial1560 = ['boston', 'new-york', 'philadelphia', 'chesapeake'].reduce((s, p) => s + share(1560, p), 0);
   assert.ok(colonial1560 < 0.01, `no colonial-American origins in the 1560s (${colonial1560.toFixed(3)})`);
   // late period: the Atlantic-industrial ports rise; the junk trade is present throughout
   assert.ok(share(1800, 'london') > share(1650, 'london'), 'London rises across the era');
   assert.ok(share(1800, 'liverpool') > share(1650, 'liverpool'), 'Liverpool busier late than early');
   assert.ok(share(1650, 'amoy') > 0, `the Nanyang junk trade sails the 17th century (${share(1650, 'amoy').toFixed(3)})`);
+});
+
+test('small-trade visibility floor: a tiny real trade is not a silent zero', () => {
+  // York Factory (founded 1684) historically saw one or two ships a year. Its
+  // realized flow is ~2 against a world total of ~16,000, so a purely
+  // proportional draw surfaced it about once a DECADE — a false zero. The
+  // visibility floor lifts it to its historical order of magnitude. Run a
+  // 40-year window after the post is founded and count its lane spawns.
+  const w = mk(42), YR = 365.25 * DAY;
+  const york = new Set(datasets.routes.filter(r => r.from === 'york-factory' || r.to === 'york-factory').map(r => r.id));
+  for (let t = 0; t < 175 * YR; t += 30 * DAY) w.tick(Math.min(30 * DAY, 175 * YR - t));  // → ~1725
+  const before = [...york].reduce((s, l) => s + (w.stats.byLane[l]?.spawned || 0), 0);
+  for (let i = 0; i < 40; i++) w.tick(YR);
+  const sailed = [...york].reduce((s, l) => s + (w.stats.byLane[l]?.spawned || 0), 0) - before;
+  // ~1/yr → ~40 over the window; comfortably above the ~2-3 an unfloored world
+  // would show, well below flakiness. The port must actually appear.
+  assert.ok(sailed >= 12, `York Factory sails at its historical order of magnitude (${sailed} in 40 yr)`);
 });
 
 test('wrecks: a loss marks the chart for a sim-year, then fades from the record', () => {

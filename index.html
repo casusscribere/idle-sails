@@ -38,6 +38,13 @@
         <!-- regional plates (feature pass 2) — rows built by main.js from
              render.js REGIONS -->
         <div role="radiogroup" aria-label="Chart view" id="view-radios"></div>
+        <p class="menu-h" style="margin-top:14px">Port names</p>
+        <div role="radiogroup" aria-label="Port names">
+          <label class="menu-item"><input type="radio" name="pnames" value="default"><span>Default</span></label>
+          <label class="menu-item"><input type="radio" name="pnames" value="none"><span>None</span></label>
+          <label class="menu-item"><input type="radio" name="pnames" value="active"><span>Most active</span></label>
+        </div>
+        <p class="menu-note" id="pnames-note">Names fade as ports fall quiet.</p>
         <p class="menu-h" style="margin-top:14px">Panels</p>
         <label class="menu-item"><input type="checkbox" id="pn-counters" checked><span>Counters</span></label>
         <label class="menu-item"><input type="checkbox" id="pn-stats"><span>Statistics</span></label>

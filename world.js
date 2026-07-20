@@ -216,6 +216,19 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   // weight); naval lanes get a fixed ~6% pool — state voyages sit outside the
   // commercial flow matrix by design.
   const RESIDUAL_SHARE = 0.03, NAVAL_SHARE = 0.06;
+  // Small-trade visibility floor (charter: no silent zeros; no forced global
+  // commensuration). The sim draws a fixed ~1.8 spawns/day proportionally from a
+  // world total that runs to ~16,000 ships/yr, so a genuinely tiny but real trade
+  // — Hudson Bay's 1–2 ships a year, a whaling ground, Dejima — takes a share so
+  // small it would surface roughly once a DECADE, reading as a false zero. These
+  // basins are incommensurable with the Carrera by design, so each active trade
+  // lane is floored to a minimum share of the spawn budget: enough that a
+  // one-or-two-ship-a-year post shows a sail once or twice a year, negligible
+  // against the giants. The floor rides eraFade with the lane so it never pops at
+  // an era edge. Tuned by measurement: at 0.0015, York Factory rises from 0.06 →
+  // ~1.1 ships/yr (its historical 1–2) while the busiest lane drops only ~15%
+  // (326 → 278/yr) and stays overwhelmingly dominant.
+  const MIN_LANE_VISIBILITY = 0.0015;
   // Lanes fade in/out over ~3 years at their era boundaries instead of popping —
   // the charter's no-sharp-changes rule applied to lane gating (a lane carrying a
   // whole folded trade would otherwise step a port's traffic in one tick). Lanes
@@ -238,8 +251,9 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     const tradeWsum = trade.reduce((x, r) => x + (r.weight || 1), 0) || 1;
     const navalWsum = naval.reduce((x, r) => x + (r.weight || 1), 0) || 1;
     const totalNow = totalFlowAt(cal);
+    const floor = MIN_LANE_VISIBILITY * totalNow;
     const w = new Map();
-    for (const r of trade) w.set(r.id, eraFade(r, cal) * (laneFlowAt(r.id, cal) + RESIDUAL_SHARE * totalNow * (r.weight || 1) / tradeWsum));
+    for (const r of trade) w.set(r.id, eraFade(r, cal) * Math.max(laneFlowAt(r.id, cal) + RESIDUAL_SHARE * totalNow * (r.weight || 1) / tradeWsum, floor));
     for (const r of naval) w.set(r.id, eraFade(r, cal) * NAVAL_SHARE * totalNow * (r.weight || 1) / navalWsum);
     return w;
   }
@@ -801,9 +815,14 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
   // A future-dated call (a ship presently bound in) counts as active — she is
   // this port's live traffic. Deterministic: calls are recorded at spawn from
   // sim-time-keyed schedules, so big-tick fast-forward matches many small ticks.
-  const activePortsSince = (simSec, windowSec = SEC_PER_DAY * DAY_OF_YEAR) => {
+  // cycleClamp: hold the window's tail at the current cycle's 1550 boundary, so
+  // the chart starts each iteration FRESH — a port's traffic from before the wrap
+  // no longer counts (a display choice, matching the cycle-scoped histories; a
+  // ship inbound across the seam still counts, her arrival being new-cycle traffic).
+  const activePortsSince = (simSec, windowSec = SEC_PER_DAY * DAY_OF_YEAR, cycleClamp = false) => {
     const active = new Set();
-    const since = simSec - windowSec;
+    let since = simSec - windowSec;
+    if (cycleClamp) since = Math.max(since, cycleIndexOf(simSec) * CYCLE_SEC);
     for (const [pid, t] of Object.entries(state.portCalls)) if (t >= since) active.add(pid);
     return active;
   };

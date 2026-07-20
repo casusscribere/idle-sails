@@ -365,19 +365,20 @@ export function createRenderer(canvas, assets) {
   // world.portLifecycleAt: a port not yet founded is absent from the chart
   // entirely; a destroyed/abandoned one draws as a faint ruin mark (the chart
   // remembers) — dashed open ring, label only while selected via the panel.
-  function drawPorts(active, lifecycle, selectedPortId, year) {
+  // `named` = the set of ports whose NAME should be drawn (the port-names policy,
+  // computed in main.js: decade-active ports in 'default', the busiest in 'active',
+  // empty in 'none'). null = draw every name. A selected port always shows its
+  // name regardless, so a clicked-but-quiet port can still be identified.
+  function drawPorts(active, lifecycle, selectedPortId, year, named) {
     // rebuild label text+placement when the flowing year moves (era renames
     // change label widths); integer-year granularity keeps this rare and cheap
     if (year != null && year !== labelYear) { labelYear = year; computePortLabels(ctx, year); }
+    const showName = pd => pd.label && (pd.id === selectedPortId || !named || named.has(pd.id));
     for (const pd of portDraw) {
       if (!inPlate(pd.x, pd.y, 4)) continue;   // dot outside the regional crop
       if (lifecycle && !lifecycle.existing.has(pd.id)) {
         if (!lifecycle.ruined.has(pd.id)) continue;        // not yet founded
-        ctx.save();
-        ctx.strokeStyle = INK_DIM; ctx.globalAlpha = 0.55; ctx.lineWidth = 1;
-        ctx.setLineDash([2.5, 2.5]);
-        ctx.beginPath(); ctx.arc(pd.x, pd.y, 3.4, 0, Math.PI * 2); ctx.stroke();
-        ctx.restore();
+        drawRuin(pd.x, pd.y);                               // fell / abandoned
         if (pd.id === selectedPortId && pd.label)
           label(ctx, pd.name, pd.label.ax, pd.label.ay, 11, INK_DIM, pd.label.align);
         continue;
@@ -390,8 +391,24 @@ export function createRenderer(canvas, assets) {
       ctx.globalAlpha = on ? 0.5 : 0.35; ctx.lineWidth = 0.8;
       ctx.beginPath(); ctx.arc(pd.x, pd.y, 5.2, 0, Math.PI * 2); ctx.stroke();
       ctx.restore();
-      if (pd.label) label(ctx, pd.name, pd.label.ax, pd.label.ay, 11, col, pd.label.align);
+      if (showName(pd)) label(ctx, pd.name, pd.label.ax, pd.label.ay, 11, col, pd.label.align);
     }
+  }
+
+  // A destroyed / abandoned port: the chart remembers where it stood but marks it
+  // a ruin — a broken (dashed) ring struck through by a small cross, in faded ink.
+  function drawRuin(x, y) {
+    ctx.save();
+    ctx.strokeStyle = INK_DIM; ctx.globalAlpha = 0.6; ctx.lineWidth = 1;
+    ctx.setLineDash([2.4, 2.4]);
+    ctx.beginPath(); ctx.arc(x, y, 3.8, 0, Math.PI * 2); ctx.stroke();
+    ctx.setLineDash([]); ctx.lineWidth = 0.9; ctx.globalAlpha = 0.5;
+    const r = 1.7;
+    ctx.beginPath();
+    ctx.moveTo(x - r, y - r); ctx.lineTo(x + r, y + r);
+    ctx.moveTo(x + r, y - r); ctx.lineTo(x - r, y + r);
+    ctx.stroke();
+    ctx.restore();
   }
 
   function drawGrain(c) {
@@ -533,7 +550,7 @@ export function createRenderer(canvas, assets) {
   }
 
   // ---- dynamic frame ------------------------------------------------------
-  function draw(snapshot, selectedId, selectedPortId, t, activePorts, selectedWreckId, lifecycle) {
+  function draw(snapshot, selectedId, selectedPortId, t, activePorts, selectedWreckId, lifecycle, namedPorts) {
     if (base) ctx.drawImage(base, 0, 0, W, H);
     // display year: clamped through the epilogue reset ramp (1850→1860), as
     // everything era-keyed is — port names/lifecycle read the era-end year there.
@@ -542,7 +559,7 @@ export function createRenderer(canvas, assets) {
     // rectangle on regional crops, matching the base land — so nothing renders in
     // the parchment mat outside the crop.
     const dynClip = beginPlateClip(ctx);
-    drawPorts(activePorts, lifecycle, selectedPortId, dispYear);
+    drawPorts(activePorts, lifecycle, selectedPortId, dispYear, namedPorts);
 
     const vessels = snapshot.vessels;
     if (overlay) ctx.drawImage(overlay, 0, 0, W, H);

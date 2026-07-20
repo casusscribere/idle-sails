@@ -136,8 +136,30 @@ async function boot() {
   // (a slave factory between sailings, a seasonal Arctic port in winter) read
   // as quiet, not abandoned. world.activePortsSince keeps its own default.
   const GREY_WINDOW_SEC = 3 * 365.25 * 86400;
-  let activePorts = world.activePortsSince(latestSnap.simClock, GREY_WINDOW_SEC);
+  // Name-labelling policy (settings.portNames): a port shows its name only while
+  // it counts as "named". In 'default', that is any port with traffic within the
+  // past DECADE (cycle-clamped, so each 1550 iteration starts fresh — all ports
+  // nameless until they see a call); in 'active', only the busiest ports this
+  // cycle; in 'none', no ports. Display-only, recomputed on the HUD throttle.
+  const NAME_WINDOW_SEC = 10 * 365.25 * 86400;
+  const MOST_ACTIVE_N = 15;
+  const laneEndpoints = new Map(datasets.routes.map(r => [r.id, [r.from, r.to]]));
+  function computeNamedPorts() {
+    const mode = settings.portNames;
+    if (mode === 'none') return new Set();
+    if (mode === 'active') {
+      const tally = new Map();
+      for (const [lid, s] of Object.entries(world.stats.byLane || {})) {
+        const ep = laneEndpoints.get(lid); if (!ep) continue;
+        for (const pid of ep) tally.set(pid, (tally.get(pid) || 0) + (s.spawned || 0));
+      }
+      return new Set([...tally.entries()].sort((a, b) => b[1] - a[1]).slice(0, MOST_ACTIVE_N).map(e => e[0]));
+    }
+    return world.activePortsSince(latestSnap.simClock, NAME_WINDOW_SEC, true);   // 'default'
+  }
+  let activePorts = world.activePortsSince(latestSnap.simClock, GREY_WINDOW_SEC, true);
   let portLife = world.portLifecycleAt(latestSnap.simClock);
+  let namedPorts = computeNamedPorts();
 
   const ledgerCtx = () => ({
     portById, cargoById, powerById, portNameAt, portPowerAt, simClock: latestSnap.simClock,
@@ -323,6 +345,26 @@ async function boot() {
       saveSettings(settings);
     });
   }
+
+  // port-names policy (settings.portNames): a display-only radiogroup — recompute
+  // the named set immediately so the change is visible before the next throttle.
+  const PNAME_NOTES = {
+    default: 'Names fade as ports fall quiet.',
+    none: 'All names hidden.',
+    active: 'Only the busiest ports named.'
+  };
+  const pnameNote = document.getElementById('pnames-note');
+  for (const radio of document.querySelectorAll('input[name="pnames"]')) {
+    radio.checked = radio.value === settings.portNames;
+    radio.addEventListener('change', () => {
+      if (!radio.checked) return;
+      settings.portNames = radio.value;
+      if (pnameNote) pnameNote.textContent = PNAME_NOTES[radio.value] || '';
+      namedPorts = computeNamedPorts();
+      saveSettings(settings);
+    });
+  }
+  if (pnameNote) pnameNote.textContent = PNAME_NOTES[settings.portNames] || '';
 
   // panel signatures + lookups — declared before the wiring below, which can
   // call the render functions during boot when a panel was left switched on
@@ -579,13 +621,14 @@ async function boot() {
     latestSnap = world.snapshot({ density: perf.shipDensity });
     // the routes overlay is a cached canvas inside the renderer, refreshed on
     // the HUD throttle below — the frame just draws snapshot + blits
-    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, activePorts, selectedWreckId, portLife);
+    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, activePorts, selectedWreckId, portLife, namedPorts);
 
     hudAccum += dtReal;
     if (hudAccum > 0.2) {
       hudAccum = 0;
-      activePorts = world.activePortsSince(latestSnap.simClock, GREY_WINDOW_SEC);
+      activePorts = world.activePortsSince(latestSnap.simClock, GREY_WINDOW_SEC, true);
       portLife = world.portLifecycleAt(latestSnap.simClock);
+      namedPorts = computeNamedPorts();
       // overlay weights: this world's realized per-lane flow — route brightness
       // IS the traffic the sim is actually sampling. They drift era-slow, so a
       // 5 Hz redraw of the cached overlay canvas is visually exact.

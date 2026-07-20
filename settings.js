@@ -41,12 +41,17 @@ export function defaultSettings() {
   // validated against the presets by main.js, so settings.js stays layout-only).
   // layers: the routes overlay's per-basin toggles, keyed by basin id; a key is
   // stored only when switched OFF (absent = on), so new basins default visible.
+  // portNames: the chart's name-labelling policy — 'default' (a name shows only
+  // while its port has seen traffic within the past decade, so quiet ports go
+  // nameless but keep their dot), 'none' (no names), 'active' (only the most
+  // active ports this cycle). Display-only; never touches the sim.
   return {
     perfTier: 'medium',
     panels: { ...DEFAULT_PANELS },
     furled: false,
     region: 'world',
     layers: {},
+    portNames: 'default',
     legend: { ships: true, flags: true },
     collapsed: { legend: false, events: false, stats: false, tracker: false }
   };
@@ -65,6 +70,7 @@ export function loadSettings(storage = defaultStorage()) {
         if (typeof s.panels[k] === 'boolean') out.panels[k] = s.panels[k];
     if (s && typeof s.furled === 'boolean') out.furled = s.furled;
     if (s && typeof s.region === 'string' && /^[a-z0-9-]{1,40}$/.test(s.region)) out.region = s.region;
+    if (s && (s.portNames === 'default' || s.portNames === 'none' || s.portNames === 'active')) out.portNames = s.portNames;
     if (s && s.layers && typeof s.layers === 'object')
       for (const k of Object.keys(s.layers).slice(0, 64))
         if (typeof s.layers[k] === 'boolean' && /^[a-z0-9-]{1,40}$/.test(k)) out.layers[k] = s.layers[k];

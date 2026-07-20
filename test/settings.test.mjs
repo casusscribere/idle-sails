@@ -122,3 +122,15 @@ test('settings: chart view + layer toggles round-trip and reject junk', () => {
   storage.setItem('idle-sails-settings', JSON.stringify({ region: 'x'.repeat(99) }));
   assert.equal(loadSettings(storage).region, 'world', 'an over-long region id falls back');
 });
+
+test('settings: port-names policy round-trips and rejects junk', () => {
+  const store = new Map();
+  const storage = { getItem: k => (store.has(k) ? store.get(k) : null), setItem: (k, v) => store.set(k, v) };
+  assert.equal(loadSettings(storage).portNames, 'default', 'defaults to the fading-names policy');
+  for (const mode of ['none', 'active', 'default']) {
+    const s = loadSettings(storage); s.portNames = mode; saveSettings(s, storage);
+    assert.equal(loadSettings(storage).portNames, mode, `${mode} persists`);
+  }
+  storage.setItem('idle-sails-settings', JSON.stringify({ portNames: 'wat' }));
+  assert.equal(loadSettings(storage).portNames, 'default', 'an unknown policy falls back to default');
+});
