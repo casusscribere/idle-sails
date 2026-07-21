@@ -70,10 +70,20 @@ it is the one the user's own §9 co-located-icon idea anticipates.
 
 `ideas.txt` §1 opens with *"Rebuild the route-finder and wind charts to be more
 granular / effective"* and then asks whether the oddly-square routing is
-historical or an artifact. **Answer: artifact.** The router works on a 1° grid
-against a 50 m display coastline; that mismatch is the confirmed root cause of
-the square legs, the residual land clipping, and the tip-grazes — and it is why
-the Danish straits **cannot** be sealed without severing the Baltic entirely.
+historical or an artifact. **Answer: artifact.**
+
+> ⚠️ **CORRECTED 2026-07-21 — my earlier diagnosis here was half wrong, and the
+> correction makes this cheaper.** I recorded the squareness as a 1°-grid
+> artifact. It is not. The router uses **8-neighbour connectivity**, which
+> quantizes every heading to a multiple of 45°; a finer grid gives *smaller*
+> staircases, not smoother tracks. Squareness needs higher connectivity or an
+> any-angle algorithm — both far cheaper than a resolution rebuild. The 1° grid
+> vs. 50 m coastline mismatch is real but causes a *different* symptom (land
+> clipping, sub-cell islands, and why the Danish straits cannot be sealed
+> without severing the Baltic). A third symptom — implausible tracks and
+> durations — comes from neither, but from the wind field being ~15 hardcoded
+> constants. See `planning/PLAN-7-routing.md` §0.1, which supersedes this
+> question's framing.
 
 **Options:** (a) keep the 1° engine and fix offenders one at a time (F-06,
 cheap, never fully clean); (b) increase grid resolution in coastal zones only
@@ -283,3 +293,69 @@ The scheme now in use: permanent typed IDs (**F-** feature, **R-** research,
 plus **LOCKED**, where an item's wave may change but its ID may not. Passes,
 Phases (both kinds), Batches, and T-numbers are retired, with a full old→new
 map in `RANKING.md` §3.
+
+---
+
+## The routing programme (PLAN-7, drafted 2026-07-21)
+
+### D-18 — What does "trade flows" mean in the rebuild brief?
+**Blocks:** the whole of PLAN-7's scope.
+
+The brief said "routing/trade flows system". Two readings:
+**(a)** the **routing engine + the lane → bake → itinerary layer** — how a flow
+becomes a track on the chart — with the PLAN-3 flow matrix's outputs (which
+lanes, what volume, which era) held fixed; or **(b)** that plus **re-opening the
+flow matrix itself**.
+
+**Recommendation: (a).** The flow matrix is PLAN-3's completed, evidence-classed,
+charter-central work and it is demonstrably *not* the weak part — every system in
+`research/flows/` carries bounds and an evidence class. The routing physics
+carries none. (b) would need its own plan and a specific reason.
+
+### D-19 — How far on grid and algorithm?
+**Blocks:** F-43. **Decide AFTER F-41's baseline and R-12.**
+
+Now that squareness is known to be a connectivity problem, the options separate
+cleanly and are cheaper than D-03 assumed:
+**(a)** raise connectivity (16/32-neighbour) — cheapest, kills most of the
+staircase, keeps everything else; **(b)** any-angle search (Theta*/ANYA) —
+genuinely smooth tracks, moderate rework, must stay deterministic;
+**(c)** adaptive coastal refinement, to retire the hand-authored seals;
+**(d)** full DGGS rebuild (H3/S2/HEALPix) — fixes polar convergence and cell-area
+distortion, biggest change by far.
+These compose: (a) or (b) is the visible win; (c) is the seal-maintenance win;
+(d) is a different project.
+
+### D-20 — How far on physics?
+**Blocks:** F-42. **Decide AFTER F-41's baseline and R-11.**
+
+**(a) Calibrate and declare** the existing parametric model — give every constant
+an evidence class, source and bound; fit only where the corpus supports it.
+**(b) Replace** with a real gridded seasonal climatology — better physics, adds a
+data dependency, and raises an anachronism question (a modern climatology for a
+Little-Ice-Age world) that must be *declared* rather than hidden.
+**(c) Hybrid** — data where defensible, parametric elsewhere, boundary explicit.
+
+Note the baseline may make this moot: if durations come out broadly defensible,
+(a) is the honest answer and a physics rebuild would be motion without gain.
+
+### D-21 — What happens to lanes with NO verification evidence?
+**Blocks:** F-45's reporting contract, and it is the charter question of this plan.
+
+Most of the 414 lanes will have no corpus entry — the evidence is dense for
+European long-haul shipping 1750–1854 and thin everywhere else.
+
+**(a)** Leave them at unfitted `asserted` defaults, mark them unverified in every
+report, and publish the coverage fraction (the plan's recommendation — it is the
+"no silent zeros" rule applied to routes).
+**(b)** Extend fitted parameters to them and say so.
+**(c)** Extend fitted parameters silently. **The charter forbids (c)**, and it is
+listed only so it is explicitly rejected rather than accidentally chosen.
+
+### D-22 — Does the harness gate `npm test`?
+**Blocks:** F-46.
+
+A fast subset (T1/T3 over a fixed sample) as a permanent regression gate means a
+future change cannot silently un-fix a verified route. Cost: test runtime, which
+is already ~107 s. **Recommendation: yes, but only the categorical tiers** — T5
+geometry is too slow and too sensitive to belong in a commit gate.

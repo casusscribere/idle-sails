@@ -72,6 +72,34 @@ Every design decision answers to both of these:
   queue is **W1** (corrections), then **R-01** (Japan & sakoku — the deepest
   fidelity question in the inputs), then **W3** opening with **F-12 convoys +
   F-13 region-aware sinking**.
+- **PLAN-7 DRAFTED — THE ROUTING REBUILD + ITS VERIFICATION SUITE (2026-07-21,
+  unadopted).** `planning/PLAN-7-routing.md`, at user request; supersedes the
+  locked `L-02` and unlocks the refinement track's §1c. **Reading the engine
+  corrected three things the queue believed.** (1) The wind field is **not data**
+  — `windfield.mjs` is ~15 hardcoded constants over six regimes and currents are
+  10 hardcoded lat-lon boxes; the whole physics layer is `asserted` with no
+  evidence class, bounds, or sources, the largest undeclared assertion in the
+  project, and it name-checks CLIWOC without ever having been tested against it.
+  (2) The **oddly-square legs are 8-NEIGHBOUR CONNECTIVITY**, not grid
+  resolution — a finer grid gives smaller staircases, not smoother tracks — which
+  re-frames D-03 and makes the fix *cheaper* than the resolution rebuild it was
+  weighing. (3) **A whole voyage is routed in its departure season's wind**
+  (`fieldFor` builds one static field per destination×class×season), so a
+  six-month London→Canton passage never sees the seasons it crosses —
+  previously unrecorded. Also: the archived **31 MB of `.bin` files are OUTPUTS**
+  (precomputed travel-time surfaces) that nothing reads, so **L-04 (prune the
+  archive) is far cheaper than CLAUDE.md claimed** — the baker imports four small
+  `.mjs` modules, not the fields. **Plan shape:** Phase 0 builds the verification
+  harness against the CURRENT engine FIRST (a rebuild justified by "looks wrong"
+  has no acceptance criterion), then R-11 (the historical route corpus — find,
+  don't generate) ‖ R-12 (programmatic best practices: any-angle planning,
+  fast-marching, time-dependent shortest path, DGGS, trajectory metrics,
+  determinism as a hard constraint), then a real decision point, then physics /
+  algorithm / calibration / re-bake. **The anti-false-precision rule is the
+  spine:** tuning granularity may never exceed evidence granularity, holdout
+  validation is stratified by basin and era, unevidenced scopes stay unfitted and
+  are published as such, and there is deliberately **no single global score**.
+  New queue wave **W3R** + chunk **CR**; new decisions **D-18…D-22**.
 - **CONVOYS MERGED TO MAIN + CHUNK C1 COMPLETE (2026-07-21).** `movement-realism`
   (convoys + region-aware sinking) merged into `main` at user request. The two
   features had NEVER shared a tree — convoys existed only on that branch, which

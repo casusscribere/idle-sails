@@ -206,6 +206,46 @@ unlocks six ambient patterns**; everything else rides existing machinery.*
 
 ---
 
+## 6b. W3R — The routing rebuild programme  ·  `planning/PLAN-7-routing.md`
+
+*Drafted 2026-07-21 at user request; supersedes **L-02** and unlocks **L-01 §1c**.
+Read the plan before touching any item here — it corrects three beliefs the queue
+had been carrying.*
+
+**What the investigation found** (source read 2026-07-21):
+- The wind field is **not data**. `windfield.mjs` is ~15 hardcoded constants over
+  six regimes; currents are **10 hardcoded lat-lon boxes**. The whole physics
+  layer is `asserted` with no evidence class, no bounds, and no sources — the
+  largest undeclared assertion in the project.
+- The **oddly-square legs are 8-neighbour connectivity**, not grid resolution.
+  A finer grid gives smaller staircases, not smoother tracks. **This re-frames
+  D-03 and makes the fix cheaper than the resolution rebuild it was weighing.**
+- **A whole voyage is routed in its departure season's wind.** A six-month
+  London→Canton passage crosses two or three seasons and is sailed as though the
+  departure month held throughout. Previously unrecorded.
+- The archived **31 MB of `.bin` files are OUTPUTS** (precomputed travel-time
+  surfaces) and are read by nothing. **L-04 is far cheaper than recorded.**
+
+| ID | Item | Gate | Note |
+|---|---|---|---|
+| **F-41** | **The route-verification harness** — build it against the CURRENT engine | none | PLAN-7 Phase 0, and the highest-value item here. Metrics tier from categorical to quantitative so the early tiers cannot manufacture precision: **T1** waypoint/corridor recall · **T2** passage duration vs an observed RANGE · **T3** directional asymmetry (the volta do mar is binary-testable) · **T4** seasonal response · **T5** track geometry (Fréchet + cross-track) only where positional data exists. **No single global score** — one number over 414 unevenly-evidenced lanes is itself false precision. Survives the rebuild; becomes the regression gate |
+| **R-11** | **The historical route corpus** | F-41 schema | Find, do NOT generate. CLIWOC · Maury · sailing directions · prescribed routes (Brouwer, Carrera, the Urdaneta return) · wreck positions. `prescribed-route` ≠ `logbook-track` and the suite must never average them. Declares what it does not cover — most of 1550–1700 |
+| **R-12** | **Programmatic best practices** | none | Any-angle planning (Theta*/ANYA/Field D*) · fast-marching · time-dependent shortest path · grid choice incl. DGGS · obstacle representation · trajectory metrics · **determinism as a hard constraint** · baking/caching · validation methodology |
+| **F-42** | **Physics honesty** — wind + current fields | R-11, **D-20** | Calibrate-and-declare, replace with a real climatology, or hybrid. Two fixes ship regardless: currents are added as a **scalar projection** rather than composed as vectors, and the 0.4 m/s floor is an undocumented magic number |
+| **F-43** | **Algorithm & geometry** | R-12, **D-19** | Kill the 45° staircase first (connectivity or any-angle) — visible, cheap, resolution-independent. Then coastal resolution, measured by how many `ISLAND_SEAL`/`STRAIT_CARVE` entries can be DELETED |
+| **F-44** | **Time-dependent routing** | R-12 | Cost as a function of arrival time, so a long passage sails the seasons it crosses. Interacts with F-10 (monsoon windows) and seasonal departure gating |
+| **F-45** | **Calibration under holdout discipline** | F-41, R-11 | `research/routes/parameters.json`: every tunable carries an evidence class AND the scope it claims. **Tuning granularity may never exceed evidence granularity.** Stratified calibration/validation split; unevidenced scopes stay `tunable:false`; every move logged. Guards against a global fit that scores well on the North Atlantic while silently degrading the Indian Ocean |
+| **F-46** | **Re-bake + regression gate** | F-42–45 | Runs in **C2's single bake** with F-01/F-03/F-06/F-07/F-10. `datasetVersion` bump; harness subset joins `npm test` |
+
+**Sequencing — and the one thing not to do.** F-41 → {R-11 ‖ R-12} → **re-read
+the baseline and decide whether a rebuild is warranted at all** (D-19/D-20) →
+F-42–46. Step 3 is a real decision point: the harness may show durations are
+broadly defensible and only the geometry is ugly, in which case the honest work
+is the connectivity fix plus a declared-limitations page, not a physics rebuild.
+**Do not tune before the harness exists** — that is how false precision enters.
+
+---
+
 ## 7. W4 — Legibility
 
 *Render + observation only; the sim is untouched, so this wave can float
@@ -274,9 +314,9 @@ Highest risk; nothing above depends on it.*
 | ID | Item | Src | What unlocks it |
 |---|---|---|---|
 | **L-01** | **The research refinement track** | `feature-ideas/research_refinements` | Mirrored as [REFINEMENTS.md](REFINEMENTS.md). Its own header says: *do not add these to the general to-do or feature lists until unblocked or specifically requested*. **It is therefore NOT folded into the waves above — but four of its five sections overlap live items** (see **D-01**), which is the single biggest scheduling question in this reorganization |
-| **L-02** | **Routing / wind-chart engine rebuild** | ideas §1a | Needs its own design doc. The 1° grid is the root cause of F-06's residuals; a finer grid means new field data and a full re-bake of all 414 routes. Overlaps L-01 §1c (find real historical route data and match generated routes to it). Gated on **D-03** |
+| ~~**L-02**~~ | ~~Routing / wind-chart engine rebuild~~ | ideas §1a | ➡️ **SUPERSEDED 2026-07-21 by [PLAN-7-routing.md](PLAN-7-routing.md)** and wave **W3R** above. It now has the design doc it was waiting for, and the investigation corrected its premise: the squareness is 8-neighbour connectivity, not grid resolution. **L-01 §1c is unlocked** as R-11 |
 | **L-03** | **Fully-ahistorical mode** | ideas §11 | Needs its own design doc. Philosophically orthogonal to the charter — it must be a clearly-labelled separate mode that cannot muddy the sober register. See **D-11** |
-| **L-04** | **Prune the archive from the repo** | ideas §2 | Port `pipeline/router.mjs` and the 31 MB field `.bin`s FORWARD out of `archive/` first — the baker still depends on them (CLAUDE.md constraint) — then remove the archive. See **D-12** |
+| **L-04** | **Prune the archive from the repo** | ideas §2 | **CHEAPER THAN RECORDED (verified 2026-07-21).** The baker does NOT depend on the 31 MB of `.bin` fields — those are precomputed travel-time OUTPUTS (`<port>_<vessel>_<season>.bin`, 360×180 Uint16) and `bake-routes.mjs` says so and reads none of them. It imports four small `.mjs` modules (`router`, `config`, `geo`, + transitively `windfield`/`polar`). Port those forward, re-bake to prove it, then the 31 MB can go. See **D-12** |
 | **L-05** | **Steam layer** | *(was T11)* | v1 is a **sail chart, declared** (steam is a silences entry + a divergences paragraph). A future steam layer — P&O/Cunard mail as a distinct movement class, great-circle legs and coaling calls, which the wind engine cannot produce — needs its own plan and its own research pass |
 | **L-06** | **The procgen variant** | `feature-ideas/procgen_variant.txt` | Explicitly out of scope by its own header — ideas for a *future version* of the sim, never to be folded into this backlog. Listed only so it is never re-swept in by mistake |
 
@@ -294,6 +334,7 @@ the expensive thing happens once.
 | ~~**C1**~~ | ~~The clean sweep~~ | — | no | ✅ **DONE 2026-07-21** |
 | **C2** | The one re-bake | D-04 | data + baker | 1–2 |
 | **C3** | The fidelity reading | D-05 (part) | no (research) | 3–4 |
+| **CR** | **The routing programme** (PLAN-7) | D-18; then D-19/D-20 | eventually, via re-bake | many |
 | **C4** | Movement: the safe half | R-06 for F-17 | yes, fate-safe | 2–3 |
 | **C5** | Movement: the channel | C4 | yes, fate-safe | 3–5 |
 | **C6** | Port identity | D-02 | no | 2 |
@@ -374,6 +415,16 @@ density in the window, which is correct.
   "what could legitimately call where" over the same regime and roster sources.
 - **C3d — R-05** only if **D-05** says the T12 answers were too thin.
 
+### CR — The routing programme  ·  `planning/PLAN-7-routing.md`
+*A programme, not a sitting. Ordered so the expensive, irreversible step (a
+re-bake) comes last and only if the evidence asks for it.*
+**CR-0** F-41 the harness, against the current engine — ships alone, useful alone
+· **CR-1** R-11 ‖ R-12 in parallel · **CR-2** *the decision point*: re-read the
+baseline with the corpus in hand and decide whether to rebuild, and how deep
+(D-19, D-20) · **CR-3** F-42/F-43/F-44 as the evidence directs · **CR-4** F-45
+calibration under holdout discipline · **CR-5** F-46 re-bake — **folded into
+C2's single bake**, never its own.
+
 ### C4 — Movement: the safe half
 *Fate-at-spawn holds throughout; no new spawn channel needed.*
 **F-12** convoys — including **F-32** (ship icons left of names) and ideas §6c's
@@ -417,6 +468,7 @@ Breaks fate-at-spawn; `datasetVersion` bump + save reset.
 |---|---|
 | ~~C1~~ | ✅ D-05b + D-13 answered 2026-07-21 |
 | C2 | D-04 |
+| CR | D-18 (scope), then D-19 (grid/algorithm), D-20 (physics), D-21 (unverifiable lanes) |
 | C3 | D-05 (C3d only) |
 | C4 | D-08 |
 | C5 | D-10 |

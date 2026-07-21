@@ -23,6 +23,11 @@ Tasks are grouped so each body of sources is read **once**, and ordered
 
 - **W2 — fidelity data & rules.** Research that changes what the sim asserts
   about the past. R-01 · R-02 · R-03 · R-04 · R-05 · R-06 · R-10.
+- **W2R — the routing campaign** (`planning/PLAN-7-routing.md`). R-11 (the
+  historical route corpus) + R-12 (programmatic best practices) run in
+  PARALLEL — they share no sources, and each blocks a different half of the
+  rebuild. Both are gated behind PLAN-7 Phase 0, the verification harness,
+  which is deliberately built against the CURRENT engine first.
 - **W5 — the sim redesign.** R-07 + R-08 run as **one campaign** — they read the
   same archives (prize courts, Lloyd's Register, registry law), and a captured
   ship re-flagged and renamed under its captor is literally one event on both
@@ -139,6 +144,80 @@ so if both run, run them together.
 **Output:** `research/blockades.md` — per blockade, bounds + effect + a
 sim-shape verdict, evidence-classed.
 **Feeds:** F-17.
+
+#### R-11 — The historical route corpus (PLAN-7 Phase 1)
+*(added 2026-07-21 with `planning/PLAN-7-routing.md`; this is the execution of
+the locked refinement track's §1c, which the user unlocked by requesting the
+routing plan.)* **Find — do NOT generate — real evidence about the routes ships
+actually sailed**, and bound each item's reliability. The emphasis is the
+source's: routes must be checked against surviving record, not validated against
+our own engine's output.
+
+Candidate sources, each to be verified for what it actually contains and for
+which eras and basins — **none is asserted here as fact**:
+- **CLIWOC** (Climatological Database for the World's Oceans), built from Dutch,
+  English, French and Spanish logbooks, roughly 1750–1854. The likely anchor for
+  positional tracks — and pointedly, the source `windfield.mjs` already claims to
+  follow without ever having been tested against it.
+- **ICOADS** early marine observations.
+- **Maury's Wind and Current Charts + Sailing Directions** (1840s onward): late
+  for our window, but they codify the routes the sailing era had settled on.
+- **Admiralty and company sailing directions**; East India Company route
+  instructions.
+- **Prescribed routes as documents** — the VOC's Brouwer Route (1611) and
+  standing orders, the Carrera de Indias, the Manila galleon's Urdaneta return.
+  Record these as `prescribed-route`, NOT as observed track: what ships were told
+  to do is different evidence from what they did, and the suite must never
+  average the two.
+- **Scholarly reconstructions** in maritime history / historical geography.
+- **Wreck positions** as weak point-constraints.
+
+**Output:** `research/routes/corpus.json` in the PLAN-7 §2.1 schema — every entry
+evidence-classed (counted/proxied/reconstructed/asserted) and bounded, with
+`kind` distinguishing prescribed route · logbook track · passage duration ·
+waypoint constraint · forbidden corridor. Plus a **declared statement of what the
+corpus does not cover**, which will be most of 1550–1700 and most non-European
+shipping. Expect silences-register entries.
+**Feeds:** F-41 (the verification harness) and F-45 (calibration).
+**Charter note:** the corpus's own bias — dense for European long-haul shipping
+1750–1854, thin elsewhere — must be stated up front, because PLAN-7 §10 depends
+on it being visible.
+
+#### R-12 — Programmatic best practices for route generation & execution (PLAN-7 Phase 1)
+*(added 2026-07-21 with `planning/PLAN-7-routing.md`.)* A literature-and-practice
+review of how this class of problem is actually solved, whose deliverable is a
+**recommendation with trade-offs**, not a preference. Must cover:
+- **Any-angle path planning** — Theta*, Lazy Theta*, ANYA, Field D* — as the
+  direct answer to the 8-neighbour heading quantization that causes the
+  oddly-square legs, including how each interacts with anisotropic
+  (direction-dependent) edge cost, which is our case.
+- **Fast Marching / level-set methods** for optimal paths in flow fields — the
+  other established family for exactly this problem.
+- **Time-dependent shortest path** (cost as a function of arrival time at a
+  cell), for the defect where a six-month passage is routed entirely in its
+  departure season's wind.
+- **Discretization**: raising connectivity vs. raising resolution vs. adaptive
+  multi-resolution (coarse ocean, fine coast) vs. discrete global grids
+  (H3, S2, HEALPix, icosahedral) that avoid lat-lon polar convergence and give
+  uniform cell area. Include the cost side: memory, bake time, cache behaviour.
+- **Obstacle representation**: raster masks vs. polygon-aware visibility, and the
+  sub-cell island problem that currently forces hand-authored `ISLAND_SEAL` and
+  `STRAIT_CARVE` entries.
+- **Trajectory similarity metrics** — discrete Fréchet, DTW, Hausdorff,
+  along/cross-track error — to ground the harness's T5 tier.
+- **Determinism and reproducibility** under a seeded simulation. **This is a hard
+  constraint, not a preference**: any algorithm adopted must be exactly
+  reproducible across runs and platforms, or the project's central invariant
+  (same seed + sim-time ⇒ identical world) dies. Flag any candidate whose
+  standard implementation uses randomized tie-breaking or floating-point
+  reduction order that varies.
+- **Baking, caching and compression** for many-to-many precomputed routes.
+- **Validation methodology** from the operational weather-routing literature —
+  how that field establishes that a router is good, which is the same question
+  the harness asks.
+**Output:** `research/routing-methods.md` — per technique: what it fixes, what it
+costs, whether it is deterministic, and a verdict for this codebase.
+**Feeds:** PLAN-7 Phases 3–5; decisions D-19 and D-20.
 
 #### R-10 — Port supply & demand *(blocked on D-01)*
 *(added 2026-07-21 from `ideas.txt` §7–§8.)* Per port, the cargoes it produced
