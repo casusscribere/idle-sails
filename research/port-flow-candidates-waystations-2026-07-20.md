@@ -1,5 +1,10 @@
 # Candidate waystations — the T14 waystops sweep, 2026-07-20
 
+> **STATUS: BUILT (2026-07-21).** The `via`-CHAIN extension (queue item 4) shipped, and
+> with it every verdict in this sweep except Johanna. See **"What was built"** at the
+> foot of this file for the as-shipped record, including the three decisions where the
+> build departed from — or went beyond — the catalog.
+
 The Cape Town phase (2026-07-20) built the first `via` waystop — a refreshment
 CALL a lane detours to and dwells at, gated to the station's founding year. This
 sweep asks which OTHER age-of-sail waystations were near-universal calls on the
@@ -161,6 +166,77 @@ sources:
   stopover length monsoon-dependent); already modelled.
 - ⚠ **Johanna secondary to the Cape, route-contingent** — modelled as a layered
   secondary call, not a Cape-equivalent funnel.
+
+---
+
+## What was built — 2026-07-21
+
+The one code change the sweep asked for was made first: **`via` is now an ordered chain.**
+`route.via` accepts a port id or a list; the baker routes `from→v1→…→vn→to`, simplifies
+each HOP separately so every call survives as a guaranteed vertex, records `viaIndex[]`,
+and (new) re-frames each hop's longitudes onto the previous hop's frame before concatenating
+— without which the Acapulco→Guam→Manila join jumped a whole circumference. `world.js`
+splits the leg into one segment per hop with a refreshment dwell, gating each call to that
+station's founding year, so **a chain degrades hop by hop as the era rolls back** while the
+baked polyline threads them all.
+
+**Six new station nodes** (`roles:["station"]`, a new `atlantic-islands` region for the four
+ocean islands): St Helena (1659) · Anjer (1682) · Umatac/Guam (1668) · Funchal/Madeira ·
+Santa Cruz de Tenerife · Angra/Azores. The last three carry no founding window — they were
+old harbours long before 1550 — which surfaced a bug in the Cape Town code (it required
+`port.active` to exist) and is now the documented default.
+
+**54 lanes carry a via** (was 22). The chains that matter:
+
+| Lane | Chain |
+|---|---|
+| `china-can-lon` Canton→London | **anjer → cape-town → st-helena** (the sweep's own worked example) |
+| `china-lon-can` London→Canton | madeira → cape-town → anjer |
+| `sg-singapore-london`, `hk-hongkong-london` | anjer → cape-town → st-helena |
+| `voc-bat-ams`, `nl-bat-ams` | anjer → cape-town (Dutch: **no** St Helena) |
+| `china-can-got` Canton→Gothenburg | anjer → cape-town (Swedish: **no** St Helena) |
+| `f-bombay-lisbon`, `q-macau-lisbon` | mozambique → azores |
+| `f-veracruz-cadiz`, `q-portobelo-cadiz`, `f-cartagena-cadiz` | havana |
+| `f-acapulco-manila` | guam (westbound only; `f-manila-acapulco` gets none) |
+
+**Three departures from the catalog, each deliberate:**
+
+1. **Johanna/Anjouan was NOT built** — the catalog's own fallback taken. A `via` attaches to
+   a LANE, so adding Johanna would send *every* Company Indiaman up the Mozambique Channel,
+   when the inner route was taken by some ships in some seasons and outer-route Bengal/China
+   ships passed east of Madagascar entirely. That is a larger falsehood than the omission.
+   Registered instead as `johanna-inner-route-silence`, pointing at the Cape call, with the
+   mechanism limit named: it becomes buildable when a lane can carry per-voyage route variants.
+2. **The VOC gets no Madeira call** — an exclusion the catalog did not specify. Dutch standing
+   orders sent the retourvloot from the Texel to Table Bay without an intermediate call, which
+   is precisely *why* the Company founded Table Bay. Madeira therefore attaches to the British
+   and Swedish outbound lanes and not to `voc-ams-bat`/`nl-ams-bat`.
+3. **Two verdicts were extended beyond the catalog's queue**, both following directly from its
+   own findings: **Havana** as the homeward Carrera rendezvous (the catalog established Havana
+   as the correction to the Azores overstatement, but stopped at deleting the Azores claim —
+   the positive claim was left unbuilt), and **Port Louis** on `f-nantes-madras`/`f-madras-nantes`
+   (the catalog's forward note said "if direct French Europe↔Asia lanes are ever added" — they
+   already existed, dated 1620–1815; the 1735 station gate handles the years before the base).
+
+**Silences:** `cape-waystops-silence` rewritten for what remains below resolution; three new
+entries — `johanna-inner-route-silence`, `ascension-naval-silence`, `chokepoint-calls-silence`
+(Socotra/Aden/Pulo Condore/Pescadores/Malé). The Malacca correction is *not* in the register —
+it is a routing correction, not a silence, and lives in the Anjer documentation.
+
+**Verification:** 64 tests green (+3: the three-waystop chain in order with tiling `f0/f1`
+stretches and a real pause at each station · chain degradation across the 1652/1659 foundings ·
+Guam westbound-only and never before 1668). Bake: 1,805 polylines, 0 sanity problems, all 209
+via polylines land their waystop vertex within 60 km of the port. The one large distance change
+is `q-elmina-lisbon` 5,388→8,851 km — the volta do mar via the Azores, which is the historically
+exact way home from Guinea. Headless: all seven stations called and pickable at 1788, 0 console
+errors.
+
+**Left standing:** Cape Verde, Galle, Trincomalee and Île Bourbon remain full-port *promotion*
+candidates under `CURATION.md`, not waystops. Anjer's dot sits within 5 px of Bantam and Batavia
+on the world plate — a pre-existing crowding, honest at the scale, and it separates on the East
+Indies plate.
+
+---
 
 **Sources** (per candidate, condensed): Duncan, *Atlantic Islands* (1972);
 Chaunu, *Séville et l'Atlantique*; Hancock, *Oceans of Wine* (2009); Friends of

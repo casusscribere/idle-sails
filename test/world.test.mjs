@@ -353,6 +353,74 @@ test('Cape Town waystop: the Indies calls appear only from the 1652 founding', (
   assert.ok(Math.hypot(pos.lon - 18.42, pos.lat + 33.92) < 1.5, `paused at Cape Town (${pos.lon.toFixed(1)}, ${pos.lat.toFixed(1)})`);
 });
 
+test('waystop chains (T14): a homeward China Indiaman calls at Anjer, Table Bay AND St Helena', () => {
+  const at = (year, seed = 42) => { const w = mk(seed); while (Math.floor(w.calendar(w.simClock).year) < year) w.tick(30 * DAY); return w; };
+  const coordOf = (id) => { const p = datasets.ports.find(x => x.id === id); return [p.lon, p.lat]; };
+  const w = at(1790);
+  // the three-waystop chain, IN ORDER, on a Canton→London leg
+  const legOf = (v, laneStart) => v.schedule.filter(s => s.legId.startsWith(laneStart));
+  let chained = null;
+  for (const v of w.state.vessels) {
+    const segs = legOf(v, 'china-can-lon__');
+    if (segs.length === 4) { chained = segs; break; }
+  }
+  assert.ok(chained, 'a Canton→London leg splits into four segments (three calls)');
+  assert.deepEqual(chained.map(s => s.to), ['anjer', 'cape-town', 'st-helena', 'london'],
+    'the chain runs Sunda → Table Bay → St Helena → the Channel');
+  // each segment is contiguous in time and in its stretch of the shared polyline
+  for (let i = 0; i < chained.length; i++) {
+    assert.ok(chained[i].arrive > chained[i].depart, 'a segment takes time');
+    if (i) assert.ok(chained[i].depart > chained[i - 1].arrive, 'a refreshment dwell separates the calls');
+    assert.ok(chained[i].f0 < chained[i].f1, 'each segment covers its own stretch');
+    if (i) assert.equal(chained[i].f0, chained[i - 1].f1, 'the stretches tile the polyline');
+  }
+  // and she really pauses at each station, not merely in the ledger
+  for (const s of chained.slice(0, 3)) {
+    const v = w.state.vessels.find(x => x.schedule.includes(s));
+    const pos = w.positionOf(v, s.arrive), [lon, lat] = coordOf(s.to);
+    assert.ok(Math.hypot(((pos.lon - lon + 540) % 360) - 180, pos.lat - lat) < 1.5,
+      `paused at ${s.to} (${pos.lon.toFixed(1)}, ${pos.lat.toFixed(1)})`);
+  }
+});
+
+test('waystop chains degrade hop by hop as the era rolls back to each founding', () => {
+  const at = (year, seed = 42) => { const w = mk(seed); while (Math.floor(w.calendar(w.simClock).year) < year) w.tick(30 * DAY); return w; };
+  // 1655: Table Bay stands (1652), St Helena does not (1659) — an India homeward
+  // Indiaman refreshes at the Cape and then runs for the Channel unbroken.
+  const mid = at(1655);
+  assert.ok(mid.state.portCalls['cape-town'] != null, 'Table Bay is called at in 1655');
+  assert.equal(mid.state.portCalls['st-helena'], undefined, 'St Helena is not, before 1659');
+  // Funchal carries NO founding window — an old harbour, so the outbound call
+  // stands in a decade when Table Bay is still half a century away.
+  const early = at(1640);
+  assert.ok(early.state.portCalls['madeira'] != null, 'the outbound Madeira call needs no founding');
+  assert.equal(early.state.portCalls['cape-town'], undefined, 'while Table Bay is not yet founded');
+  // 1800: the full chain is standing
+  const late = at(1800);
+  for (const id of ['madeira', 'cape-town', 'st-helena', 'anjer'])
+    assert.ok(late.state.portCalls[id] != null, `${id} is a live call in 1800`);
+});
+
+test('the Manila galleon waters at Guam WESTBOUND only, and only from 1668', () => {
+  const w = mk(42);
+  while (Math.floor(w.calendar(w.simClock).year) < 1600) w.tick(30 * DAY);
+  let west = 0, east = 0, early = 0;
+  // the galleon sailed once or twice a year — sample a century to catch her
+  for (let i = 0; i < 400; i++) {
+    w.tick(365.25 * DAY / 4);
+    const year = Math.floor(w.calendar(w.simClock).year);
+    for (const v of w.state.vessels) for (const s of v.schedule) {
+      if (s.to !== 'guam' && s.from !== 'guam') continue;
+      if (year < 1668) early++;
+      if (s.legId.startsWith('f-acapulco-manila__')) west++;
+      if (s.legId.startsWith('f-manila-acapulco__')) east++;
+    }
+  }
+  assert.equal(early, 0, 'no Guam call before the 1668 mission');
+  assert.ok(west > 0, `the westbound galleon waters at Umatac (${west} segments)`);
+  assert.equal(east, 0, 'the eastbound return climbs into the westerlies and never comes near');
+});
+
 test('wrecks: a loss marks the chart for a sim-year, then fades from the record', () => {
   // sail long enough to accumulate losses (base loss ~2.5%/30-day leg)
   const w = mk(3);

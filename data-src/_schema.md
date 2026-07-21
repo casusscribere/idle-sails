@@ -56,6 +56,15 @@ shipTypes[] (→ship-types.id), cargo[] (→cargo.id), era{from,to}, weight, fla
 Optional: `middlePassage:true`, `naval:true`, `framing`, `note`. The baker bakes each lane
 for {distinct routeClasses among its shipTypes} × {4 seasons}, keyed by the `to` port's field.
 
+Optional `via`: a port id, or an ORDERED CHAIN of them, that the lane CALLS at on the way —
+a refreshment waystop, not a terminus (`["madeira","cape-town","anjer"]` on London→Canton).
+The baker routes `from → v1 → … → vn → to`, simplifies hop by hop so each call survives as a
+guaranteed vertex, and records `viaIndex[]`; `world.js` splits the leg into one segment per
+hop with a dwell at each. A call is gated to the station's `active` window, so a chain
+degrades hop by hop as the era rolls back (no Table Bay before 1652, no St Helena before
+1659) while the polyline threads them all. Adds NO flow volume — the lane's traffic is
+unchanged, it simply stops on the way.
+
 ## names
 `naval{}`, `navalPlaces{}`, `merchant{}`, `merchantByPower{}` word pools;
 `themesByPower{}` maps power → allowed naval/merchant themes; `articles{}` construction rules.

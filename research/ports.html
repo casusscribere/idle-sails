@@ -42,7 +42,7 @@ a{color:var(--ink)}
 <script>
 (function(){
   const esc=t=>String(t==null?'':t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-  const REGION_ORDER=['iberia','france','britain','lowlands','baltic','mediterranean','black-sea','west-africa','east-africa','arabia','persian-gulf','india','indian-ocean','east-indies','china','east-asia','japan','north-pacific','south-pacific','north-america','caribbean','brazil','arctic'];
+  const REGION_ORDER=['iberia','france','britain','lowlands','baltic','mediterranean','black-sea','atlantic-islands','west-africa','east-africa','arabia','persian-gulf','india','indian-ocean','east-indies','china','east-asia','japan','north-pacific','south-pacific','north-america','caribbean','brazil','arctic'];
   Promise.all([
     fetch('port-docs.json').then(r=>r.json()),
     fetch('../data/datasets.json').then(r=>r.json())

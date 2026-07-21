@@ -468,7 +468,7 @@ zeros; incommensurable basins not forced onto one scale).
 | Item | Src | Feas | Note |
 |---|---|---|---|
 | ~~Cape Town + critical waystops~~ | addenda 10 | B | ✅ **DONE 2026-07-20 (full waystop reroute, user decision)** — Cape Town added (Kaapstad→Cape Town 1806; VOC/British/Batavian eraPowers). A `via` mechanism reroutes the 22 Europe↔Asia round-the-Cape lanes (Dutch/British/Swedish East-India; NOT the Portuguese Carreira) THROUGH Table Bay: the baker bakes from→cape→to + a `viaIndex`, and the sim splits the leg into a refreshment call + dwell **from the 1652 founding** (before which ships round the Cape unstopped — historically exact). Flow volume unchanged (no double-count). Docs + ports.html card + a `no-port-node` silence for the lesser calls (St Helena/Ascension). The lesser waystops stay gestured. |
-| **The waystations build** (from the T14 sweep) | T14 | B | ✅ **RESEARCHED 2026-07-20** (`port-flow-candidates-waystations-2026-07-20.md`), build queued. New **via-waystops**: St Helena (British homeward), **Anjer/Sunda Strait** (the China-route analogue — Europe↔Canton ran via Sunda, not Malacca), **Guam** (Manila galleon, westbound only), Madeira/Canaries (outbound), the Azores (Portuguese homeward), Johanna/Anjouan (EIC secondary). **Buildable now (single via):** Guam on the Manila galleon; `via:mozambique` on the Portuguese Lisbon↔Macau lanes. **Needs a code extension first:** a `via`-CHAIN (ordered waystops per lane) for St Helena/Anjer/Madeira/Johanna, which layer on the existing Cape via. Full-port promotions (Cape Verde w/ framing, Galle, Trincomalee, Bourbon) + silences (Ascension naval, Socotra/Aden, Malacca-as-terminus) separate. |
+| ~~**The waystations build** (from the T14 sweep)~~ | T14 | B | ✅ **DONE 2026-07-21 — the `via`-CHAIN increment.** `route.via` is now an ordered chain: the baker bakes `from→v1→…→vn→to` (hop-wise simplify so every call is a guaranteed vertex; per-hop longitude re-framing, without which the Acapulco→Guam→Manila join jumped a circumference), the sim splits the leg into one segment per hop with a dwell, and each call is gated to its station's founding — a chain **degrades hop by hop** as the era rolls back. **6 new station nodes** (St Helena 1659 · Anjer 1682 · Umatac/Guam 1668 · Funchal · Santa Cruz de Tenerife · Angra; new `atlantic-islands` region) and **54 lanes with a via** (was 22): `china-can-lon` = anjer→cape-town→st-helena; nationality splits honoured (no St Helena for Dutch/Swedish homeward; **no Madeira for the VOC**, whose standing orders ran direct to Table Bay); Mozambique on the Portuguese Asia lanes, the Azores homeward, **Tenerife outbound / Havana homeward** on the Carrera, Guam westbound-only, **Port Louis** on the French Nantes↔Madras lanes. **Johanna deliberately NOT built** — a per-lane via would send *every* Indiaman up the Mozambique Channel → `johanna-inner-route-silence` (unblocked by per-voyage route variants). +3 tests (64 green), 0 sanity problems, 0 console errors. Full-port promotions (Cape Verde w/ framing, Galle, Trincomalee, Bourbon) remain open under `CURATION.md`. |
 | Korea / Russian-Pacific / Alaska ports | addenda 11 | R | verdict per port: promote or register a silence (still open) |
 
 ### Batch Z — Big modes / housekeeping  ·  DEFER (own design)
@@ -484,8 +484,9 @@ whatever re-bake Phase 2 triggers (the Horn wrap is already fixed — never re-b
 JUST for the rest); Batch S's **region-aware sinking** done with/after **Convoys**
 (its standout, and now the top unstarted sim refinement since the visibility floor
 shipped); Batch E folded into Pass 4/6 as channel demos + the Aubrey catalog;
-Batch G's **T14** run as a short sweep before/with Phase 2 (Cape Town matters for
-movement realism); Batch Z deferred to its own plans.
+Batch G's **T14 waystops are now DONE** (Cape Town 2026-07-20, the via-chain build
+2026-07-21), leaving only the Korea/Russian-Pacific verdicts open in that batch;
+Batch Z deferred to its own plans.
 
 **Shipped since the sweep (2026-07-20), beyond the batches above** — three
 direct-request fixes not in the input files' batches: the **events-log category

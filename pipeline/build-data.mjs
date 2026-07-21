@@ -28,7 +28,11 @@ const REGIONS = new Set(['britain', 'lowlands', 'france', 'iberia', 'baltic', 'c
   // diversity-layer regions (PLAN-2 §5): in the cargo/power vocabulary now,
   // gaining ports when Phase B bakes the minor-port routes.
   'east-asia', 'indian-ocean', 'arabia', 'persian-gulf', 'east-africa',
-  'arctic', 'mediterranean', 'black-sea', 'north-pacific', 'south-pacific']);
+  'arctic', 'mediterranean', 'black-sea', 'north-pacific', 'south-pacific',
+  // T14 waystops: the Atlantic refreshment islands (Madeira, the Canaries, the
+  // Azores, St Helena) are neither Iberia nor Africa — they are the ocean's own
+  // stepping-stones, and the traffic that called at them belongs to no mainland.
+  'atlantic-islands']);
 const SELFCHECK_N = 2000;
 
 const errors = [];
@@ -142,13 +146,22 @@ for (const r of routes) {
   if (r.from === r.to) err(`route ${r.id}: from === to`);
   inEra(r.era, `route ${r.id}`);
   if (r.flag && !powerById.has(r.flag)) err(`route ${r.id}: unknown flag '${r.flag}'`);
-  // waystop (Cape Town): the via port must exist and differ from both endpoints;
-  // the CALL is gated to the port's active window at sim-time, so the lane era
-  // may legitimately begin before the station's founding (the ship rounds the
-  // Cape without stopping until it exists).
+  // waystops (T14): `via` is a port id or an ORDERED CHAIN of them (a homeward
+  // China Indiaman called at Anjer, Cape Town and St Helena). Each must exist and
+  // be distinct from the endpoints and from each other; the CALL is gated to the
+  // station's active window at sim-time, so the lane era may legitimately begin
+  // before the station's founding (the ship rounds the Cape without stopping
+  // until it exists).
   if (r.via !== undefined) {
-    if (!portById.has(r.via)) err(`route ${r.id}: unknown via '${r.via}'`);
-    if (r.via === r.from || r.via === r.to) err(`route ${r.id}: via must be an intermediate port`);
+    const vias = Array.isArray(r.via) ? r.via : [r.via];
+    if (!vias.length) err(`route ${r.id}: via must name at least one waystop`);
+    const seen = new Set();
+    for (const v of vias) {
+      if (!portById.has(v)) err(`route ${r.id}: unknown via '${v}'`);
+      if (v === r.from || v === r.to) err(`route ${r.id}: via '${v}' must be an intermediate port`);
+      if (seen.has(v)) err(`route ${r.id}: via '${v}' repeated in the chain`);
+      seen.add(v);
+    }
   }
   if (!Array.isArray(r.shipTypes) || !r.shipTypes.length) err(`route ${r.id}: needs shipTypes[]`);
   for (const st of r.shipTypes || []) if (!shipById.has(st)) err(`route ${r.id}: unknown shipType '${st}'`);

@@ -181,6 +181,24 @@ flag that the T12 sweep did NOT resolve:
   (before which ships round the Cape unstopped). Flow unchanged (no double-count).
   The lesser calls (St Helena, Ascension, Mossel/False Bay) stay a `no-port-node`
   silence (`cape-waystops-silence`).
+- **The waystations sweep** — ✅ **BUILT 2026-07-21 (the via-CHAIN increment).**
+  `route.via` is now an ordered chain; the baker bakes `from→v1→…→vn→to` (hop-wise
+  simplify + per-hop longitude re-framing for the antimeridian), the sim splits the
+  leg into one segment per hop with a dwell, and each call is gated to its station's
+  founding — so a chain **degrades hop by hop** as the era rolls back. Six new
+  station nodes (St Helena 1659 · Anjer 1682 · Umatac/Guam 1668 · Funchal ·
+  Santa Cruz de Tenerife · Angra; a new `atlantic-islands` region) and **54 lanes
+  with a via** (was 22), incl. the sweep's worked example `china-can-lon` =
+  anjer→cape-town→st-helena, the nationality splits (no St Helena for Dutch or
+  Swedish homeward; no Madeira for the VOC, whose standing orders ran direct to
+  Table Bay), Mozambique on the Portuguese Asia lanes, the Azores homeward,
+  Tenerife outbound / **Havana** homeward on the Carrera, Guam westbound-only,
+  and **Port Louis** on the French Nantes↔Madras lanes (the forward note's "if
+  such lanes are ever added" — they already existed). **Johanna deliberately NOT
+  built** (a per-lane via would send every Indiaman up the Mozambique Channel) →
+  `johanna-inner-route-silence`, unblocked by per-voyage route variants. New
+  silences: Ascension (naval), the chokepoint anchorages. 64 tests green.
+  As-shipped record in the sweep file's "What was built".
 - **Korea / Russian-Pacific / Alaska** (#11) — per port, a promote-or-register
   verdict (Korean ports under the Joseon maritime-restriction boundary declared
   honestly; Okhotsk/Kamchatka and the RAC's Alaskan stations beyond the existing

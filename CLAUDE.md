@@ -50,8 +50,40 @@ Every design decision answers to both of these:
      Middle-Passage pattern (no value tier, no profit framing, factual, never
      a reward) extends to any promoted coerced flow (Kaffa, Indian Ocean).
 
-## Current state (as of 2026-07-20)
+## Current state (as of 2026-07-21)
 
+- **THE WAYSTOPS BUILD — `via` IS NOW A CHAIN (2026-07-21, live).** The T14
+  waystations sweep integrated. **The code change the sweep asked for:**
+  `route.via` accepts an ORDERED LIST of ports — the baker routes
+  `from→v1→…→vn→to`, simplifies each HOP separately so every call survives as a
+  guaranteed vertex, records `viaIndex[]`, and re-frames each hop's longitudes
+  onto the previous hop's frame before concatenating (without which the
+  Acapulco→Guam→Manila join jumped a whole circumference); `world.js` splits the
+  leg into one segment per hop with a refreshment dwell, gating each call to that
+  station's founding, so **a chain degrades hop by hop as the era rolls back**
+  while the baked polyline threads them all. **Six new station nodes**
+  (`roles:["station"]`, new `atlantic-islands` region): **St Helena** 1659 ·
+  **Anjer** (Sunda Strait) 1682 · **Umatac/Guam** 1668 · **Funchal/Madeira** ·
+  **Santa Cruz de Tenerife** · **Angra/Azores** — the last three with NO founding
+  window (old harbours), which exposed a Cape-Town-era bug: the gate required
+  `port.active` to exist, so a window-less station never called. **54 lanes carry
+  a via** (was 22): `china-can-lon` = **anjer→cape-town→st-helena** (the sweep's
+  worked example), `china-lon-can` = madeira→cape-town→anjer, Mozambique on the
+  Portuguese Asia lanes + the Azores homeward, **Tenerife outbound / Havana
+  homeward** on the Carrera, **Guam westbound-only**, **Port Louis** on the French
+  Nantes↔Madras lanes. Nationality is honoured, not flattened: no St Helena for
+  Dutch or Swedish homeward ships, and **no Madeira for the VOC** (its standing
+  orders ran direct to Table Bay — the reason Table Bay exists). **Johanna/Anjouan
+  deliberately NOT built**: a via attaches to a LANE, so it would send *every*
+  Company Indiaman up the Mozambique Channel — registered as
+  `johanna-inner-route-silence` with the mechanism limit named (unblocked by
+  per-voyage route variants). New silences for Ascension (naval) and the
+  chokepoint anchorages; the Malacca correction lives in the Anjer documentation,
+  not the register (a routing correction is not a silence). **64 tests green**
+  (+3: the three-waystop chain in order with tiling `f0/f1` stretches and a real
+  pause at each station · chain degradation across the 1652/1659 foundings · Guam
+  westbound-only, never before 1668). As-shipped record: the "What was built"
+  section of `research/port-flow-candidates-waystations-2026-07-20.md`.
 - **CAPE TOWN — THE WAYSTOP PHASE (2026-07-20, live).** The one real roster gap
   (Batch G / T14) closed with the **full waystop reroute** (user decision). Cape
   Town added as a station node (**Kaapstad**→Cape Town 1806; eraPowers VOC 1652 →

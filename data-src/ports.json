@@ -2147,6 +2147,102 @@
         }
       ],
       "note": "The VOC refreshment station at Table Bay, founded 1652 - the tavern of the seas, where the Indiamen of the Dutch, English, Swedish and Danish companies watered and victualled on the long passage between Europe and Asia."
+    },
+    {
+      "id": "st-helena",
+      "name": "St Helena",
+      "lon": -5.72,
+      "lat": -15.93,
+      "power": "britain",
+      "region": "atlantic-islands",
+      "roles": [
+        "station"
+      ],
+      "active": {
+        "from": 1659,
+        "to": 1850
+      },
+      "eraPowers": [
+        {
+          "from": 1659,
+          "to": 1833,
+          "power": "eic"
+        },
+        {
+          "from": 1834,
+          "to": 1850,
+          "power": "britain"
+        }
+      ],
+      "note": "The East India Company's island in the South Atlantic, settled 1659 - the rendezvous where homeward Indiamen assembled, watered and waited for a Navy escort before the Channel run. A HOMEWARD, British call: outbound ships could not fetch it against the south-east trades."
+    },
+    {
+      "id": "anjer",
+      "name": "Anjer",
+      "lon": 105.9,
+      "lat": -6.05,
+      "power": "dutch",
+      "region": "east-indies",
+      "roles": [
+        "station"
+      ],
+      "active": {
+        "from": 1682,
+        "to": 1850
+      },
+      "note": "The roadstead at the Java shoulder of the Sunda Strait - the grand tollgate of the Sunda, where ships of every nation watered, took on rice and livestock, and reported their passage to Batavia. Europe's China trade ran through the Sunda Strait, not the Malacca Strait, which makes Anjer the China route's Cape Town."
+    },
+    {
+      "id": "guam",
+      "name": "Umatac",
+      "lon": 144.66,
+      "lat": 13.3,
+      "power": "spain",
+      "region": "north-pacific",
+      "roles": [
+        "station"
+      ],
+      "active": {
+        "from": 1668,
+        "to": 1850
+      },
+      "note": "The bay on southern Guam where the Manila galleon watered - the only landfall on the two-month westbound run from Acapulco, and a crown-mandated call from the Jesuit mission of 1668. The eastbound return did not come this way: it climbed north into the westerlies."
+    },
+    {
+      "id": "madeira",
+      "name": "Funchal",
+      "lon": -16.91,
+      "lat": 32.65,
+      "power": "portugal",
+      "region": "atlantic-islands",
+      "roles": [
+        "station"
+      ],
+      "note": "Madeira's roadstead, the first call outbound from northern Europe - water, fresh stores, and pipes of the island's wine loaded both as ship's provision and as cargo for the Indies and the Americas. The northern nations' outbound stop; the Spanish Carrera used the Canaries instead."
+    },
+    {
+      "id": "tenerife",
+      "name": "Santa Cruz de Tenerife",
+      "lon": -16.25,
+      "lat": 28.47,
+      "power": "spain",
+      "region": "atlantic-islands",
+      "roles": [
+        "station"
+      ],
+      "note": "The Canaries' road, where the outbound Carrera de Indias watered and took on wine before running down the north-east trades for the Caribbean. A ship provisioned at Madeira or at Tenerife, not at both."
+    },
+    {
+      "id": "azores",
+      "name": "Angra",
+      "lon": -27.22,
+      "lat": 38.66,
+      "power": "portugal",
+      "region": "atlantic-islands",
+      "roles": [
+        "station"
+      ],
+      "note": "Angra on Terceira, the Azorean rendezvous where homeward Portuguese ships from India and Brazil waited in the islands - aguardar nas ilhas - for consort and for news of enemy cruisers before the last run to Lisbon. The Spanish treasure fleets rendezvoused at Havana instead, and mostly passed the Azores by."
     }
   ]
 }

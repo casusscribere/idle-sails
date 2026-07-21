@@ -429,30 +429,49 @@ function reconstructLeg(fromP, toP, routeClass, seasonId) {
   raw[raw.length - 1] = [unwrap(toP.lon, raw[raw.length - 1][0]), toP.lat];
   return { raw, hours: field.time[originIdx] / 3600 };
 }
+// `via` is an ordered CHAIN of waystops (a homeward China Indiaman called at
+// Anjer, Cape Town AND St Helena). A bare string is the single-waystop form.
+const viaIdsOf = r => (r.via == null ? [] : Array.isArray(r.via) ? r.via : [r.via]);
+// Join consecutive hops into one polyline. Each hop is reconstructed in its own
+// unwrapped frame, so a hop that crosses the antimeridian (Acapulco→Guam→Manila)
+// must be shifted by whole turns onto the previous hop's frame before concat —
+// otherwise the join jumps a full circumference. Cape lanes shift by 0.
+function joinHops(hops) {
+  const parts = [], out = [];
+  for (const hop of hops) {
+    const pts = hop.raw;
+    const shift = out.length ? Math.round((out[out.length - 1][0] - pts[0][0]) / 360) * 360 : 0;
+    const framed = shift ? pts.map(([lon, lat]) => [lon + shift, lat]) : pts;
+    parts.push(framed);
+    for (let i = out.length ? 1 : 0; i < framed.length; i++) out.push(framed[i]);
+  }
+  return { raw: out, parts };
+}
 
 for (const route of routes) {
   const from = portById.get(route.from), to = portById.get(route.to);
-  // Cape Town waystop (PLAN-5 waystop): a `via` lane is routed from→via→to, so the
-  // baked polyline calls at Table Bay; world.js splits it into two legs with a
-  // refreshment dwell (from the port's 1652 founding). Both halves stay in the
-  // eastern hemisphere for these lanes, so a plain concat needs no unwrap.
-  const viaPort = route.via ? portById.get(route.via) : null;
+  // Waystops (T14): a `via` lane is routed from→v1→…→vn→to, so the baked polyline
+  // CALLS at each refreshment station; world.js splits it into one leg per hop
+  // with a dwell, gated to each station's founding year (before 1652 a ship
+  // rounds the Cape without stopping, and so on down the chain).
+  const viaPorts = viaIdsOf(route).map(id => portById.get(id));
+  const chain = [from, ...viaPorts, to];
   const classes = [...new Set(route.shipTypes.map(st => classOf.get(st)).filter(Boolean))];
   for (const routeClass of classes) {
     // Pass 1 — reconstruct every season's raw least-time path + its tack score.
     const perSeason = [];
     for (const s of SEASONS) {
       let entry = null;
-      if (viaPort) {
-        const a = reconstructLeg(from, viaPort, routeClass, s.id);
-        const b = reconstructLeg(viaPort, to, routeClass, s.id);
-        if (a && b) {
-          const raw = [...a.raw, ...b.raw.slice(1)];
-          entry = { s, raw, rawA: a.raw, rawB: b.raw, hours: a.hours + b.hours, rev: latReversals(raw) };
-        }
-      } else {
-        const r = reconstructLeg(from, to, routeClass, s.id);
-        if (r) entry = { s, raw: r.raw, hours: r.hours, rev: latReversals(r.raw) };
+      const hops = [];
+      for (let h = 0; h + 1 < chain.length; h++) {
+        const r = reconstructLeg(chain[h], chain[h + 1], routeClass, s.id);
+        if (!r) { hops.length = 0; break; }
+        hops.push(r);
+      }
+      if (hops.length) {
+        const { raw, parts } = joinHops(hops);
+        const hours = hops.reduce((a, h) => a + h.hours, 0);
+        entry = { s, raw, hours, rev: latReversals(raw), ...(viaPorts.length ? { parts } : {}) };
       }
       if (entry) perSeason.push(entry);
       else {
@@ -478,14 +497,17 @@ for (const route of routes) {
       warnings.push(`wind-gated (beat-to-windward, ${x.rev} tacks): ${route.id} [${routeClass}/${x.s.id}]`);
     }
     // Pass 2 — de-tack (smooth) + simplify + emit the kept seasons. A via leg is
-    // simplified in HALVES so the Table Bay call survives as a guaranteed vertex,
-    // and its index is recorded for world.js to split the schedule there.
+    // simplified HOP BY HOP so every waystop call survives as a guaranteed vertex,
+    // and the vertex indices are recorded for world.js to split the schedule there.
     for (const x of keep) {
       let coords, viaIndex = null;
-      if (viaPort && x.rawA) {
-        const cA = simplify(deTack(x.rawA)), cB = simplify(deTack(x.rawB));
-        coords = [...cA, ...cB.slice(1)];
-        viaIndex = cA.length - 1;
+      if (viaPorts.length && x.parts) {
+        coords = []; viaIndex = [];
+        for (const part of x.parts) {
+          const c = simplify(deTack(part));
+          if (coords.length) viaIndex.push(coords.length - 1);
+          for (let i = coords.length ? 1 : 0; i < c.length; i++) coords.push(c[i]);
+        }
       } else {
         coords = simplify(deTack(x.raw));
       }
@@ -496,7 +518,7 @@ for (const route of routes) {
         hours: Math.round(x.hours), days: +(x.hours / 24).toFixed(1),
         distKm: Math.round(distKm), points: coords.length, method: 'field',
         coords: coords.map(([lon, lat]) => [+lon.toFixed(3), +lat.toFixed(3)]),
-        ...(viaIndex != null ? { via: route.via, viaIndex } : {})
+        ...(viaIndex && viaIndex.length ? { via: viaIdsOf(route), viaIndex } : {})
       });
       nField++;
     }

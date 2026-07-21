@@ -528,19 +528,35 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
       const g0 = legGeom.get(leg.id);
       const northAtlantic = g0.maxLat > 40 && leg.coords[0][0] < 40;   // rough N-Atlantic/N-Sea gate
       const durSec = (leg.hours || (g0.total / 1.852 / 6)) * 3600 * (northAtlantic ? liaFactor : 1);
-      // Cape Town waystop (PLAN-5): a `via` leg is split at the refreshment call,
-      // with a dwell — but only from the station's founding year (before 1652 the
-      // ship rounds the Cape without stopping). f0/f1 mark each segment's stretch
-      // of the shared polyline so positionOf interpolates the right half.
-      const vp = leg.via ? portById.get(leg.via) : null;
-      if (vp && vp.active && year >= vp.active.from && year <= vp.active.to && leg.viaIndex != null) {
-        const splitF = g0.cum[leg.viaIndex] / g0.total;
-        const arrA = t + durSec * splitF;
-        schedule.push({ laneId, legId: leg.id, from: leg.from, to: leg.via, depart: t, arrive: arrA, f0: 0, f1: splitF });
-        const departB = arrA + rrange(rng, PORT_DWELL_DAYS[0], PORT_DWELL_DAYS[1]) * SEC_PER_DAY;
-        const arrB = departB + durSec * (1 - splitF);
-        schedule.push({ laneId, legId: leg.id, from: leg.via, to: leg.to, depart: departB, arrive: arrB, f0: splitF, f1: 1 });
-        t = arrB;
+      // Waystops (T14): a `via` leg is split at each refreshment call, with a
+      // dwell — but only at stations already founded in this year (before 1652 a
+      // ship rounds the Cape without stopping; before 1659 she passes St Helena).
+      // The baked polyline threads every waystop regardless; only the CALL is
+      // gated, so a chain degrades hop by hop as the era rolls back. f0/f1 mark
+      // each segment's stretch of the shared polyline so positionOf interpolates
+      // the right stretch.
+      const vias = leg.via == null ? [] : Array.isArray(leg.via) ? leg.via : [leg.via];
+      const vIdx = Array.isArray(leg.viaIndex) ? leg.viaIndex : leg.viaIndex != null ? [leg.viaIndex] : [];
+      const calls = [];
+      for (let k = 0; k < vias.length && k < vIdx.length; k++) {
+        const vp = portById.get(vias[k]);
+        // no `active` window = the station stood through the whole era (Funchal,
+        // Tenerife, Angra were old harbours long before 1550) — the gate is the
+        // FOUNDED ones (Table Bay 1652, St Helena 1659, Umatac 1668, Anjer 1682).
+        const win = vp && (vp.active || ERA);
+        if (vp && year >= win.from && year <= win.to) calls.push({ id: vias[k], f: g0.cum[vIdx[k]] / g0.total });
+      }
+      if (calls.length) {
+        let prevF = 0, prevPort = leg.from;
+        for (const c of calls) {
+          const arrive = t + durSec * (c.f - prevF);
+          schedule.push({ laneId, legId: leg.id, from: prevPort, to: c.id, depart: t, arrive, f0: prevF, f1: c.f });
+          t = arrive + rrange(rng, PORT_DWELL_DAYS[0], PORT_DWELL_DAYS[1]) * SEC_PER_DAY;
+          prevF = c.f; prevPort = c.id;
+        }
+        const arrive = t + durSec * (1 - prevF);
+        schedule.push({ laneId, legId: leg.id, from: prevPort, to: leg.to, depart: t, arrive, f0: prevF, f1: 1 });
+        t = arrive;
       } else {
         const arrive = t + durSec;
         schedule.push({ laneId, legId: leg.id, from: leg.from, to: leg.to, depart: t, arrive });

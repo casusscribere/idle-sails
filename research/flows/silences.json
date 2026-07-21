@@ -176,11 +176,35 @@
     },
     {
       "id": "cape-waystops-silence",
-      "scope": "The Cape route's minor calls (St Helena, Ascension, Mossel Bay, False Bay)",
+      "scope": "The Cape and Indies routes' remaining minor calls (Ascension, Mossel Bay, False Bay, Cape Verde as a call)",
       "reason": "no-port-node",
       "treatment": "gestured",
       "pointer": "cape-town",
-      "note": "Cape Town is now modelled as a waystop node: every Dutch, English, Swedish and Danish Indiaman on the Europe-Asia Cape route calls at Table Bay to refresh, from the VOC's founding of the station in 1652 (before which the chart's ships round the Cape without stopping, as they did). The route's LESSER calls stay below resolution - St Helena (the EIC's rendezvous and the homeward-fleet assembly point), Ascension, Mossel Bay, and the summer shift to False Bay - each a real link the chart gestures at through the single Cape Town call rather than draws."
+      "note": "The great refreshment stations are now modelled as waystop nodes and a lane may chain several: a homeward China Indiaman calls at Anjer in the Sunda Strait, at Table Bay, and at St Helena, each gated to the station's founding (before 1652 the chart's ships round the Cape without stopping, as they did). What stays below resolution is the remainder - Ascension (a turtle-and-water call, and after 1815 a naval station of the West Africa Squadron), Mossel Bay, the summer shift from Table Bay to False Bay, and Cape Verde as a watering call rather than as the slaving terminus it also was. Each is a real link the chart gestures at through the calls it does draw."
+    },
+    {
+      "id": "johanna-inner-route-silence",
+      "scope": "Johanna / Anjouan (Comoros) - the EIC inner-route watering call",
+      "reason": "no-port-node",
+      "treatment": "gestured",
+      "pointer": "cape-town",
+      "note": "Bowen (2018) documents Anjouan from the Company's own logs as the most regularly visited of the Comoros by East Indiamen, growing after 1750. It is left off the chart deliberately, and the reason is a mechanism limit worth naming: the call belonged to the INNER (Mozambique Channel) route to Bombay and Surat, taken by some ships in some seasons, while outer-route Bengal and China ships passed east of Madagascar entirely. A waystop here attaches to a LANE, so adding Johanna would send every Company Indiaman up the Mozambique Channel - a larger falsehood than the omission. It is folded into the Cape call until a lane can carry per-voyage route variants."
+    },
+    {
+      "id": "ascension-naval-silence",
+      "scope": "Ascension Island - turtle, water, and the West Africa Squadron",
+      "reason": "no-port-node",
+      "treatment": "gestured",
+      "pointer": "st-helena",
+      "note": "Ascension was a watering and turtling call on the homeward South Atlantic track, and from 1815 a garrisoned naval station supporting the West Africa Squadron's anti-slave-trade patrol. It carries no commercial flow of its own and no counted series; it is registered rather than drawn, and the naval traffic it served belongs to the scripted-spawn channel (Pass 4) rather than to the trade matrix."
+    },
+    {
+      "id": "chokepoint-calls-silence",
+      "scope": "Socotra, Aden, Pulo Condore, the Pescadores, Male - chokepoint anchorages",
+      "reason": "no-port-node",
+      "treatment": "gestured",
+      "pointer": "anjer",
+      "note": "Each of these is a real anchorage at a real chokepoint - Socotra and Aden at the Gulf of Aden, Pulo Condore off the Mekong, the Pescadores in the Taiwan Strait, Male in the Maldives - used opportunistically for water, shelter or intelligence rather than as an institutional call on a named route. Unlike Table Bay, St Helena, Anjer or Umatac, none carries a series that would let the chart say how often. They are recorded here rather than invented."
     }
   ]
 }

@@ -22,7 +22,11 @@
       },
       "weight": 9,
       "flag": "eic",
-      "via": "cape-town"
+      "via": [
+        "madeira",
+        "cape-town",
+        "anjer"
+      ]
     },
     {
       "id": "china-can-lon",
@@ -44,7 +48,11 @@
       },
       "weight": 9,
       "flag": "eic",
-      "via": "cape-town"
+      "via": [
+        "anjer",
+        "cape-town",
+        "st-helena"
+      ]
     },
     {
       "id": "china-got-can",
@@ -66,7 +74,11 @@
       },
       "weight": 3,
       "flag": "soic",
-      "via": "cape-town"
+      "via": [
+        "madeira",
+        "cape-town",
+        "anjer"
+      ]
     },
     {
       "id": "china-can-got",
@@ -88,7 +100,10 @@
       },
       "weight": 3,
       "flag": "soic",
-      "via": "cape-town"
+      "via": [
+        "anjer",
+        "cape-town"
+      ]
     },
     {
       "id": "china-tra-can",
@@ -151,7 +166,10 @@
       },
       "weight": 6,
       "flag": "voc",
-      "via": "cape-town"
+      "via": [
+        "cape-town",
+        "anjer"
+      ]
     },
     {
       "id": "voc-bat-ams",
@@ -175,7 +193,10 @@
       },
       "weight": 6,
       "flag": "voc",
-      "via": "cape-town"
+      "via": [
+        "anjer",
+        "cape-town"
+      ]
     },
     {
       "id": "nl-bat-ams",
@@ -198,7 +219,10 @@
         "from": 1824,
         "to": 1850
       },
-      "via": "cape-town"
+      "via": [
+        "anjer",
+        "cape-town"
+      ]
     },
     {
       "id": "nl-ams-bat",
@@ -220,7 +244,10 @@
         "from": 1824,
         "to": 1850
       },
-      "via": "cape-town"
+      "via": [
+        "cape-town",
+        "anjer"
+      ]
     },
     {
       "id": "voc-bat-can",
@@ -363,7 +390,10 @@
         "to": 1807
       },
       "weight": 7,
-      "flag": "britain"
+      "flag": "britain",
+      "via": [
+        "madeira"
+      ]
     },
     {
       "id": "slave-nan-why",
@@ -420,7 +450,10 @@
         "to": 1807
       },
       "weight": 3,
-      "flag": "britain"
+      "flag": "britain",
+      "via": [
+        "madeira"
+      ]
     },
     {
       "id": "slave-bah-why",
@@ -549,7 +582,10 @@
         "to": 1815
       },
       "weight": 4,
-      "flag": "portugal"
+      "flag": "portugal",
+      "via": [
+        "azores"
+      ]
     },
     {
       "id": "sugar-lon-kin",
@@ -572,7 +608,10 @@
         "to": 1815
       },
       "weight": 5,
-      "flag": "britain"
+      "flag": "britain",
+      "via": [
+        "madeira"
+      ]
     },
     {
       "id": "sugar-kin-lon",
@@ -662,7 +701,10 @@
         "to": 1815
       },
       "weight": 4,
-      "flag": "spain"
+      "flag": "spain",
+      "via": [
+        "tenerife"
+      ]
     },
     {
       "id": "carrera-kin-cad",
@@ -733,7 +775,10 @@
         "to": 1850
       },
       "weight": 4,
-      "flag": "portugal"
+      "flag": "portugal",
+      "via": [
+        "azores"
+      ]
     },
     {
       "id": "baltic-got-lon",
@@ -930,7 +975,10 @@
       },
       "weight": 3,
       "flag": "britain",
-      "naval": true
+      "naval": true,
+      "via": [
+        "madeira"
+      ]
     },
     {
       "id": "naval-kin-lon",
@@ -993,7 +1041,10 @@
       },
       "weight": 1,
       "flag": "spain",
-      "naval": true
+      "naval": true,
+      "via": [
+        "tenerife"
+      ]
     },
     {
       "id": "q-naha-canton",
@@ -1096,7 +1147,11 @@
         "to": 1815
       },
       "weight": 2,
-      "flag": "portugal"
+      "flag": "portugal",
+      "via": [
+        "mozambique",
+        "azores"
+      ]
     },
     {
       "id": "q-lisbon-macau",
@@ -1117,7 +1172,10 @@
         "to": 1815
       },
       "weight": 2,
-      "flag": "portugal"
+      "flag": "portugal",
+      "via": [
+        "mozambique"
+      ]
     },
     {
       "id": "q-manila-canton",
@@ -1255,7 +1313,10 @@
       },
       "weight": 1,
       "flag": "eic",
-      "via": "cape-town"
+      "via": [
+        "cape-town",
+        "st-helena"
+      ]
     },
     {
       "id": "q-london-mocha",
@@ -1276,7 +1337,10 @@
       },
       "weight": 1,
       "flag": "eic",
-      "via": "cape-town"
+      "via": [
+        "madeira",
+        "cape-town"
+      ]
     },
     {
       "id": "q-muscat-tranquebar",
@@ -1575,7 +1639,10 @@
         "to": 1637
       },
       "weight": 1,
-      "flag": "portugal"
+      "flag": "portugal",
+      "via": [
+        "azores"
+      ]
     },
     {
       "id": "q-lisbon-elmina",
@@ -1783,7 +1850,10 @@
       },
       "weight": 2,
       "flag": "spain",
-      "note": "The galeones de Tierra Firme; the fair system dies with Vernon's raid and the register ships."
+      "note": "The galeones de Tierra Firme; the fair system dies with Vernon's raid and the register ships.",
+      "via": [
+        "havana"
+      ]
     },
     {
       "id": "q-cadiz-portobelo",
@@ -1804,7 +1874,10 @@
       },
       "weight": 2,
       "flag": "spain",
-      "note": "The galeones de Tierra Firme; the fair system dies with Vernon's raid and the register ships."
+      "note": "The galeones de Tierra Firme; the fair system dies with Vernon's raid and the register ships.",
+      "via": [
+        "tenerife"
+      ]
     },
     {
       "id": "q-portobelo-kingston",
@@ -2160,7 +2233,10 @@
         "to": 1815
       },
       "weight": 1,
-      "flag": "spain"
+      "flag": "spain",
+      "via": [
+        "tenerife"
+      ]
     },
     {
       "id": "f-cadiz-cartagena",
@@ -2184,7 +2260,10 @@
         "to": 1815
       },
       "weight": 1,
-      "flag": "spain"
+      "flag": "spain",
+      "via": [
+        "tenerife"
+      ]
     },
     {
       "id": "f-veracruz-cadiz",
@@ -2208,7 +2287,10 @@
         "to": 1815
       },
       "weight": 1,
-      "flag": "spain"
+      "flag": "spain",
+      "via": [
+        "havana"
+      ]
     },
     {
       "id": "f-cartagena-cadiz",
@@ -2232,7 +2314,10 @@
         "to": 1815
       },
       "weight": 1,
-      "flag": "spain"
+      "flag": "spain",
+      "via": [
+        "havana"
+      ]
     },
     {
       "id": "f-havana-cadiz",
@@ -2280,7 +2365,10 @@
         "to": 1815
       },
       "weight": 1,
-      "flag": "spain"
+      "flag": "spain",
+      "via": [
+        "tenerife"
+      ]
     },
     {
       "id": "f-lisbon-rio",
@@ -2328,7 +2416,10 @@
         "to": 1850
       },
       "weight": 1,
-      "flag": "portugal"
+      "flag": "portugal",
+      "via": [
+        "azores"
+      ]
     },
     {
       "id": "f-lisbon-pernambuco",
@@ -2376,7 +2467,10 @@
         "to": 1850
       },
       "weight": 1,
-      "flag": "portugal"
+      "flag": "portugal",
+      "via": [
+        "azores"
+      ]
     },
     {
       "id": "f-bahia-rio",
@@ -2529,7 +2623,10 @@
         "to": 1815
       },
       "weight": 1,
-      "flag": "britain"
+      "flag": "britain",
+      "via": [
+        "madeira"
+      ]
     },
     {
       "id": "f-rio-luanda",
@@ -4134,7 +4231,10 @@
       },
       "weight": 1,
       "flag": "eic",
-      "via": "cape-town"
+      "via": [
+        "madeira",
+        "cape-town"
+      ]
     },
     {
       "id": "f-london-madras",
@@ -4157,7 +4257,10 @@
       },
       "weight": 1,
       "flag": "eic",
-      "via": "cape-town"
+      "via": [
+        "madeira",
+        "cape-town"
+      ]
     },
     {
       "id": "f-london-calcutta",
@@ -4180,7 +4283,10 @@
       },
       "weight": 1,
       "flag": "eic",
-      "via": "cape-town"
+      "via": [
+        "madeira",
+        "cape-town"
+      ]
     },
     {
       "id": "f-bombay-london",
@@ -4203,7 +4309,10 @@
       },
       "weight": 1,
       "flag": "eic",
-      "via": "cape-town"
+      "via": [
+        "cape-town",
+        "st-helena"
+      ]
     },
     {
       "id": "sg-calcutta-singapore",
@@ -4310,7 +4419,11 @@
       },
       "weight": 1,
       "flag": "britain",
-      "via": "cape-town"
+      "via": [
+        "madeira",
+        "cape-town",
+        "anjer"
+      ]
     },
     {
       "id": "sg-singapore-london",
@@ -4332,7 +4445,11 @@
       },
       "weight": 1,
       "flag": "britain",
-      "via": "cape-town"
+      "via": [
+        "anjer",
+        "cape-town",
+        "st-helena"
+      ]
     },
     {
       "id": "sg-bombay-singapore",
@@ -4478,7 +4595,11 @@
       },
       "weight": 1,
       "flag": "britain",
-      "via": "cape-town"
+      "via": [
+        "madeira",
+        "cape-town",
+        "anjer"
+      ]
     },
     {
       "id": "hk-hongkong-london",
@@ -4499,7 +4620,11 @@
       },
       "weight": 1,
       "flag": "britain",
-      "via": "cape-town"
+      "via": [
+        "anjer",
+        "cape-town",
+        "st-helena"
+      ]
     },
     {
       "id": "hk-singapore-hongkong",
@@ -4644,7 +4769,10 @@
       },
       "weight": 1,
       "flag": "britain",
-      "via": "cape-town"
+      "via": [
+        "madeira",
+        "cape-town"
+      ]
     },
     {
       "id": "sy-sydney-london",
@@ -4666,7 +4794,10 @@
       },
       "weight": 1,
       "flag": "britain",
-      "via": "cape-town"
+      "via": [
+        "cape-town",
+        "st-helena"
+      ]
     },
     {
       "id": "sy-sydney-canton",
@@ -5062,7 +5193,10 @@
       },
       "weight": 1,
       "flag": "eic",
-      "via": "cape-town"
+      "via": [
+        "cape-town",
+        "st-helena"
+      ]
     },
     {
       "id": "f-calcutta-london",
@@ -5085,7 +5219,10 @@
       },
       "weight": 1,
       "flag": "eic",
-      "via": "cape-town"
+      "via": [
+        "cape-town",
+        "st-helena"
+      ]
     },
     {
       "id": "f-copenhagen-tranquebar",
@@ -5151,7 +5288,10 @@
         "to": 1815
       },
       "weight": 1,
-      "flag": "france"
+      "flag": "france",
+      "via": [
+        "port-louis"
+      ]
     },
     {
       "id": "f-madras-nantes",
@@ -5173,7 +5313,10 @@
         "to": 1815
       },
       "weight": 1,
-      "flag": "britain"
+      "flag": "britain",
+      "via": [
+        "port-louis"
+      ]
     },
     {
       "id": "f-madras-batavia",
@@ -5378,7 +5521,10 @@
         "to": 1815
       },
       "weight": 1,
-      "flag": "spain"
+      "flag": "spain",
+      "via": [
+        "guam"
+      ]
     },
     {
       "id": "f-calcutta-madras",
@@ -5804,7 +5950,10 @@
         "to": 1850
       },
       "weight": 1,
-      "flag": "portugal"
+      "flag": "portugal",
+      "via": [
+        "mozambique"
+      ]
     },
     {
       "id": "f-bombay-lisbon",
@@ -5827,7 +5976,11 @@
         "to": 1850
       },
       "weight": 1,
-      "flag": "portugal"
+      "flag": "portugal",
+      "via": [
+        "mozambique",
+        "azores"
+      ]
     },
     {
       "id": "f-surat-mocha",
@@ -7419,7 +7572,10 @@
         "to": 1820
       },
       "weight": 3,
-      "flag": "spain"
+      "flag": "spain",
+      "via": [
+        "tenerife"
+      ]
     },
     {
       "id": "p-callao-cadiz",
@@ -7772,7 +7928,10 @@
         "to": 1850
       },
       "weight": 2,
-      "flag": "britain"
+      "flag": "britain",
+      "via": [
+        "madeira"
+      ]
     },
     {
       "id": "a-belize-kingston",
@@ -7856,7 +8015,10 @@
         "to": 1850
       },
       "weight": 1,
-      "flag": "britain"
+      "flag": "britain",
+      "via": [
+        "madeira"
+      ]
     },
     {
       "id": "a-curacao-amsterdam",
@@ -8285,7 +8447,10 @@
         "to": 1850
       },
       "weight": 2,
-      "flag": "portugal"
+      "flag": "portugal",
+      "via": [
+        "azores"
+      ]
     },
     {
       "id": "i-male-calcutta",
@@ -8385,7 +8550,11 @@
         "to": 1850
       },
       "weight": 3,
-      "flag": "britain"
+      "flag": "britain",
+      "via": [
+        "cape-town",
+        "st-helena"
+      ]
     },
     {
       "id": "i-london-portlouis",
@@ -8405,7 +8574,11 @@
         "to": 1850
       },
       "weight": 3,
-      "flag": "britain"
+      "flag": "britain",
+      "via": [
+        "madeira",
+        "cape-town"
+      ]
     },
     {
       "id": "e-shanghai-tianjin",
