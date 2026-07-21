@@ -12,6 +12,12 @@ recommendation where one is defensible.
 > Chunk **C1 is complete**. The convoy-branch question was answered too —
 > `movement-realism` was merged into `main`.
 >
+> **ANSWERED 2026-07-21 (routing programme):** **D-18** (scope = routing +
+> lane/bake/itinerary; the flow matrix is a fixed input) and **D-21**
+> (unevidenced lanes stay unfitted, marked, and published; silent extension
+> rejected). **D-19/D-20 held open deliberately** until PLAN-7's Phase-0
+> baseline exists. The routing build is **held pending instruction**.
+>
 > **Next, by chunk:** **D-04** gates C2 (the one re-bake), **D-02** gates C6,
 > **D-01** gates C7 and the depth of several research tasks. See the
 > decisions-by-chunk table in
@@ -312,6 +318,12 @@ charter-central work and it is demonstrably *not* the weak part — every system
 `research/flows/` carries bounds and an evidence class. The routing physics
 carries none. (b) would need its own plan and a specific reason.
 
+> ✅ **ANSWERED 2026-07-21 — (a).** Scope is the routing engine + the lane → bake
+> → itinerary layer. The PLAN-3 flow matrix's outputs are **fixed inputs** and
+> are not re-opened. Re-opening the matrix requires a trigger — a route finding
+> that contradicts a lane's existence — raised then as its own decision, not a
+> general urge. Recorded in `PLAN-7-routing.md` §8 + its decision ledger.
+
 ### D-19 — How far on grid and algorithm?
 **Blocks:** F-43. **Decide AFTER F-41's baseline and R-12.**
 
@@ -351,6 +363,16 @@ report, and publish the coverage fraction (the plan's recommendation — it is t
 **(b)** Extend fitted parameters to them and say so.
 **(c)** Extend fitted parameters silently. **The charter forbids (c)**, and it is
 listed only so it is explicitly rejected rather than accidentally chosen.
+
+> ✅ **ANSWERED 2026-07-21 — (a), with (c) rejected on the record.** Binding
+> form in `PLAN-7-routing.md` §1.1: an unevidenced parameter keeps its value and
+> is marked `tunable: false`; a lane with no corpus entry is reported as
+> **unverified** — a third state distinct from passing and failing, never
+> counted toward a pass rate; the coverage fraction is published on the research
+> site, not buried in a build log. (b) is permitted **only** where the
+> declaration travels with the data — a field on the parameter, not a sentence
+> in a page. The expected consequence is an uncomfortable coverage number, and
+> publishing it is the point.
 
 ### D-22 — Does the harness gate `npm test`?
 **Blocks:** F-46.

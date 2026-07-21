@@ -100,6 +100,18 @@ Every design decision answers to both of these:
   validation is stratified by basin and era, unevidenced scopes stay unfitted and
   are published as such, and there is deliberately **no single global score**.
   New queue wave **W3R** + chunk **CR**; new decisions **D-18…D-22**.
+  **D-18 + D-21 ANSWERED 2026-07-21, BUILD HELD.** Scope = routing + the
+  lane → bake → itinerary layer, with the PLAN-3 flow matrix a **fixed input**
+  (the matrix carries bounds/classes/sources on all 82 systems; the routing
+  physics carries none — they are not equally weak). Unevidenced lanes stay
+  unfitted and are reported **unverified**, a third state that never counts
+  toward a pass rate, with the coverage fraction published; **silently
+  extending a fit is rejected on the record**. D-19/D-20 are deliberately open
+  until the Phase-0 baseline exists. **Nothing is to be built until the user
+  instructs; the next action when released is F-41 (the harness) and nothing
+  else** — see PLAN-7 §11–§12. The corpus does not start from zero: the T14
+  waystations sweep is already adversarially-verified route evidence (Sunda not
+  Malacca, Table Bay from 1652, Guam westbound-only) and is F-41's first fixture.
 - **CONVOYS MERGED TO MAIN + CHUNK C1 COMPLETE (2026-07-21).** `movement-realism`
   (convoys + region-aware sinking) merged into `main` at user request. The two
   features had NEVER shared a tree — convoys existed only on that branch, which

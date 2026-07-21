@@ -1,13 +1,25 @@
 # PLAN-7 — The routing rebuild and its verification suite
 
-**Status: 📋 DRAFTED 2026-07-21, unadopted.** Supersedes `L-02` (the locked
-"routing/wind-chart engine rebuild") and unlocks `L-01 §1c` (the refinement
-track's "find, NOT generate, real route data and compare"), which the user
-opened by requesting this plan.
+**Status: 📐 SCOPED 2026-07-21 — decisions taken, BUILD NOT STARTED, held
+pending the user's instruction.** Supersedes `L-02` (the locked "routing/wind-
+chart engine rebuild") and unlocks `L-01 §1c` (the refinement track's "find, NOT
+generate, real route data and compare"), which the user opened by requesting
+this plan.
 
-**Scope decision pending — D-18.** This plan covers the **routing engine and the
-lane → bake → itinerary layer**. It treats the PLAN-3 flow matrix's *outputs*
-(which lanes exist, at what volume, in which era) as fixed inputs. See §8.
+> ⏸️ **NOTHING IN THIS PLAN IS TO BE BUILT UNTIL THE USER SAYS SO.**
+> D-18 and D-21 are settled (ledger below); D-19 and D-20 remain deliberately
+> open until Phase 0's baseline exists. The next action, when released, is
+> **F-41 and nothing else** — see §11.
+
+## Decision ledger
+
+| # | Decision | Taken | Outcome |
+|---|---|---|---|
+| **D-18** | Scope of "trade flows" | 2026-07-21 | **(a) — routing + the lane → bake → itinerary layer.** The PLAN-3 flow matrix's outputs (which lanes, what volume, which era) are **fixed inputs** and are not re-opened. Rationale in §8. |
+| **D-21** | Lanes with no verification evidence | 2026-07-21 | **(a) — unfitted, marked, published.** Unevidenced parameters keep `asserted` defaults and stay `tunable: false`; unverified lanes are reported as *unverified*, never as *passing*; the coverage fraction is published. **Option (c) — extending a fit silently — is rejected on the record.** Rationale in §1.1. |
+| D-19 | Grid & algorithm | — | **Deliberately open** until F-41's baseline + R-12. Answering now would commit to a rebuild shape before the evidence justifying it exists. |
+| D-20 | Physics depth | — | **Deliberately open** until F-41's baseline + R-11. Two fixes ship regardless (§4). |
+| D-22 | Harness as a commit gate | — | Leaning: categorical tiers only. Decide when F-41 is written. |
 
 ---
 
@@ -105,6 +117,25 @@ Concretely, five disciplines (detailed in §4):
 5. **Coverage is published, not buried.** The suite states what fraction of the
    414 lanes has any verification at all. That number will be small, and saying
    so is the point.
+
+### 1.1 The D-21 rule, as adopted
+
+**Unevidenced scopes are never silently fitted.** Concretely, and bindingly:
+
+- A parameter whose scope has no supporting corpus entries keeps its current
+  value, is marked `tunable: false`, and is reported as *unfitted*.
+- A lane with no corpus entry is reported as **unverified** — a third state,
+  distinct from *passing* and *failing*. It never counts toward a pass rate.
+- The **coverage fraction** — how many of the 414 lanes have any evidence at
+  all, by tier — is published on the research site, not kept in a build log.
+- Extending a fit beyond its evidence *with* a declaration is permitted only
+  where the declaration travels with the data (a field on the parameter, not a
+  sentence in a page). Extending it **without** declaration is forbidden.
+
+This is the "no silent zeros" rule of `PLAN-3 §1`, applied to routes. The
+expected consequence is an uncomfortable coverage number. Publishing it is the
+point, exactly as the silences register publishes what the flow matrix cannot
+say.
 
 A corollary worth stating plainly: **the era is the binding constraint.** The
 richest positional source for age-of-sail tracks covers roughly 1750–1854. The
@@ -355,18 +386,25 @@ A re-bake changes every polyline and therefore invalidates saves
 
 ---
 
-## 8. Scope: what "trade flows" means here — D-18
+## 8. Scope — SETTLED (D-18, 2026-07-21)
 
-The brief says "routing/trade flows system". Two readings:
+**In scope:** the routing engine and the lane → bake → itinerary layer — the
+Dijkstra router, the wind/current/polar physics, the grid and mask, the baker,
+simplification and de-tacking, the `via` chains, and `buildItinerary`.
 
-- **(a) Routing + the lane/bake/itinerary layer** — how a flow becomes a track
-  on the chart. The flow matrix's outputs (which lanes, what volume, which era)
-  stay fixed. **This is what the plan above assumes**, and it is the
-  recommendation: the flow matrix is PLAN-3's completed, evidence-classed,
-  charter-central work, and it is *not* the weak part. The routing physics is.
-- **(b) That, plus re-opening the flow matrix itself.** A much larger
-  undertaking that would re-derive volumes and lane structure. It would need its
-  own plan and a very specific reason.
+**Out of scope:** the PLAN-3 flow matrix. Which lanes exist, at what volume, in
+which era, under which evidence class — all fixed inputs.
+
+The asymmetry that decided it: every one of the 82 folded flow systems carries
+bounds, an evidence class, sources, and adversarial verification (1,403
+system-decades, seven cross-checks). The routing physics carries **none** of
+that. One half of this system was built to the charter; the other was never held
+to it. They are not equally weak, and a joint rebuild would spend most of its
+effort on the sound half.
+
+**Re-opening the matrix needs a trigger, not an urge.** If Phase 0 surfaces
+matrix-level problems — a lane whose very existence the route evidence
+contradicts — that is a reason, and it gets raised then as its own decision.
 
 ---
 
@@ -412,3 +450,99 @@ densest for European long-haul shipping in 1750–1854. If the router is optimiz
 until those routes are perfect, the chart will have been quietly rebuilt around
 the archive's bias — which is the exact failure the sensitization charter exists
 to prevent. The stratified reporting in §6 is the guard, and it is not optional.
+
+---
+
+## 11. The execution breakdown — what gets built, in order
+
+**Held. Nothing below starts without an explicit instruction.** This section
+exists so that when the word comes, the first step needs no further design.
+
+### CR-0 · F-41 — the verification harness  ·  *the only thing to do first*
+
+The whole of the next step. Useful on its own whatever is decided later, and it
+ships against the **current** engine deliberately.
+
+**Files created**
+| Path | What |
+|---|---|
+| `research/routes/corpus.json` | The evidence corpus, PLAN-7 §2.1 schema. Seeded by hand (below), filled by R-11. |
+| `research/routes/_schema.md` | Schema doc, in the `data-src/_schema.md` idiom. |
+| `research/tools/route-verify.mjs` | The runner. Two modes: verify the **baked** bundle (what the sim actually sails) and verify a **candidate parameter set** (re-routes a subset in-process, for F-45). |
+| `research/routes.html` | The report page, `nav.js`-integrated, house style, in the `silences.html` idiom. |
+
+**The corpus does not start from zero.** The T14 waystations sweep
+(`research/port-flow-candidates-waystations-2026-07-20.md`) is already
+adversarially-verified route evidence, and converts more or less directly into
+T1 waypoint/corridor entries: Europe↔Canton ran **via Sunda, not Malacca**;
+Indiamen watered at **Table Bay** from 1652; **St Helena** homeward for the
+British but not the Dutch or Swedish; **no Madeira for the VOC**; the Manila
+galleon watered at **Guam westbound only**; **Mozambique** for the Portuguese
+Carreira. That is a real seed set with real provenance, and it should be the
+harness's first fixture — it also means F-41 can be *tested* before R-11 lands.
+
+**Acceptance criteria** — F-41 is done when:
+1. It runs against `data/routes.json` and emits a per-basin, per-era, per-tier
+   report with **coverage stated first**.
+2. **No global score is emitted anywhere.** A reviewer must be unable to quote
+   "the router scores X".
+3. `unverified` is a distinct third state from pass/fail in both the data model
+   and the rendered page, and never counts toward a pass rate (D-21).
+4. It is deterministic: same bundle + same corpus ⇒ byte-identical report.
+5. It reproduces the waystations seed set — i.e. the current engine **passes**
+   the Sunda/Table Bay/Guam constraints, which we already know it should, since
+   those are baked `via` chains. A harness that fails its own known-good
+   fixtures is broken.
+6. A baseline report is committed, so later phases have something to diff.
+
+**Explicit non-goals for F-41:** no engine changes, no parameter changes, no
+re-bake. It only measures.
+
+### CR-1 · R-11 ‖ R-12 — the two research tasks, in parallel
+No shared sources; each blocks a different half. Content in `research/TASKS.md`.
+R-11 delivers the filled corpus + its declared non-coverage; R-12 delivers
+`research/routing-methods.md` with a per-technique verdict including a
+**determinism** column.
+
+### CR-2 · The decision point  ·  **a real gate, not a formality**
+Re-read F-41's baseline with the corpus in hand and answer **D-19** and **D-20**.
+
+Three outcomes are genuinely possible, and they lead to very different projects:
+- **Durations broadly defensible, geometry ugly** → the honest scope is the
+  connectivity fix (F-43 option a) plus a declared-limitations page. No physics
+  rebuild. *This is a legitimate result, not a failure to find work.*
+- **Durations wrong in specific basins** → targeted physics work (F-42) in those
+  basins only, under the D-21 rule.
+- **Durations wrong broadly** → the full Phase 2, and a much bigger project.
+
+### CR-3 · F-42 / F-43 / F-44 — as the evidence directs
+Whatever else is decided, two fixes ship regardless because they are defects
+independent of the evidence:
+- **currents composed as vectors** with the boat's velocity through the water,
+  not added as a scalar projection (`spd += cspd·cos θ`);
+- **the 0.4 m/s speed floor** documented, bounded, and given an evidence class.
+
+Each step is gated by F-41 on the **holdout** set: it ships only if it improves a
+tier without degrading another, or fixes a declared defect while leaving the
+tiers unchanged.
+
+### CR-4 · F-45 — calibration
+`research/routes/parameters.json` + a tuning changelog. Procedure in §6. Nothing
+here runs before F-41 exists — tuning without holdout reporting is the exact
+mechanism by which false precision enters.
+
+### CR-5 · F-46 — re-bake, folded into C2
+Never its own bake. Runs with F-01 (Porto/Rotterdam), F-03, F-06, F-07, F-10.
+`datasetVersion` bump; saves discarded; the categorical harness tiers join
+`npm test` per D-22.
+
+---
+
+## 12. State
+
+| | |
+|---|---|
+| **Plan** | Scoped; D-18 + D-21 settled; D-19/D-20 deliberately open |
+| **Build** | ⏸️ **NOT STARTED — held pending instruction** |
+| **Next action when released** | **F-41 only.** Do not begin R-11, R-12, or any engine change alongside it. |
+| **Blocked on** | Nothing. This is a hold, not a dependency. |

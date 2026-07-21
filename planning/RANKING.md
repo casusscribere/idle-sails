@@ -212,6 +212,14 @@ unlocks six ambient patterns**; everything else rides existing machinery.*
 Read the plan before touching any item here — it corrects three beliefs the queue
 had been carrying.*
 
+> ⏸️ **HELD PENDING INSTRUCTION (2026-07-21).** Scope is settled — **D-18**:
+> routing + the lane → bake → itinerary layer, with the PLAN-3 flow matrix as a
+> **fixed input**; **D-21**: unevidenced lanes stay unfitted, are reported
+> *unverified*, and the coverage fraction is published, with silent extension of
+> a fit **rejected on the record**. **D-19/D-20 are deliberately open** until the
+> Phase-0 baseline exists. **Nothing here is to be built until the user says so;
+> the next action when released is F-41 and nothing else.**
+
 **What the investigation found** (source read 2026-07-21):
 - The wind field is **not data**. `windfield.mjs` is ~15 hardcoded constants over
   six regimes; currents are **10 hardcoded lat-lon boxes**. The whole physics
@@ -228,7 +236,7 @@ had been carrying.*
 
 | ID | Item | Gate | Note |
 |---|---|---|---|
-| **F-41** | **The route-verification harness** — build it against the CURRENT engine | none | PLAN-7 Phase 0, and the highest-value item here. Metrics tier from categorical to quantitative so the early tiers cannot manufacture precision: **T1** waypoint/corridor recall · **T2** passage duration vs an observed RANGE · **T3** directional asymmetry (the volta do mar is binary-testable) · **T4** seasonal response · **T5** track geometry (Fréchet + cross-track) only where positional data exists. **No single global score** — one number over 414 unevenly-evidenced lanes is itself false precision. Survives the rebuild; becomes the regression gate |
+| **F-41** | **The route-verification harness** — build it against the CURRENT engine | ⏸️ held | PLAN-7 Phase 0, and the highest-value item here. Metrics tier from categorical to quantitative so the early tiers cannot manufacture precision: **T1** waypoint/corridor recall · **T2** passage duration vs an observed RANGE · **T3** directional asymmetry (the volta do mar is binary-testable) · **T4** seasonal response · **T5** track geometry (Fréchet + cross-track) only where positional data exists. **No single global score** — one number over 414 unevenly-evidenced lanes is itself false precision. Survives the rebuild; becomes the regression gate |
 | **R-11** | **The historical route corpus** | F-41 schema | Find, do NOT generate. CLIWOC · Maury · sailing directions · prescribed routes (Brouwer, Carrera, the Urdaneta return) · wreck positions. `prescribed-route` ≠ `logbook-track` and the suite must never average them. Declares what it does not cover — most of 1550–1700 |
 | **R-12** | **Programmatic best practices** | none | Any-angle planning (Theta*/ANYA/Field D*) · fast-marching · time-dependent shortest path · grid choice incl. DGGS · obstacle representation · trajectory metrics · **determinism as a hard constraint** · baking/caching · validation methodology |
 | **F-42** | **Physics honesty** — wind + current fields | R-11, **D-20** | Calibrate-and-declare, replace with a real climatology, or hybrid. Two fixes ship regardless: currents are added as a **scalar projection** rather than composed as vectors, and the 0.4 m/s floor is an undocumented magic number |
@@ -334,7 +342,7 @@ the expensive thing happens once.
 | ~~**C1**~~ | ~~The clean sweep~~ | — | no | ✅ **DONE 2026-07-21** |
 | **C2** | The one re-bake | D-04 | data + baker | 1–2 |
 | **C3** | The fidelity reading | D-05 (part) | no (research) | 3–4 |
-| **CR** | **The routing programme** (PLAN-7) | D-18; then D-19/D-20 | eventually, via re-bake | many |
+| **CR** | **The routing programme** (PLAN-7) | ⏸️ **held** — D-18 ✅ / D-21 ✅; D-19/D-20 open by design | eventually, via re-bake | many |
 | **C4** | Movement: the safe half | R-06 for F-17 | yes, fate-safe | 2–3 |
 | **C5** | Movement: the channel | C4 | yes, fate-safe | 3–5 |
 | **C6** | Port identity | D-02 | no | 2 |
@@ -468,7 +476,7 @@ Breaks fate-at-spawn; `datasetVersion` bump + save reset.
 |---|---|
 | ~~C1~~ | ✅ D-05b + D-13 answered 2026-07-21 |
 | C2 | D-04 |
-| CR | D-18 (scope), then D-19 (grid/algorithm), D-20 (physics), D-21 (unverifiable lanes) |
+| CR | ✅ D-18 + D-21 answered 2026-07-21; D-19/D-20 held until the Phase-0 baseline. **Build held pending instruction.** |
 | C3 | D-05 (C3d only) |
 | C4 | D-08 |
 | C5 | D-10 |
