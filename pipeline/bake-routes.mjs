@@ -576,7 +576,12 @@ for (const b of baked) {
 // ---- emit -----------------------------------------------------------------
 if (!existsSync(OUT)) mkdirSync(OUT, { recursive: true });
 // version 2: wind-gated + de-tacked bake (leg set changed; saves keyed on it)
-const out = { version: 2, grid: { res: GRID.res, lon0: GRID.lon0, lat0: GRID.lat0, cols, rows }, iceCap: { northLat: ICE_N, southLat: ICE_S }, count: baked.length, routes: baked };
+// version 3: the waystop bake — 54 lanes reroute through their via chain, so the
+//   polylines, their lengths and their hours all moved. A save carries per-leg
+//   f0/f1 stretches and absolute leg durations, so resuming an older save into
+//   this bundle would interpolate live vessels onto tracks they never sailed and
+//   leave their voyages without the calls the lane now makes. Discard instead.
+const out = { version: 3, grid: { res: GRID.res, lon0: GRID.lon0, lat0: GRID.lat0, cols, rows }, iceCap: { northLat: ICE_N, southLat: ICE_S }, count: baked.length, routes: baked };
 writeFileSync(join(OUT, 'routes.json'), JSON.stringify(out));
 const kb = (Buffer.byteLength(JSON.stringify(out)) / 1024).toFixed(1);
 
