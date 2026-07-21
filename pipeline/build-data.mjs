@@ -19,7 +19,7 @@ const OUT = join(ROOT, 'data');
 const ARCHIVE_FIELDS = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'data', 'fields');
 const LAND_SRC = join(ROOT, 'archive', 'isochrone-v1', 'docs', 'assets', 'land.geojson');
 
-const DATASET_VERSION = 5;              // v5: era extended 1550→1850 (PLAN-6); 310-yr cycle — invalidates v4 saves
+const DATASET_VERSION = 6;              // v6: convoys + region-aware sinking merged from movement-realism — the fate roll now reads position, so v5 fates are not reproducible
 const ERA = { from: 1550, to: 1850 };   // flowing-clock scope (Phase-1 X-S1: 1815→1850)
 const ROUTE_CLASSES = ['frigate', 'indiaman', 'brig', 'slaver', 'junk', 'dhow'];   // junk/dhow: own polars since S2
 const SEASONS = ['djf', 'mam', 'jja', 'son'];
@@ -47,6 +47,10 @@ const cargo = load('cargo.json').cargo;
 const routes = load('routes.json').routes;
 const wars = load('wars.json').wars;
 const names = load('names.json');
+// convoys (movement-realism branch, PLAN-convoys.md): optional — the classic
+// build has no convoys.json, so tolerate its absence.
+let convoys = null;
+try { convoys = load('convoys.json'); } catch { convoys = null; }
 
 const portById = new Map(ports.map(p => [p.id, p]));
 const powerById = new Map(powers.map(p => [p.id, p]));
@@ -383,6 +387,37 @@ if (existsSync(DOCS_SRC)) {
   console.log(`  port blurbs: ${blurbed}/${ports.length} ports carry a panel blurb (research/port-docs.json)`);
 }
 
+// ---- convoy rules (movement-realism branch, PLAN-convoys.md §5) -----------
+if (convoys) {
+  const laneSystems = new Set(routes.map(r => r.system).filter(Boolean));
+  const excludedSystems = new Set(routes.filter(r => r.middlePassage || r.framing).map(r => r.system).filter(Boolean));
+  const rp = convoys.reprieve;
+  if (!rp || typeof rp.q !== 'number' || rp.q < 0 || rp.q > 1) err('convoys.json: reprieve.q must be a number in [0,1]');
+  if (!rp || !Array.isArray(rp.causes) || !rp.causes.length) err('convoys.json: reprieve.causes must be a non-empty array');
+  if (!Array.isArray(convoys.rules)) err('convoys.json: rules must be an array');
+  for (const [i, rule] of (convoys.rules || []).entries()) {
+    const tag = `convoys rule ${i}`;
+    if (!rule.match || typeof rule.match !== 'object') { err(`${tag}: missing match`); continue; }
+    if (rule.match.system !== undefined) {
+      if (!laneSystems.has(rule.match.system)) err(`${tag}: match.system '${rule.match.system}' is not a flow system on any lane`);
+      // charter: convoys never grace a coerced-flow lane
+      if (excludedSystems.has(rule.match.system)) err(`${tag}: '${rule.match.system}' is a coerced-flow (middlePassage/framing) system — no convoy there`);
+    } else if (rule.match.war !== true) {
+      err(`${tag}: match must carry a system or war:true`);
+    }
+    if (rule.match.flags !== undefined) {
+      if (!Array.isArray(rule.match.flags) || !rule.match.flags.length) err(`${tag}: match.flags must be a non-empty array`);
+      else for (const f of rule.match.flags) if (!powerById.has(f)) err(`${tag}: match.flags unknown power '${f}'`);
+    }
+    if (typeof rule.rate !== 'number' || rule.rate < 0 || rule.rate > 1) err(`${tag}: rate must be a number in [0,1]`);
+    if (!Array.isArray(rule.size) || rule.size.length !== 2 || !(rule.size[0] >= 2) || !(rule.size[1] >= rule.size[0])) err(`${tag}: size must be [min>=2, max>=min]`);
+    if (!['always', 'war', 'never'].includes(rule.escort)) err(`${tag}: escort must be always|war|never`);
+    if (rule.era !== undefined) inEra(rule.era, `${tag} era`);
+    if (!rule.class) err(`${tag}: missing evidence class (charter: no undeclared sim rules)`);
+    if (!rule.note) err(`${tag}: missing note`);
+  }
+}
+
 // ---- report / emit -------------------------------------------------------
 if (errors.length) {
   console.error(`\n✗ build-data: ${errors.length} problem(s):\n`);
@@ -427,7 +462,9 @@ const bundle = {
   seasons: SEASONS,
   ports, powers, shipTypes, cargo, routes, wars, names,
   flows: { note: 'PLAN-3 S1: flow systems folded onto the baked lanes; [lo,hi] voyage ranges realized per-seed by world.js. laneEvidence = each lane\'s dominant evidence class (S3: surfaced in the ledger).', systems: flowSystems,
-    laneEvidence: Object.fromEntries(Object.entries(laneEvidenceVotes).map(([lid, v]) => [lid, Object.entries(v).sort((a, b) => b[1] - a[1])[0][0]])) }
+    laneEvidence: Object.fromEntries(Object.entries(laneEvidenceVotes).map(([lid, v]) => [lid, Object.entries(v).sort((a, b) => b[1] - a[1])[0][0]])) },
+  // movement-realism branch: convoy rules (absent on classic main → key omitted)
+  ...(convoys ? { convoys } : {})
 };
 writeFileSync(join(OUT, 'datasets.json'), JSON.stringify(bundle));
 if (existsSync(LAND_SRC)) copyFileSync(LAND_SRC, join(OUT, 'land.geojson'));

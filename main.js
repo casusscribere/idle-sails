@@ -122,6 +122,8 @@ async function boot() {
   let speed = speedFromSlider(+document.getElementById('speed').value);
   let selectedVesselId = null, selectedPortId = null, selectedWreckId = null, lastPanelSig = '';
   let selectedArchiveId = null;   // a tracked vessel whose record outlived her
+  let selectedConvoyId = null;    // a selected convoy (its leader's id)
+  const convoyExpanded = new Set();   // member ids whose ledger is open in the convoy panel
   let showRoutes = hashParams.get('routes') === '1';
   if (showRoutes) document.getElementById('ov-routes').checked = true;
   let latestSnap = world.snapshot({ density: perf.shipDensity });
@@ -185,8 +187,20 @@ async function boot() {
   // pin controls for a vessel ledger (live or kept record)
   const pinState = (id) => ({ pinned: world.isPinned(id), canPin: world.canPin() });
 
+  // the live members of a convoy, leader first (the snapshot may thin some at
+  // Low tier, but the convoy thins WHOLE, so members are all-present or all-hidden)
+  const convoyMembers = (cid) => latestSnap.vessels.filter(v => v.convoyId === cid)
+    .sort((a, b) => (a.id === cid ? -1 : b.id === cid ? 1 : a.id - b.id));
+
   function renderPanel() {
-    if (selectedVesselId != null) {
+    if (selectedConvoyId != null) {
+      const members = convoyMembers(selectedConvoyId);
+      if (!members.length) { clearSelection(); return; }   // whole convoy resolved + culled
+      // re-render on membership / status / expanded-set / sim-day change
+      const sig = 'cv:' + members.map(m => m.id + m.status[0]).join(',') + '|'
+        + [...convoyExpanded].sort().join('.') + '|' + Math.floor(latestSnap.simClock / 86400);
+      if (sig !== lastPanelSig) { lastPanelSig = sig; ui.showConvoy(members, ledgerCtx(), convoyExpanded); }
+    } else if (selectedVesselId != null) {
       const v = latestSnap.vessels.find(x => x.id === selectedVesselId);
       // pinState omitted while the tracker is disabled — no Follow button
       if (v) ui.showLedger(v, ledgerCtx()); else clearSelection();
@@ -211,10 +225,27 @@ async function boot() {
       if (sig !== lastPanelSig) { lastPanelSig = sig; ui.showPort(portById.get(selectedPortId), traffic, { ...ledgerCtx(), portHistory: world.portHistoryOf(selectedPortId) }); }
     }
   }
-  function deselect() { selectedVesselId = null; selectedPortId = null; selectedWreckId = null; selectedArchiveId = null; lastPanelSig = ''; }
+  function deselect() { selectedVesselId = null; selectedPortId = null; selectedWreckId = null; selectedArchiveId = null; selectedConvoyId = null; convoyExpanded.clear(); lastPanelSig = ''; }
   // on mobile a selection presents the ledger as the bottom sheet
   function present() { renderPanel(); if (isMobile()) openSheet('ledger'); }
-  function selectVessel(id) { deselect(); selectedVesselId = id; present(); }
+  // clicking a vessel who sails in company (and has ≥1 other member present)
+  // opens the CONVOY panel focused on her; the last survivor is just a ship.
+  function selectVessel(id) {
+    const v = latestSnap.vessels.find(x => x.id === id);
+    if (v && v.convoyId != null && latestSnap.vessels.some(o => o.convoyId === v.convoyId && o.id !== id)) {
+      selectConvoy(v.convoyId, id); return;
+    }
+    deselect(); selectedVesselId = id; present();
+  }
+  function selectConvoy(cid, focusId) {
+    deselect(); selectedConvoyId = cid;
+    if (focusId != null) convoyExpanded.add(focusId);   // the clicked ship starts open
+    present();
+  }
+  function toggleConvoyMember(id) {
+    if (convoyExpanded.has(id)) convoyExpanded.delete(id); else convoyExpanded.add(id);
+    lastPanelSig = ''; renderPanel();
+  }
   function selectPort(id) { deselect(); selectedPortId = id; present(); }
   function selectWreck(id) { deselect(); selectedWreckId = id; present(); }
   function selectArchived(id) { deselect(); selectedArchiveId = id; present(); }
@@ -227,6 +258,7 @@ async function boot() {
     onSpeed: (m) => { speed = m; },
     onClose: clearSelection,
     onSelectVessel: selectVessel,
+    onConvoyToggle: toggleConvoyMember,
     // follow/unfollow from a ledger: flip the pin, refresh the ledger + tracker
     onTogglePin: (id) => {
       if (world.isPinned(id)) {
@@ -681,7 +713,7 @@ async function boot() {
     latestSnap = world.snapshot({ density: perf.shipDensity });
     // the routes overlay is a cached canvas inside the renderer, refreshed on
     // the HUD throttle below — the frame just draws snapshot + blits
-    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, activePorts, selectedWreckId, portLife, namedPorts);
+    renderer.draw(latestSnap, selectedVesselId, selectedPortId, now, activePorts, selectedWreckId, portLife, namedPorts, selectedConvoyId);
 
     hudAccum += dtReal;
     if (hudAccum > 0.2) {

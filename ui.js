@@ -48,7 +48,7 @@ function speedLabel(mult) {
   return `≈ ${(mult / 3600).toFixed(1)} hours / sec`;
 }
 
-export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSelectTracked }) {
+export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSelectTracked, onConvoyToggle }) {
   const els = {
     date: $('date'), season: $('season'), era: $('era'),
     cSea: $('c-sea'), cArr: $('c-arr'), cLost: $('c-lost'),
@@ -71,6 +71,9 @@ export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSele
   els.ledgerBody.addEventListener('click', (e) => {
     const pb = e.target.closest('[data-pin]');
     if (pb && onTogglePin) { onTogglePin(+pb.dataset.pin); return; }
+    // a convoy member row toggles its expanded ledger in place
+    const mh = e.target.closest('[data-mid]');
+    if (mh && onConvoyToggle) { onConvoyToggle(+mh.dataset.mid); return; }
     const li = e.target.closest('[data-vid]');
     if (li && onSelectVessel) onSelectVessel(+li.dataset.vid);
   });
@@ -90,7 +93,11 @@ export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSele
     els.cLost.textContent = snap.counters.lost;
   }
 
-  function showLedger(v, ctx) {
+  // The inner markup of a single vessel's ledger — name, type, particulars,
+  // status, itinerary, evidence + sober notes. Extracted so the convoy panel's
+  // expanded rows are IDENTICAL to the standalone ledger by construction (they
+  // can never drift). showLedger is a thin wrapper; showConvoy reuses it verbatim.
+  function vesselCardHtml(v, ctx) {
     const { portById, cargoById, simClock } = ctx;
     const flag = `<span class="flag" style="background:${v.flagColor}"></span>`;
     const cargoTxt = v.cargoId === 'ballast' ? 'in ballast (empty)' : v.cargoName;
@@ -146,7 +153,7 @@ export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSele
     const master = v.captain
       ? `<dt>${v.isNaval ? 'Captain' : 'Master'}</dt><dd>${escapeHtml(v.captain)}</dd>` : '';
 
-    els.ledgerBody.innerHTML = `
+    return `
       ${pin}
       <h2>${escapeHtml((v.prefix ? v.prefix + ' ' : '') + v.name)}</h2>
       <p class="type">${escapeHtml(v.typeName)} · ${escapeHtml(v.rig)} · of ${v.year}</p>
@@ -162,6 +169,51 @@ export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSele
       <ul class="leglist">${legs}</ul>
       ${evidence}
       ${mp}`;
+  }
+
+  function showLedger(v, ctx) {
+    els.ledgerBody.innerHTML = vesselCardHtml(v, ctx);
+    els.ledger.hidden = false;
+    els.hint && els.hint.classList.add('gone');
+  }
+
+  // Convoy panel: the whole body of sail in company. `members` are the live +
+  // recently-resolved vessels sharing a convoyId (leader first); `expanded` is a
+  // Set of member ids whose full ledger is open. Rendered into the same #ledger
+  // element, so the close button, Escape, and the mobile bottom-sheet all come free.
+  function showConvoy(members, ctx, expanded) {
+    const { portById } = ctx;
+    const lead = members[0];
+    const trade = members.filter(m => !m.convoyEscort);
+    const escort = members.find(m => m.convoyEscort);
+    const flag = `<span class="flag" style="background:${lead.flagColor}"></span>`;
+    const first = lead.schedule[0], last = lead.schedule[lead.schedule.length - 1];
+    const from = eraName(ctx, portById.get(first.from)), to = eraName(ctx, portById.get(last.to));
+    const isFlota = /^(carrera|carreira)/.test(lead.system || '');
+    const title = isFlota ? `The ${escapeHtml(lead.powerName)} flota` : `Convoy — ${escapeHtml(from)} to ${escapeHtml(to)}`;
+    const escNote = escort ? ` · under escort (${escapeHtml(escort.typeName)})` : ' · unescorted';
+
+    const rows = members.map(m => {
+      const open = expanded.has(m.id);
+      const st = m.status === 'lost' ? '<span class="mtag bad">lost</span>'
+        : m.status === 'arrived' ? '<span class="mtag">arrived</span>' : '';
+      const esc = m.convoyEscort ? '<span class="mtag">escort</span>' : '';
+      const mflag = `<span class="flag" style="background:${m.flagColor}"></span>`;
+      return `<li class="mrow">
+        <button class="mhead" data-mid="${m.id}" aria-expanded="${open}" aria-controls="mexp-${m.id}">
+          <svg class="chev${open ? ' open' : ''}" width="11" height="7" viewBox="0 0 12 8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2 L6 6 L10 2"/></svg>
+          ${mflag}<span class="mname">${escapeHtml((m.prefix ? m.prefix + ' ' : '') + m.name)}</span>
+          <em class="mtype">${escapeHtml(m.typeName)}</em>${esc}${st}
+        </button>
+        <div class="mexp" id="mexp-${m.id}"${open ? '' : ' hidden'}>${open ? vesselCardHtml(m, ctx) : ''}</div>
+      </li>`;
+    }).join('');
+
+    els.ledgerBody.innerHTML = `
+      <h2>${title}</h2>
+      <p class="type">${flag}${escapeHtml(lead.powerName)} · ${trade.length} sail${escNote}</p>
+      <p class="section-h">In company — ${escapeHtml(lead.laneName)}</p>
+      <ul class="convoylist">${rows}</ul>`;
     els.ledger.hidden = false;
     els.hint && els.hint.classList.add('gone');
   }
@@ -332,7 +384,7 @@ export function createUI({ onSpeed, onClose, onSelectVessel, onTogglePin, onSele
     }).join('')}</ul>` : '<p class="muted">No vessels followed — open a ship’s ledger and follow her.</p>';
   }
 
-  return { updateHUD, showLedger, showPort, showWreck, hideLedger, renderEvents, renderStats, renderTracker };
+  return { updateHUD, showLedger, showConvoy, showPort, showWreck, hideLedger, renderEvents, renderStats, renderTracker };
 }
 
 // ---- legend (static — built once from the same vocabulary the chart draws) --

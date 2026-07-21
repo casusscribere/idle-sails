@@ -617,7 +617,7 @@ export function createRenderer(canvas, assets) {
   }
 
   // ---- dynamic frame ------------------------------------------------------
-  function draw(snapshot, selectedId, selectedPortId, t, activePorts, selectedWreckId, lifecycle, namedPorts) {
+  function draw(snapshot, selectedId, selectedPortId, t, activePorts, selectedWreckId, lifecycle, namedPorts, selConvoyId) {
     if (base) ctx.drawImage(base, 0, 0, W, H);
     // display year: clamped through the epilogue reset ramp (1850→1860), as
     // everything era-keyed is — port names/lifecycle read the era-end year there.
@@ -635,7 +635,7 @@ export function createRenderer(canvas, assets) {
     if (selected) drawSelectedRoute(selected, t);
 
     if (showWrecks) drawWrecks(snapshot.wrecks || [], snapshot.simClock, selectedWreckId);
-    for (const v of vessels) drawVessel(v, v.id === selectedId, t);
+    for (const v of vessels) drawVessel(v, v.id === selectedId, t, selConvoyId != null && v.convoyId === selConvoyId);
     if (dynClip) ctx.restore();
 
     // prune wake history for vessels no longer present
@@ -688,10 +688,18 @@ export function createRenderer(canvas, assets) {
     ctx.restore();
   }
 
-  function drawVessel(v, isSel, t) {
+  function drawVessel(v, isSel, t, inConvoy) {
     // a lost vessel's wreck marker (drawWrecks) is her chart presence now
     if (v.status === 'lost') { wakes.delete(v.id); return; }
-    const [x, y] = project(v.pos.lon, v.pos.lat);
+    let [x, y] = project(v.pos.lon, v.pos.lat);
+    // formation offset: a convoy member sits a few px off the leader's track,
+    // perpendicular to heading, so the group reads as a loose column (with the
+    // depart stagger stringing it line-astern) rather than a stack of glyphs.
+    if (v.convoyId != null) {
+      const off = ((Math.imul(v.id, 2654435761) >>> 0) % 7) - 3;   // −3..3 px, stable per id
+      const hr = v.pos.heading * Math.PI / 180;
+      x += Math.cos(hr) * off; y += Math.sin(hr) * off;
+    }
     // wake (length is a perf knob; 0 = none — drop any history so a re-enable
     // later doesn't streak a stale line across the chart)
     if (!perf.wakeLength) { wakes.delete(v.id); }
@@ -728,10 +736,14 @@ export function createRenderer(canvas, assets) {
     }
     ctx.restore();
 
-    if (isSel) {
+    // ring the selected ship, or EVERY member of a selected convoy; name only
+    // the focus (a convoy names itself in the panel, not on the chart)
+    if (isSel || inConvoy) {
       ctx.beginPath(); ctx.arc(x, y, size + 6, 0, Math.PI * 2);
-      ctx.strokeStyle = INK; ctx.lineWidth = 1.4; ctx.stroke();
-      label(ctx, (v.prefix ? v.prefix + ' ' : '') + v.name, x + size + 9, y + 4, 12, INK, 'left');
+      ctx.strokeStyle = INK; ctx.lineWidth = inConvoy && !isSel ? 1 : 1.4;
+      ctx.globalAlpha = inConvoy && !isSel ? 0.6 : 1;
+      ctx.stroke(); ctx.globalAlpha = 1;
+      if (isSel) label(ctx, (v.prefix ? v.prefix + ' ' : '') + v.name, x + size + 9, y + 4, 12, INK, 'left');
     }
   }
 
