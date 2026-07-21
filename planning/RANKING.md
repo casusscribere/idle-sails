@@ -1,61 +1,84 @@
-# Feature-ideas ranking — feasibility × performance (2026-07-15)
+# RANKING.md — the live work queue
 
-Ranks the 14 sketches in `ideas.txt` against the codebase as of PLAN-3
-completion, and records the **performance-slider architecture** (idea #2) that
-now frames all of them. Passes 0–3 of the sequencing below have shipped
-(0–1 on 2026-07-15, 2–3 on 2026-07-16). The **interleaved queue** at the end
-of this document merges the feature passes with the research phases
-(`research/TASKS.md`) and the pending adoption decisions into one recommended
-order — it is the live cross-queue view, and every edit to any planning
-document must keep it current (see the directive there).
+**Renumbered 2026-07-21.** The old scheme (Pass 0–6 with a "3.5", Phase RA–RD
+for research, Phase 1–6 for builds, Batch P/R/S/E/G/Z for the backlog, T1–T15
+for research tasks, plus each PLAN's own E-R1/X-S1 phases) had five overlapping
+alphanumeric namespaces and two different meanings for the word "phase". It is
+replaced by **one flat ID space and one ordering axis**.
 
-## The constraint that shapes everything
+The shipped record moved to **[SHIPPED.md](SHIPPED.md)** — it keeps the old
+identifiers verbatim as the build record. The old→new map is §3 below.
 
-The sim is seed-deterministic three ways: per-vessel fate rolled entirely at
-spawn (`world.js` `generateVessel`), spawns keyed to absolute sim-time, and the
-spawn-RNG word held as explicit state. Same seed + sim-time ⇒ identical world at
-any tick granularity — the invariant behind offline accrual. So features divide
-into three layers, and the performance slider may only ever touch two of them:
+---
+
+## 1. The nomenclature
+
+**Every item has one permanent ID.** IDs are never reused and never renumbered;
+only an item's *wave* changes as priorities move.
+
+| Prefix | Meaning |
+|---|---|
+| **F-nn** | Feature / build task — code, data, or bake work |
+| **R-nn** | Research task — evidence work that lands in `research/` |
+| **D-nn** | Decision the user must make before the dependent item can proceed |
+| **L-nn** | Locked — needs its own design doc, or is user-gated, or is out of scope |
+
+**Ordering is by wave, W1 → W6.** A wave is a delivery group, not a milestone:
+items inside a wave may run in any order or in parallel; the wave boundary is
+where a dependency or a philosophy change sits.
+
+Waves are ordered **fidelity first, then efficiency** (the user's stated
+priority, and `research_addenda.txt`'s standing instruction):
+
+| Wave | Name | Why it sits here |
+|---|---|---|
+| **W1** | Corrections & verification | The chart currently asserts things that are wrong or unverified. Fidelity debt outranks new fidelity. |
+| **W2** | Fidelity data & rules | Research that changes *what the sim claims*. Must land before the movement build spends it. |
+| **W3** | Movement patterns | The big build. Grouped so ONE re-bake and ONE new spawn channel serve every item in it. |
+| **W4** | Legibility | Render/observation only, sim untouched. Floats — but reads better once W2/W3 have given it real content. |
+| **W5** | The sim redesign | Breaks fate-at-spawn. `datasetVersion` bump + save reset. Kept late so nothing waits on it. |
+| **W6** | Capstone | Deliberately last so its content can use the full vocabulary of W3 + W5. |
+| **LOCKED** | — | Not in the queue. Each entry names what unlocks it. |
+
+**Efficiency rules applied when grouping** (secondary to fidelity):
+- All baker-touching items collect in one wave so the world is re-baked **once**.
+- Research tasks that read the same archives run as one campaign (the argument
+  that grouped T1+T2+T3, and that groups R-07+R-08 here).
+- All menu/legend/icon work collects in one pass so the disclosure idiom is
+  designed once.
+
+**Sync directive (unchanged, retargeted).** This file is the single
+cross-queue order. Any edit to a document in `planning/`, to
+`research/TASKS.md`, or to an adoption status must update the relevant wave
+table **in the same change**. `research/TASKS.md` now carries the *content* of
+each R-item; this file carries its *position*.
+
+---
+
+## 2. The architectural constraint that shapes everything
+
+Unchanged, and still the reason W5 is last. The sim is seed-deterministic three
+ways: per-vessel fate rolled entirely at spawn (`world.js generateVessel`),
+spawns keyed to absolute sim-time, and the spawn-RNG word held as explicit
+state. Same seed + sim-time ⇒ identical world at any tick granularity — the
+invariant behind offline accrual. Features divide into three layers, and the
+performance slider may only ever touch two:
 
 1. **Sim layer** — what the world computes (spawns, fates, movement,
-   interactions). NEVER varies with the slider. Future heavyweights that change
-   it (vessel persistence, capture, chases) are world-level opt-ins that bump
-   `datasetVersion`, not slider stops.
+   interactions). NEVER varies with the slider. Heavyweights that change it
+   (vessel persistence, capture, chases) are world-level opt-ins that bump
+   `datasetVersion`.
 2. **Observation layer** — what the world *records* (log length, wreck linger,
-   stats, histories). Safe to tune freely; the cost is save-payload growth.
-   Exposed as `createWorld({tuning})` / live `world.tuning`.
-3. **Render layer** — what is drawn and how richly (ship density, wakes,
-   overlay cadence). Completely free. Ship density is **deterministic
-   render-thinning** (`world.snapshot({density})`, stable per-id hash): the
-   same world at every setting, only the visible fraction changes — and the
-   per-frame `positionOf` hot path is skipped for the hidden ships.
+   stats, histories). Safe to tune; the cost is save-payload growth. Exposed as
+   `createWorld({tuning})` / live `world.tuning`.
+3. **Render layer** — what is drawn and how richly. Free. Ship density is
+   deterministic render-thinning (`world.snapshot({density})`, stable per-id
+   hash): the same world at every setting.
 
 `test/settings.test.mjs` holds the line: same seed, any tuning ⇒ identical
 fingerprints.
 
-## Ranking
-
-Feasibility: **A** trivial / scaffolding exists · **B** moderate, contained ·
-**C** hard, restructures the sim. Perf cost when ON: **0 / + / ++ / +++**.
-
-| Rank | Idea | Feas. | Perf | Status / slider role |
-|---|---|---|---|---|
-| 1 | **#14 UI tweaks** — port click priority | A | 0 | ✅ built — always on |
-| 2 | **#9 Legend** | A | 0 | ✅ built — menu panel |
-| 3 | **#3 Debug mode** — export run data | A | 0 | ✅ built — menu action |
-| 4 | **#7 Events log** — wars + losses | A | 0 | ✅ built — menu panel |
-| 5 | **#10 UI rework** — menu + toggleable boxes | A– | 0 | ✅ built (in the cartouche menu, not a new bar) |
-| 6 | **#13 Easter eggs** — Aubrey vessels | A– | 0 | open — **Pass 6** (moved after the movement patterns 2026-07-16, so commissions can carry convoy/prize/chase events) |
-| 7 | **#2 Performance slider** | B | n/a | ✅ built — Low/Medium/High, Medium = pre-slider behaviour |
-| 8 | **#8 Layers panel** — per-category flow toggles | B | ++ (mitigable) | ✅ built — per-basin toggles on a cached overlay canvas (5 Hz refresh) |
-| 9 | **#5 Statistics panel** | B | + (save growth) | ✅ built — aggregates + tier-capped port histories |
-| 10 | **#6 Tracker panel** — pinned vessels | B | + (capped) | built, **disabled until #11 persistence** (world API + tests live; UI greyed) |
-| 11 | **#1 Regional views** | B | + | ✅ built — four preset plates (world / Europe & Med / Caribbean / East Indies) |
-| 12 | **#4 Documentation page** | A tech, big content | 0 | ✅ built — `research/about.html` (sources, evidence classes, divergences, legend docs) |
-| 13 | **#12 Ship flows** | B→C | + → +++ | open — fishing/patrol loops and spawn-time route variants are Pass 4, research-gated on TASKS.md T4; chases break fate-at-spawn (defer) |
-| 14 | **#11 Ship generation** | C | +++ | decomposed: ✅ captains + longer name pools built (own RNG sub-stream); ✅ unique-active-names + retirement shipped (Pass 3.5, 2026-07-16); persistence/capture still need a fleet model (defer; world-level opt-in) |
-
-## Tier table (auto defaults)
+**Tier table (auto defaults)**
 
 | Knob | Low | Medium (default = pre-slider) | High |
 |---|---|---|---|
@@ -63,598 +86,332 @@ Feasibility: **A** trivial / scaffolding exists · **B** moderate, contained ·
 | Wakes | off | 14 pts | 14 pts |
 | Event-log cap | 50 | 200 | 500 |
 | Wreck linger | 90 d | 1 sim-yr | 1 sim-yr |
-| (future) stats depth / pins / layers | minimal | bounded | deep |
 
 Settings live in `settings.js` under their own localStorage key
 (`idle-sails-settings`) — a device preference, deliberately outside the save,
 surviving every `datasetVersion` reset.
 
-## Sequencing — passes in best-practices order
+---
 
-Principles: infrastructure before consumers (recording seams before the panels
-that read them; the viewport abstraction before more screen-space caches);
-group by subsystem so each pattern is designed once; sim-layer risk last.
+## 3. Old → new ID map
 
-**Pass 0 — ✅ shipped 2026-07-15.** Settings + performance tier (#2), menu
-rework (#10), legend (#9), events log (#7), debug export (#3), port
-click-priority (#14).
+Feature identifiers:
 
-**Pass 1 — ✅ shipped 2026-07-15. Observation layer: statistics (#5) +
-tracker (#6).** The same pattern twice: bounded recorded data in world state
-(per-lane spawn/arrive/loss tallies + cargo counts in `state.stats`;
-tier-capped per-port call histories in `state.portHistory`, surfaced as
-"Lately called" in the port panel; pins + a `tracked.archive` that keeps a
-pinned vessel's record when the cull would drop her — the vessels array stays
-identical to an unpinned world's, so fingerprints never move). Statistics
-recorded at spawn/resolution — granularity-independent by the same argument
-as portCalls. Pin cap and history depth are `world.tuning` knobs (0/40/200
-and 3/10/25 by tier). Save payload after a full sim-year: 34/110/148 KB by
-tier. `test/observation.test.mjs` (5 tests) holds reconciliation with the
-counters, granularity independence, pin sim-inertness, cap enforcement, and
-save round-trips.
+| Old | New |
+|---|---|
+| Pass 0, 1, 2, 3, 3.5 | shipped — [SHIPPED.md](SHIPPED.md) |
+| Pass 4 (scripted channel + ambient flows) | **F-14** (channel) + **F-15** (ambient flows) |
+| Pass 5 (persistence / capture / chases) | **F-36** + **F-37** + **F-38**, gated on **D-14** / PLAN-5 |
+| Pass 6 (Aubrey) | **F-39** |
+| Phase 1 (World Build), Phase 4 (per-port docs) | shipped — [SHIPPED.md](SHIPPED.md) |
+| Phase 2 (Movement patterns) | wave **W3** |
+| Phase 3 (Threads & polish) | wave **W4** |
+| Phase 5 (sim redesign) | wave **W5** |
+| Phase 6 (Aubrey capstone) | wave **W6** |
+| Batch P (polish) | F-08, F-24, F-27, F-31 |
+| Batch R (routing residuals) | F-06, F-07, F-10 |
+| Batch S (sim refinements) | F-13, F-19, R-03 |
+| Batch E (easter eggs) | F-20, F-39 |
+| Batch G (roster gaps) | shipped, except **R-04** |
+| Batch Z (big modes) | L-03, L-04 |
+| Convoys (outside the ladder) | **F-12** |
+| Seasonal departure windows | **F-10** (monsoon half; ice half shipped) |
+| Steam layer | **L-05** |
+| Trade-goods threads | **F-25** |
 
-**Pass 2 — ✅ shipped 2026-07-16. Render/viewport: regional views (#1) +
-layers panel (#8).** Regional views first, exactly as planned: `render.js`
-bounds are now mutable (`setRegion`), with four preset plates exported as
-`REGIONS` — world (data-fit crop), Europe & the Mediterranean, the Caribbean,
-the East Indies & China — chosen by a "Chart view" radiogroup in the menu and
-persisted as `settings.region`. Regional plates contain on both axes, keep
-the readability floor, and rebuild base/labels/overlay through the new
-projection (wakes drop rather than streak); the graticule tightens 15°→5° on
-regional crops. Then the layers panel: the routes overlay moved to a cached
-offscreen canvas refreshed on the existing 5 Hz HUD throttle (per frame it
-costs one blit), and the overlay boolean gained per-BASIN toggles — the six
-flow-matrix basins + "Naval & other voyages" — as a menu-sub tree under the
-master toggle (children disable while it's off, the legend-tree idiom).
-`build-data.mjs` now carries `basin` on each folded flow system (additive,
-datasetVersion stays 4); main.js votes each lane's basin by folded share.
-Brightness normalizes within the visible set, so an isolated basin reads its
-own hierarchy. Off basins persist sparsely (`settings.layers`, absent = on).
-Verified headless (Playwright): plate switching, filter isolation, sparse
-persistence across reload, zero console errors; port-lifecycle and era-name
-behaviour carry through on every plate. Tests 41 green
-(`test/regions.test.mjs` pins each plate to the ports it exists for and the
-basin coverage of the fold; settings round-trip extended).
+Research identifiers:
 
-**Pass 3 — ✅ shipped 2026-07-16. Vocabulary: captains + longer name pools
-(#11's easy pieces) + the docs page (#4).** Every vessel now sails under a
-named shipmaster from `hashSeed('captain', seed, id)` — her OWN sub-stream,
-exactly as planned, so no draw was inserted into the vessel RNG sequence:
-name-stripped fingerprints verified IDENTICAL against pre-pass HEAD on a
-fixed seed. `names.captains` gives all 27 naming cultures a pool
-(build-data-validated): European cultures compose given+surname; the title
-travels IN the name where that's the historical usage (Nakhoda … for the
-Indian-Ocean shipowner-master, … Reis for Ottoman masters with Greek
-kapetans alongside, Daeng … at Makassar; China/Ryukyu surname-first). The
-ledger labels the role (Captain for naval, Master for merchant); wreck
-records keep her master; a pre-captain save backfills the exact same master
-on restore (pure function of seed+id+power). Ship-name pools extended
-~1.5–2× across all themes (name strings shift per seed; fates/counters
-don't). #4: `research/about.html` — "How this chart is made" — sources +
-interpretation, evidence classes, port selection, movement/calibration,
-legend documentation (glyphs, flags, master titles), sober treatments, and
-a declared divergences list; wired into nav.js and the research hub.
-`#debug=1` now exposes `window.__is` for headless verification. 46 tests
-green (`test/captains.test.mjs`: pool-swap sim-inertness, granularity
-independence, restore backfill, wreck records).
+| Old | New | State |
+|---|---|---|
+| T1, T2, T3 | — | done (Phase RC) |
+| T4, T5, T8, T9, T10, T12 | — | done |
+| T6 (Aubrey canon + fiction catalog) | **R-09** | open |
+| T7 (vessel lifecycle & prize practice) | **R-07** | open |
+| T11 (steam) | **L-05** | locked |
+| T13 (imbricate vessel identity) | **R-08** | open |
+| T14 (waystops) | waystations half done; remainder → **R-04** | part open |
+| T15 (national port access rules) | **R-03** | open |
+| *(new 2026-07-21)* | **R-01, R-02, R-05, R-06, R-10** | open |
 
-**Pass 3.5 — ✅ shipped 2026-07-16. Unique active names + name retirement
-(#11's middle pieces).** Built exactly as designed below, with one refinement:
-candidate #0 still comes from the vessel stream (burning the draws makeName
-always burned), so an UNBLOCKED name is byte-identical to the pre-pass world —
-no reshuffle at all; only blocked names redraw, from `hashSeed('name', seed,
-id)`, K=8 then accept-the-duplicate. `state.nameLedger` (name → blocked-until)
-is written at spawn AFTER every reschedule-return, pruned lazily, serialized,
-and backfilled from surviving vessels+archive on pre-3.5 saves (presence
-checked on the RAW save object). Measured: live-duplicate samples 97% → ~1.6%;
-refractory violations ~0.1% of spawns (the designed accept-the-duplicate
-tail). Verified fate-inert by the pass-3 method: name-stripped fingerprints
-IDENTICAL vs pre-pass HEAD code on seeds 42/7/23 over 20 mixed-granularity
-years. 52 tests green (`test/names.test.mjs`: rarity, refractory, granularity
-independence, save round-trip, old-save backfill, pool-swap fate-inertness).
-Original design notes (all held):
-Feasibility established 2026-07-16 (it does NOT need Pass 5's fleet model):
-because fates are pre-rolled at spawn, "is this name active at sim-time t"
-derives from already-generated vessels, and a spawn-ordered ledger keeps it
-granularity-independent. Design: sim-layer `nameBlockedUntil` map written at
-each spawn (`max(existing, lost ? fate.atSec + R : voyageEnd)` — the active
-window and a refractory period R after losses unify in one timestamp; R≈5
-sim-years, arrivals release immediately); name drawn from a dedicated
-`hashSeed('name', seed, id)` sub-stream with up to K redraws while blocked,
-then accept-the-duplicate (historically defensible — real fleets ran several
-*Rosários* at once); ledger pruned lazily, serialized, backfilled from
-surviving vessels on old saves. Never source retirement from wrecks
-(`wreckLingerDays` is a tuning knob — the sim must not read it). One-time
-name reshuffle per seed; fates/counters untouched (verify with the pass-3
-name-stripped-fingerprint method). **Research-gated on `research/TASKS.md`
-T5**: measured peak concurrency exceeds several pools outright (Portugal
-merchant 217% of pool at peak, Hansa 170%, Mughal 133%, Ottoman 120%;
-a live duplicate exists in ~96% of sampled moments today) — pools must be
-expanded until peak pressure sits under **70%** per (culture, role) pool
-before uniqueness reads as real rather than as a near-deterministic tail of
-leftover names.
+Phase RA/RB/RC/RD are retired. `research/TASKS.md` now groups research tasks by
+the same waves as this file.
 
-**Pass 4 — Movement patterns: the scripted-spawn channel + ambient flows
-(#12's easy half).** *(Reorganized 2026-07-16: the channel was formerly
-bundled with the easter eggs and ambient flows were "Pass 4.5"; the easter
-eggs moved to Pass 6 so Aubrey's commissions can use the full movement
-vocabulary, and 4.5 is absorbed here.)* Builds the second spawn channel
-outside the Poisson lane-weighted stream — fixed sim-date **scripted spawns
-with custom itineraries**, keyed to sim-time crossings for determinism —
-plus spawn-time route variants (seasonal/wartime detours from the vessel's
-own RNG), then the ambient flows riding that channel. Ambient flows are
-**research-gated** — they represent real, sourced movement patterns, not
-flavour, so they wait on `research/TASKS.md` **T4** (the deep-research
-catalog of fisheries-as-grounds, naval patterns, scheduled services, and
-local metabolisms, each with an evidence class and a sim-shape verdict).
-Build after T4 lands: recurring local circuits (fishing, patrols) on the
-channel; may touch the bake pipeline for short local circuits — read
-`pipeline/README.md` first. Gates to the High performance tier. Patterns
-that answer a gestured silence (the herring buss fleet, Banks cod) update
-the silences register when they ship. **T4 is DONE (2026-07-17) — the gate
-is OPEN**; `research/ambient-flows.md` §§1–4 is the build's evidence base,
-and its split holds: the scheduled lines, sack triangle, collier lane,
-caravane tramping, and tribute-grain showpiece ride existing machinery;
-the six grounds-loitering patterns wait for the grounds-node primitive
-(recommended: build it once, with E3's bake at queue step 8).
-Two requirements from `feature-ideas/research_addenda.txt` (2026-07-17):
-- **Scripted-only ports (addendum #1).** Some ports must NOT accept the
-  statistical spawn distribution — they receive only scripted voyages.
-  **Dejima is the exemplar** (1–2 ships/yr under the Nagasaki registers —
-  a Poisson draw misrepresents it); the channel should support a
-  per-port `scriptedOnly` gate so the Manila galleon pair and similar
-  counted-singleton services use the same mechanism.
-- **Probabilistic specials (addendum #7).** One-time or few-time historic
-  routes may carry a **per-seed firing probability** (drawn from the
-  seed's own sub-stream, granularity-independent) so rare voyages do not
-  appear in every run — the "did this world get the 1721 Cabo cruise?"
-  texture. Applies to Pass-6 easter eggs too (see T6).
+---
 
-**Pass 5 — deferred sim redesign: persistence / name retirement / capture
-(#11 hard) + chases (#12 hard) + imbricate vessel identity (T13).** Ship–ship interaction breaks
-fate-rolled-at-spawn — a real architecture change needing its own design doc
-(PLAN-5 material), a `datasetVersion` bump, and a save reset. Nothing above
-depends on it; it must never block the rest — only Pass 6 below deliberately
-waits for it.
+## 4. W1 — Corrections & verification
 
-**Pass 6 — Aubrey easter eggs (#13).** *(Moved here from the old Pass 4,
-2026-07-16 — user decision: build the content after ALL the movement
-patterns exist.)* Aubrey's commissions as scripted spawns on the Pass-4
-channel at historically-appropriate dates — deliberately last, so each
-itinerary can express the full vocabulary: convoy and escort legs
-(`PLAN-convoys.md`), ambient patterns as the sea's backdrop, and Pass-5
-prize-takings and chases at book-appropriate moments (the *Sophie*'s prize,
-the *Boadicea*'s Mauritius campaign). **Research-gated on `research/TASKS.md`
-T6**, which catalogs the events per commission. A coherence bonus of the
-late slot: the tracker panel (disabled until Pass 5's vessel persistence)
-is live by now — pin the *Surprise* and follow her properly.
+*No gates. Cheap. Everything here is the chart currently saying something false
+or unverified — under the charter that outranks new content. Several are
+verification-only and may close in minutes.*
 
-## Outside the ladder
+| ID | Item | Src | Feas | Note |
+|---|---|---|---|---|
+| **F-01** | **Porto and Rotterdam have ZERO lanes** — neither can ever receive a ship | ideas §12 (Porto); found 2026-07-21 | A→B | Verified 2026-07-21: of 112 ports, exactly these two appear in no `routes.json` entry as from/to/via. This is a **silent zero** in the charter's exact sense — Porto's wine trade to Britain (the Methuen Treaty) and Rotterdam's Rhine-mouth carriage both existed. Either fold flows onto them or register them as declared silences; drawing an eternally idle dot is the one option the charter forbids. Blocked on **D-04** |
+| **F-02** | **York Factory rate still reads wrong** to the user | ideas §12 | A | The visibility floor (shipped 2026-07-20) measured York at ~1.1 ships/yr against a historical 1–2. Re-measure across seeds and report the distribution; a Poisson 1–2/yr is inherently bursty and may be *correct but unreadable*. See **D-15** |
+| **F-03** | **Port dot positions off on close views** (Banda Neira &c.) | ideas §12 | B | Residual after the 2026-07-19 coastline snap; the snap used the fine coastline, so the offenders are likely islands smaller than the snap's search radius. Audit all 112 display coords against the 50 m coastline and list the outliers |
+| **F-04** | **China coast absent from the Pacific plate** | ideas §12 | B | Ports render, the coastline does not. The `pacific` plate is the one plate crossing the antimeridian (`lonMax` 292 flips `project()`/`drawGeom()` into the Pacific-centred frame) — geometries in the 105–180 band are almost certainly failing the `normLon` pass that the port dots get |
+| **F-05** | **Great Lakes drawn coarse** — match the coastline's precision | ideas §12 | A | Currently a hand-cut inland-water approximation of Superior/Michigan/Huron/Erie/Ontario. Cosmetic; swap for real geometry from the same source as the coastline |
+| **F-06** | Residual **land-clipping + oddly-square / zigzag legs** on close views | ideas §1b, §12 | B | The 1°-routing-grid vs the 50 m display coastline. Known-irreducible cases are documented in SHIPPED.md (Zealand cannot be sealed without severing the Baltic; Cuba's tip-grazes are inherent). What remains is per-offender `ISLAND_SEAL` / de-tack work. **ideas §1b asks the underlying question — "is this historical or an artifact?" The answer is: artifact, and the root cause is grid resolution.** See **D-03** |
+| **F-07** | Closeup routes **terminate mid-screen** — draw through/past plate edges | ideas §12 (implied by §1b) | B | Re-verify against the fill-viewport change; clip-to-edge for off-plate destinations |
+| **F-08** | **Name-list QA** — Dutch and others (`'t Vergulde Draeck` reads wrong) | ideas §12 | A | Small data review of `data-src/names.json`. **Note the overlap with the locked refinement track (L-01 §1b), which asks for a full review of every name list.** See **D-01** |
+| **R-02** | **Port-event vocabulary** — "founded" is wrong for most events | ideas §12 | R (small) | The events log says *founded* for what are really re-openings, conquests, and grants of trade. Research a historically nuanced vocabulary ("opens to trade", "becomes active", "is granted a factory", "is refounded as…") and a per-event rule for choosing among them; **present the suggestions to the user before applying** (the user asked for this explicitly). Feeds `world.portEventsSince` display strings only — no sim change |
 
-- **New chart views** (planned 2026-07-16 — ✅ **built the same day**: both
-  plates in `render.js` REGIONS, menu rows auto-generated, containment pinned
-  in `test/regions.test.mjs`, verified headless — plate switching, settings
-  persistence across reload, zero console errors) — two additions to the
-  Pass-2 regional plates (`render.js` `REGIONS`; render-layer only, no
-  research gate, buildable anytime):
-  - **`arabia-india` — "Arabia & India".** Bounds ≈ lon 36→92, lat −2→31:
-    the Red Sea mouth and the Arabian Sea through the Bay of Bengal. Covers
-    seven roster ports — **Mocha**, Muscat, Surat, Bombay (era-named Goa
-    pre-1661), Madras (Masulipatnam pre-1639), Tranquebar, and **Calcutta
-    (era-named Hugli pre-1690)** — so the monsoon dhow lanes, the pepper and
-    coffee trades, and the Europe–India arrivals read on one plate. The
-    north/west margins deliberately leave headroom for PLAN-4's E2
-    (Basra + Bandar Abbas, to ~30.5 N in the Gulf) and E6 (Jeddah, ~39 E in
-    the Red Sea) so adoption needs no re-crop; E5 Port Louis (~20 S) is
-    deliberately OUT of frame — the Mascarenes belong to the world plate
-    (stretching to −22 S would flatten everything else).
-  - **`na-northeast` — "Newfoundland to the Chesapeake".** Bounds ≈ lon
-    −82→−49, lat 34.5→52.5: the North American northeast from the
-    Newfoundland Banks down through the Chesapeake capes. Covers five roster
-    ports — Louisbourg (era-named St John's outside 1713–58, carrying the
-    Banks cod fishery all era), Boston, New York, Philadelphia, Chesapeake.
-    The eastern margin reaches past −50 so the Grand Banks sea room is in
-    frame — the plate is ready to show grounds-loitering fishery traffic if
-    Pass 4 (T4) ships it.
-  - **Build notes:** each plate is one `REGIONS` entry — `setRegion`,
-    containment on both axes, the 5° regional graticule, label declutter,
-    era names, and `settings.region` boot validation all come free by
-    construction. Verify the menu "Chart view" radiogroup renders from
-    `REGIONS` (if its rows are hand-written in `index.html`, add the two
-    rows). Extend `test/regions.test.mjs` to pin each new plate to the port
-    lists above (and keep the pins in sync if PLAN-4/PLAN-6 adoption later
-    adds ports inside these frames). Names/bounds are recommendations —
-    tune the margins against the readability floor at build time.
-- **Convoys** (`PLAN-convoys.md`, drafted 2026-07-16) — a sim-layer feature
-  that does NOT break fate-at-spawn, so it needs no pass slot: buildable
-  whenever, independent of everything above. Its rules ship `asserted`;
-  research task **T9** (`research/TASKS.md`, Phase RB) refines the rates and
-  windows without gating the build — if Phase RB runs first, build convoys
-  after it and inherit the evidence-classed numbers for free.
-- **Seasonal departure windows** (`PLAN-convoys.md` §5b, added 2026-07-18) —
-  the sibling of convoys, and the CHEAP half. The flow matrix carries annual
-  volumes, so a Poisson spawn spreads monsoon and ice traffic evenly over a
-  year in which it did not sail. Unlike convoy grouping this needs **no sim
-  code**: the baker already bakes {lane × routeClass × season} and
-  `world.js buildItinerary` breaks when no leg exists for the departure
-  season, which is exactly how Arkhangelsk has no winter departures. Gating
-  a lane to its real season is therefore a data-and-baker change. Five
-  systems already register the claim in their own `notes` (`bantam-pepper`,
-  `dutch-japan`, `svalbard-whaling` — already gated —, plus the two convoy
-  cases). **Do it during the Phase-1 combined bake (increment 6)** while the
-  baker is being run anyway; it fixes three of the five without touching the
-  sim. Respect the baker's ≥1-season-per-lane safeguard, and verify against
-  the ANNUAL figure — concentrating the same volume into fewer months raises
-  in-flight density in the window, which is correct and will look like an
-  increase. **PARTIAL (Phase 1 increment 6i):** the ICE half shipped — a new
-  sub-66 `SEASONAL_ICE` baker zone gates Hudson Bay to its Jun–Oct season
-  (York Factory), reusable for any winter-frozen sub-Arctic sea. The MONSOON
-  half (narrowing bantam-pepper / dutch-japan and the two convoy lanes to
-  their real months) is still a baker to-do — do it at the next bake.
-- **Steam layer** (queued 2026-07-16 with the PLAN-6 D1 decision) — v1 of
-  the era extension is a **sail chart, declared** (steam is a
-  silences-register entry + a declared-divergences paragraph), and a steam
-  layer is queued as a planned future feature: the P&O/Cunard-era mail and
-  packet services as their own movement class (great-circle legs, coaling
-  calls — the wind engine cannot produce a steamer's track). Research-gated
-  on **T11** (`research/TASKS.md`, Phase RD); needs its own plan when
-  taken up. Until then the declared boundary stands.
-- **Tweaks** (`ideas.txt`'s sibling `tweaks.txt`) — small render/UX
-  adjustments, no research, no pass machinery; fold into whatever pass is
-  in flight. **✅ 2026-07-20:** the events log gained a category tree (ship
-  losses / wars / **port foundings-captures-abandonment**, the last a new
-  `world.portEventsSince` deriving foundings from `active.from`, abandonments
-  from `active.to`, and changes of allegiance from `eraPowers` transitions —
-  cycle-clamped + granularity-independent like `warEventsSince`), and a
-  **Sunken ships** chart toggle (`renderer.setWrecks`, gates draw + pick). ✅ Dormant-port greying threshold extended 2026-07-16: the
-  window is now DISPLAY policy in main.js (3 sim-years, up from the world
-  default of 1 — `world.activePortsSince` keeps its contract); sparse-but-
-  real flows read as quiet, not abandoned. **Phase 3 progress (2026-07-19):**
-  - ✅ **Regional plates are true matted crops** — the base land + the whole
-    dynamic layer (ports, routes overlay, ships, wrecks) now clip to the plate
-    rectangle on regional crops (`render.js` `beginPlateClip`/`inPlate`), so the
-    letterbox mat no longer shows stray coastline/ships under faded gridlines
-    (the "closeups fade gridlines through which vessels travel" tweak). World
-    plate untouched. Headless-verified; 0 console errors.
-  - ✅ **Verified already-done:** the run-log export gives the WHOLE history
-    (`world.serialize()` includes the retained per-cycle records — the displayed
-    counters are cycle-scoped, the export is not); the ruined-port dashed marker
-    exists (`drawPorts`); the tracker menu row is disabled until Pass 5.
-  - ✅ **Boats no longer sail across Cuba.** Root cause confirmed (1° routing grid
-    vs the 50m display coastline): 37 baked routes had genuine mid-route island
-    crossings, worst on central Cuba (Kingston routes cut clean across at
-    −78.7/22.3). A new `ISLAND_SEAL` construct in `bake-routes.mjs` seals an
-    island's false-ocean spine cells so routes ROUND it; Cuba's central-western
-    spine sealed (7 cells), the Florida/Caribbean/Yucatán passages verified still
-    open, 0 lanes unsailable. Central crossing gone; residual is minor tip-graze.
-  - ✅ **Port dots snap to the coastline** — build-data computes a display coord
-    per port (nearest point on the fine coastline); render draws the dot/label/
-    hit-test there while the sim routes to the original lon/lat. 38 dots snapped
-    (Newcastle → the Tyne mouth; Portobelo's dot back to its real 9.6). Routing
-    unchanged.
-  - ✅ **Regional plates fill the viewport** — a plate expands its authored crop to
-    the screen aspect (no letterbox mat; routes run to the edges; gridlines solid
-    edge-to-edge; extra surrounding ocean, authored ports still in view). Replaces
-    the interim matted-crop clip (now a no-op).
-  - ✅ **Great Lakes** on the map (cosmetic; coarse Superior/Michigan/Huron/Erie/
-    Ontario cut as inland water). **Cape Horn** already in frame (Phase-1 Horn
-    routes push the world crop to −56.5°S). **na-northeast** chart view hidden;
-    **"Naval & other voyages"** → "Naval & state voyages".
-  - ⛔ **Zealand / the Danish straits — CANNOT be safely sealed** (verified
-    2026-07-19 by flood-fill + reroute): the southern-isles route is the ONLY 1°
-    connection into the Baltic, so any Zealand-area seal severs the entire
-    Sound-Toll trade (riga→amsterdam went UNREACHABLE). The routes legitimately
-    thread the Great Belt and only *clip* the sub-cell fine islands — an
-    irreducible 1°-grid limit, left as-is. Cuba's central crossing IS fixed; the
-    remaining Cuba tip-grazes are inherent (Havana/Kingston sit ON the islands —
-    a west-tip seal only relocates the graze) so no further seal was worth a
-    re-bake. Delmarva (Philadelphia routes) + oddly-square/zigzag simplification
-    artifacts remain minor residuals of the same 1°-vs-fine-coastline mismatch.
-  - ⏳ **Overlay taxonomy** — the layer sub-toggles are per-BASIN + "Naval &
-    other voyages"; the user wants NON-regional movement categories (arterials /
-    coasting / coerced / fisheries / naval-state). A design change (re-categorize
-    lanes by movement TYPE), not a rename.
-  - ⏳ **Chart-view hides** — Phase 1 populated `arabia-india` (Basra/Bandar
-    Abbas/Jedda + the India ports), so it reads as fleshed out now;
-    `na-northeast` is still sparse (5 ports, its Grand-Banks fishery traffic
-    waits on Pass 4). Decision pending: keep both, or hide na-northeast.
-  - **Phase 3 progress (2026-07-20):**
-  - ✅ **Port-names policy** — a 3-way **Port names** radio (Default / None /
-    Most active; `settings.portNames`). Default shows a name only while the port
-    saw traffic within the past DECADE (a 10-yr window separate from the 3-yr
-    greying), both cycle-clamped so each 1550 iteration starts fresh — all ports
-    greyed + nameless until they see a call (tweaks 22/23/24 answered together).
-  - ✅ **Ruins icon** upgraded to a proper mark — a broken dashed ring struck by
-    a small cross — for destroyed/discontinued ports (tweaks 15).
-  - ✅ **Small-trade visibility floor** (sim) — York Factory &c. rose from ~1
-    ship a DECADE to its historical ~1–2 a year; see Batch S above.
-  - ✅ **Events-log category tree** + **Sunken ships** toggle (see the intro of
-    this bullet).
-  - ✅ **Cape Horn wrong-way wrap FIXED** (baker, re-baked) — Callao↔Cadiz &c.
-    round the Horn instead of fleeing west across the Pacific; see Batch R above
-    (tweaks 13/14).
-  - ✅ **Independence dates** — Boston/Philadelphia/Chesapeake flip to the US flag
-    in **1776** (was 1783); New York stays 1783 (British-occupied). The events log
-    now reads the handover at 1776.
-  - ✅ **Whaling grounds as zones** — `davis-strait` + `pacific-grounds` draw as a
-    dashed oval (fluke at centre, ellipse-picked), not a harbour dot; Smeerenburg
-    (a real settlement) stays a dot.
-  - Remaining tweaks: the Batch-P/-R residuals above (full-Med + Pacific plates,
-    cursor lat/long, co-located icons, chart art, overlay taxonomy, name-list QA;
-    land-clipping/zigzag/edge-draw residuals).
-- **Trade-goods threads** (queued 2026-07-17, `research_addenda.txt` #8) —
-  a display/docs feature, sim untouched: follow a COMMODITY across the
-  world as one thread — the global silver circuit (Potosí→Carrera,
-  Acapulco→Manila, the Dejima/Japan silver leg, the Red Sea bullion
-  counterflow chunk 3 verified), the Middle Passage (already
-  sober-treated; the thread view must keep the exact same register), and
-  whaling (incl. Japanese coastal whaling as a research question). Shape:
-  a "follow the cargo" research page in the `silences.html` idiom and/or a
-  chart layer highlighting lanes by carried good. Research rides T12's
-  goods-thread lens; the Middle-Passage thread needs charter review as
-  authored.
+**Verified already fixed (2026-07-21) — no action, listed so they are not
+re-opened:** Masulipatnam is `golconda` to 1638 then `britain`; Jayakarta is
+`banten` to 1618 then `dutch`; `portHistoryOf` is cycle-clamped, so "Lately
+called" already hides prior-cycle calls; the run-log export already covers the
+whole retained history, not just the displayed cycle.
 
-## The 2026-07-19 backlog sweep — items folded in from the input files
+---
 
-A full re-read of `feature-ideas/ideas.txt`, `tweaks.txt`, and
-`research_addenda.txt` against the shipped state. Everything geographic in the
-addenda is **built** (the T12 nodes — Callao, Guayaquil, Nootka, Curaçao,
-Algiers/Tunis/Tripoli/Alexandria, Ostend, Bantam — are all in the 105-port
-roster). The items below are the ones that had **no plan slot**; they are folded
-here with feasibility (A trivial / B moderate / C hard) and a target phase.
-`procgen_variant` is deliberately EXCLUDED (its own header forbids adding it to
-the IS backlog — it is a future-version file).
+## 5. W2 — Fidelity data & rules
 
-### Batch P — Polish & render  ·  Phase 3, no gate, do first (cheap, visible)
-**✅ Partly shipped 2026-07-20:** the **port-names control** landed as a richer
-3-way radio (Default / None / Most active) instead of a single toggle, and the
-**two-stage dormancy** (name fades on a 10-yr window separate from the 3-yr
-greying; both cycle-clamped so 1550 starts fresh) + the **ruins icon** (a broken
-dashed ring struck by a cross) shipped with it. Remaining Batch-P: full-Med
-plate, Pacific plate, cursor lat/long, co-located icons, chart art, overlay
-taxonomy, name-list QA.
-| Item | Src | Feas | Note |
+*Research-led. Each item changes what the sim asserts about the past. These
+land before W3 spends them.*
+
+| ID | Item | Src | Note |
 |---|---|---|---|
-| ~~Full-Mediterranean `europe-med` plate (N. African coast)~~ | tweaks 21 | A | ✅ **DONE 2026-07-20** — latMin 33→29; Algiers/Tunis/Tripoli/Alexandria in frame |
-| ~~Pacific plate (W NA/SA ↔ E Asia)~~ | ideas 15 | A→B | ✅ **DONE 2026-07-20** — new `pacific` plate; needed antimeridian-aware projection (`normLon`), both rims + the whaling-ground zone render |
-| ~~Toggle-all-port-names button~~ | tweaks 24 | A | ✅ **DONE 2026-07-20** — shipped as the 3-way **Port names** radio (Default/None/Most active) |
-| ~~Two-stage dormancy (grey → name hidden; start fresh greyed)~~ | tweaks 22,23 | B | ✅ **DONE 2026-07-20** — 10-yr name window separate from the 3-yr grey, both cycle-clamped (fresh at 1550) |
-| ~~Cursor lat/long readout (toggle)~~ | ideas 16 | A | ✅ **DONE 2026-07-20** — a trailing readout plate (`renderer.unproject`); the water-body/continent NAME stays a deferred follow-on (needs named-seas polygons) |
-| **Co-located ports share one icon**, panel lists both (Dejima/Nagasaki) | ideas 26, tweaks 19 | B | detect coincident display coords; merge dot + pick + panel (Nagasaki/Dejima are already SEPARATE + correctly flagged since Phase 4 — this is the shared-icon DISPLAY only) |
-| **Chart art** top/bottom ("here be dragons", ornament) for tall/wide framings | ideas 20 | B | art asset + render; fills empty sea on unusual aspect ratios |
-| **Overlay taxonomy** — sub-toggles by movement TYPE (arterial/coasting/coerced/fisheries/naval-state), not basin | tweaks 9 | B | design change to layer categories + a build-data lane-type tag |
-| Dutch (& other) name-list QA (`'t Vergulde Draeck`) | tweaks 16 | A | small data review |
+| **R-01** | **Japan & sakoku — the full review** | addenda R1a | The largest single fidelity question in the inputs, and it has four parts the user raised separately: (a) **Portuguese naus are still sailing into Nagasaki in 1627** — verify what Portuguese traffic sakoku actually permitted and when it ended (the 1639 expulsion is the obvious boundary, but the 1620s–30s were a ratchet, not a switch); (b) **Ryukyu/Naha drops out of the later decade tranches** — is that real (the 1609 Satsuma invasion, the tribute trade's decline) or a gap in our matrix?; (c) **did the Chinese junk trade actually reach Japan in the 1500s–1600s?** — the user doubts it, given "Japan was closed"; the honest answer involves the Chinese quarter at Nagasaki continuing throughout, which the current model may or may not represent; (d) a general sakoku review that **suggests features** back to this queue. Extends T12's Japan strand rather than repeating it |
+| **R-03** | **National port access rules** | ideas §8 | *(was T15)* Which ports refused ships of certain flags in certain periods, and which imposed class/tonnage limits (draft-limited roadsteads, galley-only harbours). **Scope carefully — much is already implicit in the flow matrix** (a lane that never existed is already absent); the task is to find cases where the sim WOULD generate an ahistorical call the matrix does not forbid. Evidence-classed; "usually refused" is not a hard block |
+| **R-04** | **Korea / Russian-Pacific / Alaska** — promote-or-register verdicts | addenda R1f | *(the open half of T14)* Per port: Korean ports under the Joseon maritime-restriction boundary declared honestly; Okhotsk/Kamchatka and the RAC's Alaskan stations beyond the existing Sitka/Kodiak treatment. Expect silences-register entries |
+| **R-05** | **Standing region re-review** — Indonesia · Caribbean · India–Arabia–E Africa · cross-Pacific & around-SA | addenda R1b, R1d, R1e, R1c | These four strands were all answered by T12 (2026-07-18), yet the user has **re-listed them in the reorganized addenda**. Either they are carried-over text or the T12 answers were insufficient. Blocked on **D-05** before any source work |
+| **R-06** | **Blockade catalog** | ideas §6a | The historical blockades worth modelling (the Continental System, the 1793–1815 British blockades of France and the Baltic, the American 1812 blockade, earlier Dutch/Spanish cases), with dates, the ports/straits affected, and — critically — **what traffic actually did**: rerouted, ran the blockade, switched to neutral flags, or stopped. Gates **F-17**. Overlaps R-08 (neutral-flag transfer is the same evidence) |
+| **R-10** | **Port supply & demand** — what each port bought and sold | ideas §7, §8 | The data behind **F-26**. Per port, the cargoes it produced/consumed at documentation depth, evidence-classed. **This is the same body of work as the locked refinement track's §1e.** Blocked on **D-01** |
+| **F-09** | **Nagasaki / Dejima — one node or two?** | ideas §12 | Currently ONE node, `dejima`, displayed as "Nagasaki (Dejima)", `power: japan`, active 1571–1850, with an explicit `note` arguing the merge (a kilometre apart is one dot at chart scale; the separation is carried in the flow matrix and the ledger). ideas §12 asks to separate them and spawn Dejima independently. This is a **live design conflict, not a bug** — see **D-02** |
+| **F-10** | **Monsoon seasonal-window narrowing** | internal (Phase-1 debt) | The baker already bakes {lane × routeClass × season} and `buildItinerary` breaks when no leg exists for the departure season — which is exactly how Arkhangelsk has no winter departures. The ICE half shipped (`SEASONAL_ICE`, Hudson Bay). The MONSOON half — narrowing `bantam-pepper`, `dutch-japan`, and the two convoy lanes to their real months — is still a data-and-baker change. **Do it in W3's re-bake.** Verify against the ANNUAL figure: concentrating the same volume into fewer months raises in-flight density in the window, which is correct |
+| **F-11** | **`egypt` power + its two Mediterranean wars** | internal (Phase-1 debt) | Needs name + captain pools before it can be added (build-data validates that every `themesByPower` culture has a well-formed pool) |
+| **F-40** | **Epilogue spawn-taper** | internal (Phase-1 debt) | The designed 1850→1860 epilogue decade shipped its blend + HUD note; the spawn *taper* across it did not |
 
-**Batch P remaining after 2026-07-20:** co-located Dejima/Nagasaki icon, chart art,
-the overlay-taxonomy re-categorization, and the Dutch name-list QA. The five cheap
-render/UX wins (both plates, the port-names radio, dormancy, cursor readout) are done.
+---
 
-### Batch R — Routing/baker residuals  ·  fold into the NEXT re-bake (Phase 2)
-**✅ Shipped 2026-07-20: the Cape Horn wrong-way wrap.** Pacific→Atlantic eastbound
-legs (Callao→Cadiz &c.) had the Horn-open (−58) mask keyed only on the DESTINATION,
-so an Atlantic-bound leg got the −50 cap that walls off the Horn and the router
-fled the wrong way around the globe (lon −400). The mask now opens when EITHER
-endpoint is a Pacific-coast-Americas port (post-bake validation too); re-baked, all
-such legs round the Horn (minLat −57, no wrap), London→Canton stays capped. This is
-tweaks 13/14 answered at the routing level (the map crop already reached the Horn).
-| Item | Src | Feas | Note |
+## 6. W3 — Movement patterns
+
+*The big build. Grouped for efficiency: everything here that touches the baker
+runs in ONE re-bake, and everything that needs a second spawn channel shares
+F-14's. Hard research gate T4 is **open** (`research/ambient-flows.md`), and its
+engineering conclusion stands: **one new primitive — the grounds node —
+unlocks six ambient patterns**; everything else rides existing machinery.*
+
+| ID | Item | Src | Feas | Note |
+|---|---|---|---|---|
+| **F-12** | **Convoys** | `PLAN-convoys.md`; ideas §6c | B | Drafted, unbuilt, and **fate-at-spawn-safe** — the lowest-risk starting point in this wave. Inherits R-9/T9's evidence-classed rates for free. ideas §6c adds a requirement the plan should absorb: **correlated loss risk** — if one convoy vessel is taken, the others' odds must rise for the same event, which is exactly what a convoy action was |
+| **F-13** | **Region/route-aware sinking** | ideas §6c | B | Losses at plausible points (hazard-zone ∩ route) instead of anywhere along the polyline. Loss location computed deterministically AT SPAWN, so fingerprint-safe. **The standout cheap fidelity win in this wave** — do it with F-12 |
+| **F-14** | **The scripted-spawn channel** + `scriptedOnly` ports + probabilistic specials | Pass 4; addenda R1a, R2 | B | The second spawn channel outside the Poisson lane-weighted stream: fixed sim-date spawns with custom itineraries, keyed to sim-time crossings for determinism. Carries three requirements: **`scriptedOnly` ports** (Dejima the exemplar — 1–2 ships/yr under the Nagasaki registers, where a Poisson draw misrepresents it; also the Manila galleon pair); **per-seed firing probability** so rare voyages don't appear in every run (the 28-item specials catalog from T12); and the itinerary vocabulary F-16/F-20/F-39 all build on |
+| **F-15** | **Ambient flows** — the grounds-node primitive + the six patterns | ideas §6a | B→C | Build the grounds node once (it also serves the E3 whaling nodes), then the six loitering patterns from `ambient-flows.md`. ideas §6a asks specifically for **fishing that wanders** rather than travelling to a zone and stopping, and for **naval patrols** — both are grounds-node consumers. Gates to the High performance tier. Patterns that answer a gestured silence (the herring buss fleet, Banks cod) must update the silences register when they ship |
+| **F-16** | **Route variants** — blown off course · navigation error · wartime reroute · seasonal & bad-year variation | ideas §6b | B | Drawn from the vessel's OWN RNG at spawn, so fate-at-spawn holds. Note this also **unblocks the `johanna-inner-route-silence`**: a per-voyage route variant can send *some* Indiamen up the Mozambique Channel, which a per-lane `via` cannot |
+| **F-17** | **Blockades** — famous historical blockades reroute or stop traffic | ideas §6a | B | Gated on **R-06**. Likely shape: a war-scoped lane override (blocked / rerouted / attrition-uplifted) rather than a new sim mechanic — cheaper and more honest, since the evidence is about *what traffic did*, not about individual ships |
+| **F-19** | **Multi-leg cargo changes recorded in histories** | ideas §7 | B | Cargo per leg on the itinerary + an observation-layer note. Rides F-14's itinerary work. The user frames it as a **test** — so the deliverable includes an assertion that a multi-leg voyage's ledger shows the cargo *changing*, not one cargo for the whole trip |
+| **F-20** | **Easter-egg channel demos** — HMS HMS *Bom Jesus* · the cat | ideas §10 | A / B | *Bom Jesus* is one scripted spawn once F-14 exists (the doubled "HMS HMS" is the joke). **The cat** is harder than it looks: a single persistent token riding vessels, hopping at ports, with fallbacks for being trapped by a port closing and for being aboard a sinking ship (nine lives). Needs cross-vessel state that stays granularity-independent. See **D-10** |
+| **F-06/F-07** | *(routing residuals — listed in W1, but **execute them in this wave's re-bake**)* | — | — | Never re-bake just for them |
+
+---
+
+## 7. W4 — Legibility
+
+*Render + observation only; the sim is untouched, so this wave can float
+anywhere. It is placed after W2/W3 because most of these panels get their
+content from those waves — a port-type legend is more useful once port types
+mean something, and a goods overlay is more useful once cargo changes per leg.*
+
+### 7a. Port identity & iconography (design the classification once)
+
+| ID | Item | Src | Feas | Note |
+|---|---|---|---|---|
+| **F-21** | **Port classification + icon set + legend entries** | ideas §4b, §8 | B | The roster already carries a role vocabulary — `home` 37 · `colonial` 40 · `naval` 14 · `station` 13 · `factory` 10 · `slaving` 4 · `embarkation` 2 — but the chart draws nearly all of them as the same dot, and the legend documents none of it. Design ONE classification, give each class a mark, document each mark in the legend. The whaling-ground zone and the ruins mark are the two precedents |
+| **F-22** | **Inactive vs ruined** — distinct markers + descriptions | ideas §8 | B | Today a port is drawn, greyed, or ruined. The user wants a third state: **hardcoded-inactive** — a port that exists but receives no traffic for a long defined period (possibly to the end of the run). Both states need a mark AND a panel description explaining which it is |
+| **F-23** | **Port subtype / ranking in the UI** | ideas §8 | B | Surface the port's class and its standing (the flow matrix already computes prominence as an *output* — `research/flow-prominence.html`). Must not fabricate precision: presence-without-rank is a valid state |
+| **F-24** | **Co-located ports share one icon**, panel lists both | ideas §9 | B | Detect coincident display coords; merge dot + pick + panel. **Interacts with F-09/D-02** — if Nagasaki and Dejima split into two nodes, this is what redraws them as one mark |
+| **F-34** | **Debug overlay** — red marks for ports that will change name / appear / disappear; unappeared ports in red | ideas §3 | A | Cheap and genuinely useful for the W1/W2 data work. See **D-13** on whether it is `#debug=1`-only or a menu toggle |
+
+### 7b. Goods & flows
+
+| ID | Item | Src | Feas | Note |
+|---|---|---|---|---|
+| **F-25** | **Trade-goods threads** — follow a commodity across the world | ideas §7 | B | The global silver circuit (Potosí→Carrera, Acapulco→Manila, the Dejima silver leg, the Red Sea bullion counterflow), the Middle Passage, and whaling as followable threads. Shape: a "follow the cargo" research page in the `silences.html` idiom and/or a chart layer highlighting lanes by carried good. Research (T12's goods-thread lens) is **done**. **The Middle-Passage thread keeps the exact sober register — no value tier, no profit framing, factual, never a reward — and needs charter review as authored** |
+| **F-26** | **Port buy/sell display** — what each port is buying and selling | ideas §7, §8 | B | A statistics-panel or port-panel view. Gated on **R-10** for real data — and R-10 is gated on **D-01**. A cheaper interim exists: derive it from the cargoes already carried on the lanes we model, which is honest (it says "what moved", not "what the port wanted") |
+| **F-27** | **Overlay taxonomy by movement TYPE** | old tweaks 9 | B | Sub-toggles by arterial / coasting / coerced / fisheries / naval-state instead of by basin. A design change to the layer categories plus a build-data lane-type tag. **This item is NOT in the reorganized input files** — see the dropped-items list, **D-06** |
+
+### 7c. Menu & chrome
+
+| ID | Item | Src | Feas | Note |
+|---|---|---|---|---|
+| **F-28** | Move the **Chart view** subheading above **Popular trade routes** | ideas §12 | A | Confirmed in `index.html`: routes at line 31, chart view at line 39 |
+| **F-29** | **Collapse child controls when the parent is unchecked** — Popular trade routes, Events log, Legend | ideas §12 | A | Today children are *disabled*, not hidden. Apply the same treatment across all sub-trees |
+| **F-30** | **Hide** (not disable) the Tracked-vessels row until F-38 | ideas §12 | A | Currently `class="menu-item is-disabled"` with a title attribute |
+| **F-31** | **Chart art** top/bottom for tall/wide framings | ideas §9 | B | "Here be dragons", gridline ornament, historically-grounded marginalia — fills the empty sea on unusual aspect ratios |
+| **F-32** | **Convoy/flotilla UI** — ship icons to the LEFT of their names | ideas §12 | A | Small layout fix; lands with F-12's convoy ledger |
+| **F-33** | **Plate-view review** — keep or cut `arabia-india` and `na-northeast`; review all eight | ideas §12 | A | `na-northeast` is already `hidden: true`. Eight plates exist: world, europe, caribbean, east-indies, arabia-india, na-northeast (hidden), australasia, pacific. See **D-05b** |
+
+---
+
+## 8. W5 — The sim redesign
+
+*Breaks fate-at-spawn. Needs PLAN-5, a `datasetVersion` bump, and a save reset.
+Highest risk; nothing above depends on it.*
+
+| ID | Item | Src | Note |
 |---|---|---|---|
-| Residual land-clipping + oddly-square/zigzag legs on close views | tweaks 2,3 | B | 1°-grid vs fine-coast; targeted `ISLAND_SEAL`/de-tack per offender |
-| Closeup routes terminate mid-screen — draw through/past plate edges | tweaks 4 | B | verify vs the fill-viewport change; clip-to-edge for off-plate destinations |
-| Monsoon seasonal-window narrowing (bantam-pepper/dutch-japan + the 2 convoy lanes) | Phase-1 debt | A | baker data change; the ice half already shipped |
+| **R-07** | **Vessel lifecycle & prize practice** | *(was T7)* | Service lifespans by rig/role/era; capture and prize volumes in the modelled wars; prize renaming practice. **Run as ONE campaign with R-08** — a captured ship re-flagged and renamed under its captor is literally one event on both task lists, and both read prize courts, Lloyd's Register, and registry law |
+| **R-08** | **Imbricate vessel identity** — hull / flag / owner / master / crew | *(was T13)* | Build origin vs ownership vs registry vs flag vs master nationality vs crew composition, each of which moved independently in history and is fused into one attribute today. Expect **silences-register entries**, not just fields — flags of convenience exist precisely to defeat the record. Overlaps **R-06** (wartime neutral-flag transfer). **Not present in the reorganized inputs** — see **D-07** |
+| **F-35** | **Draft PLAN-5** | — | Receives R-07 + R-08. The number 5 is reserved for it |
+| **F-36** | **Vessel persistence, retirement, capture, prize pooling** | ideas §5 | Vessels persist for a historically relevant period and run routes until retired / captured / sunk; prizes are renamed into the captor's pool; **vessels retain their histories through capture and across routes** |
+| **F-37** | **Ship-to-ship interaction** — encounters, avoidance, chases, piracy | ideas §6a | Pirate vessels that spawn and pursue; vessels that encounter, avoid, or chase each other. This is the item that breaks fate-at-spawn outright. See **D-09** — a cheaper non-interacting pirate *presence* is buildable in W3 |
+| **F-38** | **Enable the tracker panel** | ideas §4a | The world-side pin API and its tests are already live and proven sim-inert; only the UI is greyed. Unblocks the moment F-36 lands |
 
-### Batch S — Sim refinements  ·  fate-at-spawn-SAFE; with/after Phase 2
-**✅ Shipped 2026-07-20 (not previously batched): the small-trade visibility
-floor.** York Factory and every 1–2-ship-a-year post were drawn ~once a decade —
-a tiny realized flow drowned by proportional sampling against a ~16,000-ship
-world total (a false zero). `spawnLaneWeights` now floors each active trade lane
-to a minimum share of the spawn budget (rides eraFade). Measured: York 0.06 →
-~1.1 ships/yr; busiest lane −15%, still dominant. Charter-aligned (no silent
-zeros; incommensurable basins not forced onto one scale).
-| Item | Src | Feas | Note |
+---
+
+## 9. W6 — Capstone
+
+| ID | Item | Src | Note |
 |---|---|---|---|
-| **Region/route-aware sinking** — losses at plausible points (hazard zones), not random | ideas 24 | B | loss location computed deterministically AT SPAWN from hazard-zone ∩ route; sim-layer, fingerprint-safe. **Standout — cheap, big plausibility win.** |
-| Multi-leg **cargo changes** recorded in histories | ideas 21 | B | cargo per leg on the itinerary + an observation-layer note; rides the Pass-4 itinerary work |
-| National **port access rules** (faction/class/tonnage blocks) | ideas 17 | C | research-gated (new **T15**); partly redundant with the flow matrix, which already sources which lanes exist |
+| **R-09** | **Aubrey canon + the wider historical-fiction catalog** | ideas §10; *(was T6)* | Per commission: vessel, rig, window, itinerary expressible on baked lanes, **and the events** — convoy/escort legs, prize-takings, engagements, chases — plus a suggested per-seed firing probability. Then the wider sweep: other age-of-sail historical fiction (novels, film, stage) ranked as candidates, same schema; only the top few need a full itinerary |
+| **F-39** | **The commissions** | ideas §10 | Scripted spawns on F-14's channel. Deliberately last so each itinerary sails the full vocabulary: convoy legs (F-12), ambient backdrop (F-15), prizes and chases (F-37) — and the tracker (F-38) is live by then, so the *Surprise* can be pinned and followed |
 
-### Batch E — Easter eggs  ·  ride the Pass-4 scripted channel / Pass 6
-| Item | Src | Feas | Note |
+---
+
+## 10. LOCKED — not in the queue
+
+| ID | Item | Src | What unlocks it |
 |---|---|---|---|
-| **HMS HMS Bom Jesus** | ideas 22 | A | one scripted spawn once the channel exists (the "HMS HMS" doubling is the joke) |
-| **The cat** — persists across the cycle, hops ships at port, 9-lives fallbacks for port-closure / sinking | ideas 23 | B | a single persistent token riding vessels; needs cross-vessel state, granularity-independent |
-| Historical-fiction easter-egg **catalog beyond Aubrey** | ideas 13 | R | extend **T6** / Pass 6 candidate list (web-sourced age-of-sail fiction, ranked) |
+| **L-01** | **The research refinement track** | `feature-ideas/research_refinements` | Mirrored as [REFINEMENTS.md](REFINEMENTS.md). Its own header says: *do not add these to the general to-do or feature lists until unblocked or specifically requested*. **It is therefore NOT folded into the waves above — but four of its five sections overlap live items** (see **D-01**), which is the single biggest scheduling question in this reorganization |
+| **L-02** | **Routing / wind-chart engine rebuild** | ideas §1a | Needs its own design doc. The 1° grid is the root cause of F-06's residuals; a finer grid means new field data and a full re-bake of all 414 routes. Overlaps L-01 §1c (find real historical route data and match generated routes to it). Gated on **D-03** |
+| **L-03** | **Fully-ahistorical mode** | ideas §11 | Needs its own design doc. Philosophically orthogonal to the charter — it must be a clearly-labelled separate mode that cannot muddy the sober register. See **D-11** |
+| **L-04** | **Prune the archive from the repo** | ideas §2 | Port `pipeline/router.mjs` and the 31 MB field `.bin`s FORWARD out of `archive/` first — the baker still depends on them (CLAUDE.md constraint) — then remove the archive. See **D-12** |
+| **L-05** | **Steam layer** | *(was T11)* | v1 is a **sail chart, declared** (steam is a silences entry + a divergences paragraph). A future steam layer — P&O/Cunard mail as a distinct movement class, great-circle legs and coaling calls, which the wind engine cannot produce — needs its own plan and its own research pass |
+| **L-06** | **The procgen variant** | `feature-ideas/procgen_variant.txt` | Explicitly out of scope by its own header — ideas for a *future version* of the sim, never to be folded into this backlog. Listed only so it is never re-swept in by mistake |
 
-### Batch G — Roster gaps  ·  short candidates sweep (new **T14**) → data increment
-| Item | Src | Feas | Note |
+---
+
+## 11. Execution chunks
+
+Waves (§4–§10) say **what matters most**. Chunks say **what to do in one
+sitting**. They cross waves deliberately: a chunk is a unit of *shared setup* —
+one re-bake, one archive reading, one design decision, one render session — so
+the expensive thing happens once.
+
+| Chunk | Name | Gated on | Touches the sim? | Size |
+|---|---|---|---|---|
+| **C1** | **The clean sweep** | D-05b, D-13 only | no | 1 sitting |
+| **C2** | The one re-bake | D-04 | data + baker | 1–2 |
+| **C3** | The fidelity reading | D-05 (part) | no (research) | 3–4 |
+| **C4** | Movement: the safe half | R-06 for F-17 | yes, fate-safe | 2–3 |
+| **C5** | Movement: the channel | C4 | yes, fate-safe | 3–5 |
+| **C6** | Port identity | D-02 | no | 2 |
+| **C7** | Goods | D-01, D-06 | no | 2 |
+| **C8** | The sim redesign | D-14, PLAN-5 | **breaks fate-at-spawn** | many |
+| **C9** | Capstone | C5, C8 | no | 2 |
+
+---
+
+### C1 — The clean sweep ·  **do this first**
+
+*Every item that needs **no research, no sim change, no re-bake, and no
+architectural decision**. All render, menu, data-review, or measurement. The
+whole chunk is gated on exactly two trivial decisions (**D-05b** which plates
+survive, **D-13** where the debug overlay lives) — answer those two and the
+chunk runs start to finish.*
+
+| ID | Item | Where | Why it's here |
 |---|---|---|---|
-| ~~Cape Town + critical waystops~~ | addenda 10 | B | ✅ **DONE 2026-07-20 (full waystop reroute, user decision)** — Cape Town added (Kaapstad→Cape Town 1806; VOC/British/Batavian eraPowers). A `via` mechanism reroutes the 22 Europe↔Asia round-the-Cape lanes (Dutch/British/Swedish East-India; NOT the Portuguese Carreira) THROUGH Table Bay: the baker bakes from→cape→to + a `viaIndex`, and the sim splits the leg into a refreshment call + dwell **from the 1652 founding** (before which ships round the Cape unstopped — historically exact). Flow volume unchanged (no double-count). Docs + ports.html card + a `no-port-node` silence for the lesser calls (St Helena/Ascension). The lesser waystops stay gestured. |
-| ~~**The waystations build** (from the T14 sweep)~~ | T14 | B | ✅ **DONE 2026-07-21 — the `via`-CHAIN increment.** `route.via` is now an ordered chain: the baker bakes `from→v1→…→vn→to` (hop-wise simplify so every call is a guaranteed vertex; per-hop longitude re-framing, without which the Acapulco→Guam→Manila join jumped a circumference), the sim splits the leg into one segment per hop with a dwell, and each call is gated to its station's founding — a chain **degrades hop by hop** as the era rolls back. **6 new station nodes** (St Helena 1659 · Anjer 1682 · Umatac/Guam 1668 · Funchal · Santa Cruz de Tenerife · Angra; new `atlantic-islands` region) and **54 lanes with a via** (was 22): `china-can-lon` = anjer→cape-town→st-helena; nationality splits honoured (no St Helena for Dutch/Swedish homeward; **no Madeira for the VOC**, whose standing orders ran direct to Table Bay); Mozambique on the Portuguese Asia lanes, the Azores homeward, **Tenerife outbound / Havana homeward** on the Carrera, Guam westbound-only, **Port Louis** on the French Nantes↔Madras lanes. **Johanna deliberately NOT built** — a per-lane via would send *every* Indiaman up the Mozambique Channel → `johanna-inner-route-silence` (unblocked by per-voyage route variants). +3 tests (64 green), 0 sanity problems, 0 console errors. Full-port promotions (Cape Verde w/ framing, Galle, Trincomalee, Bourbon) remain open under `CURATION.md`. |
-| Korea / Russian-Pacific / Alaska ports | addenda 11 | R | verdict per port: promote or register a silence (still open) |
+| **F-28** | Chart view heading above Popular trade routes | `index.html` | Move one block; routes sit at line 31, chart view at 39 |
+| **F-29** | Collapse children when the parent is unchecked (routes, events, legend) | `index.html`, `main.js`, `style.css` | The `menu-sub` + disabled-child idiom already exists; this changes disable→hide across all three trees |
+| **F-30** | **Hide** the Tracked-vessels row (not disable) | `index.html` | One line — it is `class="menu-item is-disabled"` today |
+| **F-33** | Prune / confirm the chart plates | `render.js REGIONS` | Deleting a plate is deleting one entry + its test pin. **Needs D-05b** |
+| **F-04** | China coast on the Pacific plate | `render.js` | Self-contained: ports normalize through `normLon`, the coastline geometry evidently does not. One projection path, no data change |
+| **F-34** | Debug overlay — ports that will change name / appear / disappear, and unappeared ports in red | `render.js`, `main.js` | All the data exists (`active`, `eraNames`, `eraPowers`); this is a draw pass. **Needs D-13** |
+| **F-08** | Name-list QA (`'t Vergulde Draeck` &c.) | `data-src/names.json` | Data review, no code. **Note D-01** — the locked track wants a full pass; this is the one known-wrong list |
+| **F-02** | York Factory rate — **measure and report** | `research/tools/` | Measurement only, no code change. Produces the number that settles **D-15** |
+| — | Close the four verified-fixed reports | docs | Masulipatnam, Jayakarta, cycle-scoped "Lately called", whole-history export — already correct, verified 2026-07-21 |
 
-### Batch Z — Big modes / housekeeping  ·  DEFER (own design)
-| Item | Src | Feas | Note |
-|---|---|---|---|
-| **Fully-ahistorical mode** (random wars/dynamics) | ideas 19 | C | a parallel generative mode; needs its own design doc; philosophically orthogonal to the historical charter (must not muddy the sober register — a clearly-labelled separate mode) |
-| **Prune the archive** from the repo | ideas 25 | B | port `pipeline/router.mjs` + the field `.bin`s FORWARD out of `archive/` first (CLAUDE.md constraint — the baker still depends on them), THEN remove the archive |
+**Optional stretch, same chunk:** **F-05** Great Lakes. Cheap *if* the asset is
+obtainable — verified 2026-07-21 that `data/land.geojson` is `ne_50m_land` with
+exactly one interior ring and none near the lakes, so the current lakes are
+hardcoded polygons in `render.js` and real geometry means fetching
+`ne_50m_lakes`. If the download isn't available, it drops to C2.
 
-**Recommended order for this backlog:** Batch P remaining (Phase 3, parallel,
-low-risk momentum — the **two trivial plates** [full-Med, Pacific] + **cursor
-lat/long** are the cheapest unstarted wins now); Batch R's residuals swept into
-whatever re-bake Phase 2 triggers (the Horn wrap is already fixed — never re-bake
-JUST for the rest); Batch S's **region-aware sinking** done with/after **Convoys**
-(its standout, and now the top unstarted sim refinement since the visibility floor
-shipped); Batch E folded into Pass 4/6 as channel demos + the Aubrey catalog;
-Batch G's **T14 waystops are now DONE** (Cape Town 2026-07-20, the via-chain build
-2026-07-21), leaving only the Korea/Russian-Pacific verdicts open in that batch;
-Batch Z deferred to its own plans.
+**Deliberately NOT in C1, with reasons:**
+- **F-32** (convoy ship-icons left of names) — verified 2026-07-21: `flotilla`
+  and `convoy` have **zero** hits in `ui.js`, `main.js`, `index.html`, and
+  `style.css`. **That UI does not exist yet.** It is a requirement on F-12's
+  convoy ledger → moved to **C4**.
+- **F-03** (port dot positions, Banda Neira &c.) — needs an audit of all 112
+  display coords and probably a change to the snap radius, which is a
+  build-data change → **C2**, where the build runs anyway.
+- **F-31** (chart art) — an art asset, not a tweak → **C6**.
+- **F-01** (Porto/Rotterdam) — needs flows authored and a re-bake → **C2**.
 
-**Shipped since the sweep (2026-07-20), beyond the batches above** — three
-direct-request fixes not in the input files' batches: the **events-log category
-tree** (losses / wars / **port foundings-captures-abandonment** via a new
-`world.portEventsSince`) + a **Sunken ships** chart toggle; **Boston/Philadelphia/
-Chesapeake independence corrected to 1776** (British evacuation / Patriot control;
-New York stays 1783, occupied); and the **whaling grounds rendered as zones** —
-`davis-strait` + `pacific-grounds` (both self-described "not a port but a whaling
-ground") now draw as a dashed oval with a fluke, ellipse-picked, instead of a dot
-(Smeerenburg, an actual settlement, stays a dot). All live.
+### C2 — The one re-bake
+*Rule: the world is re-baked **once**. Nothing here is worth a bake on its own;
+everything here rides the same one.*
+**F-01** Porto/Rotterdam flows (needs **D-04**) · **F-06** land-clipping and
+oddly-square/zigzag residuals · **F-07** closeup routes drawn past plate edges ·
+**F-10** monsoon seasonal-window narrowing (the ice half already shipped) ·
+**F-03** port display-coord audit (rides the same `build-data` run).
+Read `pipeline/README.md` before touching the baker. Verify F-10 against the
+**annual** figure — concentrating volume into fewer months raises in-flight
+density in the window, which is correct.
 
-## The interleaved queue — recommended order (live)
+### C3 — The fidelity reading
+*Research only; nothing ships. Grouped so each body of sources is read once.*
+- **C3a — R-01 Japan & sakoku** (Portuguese naus, Ryukyu/Naha, the junk trade,
+  other Japanese ports + a features verdict). The deepest fidelity question in
+  the inputs, and it may hand features back to this queue.
+- **C3b — R-02 port-event vocabulary.** Small, self-contained, and it ends in
+  a **presentation to the user**, not an edit.
+- **C3c — R-03 access rules + R-04 Korea/Russian-Pacific together.** Both ask
+  "what could legitimately call where" over the same regime and roster sources.
+- **C3d — R-05** only if **D-05** says the T12 answers were too thin.
 
-> **Maintenance directive.** This queue is the merge of the feature passes
-> above, the research phases in `research/TASKS.md`, and the pending adoption
-> decisions (`PLAN-4-expansion.md` §3, `PLAN-6-era-1850.md` §6). **Whenever
-> any planning document, the research queue, or an adoption decision changes,
-> update this section in the same edit** — it must never lag its sources.
-> Mirror directives sit in `planning/README.md` (conventions),
-> `research/TASKS.md` (header), and CLAUDE.md/AGENTS.md (key documents).
+### C4 — Movement: the safe half
+*Fate-at-spawn holds throughout; no new spawn channel needed.*
+**F-12** convoys — including **F-32** (ship icons left of names) and ideas §6c's
+**correlated convoy loss** — · **F-13** region-aware sinking (cheap, rides the
+same hazard data, the standout fidelity win) · **R-06** blockade catalog →
+**F-17** blockades as war-scoped lane overrides (**D-08**).
 
-Tags: **[F]** feature build · **[R]** research · **[D]** user decision ·
-**[B]** adopted-plan build. Hard gates are marked; everything else is
-recommended order, not law.
+### C5 — Movement: the channel
+**F-14** the scripted-spawn channel + `scriptedOnly` ports + per-seed
+probabilistic specials · **F-15** the grounds-node primitive and the six ambient
+patterns · **F-16** route variants (which also unblocks the
+`johanna-inner-route-silence`) · **F-19** multi-leg cargo in histories ·
+**F-20** *Bom Jesus* + the cat (**D-10**).
 
-1. ~~**[F] New chart views + tweaks**~~ — **✅ DONE 2026-07-16**: the
-   `arabia-india` and `na-northeast` plates shipped (menu auto-rows, test
-   pins, headless-verified); greying window extended to 3 sim-years as
-   display policy in main.js.
-2. ~~**[D] Adoption calls**~~ — **✅ DECIDED 2026-07-16**: PLAN-4 + PLAN-6
-   adopted together; all five Tier-1 candidates; all five new ports; steam =
-   declared boundary + queued feature (T11); reset ramp = a DESIGNED
-   epilogue decade (new X-S1 design work); coerced flows confirmed under the
-   sober pattern; grounds-node pattern approved with the Arctic fishery
-   staying registered; placements by precedent. Ledgers in each plan's
-   header.
-3. ~~**[R] T5 — name-pool expansion**~~ — **✅ DONE 2026-07-16** (all pools
-   under the 70% gate, worst 64%; note in
-   `research/name-pressure-2026-07-16.md`). **Standing re-gate:** re-run
-   `name-pressure.mjs` at X-S2 (310-year cycle, new powers) and before
-   pass 3.5 ships.
-4. ~~**[F] Pass 3.5 — unique active names + retirement**~~ — **✅ SHIPPED
-   2026-07-16** (see the pass ledger above: nameLedger in world.js,
-   fate-inertness proven vs HEAD, 52 tests). The step-3 re-gate note
-   stands: re-run `name-pressure.mjs` when X-S lands.
-5. **[R] Phase RB as ONE campaign — ~~T4~~ + ~~T8~~ + ~~T9~~ + T10 (X-R1)**, plus
-   PLAN-4 E-R1 verification. The big source pass; the whole point of the
-   phase grouping is that it runs once. Includes X-R2's charter sign-off
-   texts staged for user review. **IN PROGRESS** (`research/rb-campaign.md`):
-   chunks 1–9 done 2026-07-16/17/18 — **T9 complete**, **T4 COMPLETE**
-   (286 claims, 229 ✅ / 56 ⚠ / 1 ✂), **T8 COMPLETE** (chunk 2 fisheries +
-   chunk 9's four candidates → two new ports Ostend/Bantam, two folds, three
-   silences), **T10 COMPLETE** (chunks 5–8: six basin extensions + five
-   new-port dossiers + the full 1815–50 wars set, 384 claims at 322 ✅ /
-   59 ⚠ / 3 ✂), and **PLAN-4 E-R1 COMPLETE** (all five Tier-1 stamped: E1/E5
-   chunk 6, E2 sweep, E3 chunk 2, E6 chunk 3, **E4 York Factory chunk 10**).
-   **Pass 4's hard gate (T4) is OPEN** — and the catalog's engineering
-   conclusion is that ONE new movement primitive (the grounds node) unlocks
-   six ambient patterns. Chunk 10 also assembled the **X-R2 coerced-flow
-   framing sign-off** (eight texts after review) — **USER SIGN-OFF PENDING**
-   before X-S1 enforces them. **COMPLETE 2026-07-18** — chunk 11 (T12) closed
-   the campaign: Japan/Dejima (scriptedOnly + Kanagawa correction), Pacific/SA
-   (Callao=E9 + Guayaquil + a Pacific whaling grounds-node + Nootka→Canton fur),
-   Med-African coast (Algiers/Tunis/Tripoli/Alexandria + barbary-concessions),
-   Caribbean (Curaçao/St Thomas/Paramaribo/Belize + a golden-age-piracy hazard
-   zone), the 28-item **specials catalog** (→ Pass 4/6), and the **goods-thread
-   lens** (→ the queued trade-goods-threads feature). **All of Phase RB (T4, T8,
-   T9, T10, T12 + PLAN-4 E-R1) is now done; ~9 new nodes / 7 systems / 2 hazard
-   zones / ~11 silences stage for the X-S1/S2 build.**
-**Steps 1–5 are DONE.** With the whole Phase-RB research campaign complete
-(2026-07-18), the research now runs well ahead of the build, so the remaining
-work re-groups into **six phases** (grouped 2026-07-18). The old flat steps
-6–13 map into them as noted. Order is **build-first**: Phase RB finished the
-research, so defining the final world (Phase 1) is the front of the queue —
-it unblocks the per-port sweep and gives the movement features their content.
+### C6 — Port identity
+*One classification, designed once, then drawn and documented.*
+**F-09/D-02** Nagasaki–Dejima · **F-21** port classification + icon set + legend
+entries (the roster already carries `home`/`colonial`/`naval`/`station`/
+`factory`/`slaving`/`embarkation` — the chart draws them all the same) ·
+**F-22** inactive vs ruined · **F-23** subtype/ranking in the UI · **F-24**
+co-located icons · **F-31** chart art (same render/art session).
 
-### Phase 1 — The World Build  ·  [B]  ·  ✅ **COMPLETE + MERGED + LIVE 2026-07-19**
-PLAN-4 E-S + PLAN-6 X-S, delivered across increments 1–8 (tracker
-`planning/PHASE-1-build.md`). The world now runs **1550→1850** (designed 10-year
-epilogue decade, 310-yr loop), **105 ports · 414 routes · 82 folded systems ·
-95% 1850s coverage**, `datasetVersion 5`, **55 tests green**, 0 console errors,
-deployed to the live site. The eight approved framing texts are enforced; the
-seven orphan ports (Singapore, Hong Kong, Sydney, Montevideo, New Orleans, York
-Factory, the whaling grounds — + Basra/Bandar Abbas) each shipped with a
-`research/flows/<port>-authoring.md` dossier. Baker infra: Panama seal→land-wall,
-a destination-aware Cape-Horn cap, a sub-66 Hudson-Bay `SEASONAL_ICE` seal. The
-name-pressure re-gate ran (china-junk-trade pool 16→44). **Unblocked: Phase 4
-(per-port docs).** **Carried forward as small debts** (noted in the tracker, NOT
-blocking): `scriptedOnly` ports (Dejima) folds into **Pass 4** where the channel
-is built; the **`egypt` power + its 2 Mediterranean wars** (needs name/captain
-pools); the designed epilogue **spawn-taper** (§Epilogue-permitted fast-follow —
-the blend + HUD note shipped); the monsoon-narrowing half of **seasonal departure
-windows** (Hudson Bay's ice seal shipped; bantam-pepper/dutch-japan monsoon
-gating still on the baker to-do).
+### C7 — Goods
+**R-10** port supply & demand (**D-01**) → **F-26** port buy/sell · **F-25**
+trade-goods threads (the Middle-Passage thread keeps the exact sober register
+and needs charter review as authored) · **F-27** overlay taxonomy (**D-06**).
 
-### Phase 2 — Movement patterns  ·  [F]  (was steps 6–7)
-**Pass 4** (the scripted-spawn channel + `scriptedOnly` ports [Dejima] +
-probabilistic specials [the 28-item catalog] + ambient flows) — HARD GATE T4
-✅ open; the **grounds-node primitive** (unlocks six ambient patterns + the E3
-whaling nodes) is built once during Phase 1's E3 bake and reused here. Plus
-**Convoys** (`PLAN-convoys.md`) — fate-at-spawn-safe, so it can run first / in
-parallel as low-risk momentum; inherits T9's rates for free. May touch the
-baker (`pipeline/README.md` first). **Folds in from the backlog sweep:**
-Batch S's **region-aware sinking** (do it with Convoys — cheap, fate-safe; the
-visibility floor already shipped), Batch E's easter eggs (Bom Jesus + the cat as
-channel demos), Batch R's REMAINING routing residuals (land-clipping/zigzag/
-edge-draw — the Cape Horn wrong-way wrap is already FIXED 2026-07-20; sweep the
-rest into whatever re-bake this phase triggers — never re-bake just for them),
-and a short **T14** waystop sweep (Cape Town) → a Batch-G data increment before
-the itinerary work.
+### C8 — The sim redesign
+**R-07 + R-08 as one campaign** → **F-35** PLAN-5 → **F-36** persistence and
+capture · **F-37** chases and piracy pursuit · **F-38** enable the tracker.
+Breaks fate-at-spawn; `datasetVersion` bump + save reset.
 
-### Phase 3 — Threads & polish  ·  [F]  (render/observation; floats anywhere)
-**Trade-goods threads** (T12 lens done → buildable; the Middle-Passage thread
-keeps the exact sober register) + the queued **render tweaks** (residual land
-clipping, zigzags — several want a baker review) + the **Batch-P polish set** from
-the backlog sweep above. Batch-P shipped so far (2026-07-20): the port-names radio,
-two-stage dormancy, and the ruins icon; **remaining Batch-P**: full-Med plate, the
-Pacific plate, cursor lat/long, co-located port icons, chart art, the
-overlay-taxonomy re-categorization, name-list QA. No gate; low risk; the two
-trivial plates + cursor lat/long are the recommended first pull for momentum. Slot
-into whatever pass is in flight.
+### C9 — Capstone
+**R-09** the Aubrey canon + the wider fiction catalog → **F-39** the commissions.
 
-### Phase 4 — Per-port documentation  ·  [R]  ·  ✅ **COMPLETE + LIVE 2026-07-19**
-**Phase RC — T1+T2+T3 done for all 105 ports** (9 parallel region-batched research
-subagents, assembled + validated). Each port carries its 1550→1850 name/ownership
-timeline (`ports[].eraNames` + `ports[].eraPowers`, 39 with multi-window
-timelines, all tiling their active window — build-data-validated), a port-panel
-blurb (era-resolved, `research/port-docs.json` → injected into datasets), and a
-documentation entry with real citations on the new **`research/ports.html`** page
-(105 cards / 23 regions, headless-verified). New: `world.js portPowerAt`, the port
-panel shows the ALLEGIANCE OF THE TIME, five display-only independence powers
-(haiti/mexico/brazil/gran-colombia/dahomey) for the honest flag, and the
-name/ownership tweaks fixed (Masulipatnam=Golconda, Jayakarta=Banten,
-Nagasaki=Japan, Bombay/Calcutta, "est." only for real in-sim foundings). Charter
-held (slave-trade/coerced-labour ports named soberly; Indigenous sovereignty at
-Sydney/Sitka/Nootka/Banda named honestly). 55 tests green.
+---
 
-### Phase 5 — The sim redesign  ·  [R]+[F]  (was steps 10–11)
-**T7 + T13 as ONE research campaign** (vessel lifecycle & prize practice;
-imbricate vessel identity — hull/flag/owner/master/crew) → draft **PLAN-5**
-→ **Pass 5** (persistence / capture / chases). The two tasks share their
-sources — prize courts, Lloyd's Register, registry law — and a re-flagged,
-renamed prize is one event on both lists, so they are read once together
-(the T1+T2+T3 argument from Phase RC). T13 also decides whether a vessel's
-identity stays one fused name-captain-hull-nation or gains facets (an
-American-built, Dutch-owned, British-flagged hull under a Scandinavian
-master), which is a schema question PLAN-5 is the right place to receive.
-Breaks fate-at-spawn — a real architecture change; `datasetVersion` bump +
-save reset; **unlocks the tracker panel**. HARD GATE: PLAN-5 adopted.
-Highest-risk; kept late so nothing waits on it.
+### Decisions by chunk
 
-### Phase 6 — The Aubrey capstone  ·  [R]+[F]  (was steps 12–13)
-**T6** (the Aubrey canon catalog: convoy legs, prizes, engagements, chases) →
-**Pass 6** (commissions as scripted spawns). Deliberately LAST (user decision
-2026-07-16) so each itinerary sails the full vocabulary — convoy legs
-(Phase 2), ambient backdrop (Phase 2), Pass-5 prizes/chases — and the tracker
-(live after Phase 5) can pin the *Surprise*. HARD GATES: T6 + the Pass-4
-channel + Pass 5.
+| Chunk | Blocking decisions |
+|---|---|
+| **C1** | **D-05b, D-13** *(both trivial)* |
+| C2 | D-04 |
+| C3 | D-05 (C3d only) |
+| C4 | D-08 |
+| C5 | D-10 |
+| C6 | D-02 |
+| C7 | D-01, D-06 |
+| C8 | D-07, D-14 |
+| C9 | — |
 
-### Deferred track — the Steam layer  ·  [R]
-v1 is a **sail chart, declared** (steam = a silences entry + a divergences
-paragraph). A future steam layer (P&O/Cunard mail as a distinct movement
-class — great-circle legs, coaling calls) is research-gated on **T11**
-(Phase RD) and needs its own plan. Not on the critical path.
-
-**Hard gates:** roster-final→Phase 4, PLAN-5→Phase 5, {T6, Pass 4, Pass 5}→
-Phase 6. **Phase 1 is DONE (2026-07-19)**, so the **front of the queue is now
-Phase 2 (Movement patterns)** — with **Convoys** as the lowest-risk, fate-at-
-spawn-safe starting point (needs no pass slot, inherits T9's rates) — while
-**Phase 4 (per-port docs)** is unblocked (the roster is final) and **Phase 3
-(threads & polish, incl. the render tweaks)** floats anywhere.
+Full text in **[OPEN-QUESTIONS.md](OPEN-QUESTIONS.md)**. D-03, D-11, D-12 gate
+locked items only; D-15/D-16/D-17 are verification and confirmation.

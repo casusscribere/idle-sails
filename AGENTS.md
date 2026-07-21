@@ -52,6 +52,44 @@ Every design decision answers to both of these:
 
 ## Current state (as of 2026-07-21)
 
+- **QUEUE RENUMBERED + INPUTS RE-SWEPT (2026-07-21).** The user reorganized
+  `feature-ideas/` — `tweaks.txt` emptied into `ideas.txt` (now 12 sections),
+  `research_addenda.txt` regrouped into R1–R3, and a NEW `research_refinements`
+  file added carrying a **standing lock** ("do not add these to the general
+  to-do or feature lists until unblocked"). In response the five overlapping
+  naming schemes (Pass 0–6, Phase RA–RD, Phase 1–6, Batch P–Z, T1–T15) were
+  replaced by **one flat permanent ID space** — `F-` build, `R-` research, `D-`
+  decision, `L-` locked — **ordered by waves W1–W6 + LOCKED**, grouped
+  fidelity-first per the addenda's standing instruction. The shipped record
+  moved to `planning/SHIPPED.md` (old ids kept verbatim); decisions collected in
+  `planning/OPEN-QUESTIONS.md` (D-01…D-17); the locked track mirrored in
+  `planning/REFINEMENTS.md`. **Two live charter violations found during the
+  sweep:** **Porto and Rotterdam appear in ZERO routes** (of 112 ports) — drawn
+  on the chart, unable ever to receive a ship, which is a silent zero in the
+  charter's exact sense (F-01/D-04). Four reported bugs were verified
+  **already fixed** and closed (Masulipatnam=Golconda, Jayakarta=Banten,
+  cycle-scoped "Lately called", whole-history run export). The front of the
+  queue is **W1** (corrections), then **R-01** (Japan & sakoku — the deepest
+  fidelity question in the inputs), then **W3** opening with **F-12 convoys +
+  F-13 region-aware sinking**.
+- **EXECUTION CHUNKS (2026-07-21).** RANKING §11 now groups the queue into
+  **C1–C9** — a chunk is a unit of *shared setup* (one re-bake, one archive
+  reading, one design decision, one render session) and deliberately crosses
+  waves. **C1 "the clean sweep" is the front of the queue**: every item needing
+  no research, no sim change, no re-bake, and no architectural decision —
+  F-28/F-29/F-30 menu fixes, F-33 plate prune, F-04 China coast on the Pacific
+  plate, F-34 debug lifecycle overlay, F-08 name-list QA, F-02 York measurement
+  — gated on only **two trivial decisions, D-05b and D-13**. **C2 is "the one
+  re-bake"** (F-01 Porto/Rotterdam flows + F-06/F-07 routing residuals + F-10
+  monsoon windows + F-03 dot audit): the standing rule is that the world is
+  re-baked ONCE and nothing rides a bake alone. Two items were verified out of
+  the easy pass while sizing it: **F-32** (convoy ship-icons) — `flotilla` and
+  `convoy` have ZERO hits in the UI source, so that panel does not exist and the
+  item is a requirement on F-12's ledger — and **F-05** (Great Lakes), which
+  needs the `ne_50m_lakes` asset, since `land.geojson` is `ne_50m_land` with one
+  interior ring and none near the lakes (the lakes are hardcoded polygons in
+  `render.js`).
+
 - **THE WAYSTOPS BUILD — `via` IS NOW A CHAIN (2026-07-21, live).** The T14
   waystations sweep integrated. **The code change the sweep asked for:**
   `route.via` accepts an ORDERED LIST of ports — the baker routes
@@ -591,7 +629,10 @@ planning/            ALL design & feature plans — planning/README.md is the in
   PLAN-4-expansion.md    the wider-world expansion (adopted 2026-07-16, unbuilt)
   PLAN-6-era-1850.md     the temporal expansion 1550→1850 (adopted 2026-07-16, unbuilt)
   PLAN-convoys.md        convoys feature spec (drafted, unbuilt)
-  RANKING.md             the feature queue: passes + outside-the-ladder items (live)
+  RANKING.md             THE WORK QUEUE — typed IDs (F/R/D/L) in waves W1–W6 (live)
+  SHIPPED.md             the build record (keeps the retired Pass/Phase/Batch/T ids)
+  OPEN-QUESTIONS.md      the D-nn decisions blocking queued work (live)
+  REFINEMENTS.md         the LOCKED refinement track (L-01) — not queued
 research/            evidence work — TASKS.md is the phased research queue,
                      CURATION.md the promotion rubric; datasets + reference pages
 feature-ideas/       the user's raw sketches (untracked; never edited by agents)
@@ -638,19 +679,33 @@ archive/isochrone-v1/   the previous project (see its ARCHIVE-NOTE.md)
   convoys feature spec (spawn-event grouping, escorted reprieve, the convoy
   ledger UI). Does NOT break fate-at-spawn — buildable now, outside the pass
   ladder; research task T9 refines its rates without gating it.
-- **`planning/RANKING.md`** — the feature queue: `feature-ideas/ideas.txt`
-  ranked by feasibility × performance, the three-layer slider architecture,
-  the pass ledger (0–3 shipped; 3.5, 4, 5, 6 open), the
-  outside-the-ladder items (new chart views, convoys, tweaks), and **the
-  interleaved queue** — the one recommended order merging feature passes,
-  research phases, and adoption decisions. **Sync directive: whenever you
-  edit ANY `planning/` document, `research/TASKS.md`, or an adoption status,
-  update RANKING.md's interleaved queue in the same change.**
-- **`research/TASKS.md`** — the phased research queue (non-promotion tasks):
-  RA feature gates (T5→pass 3.5, T6→pass 6) · RB movement & flows, one
-  source campaign (T4 ambient flows + T8 declared silences + T9 convoy
-  rates, coordinated with PLAN-4 E-R1) · RC the per-port sweep (T1+T2+T3
-  together, one port at a time) · RD deferred design (T7→PLAN-5).
+- **`planning/RANKING.md`** — **THE WORK QUEUE** (renumbered 2026-07-21). One
+  flat, permanent ID space — **F-nn** build · **R-nn** research · **D-nn** user
+  decision · **L-nn** locked — ordered by **waves**: `W1` corrections &
+  verification → `W2` fidelity data & rules → `W3` movement patterns → `W4`
+  legibility → `W5` sim redesign → `W6` capstone, plus `LOCKED`. An item's wave
+  may change; its ID never does. Also carries the three-layer slider
+  architecture, the old→new ID map (§3), and the recommended pull order.
+  **Sync directive: whenever you edit ANY `planning/` document,
+  `research/TASKS.md`, or an adoption status, update the matching wave table in
+  RANKING.md in the same change.**
+- **`planning/SHIPPED.md`** — the build record, moved out of RANKING in the same
+  renumbering. Keeps the **old** identifiers (Pass 0–3.5, Phase 1/4, Batch P–Z,
+  T1–T15) verbatim, because that is how shipped work is cited across the repo.
+- **`planning/OPEN-QUESTIONS.md`** — the **D-01…D-17** decisions blocking queued
+  work, each with options and a recommendation. Items blocked on one say so in
+  their RANKING row.
+- **`planning/REFINEMENTS.md`** — the **locked** refinement track (L-01),
+  mirroring `feature-ideas/research_refinements`: full re-review passes over
+  port histories, name lists, routes-vs-real-map-data, weather, and cargo flows.
+  **Not queued, by its own header** — but it records where it collides with four
+  live items, which is decision D-01.
+- **`research/TASKS.md`** — the research task *content* (RANKING holds the
+  *position*). Renumbered to **R-nn** on 2026-07-21; the RA/RB/RC/RD phase names
+  are retired. Open: R-01 Japan & sakoku · R-02 port-event vocabulary · R-03
+  national port access rules · R-04 Korea/Russian-Pacific · R-05 standing region
+  re-review (blocked) · R-06 blockade catalog · R-10 port supply & demand
+  (blocked) · R-07 + R-08 as ONE campaign for PLAN-5 · R-09 the Aubrey canon.
 - **`archive/isochrone-v1/ARCHIVE-NOTE.md`** — what the old project was and
   exactly which of its assets the rebuild reuses.
 - **`archive/isochrone-v1/SOURCES.md`** — historical sourcing + calibration
