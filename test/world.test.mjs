@@ -353,6 +353,28 @@ test('region-aware sinking: hazard-cause wrecks fall inside their named zone', (
   assert.ok(checked >= 5, `some wrecks carry a named-graveyard cause (${checked})`);
 });
 
+test('Cape Town waystop: the Indies calls appear only from the 1652 founding', () => {
+  const YR = 365.25 * DAY;
+  // 1640 — before van Riebeeck's station: ships round the Cape without stopping
+  const early = mk(42);
+  while (Math.floor(early.calendar(early.simClock).year) < 1640) early.tick(30 * DAY);
+  assert.equal(early.state.portCalls['cape-town'], undefined, 'no Cape Town call before 1652');
+  assert.ok(!early.state.vessels.some(v => v.schedule.some(s => s.from === 'cape-town' || s.to === 'cape-town')),
+    'no vessel routes via Cape Town before its founding');
+  // 1750 — the station is the tavern of the seas
+  const late = mk(42);
+  while (Math.floor(late.calendar(late.simClock).year) < 1750) late.tick(30 * DAY);
+  assert.ok(late.state.portCalls['cape-town'] != null, 'Cape Town is called at after 1652');
+  const callers = late.state.vessels.filter(v => v.status === 'sailing'
+    && v.schedule.some(s => s.from === 'cape-town' || s.to === 'cape-town'));
+  assert.ok(callers.length > 0, `Indiamen call at Cape Town (${callers.length})`);
+  // she pauses AT Table Bay during the refreshment call, not out at the Cape
+  const ship = callers.find(v => v.schedule.some(s => s.to === 'cape-town'));
+  const seg = ship.schedule.find(s => s.to === 'cape-town');
+  const pos = late.positionOf(ship, seg.arrive);
+  assert.ok(Math.hypot(pos.lon - 18.42, pos.lat + 33.92) < 1.5, `paused at Cape Town (${pos.lon.toFixed(1)}, ${pos.lat.toFixed(1)})`);
+});
+
 test('wrecks: a loss marks the chart for a sim-year, then fades from the record', () => {
   // sail long enough to accumulate losses (base loss ~2.5%/30-day leg)
   const w = mk(3);

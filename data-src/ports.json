@@ -1945,7 +1945,10 @@
       "power": "dutch",
       "region": "arctic",
       "kind": "grounds",
-      "zone": { "rx": 6, "ry": 4 },
+      "zone": {
+        "rx": 6,
+        "ry": 4
+      },
       "roles": [
         "station"
       ],
@@ -2082,7 +2085,10 @@
       "power": "usa",
       "region": "south-pacific",
       "kind": "grounds",
-      "zone": { "rx": 9, "ry": 7 },
+      "zone": {
+        "rx": 9,
+        "ry": 7
+      },
       "roles": [
         "station"
       ],
@@ -2091,6 +2097,56 @@
         "to": 1850
       },
       "note": "Not a port but the offshore grounds off Peru and Chile, opened by the Emilia in 1788 and worked by the British and then overwhelmingly American sperm fishery. A grounds node, like the Davis Strait and Smeerenburg."
+    },
+    {
+      "id": "cape-town",
+      "name": "Cape Town",
+      "lon": 18.42,
+      "lat": -33.92,
+      "power": "dutch",
+      "region": "east-africa",
+      "roles": [
+        "station"
+      ],
+      "active": {
+        "from": 1652,
+        "to": 1850
+      },
+      "eraNames": [
+        {
+          "from": 1652,
+          "to": 1805,
+          "name": "Kaapstad"
+        },
+        {
+          "from": 1806,
+          "to": 1850,
+          "name": "Cape Town"
+        }
+      ],
+      "eraPowers": [
+        {
+          "from": 1652,
+          "to": 1794,
+          "power": "dutch"
+        },
+        {
+          "from": 1795,
+          "to": 1802,
+          "power": "britain"
+        },
+        {
+          "from": 1803,
+          "to": 1805,
+          "power": "dutch"
+        },
+        {
+          "from": 1806,
+          "to": 1850,
+          "power": "britain"
+        }
+      ],
+      "note": "The VOC refreshment station at Table Bay, founded 1652 - the tavern of the seas, where the Indiamen of the Dutch, English, Swedish and Danish companies watered and victualled on the long passage between Europe and Asia."
     }
   ]
 }

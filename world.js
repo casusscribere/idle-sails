@@ -564,29 +564,41 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
       : lane.middlePassage ? 'enslaved-people'
       : weightedPick(rng, lane.cargo, c => (c === 'ballast' ? 0.6 : 1));
     const cargo = cargoById.get(cargoId);
-    // 8. itinerary — a member copies the leader's shifted schedule; a normal
-    //    vessel builds her own from the baked legs.
+    // 8. itinerary — a convoy MEMBER copies the leader's shifted schedule; a
+    //    normal vessel builds her own from the baked legs, splitting a `via`
+    //    (Cape Town) leg into a refreshment call from the station's 1652 founding.
     let schedule, voyageEnd;
     if (opts) { schedule = opts.schedule; voyageEnd = opts.voyageEnd; }
     else {
       const legSpecs = buildItinerary(rng, lane, routeClass, cal0.season, year);
       if (!legSpecs.length) return null; // no baked leg — skip (caller reschedules)
-      // LIA modifier (PLAN-3 S2, the bounded era-climate signal): North Atlantic
-      // legs during the Maunder Minimum (1645–1715) run ~7% longer — a documented
-      // storminess proxy, applied to duration rather than to wind fields (per-era
-      // reanalysis does not exist; declared boundary).
+      // LIA modifier (PLAN-3 S2): North Atlantic legs during the Maunder Minimum
+      // (1645-1715) run ~7% longer (a documented storminess proxy on duration).
       const liaFactor = (year >= 1645 && year <= 1715) ? 1.07 : 1.0;
       let t = spawnSimClock;
       schedule = [];
       for (let i = 0; i < legSpecs.length; i++) {
         const { laneId, leg } = legSpecs[i];
-        const depart = t;
         const g0 = legGeom.get(leg.id);
         const northAtlantic = g0.maxLat > 40 && leg.coords[0][0] < 40;   // rough N-Atlantic/N-Sea gate
         const durSec = (leg.hours || (g0.total / 1.852 / 6)) * 3600 * (northAtlantic ? liaFactor : 1);
-        const arrive = depart + durSec;
-        schedule.push({ laneId, legId: leg.id, from: leg.from, to: leg.to, depart, arrive });
-        t = arrive;
+        // Cape Town waystop: split a `via` leg at the refreshment call from its
+        // 1652 founding (before which the ship rounds the Cape without stopping);
+        // f0/f1 mark each segment's stretch of the shared polyline for positionOf.
+        const vp = leg.via ? portById.get(leg.via) : null;
+        if (vp && vp.active && year >= vp.active.from && year <= vp.active.to && leg.viaIndex != null) {
+          const splitF = g0.cum[leg.viaIndex] / g0.total;
+          const arrA = t + durSec * splitF;
+          schedule.push({ laneId, legId: leg.id, from: leg.from, to: leg.via, depart: t, arrive: arrA, f0: 0, f1: splitF });
+          const departB = arrA + rrange(rng, PORT_DWELL_DAYS[0], PORT_DWELL_DAYS[1]) * SEC_PER_DAY;
+          const arrB = departB + durSec * (1 - splitF);
+          schedule.push({ laneId, legId: leg.id, from: leg.via, to: leg.to, depart: departB, arrive: arrB, f0: splitF, f1: 1 });
+          t = arrB;
+        } else {
+          const arrive = t + durSec;
+          schedule.push({ laneId, legId: leg.id, from: leg.from, to: leg.to, depart: t, arrive });
+          t = arrive;
+        }
         if (i < legSpecs.length - 1) t += rrange(rng, PORT_DWELL_DAYS[0], PORT_DWELL_DAYS[1]) * SEC_PER_DAY;
       }
       voyageEnd = t;
@@ -757,8 +769,10 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     if (simClock <= seg.depart) f = 0;
     else if (simClock >= seg.arrive) f = 1;
     else f = (simClock - seg.depart) / (seg.arrive - seg.depart);
+    // a waystop-split segment (Cape Town) covers only [f0,f1] of the leg polyline
+    const f0 = seg.f0 || 0, f1 = seg.f1 != null ? seg.f1 : 1;
     // in a port dwell between legs → clamp at the port
-    const dist = f * g.total;
+    const dist = (f0 + f * (f1 - f0)) * g.total;
     let i = 1; while (i < g.cum.length - 1 && g.cum[i] < dist) i++;
     const seg0 = leg.coords[i - 1], seg1 = leg.coords[i];
     const segLen = g.cum[i] - g.cum[i - 1] || 1;

@@ -146,6 +146,14 @@ for (const r of routes) {
   if (r.from === r.to) err(`route ${r.id}: from === to`);
   inEra(r.era, `route ${r.id}`);
   if (r.flag && !powerById.has(r.flag)) err(`route ${r.id}: unknown flag '${r.flag}'`);
+  // waystop (Cape Town): the via port must exist and differ from both endpoints;
+  // the CALL is gated to the port's active window at sim-time, so the lane era
+  // may legitimately begin before the station's founding (the ship rounds the
+  // Cape without stopping until it exists).
+  if (r.via !== undefined) {
+    if (!portById.has(r.via)) err(`route ${r.id}: unknown via '${r.via}'`);
+    if (r.via === r.from || r.via === r.to) err(`route ${r.id}: via must be an intermediate port`);
+  }
   if (!Array.isArray(r.shipTypes) || !r.shipTypes.length) err(`route ${r.id}: needs shipTypes[]`);
   for (const st of r.shipTypes || []) if (!shipById.has(st)) err(`route ${r.id}: unknown shipType '${st}'`);
   if (!Array.isArray(r.cargo) || !r.cargo.length) err(`route ${r.id}: needs cargo[]`);

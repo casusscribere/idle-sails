@@ -467,8 +467,8 @@ zeros; incommensurable basins not forced onto one scale).
 ### Batch G — Roster gaps  ·  short candidates sweep (new **T14**) → data increment
 | Item | Src | Feas | Note |
 |---|---|---|---|
-| **Cape Town + critical waystops** | addenda 10 | B | **Cape Town is ABSENT** and is THE Europe↔Asia refreshment call — promote as a waystop node or register as a declared waystop-silence (it is a call, not a trade terminus — a real design question) |
-| Korea / Russian-Pacific / Alaska ports | addenda 11 | R | verdict per port: promote or register a silence |
+| ~~Cape Town + critical waystops~~ | addenda 10 | B | ✅ **DONE 2026-07-20 (full waystop reroute, user decision)** — Cape Town added (Kaapstad→Cape Town 1806; VOC/British/Batavian eraPowers). A `via` mechanism reroutes the 22 Europe↔Asia round-the-Cape lanes (Dutch/British/Swedish East-India; NOT the Portuguese Carreira) THROUGH Table Bay: the baker bakes from→cape→to + a `viaIndex`, and the sim splits the leg into a refreshment call + dwell **from the 1652 founding** (before which ships round the Cape unstopped — historically exact). Flow volume unchanged (no double-count). Docs + ports.html card + a `no-port-node` silence for the lesser calls (St Helena/Ascension). The lesser waystops stay gestured. |
+| Korea / Russian-Pacific / Alaska ports | addenda 11 | R | verdict per port: promote or register a silence (still open) |
 
 ### Batch Z — Big modes / housekeeping  ·  DEFER (own design)
 | Item | Src | Feas | Note |
