@@ -206,6 +206,25 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px rg
 .portlist li:hover, .portlist li:focus-visible { color: var(--red); outline: none; }
 .portlist li:focus-visible { text-decoration: underline; }
 .muted { color: var(--ink-soft); font-style: italic; font-size: 13px; margin: 4px 0 0; }
+
+/* convoy panel (movement-realism): a body of sail; each row expands to the ship's
+   full ledger, reusing the ledger's own dl/leglist styles inside .mexp */
+.convoylist { list-style: none; margin: 6px 0 0; padding: 0; border-top: 1px solid var(--paper-edge); }
+.mrow { border-bottom: 1px dashed var(--paper-edge); }
+.mhead { width: 100%; display: flex; align-items: center; gap: 8px; padding: 8px 2px; min-height: 24px;
+  background: none; border: 0; cursor: pointer; text-align: left; color: inherit; font: inherit; }
+.mhead:hover, .mhead:focus-visible { color: var(--red); outline: none; }
+.mhead .chev { flex: 0 0 auto; transition: transform .15s; color: var(--ink-soft); }
+.mhead .chev.open { transform: rotate(180deg); }
+.mname { font-size: 13.5px; }
+.mtype { font-style: italic; color: var(--ink-soft); font-size: 12px; margin-left: 2px; }
+.mtag { font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft);
+  border: 1px solid var(--paper-edge); border-radius: 3px; padding: 0 4px; margin-left: auto; }
+.mtag.bad { color: var(--red); border-color: var(--red); margin-left: auto; }
+.mtag + .mtag { margin-left: 6px; }
+.mexp { padding: 2px 0 12px 19px; border-left: 2px solid var(--paper-edge); margin: 0 0 6px 4px; }
+.mexp h2 { font-size: 17px; }
+@media (pointer: coarse) { .mhead { min-height: 44px; } }
 .ledger .blurb { color: var(--ink); font-size: 13px; line-height: 1.5; margin: 0 0 12px; padding-left: 9px; border-left: 2px solid var(--rule); }
 .section-h { text-transform: uppercase; font-size: 10px; letter-spacing: .16em; color: var(--ink-soft); margin: 14px 0 4px; }
 .mp-note { background: rgba(158,43,37,0.08); border-left: 3px solid var(--red); padding: 8px 10px; font-size: 12.5px; line-height: 1.5; color: #4a2b22; margin-top: 10px; }

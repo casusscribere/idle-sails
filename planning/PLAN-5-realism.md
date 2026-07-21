@@ -72,8 +72,20 @@ modifier decided at spawn). Inherits T9's evidence-classed rates.
   under a flota. Historically defensible ("several *Rosários* at once"); the two
   pass-3.5 tests were relaxed to convoy-aware bounds. **A future increment should
   expand the convoy-heavy culture pools to restore the tighter guarantee.**
-- **2b — render + UI (PENDING).** Formation offset, the convoy selection ring, and
-  the convoy ledger (`vesselCardHtml` refactor + `showConvoy` + main.js routing).
+- **2b — render + UI (2026-07-20, DONE).** `render.js`: a per-member formation
+  offset (perpendicular to heading, stable per id) so a convoy reads as a loose
+  column, and a selection ring on EVERY member of a selected convoy (the focus
+  ship named). `ui.js`: extracted `vesselCardHtml` (showLedger is now a thin
+  wrapper) so the convoy panel's expanded rows are the standalone ledger by
+  construction; new `showConvoy` renders the body of sail — header (flota name on
+  Carrera/Carreira lanes, else "Convoy — A to B"), sail count + escort note, and a
+  disclosure row per member (chevron, flag, name, type, status tag) expanding in
+  place. `main.js`: `selectVessel` routes a member with ≥1 companion present to
+  `selectConvoy`; `convoyExpanded` set + `toggleConvoyMember`; renderPanel convoy
+  branch with signature gating; the last survivor is just a ship. Reuses the
+  `#ledger` element so close/Escape/mobile-sheet come free. Headless-verified
+  (click → panel lists members, the clicked ship starts open, toggling expands to
+  the full ledger, 0 console errors). **Increment 2 (Convoys) COMPLETE.**
 
 **Increment 3+ — Pass 5: persistence / capture / chases** *(BREAKS fate-safe)*.
 The real architecture change: a vessel is a persistent entity with a lifespan,
