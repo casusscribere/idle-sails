@@ -525,13 +525,27 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     const schedule = [];
     for (let i = 0; i < legSpecs.length; i++) {
       const { laneId, leg } = legSpecs[i];
-      const depart = t;
       const g0 = legGeom.get(leg.id);
       const northAtlantic = g0.maxLat > 40 && leg.coords[0][0] < 40;   // rough N-Atlantic/N-Sea gate
       const durSec = (leg.hours || (g0.total / 1.852 / 6)) * 3600 * (northAtlantic ? liaFactor : 1);
-      const arrive = depart + durSec;
-      schedule.push({ laneId, legId: leg.id, from: leg.from, to: leg.to, depart, arrive });
-      t = arrive;
+      // Cape Town waystop (PLAN-5): a `via` leg is split at the refreshment call,
+      // with a dwell — but only from the station's founding year (before 1652 the
+      // ship rounds the Cape without stopping). f0/f1 mark each segment's stretch
+      // of the shared polyline so positionOf interpolates the right half.
+      const vp = leg.via ? portById.get(leg.via) : null;
+      if (vp && vp.active && year >= vp.active.from && year <= vp.active.to && leg.viaIndex != null) {
+        const splitF = g0.cum[leg.viaIndex] / g0.total;
+        const arrA = t + durSec * splitF;
+        schedule.push({ laneId, legId: leg.id, from: leg.from, to: leg.via, depart: t, arrive: arrA, f0: 0, f1: splitF });
+        const departB = arrA + rrange(rng, PORT_DWELL_DAYS[0], PORT_DWELL_DAYS[1]) * SEC_PER_DAY;
+        const arrB = departB + durSec * (1 - splitF);
+        schedule.push({ laneId, legId: leg.id, from: leg.via, to: leg.to, depart: departB, arrive: arrB, f0: splitF, f1: 1 });
+        t = arrB;
+      } else {
+        const arrive = t + durSec;
+        schedule.push({ laneId, legId: leg.id, from: leg.from, to: leg.to, depart: t, arrive });
+        t = arrive;
+      }
       if (i < legSpecs.length - 1) t += rrange(rng, PORT_DWELL_DAYS[0], PORT_DWELL_DAYS[1]) * SEC_PER_DAY;
     }
     const voyageEnd = t;
@@ -615,8 +629,10 @@ export function createWorld({ seed = 1, data, restore = null, tuning = null }) {
     if (simClock <= seg.depart) f = 0;
     else if (simClock >= seg.arrive) f = 1;
     else f = (simClock - seg.depart) / (seg.arrive - seg.depart);
+    // a waystop-split segment (Cape Town) covers only [f0,f1] of the leg polyline
+    const f0 = seg.f0 || 0, f1 = seg.f1 != null ? seg.f1 : 1;
     // in a port dwell between legs → clamp at the port
-    const dist = f * g.total;
+    const dist = (f0 + f * (f1 - f0)) * g.total;
     let i = 1; while (i < g.cum.length - 1 && g.cum[i] < dist) i++;
     const seg0 = leg.coords[i - 1], seg1 = leg.coords[i];
     const segLen = g.cum[i] - g.cum[i - 1] || 1;

@@ -151,16 +151,20 @@ catalog; promotion-queue updates via `CURATION.md`.
 PLAN-4's next wave.
 
 #### T14 — Waystops & remaining roster gaps (backlog sweep, `research_addenda` #10–11)
-*(added 2026-07-19 from the input-file re-read.)* A short candidates sweep in
+*(added 2026-07-19 from the input-file re-read. **Cape Town DONE 2026-07-20**;
+Korea/Russian-Pacific still open.)* A short candidates sweep in
 the `port-flow-candidates` pattern over the nodes the addenda flag that the T12
 sweep did NOT resolve:
-- **Cape Town** (#10) — the VOC refreshment station (1652–), the single most
-  important **waystop** on the Europe↔Asia route, and currently ABSENT from the
-  roster. The design question is real: it is a refreshment CALL, not a trade
-  terminus the flow matrix ranks, so decide between (a) a waystop node that
-  multi-leg Indiaman itineraries touch, or (b) a declared waystop-silence entry.
-  Sweep other critical waystops the same way (St Helena, Ascension, the Sunda/
-  Malacca choke calls).
+- **Cape Town** (#10) — ✅ **BUILT (full waystop reroute, user decision).** Added
+  as a station node (Kaapstad→Cape Town 1806; VOC 1652 → British 1795 → Batavian
+  1803 → British 1806). Design question resolved (a): a real waystop the Indiaman
+  itineraries TOUCH. A `via` mechanism reroutes the 22 Europe↔Asia round-the-Cape
+  lanes (Dutch/British/Swedish/Danish East-India — NOT the Portuguese Carreira,
+  which used Mozambique) through Table Bay; the baker bakes from→cape→to + a
+  `viaIndex`, the sim inserts a refreshment call + dwell from the 1652 founding
+  (before which ships round the Cape unstopped). Flow unchanged (no double-count).
+  The lesser calls (St Helena, Ascension, Mossel/False Bay) stay a `no-port-node`
+  silence (`cape-waystops-silence`).
 - **Korea / Russian-Pacific / Alaska** (#11) — per port, a promote-or-register
   verdict (Korean ports under the Joseon maritime-restriction boundary declared
   honestly; Okhotsk/Kamchatka and the RAC's Alaskan stations beyond the existing

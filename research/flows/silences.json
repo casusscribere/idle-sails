@@ -173,6 +173,14 @@
       "treatment": "gestured",
       "pointer": "sydney-convicts",
       "note": "The 1788 founding of Sydney was the dispossession of inhabited land. Sydney Cove is Warrane, in the Gadigal country of the Eora nation, whose maritime and coastal presence long predates and is unrecorded by the European trade archive the matrix is built from. The chart's dot marks a British penal colony from 1788; this entry records that the site was not empty water and the founding not terra nullius, under the same sober logic the charter applies to coerced human movement. The convict flow itself is carried in sydney-convicts. Entered 2026-07-19."
+    },
+    {
+      "id": "cape-waystops-silence",
+      "scope": "The Cape route's minor calls (St Helena, Ascension, Mossel Bay, False Bay)",
+      "reason": "no-port-node",
+      "treatment": "gestured",
+      "pointer": "cape-town",
+      "note": "Cape Town is now modelled as a waystop node: every Dutch, English, Swedish and Danish Indiaman on the Europe-Asia Cape route calls at Table Bay to refresh, from the VOC's founding of the station in 1652 (before which the chart's ships round the Cape without stopping, as they did). The route's LESSER calls stay below resolution - St Helena (the EIC's rendezvous and the homeward-fleet assembly point), Ascension, Mossel Bay, and the summer shift to False Bay - each a real link the chart gestures at through the single Cape Town call rather than draws."
     }
   ]
 }

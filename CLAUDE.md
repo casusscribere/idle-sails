@@ -52,6 +52,21 @@ Every design decision answers to both of these:
 
 ## Current state (as of 2026-07-20)
 
+- **CAPE TOWN — THE WAYSTOP PHASE (2026-07-20, live).** The one real roster gap
+  (Batch G / T14) closed with the **full waystop reroute** (user decision). Cape
+  Town added as a station node (**Kaapstad**→Cape Town 1806; eraPowers VOC 1652 →
+  British 1795 → Batavian 1803 → British 1806). A new `via` mechanism reroutes the
+  **22 Europe↔Asia round-the-Cape lanes** (Dutch/British/Swedish/Danish East-India
+  — NOT the Portuguese Carreira, which used Mozambique) THROUGH Table Bay: the
+  baker bakes `from→cape→to` + a `viaIndex`; `world.js` splits the leg into a
+  **refreshment call + dwell from the 1652 founding** (before which ships round
+  the Cape unstopped — historically exact; the ship pauses precisely at Table
+  Bay). Flow volume unchanged (no double-count). Every Indiaman now calls at the
+  Cape both ways, making it one of the busiest dots. Docs: `ports.html` card +
+  citations + a `no-port-node` silence (`cape-waystops-silence`) for the lesser
+  calls (St Helena/Ascension). **61 tests green.** *(NOTE: this is the classic
+  `main`; the experimental `movement-realism` branch carries region-aware sinking
+  + convoys and will merge this Cape Town work in.)*
 - **UX + ACCURACY PASS (2026-07-20, all live).** A run of direct-request fixes on
   top of the finished world, each committed + deployed:
   - **Port names** — a 3-way menu radio (Default / None / Most active,

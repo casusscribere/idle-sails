@@ -416,24 +416,46 @@ const havKm = (a, b) => { const R = 6371, D = Math.PI / 180; const dLa = (b[1] -
 const baked = [], warnings = [];
 let nField = 0, nFallback = 0, nWindGated = 0;
 const unwrap = (lon, ref) => { while (lon - ref > 180) lon -= 360; while (lon - ref < -180) lon += 360; return lon; };
+// Reconstruct ONE origin→destination least-time path for a class+season, with the
+// exact endpoints snapped back on. Returns {raw, hours} or null if unreachable.
+function reconstructLeg(fromP, toP, routeClass, seasonId) {
+  const horn = hornOpen(fromP, toP);
+  const field = fieldFor(toP, routeClass, seasonId, horn);
+  const [oc, or] = snapToOcean(masksForHorn(horn).get(seasonId), fromP.lon, fromP.lat);
+  const originIdx = gi.idx(oc, or);
+  const raw = reconstruct(field, originIdx);
+  if (!(raw && raw.length >= 2 && isFinite(field.time[originIdx]))) return null;
+  raw[0] = [unwrap(fromP.lon, raw[0][0]), fromP.lat];
+  raw[raw.length - 1] = [unwrap(toP.lon, raw[raw.length - 1][0]), toP.lat];
+  return { raw, hours: field.time[originIdx] / 3600 };
+}
+
 for (const route of routes) {
   const from = portById.get(route.from), to = portById.get(route.to);
+  // Cape Town waystop (PLAN-5 waystop): a `via` lane is routed from→via→to, so the
+  // baked polyline calls at Table Bay; world.js splits it into two legs with a
+  // refreshment dwell (from the port's 1652 founding). Both halves stay in the
+  // eastern hemisphere for these lanes, so a plain concat needs no unwrap.
+  const viaPort = route.via ? portById.get(route.via) : null;
   const classes = [...new Set(route.shipTypes.map(st => classOf.get(st)).filter(Boolean))];
   for (const routeClass of classes) {
     // Pass 1 — reconstruct every season's raw least-time path + its tack score.
     const perSeason = [];
-    const horn = hornOpen(from, to);
-    const destMasks = masksForHorn(horn);   // origin must snap in the SAME mask the field used
     for (const s of SEASONS) {
-      const field = fieldFor(to, routeClass, s.id, horn);
-      const [oc, or] = snapToOcean(destMasks.get(s.id), from.lon, from.lat);
-      const originIdx = gi.idx(oc, or);
-      const raw = reconstruct(field, originIdx);
-      if (raw && raw.length >= 2 && isFinite(field.time[originIdx])) {
-        raw[0] = [unwrap(from.lon, raw[0][0]), from.lat];
-        raw[raw.length - 1] = [unwrap(to.lon, raw[raw.length - 1][0]), to.lat];
-        perSeason.push({ s, raw, hours: field.time[originIdx] / 3600, rev: latReversals(raw) });
+      let entry = null;
+      if (viaPort) {
+        const a = reconstructLeg(from, viaPort, routeClass, s.id);
+        const b = reconstructLeg(viaPort, to, routeClass, s.id);
+        if (a && b) {
+          const raw = [...a.raw, ...b.raw.slice(1)];
+          entry = { s, raw, rawA: a.raw, rawB: b.raw, hours: a.hours + b.hours, rev: latReversals(raw) };
+        }
       } else {
+        const r = reconstructLeg(from, to, routeClass, s.id);
+        if (r) entry = { s, raw: r.raw, hours: r.hours, rev: latReversals(r.raw) };
+      }
+      if (entry) perSeason.push(entry);
+      else {
         // Unreachable in this season's mask (the Arctic corridors close outside
         // jja/son): SEASON-GATE the leg — emit nothing, and world.js reschedules
         // any vessel that draws this lane in a closed season. A great-circle here
@@ -455,16 +477,26 @@ for (const route of routes) {
       nWindGated++;
       warnings.push(`wind-gated (beat-to-windward, ${x.rev} tacks): ${route.id} [${routeClass}/${x.s.id}]`);
     }
-    // Pass 2 — de-tack (smooth) + simplify + emit the kept seasons.
+    // Pass 2 — de-tack (smooth) + simplify + emit the kept seasons. A via leg is
+    // simplified in HALVES so the Table Bay call survives as a guaranteed vertex,
+    // and its index is recorded for world.js to split the schedule there.
     for (const x of keep) {
-      const coords = simplify(deTack(x.raw));
+      let coords, viaIndex = null;
+      if (viaPort && x.rawA) {
+        const cA = simplify(deTack(x.rawA)), cB = simplify(deTack(x.rawB));
+        coords = [...cA, ...cB.slice(1)];
+        viaIndex = cA.length - 1;
+      } else {
+        coords = simplify(deTack(x.raw));
+      }
       const distKm = coords.reduce((acc, p, i) => i ? acc + havKm(coords[i - 1], p) : 0, 0);
       baked.push({
         id: `${route.id}__${routeClass}__${x.s.id}`, route: route.id, from: route.from, to: route.to,
         routeClass, season: x.s.id,
         hours: Math.round(x.hours), days: +(x.hours / 24).toFixed(1),
         distKm: Math.round(distKm), points: coords.length, method: 'field',
-        coords: coords.map(([lon, lat]) => [+lon.toFixed(3), +lat.toFixed(3)])
+        coords: coords.map(([lon, lat]) => [+lon.toFixed(3), +lat.toFixed(3)]),
+        ...(viaIndex != null ? { via: route.via, viaIndex } : {})
       });
       nField++;
     }
