@@ -7,12 +7,14 @@ and its date inline, and the blocked items move the same day.
 Format: the question, why it is blocking, and the options with a
 recommendation where one is defensible.
 
-> **Answer these two first — they unblock the whole of chunk C1 (the clean
-> sweep), which is every no-research, no-sim, no-re-bake fix in one sitting:**
-> **[D-05b](#d-05b--which-chart-plates-survive)** (which chart plates survive)
-> and **[D-13](#d-13--debug-overlays-debug1-only-or-a-menu-toggle)** (debug
-> overlay: `#debug=1` or a menu toggle). Both are small. Every other decision
-> gates a later chunk — see the decisions-by-chunk table in
+> **ANSWERED 2026-07-21:** **D-05b** (cut `na-northeast`, keep `arabia-india`),
+> **D-13** (`#debug=1` only), and **D-15** (settled by measurement, not opinion).
+> Chunk **C1 is complete**. The convoy-branch question was answered too —
+> `movement-realism` was merged into `main`.
+>
+> **Next, by chunk:** **D-04** gates C2 (the one re-bake), **D-02** gates C6,
+> **D-01** gates C7 and the depth of several research tasks. See the
+> decisions-by-chunk table in
 > [RANKING.md §11](RANKING.md#11-execution-chunks).
 
 ---
@@ -130,6 +132,10 @@ still sparse (5 ports; its Grand Banks fishery traffic waits on F-15).
 **Options:** (a) delete `na-northeast`, keep `arabia-india`; (b) delete both;
 (c) keep both, unhide `na-northeast` after F-15 ships.
 
+> ✅ **ANSWERED 2026-07-21 — (a).** `na-northeast` cut from `REGIONS` and its
+> pin removed from `test/regions.test.mjs`; 7 plates remain. When the
+> Grand-Banks fishery traffic ships with F-15, re-author the crop then.
+
 ---
 
 ## Feature shape
@@ -224,6 +230,12 @@ disappear, and red icons for ports that have not appeared yet. Debug-only keeps
 the chart clean; a menu toggle makes it a genuinely interesting *feature* (the
 chart showing you its own future), which may be worth having.
 
+> ✅ **ANSWERED 2026-07-21 — `#debug=1` only, and BUILT.** On the plain chart a
+> red mark reads as an error state, and the chart's whole manner is that it
+> never looks like a UI. Not-yet-founded ports now draw as a red dashed ring
+> labelled with their founding year; a red caret marks any change of name,
+> allegiance, or existence within 25 sim-years.
+
 ### D-14 — Is PLAN-5 wanted now, or still deferred?
 **Blocks:** W5 in its entirety.
 
@@ -235,8 +247,16 @@ currently shipped-but-greyed. Confirm it stays last, or promote it.
 
 ## Verification
 
-### D-15 — York Factory: too few ships, or too bursty?
-**Blocks:** F-02's framing.
+### D-15 — York Factory: too few ships, or too bursty? ✅ ANSWERED
+**Blocked:** F-02's framing. **Settled by measurement 2026-07-21 — too BURSTY.**
+
+> `research/tools/port-traffic.mjs` (new), seeds 42/7 over 1700–1790:
+> **1.30 ships/yr**, inside the historical 1–2 — so the visibility floor is
+> doing its job and does NOT need raising. But **52% of years see no arrival at
+> all**, worst dry spell **6 years**. That is the Poisson tail, exactly as
+> suspected below. The Hudson's Bay Company ship was an **annual scheduled
+> sailing**, so the historically correct fix is a scheduled departure on F-14's
+> channel — a fidelity improvement, not a fudge. Recorded against **F-14**.
 
 After the small-trade visibility floor (2026-07-20), York Factory measures
 ~1.1 ships/yr against a historical 1–2. The user reports it still *"doesn't

@@ -64,13 +64,13 @@ export const REGIONS = [
   // loitering fishery traffic if Pass 4 (T4) ships it.
   { id: 'arabia-india', name: 'Arabia & India',
     bounds: { lonMin: 36, lonMax: 92, latMin: -2, latMax: 31 } },
-  // Hidden from the menu until its Grand-Banks fishery traffic ships (Pass 4) —
-  // 5 ports read as sparse (user tweak). The plate + its test pin stay defined
-  // so unhiding is deleting one flag. (arabia-india was on the same tweak but
-  // Phase 1 populated it with Basra/Bandar Abbas/Jedda + the India ports, so it
-  // now reads as fleshed out and stays visible.)
-  { id: 'na-northeast', name: 'Newfoundland to the Chesapeake', hidden: true,
-    bounds: { lonMin: -82, lonMax: -49, latMin: 34.5, latMax: 52.5 } },
+  // 'na-northeast' (Newfoundland → the Chesapeake) was CUT 2026-07-21 (F-33).
+  // It was hidden from the menu already: with 5 ports it read as sparse, and
+  // the Grand-Banks fishery traffic that would have justified it waits on the
+  // grounds-node primitive (F-15). A hidden plate is dead weight in REGIONS —
+  // when the fishery ships, re-author the crop then. arabia-india was on the
+  // same tweak but Phase 1 populated it with Basra/Bandar Abbas/Jedda + the
+  // India ports, so it now reads as fleshed out and stays.
   // Phase-1 addition (increment 7): the SW Pacific / Tasman, framing Sydney
   // (151E/−34S) and its Batavia/Pacific reaches — the basin PLAN-4 E3 opened.
   { id: 'australasia', name: 'Australasia & the Tasman',
@@ -201,6 +201,7 @@ export function createRenderer(canvas, assets) {
   let portDraw = [];                     // [{id, x, y, name, label:{ax,ay,align}|null}] cached placement
   let labelYear = null;                  // the year the cached labels were placed for
   let showWrecks = true;                 // draw + pick sunken-ship markers (menu toggle)
+  let lifecycleDebug = false;            // F-34: the #debug=1 port-lifecycle overlay
   // Popular-routes overlay: weighted per-frame by the flowing clock (see
   // drawRouteOverlay) — lanes brighten and fade as their origin's era-prominence
   // shifts, so national dominance visibly rotates across the centuries.
@@ -365,7 +366,7 @@ export function createRenderer(canvas, assets) {
     c.font = `11px "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif`;
     const placed = [];   // committed label rects
     const dots = portScreen.map(ps => ({ x0: ps.x - 5, y0: ps.y - 5, x1: ps.x + 5, y1: ps.y + 5 }));
-    portDraw = ports.map((p, i) => ({ id: p.id, x: portScreen[i].x, y: portScreen[i].y, name: displayName(p, year), label: null, kind: p.kind, zone: p.zone }));
+    portDraw = ports.map((p, i) => ({ id: p.id, x: portScreen[i].x, y: portScreen[i].y, name: displayName(p, year), label: null, kind: p.kind, zone: p.zone, port: p }));
     for (let i = 0; i < portDraw.length; i++) {
       const { x, y, name } = portDraw[i];
       const w = c.measureText(name).width;
@@ -409,10 +410,14 @@ export function createRenderer(canvas, assets) {
     for (const pd of portDraw) {
       if (!inPlate(pd.x, pd.y, 4)) continue;   // dot outside the regional crop
       if (lifecycle && !lifecycle.existing.has(pd.id)) {
-        if (!lifecycle.ruined.has(pd.id)) continue;        // not yet founded
+        if (!lifecycle.ruined.has(pd.id)) {                 // not yet founded
+          if (lifecycleDebug) drawUnborn(pd, year);         // #debug=1: show it in red
+          continue;
+        }
         drawRuin(pd.x, pd.y);                               // fell / abandoned
         if (pd.id === selectedPortId && pd.label)
           label(ctx, pd.name, pd.label.ax, pd.label.ay, 11, INK_DIM, pd.label.align);
+        if (lifecycleDebug) drawNextChange(pd, year);
         continue;
       }
       const on = !active || active.has(pd.id);
@@ -433,7 +438,60 @@ export function createRenderer(canvas, assets) {
       ctx.beginPath(); ctx.arc(pd.x, pd.y, 5.2, 0, Math.PI * 2); ctx.stroke();
       ctx.restore();
       if (showName(pd)) label(ctx, pd.name, pd.label.ax, pd.label.ay, 11, col, pd.label.align);
+      if (lifecycleDebug) drawNextChange(pd, year);
     }
+  }
+
+  // ---- lifecycle debug overlay (F-34, #debug=1 only) -----------------------
+  // The chart showing its own future: ports that have not appeared yet drawn in
+  // red where they WILL be, and a red caret over any port whose name, allegiance,
+  // or existence changes within the horizon. Display-only and debug-gated — it
+  // reads the same `active`/`eraNames`/`eraPowers` windows the sim does, so it
+  // cannot drift from them.
+  const DEBUG_RED = '#a8321e';
+  const DEBUG_HORIZON = 25;              // sim-years of lookahead
+
+  // The next scheduled change at this port at or after `year`, as {at, what}.
+  // Windows tile the active span (build-data validates that), so a window's
+  // `from` after the first IS the moment of change.
+  function nextChange(p, year) {
+    let best = null;
+    const consider = (at, what) => {
+      if (at == null || at < year || at - year > DEBUG_HORIZON) return;
+      if (!best || at < best.at) best = { at, what };
+    };
+    if (p.active) { consider(p.active.from, 'appears'); consider(p.active.to + 1, 'ends'); }
+    for (const [field, verb] of [['eraNames', 'renamed'], ['eraPowers', 'changes flag']]) {
+      const wins = p[field];
+      if (!Array.isArray(wins)) continue;
+      for (let i = 1; i < wins.length; i++) consider(wins[i].from, verb);
+    }
+    return best;
+  }
+
+  function drawNextChange(pd, year) {
+    if (year == null) return;
+    const nc = nextChange(pd.port, year);
+    if (!nc) return;
+    ctx.save();
+    ctx.strokeStyle = DEBUG_RED; ctx.fillStyle = DEBUG_RED; ctx.lineWidth = 1.2;
+    ctx.beginPath();                                  // a caret pointing at the dot
+    ctx.moveTo(pd.x - 3.5, pd.y - 9); ctx.lineTo(pd.x, pd.y - 5.5); ctx.lineTo(pd.x + 3.5, pd.y - 9);
+    ctx.stroke();
+    label(ctx, `${nc.at} ${nc.what}`, pd.x, pd.y - 11, 9, DEBUG_RED, 'center');
+    ctx.restore();
+  }
+
+  function drawUnborn(pd, year) {
+    ctx.save();
+    ctx.strokeStyle = DEBUG_RED; ctx.fillStyle = DEBUG_RED;
+    ctx.globalAlpha = 0.75; ctx.lineWidth = 1;
+    ctx.setLineDash([2, 2]);
+    ctx.beginPath(); ctx.arc(pd.x, pd.y, 4.2, 0, Math.PI * 2); ctx.stroke();
+    ctx.setLineDash([]);
+    const from = pd.port.active && pd.port.active.from;
+    label(ctx, from ? `${pd.name} ${from}` : pd.name, pd.x, pd.y - 7, 9, DEBUG_RED, 'center');
+    ctx.restore();
   }
 
   // Zone extent in px: the grounds' geographic size (degrees) times the current
@@ -490,29 +548,58 @@ export function createRenderer(canvas, assets) {
     c.restore();
   }
 
+  // Unwrap a ring's longitudes so it stays geometrically continuous. A landmass
+  // crossing the antimeridian (lon ±180, e.g. Chukotka) otherwise has its halves
+  // projected to opposite screen edges, and both fill and stroke smear a band
+  // straight across the chart. Unwrapping keeps the crossing off-screen where it
+  // belongs (any residual pole-encircling seam, i.e. Antarctica, sits below the
+  // viewport).
+  function unwrapRing(ring) {
+    const lons = new Array(ring.length);
+    let prevLon = null;
+    for (let i = 0; i < ring.length; i++) {
+      let lon = normLon(ring[i][0]);
+      if (prevLon !== null) { while (lon - prevLon > 180) lon -= 360; while (lon - prevLon < -180) lon += 360; }
+      prevLon = lon;
+      lons[i] = lon;
+    }
+    return lons;
+  }
+
   function drawGeom(c, geom) {
     const polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.type === 'MultiPolygon' ? geom.coordinates : [];
     c.fillStyle = LAND; c.strokeStyle = LAND_EDGE; c.lineWidth = 0.9;
     for (const poly of polys) {
-      c.beginPath();
-      for (const ring of poly) {
-        // Unwrap each ring's longitudes so it stays geometrically continuous. A
-        // landmass crossing the antimeridian (lon ±180, e.g. Chukotka) otherwise
-        // has its halves projected to opposite screen edges, and both fill and
-        // stroke smear a band straight across the chart. Unwrapping keeps the
-        // crossing off-screen where it belongs (any residual pole-encircling seam,
-        // i.e. Antarctica, sits below the viewport).
-        let prevLon = null;
-        for (let i = 0; i < ring.length; i++) {
-          let lon = normLon(ring[i][0]);
-          if (prevLon !== null) { while (lon - prevLon > 180) lon -= 360; while (lon - prevLon < -180) lon += 360; }
-          prevLon = lon;
-          const x = ox + (lon - BOUNDS.lonMin) * k, y = oy + (BOUNDS.latMax - ring[i][1]) * k;
-          i ? c.lineTo(x, y) : c.moveTo(x, y);
+      const rings = poly.map(unwrapRing);
+      // Unwrapping is anchored to the ring's FIRST point, which says nothing
+      // about where the ring belongs on THIS plate. Eurasia's outer ring starts
+      // near Portugal, so on the Pacific plate (lon 105→292) it unwraps to
+      // 342..540 and draws entirely off the right edge — the China coast simply
+      // vanished while its port dots, which project() without unwrapping,
+      // stayed put. So slide the polygon by whole revolutions into the plate's
+      // window, and draw it once per revolution that overlaps: a ring wide
+      // enough to reach both plate edges needs both copies. Holes take the
+      // outer ring's shift so they stay registered with it. On plates that do
+      // not cross the antimeridian this resolves to a single shift of 0, so
+      // their output is unchanged.
+      const outer = rings[0];
+      let uLo = Infinity, uHi = -Infinity;
+      for (const lon of outer) { if (lon < uLo) uLo = lon; if (lon > uHi) uHi = lon; }
+      const revLo = Math.ceil((BOUNDS.lonMin - uHi) / 360);
+      const revHi = Math.floor((BOUNDS.lonMax - uLo) / 360);
+      for (let rev = revLo; rev <= revHi; rev++) {
+        const shift = rev * 360;
+        c.beginPath();
+        for (let r = 0; r < rings.length; r++) {
+          const lons = rings[r], ring = poly[r];
+          for (let i = 0; i < ring.length; i++) {
+            const x = ox + (lons[i] + shift - BOUNDS.lonMin) * k, y = oy + (BOUNDS.latMax - ring[i][1]) * k;
+            i ? c.lineTo(x, y) : c.moveTo(x, y);
+          }
+          c.closePath();
         }
-        c.closePath();
+        c.fill(); c.stroke();
       }
-      c.fill(); c.stroke();
     }
   }
 
@@ -822,5 +909,6 @@ export function createRenderer(canvas, assets) {
   }
 
   function setWrecks(v) { showWrecks = !!v; }
-  return { resize, draw, pickAt, project, unproject, setPerf, setRegion, setOverlay, setWrecks };
+  function setLifecycleDebug(v) { lifecycleDebug = !!v; }
+  return { resize, draw, pickAt, project, unproject, setPerf, setRegion, setOverlay, setWrecks, setLifecycleDebug };
 }

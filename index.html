@@ -25,21 +25,24 @@
       <p class="era" id="era"></p>
       <div class="rule"></div>
       <div class="menu" id="menu" hidden>
-        <p class="menu-h">Overlays</p>
+        <!-- Chart view leads the menu: which plate you are on frames everything
+             below it, so it is the first question the menu answers (F-28). -->
+        <p class="menu-h">Chart view</p>
+        <!-- regional plates (feature pass 2) — rows built by main.js from
+             render.js REGIONS -->
+        <div role="radiogroup" aria-label="Chart view" id="view-radios"></div>
+        <p class="menu-h" style="margin-top:14px">Overlays</p>
         <label class="menu-item">
           <input type="checkbox" id="ov-routes">
           <span>Popular trade routes</span>
         </label>
         <!-- per-basin layer toggles (feature pass 2) — rows built by main.js
-             from the flow matrix's basins; disabled while the parent is off -->
+             from the flow matrix's basins. The whole sub-tree HIDES while the
+             parent is off (F-29), rather than sitting there greyed. -->
         <div class="menu-sub" id="layer-subs"></div>
-        <p class="menu-note">Line weight ∝ traffic · colour = flag</p>
+        <p class="menu-note" id="routes-note">Line weight ∝ traffic · colour = flag</p>
         <label class="menu-item"><input type="checkbox" id="ov-wrecks" checked><span>Sunken ships</span></label>
         <label class="menu-item"><input type="checkbox" id="ov-coords"><span>Cursor position</span></label>
-        <p class="menu-h" style="margin-top:14px">Chart view</p>
-        <!-- regional plates (feature pass 2) — rows built by main.js from
-             render.js REGIONS -->
-        <div role="radiogroup" aria-label="Chart view" id="view-radios"></div>
         <p class="menu-h" style="margin-top:14px">Port names</p>
         <div role="radiogroup" aria-label="Port names">
           <label class="menu-item"><input type="radio" name="pnames" value="default"><span>Default</span></label>
@@ -50,19 +53,22 @@
         <p class="menu-h" style="margin-top:14px">Panels</p>
         <label class="menu-item"><input type="checkbox" id="pn-counters" checked><span>Counters</span></label>
         <label class="menu-item"><input type="checkbox" id="pn-stats"><span>Statistics</span></label>
-        <!-- disabled until vessel persistence (feature pass 5) gives a followed
-             ship a life worth following beyond her single voyage -->
-        <label class="menu-item is-disabled" title="Awaits vessel persistence"><input type="checkbox" id="pn-tracker" disabled><span>Tracked vessels</span></label>
-        <p class="menu-note">— awaits vessel persistence</p>
+        <!-- HIDDEN, not merely disabled (F-30): a greyed row with an apology
+             under it advertises an absence. The control and its wiring stay
+             intact — un-hiding is deleting the two `hidden` attributes — and
+             both return when vessel persistence (F-36) gives a followed ship a
+             life worth following beyond her single voyage. -->
+        <label class="menu-item is-disabled" title="Awaits vessel persistence" id="pn-tracker-row" hidden><input type="checkbox" id="pn-tracker" disabled><span>Tracked vessels</span></label>
+        <p class="menu-note" id="pn-tracker-note" hidden>— awaits vessel persistence</p>
         <label class="menu-item"><input type="checkbox" id="pn-events"><span>Events log</span></label>
-        <div class="menu-sub">
+        <div class="menu-sub" id="events-subs">
           <label class="menu-item"><input type="checkbox" id="ev-opt-losses" checked><span>Ship losses</span></label>
           <label class="menu-item"><input type="checkbox" id="ev-opt-wars" checked><span>Wars</span></label>
           <label class="menu-item"><input type="checkbox" id="ev-opt-ports" checked><span>Port foundings &amp; captures</span></label>
         </div>
         <label class="menu-item"><input type="checkbox" id="pn-helm" checked><span>Speed instrument</span></label>
         <label class="menu-item"><input type="checkbox" id="pn-legend"><span>Legend</span></label>
-        <div class="menu-sub">
+        <div class="menu-sub" id="legend-subs">
           <label class="menu-item"><input type="checkbox" id="lg-opt-ships" checked><span>Ship types</span></label>
           <label class="menu-item"><input type="checkbox" id="lg-opt-flags" checked><span>Allegiance</span></label>
         </div>

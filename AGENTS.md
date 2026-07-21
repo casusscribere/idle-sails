@@ -72,6 +72,41 @@ Every design decision answers to both of these:
   queue is **W1** (corrections), then **R-01** (Japan & sakoku — the deepest
   fidelity question in the inputs), then **W3** opening with **F-12 convoys +
   F-13 region-aware sinking**.
+- **CONVOYS MERGED TO MAIN + CHUNK C1 COMPLETE (2026-07-21).** `movement-realism`
+  (convoys + region-aware sinking) merged into `main` at user request. The two
+  features had NEVER shared a tree — convoys existed only on that branch, which
+  was 3 commits behind main and lacked the via-chain waystations entirely, which
+  is exactly why convoys "stopped spawning": `main` never had them. Conflict
+  resolution in `world.js`'s itinerary builder keeps main's via CHAIN body inside
+  the branch's convoy `opts` wrapper. **The merge exposed a real bug**, caught by
+  the region-aware-sinking test: the fate roll read each day's position as
+  `legPointAt(legId, progress)` — 0→1 of the WHOLE leg polyline — but a
+  waystop-split segment covers only `[f0,f1]` of a SHARED polyline, so a wreck
+  blamed on the Florida Straits landed at −65.2°E. Segment progress is now mapped
+  into `[f0,f1]` exactly as `positionOf` already did (latent on the branch's 22
+  single-via lanes; exposed by main's 54 chained ones). **DATASET_VERSION 5→6**
+  (the fate roll now reads geography, so v5 fates are not reproducible).
+  Verified: **72 tests green**; seed 42 to 1589 → 7399 vessels, **407 convoys
+  (30.7%)**, 365 escorts, 16.5% on via-split itineraries. NOT pushed.
+- **C1 "the clean sweep" SHIPPED (2026-07-21)** — every no-research/no-sim/
+  no-re-bake fix in one pass: **F-28** Chart view heading moved to the top ·
+  **F-29** menu sub-trees now COLLAPSE with their parent instead of sitting
+  greyed · **F-30** the Tracked-vessels row HIDDEN (wiring intact) · **F-33**
+  the `na-northeast` plate CUT (7 plates remain) · **F-34** a `#debug=1`
+  port-lifecycle overlay (red dashed ring + founding year for unborn ports, a
+  red caret for any name/allegiance/existence change within 25 yr) · **F-04**
+  the China coast restored to the Pacific plate. **F-04's root cause was not
+  `normLon`**: ring unwrapping anchors to a ring's FIRST point, so Eurasia's
+  outer ring (starting near Portugal) unwrapped to 342..540 — wholly outside the
+  105..292 plate window — and drew off the right edge while its port dots stayed
+  put; `drawGeom` now slides each polygon by whole revolutions into the window.
+  Two items produced findings, not code: **F-02** settled D-15 — York Factory
+  runs at **1.30 ships/yr** (historical 1–2, floor correct) but **52% of years
+  are empty**, so it is a DISTRIBUTION problem and the fix is an annual
+  scheduled sailing on F-14's channel (new tool
+  `research/tools/port-traffic.mjs`); **F-08** found **0 issues across 127 name
+  pools** — `'t Vergulde Draeck` is a real 1656 VOC wreck, correctly spelled,
+  now recorded in `names.json` so it is not "corrected" later.
 - **EXECUTION CHUNKS (2026-07-21).** RANKING §11 now groups the queue into
   **C1–C9** — a chunk is a unit of *shared setup* (one re-bake, one archive
   reading, one design decision, one render session) and deliberately crosses

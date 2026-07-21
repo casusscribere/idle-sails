@@ -147,13 +147,13 @@ verification-only and may close in minutes.*
 | ID | Item | Src | Feas | Note |
 |---|---|---|---|---|
 | **F-01** | **Porto and Rotterdam have ZERO lanes** — neither can ever receive a ship | ideas §12 (Porto); found 2026-07-21 | A→B | Verified 2026-07-21: of 112 ports, exactly these two appear in no `routes.json` entry as from/to/via. This is a **silent zero** in the charter's exact sense — Porto's wine trade to Britain (the Methuen Treaty) and Rotterdam's Rhine-mouth carriage both existed. Either fold flows onto them or register them as declared silences; drawing an eternally idle dot is the one option the charter forbids. Blocked on **D-04** |
-| **F-02** | **York Factory rate still reads wrong** to the user | ideas §12 | A | The visibility floor (shipped 2026-07-20) measured York at ~1.1 ships/yr against a historical 1–2. Re-measure across seeds and report the distribution; a Poisson 1–2/yr is inherently bursty and may be *correct but unreadable*. See **D-15** |
+| ~~**F-02**~~ | ~~York Factory rate~~ | ideas §12 | A | ✅ **MEASURED 2026-07-21 — D-15 answered: cause (b).** New reusable tool `research/tools/port-traffic.mjs`. Seeds 42/7 over 1700–1790: **1.30 ships/yr — inside the historical 1–2**, so the floor is right. But **52% of years see no arrival at all**, worst gap **6 years**. The HBC ship was an ANNUAL SCHEDULED SAILING, not a Poisson draw — the fix is a scheduled sailing on F-14's channel, NOT a bigger floor. Requirement handed to **F-14** |
 | **F-03** | **Port dot positions off on close views** (Banda Neira &c.) | ideas §12 | B | Residual after the 2026-07-19 coastline snap; the snap used the fine coastline, so the offenders are likely islands smaller than the snap's search radius. Audit all 112 display coords against the 50 m coastline and list the outliers |
-| **F-04** | **China coast absent from the Pacific plate** | ideas §12 | B | Ports render, the coastline does not. The `pacific` plate is the one plate crossing the antimeridian (`lonMax` 292 flips `project()`/`drawGeom()` into the Pacific-centred frame) — geometries in the 105–180 band are almost certainly failing the `normLon` pass that the port dots get |
+| ~~**F-04**~~ | ~~China coast absent from the Pacific plate~~ | ideas §12 | B | ✅ **FIXED 2026-07-21.** Root cause was NOT `normLon` but ring UNWRAPPING, which anchors to a ring's first point: Eurasia's outer ring (10,297 pts) starts near Portugal, so in the Pacific frame it unwrapped to **342..540** — entirely outside the plate window 105..292 — and drew off the right edge, while its port dots (`project()`, no unwrapping) stayed put. `drawGeom` now slides each polygon by whole revolutions into the plate window and draws it once per revolution that overlaps. Verified: China/Korea/Siberia LAND, open Pacific sea, American rim unaffected, all 7 plates clean |
 | **F-05** | **Great Lakes drawn coarse** — match the coastline's precision | ideas §12 | A | Currently a hand-cut inland-water approximation of Superior/Michigan/Huron/Erie/Ontario. Cosmetic; swap for real geometry from the same source as the coastline |
 | **F-06** | Residual **land-clipping + oddly-square / zigzag legs** on close views | ideas §1b, §12 | B | The 1°-routing-grid vs the 50 m display coastline. Known-irreducible cases are documented in SHIPPED.md (Zealand cannot be sealed without severing the Baltic; Cuba's tip-grazes are inherent). What remains is per-offender `ISLAND_SEAL` / de-tack work. **ideas §1b asks the underlying question — "is this historical or an artifact?" The answer is: artifact, and the root cause is grid resolution.** See **D-03** |
 | **F-07** | Closeup routes **terminate mid-screen** — draw through/past plate edges | ideas §12 (implied by §1b) | B | Re-verify against the fill-viewport change; clip-to-edge for off-plate destinations |
-| **F-08** | **Name-list QA** — Dutch and others (`'t Vergulde Draeck` reads wrong) | ideas §12 | A | Small data review of `data-src/names.json`. **Note the overlap with the locked refinement track (L-01 §1b), which asks for a full review of every name list.** See **D-01** |
+| ~~**F-08**~~ | ~~Name-list QA~~ | ideas §12 | A | ✅ **DONE 2026-07-21 — nothing was wrong.** All **127 pools** scanned for duplicates, stray whitespace, mojibake, and stubs: **0 issues**. `'t Vergulde Draeck` is CORRECT — `'t` is the Dutch contraction of *het*, and the Gilded Dragon was a real VOC retourschip wrecked off Western Australia in 1656, as are her poolmates (`'t Vliegend Hart` 1735, *Batavia* 1629, *Duyfken*, *Halve Maen*, *Witte Leeuw*, *De Liefde*, *Meermin*, *Goude Buys*). Recorded in `names.json`'s note so it is not "fixed" later. **L-01 §1b's full pass is still a separate, deeper ask** |
 | **R-02** | **Port-event vocabulary** — "founded" is wrong for most events | ideas §12 | R (small) | The events log says *founded* for what are really re-openings, conquests, and grants of trade. Research a historically nuanced vocabulary ("opens to trade", "becomes active", "is granted a factory", "is refounded as…") and a per-event rule for choosing among them; **present the suggestions to the user before applying** (the user asked for this explicitly). Feeds `world.portEventsSince` display strings only — no sim change |
 
 **Verified already fixed (2026-07-21) — no action, listed so they are not
@@ -221,7 +221,7 @@ mean something, and a goods overlay is more useful once cargo changes per leg.*
 | **F-22** | **Inactive vs ruined** — distinct markers + descriptions | ideas §8 | B | Today a port is drawn, greyed, or ruined. The user wants a third state: **hardcoded-inactive** — a port that exists but receives no traffic for a long defined period (possibly to the end of the run). Both states need a mark AND a panel description explaining which it is |
 | **F-23** | **Port subtype / ranking in the UI** | ideas §8 | B | Surface the port's class and its standing (the flow matrix already computes prominence as an *output* — `research/flow-prominence.html`). Must not fabricate precision: presence-without-rank is a valid state |
 | **F-24** | **Co-located ports share one icon**, panel lists both | ideas §9 | B | Detect coincident display coords; merge dot + pick + panel. **Interacts with F-09/D-02** — if Nagasaki and Dejima split into two nodes, this is what redraws them as one mark |
-| **F-34** | **Debug overlay** — red marks for ports that will change name / appear / disappear; unappeared ports in red | ideas §3 | A | Cheap and genuinely useful for the W1/W2 data work. See **D-13** on whether it is `#debug=1`-only or a menu toggle |
+| ~~**F-34**~~ | ~~Debug overlay for port lifecycle~~ | ideas §3 | A | ✅ **DONE 2026-07-21 (D-13: `#debug=1` only).** Not-yet-founded ports draw as a red dashed ring labelled with their founding year; a red caret + year marks any port whose name, allegiance, or existence changes within 25 sim-years. Reads the same `active`/`eraNames`/`eraPowers` windows the sim does, so it cannot drift from them. Verified present under `#debug=1` and absent without it |
 
 ### 7b. Goods & flows
 
@@ -235,12 +235,12 @@ mean something, and a goods overlay is more useful once cargo changes per leg.*
 
 | ID | Item | Src | Feas | Note |
 |---|---|---|---|---|
-| **F-28** | Move the **Chart view** subheading above **Popular trade routes** | ideas §12 | A | Confirmed in `index.html`: routes at line 31, chart view at line 39 |
-| **F-29** | **Collapse child controls when the parent is unchecked** — Popular trade routes, Events log, Legend | ideas §12 | A | Today children are *disabled*, not hidden. Apply the same treatment across all sub-trees |
-| **F-30** | **Hide** (not disable) the Tracked-vessels row until F-38 | ideas §12 | A | Currently `class="menu-item is-disabled"` with a title attribute |
+| ~~**F-28**~~ | ~~Chart view above Popular trade routes~~ | ideas §12 | A | ✅ **DONE 2026-07-21.** Heading order is now Chart view · Overlays · Port names · Panels · Performance · Reference |
+| ~~**F-29**~~ | ~~Collapse child controls when the parent is unchecked~~ | ideas §12 | A | ✅ **DONE 2026-07-21.** A shared `collapseSubtree()` hides `#layer-subs` (+ its line-weight note), `#events-subs`, and `#legend-subs` with their parents; children keep their disabled state, so nothing is keyboard-reachable while hidden. Verified in both directions |
+| ~~**F-30**~~ | ~~Hide the Tracked-vessels row~~ | ideas §12 | A | ✅ **DONE 2026-07-21.** The row and its "awaits vessel persistence" note are both `hidden`; the wiring is intact, so F-38 un-hides by deleting two attributes |
 | **F-31** | **Chart art** top/bottom for tall/wide framings | ideas §9 | B | "Here be dragons", gridline ornament, historically-grounded marginalia — fills the empty sea on unusual aspect ratios |
 | **F-32** | **Convoy/flotilla UI** — ship icons to the LEFT of their names | ideas §12 | A | Small layout fix; lands with F-12's convoy ledger |
-| **F-33** | **Plate-view review** — keep or cut `arabia-india` and `na-northeast`; review all eight | ideas §12 | A | `na-northeast` is already `hidden: true`. Eight plates exist: world, europe, caribbean, east-indies, arabia-india, na-northeast (hidden), australasia, pacific. See **D-05b** |
+| ~~**F-33**~~ | ~~Plate-view review~~ | ideas §12 | A | ✅ **DONE 2026-07-21 (D-05b).** `na-northeast` CUT — already hidden, 5 ports, and its Grand-Banks justification waits on F-15; its test pin went with it. **7 plates remain**: world, europe, caribbean, east-indies, arabia-india, australasia, pacific |
 
 ---
 
@@ -291,7 +291,7 @@ the expensive thing happens once.
 
 | Chunk | Name | Gated on | Touches the sim? | Size |
 |---|---|---|---|---|
-| **C1** | **The clean sweep** | D-05b, D-13 only | no | 1 sitting |
+| ~~**C1**~~ | ~~The clean sweep~~ | — | no | ✅ **DONE 2026-07-21** |
 | **C2** | The one re-bake | D-04 | data + baker | 1–2 |
 | **C3** | The fidelity reading | D-05 (part) | no (research) | 3–4 |
 | **C4** | Movement: the safe half | R-06 for F-17 | yes, fate-safe | 2–3 |
@@ -303,13 +303,25 @@ the expensive thing happens once.
 
 ---
 
-### C1 — The clean sweep ·  **do this first**
+### C1 — The clean sweep ·  ✅ **COMPLETE 2026-07-21**
 
-*Every item that needs **no research, no sim change, no re-bake, and no
-architectural decision**. All render, menu, data-review, or measurement. The
-whole chunk is gated on exactly two trivial decisions (**D-05b** which plates
-survive, **D-13** where the debug overlay lives) — answer those two and the
-chunk runs start to finish.*
+*Every item that needed **no research, no sim change, no re-bake, and no
+architectural decision**. Both gating decisions were answered (**D-05b** cut
+`na-northeast`; **D-13** put the debug overlay behind `#debug=1`) and the chunk
+shipped in one sitting: **72 tests green · 0 console errors · all 7 plates
+verified headless.** Two items produced findings rather than code:*
+
+- ***F-02 answered D-15.*** York Factory runs at **1.30 ships/yr** — inside the
+  historical 1–2, so the visibility floor is correct — but **52% of years are
+  empty**, worst gap 6 years. It is a DISTRIBUTION problem, not a rate problem:
+  the HBC ship was an annual scheduled sailing. Requirement handed to **F-14**.
+- ***F-08 found nothing wrong.*** 127 pools, 0 mechanical issues, and
+  `'t Vergulde Draeck` is a real 1656 VOC wreck, correctly spelled. The verdict
+  is recorded in `names.json` so it is not "corrected" later.
+
+*One bug was deeper than filed: **F-04** was not a `normLon` failure but a
+ring-unwrapping anchor problem that hid the ENTIRE Eurasian landmass on the
+Pacific plate.*
 
 | ID | Item | Where | Why it's here |
 |---|---|---|---|
@@ -403,7 +415,7 @@ Breaks fate-at-spawn; `datasetVersion` bump + save reset.
 
 | Chunk | Blocking decisions |
 |---|---|
-| **C1** | **D-05b, D-13** *(both trivial)* |
+| ~~C1~~ | ✅ D-05b + D-13 answered 2026-07-21 |
 | C2 | D-04 |
 | C3 | D-05 (C3d only) |
 | C4 | D-08 |

@@ -368,12 +368,23 @@ async function boot() {
       saveSettings(settings); refreshOverlay();
     });
   }
+  // F-29: a sub-tree COLLAPSES with its parent rather than sitting greyed —
+  // the menu shows only what is currently actionable. The children keep their
+  // disabled state as well, so nothing is reachable by keyboard while hidden
+  // and the tree behaves identically if a stylesheet ever un-hides it.
+  function collapseSubtree(on, containerId, ...alsoHide) {
+    const el = document.getElementById(containerId);
+    if (el) el.hidden = !on;
+    for (const id of alsoHide) { const n = document.getElementById(id); if (n) n.hidden = !on; }
+  }
   function applyLayerSubs() {
     for (const b of basinIds) {
       const box = document.getElementById('ly-opt-' + b);
       box.disabled = !showRoutes;
       box.closest('.menu-item').classList.toggle('is-disabled', box.disabled);
     }
+    // the legend note describes the overlay, so it goes with it
+    collapseSubtree(showRoutes, 'layer-subs', 'routes-note');
   }
   document.getElementById('ov-routes').addEventListener('change', (e) => {
     showRoutes = e.target.checked;
@@ -529,6 +540,7 @@ async function boot() {
       // class instead of :has(input:disabled) — Firefox ESR ≤115 lacks :has()
       box.closest('.menu-item').classList.toggle('is-disabled', box.disabled);
     }
+    collapseSubtree(settings.panels.legend, 'legend-subs');
   }
   for (const key of Object.keys(LG_SECTIONS)) {
     const box = document.getElementById('lg-opt-' + key);
@@ -547,6 +559,7 @@ async function boot() {
       box.disabled = !settings.panels.events;
       box.closest('.menu-item').classList.toggle('is-disabled', box.disabled);
     }
+    collapseSubtree(settings.panels.events, 'events-subs');
   }
   for (const key of Object.keys(EV_SECTIONS)) {
     const box = document.getElementById(EV_SECTIONS[key]);
@@ -699,8 +712,15 @@ async function boot() {
 
   // debug hook (#debug=1): exposes the live world + renderer for headless
   // verification scripts. Display-only access — never wired to any UI.
-  if (hashParams.get('debug') === '1')
+  // It also turns on the port-lifecycle overlay (F-34): not-yet-founded ports
+  // drawn in red where they will appear, and a red caret over any port whose
+  // name, allegiance, or existence changes within the next 25 sim-years. Debug
+  // -gated deliberately (D-13) — on the plain chart a red mark reads as an
+  // error, and the whole point of the chart is that it never looks like a UI.
+  if (hashParams.get('debug') === '1') {
     window.__is = { world, renderer, snap: () => latestSnap };
+    renderer.setLifecycleDebug(true);
+  }
 
   // animation loop
   let last = performance.now();

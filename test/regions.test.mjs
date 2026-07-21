@@ -37,13 +37,12 @@ const MUST_CONTAIN = {
     'portobelo', 'st-eustatius', 'cap-francais'],
   'east-indies': ['batavia', 'manila', 'makassar', 'banda-neira', 'canton',
     'macau', 'amoy', 'dejima', 'naha'],
-  // the 2026-07-16 plates: Arabia & India keeps Gulf/Red-Sea headroom for
-  // PLAN-4 E2/E6 (no re-crop on adoption); Newfoundland→Chesapeake keeps the
-  // Grand Banks sea room in frame for future fishery traffic
+  // Arabia & India keeps Gulf/Red-Sea headroom for PLAN-4 E2/E6 (no re-crop on
+  // adoption). Its 2026-07-16 sibling 'na-northeast' was CUT 2026-07-21 (F-33):
+  // hidden, 5 ports, and the Grand-Banks fishery traffic that would justify it
+  // waits on the grounds-node primitive (F-15).
   'arabia-india': ['mocha', 'muscat', 'surat', 'bombay', 'madras',
     'tranquebar', 'calcutta'],
-  'na-northeast': ['louisbourg', 'boston', 'new-york', 'philadelphia',
-    'chesapeake'],
   // the Phase-1 (increment 7) SW Pacific / Tasman plate frames Sydney
   'australasia': ['sydney'],
   // the antimeridian-crossing Pacific plate: both rims — East Asia THROUGH the
