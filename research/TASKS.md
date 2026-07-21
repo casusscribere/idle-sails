@@ -151,10 +151,26 @@ catalog; promotion-queue updates via `CURATION.md`.
 PLAN-4's next wave.
 
 #### T14 — Waystops & remaining roster gaps (backlog sweep, `research_addenda` #10–11)
-*(added 2026-07-19 from the input-file re-read. **Cape Town DONE 2026-07-20**;
-Korea/Russian-Pacific still open.)* A short candidates sweep in
-the `port-flow-candidates` pattern over the nodes the addenda flag that the T12
-sweep did NOT resolve:
+*(added 2026-07-19. **Cape Town DONE 2026-07-20**; the **broader waystations sweep
+DONE 2026-07-20** → `research/port-flow-candidates-waystations-2026-07-20.md`
+(three basin gather-agents + synthesis cross-check, RB-campaign method);
+Korea/Russian-Pacific still open.)*
+**Waystations sweep outcome** — new **via-waystop** verdicts: **St Helena**
+(British homeward), **Anjer/Sunda Strait** (the China-route Cape-Town analogue —
+Europe↔Canton ran via Sunda, NOT Malacca), **Guam** (Manila galleon, WESTBOUND
+only), **Madeira/Canaries** (outbound, split by nation), **the Azores** (Portuguese
+homeward), **Johanna/Anjouan** (EIC secondary, layered on the Cape). Confirmed
+**Ilha de Moçambique = the Portuguese Cape Town** (already modelled via
+segmentation; refine by adding `via:mozambique` to the Lisbon↔Macau lanes) and
+**Port Louis = the universal French waystop**. NOT vias: Malacca (terminus),
+Cape Verde (slave terminus + framing), Galle/Trincomalee/Bourbon (full-port
+candidates), Ascension/Socotra/Aden/Pulo Condore (silences). **Two build findings:**
+(1) direction + nationality both matter (our per-lane via handles it); (2) the
+`via` mechanism needs a multi-waystop **chain** (a homeward China Indiaman calls
+at Anjer + Cape Town + St Helena) — the one code change surfaced. **Buildable now**
+(single via): Guam on the Manila galleon; Mozambique on Lisbon↔Macau. A short
+candidates sweep in the `port-flow-candidates` pattern over the nodes the addenda
+flag that the T12 sweep did NOT resolve:
 - **Cape Town** (#10) — ✅ **BUILT (full waystop reroute, user decision).** Added
   as a station node (Kaapstad→Cape Town 1806; VOC 1652 → British 1795 → Batavian
   1803 → British 1806). Design question resolved (a): a real waystop the Indiaman
