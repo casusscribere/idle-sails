@@ -221,6 +221,13 @@ had been carrying.*
 > to honour; the suite's value is the 404 and the machinery that keeps it
 > visible. **Next: R-11 ‖ R-12. No engine change before CR-2.**
 >
+> **Branch:** F-41 is on `main` (an instrument, not a change to the world).
+> **Everything from CR-1 onward lives on `routing-rebuild`** — from R-11 the
+> work changes what the chart claims, and CR-5's re-bake rewrites every
+> polyline and invalidates every save. Merge `main` → branch whenever main
+> touches `world.js`/`pipeline/`/`data-src/`; the branch never deploys. See
+> PLAN-7 §12 for why that discipline exists.
+>
 > Scope is settled — **D-18**:
 > routing + the lane → bake → itinerary layer, with the PLAN-3 flow matrix as a
 > **fixed input**; **D-21**: unevidenced lanes stay unfitted, are reported

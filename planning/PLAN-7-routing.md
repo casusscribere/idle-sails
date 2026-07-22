@@ -563,6 +563,32 @@ Never its own bake. Runs with F-01 (Porto/Rotterdam), F-03, F-06, F-07, F-10.
 | **CR-2 onward** | ⏸️ held — no engine change before the decision point |
 | **Next action** | **R-11 ‖ R-12.** The harness is the instrument; it now needs real evidence to measure against. |
 
+### Where the work happens — branching
+
+**Phase 0 (F-41) lives on `main`.** It is an instrument, not a change to the
+world: it alters no parameter, bakes nothing, and cannot move a ship. It belongs
+where everyone can run it.
+
+**Everything from CR-1 onward lives on `routing-rebuild`.** From R-11 the work
+starts changing what the chart claims, and the re-bake at CR-5 rewrites every
+polyline and invalidates every save. `main` deploys to the live site on push, so
+that work is isolated until it is ready.
+
+> **The discipline, learned the hard way from `movement-realism`.** That branch
+> drifted three commits behind `main` and never received the via-chain
+> waystations at all, which is why convoys appeared to "stop spawning" — they had
+> simply never existed on the branch that deploys. Worse, the divergence hid a
+> real bug: the fate roll read `legPointAt(legId, progress)` as 0→1 of the whole
+> polyline, which was harmless on the branch's 22 single-via lanes and put wrecks
+> in the wrong ocean once merged against main's 54 chained ones. **So:**
+> 1. **Merge `main` → `routing-rebuild` whenever main touches `world.js`,
+>    `pipeline/`, or `data-src/`** — not at the end.
+> 2. **The branch never deploys.** Only `main` does.
+> 3. **No feature may live only on the branch for long.** If something is ready,
+>    merge it; a long-lived exclusive feature is how the last confusion started.
+> 4. **Run `route-verify` on both sides of every merge.** That is what the
+>    harness is for, and it is the check that did not exist last time.
+
 ### What F-41 delivered, against its acceptance criteria (§11)
 
 | # | Criterion | Result |
