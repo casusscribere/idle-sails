@@ -6,10 +6,25 @@ chart engine rebuild") and unlocks `L-01 §1c` (the refinement track's "find, NO
 generate, real route data and compare"), which the user opened by requesting
 this plan.
 
-> ⏸️ **NOTHING IN THIS PLAN IS TO BE BUILT UNTIL THE USER SAYS SO.**
-> D-18 and D-21 are settled (ledger below); D-19 and D-20 remain deliberately
-> open until Phase 0's baseline exists. The next action, when released, is
-> **F-41 and nothing else** — see §11.
+> ▶️ **RELEASED 2026-07-21. Phase 0 (F-41) is BUILT; everything after it is
+> still held.** D-18 and D-21 are settled (ledger below); D-19 and D-20 remain
+> deliberately open until the baseline is read against a real corpus. The next
+> action is **R-11 ‖ R-12**, and no engine change before CR-2.
+
+**Phase 0 result (2026-07-21).** The harness exists and the first baseline is
+committed: `research/routes/baseline-2026-07-21.json`, rendered at
+`research/routes.html`. The headline is the coverage figure, which is exactly
+the number this plan was built to make visible:
+
+> **10 of 414 lanes (2.4%) have any route evidence at all. 404 are unverified.**
+> By basin: Atlantic 0/102, Mediterranean 0/48, Baltic–North Sea 0/41,
+> Indian Ocean west 0/25, Pacific 0/23 — every entry so far falls in
+> bengal-se-asia (6/54) and east-asia (4/42). By era band, 1550–1650 is 4/261.
+
+All 21 evaluated claims pass, and that statement is worth almost nothing on its
+own — it says the current engine honours the waystop constraints it was built to
+honour. The suite's value is the 404, and the machinery that keeps the 404
+visible rather than dividing 21 by 21 and reporting 100%.
 
 ## Decision ledger
 
@@ -543,6 +558,31 @@ Never its own bake. Runs with F-01 (Porto/Rotterdam), F-03, F-06, F-07, F-10.
 | | |
 |---|---|
 | **Plan** | Scoped; D-18 + D-21 settled; D-19/D-20 deliberately open |
-| **Build** | ⏸️ **NOT STARTED — held pending instruction** |
-| **Next action when released** | **F-41 only.** Do not begin R-11, R-12, or any engine change alongside it. |
-| **Blocked on** | Nothing. This is a hold, not a dependency. |
+| **CR-0 · F-41 harness** | ✅ **BUILT 2026-07-21** — corpus + schema + runner + report page + baseline, 12 harness tests (6 of them negative controls), 84 tests green |
+| **CR-1 · R-11 ‖ R-12** | ⏸️ not started |
+| **CR-2 onward** | ⏸️ held — no engine change before the decision point |
+| **Next action** | **R-11 ‖ R-12.** The harness is the instrument; it now needs real evidence to measure against. |
+
+### What F-41 delivered, against its acceptance criteria (§11)
+
+| # | Criterion | Result |
+|---|---|---|
+| 1 | Per-basin/era/tier report, coverage first | ✅ coverage leads both the CLI and the page |
+| 2 | No global score anywhere | ✅ enforced by a test that rejects any top-level key matching `/score|passRate|overall|grade|accuracy/i` |
+| 3 | `unverified` a distinct third state, never counted | ✅ modelled as the *absence* of a result, so it cannot leak into a tally; asserted by test |
+| 4 | Deterministic — byte-identical reports | ✅ no timestamps; identified by bundle versions + a corpus digest; asserted by test |
+| 5 | Reproduces the waystations seed set | ✅ 21/21 pass against the current bake |
+| 6 | Baseline committed | ✅ `research/routes/baseline-2026-07-21.json` |
+
+**Beyond the criteria: six negative controls.** A harness reporting "no failures"
+is worthless until it has been shown capable of reporting a failure, so the tests
+feed it corpora asserting things the bake demonstrably violates — a required
+waypoint at Reykjavik, a forbidden call at Table Bay, a forbidden corridor at the
+Cape, a 1–3 day London→Canton passage, a lane required to differ from itself, and
+a stale lane id — and require it to catch each. It does.
+
+**Two bugs the build surfaced, both fixed:** two corpus lane ids
+(`gal-acapulco-manila`) did not exist, caught by validating ids before writing the
+runner — precisely the silent-non-match the schema warns about; and the `--strict`
+test initially passed *for the wrong reason*, because a crash also exits 1, so it
+now requires a real report in stdout as well.

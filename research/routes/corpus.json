@@ -1,0 +1,113 @@
+{
+  "_doc": "Route verification corpus (PLAN-7 Phase 0 / F-41). Verified historical observations about how ships actually sailed, checked against the BAKED polylines in data/routes.json by research/tools/route-verify.mjs. Schema + rules in _schema.md. A prescribed route is not an observed route; `kind` keeps them apart. Tolerances must match the source's precision -- tightening one beyond what the source supports is fabricated precision, which is the main way this file could go wrong.",
+  "_seed": "SEED SET, 2026-07-21. Every entry below derives from research/port-flow-candidates-waystations-2026-07-20.md -- the T14 waystations sweep, gathered by three basin agents and adversarially self-checked, then cross-checked against the repo's lanes at synthesis. That makes it real in-repo provenance rather than invention, and it lets the harness be tested before R-11 lands. R-11 replaces this with a corpus built from external sources (CLIWOC, sailing directions, company records).",
+  "_note_on_circularity": "Six of these constraints are implemented in the baker as `via` chains, so it may look circular to test them. It is not. The harness measures the GEOMETRY of the baked polyline -- whether the track actually passes within tolerance of Table Bay -- not whether a `via` field is set. The Acapulco->Guam->Manila longitude-reframing bug produced a route with a correct `via` and a track that jumped a circumference; that class of defect is exactly what these entries catch. The forbidden-corridor entries are not implied by `via` at all: a route can carry via:anjer and still clip Malacca.",
+
+  "entries": [
+    {
+      "id": "europe-canton-via-sunda-not-malacca",
+      "tier": "T1",
+      "kind": "prescribed-route",
+      "class": "reconstructed",
+      "era": { "from": 1700, "to": 1850 },
+      "lanes": ["china-can-lon", "china-lon-can", "sg-singapore-london", "hk-hongkong-london"],
+      "waypoints": [
+        { "name": "Anjer, Sunda Strait", "lon": 105.9, "lat": -6.05, "tolKm": 450, "required": true }
+      ],
+      "corridors": [
+        { "name": "Malacca Strait", "forbidden": true, "box": [98.0, 1.0, 103.0, 6.5] }
+      ],
+      "sources": ["research/port-flow-candidates-waystations-2026-07-20.md (Sunda vs Malacca verdict)"],
+      "notes": "The sweep's headline correction: the Europe-China route ran through the Sunda Strait, not Malacca. Malacca was a TERMINUS, not a waystop on the China run. The forbidden-corridor half is an independent test -- carrying via:anjer does not by itself keep a track out of the Malacca box. Tolerance 450 km reflects that the sources place the call at the strait, not at a berth."
+    },
+    {
+      "id": "indiamen-water-at-table-bay",
+      "tier": "T1",
+      "kind": "prescribed-route",
+      "class": "reconstructed",
+      "era": { "from": 1652, "to": 1850 },
+      "lanes": ["china-can-lon", "china-lon-can", "voc-bat-ams", "nl-bat-ams", "china-can-got", "sg-singapore-london", "hk-hongkong-london"],
+      "waypoints": [
+        { "name": "Table Bay", "lon": 18.42, "lat": -33.92, "tolKm": 350, "required": true }
+      ],
+      "sources": ["research/port-flow-candidates-waystations-2026-07-20.md", "the Cape Town waystop build, 2026-07-20"],
+      "notes": "The refreshment call that made Table Bay exist as a settlement. Gated to the 1652 founding: before it, ships rounded the Cape without stopping, which is why the era window starts there and not at 1550."
+    },
+    {
+      "id": "st-helena-homeward-british-only",
+      "tier": "T1",
+      "kind": "prescribed-route",
+      "class": "reconstructed",
+      "era": { "from": 1659, "to": 1850 },
+      "lanes": ["china-can-lon", "sg-singapore-london", "hk-hongkong-london"],
+      "waypoints": [
+        { "name": "St Helena", "lon": -5.72, "lat": -15.96, "tolKm": 400, "required": true }
+      ],
+      "sources": ["research/port-flow-candidates-waystations-2026-07-20.md (direction + nationality finding)"],
+      "notes": "HOMEWARD and BRITISH. The sweep's first structural finding is that direction and nationality both matter and a nationality-blind 'universal waystop' tag would overstate every one of these. The negative case is a separate entry."
+    },
+    {
+      "id": "st-helena-not-dutch-or-swedish-homeward",
+      "tier": "T1",
+      "kind": "prescribed-route",
+      "class": "reconstructed",
+      "era": { "from": 1659, "to": 1850 },
+      "lanes": ["voc-bat-ams", "nl-bat-ams", "china-can-got"],
+      "waypoints": [
+        { "name": "St Helena", "lon": -5.72, "lat": -15.96, "tolKm": 400, "required": false, "forbidden": true }
+      ],
+      "sources": ["research/port-flow-candidates-waystations-2026-07-20.md"],
+      "notes": "The negative of the entry above, and the more valuable test: it fails if the harness or the baker ever flattens the nationality split into a universal call. St Helena was English/British; Dutch and Swedish homeward Indiamen did not use it."
+    },
+    {
+      "id": "no-madeira-for-the-voc",
+      "tier": "T1",
+      "kind": "prescribed-route",
+      "class": "reconstructed",
+      "era": { "from": 1602, "to": 1800 },
+      "lanes": ["voc-ams-bat", "nl-ams-bat"],
+      "waypoints": [
+        { "name": "Funchal, Madeira", "lon": -16.92, "lat": 32.65, "tolKm": 300, "required": false, "forbidden": true }
+      ],
+      "sources": ["research/port-flow-candidates-waystations-2026-07-20.md"],
+      "notes": "VOC standing orders ran direct to Table Bay -- which is the reason Table Bay exists. A Dutch outbound Indiaman calling at Madeira would be a real fidelity error, not a cosmetic one."
+    },
+    {
+      "id": "manila-galleon-guam-westbound-only",
+      "tier": "T1",
+      "kind": "prescribed-route",
+      "class": "reconstructed",
+      "era": { "from": 1668, "to": 1815 },
+      "lanes": ["f-acapulco-manila"],
+      "waypoints": [
+        { "name": "Umatac, Guam", "lon": 144.66, "lat": 13.3, "tolKm": 500, "required": true }
+      ],
+      "sources": ["research/port-flow-candidates-waystations-2026-07-20.md (Guam westbound-only verdict)"],
+      "notes": "The westbound galleon watered at Guam. The eastbound return did not -- it stood far north into the westerlies before running down the American coast, which is the asymmetry entry below. This is also the lane whose per-hop longitude re-framing bug once made the track jump a whole circumference, so the geometric check here is load-bearing."
+    },
+    {
+      "id": "manila-galleon-return-differs",
+      "tier": "T3",
+      "kind": "prescribed-route",
+      "class": "reconstructed",
+      "era": { "from": 1668, "to": 1815 },
+      "lanes": ["f-manila-acapulco"],
+      "asymmetryWith": "f-acapulco-manila",
+      "minSeparationKm": 600,
+      "sources": ["research/port-flow-candidates-waystations-2026-07-20.md"],
+      "notes": "The defining asymmetry of the Pacific: the westbound run took the trades, the eastbound return stood north for the westerlies. A router producing a symmetric out-and-back here is wrong in a way no amount of geometric polish would hide."
+    },
+    {
+      "id": "china-run-outbound-homeward-differ",
+      "tier": "T3",
+      "kind": "prescribed-route",
+      "class": "reconstructed",
+      "era": { "from": 1700, "to": 1850 },
+      "lanes": ["china-can-lon"],
+      "asymmetryWith": "china-lon-can",
+      "minSeparationKm": 200,
+      "sources": ["research/port-flow-candidates-waystations-2026-07-20.md (the chains differ: madeira->cape-town->anjer outbound vs anjer->cape-town->st-helena homeward)"],
+      "notes": "Outbound and homeward carried different waystop chains, so the tracks must visibly differ. 200 km is deliberately loose -- both legs cross the same oceans and share the Cape; the test is that they are not the same line."
+    }
+  ]
+}

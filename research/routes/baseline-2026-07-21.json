@@ -1,0 +1,1310 @@
+{
+  "_doc": "PLAN-7 F-41 route verification. NO GLOBAL SCORE is emitted by design — one number over unevenly-evidenced lanes would itself be false precision. `unverified` lanes are those with no corpus entry; they never count toward a pass rate.",
+  "bundle": {
+    "datasets": 6,
+    "routes": 3,
+    "corpus": "4e83ef997484"
+  },
+  "coverage": {
+    "lanes": 414,
+    "lanesWithAnyEvidence": 10,
+    "byTier": {
+      "T1": 9,
+      "T2": 0,
+      "T3": 2,
+      "T4": 0,
+      "T5": 0
+    },
+    "byBasin": {
+      "east-asia": {
+        "lanes": 42,
+        "covered": 4
+      },
+      "unfolded": {
+        "lanes": 79,
+        "covered": 0
+      },
+      "bengal-se-asia": {
+        "lanes": 54,
+        "covered": 6
+      },
+      "atlantic": {
+        "lanes": 102,
+        "covered": 0
+      },
+      "baltic-north-sea": {
+        "lanes": 41,
+        "covered": 0
+      },
+      "indian-ocean-west": {
+        "lanes": 25,
+        "covered": 0
+      },
+      "mediterranean": {
+        "lanes": 48,
+        "covered": 0
+      },
+      "pacific": {
+        "lanes": 23,
+        "covered": 0
+      }
+    },
+    "byEraBand": {
+      "1650-1750": {
+        "lanes": 347,
+        "covered": 7
+      },
+      "1750-1850": {
+        "lanes": 380,
+        "covered": 10
+      },
+      "1550-1650": {
+        "lanes": 261,
+        "covered": 4
+      }
+    }
+  },
+  "byTier": {
+    "T3": {
+      "pass": 2,
+      "fail": 0,
+      "inapplicable": 0,
+      "error": 0
+    },
+    "T1": {
+      "pass": 19,
+      "fail": 0,
+      "inapplicable": 0,
+      "error": 0
+    }
+  },
+  "byBasin": {
+    "east-asia": {
+      "pass": 11,
+      "fail": 0,
+      "inapplicable": 0,
+      "error": 0
+    },
+    "bengal-se-asia": {
+      "pass": 10,
+      "fail": 0,
+      "inapplicable": 0,
+      "error": 0
+    }
+  },
+  "byEraBand": {
+    "1650-1750": {
+      "pass": 13,
+      "fail": 0,
+      "inapplicable": 0,
+      "error": 0
+    },
+    "1750-1850": {
+      "pass": 21,
+      "fail": 0,
+      "inapplicable": 0,
+      "error": 0
+    },
+    "1550-1650": {
+      "pass": 5,
+      "fail": 0,
+      "inapplicable": 0,
+      "error": 0
+    }
+  },
+  "results": [
+    {
+      "entry": "china-run-outbound-homeward-differ",
+      "tier": "T3",
+      "lane": "china-can-lon",
+      "verdict": "pass",
+      "basin": "east-asia",
+      "eraBands": [
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "china-can-lon__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "differs from china-lon-can",
+              "ok": true,
+              "separationKm": 1222.6,
+              "minKm": 200
+            }
+          ]
+        },
+        {
+          "variant": "china-can-lon__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "differs from china-lon-can",
+              "ok": true,
+              "separationKm": 698.9,
+              "minKm": 200
+            }
+          ]
+        },
+        {
+          "variant": "china-can-lon__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "differs from china-lon-can",
+              "ok": true,
+              "separationKm": 1122.1,
+              "minKm": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "europe-canton-via-sunda-not-malacca",
+      "tier": "T1",
+      "lane": "china-can-lon",
+      "verdict": "pass",
+      "basin": "east-asia",
+      "eraBands": [
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "china-can-lon__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        },
+        {
+          "variant": "china-can-lon__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        },
+        {
+          "variant": "china-can-lon__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "europe-canton-via-sunda-not-malacca",
+      "tier": "T1",
+      "lane": "china-lon-can",
+      "verdict": "pass",
+      "basin": "east-asia",
+      "eraBands": [
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "china-lon-can__indiaman__djf",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        },
+        {
+          "variant": "china-lon-can__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        },
+        {
+          "variant": "china-lon-can__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "europe-canton-via-sunda-not-malacca",
+      "tier": "T1",
+      "lane": "hk-hongkong-london",
+      "verdict": "pass",
+      "basin": "east-asia",
+      "eraBands": [
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "hk-hongkong-london__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        },
+        {
+          "variant": "hk-hongkong-london__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        },
+        {
+          "variant": "hk-hongkong-london__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "europe-canton-via-sunda-not-malacca",
+      "tier": "T1",
+      "lane": "sg-singapore-london",
+      "verdict": "pass",
+      "basin": "bengal-se-asia",
+      "eraBands": [
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "sg-singapore-london__indiaman__djf",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        },
+        {
+          "variant": "sg-singapore-london__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        },
+        {
+          "variant": "sg-singapore-london__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        },
+        {
+          "variant": "sg-singapore-london__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Anjer, Sunda Strait",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 450
+            },
+            {
+              "what": "stays out of Malacca Strait",
+              "ok": true,
+              "entered": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "indiamen-water-at-table-bay",
+      "tier": "T1",
+      "lane": "china-can-got",
+      "verdict": "pass",
+      "basin": "east-asia",
+      "eraBands": [
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "china-can-got__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "china-can-got__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "china-can-got__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "indiamen-water-at-table-bay",
+      "tier": "T1",
+      "lane": "china-can-lon",
+      "verdict": "pass",
+      "basin": "east-asia",
+      "eraBands": [
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "china-can-lon__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "china-can-lon__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "china-can-lon__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "indiamen-water-at-table-bay",
+      "tier": "T1",
+      "lane": "china-lon-can",
+      "verdict": "pass",
+      "basin": "east-asia",
+      "eraBands": [
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "china-lon-can__indiaman__djf",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "china-lon-can__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "china-lon-can__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "indiamen-water-at-table-bay",
+      "tier": "T1",
+      "lane": "hk-hongkong-london",
+      "verdict": "pass",
+      "basin": "east-asia",
+      "eraBands": [
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "hk-hongkong-london__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "hk-hongkong-london__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "hk-hongkong-london__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "indiamen-water-at-table-bay",
+      "tier": "T1",
+      "lane": "nl-bat-ams",
+      "verdict": "pass",
+      "basin": "bengal-se-asia",
+      "eraBands": [
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "nl-bat-ams__brig__djf",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "nl-bat-ams__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "nl-bat-ams__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "nl-bat-ams__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "indiamen-water-at-table-bay",
+      "tier": "T1",
+      "lane": "sg-singapore-london",
+      "verdict": "pass",
+      "basin": "bengal-se-asia",
+      "eraBands": [
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "sg-singapore-london__indiaman__djf",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "sg-singapore-london__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "sg-singapore-london__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "sg-singapore-london__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "indiamen-water-at-table-bay",
+      "tier": "T1",
+      "lane": "voc-bat-ams",
+      "verdict": "pass",
+      "basin": "bengal-se-asia",
+      "eraBands": [
+        "1550-1650",
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "voc-bat-ams__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "voc-bat-ams__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        },
+        {
+          "variant": "voc-bat-ams__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Table Bay",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 350
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "manila-galleon-guam-westbound-only",
+      "tier": "T1",
+      "lane": "f-acapulco-manila",
+      "verdict": "pass",
+      "basin": "bengal-se-asia",
+      "eraBands": [
+        "1550-1650",
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "f-acapulco-manila__frigate__djf",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at Umatac, Guam",
+              "ok": true,
+              "closestKm": 0,
+              "tolKm": 500
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "manila-galleon-return-differs",
+      "tier": "T3",
+      "lane": "f-manila-acapulco",
+      "verdict": "pass",
+      "basin": "bengal-se-asia",
+      "eraBands": [
+        "1550-1650",
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "f-manila-acapulco__frigate__djf",
+          "ok": true,
+          "detail": [
+            {
+              "what": "differs from f-acapulco-manila",
+              "ok": true,
+              "separationKm": 1344.7,
+              "minKm": 600
+            }
+          ]
+        },
+        {
+          "variant": "f-manila-acapulco__frigate__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "differs from f-acapulco-manila",
+              "ok": true,
+              "separationKm": 1532.5,
+              "minKm": 600
+            }
+          ]
+        },
+        {
+          "variant": "f-manila-acapulco__frigate__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "differs from f-acapulco-manila",
+              "ok": true,
+              "separationKm": 1344.7,
+              "minKm": 600
+            }
+          ]
+        },
+        {
+          "variant": "f-manila-acapulco__frigate__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "differs from f-acapulco-manila",
+              "ok": true,
+              "separationKm": 1344.7,
+              "minKm": 600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "no-madeira-for-the-voc",
+      "tier": "T1",
+      "lane": "voc-ams-bat",
+      "verdict": "pass",
+      "basin": "bengal-se-asia",
+      "eraBands": [
+        "1550-1650",
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "voc-ams-bat__indiaman__djf",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids Funchal, Madeira",
+              "ok": true,
+              "closestKm": 775.3,
+              "tolKm": 300
+            }
+          ]
+        },
+        {
+          "variant": "voc-ams-bat__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids Funchal, Madeira",
+              "ok": true,
+              "closestKm": 1109.5,
+              "tolKm": 300
+            }
+          ]
+        },
+        {
+          "variant": "voc-ams-bat__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids Funchal, Madeira",
+              "ok": true,
+              "closestKm": 1177,
+              "tolKm": 300
+            }
+          ]
+        },
+        {
+          "variant": "voc-ams-bat__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids Funchal, Madeira",
+              "ok": true,
+              "closestKm": 1177,
+              "tolKm": 300
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "st-helena-homeward-british-only",
+      "tier": "T1",
+      "lane": "china-can-lon",
+      "verdict": "pass",
+      "basin": "east-asia",
+      "eraBands": [
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "china-can-lon__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at St Helena",
+              "ok": true,
+              "closestKm": 2.3,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "china-can-lon__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at St Helena",
+              "ok": true,
+              "closestKm": 2.3,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "china-can-lon__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at St Helena",
+              "ok": true,
+              "closestKm": 2.3,
+              "tolKm": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "st-helena-homeward-british-only",
+      "tier": "T1",
+      "lane": "hk-hongkong-london",
+      "verdict": "pass",
+      "basin": "east-asia",
+      "eraBands": [
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "hk-hongkong-london__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at St Helena",
+              "ok": true,
+              "closestKm": 2.3,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "hk-hongkong-london__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at St Helena",
+              "ok": true,
+              "closestKm": 2.3,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "hk-hongkong-london__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at St Helena",
+              "ok": true,
+              "closestKm": 2.3,
+              "tolKm": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "st-helena-homeward-british-only",
+      "tier": "T1",
+      "lane": "sg-singapore-london",
+      "verdict": "pass",
+      "basin": "bengal-se-asia",
+      "eraBands": [
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "sg-singapore-london__indiaman__djf",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at St Helena",
+              "ok": true,
+              "closestKm": 2.3,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "sg-singapore-london__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at St Helena",
+              "ok": true,
+              "closestKm": 2.3,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "sg-singapore-london__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at St Helena",
+              "ok": true,
+              "closestKm": 2.3,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "sg-singapore-london__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "calls at St Helena",
+              "ok": true,
+              "closestKm": 2.3,
+              "tolKm": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "st-helena-not-dutch-or-swedish-homeward",
+      "tier": "T1",
+      "lane": "china-can-got",
+      "verdict": "pass",
+      "basin": "east-asia",
+      "eraBands": [
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "china-can-got__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids St Helena",
+              "ok": true,
+              "closestKm": 2445.1,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "china-can-got__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids St Helena",
+              "ok": true,
+              "closestKm": 2254,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "china-can-got__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids St Helena",
+              "ok": true,
+              "closestKm": 2259.2,
+              "tolKm": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "st-helena-not-dutch-or-swedish-homeward",
+      "tier": "T1",
+      "lane": "nl-bat-ams",
+      "verdict": "pass",
+      "basin": "bengal-se-asia",
+      "eraBands": [
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "nl-bat-ams__brig__djf",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids St Helena",
+              "ok": true,
+              "closestKm": 1486.1,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "nl-bat-ams__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids St Helena",
+              "ok": true,
+              "closestKm": 2445.1,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "nl-bat-ams__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids St Helena",
+              "ok": true,
+              "closestKm": 2254,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "nl-bat-ams__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids St Helena",
+              "ok": true,
+              "closestKm": 2259.2,
+              "tolKm": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "st-helena-not-dutch-or-swedish-homeward",
+      "tier": "T1",
+      "lane": "voc-bat-ams",
+      "verdict": "pass",
+      "basin": "bengal-se-asia",
+      "eraBands": [
+        "1550-1650",
+        "1650-1750",
+        "1750-1850"
+      ],
+      "class": "reconstructed",
+      "kind": "prescribed-route",
+      "variants": [
+        {
+          "variant": "voc-bat-ams__indiaman__jja",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids St Helena",
+              "ok": true,
+              "closestKm": 2445.1,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "voc-bat-ams__indiaman__mam",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids St Helena",
+              "ok": true,
+              "closestKm": 2254,
+              "tolKm": 400
+            }
+          ]
+        },
+        {
+          "variant": "voc-bat-ams__indiaman__son",
+          "ok": true,
+          "detail": [
+            {
+              "what": "avoids St Helena",
+              "ok": true,
+              "closestKm": 2259.2,
+              "tolKm": 400
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

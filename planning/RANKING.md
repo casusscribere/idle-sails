@@ -212,7 +212,16 @@ unlocks six ambient patterns**; everything else rides existing machinery.*
 Read the plan before touching any item here — it corrects three beliefs the queue
 had been carrying.*
 
-> ⏸️ **HELD PENDING INSTRUCTION (2026-07-21).** Scope is settled — **D-18**:
+> ▶️ **PHASE 0 BUILT 2026-07-21; the rest still held.** **F-41 is done** —
+> `research/tools/route-verify.mjs` + corpus + report page + a committed
+> baseline. **The headline is the coverage figure: 10 of 414 lanes (2.4%) have
+> any route evidence at all; 404 are unverified** — Atlantic 0/102,
+> Mediterranean 0/48, Baltic 0/41, Pacific 0/23. All 21 evaluated claims pass,
+> which says only that the engine honours the waystop constraints it was built
+> to honour; the suite's value is the 404 and the machinery that keeps it
+> visible. **Next: R-11 ‖ R-12. No engine change before CR-2.**
+>
+> Scope is settled — **D-18**:
 > routing + the lane → bake → itinerary layer, with the PLAN-3 flow matrix as a
 > **fixed input**; **D-21**: unevidenced lanes stay unfitted, are reported
 > *unverified*, and the coverage fraction is published, with silent extension of
@@ -236,9 +245,9 @@ had been carrying.*
 
 | ID | Item | Gate | Note |
 |---|---|---|---|
-| **F-41** | **The route-verification harness** — build it against the CURRENT engine | ⏸️ held | PLAN-7 Phase 0, and the highest-value item here. Metrics tier from categorical to quantitative so the early tiers cannot manufacture precision: **T1** waypoint/corridor recall · **T2** passage duration vs an observed RANGE · **T3** directional asymmetry (the volta do mar is binary-testable) · **T4** seasonal response · **T5** track geometry (Fréchet + cross-track) only where positional data exists. **No single global score** — one number over 414 unevenly-evidenced lanes is itself false precision. Survives the rebuild; becomes the regression gate |
-| **R-11** | **The historical route corpus** | F-41 schema | Find, do NOT generate. CLIWOC · Maury · sailing directions · prescribed routes (Brouwer, Carrera, the Urdaneta return) · wreck positions. `prescribed-route` ≠ `logbook-track` and the suite must never average them. Declares what it does not cover — most of 1550–1700 |
-| **R-12** | **Programmatic best practices** | none | Any-angle planning (Theta*/ANYA/Field D*) · fast-marching · time-dependent shortest path · grid choice incl. DGGS · obstacle representation · trajectory metrics · **determinism as a hard constraint** · baking/caching · validation methodology |
+| ~~**F-41**~~ | ~~The route-verification harness~~ | ✅ **BUILT 2026-07-21** | PLAN-7 Phase 0, and the highest-value item here. Metrics tier from categorical to quantitative so the early tiers cannot manufacture precision: **T1** waypoint/corridor recall · **T2** passage duration vs an observed RANGE · **T3** directional asymmetry (the volta do mar is binary-testable) · **T4** seasonal response · **T5** track geometry (Fréchet + cross-track) only where positional data exists. **No single global score** — one number over 414 unevenly-evidenced lanes is itself false precision. Survives the rebuild; becomes the regression gate |
+| **R-11** | **The historical route corpus** | ▶️ **next** | Find, do NOT generate. CLIWOC · Maury · sailing directions · prescribed routes (Brouwer, Carrera, the Urdaneta return) · wreck positions. `prescribed-route` ≠ `logbook-track` and the suite must never average them. Declares what it does not cover — most of 1550–1700 |
+| **R-12** | **Programmatic best practices** | ▶️ **next** | Any-angle planning (Theta*/ANYA/Field D*) · fast-marching · time-dependent shortest path · grid choice incl. DGGS · obstacle representation · trajectory metrics · **determinism as a hard constraint** · baking/caching · validation methodology |
 | **F-42** | **Physics honesty** — wind + current fields | R-11, **D-20** | Calibrate-and-declare, replace with a real climatology, or hybrid. Two fixes ship regardless: currents are added as a **scalar projection** rather than composed as vectors, and the 0.4 m/s floor is an undocumented magic number |
 | **F-43** | **Algorithm & geometry** | R-12, **D-19** | Kill the 45° staircase first (connectivity or any-angle) — visible, cheap, resolution-independent. Then coastal resolution, measured by how many `ISLAND_SEAL`/`STRAIT_CARVE` entries can be DELETED |
 | **F-44** | **Time-dependent routing** | R-12 | Cost as a function of arrival time, so a long passage sails the seasons it crosses. Interacts with F-10 (monsoon windows) and seasonal departure gating |
@@ -426,7 +435,7 @@ density in the window, which is correct.
 ### CR — The routing programme  ·  `planning/PLAN-7-routing.md`
 *A programme, not a sitting. Ordered so the expensive, irreversible step (a
 re-bake) comes last and only if the evidence asks for it.*
-**CR-0** F-41 the harness, against the current engine — ships alone, useful alone
+~~**CR-0** F-41 the harness~~ ✅ **DONE 2026-07-21** (2.4% coverage; 404 lanes unverified)
 · **CR-1** R-11 ‖ R-12 in parallel · **CR-2** *the decision point*: re-read the
 baseline with the corpus in hand and decide whether to rebuild, and how deep
 (D-19, D-20) · **CR-3** F-42/F-43/F-44 as the evidence directs · **CR-4** F-45

@@ -19,6 +19,7 @@
     ['about.html', 'About & methods'],
     ['ports.html', 'The ports'],
     ['silences.html', 'Silences'],
+    ['routes.html', 'Route checks'],
     ['flow-prominence.html', 'Flow prominence'],
     ['ports-1550-1815.html', 'Busiest ports'],
     ['port-synthesis.html', 'Persistence'],

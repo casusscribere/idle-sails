@@ -112,6 +112,25 @@ Every design decision answers to both of these:
   else** — see PLAN-7 §11–§12. The corpus does not start from zero: the T14
   waystations sweep is already adversarially-verified route evidence (Sunda not
   Malacca, Table Bay from 1652, Guam westbound-only) and is F-41's first fixture.
+- **PLAN-7 PHASE 0 BUILT — THE ROUTE-VERIFICATION HARNESS IS LIVE (2026-07-21).**
+  **F-41 done:** `research/tools/route-verify.mjs` + `research/routes/corpus.json`
+  (+ `_schema.md`) + `research/routes.html` + a committed baseline
+  (`routes/baseline-2026-07-21.json`). **The headline is the coverage figure —
+  10 of 414 lanes (2.4%) have ANY route evidence; 404 are `unverified`** —
+  Atlantic 0/102, Mediterranean 0/48, Baltic 0/41, Indian-Ocean-west 0/25,
+  Pacific 0/23, all present evidence in bengal-se-asia (6/54) + east-asia (4/42);
+  1550–1650 is 4/261. All 21 evaluated claims pass, which says only that the
+  engine honours the waystop constraints it was built to honour — **the suite's
+  value is the 404 and the machinery that keeps it visible instead of dividing
+  21 by 21.** Design invariants, each test-enforced: **no global score** (a test
+  rejects any top-level key matching /score|passRate|overall|grade|accuracy/),
+  **`unverified` is the ABSENCE of a result** so it cannot leak into a tally, and
+  **byte-identical determinism** (no timestamps; identified by bundle versions +
+  corpus digest). **Six NEGATIVE CONTROLS** prove the instrument can fail things
+  — required waypoint at Reykjavik, forbidden call at Table Bay, forbidden Cape
+  corridor, a 1–3 day London→Canton passage, a lane required to differ from
+  itself, a stale lane id. **84 tests green.** Next: **R-11 ‖ R-12**; no engine
+  change before the CR-2 decision point.
 - **CONVOYS MERGED TO MAIN + CHUNK C1 COMPLETE (2026-07-21).** `movement-realism`
   (convoys + region-aware sinking) merged into `main` at user request. The two
   features had NEVER shared a tree — convoys existed only on that branch, which

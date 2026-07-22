@@ -1,0 +1,153 @@
+<!doctype html><meta charset="utf-8"><title>How the routes are checked — Idle Sails research</title><script defer src="nav.js"></script>
+<style>
+:root{--paper:#e8dcc0;--paper-2:#f1e7d0;--card:#efe4cc;--ink:#3a2c1c;--ink-soft:#6d5837;--faint:#8a7452;--edge:#c3ab82;--rule:#a98f66;--accent:#9e2b25;--good:#3f6b3a;--grid-line:rgba(90,70,45,.16);--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--sans:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif}
+@media (prefers-color-scheme:dark){:root{--paper:#211711;--paper-2:#2a1f15;--card:#2c2016;--ink:#ecdcbc;--ink-soft:#b39a74;--faint:#8f7a58;--edge:#463527;--rule:#5c472f;--accent:#e0937a;--good:#8fbf7f;--grid-line:rgba(230,214,180,.12)}}
+:root[data-theme="light"]{--paper:#e8dcc0;--paper-2:#f1e7d0;--card:#efe4cc;--ink:#3a2c1c;--ink-soft:#6d5837;--faint:#8a7452;--edge:#c3ab82;--rule:#a98f66;--accent:#9e2b25;--good:#3f6b3a;--grid-line:rgba(90,70,45,.16)}
+:root[data-theme="dark"]{--paper:#211711;--paper-2:#2a1f15;--card:#2c2016;--ink:#ecdcbc;--ink-soft:#b39a74;--faint:#8f7a58;--edge:#463527;--rule:#5c472f;--accent:#e0937a;--good:#8fbf7f;--grid-line:rgba(230,214,180,.12)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;background-image:radial-gradient(120% 80% at 50% -10%,var(--paper-2),var(--paper) 70%)}
+.wrap{max-width:960px;margin:0 auto;padding:40px 22px 70px}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+h1{font-family:var(--serif);font-size:clamp(26px,4.6vw,40px);line-height:1.12;margin:8px 0 10px;text-wrap:balance}
+h2{font-family:var(--serif);font-size:21px;margin:26px 0 6px}
+.dek{font-family:var(--serif);font-style:italic;font-size:16.5px;color:var(--ink-soft);max-width:64ch;margin:0 0 8px}
+.rule{height:2px;background:var(--rule);opacity:.5;margin:20px 0}
+.card{background:var(--card);border:1px solid var(--edge);border-radius:5px;padding:16px 18px;margin:14px 0}
+.note{font-size:13.5px;color:var(--ink-soft);max-width:76ch}
+p{font-size:14.5px;max-width:76ch}
+.big{font-family:var(--serif);font-size:clamp(30px,6vw,52px);line-height:1;margin:2px 0 2px}
+.big.warn{color:var(--accent)}
+.cov{display:flex;flex-wrap:wrap;gap:18px;margin:6px 0 2px}
+.cov>div{flex:1 1 190px;background:var(--card);border:1px solid var(--edge);border-radius:5px;padding:12px 14px}
+.covlab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.bar{height:9px;background:var(--paper-2);border:1px solid var(--edge);border-radius:99px;overflow:hidden;margin-top:6px}
+.bar>i{display:block;height:100%;background:var(--accent);opacity:.75}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
+.tablewrap{overflow-x:auto;border:1px solid var(--edge);border-radius:4px;background:var(--card);margin-top:12px}
+th,td{padding:6px 9px;border-bottom:1px solid var(--grid-line);text-align:left;white-space:nowrap}
+thead th{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2);position:sticky;top:0}
+td.num{font-variant-numeric:tabular-nums;color:var(--faint)}
+.v-pass{color:var(--good);font-weight:600}
+.v-fail{color:var(--accent);font-weight:600}
+.v-unver{color:var(--faint);font-style:italic}
+.badge{display:inline-block;font-size:10px;letter-spacing:.13em;text-transform:uppercase;border:1px solid var(--edge);border-radius:3px;padding:2px 8px;margin-right:6px;color:var(--ink-soft)}
+.foot{margin-top:34px;font-size:12.5px;color:var(--faint)}
+code{font-size:12.5px;background:var(--paper-2);border:1px solid var(--edge);border-radius:3px;padding:1px 5px}
+a{color:var(--ink)}</style>
+<div class="wrap">
+<p class="eyebrow">Idle Sails · research · PLAN-7 · route verification</p>
+<h1>How the routes are checked</h1>
+<p class="dek">The chart draws a track for every voyage. This page is about how much of that track we can
+actually defend — and, more importantly, how much of it we cannot.</p>
+
+<p class="note">The routing engine is the least-evidenced part of this project. Where every trade flow carries
+an evidence class, bounds, and sources, the wind field behind these tracks is a parametric model of about
+fifteen constants and the currents are ten boxes drawn on a map. None of it had ever been tested against the
+historical record. This page is the beginning of that test.</p>
+
+<div class="rule"></div>
+
+<h2>Coverage — what we can say anything about at all</h2>
+<p class="note">This comes first, deliberately. A verification suite that reports a healthy pass rate over the
+handful of routes that happen to have surviving evidence, while saying nothing about the rest, would be
+worse than no suite at all — it would launder a narrow check into a broad reassurance.</p>
+<div class="cov" id="cov"></div>
+<p class="note" id="covnote"></p>
+
+<h2>Results</h2>
+<p class="note">Reported per tier, per basin, and per era band — never pooled. There is deliberately
+<b>no single score</b> for the router: one number spanning routes with rich logbook evidence and routes with
+none would itself be a piece of false precision, and the whole point of this exercise is to not do that.</p>
+<div id="results"></div>
+
+<h2>The tiers</h2>
+<p class="note">Ordered from the most robust to the most demanding. The early tiers are categorical and
+cannot manufacture precision; the last is quantitative and is only applied where positional data genuinely
+exists.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Tier</th><th>What it asks</th><th>Why it is trustworthy</th></tr></thead>
+<tbody>
+<tr><td><b>T1</b></td><td>Did the track call where it had to, and stay out of where it must not?</td><td>Categorical. Needs no positional series, and encodes what the record is genuinely confident about — that homeward China ships used Sunda and not Malacca.</td></tr>
+<tr><td><b>T2</b></td><td>Did the passage take a plausible number of days?</td><td>Scored against an observed <i>range</i>, never a point estimate. Sailing dates survive in registers and company records for periods with no positions at all.</td></tr>
+<tr><td><b>T3</b></td><td>Do outbound and homeward tracks differ?</td><td>The volta do mar and the galleon's northern return are the defining feature of age-of-sail routing. A symmetric out-and-back is wrong in a way that is trivially testable.</td></tr>
+<tr><td><b>T4</b></td><td>Does the route respond to the season?</td><td>Where sailing directions say the route changed with the monsoon, it must change.</td></tr>
+<tr><td><b>T5</b></td><td>Does the track match a recorded one?</td><td>Discrete Fréchet distance and cross-track error — only where logbook positions exist, which is a small and late-dated subset.</td></tr>
+</tbody></table></div>
+
+<h2>Three verdicts, not two</h2>
+<p><span class="v-pass">pass</span> — the generated route satisfies the claim.
+<span class="v-fail">fail</span> — it does not.
+<span class="v-unver">unverified</span> — <b>no evidence covers this lane at all.</b></p>
+<p class="note">That third state is the one that matters. An unverified lane is not a passing lane; it is a
+lane about which this suite is silent, and it never counts toward any tally. Most of the world's lanes sit
+there, and they will keep sitting there — the surviving positional record is dense for European long-haul
+shipping after about 1750 and thin to absent everywhere else. If the router were tuned until the
+well-documented routes were perfect, the chart would have been quietly rebuilt around the shape of the
+archive rather than the shape of the past. Publishing this number is how that stays visible.</p>
+
+<div class="rule"></div>
+<p class="foot">Idle Sails · PLAN-7 Phase 0 (the verification harness) ·
+data: <code>research/routes/baseline-2026-07-21.json</code>, generated by
+<code>research/tools/route-verify.mjs</code> from the corpus in <code>research/routes/corpus.json</code> ·
+the corpus schema and its declared non-coverage are in <code>research/routes/_schema.md</code>.
+The present corpus is a seed set drawn from this project's own waystations sweep; the external-source
+corpus (logbooks, sailing directions, company records) is research task R-11 and is not yet done.</p>
+
+<script>
+(function(){
+  const esc=t=>String(t==null?'':t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const pct=(n,d)=>d?(100*n/d):0;
+  const fmtPct=(n,d)=>d?(100*n/d).toFixed(1)+'%':'—';
+  const TIER={T1:'waypoint &amp; corridor recall',T2:'passage duration',T3:'directional asymmetry',T4:'seasonal response',T5:'track geometry'};
+
+  fetch('routes/baseline-2026-07-21.json').then(r=>r.json()).then(render).catch(e=>{
+    document.getElementById('cov').innerHTML='<div class="note">Could not load the baseline report.</div>';
+  });
+
+  function render(r){
+    const c=r.coverage, unver=c.lanes-c.lanesWithAnyEvidence;
+    document.getElementById('cov').innerHTML=[
+      card('lanes in the world',c.lanes,'',''),
+      card('with any evidence',c.lanesWithAnyEvidence,fmtPct(c.lanesWithAnyEvidence,c.lanes),pct(c.lanesWithAnyEvidence,c.lanes)),
+      card('unverified',unver,fmtPct(unver,c.lanes),pct(unver,c.lanes),true)
+    ].join('');
+    document.getElementById('covnote').innerHTML=
+      'Bundle: datasets v'+esc(r.bundle.datasets)+' &middot; routes v'+esc(r.bundle.routes)+
+      ' &middot; corpus <code>'+esc(r.bundle.corpus)+'</code>. Coverage by tier: '+
+      Object.entries(c.byTier).map(([t,n])=>'<b>'+t+'</b> '+n+' lane'+(n===1?'':'s')).join(' &middot; ')+'.';
+
+    let h='';
+    h+=sect('By tier',['Tier','What it asks','pass','fail','n/a'],
+      Object.keys(TIER).map(t=>{const v=r.byTier[t];
+        return ['<b>'+t+'</b>',TIER[t],
+          v?cell(v.pass,'v-pass'):'<span class="v-unver">no entries</span>',
+          v?cell(v.fail,'v-fail'):'',v?String(v.inapplicable):''];}));
+    h+=sect('By basin',['Basin','lanes','covered','pass','fail'],
+      Object.entries(c.byBasin).sort().map(([b,cv])=>{const v=r.byBasin[b]||{pass:0,fail:0};
+        return [b,String(cv.lanes),cv.covered+' ('+fmtPct(cv.covered,cv.lanes)+')',
+          cell(v.pass,'v-pass'),cell(v.fail,'v-fail')];}));
+    h+=sect('By era band',['Era','lanes','covered','pass','fail'],
+      Object.entries(c.byEraBand).sort().map(([b,cv])=>{const v=r.byEraBand[b]||{pass:0,fail:0};
+        return [b,String(cv.lanes),cv.covered+' ('+fmtPct(cv.covered,cv.lanes)+')',
+          cell(v.pass,'v-pass'),cell(v.fail,'v-fail')];}));
+    h+=sect('Every checked claim',['Claim','Lane','Tier','Class','Verdict'],
+      r.results.map(x=>[esc(x.entry),'<code>'+esc(x.lane)+'</code>',x.tier,
+        '<span class="badge">'+esc(x.class||'')+'</span>',
+        '<span class="v-'+(x.verdict==='pass'?'pass':x.verdict==='fail'?'fail':'unver')+'">'+esc(x.verdict)+'</span>']));
+    document.getElementById('results').innerHTML=h;
+  }
+  function cell(n,cls){return n?'<span class="'+cls+'">'+n+'</span>':'<span class="v-unver">0</span>';}
+  function card(lab,val,sub,barPct,warn){
+    return '<div><div class="covlab">'+lab+'</div><p class="big'+(warn?' warn':'')+'">'+val+'</p>'+
+      (sub?'<div class="covlab">'+sub+'</div>':'')+
+      (barPct?'<div class="bar"><i style="width:'+barPct.toFixed(1)+'%"></i></div>':'')+'</div>';
+  }
+  function sect(title,head,rows){
+    return '<h2 style="font-size:17px;margin-top:20px">'+title+'</h2><div class="tablewrap"><table><thead><tr>'+
+      head.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+
+      rows.map(r=>'<tr>'+r.map((c,i)=>'<td'+(i>1?' class="num"':'')+'>'+c+'</td>').join('')+'</tr>').join('')+
+      '</tbody></table></div>';
+  }
+})();
+</script>
+</div>
